@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+	<title>debian-share-server</title>
+	<meta charset="utf-8" />
+	<script defer src="https://share.tshuto.com/common-src/javascript/def/Message/1.2.1/Message.js"></script>
+	<link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+	<script defer src="https://share.tshuto.com/common-src/loading/loading.js?1"></script>
+	<div id="console-ok"></div>
+	<script defer src="https://jst.tshuto.com/tamura.js"></script>
+	<ts-message class="alert">
+		<div>
+			Hello, This is Message Library.(type: alert)<br>
+			If you wanted to remove this, you would need to touch me.
+		</div>
+	</ts-message>
+	<ts-message class="warn">
+		<div>
+			Hello, This is Message Library.(type: warn)<br>
+			If you wanted to remove this, you would need to touch me.
+		</div>
+	</ts-message>
+	<ts-message class="normal">
+		<div>
+			Hello, This is Message Library.(type: normal)<br>
+			If you wanted to remove this, you would need to touch me.
+		</div>
+	</ts-message>
+	<ts-message>
+		<div>
+			これは ts-message のclass名を指定していない例です。<br>
+			このように、強制的にclass="normal"になります。
+		</div>
+	</ts-message>
+	<ts-message color-type="black">
+		<div>
+			これは ts-message のcolor-type属性をblackで指定している例です。<br>
+			black, red, green, blue, yellow の中から選択できます。<br>
+			選択できる色の追加に関しては検討中です。
+		</div>
+	</ts-message>
+
+	<h1>Hello Debian-share</h1>
+</body>
+
+</html>
