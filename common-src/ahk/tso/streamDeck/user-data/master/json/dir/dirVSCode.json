@@ -1,0 +1,34 @@
+{
+	"page": [
+		{
+			"ID": "VSCode_OpenFile"
+		},
+		{
+			"ID": "VSCode_OpenDir"
+		},
+		{
+			"ID": "VSCode_SaveFileWithName"
+		},
+		{
+			"ID": "VSCode_OpenSetting"
+		},
+		{
+			"ID": "VSCode_OpenCommandPalette"
+		},
+		{
+			"ID": "VSCode_OpenTerminal"
+		},
+		{
+			"ID": "VSCode_RunScript"
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirVS_WorkSpace",
+				"icon": "__:?:_SHARE_:?:__/png/VS_WorkSpace.png"
+			}
+		}
+	],
+	"attr": "d"
+}

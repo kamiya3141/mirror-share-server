@@ -1,0 +1,13 @@
+<template id="template">
+	<style>
+		:host {
+			aspect-ratio: 1 !important;
+			z-index: 1;
+		}
+	</style>
+	<ts-button id="dial-value-button" color-type="none" sv="50%,50%,50%,50%,100rem" position-type="cxcy" fill="silver" stroke="transparent">
+		<ts-object sv="50%,0%,0.5rem,25%" position-type="cxt" fill="black" stroke="transparent"></ts-object>
+	</ts-button>
+	<ts-button id="sensitive-button" color-type="none" sv="50%,50%,50%,50%,100rem" position-type="cxcy" fill="var(--clear)" stroke="var(--tso-black)" stroke-weight="0.5rem" tt="ib" tc="var(--tso-black)" tpv="50%,50%,auto,auto" ts="2rem"></ts-button>
+
+</template>

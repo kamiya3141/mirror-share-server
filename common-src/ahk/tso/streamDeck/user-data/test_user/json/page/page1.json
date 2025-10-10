@@ -1,0 +1,47 @@
+﻿{
+	"page": [
+		{
+			"ID": "LockScreen"
+		},
+		{
+			"ID": "Windows_OpenSetting"
+		},
+		{
+			"ID": "MediaPrev"
+		},
+		{
+			"ID": "MediaPlayPause"
+		},
+		{
+			"ID": "MediaNext"
+		},
+		{
+			"ID": "Youtube"
+		},
+		{
+			"ID": "YoutubeMusic"
+		},
+		{
+			"ID": "taskmng"
+		},
+		{
+			"ID": "Explorer"
+		},
+		{
+			"ID": "Window_Tab"
+		},
+		{
+			"ID": "this script restart_v2"
+		},
+		{
+			"ID": "GameMode"
+		},
+		{
+			"ID": "THIS_SCRIPT_SWITCH_CLICK_LABEL_SOUND"
+		},
+		{
+			"ID": "THIS_SCRIPT_SWITCH_KEY_SOUND"
+		}
+	],
+	"attr": "pr"
+}

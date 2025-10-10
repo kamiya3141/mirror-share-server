@@ -1,0 +1,62 @@
+<template id="template">
+	<style>
+		:host {
+			/*特殊枠*/
+			--alert: red;
+			--alert-re: pink;
+			--warn: black;
+			--warn-re: yellow;
+			--normal: blue;
+			--normal-re: lightblue;
+			z-index: 995 !important;
+		}
+
+		:host(.alert) {
+			border: var(--alert) var(--bd-wei) var(--bd-tp);
+			background-color: var(--alert-re);
+			color: var(--alert);
+		}
+
+		:host(.warn) {
+			border: var(--warn) var(--bd-wei) var(--bd-tp);
+			background-color: var(--warn-re);
+			color: var(--warn);
+		}
+
+		:host(.normal) {
+			border: var(--normal) var(--bd-wei) var(--bd-tp);
+			background-color: var(--normal-re);
+			color: var(--normal);
+		}
+
+		:host([color-type="black"]) {
+			border: var(--black) var(--bd-wei) var(--bd-tp);
+			background-color: var(--black-re);
+			color: var(--black);
+		}
+
+		:host([color-type="red"]) {
+			border: var(--red) var(--bd-wei) var(--bd-tp);
+			background-color: var(--red-re);
+			color: var(--red);
+		}
+
+		:host([color-type="blue"]) {
+			border: var(--blue) var(--bd-wei) var(--bd-tp);
+			background-color: var(--blue-re);
+			color: var(--blue);
+		}
+
+		:host([color-type="green"]) {
+			border: var(--green) var(--bd-wei) var(--bd-tp);
+			background-color: var(--green-re);
+			color: var(--green);
+		}
+
+		:host([color-type="yellow"]) {
+			border: var(--yellow) var(--bd-wei) var(--bd-tp);
+			background-color: var(--yellow-re);
+			color: var(--yellow);
+		}
+	</style>
+</template>

@@ -1,0 +1,697 @@
+@charset "utf-8";
+
+/*統合*/
+@font-face {
+	font-family: 0xProto;
+	src: url('./font/0xProto/ttf/0xProto-Regular.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Regular.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Regular.woff2') format('woff2');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: 0xProto;
+	src: url('./font/0xProto/ttf/0xProto-Bold.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Bold.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: 0xProto;
+	src: url('./font/0xProto/ttf/0xProto-Italic.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Italic.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Italic.woff2') format('woff2');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: 0xProto-Regular;
+	src: url('./font/0xProto/ttf/0xProto-Regular.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Regular.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Regular.woff2') format('woff2');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: 0xProto-Bold;
+	src: url('./font/0xProto/ttf/0xProto-Bold.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Bold.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Bold.woff2') format('woff2');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: 0xProto-Italic;
+	src: url('./font/0xProto/ttf/0xProto-Italic.ttf') format('truetype'), url('./font/0xProto/otf/0xProto-Italic.otf') format('otf'),
+		url('./font/0xProto/woff2/0xProto-Italic.woff2') format('woff2');
+	font-style: italic;
+	font-weight: normal;
+}
+
+/*統合*/
+@font-face {
+	font-family: Explex;
+	src: url('./font/Explex/ttf/Explex/Explex-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex;
+	src: url('./font/Explex/ttf/Explex/Explex-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex;
+	src: url('./font/Explex/ttf/Explex/Explex-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex;
+	src: url('./font/Explex/ttf/Explex/Explex-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex-Regular;
+	src: url('./font/Explex/ttf/Explex/Explex-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex-Bold;
+	src: url('./font/Explex/ttf/Explex/Explex-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex-Italic;
+	src: url('./font/Explex/ttf/Explex/Explex-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex-BoldItalic;
+	src: url('./font/Explex/ttf/Explex/Explex-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+/*統合*/
+@font-face {
+	font-family: Explex35;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex35;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35;
+	src: url('./font/Explex/ttf/Explex35/Explex35-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+
+@font-face {
+	font-family: Explex35-Regular;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35-Bold;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex35-Italic;
+	src: url('./font/Explex/ttf/Explex35/Explex35-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35-BoldItalic;
+	src: url('./font/Explex/ttf/Explex35/Explex35-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+/*統合*/
+@font-face {
+	font-family: ExplexConsole;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: ExplexConsole;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: ExplexConsole;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: ExplexConsole;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: ExplexConsole-Regular;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: ExplexConsole-Bold;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: ExplexConsole-Italic;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: ExplexConsole-BoldItalic;
+	src: url('./font/Explex/ttf/ExplexConsole/ExplexConsole-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+/*統合*/
+@font-face {
+	font-family: Explex35Console;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35Console;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex35Console;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35Console;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex35Console-Regular;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35Console-Bold;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Explex35Console-Italic;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-Italic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Explex35Console-BoldItalic;
+	src: url('./font/Explex/ttf/Explex35Console/Explex35Console-BoldItalic.ttf') format('truetype');
+	font-style: italic;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: karakaze-Regular;
+	src: url('./font/karakaze/ttf/karakaze-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: riipop-Regular;
+	src: url('./font/riipop/otf/riipop-Regular.otf') format('otf');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Soei-HG;
+	src: url('./font/Soei/HG/ttf/HGSoei.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Soei-HGS;
+	src: url('./font/Soei/HGS/ttf/HGSSoei.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Soei-HGP;
+	src: url('./font/Soei/HGP/ttf/HGPSoei.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Fira Code;
+	src: url('./font/FiraCode/woff2/FiraCode-Light.woff2') format('woff2'),
+		url('./font/FiraCode/woff/FiraCode-Light.woff') format('woff'),
+		url('./font/FiraCode/ttf/FiraCode-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Fira Code;
+	src: url('./font/FiraCode/woff2/FiraCode-Regular.woff2') format('woff2'),
+		url('./font/FiraCode/woff/FiraCode-Regular.woff') format('woff'),
+		url('./font/FiraCode/ttf/FiraCode-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Fira Code;
+	src: url('./font/FiraCode/woff2/FiraCode-Medium.woff2') format('woff2'),
+		url('./font/FiraCode/woff/FiraCode-Medium.woff') format('woff'),
+		url('./font/FiraCode/ttf/FiraCode-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Fira Code;
+	src: url('./font/FiraCode/woff2/FiraCode-SemiBold.woff2') format('woff2'),
+		url('./font/FiraCode/woff/FiraCode-SemiBold.woff') format('woff'),
+		url('./font/FiraCode/ttf/FiraCode-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Fira Code;
+	src: url('./font/FiraCode/woff2/FiraCode-Bold.woff2') format('woff2'),
+		url('./font/FiraCode/woff/FiraCode-Bold.woff') format('woff'),
+		url('./font/FiraCode/ttf/FiraCode-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Fira Code VF;
+	src: url('./font/FiraCode/woff2/FiraCode-VF.woff2') format('woff2-variations'),
+		url('./font/FiraCode/woff/FiraCode-VF.woff') format('woff-variations'),
+		url('./font/FiraCode/ttf/FiraCode-VF.ttf') format('truetype');
+	font-weight: 300 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: Onryou;
+	src: url('./font/onryou/onryou.ttf') format('truetype');
+	font-weight: 300 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: HackGen-Regular;
+	src: url('./font/HackGen/ttf/HackGen/HackGen-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: HackGen-Bold;
+	src: url('./font/HackGen/ttf/HackGen/HackGen-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: HackGen35-Regular;
+	src: url('./font/HackGen/ttf/HackGen35/HackGen35-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: HackGen35-Bold;
+	src: url('./font/HackGen/ttf/HackGen35/HackGen35-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: HackGenConsole-Regular;
+	src: url('./font/HackGen/ttf/HackGenConsole/HackGenConsole-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: HackGenConsole-Bold;
+	src: url('./font/HackGen/ttf/HackGenConsole/HackGenConsole-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: HackGen35Console-Regular;
+	src: url('./font/HackGen/ttf/HackGen35Console/HackGen35Console-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: HackGen35Console-Bold;
+	src: url('./font/HackGen/ttf/HackGen35Console/HackGen35Console-Bold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: 4077th;
+	src: url('./font/Sotoportego/Sotoportego.otf') format('otf');
+	font-style: normal;
+	font-weight: bold;
+}
+
+:root {
+
+	/*color*/
+
+	--clear: rgba(0, 0, 0, 0);
+
+	--white10: rgba(255, 255, 255, 1.0);
+	--white9: rgba(255, 255, 255, 0.9);
+	--white8: rgba(255, 255, 255, 0.8);
+	--white7: rgba(255, 255, 255, 0.7);
+	--white6: rgba(255, 255, 255, 0.6);
+	--white5: rgba(255, 255, 255, 0.5);
+	--white4: rgba(255, 255, 255, 0.4);
+	--white3: rgba(255, 255, 255, 0.3);
+	--white2: rgba(255, 255, 255, 0.2);
+	--white1: rgba(255, 255, 255, 0.1);
+
+	--black10: rgba(0, 0, 0, 1.0);
+	--black9: rgba(0, 0, 0, 0.9);
+	--black8: rgba(0, 0, 0, 0.8);
+	--black7: rgba(0, 0, 0, 0.7);
+	--black6: rgba(0, 0, 0, 0.6);
+	--black5: rgba(0, 0, 0, 0.5);
+	--black4: rgba(0, 0, 0, 0.4);
+	--black3: rgba(0, 0, 0, 0.3);
+	--black2: rgba(0, 0, 0, 0.2);
+	--black1: rgba(0, 0, 0, 0.1);
+
+	--red10: rgba(255, 0, 0, 1.0);
+	--red9: rgba(255, 0, 0, 0.9);
+	--red8: rgba(255, 0, 0, 0.8);
+	--red7: rgba(255, 0, 0, 0.7);
+	--red6: rgba(255, 0, 0, 0.6);
+	--red5: rgba(255, 0, 0, 0.5);
+	--red4: rgba(255, 0, 0, 0.4);
+	--red3: rgba(255, 0, 0, 0.3);
+	--red2: rgba(255, 0, 0, 0.2);
+	--red1: rgba(255, 0, 0, 0.1);
+
+	--green10: rgba(0, 255, 0, 1.0);
+	--green9: rgba(0, 255, 0, 0.9);
+	--green8: rgba(0, 255, 0, 0.8);
+	--green7: rgba(0, 255, 0, 0.7);
+	--green6: rgba(0, 255, 0, 0.6);
+	--green5: rgba(0, 255, 0, 0.5);
+	--green4: rgba(0, 255, 0, 0.4);
+	--green3: rgba(0, 255, 0, 0.3);
+	--green2: rgba(0, 255, 0, 0.2);
+	--green1: rgba(0, 255, 0, 0.1);
+
+	--blue10: rgba(0, 0, 255, 1.0);
+	--blue9: rgba(0, 0, 255, 0.9);
+	--blue8: rgba(0, 0, 255, 0.8);
+	--blue7: rgba(0, 0, 255, 0.7);
+	--blue6: rgba(0, 0, 255, 0.6);
+	--blue5: rgba(0, 0, 255, 0.5);
+	--blue4: rgba(0, 0, 255, 0.4);
+	--blue3: rgba(0, 0, 255, 0.3);
+	--blue2: rgba(0, 0, 255, 0.2);
+	--blue1: rgba(0, 0, 255, 0.1);
+
+	--yellow10: rgba(255, 255, 0, 1.0);
+	--yellow9: rgba(255, 255, 0, 0.9);
+	--yellow8: rgba(255, 255, 0, 0.8);
+	--yellow7: rgba(255, 255, 0, 0.7);
+	--yellow6: rgba(255, 255, 0, 0.6);
+	--yellow5: rgba(255, 255, 0, 0.5);
+	--yellow4: rgba(255, 255, 0, 0.4);
+	--yellow3: rgba(255, 255, 0, 0.3);
+	--yellow2: rgba(255, 255, 0, 0.2);
+	--yellow1: rgba(255, 255, 0, 0.1);
+
+	--purple10: rgba(255, 0, 255, 1.0);
+	--purple9: rgba(255, 0, 255, 0.9);
+	--purple8: rgba(255, 0, 255, 0.8);
+	--purple7: rgba(255, 0, 255, 0.7);
+	--purple6: rgba(255, 0, 255, 0.6);
+	--purple5: rgba(255, 0, 255, 0.5);
+	--purple4: rgba(255, 0, 255, 0.4);
+	--purple3: rgba(255, 0, 255, 0.3);
+	--purple2: rgba(255, 0, 255, 0.2);
+	--purple1: rgba(255, 0, 255, 0.1);
+
+	--lightblue10: rgba(0, 255, 255, 1.0);
+	--lightblue9: rgba(0, 255, 255, 0.9);
+	--lightblue8: rgba(0, 255, 255, 0.8);
+	--lightblue7: rgba(0, 255, 255, 0.7);
+	--lightblue6: rgba(0, 255, 255, 0.6);
+	--lightblue5: rgba(0, 255, 255, 0.5);
+	--lightblue4: rgba(0, 255, 255, 0.4);
+	--lightblue3: rgba(0, 255, 255, 0.3);
+	--lightblue2: rgba(0, 255, 255, 0.2);
+	--lightblue1: rgba(0, 255, 255, 0.1);
+
+	--lightgreen10: rgba(144, 238, 144, 1.0);
+	--lightgreen9: rgba(144, 238, 144, 0.9);
+	--lightgreen8: rgba(144, 238, 144, 0.8);
+	--lightgreen7: rgba(144, 238, 144, 0.7);
+	--lightgreen6: rgba(144, 238, 144, 0.6);
+	--lightgreen5: rgba(144, 238, 144, 0.5);
+	--lightgreen4: rgba(144, 238, 144, 0.4);
+	--lightgreen3: rgba(144, 238, 144, 0.3);
+	--lightgreen2: rgba(144, 238, 144, 0.2);
+	--lightgreen1: rgba(144, 238, 144, 0.1);
+
+	--chartreuse10: rgba(128, 255, 0, 1.0);
+	--chartreuse9: rgba(128, 255, 0, 0.9);
+	--chartreuse8: rgba(128, 255, 0, 0.8);
+	--chartreuse7: rgba(128, 255, 0, 0.7);
+	--chartreuse6: rgba(128, 255, 0, 0.6);
+	--chartreuse5: rgba(128, 255, 0, 0.5);
+	--chartreuse4: rgba(128, 255, 0, 0.4);
+	--chartreuse3: rgba(128, 255, 0, 0.3);
+	--chartreuse2: rgba(128, 255, 0, 0.2);
+	--chartreuse1: rgba(128, 255, 0, 0.1);
+
+	--gray10: rgba(128, 128, 128, 1.0);
+	--gray9: rgba(128, 128, 128, 0.9);
+	--gray8: rgba(128, 128, 128, 0.8);
+	--gray7: rgba(128, 128, 128, 0.7);
+	--gray6: rgba(128, 128, 128, 0.6);
+	--gray5: rgba(128, 128, 128, 0.5);
+	--gray4: rgba(128, 128, 128, 0.4);
+	--gray3: rgba(128, 128, 128, 0.3);
+	--gray2: rgba(128, 128, 128, 0.2);
+	--gray1: rgba(128, 128, 128, 0.1);
+
+	--sz-h1: 100%;
+	--sz-h2: 200%;
+	--sz-h3: 300%;
+	--sz-h4: 400%;
+	--sz-h5: 500%;
+	--sz-h6: 600%;
+	--sz-h7: 700%;
+	--sz-h8: 800%;
+	--sz-h9: 900%;
+	--sz-h10: 1000%;
+
+	--rtt-anm10s: rotate 10s ease-in-out infinite;
+	--rtt-anm9s: rotate 9s ease-in-out infinite;
+	--rtt-anm8s: rotate 8s ease-in-out infinite;
+	--rtt-anm7s: rotate 7s ease-in-out infinite;
+	--rtt-anm6s: rotate 6s ease-in-out infinite;
+	--rtt-anm5s: rotate 5s ease-in-out infinite;
+	--rtt-anm4s: rotate 4s ease-in-out infinite;
+	--rtt-anm3s: rotate 3s ease-in-out infinite;
+	--rtt-anm2s: rotate 2s ease-in-out infinite;
+	--rtt-anm1s: rotate 1s ease-in-out infinite;
+
+	--rtt-anm10s-l: rotate 10s linear infinite;
+	--rtt-anm9s-l: rotate 9s linear infinite;
+	--rtt-anm8s-l: rotate 8s linear infinite;
+	--rtt-anm7s-l: rotate 7s linear infinite;
+	--rtt-anm6s-l: rotate 6s linear infinite;
+	--rtt-anm5s-l: rotate 5s linear infinite;
+	--rtt-anm4s-l: rotate 4s linear infinite;
+	--rtt-anm3s-l: rotate 3s linear infinite;
+	--rtt-anm2s-l: rotate 2s linear infinite;
+	--rtt-anm1s-l: rotate 1s linear infinite;
+
+	--rb-anm10s: rainbow-move 10s ease infinite;
+	--rb-anm9s: rainbow-move 9s ease infinite;
+	--rb-anm8s: rainbow-move 8s ease infinite;
+	--rb-anm7s: rainbow-move 7s ease infinite;
+	--rb-anm6s: rainbow-move 6s ease infinite;
+	--rb-anm5s: rainbow-move 5s ease infinite;
+	--rb-anm4s: rainbow-move 4s ease infinite;
+	--rb-anm3s: rainbow-move 3s ease infinite;
+	--rb-anm2s: rainbow-move 2s ease infinite;
+	--rb-anm1s: rainbow-move 1s ease infinite;
+
+	--rainbow-a: linear-gradient(to right, #c70000, #d28300, #dfd000, #00873c, #005aa0, #181878, #800073, #181878, #005aa0, #00873c, #dfd000, #d28300) 0 / 200%;
+	--rainbow-b: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #1d2088, #0068b7, #009944, #fff100, #f39800) 0 / 200%;
+	--rainbow-c: linear-gradient(to right, #de4141, #e8ac51, #f2e55c, #39a869, #4784bf, #5d5099, #a55b9a, #4784bf, #39a869, #f2e55c, #e8ac51, #de4141) 0 / 200%;
+	--rainbow-d: linear-gradient(to right, #f59090, #fcd7a1, #fff9b1, #a5d4ad, #a3bce2, #a59aca, #cfa7cd, #a59aca, #a3bce2, #a5d4ad, #fff9b1, #fcd7a1) 0 / 200%;
+
+	/*font*/
+	--zxproto: '0xProto';
+	--zxproto-r: '0xProto-Regular';
+	--zxproto-b: '0xProto-Bold';
+	--zxproto-i: '0xProto-Italic';
+
+	--explex: 'Explex';
+	--explex-r: 'Explex-Regular';
+	--explex-i: 'Explex-Italic';
+	--explex-b: 'Explex-Bold';
+	--explex-bi: 'Explex-BoldItalic';
+
+	--explex35: 'Explex35';
+	--explex35-r: 'Explex35-Regular';
+	--explex35-i: 'Explex35-Italic';
+	--explex35-b: 'Explex35-Bold';
+	--explex35-bi: 'Explex35-BoldItalic';
+
+	--explexc: 'ExplexConsole';
+	--explexc-r: 'ExplexConsole-Regular';
+	--explexc-i: 'ExplexConsole-Italic';
+	--explexc-b: 'ExplexConsole-Bold';
+	--explexc-bi: 'ExplexConsole-BoldItalic';
+
+	--explex35c: 'Explex35Console';
+	--explex35c-r: 'Explex35Console-Regular';
+	--explex35c-i: 'Explex35Console-Italic';
+	--explex35c-b: 'Explex35Console-Bold';
+	--explex35c-bi: 'Explex35Console-BoldItalic';
+
+	--karakaze-r: 'karakaze-Regular';
+
+	--riipop-r: 'riipop-Regular';
+
+	--soei-hg: 'Soei-HG';
+	--soei-hgs: 'Soei-HGS';
+	--soei-hgp: 'Soei-HGP';
+
+	--firacode: 'Fira Code';
+	--firacode-vf: 'Fira Code VF';
+
+	--onryou: 'Onryou';
+
+	--hack-r: 'HackGen-Regular';
+	--hack-b: 'HackGen-Bold';
+
+	--hack35-r: 'HackGen35-Regular';
+	--hack35-b: 'HackGen35-Bold';
+
+	--hackc-r: 'HackGenConsole-Regular';
+	--hackc-b: 'HackGenConsole-Bold';
+
+	--hack35c-r: 'HackGen35Console-Regular';
+	--hack35c-b: 'HackGen35Console-Bold';
+
+	--sotoportego: 'Sotoportego';
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(1deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rainbow-move {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+* {
+	tab-size: 4;
+	font-family: var(--explex);
+}

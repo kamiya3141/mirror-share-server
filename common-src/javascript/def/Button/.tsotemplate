@@ -1,0 +1,35 @@
+<template id="template">
+	<style>
+		:host {
+			/*特殊枠*/
+			--tsob-alert-b: red;
+			--tsob-alert-bc: pink;
+			--tsob-alert-c: white;
+			--tsob-warn-b: black;
+			--tsob-warn-bc: yellow;
+			--tsob-warn-c: black;
+			--tsob-normal-b: blue;
+			--tsob-normal-bc: skyblue;
+			--tsob-normal-c: white;
+			user-select: none;
+		}
+
+		:host([color-type="alert"]) {
+			border: var(--tsob-alert-b) var(--tso-bd-wei) var(--tso-bd-tp);
+			background-color: var(--tsob-alert-bc);
+			color: var(--tsob-alert-c);
+		}
+
+		:host([color-type="warn"]) {
+			border: var(--tsob-warn-b) var(--tso-bd-wei) var(--tso-bd-tp);
+			background-color: var(--tsob-warn-bc);
+			color: var(--tsob-warn-c);
+		}
+
+		:host([color-type="normal"]) {
+			border: var(--tsob-normal-b) var(--tso-bd-wei) var(--tso-bd-tp);
+			background-color: var(--tsob-normal-bc);
+			color: var(--tsob-normal-c);
+		}
+	</style>
+</template>

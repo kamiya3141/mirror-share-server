@@ -1,0 +1,101 @@
+﻿{
+	"page": [
+		{
+			"ID": "dir",
+			"od": {
+				"text": "",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirBrowser",
+				"icon": "__:?:_SHARE_:?:__/png/Browser.png"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "エディター",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirEditor",
+				"icon": "__:?:_SHARE_:?:__/png/Editor.png"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "ゲーム",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirGame",
+				"icon": "__:?:_SHARE_:?:__/png/Game.png"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "ファイル関連",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirFiles"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "チャット",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirChat",
+				"icon": "__:?:_SHARE_:?:__/png/Chat.png"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "VSCode",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirVSCode"
+			}
+		},
+		{
+			"ID": "dir",
+			"od": {
+				"text": "",
+				"url": "__:?:_USERNAME_:?:__/json/dir/dirWindowsPower",
+				"icon": "__:?:_SHARE_:?:__/png/Power.png"
+			}
+		},
+		{
+			"ID": "LockScreen"
+		},
+		{
+			"ID": "Windows_OpenSetting"
+		},
+		{
+			"ID": "MediaPrev"
+		},
+		{
+			"ID": "MediaPlayPause"
+		},
+		{
+			"ID": "MediaNext"
+		},
+		{
+			"ID": "Youtube"
+		},
+		{
+			"ID": "YoutubeMusic"
+		},
+		{
+			"ID": "taskmng"
+		},
+		{
+			"ID": "Explorer"
+		},
+		{
+			"ID": "Window_Tab"
+		},
+		{
+			"ID": "this script restart_v2"
+		},
+		{
+			"ID": "GameMode"
+		},
+		{
+			"ID": "THIS_SCRIPT_SWITCH_CLICK_LABEL_SOUND"
+		},
+		{
+			"ID": "THIS_SCRIPT_SWITCH_KEY_SOUND"
+		}
+	],
+	"attr": "pr"
+}

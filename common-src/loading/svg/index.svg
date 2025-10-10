@@ -1,0 +1,7 @@
+<?xml-stylesheet type="text/css" href="./src/style.css"?>
+<svg id="parent-svg" class="loading" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+	<script href="./src/base-script/base.js"></script>
+	<script href="./src/base-script/math.js"></script>
+	<script href="./src/script-class.js"></script>
+	<script href="./src/script-script.js"></script>
+</svg>

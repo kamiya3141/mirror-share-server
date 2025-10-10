@@ -1,0 +1,17 @@
+{
+	"page": [
+		{
+			"ID": "TeraTerm"
+		},
+		{
+			"ID": "FileZilla"
+		},
+		{
+			"ID": "CmdPrt"
+		},
+		{
+			"ID": "AnacondaPrompt"
+		}
+	],
+	"attr": "d"
+}

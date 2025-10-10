@@ -1,0 +1,35 @@
+<template id="template">
+	<style>
+		:host {
+
+			/*変数*/
+			--bc-cl: white;
+
+			--bd-cl: black;
+			--bd-wei: 1px;
+			--bd-tp: solid;
+
+			--black: rgb(0, 0, 0);
+			--black-re: rgb(200, 200, 200);
+			--red: rgb(255, 0, 0);
+			--red-re: rgb(255, 200, 200);
+			--blue: rgb(0, 0, 255);
+			--blue-re: rgb(200, 200, 255);
+			--green: rgb(0, 64, 0);
+			--green-re: rgb(200, 255, 200);
+			--yellow: rgb(255, 255, 0);
+			--yellow-re: rgb(255, 255, 200);
+
+			/*装飾*/
+			position: absolute;
+			display: block;
+		}
+
+		slot#slot-id>slot[name="text"] {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+	</style>
+	<slot id="slot-id"></slot>
+</template>

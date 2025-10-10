@@ -1,0 +1,36 @@
+<template id="template">
+	<style>
+		:host {
+
+			/*変数*/
+			--tso-bc-cl: white;
+
+			--tso-bd-cl: black;
+			--tso-bd-wei: 1px;
+			--tso-bd-tp: solid;
+
+			--tso-black: rgb(0, 0, 0);
+			--tso-black-re: rgb(200, 200, 200);
+			--tso-red: rgb(255, 0, 0);
+			--tso-red-re: rgb(255, 200, 200);
+			--tso-blue: rgb(0, 0, 255);
+			--tso-blue-re: rgb(200, 200, 255);
+			--tso-green: rgb(0, 64, 0);
+			--tso-green-re: rgb(200, 255, 200);
+			--tso-yellow: rgb(255, 255, 0);
+			--tso-yellow-re: rgb(255, 255, 200);
+
+			/*装飾*/
+			position: absolute;
+			display: block;
+		}
+
+		slot#slot-id>slot[name="text"] {
+			position: absolute;
+		}
+	</style>
+	<slot id="slot-id">
+		<slot name="text"></slot>
+	</slot>
+	
+</template>

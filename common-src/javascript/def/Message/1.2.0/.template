@@ -1,0 +1,105 @@
+<template id="template">
+	<style>
+		:host {
+			--bd-wei: 0.1rem;
+			--bd-tp: solid;
+
+			/*特殊枠*/
+			--alert: red;
+			--alert-re: pink;
+			--warn: black;
+			--warn-re: yellow;
+			--normal: blue;
+			--normal-re: lightblue;
+
+			/*通常枠*/
+			--black: rgb(0, 0, 0);
+			--black-re: rgb(200, 200, 200);
+			--red: rgb(255, 0, 0);
+			--red-re: rgb(255, 200, 200);
+			--blue: rgb(0, 0, 255);
+			--blue-re: rgb(200, 200, 255);
+			--green: rgb(0, 255, 0);
+			--green-re: rgb(200, 255, 200);
+			--yellow: rgb(255, 255, 0);
+			--yellow-re: rgb(255, 255, 200);
+		}
+
+		div#message-box {
+			position: relative;
+			left: 50%;
+			width: auto;
+			height: auto;
+			border-radius: 1rem;
+			display: block;
+			padding: 1rem;
+			transform: translate(-50%, 0%);
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.75;
+			}
+
+			&.opacity0 {
+				opacity: 0;
+			}
+
+			&.complete {
+				position: fixed;
+			}
+		}
+
+		.alert {
+			border: var(--alert) var(--bd-wei) var(--bd-tp);
+			background-color: var(--alert-re);
+			color: var(--alert);
+		}
+
+		.warn {
+			border: var(--warn) var(--bd-wei) var(--bd-tp);
+			background-color: var(--warn-re);
+			color: var(--warn);
+		}
+
+		.normal {
+			border: var(--normal) var(--bd-wei) var(--bd-tp);
+			background-color: var(--normal-re);
+			color: var(--normal);
+		}
+
+		[color-type="black"] {
+			border: var(--black) var(--bd-wei) var(--bd-tp);
+			background-color: var(--black-re);
+			color: var(--black);
+		}
+
+		[color-type="red"] {
+			border: var(--red) var(--bd-wei) var(--bd-tp);
+			background-color: var(--red-re);
+			color: var(--red);
+		}
+
+		[color-type="blue"] {
+			border: var(--blue) var(--bd-wei) var(--bd-tp);
+			background-color: var(--blue-re);
+			color: var(--blue);
+		}
+
+		[color-type="green"] {
+			border: var(--green) var(--bd-wei) var(--bd-tp);
+			background-color: var(--green-re);
+			color: var(--green);
+		}
+
+		[color-type="yellow"] {
+			border: var(--yellow) var(--bd-wei) var(--bd-tp);
+			background-color: var(--yellow-re);
+			color: var(--yellow);
+		}
+	</style>
+	<div id="message-box" class="complete">
+		<slot id="slot-id">
+
+		</slot>
+	</div>
+</template>

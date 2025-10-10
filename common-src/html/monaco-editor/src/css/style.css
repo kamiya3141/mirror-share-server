@@ -1,0 +1,38 @@
+:root {
+	--w: 75%;
+}
+
+body {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	left: 1vw;
+	top: 1vh;
+	width: 98vw;
+	height: 98vh;
+	color: white;
+	background-color: black;
+	overflow-x: hidden;
+}
+
+
+.title-class {
+	position: relative;
+	left: calc(50% - var(--w) / 2);
+}
+
+h1 {
+	text-align: center;
+	border-bottom: 0.25rem solid lightgray;
+	width: var(--w);
+	font-size: 4em;
+}
+
+div#code-title {
+	font-size: 2rem;
+}
+
+div#code-body {
+	width: var(--w);
+	height: 100%;
+}

@@ -1,0 +1,17 @@
+{
+	"page": [
+		{
+			"ID": "Windows_PowerSleep"
+		},
+		{
+			"ID": "Windows_PowerSignout"
+		},
+		{
+			"ID": "Windows_PowerRestart"
+		},
+		{
+			"ID": "Windows_PowerShutdown"
+		}
+	],
+	"attr": "d"
+}

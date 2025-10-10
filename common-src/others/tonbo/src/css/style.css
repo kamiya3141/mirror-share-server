@@ -1,0 +1,56 @@
+* {
+	box-sizing: border-box;
+	user-select: none;
+	line-height: 5;
+}
+
+body {
+	position: absolute;
+	width: 98vw;
+	height: 98vh;
+	left: 1vw;
+	top: 1vh;
+	background-color: black;
+	overflow-x: hidden;
+}
+
+
+
+ol {
+	position: absolute;
+	left: 10%;
+	top: 10%;
+	color: white;
+	&>li {
+		color: inherit;
+		&>a {
+			color: inherit;
+		}
+		&>img.blur-img {
+			width: 200px;
+			height: 200px;
+			&#blur-00 {
+				filter: blur(0rem);
+			}
+			&#blur-05 {
+				filter: blur(0.5rem);
+			}
+			&#blur-10 {
+				filter: blur(1.0rem);
+			}
+		}
+		&>div.youtube{
+			position: relative;
+			overflow: hidden;
+			padding-bottom: 56.25%; /* 16:9 (9÷16=0.5625) */
+			&>iframe.youtube {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,24 @@
+<?xml-stylesheet type="text/css" href="./src/css/style.css"?>
+<svg id="parent-svg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="gradRainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="1%" stop-color="hsl(3.6, 100%, 50%)" />
+			<stop offset="10%" stop-color="hsl(36, 100%, 50%)" />
+			<stop offset="20%" stop-color="hsl(72, 100%, 50%)" />
+			<stop offset="30%" stop-color="hsl(108, 100%, 50%)" />
+			<stop offset="40%" stop-color="hsl(144, 100%, 50%)" />
+			<stop offset="50%" stop-color="hsl(180, 100%, 50%)" />
+			<stop offset="60%" stop-color="hsl(216, 100%, 50%)" />
+			<stop offset="70%" stop-color="hsl(252, 100%, 50%)" />
+			<stop offset="80%" stop-color="hsl(288, 100%, 50%)" />
+			<stop offset="90%" stop-color="hsl(324, 100%, 50%)" />
+			<stop offset="100%" stop-color="hsl(360, 100%, 50%)" />
+		</linearGradient>
+		<filter x="0%" y="0%" width="100%" height="100%" id="myBlur">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="10,5" />
+		</filter>
+	</defs>
+
+	<g id="path-g" stroke-width="2" fill="none" filter="url(#myBlur)"></g>
+	<script href="./src/js/script.js"></script>
+</svg>
