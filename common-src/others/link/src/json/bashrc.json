@@ -1,7 +1,7 @@
 {
 	"basename": "my-",
 	"ext": ".bashrc",
-	"path": "/src/bashrc",
+	"path": "./src/bashrc",
 	"info": {
 		"type": "number",
 		"range": [

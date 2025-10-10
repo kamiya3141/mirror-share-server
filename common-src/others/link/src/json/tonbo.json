@@ -1,0 +1,15 @@
+{
+	"basename": "tonbo",
+	"ext": "range",
+	"path": "./src/../../tonbo/src/zip",
+	"info": {
+		"type": "string",
+		"range": [
+			"zip",
+			"tar",
+			"7z",
+			"rar"
+		],
+		"files": []
+	}
+}

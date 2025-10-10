@@ -1,10 +1,9 @@
 {
 	"basename": "",
 	"ext": "",
-	"path": "./src/",
+	"path": "",
 	"info": {
-		// type -> number, string, free
-		"type": "",
+		"type": "denied",
 		"range": [],
 		"files": []
 	}
