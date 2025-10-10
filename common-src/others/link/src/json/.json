@@ -1,0 +1,12 @@
+{
+	"basename": "",
+	"ext": "",
+	"path": "/src/",
+	"info": {
+		// type -> number, string, free
+		"type": "",
+		"range": [],
+		// files -> if type is "free" -> write name of the files
+		"files": []
+	}
+}
