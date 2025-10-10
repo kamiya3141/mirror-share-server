@@ -1,4 +1,5 @@
 let host_url = "https://share.tshuto.com";
+host_url = "https://github.com/kamiya3141/mirror-share-server.git";
 
 adds_head([
 	["link", "icon", "favicon.ico", "image/x-icon"],
