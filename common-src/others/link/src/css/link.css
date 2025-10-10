@@ -19,18 +19,23 @@ body {
 ol {
 	position: absolute;
 	left: 10%;
-	top: 10%;
+	top: 0%;
 	color: white;
-	&>li {
+
+	& > li {
 		color: inherit;
-		&>a {
+
+		& > a {
 			color: inherit;
 		}
-		&>div.youtube{
+
+		& > div.youtube {
 			position: relative;
 			overflow: hidden;
-			padding-bottom: 56.25%; /* 16:9 (9÷16=0.5625) */
-			&>iframe.youtube {
+			padding-bottom: 0;
+
+			/*56.25%; /* 16:9 (9÷16=0.5625) */
+			& > iframe.youtube {
 				position: absolute;
 				top: 0;
 				left: 0;

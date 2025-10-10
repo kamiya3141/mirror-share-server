@@ -1,7 +1,7 @@
 {
 	"basename": "tonbo",
 	"ext": "range",
-	"path": "./src/../../tonbo/src/zip",
+	"path": "./src/zip/tonbo",
 	"info": {
 		"type": "string",
 		"range": [
