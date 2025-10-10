@@ -1,5 +1,5 @@
 let host_url = "https://share.tshuto.com";
-host_url = "https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main";
+//host_url = "https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main";
 
 adds_head([
 	["link", "icon", "favicon.ico", "image/x-icon"],
