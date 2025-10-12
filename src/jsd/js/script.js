@@ -11,4 +11,4 @@ main_sel.id = "main-sel";
 	main_sel.appendChild(el);
 });
 
-document.body.appendChild(main_sel);
+document.getElementById("main-obj").text = main_sel.outerHTML;
