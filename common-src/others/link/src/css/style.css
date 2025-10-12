@@ -16,8 +16,8 @@ body {
 	height: 99vh;
 	left: 0.5vw;
 	top: 0.5vh;
-	background-color: lightgray;
-	color: black;
+	background-color: black;
+	color: pink;
 }
 
 select#main-sel {
