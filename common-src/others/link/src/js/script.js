@@ -2,7 +2,7 @@ const main_sel = document.getElementById("main-sel");
 
 fetch("https://link.tshuto.com/get-json").then(res => res.json()).then(dt => {
 	for (let i = 0; i < dt.length; i++)
-		main_sel.appendChild(dt[i]);
+		main_sel.appendChild(createOptionElement(dt[i]));
 });
 
 function createOptionElement(val) {

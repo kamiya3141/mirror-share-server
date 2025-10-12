@@ -1,6 +1,5 @@
 * {
 	box-sizing: border-box;
-	user-select: none;
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -22,4 +21,10 @@ body {
 
 select#main-sel {
 	text-align: center;
+	background-color: lightgreen;
+	color: green;
+	width: 80%;
+	height: 10%;
+	font-size: 2.5em;
+	border-radius: 100em;
 }
