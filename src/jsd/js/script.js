@@ -11,4 +11,8 @@ main_sel.id = "main-sel";
 	main_sel.appendChild(el);
 });
 
-document.getElementById("main-obj").text = main_sel.outerHTML;
+let body_tf = true;
+
+const main_parent = body_tf ? document.body : document.getElementById("main-obj");
+
+main_parent.appendChild(main_sel);
