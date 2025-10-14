@@ -1,6 +1,6 @@
 #!/bin/bash
 
-my_update_cache=~/.update-utils
+my_update_cache="$HOME/.update-utils"
 sub_domain="$1"
 
 if [ ! -e "$my_update_cache" ]; then
@@ -15,22 +15,22 @@ if [ "$sub_domain" == none ]; then
 	sub_domain="$_sbdm"
 fi
 
-echo -n "$sub_domain" > "$my_update_cache"
+"$sub_domain" > "$my_update_cache"
 
 
 if [ ! -d ~/public_html/php/utils ]; then
-	mkdir -p ~/public_html/php/utils
+	mkdir -p "$HOME/public_html/php/utils"
 fi
 
-wget -q --no-cache -O ~/public_html/php/utils/utils.php https://share.tshuto.com/php/utils/utils.php
-wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php https://share.tshuto.com/php/utils/api-local-getDirContents.php
-wget -q --no-cache -O ~/public_html/php/utils/script.php https://share.tshuto.com/php/utils/script.php
+wget -q --no-cache -O "$HOME/public_html/php/utils/utils.php" https://share.tshuto.com/php/utils/utils.php
+wget -q --no-cache -O "$HOME/public_html/php/utils/api-local-getDirContents.php" https://share.tshuto.com/php/utils/api-local-getDirContents.php
+wget -q --no-cache -O "$HOME/public_html/php/utils/script.php" https://share.tshuto.com/php/utils/script.php
 
 MY_SUBDOMAIN="$sub_domain";
 htaccess_content=$(wget -qO- https://link.tshuto.com/src/htaccess/my.htaccess)
-result_htaccess=$(echo "$htaccess_content" | sed -e "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
-add_htaccess=$(echo "$result_htaccess" | tail -n 3)
-htaccess_path=~/public_html/.htaccess
+result_htaccess=$(echo -e "$htaccess_content" | sed -e "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
+add_htaccess=$(echo -e "$result_htaccess" | tail -n 3)
+htaccess_path="$HOME/public_html/.htaccess"
 
 if [ -e "$htaccess_path" ]; then
 	my_htaccess=$(cat "$htaccess_path")
