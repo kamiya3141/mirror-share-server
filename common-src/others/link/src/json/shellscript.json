@@ -5,6 +5,9 @@
 	"info": {
 		"type": "free",
 		"range": [],
-		"files": ["update-php-utils"]
+		"files": [
+			"update-php-utils",
+			"exec-update"
+		]
 	}
 }
