@@ -1,0 +1,14 @@
+{
+	"basename": "",
+	"ext": ".php",
+	"path": "./src/php/utils",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": [
+			"utils",
+			"api-getDirContents",
+			"script"
+		]
+	}
+}
