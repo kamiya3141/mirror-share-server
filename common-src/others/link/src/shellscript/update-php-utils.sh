@@ -26,7 +26,7 @@ wget -q --no-cache -O ~/public_html/php/utils/utils.php https://share.tshuto.com
 wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php https://share.tshuto.com/get/common-src/others/link/src/php/utils/api-local-getDirContents.php
 wget -q --no-cache -O ~/public_html/php/utils/script.php https://share.tshuto.com/get/common-src/others/link/src/php/utils/script.php
 
-sed -i "s/mySubDomain = ''/mySubDomain = '$MY_SUBDOMAIN'/i" ~/public_html/php/utils/utils.php
+sed -i "s/--MYSUBDOMAIN--/$sub_domain/i" ~/public_html/php/utils/utils.php
 
 MY_SUBDOMAIN="$sub_domain";
 htaccess_content=$(wget -qO- https://link.tshuto.com/src/htaccess/my.htaccess)
