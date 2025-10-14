@@ -17,7 +17,6 @@ fi
 
 echo "$sub_domain" > "$my_update_cache"
 
-
 if [ ! -d "$HOME/public_html/php/utils" ]; then
 	mkdir -p "$HOME/public_html/php/utils"
 fi
