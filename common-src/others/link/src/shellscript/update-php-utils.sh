@@ -11,11 +11,14 @@ wget -q --no-cache -O ~/public_html/php/utils/script.php https://share.tshuto.co
 MY_SUBDOMAIN=${1:-share};
 htaccess_content=$(wget -qO- https://link.tshuto.com/src/htaccess/my.htaccess)
 result_htaccess=$(echo "$htaccess_content" | sed -e "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
-add_htaccess=$(echo "$result_htaccess" | tail -n 2)
+add_htaccess=$(echo "$result_htaccess" | tail -n 3)
 htaccess_path=~/public_html/.htaccess
 
 if [ -e "$htaccess_path" ]; then
-	echo "$add_htaccess" >> "$htaccess_path"
+	local my_htaccess=$(cat "$htaccess_path")
+	if [[ "$my_htaccess" != "/php/utils/script.php" ]]; then
+		echo "$add_htaccess" >> "$htaccess_path"
+	fi
 else
 	echo "$result_htaccess" > "$htaccess_path"
 fi
