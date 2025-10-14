@@ -15,9 +15,9 @@ add_htaccess=$(echo "$result_htaccess" | tail -n 3)
 htaccess_path=~/public_html/.htaccess
 
 if [ -e "$htaccess_path" ]; then
-	local my_htaccess=$(cat "$htaccess_path")
+	my_htaccess=$(cat "$htaccess_path")
 	if [[ "$my_htaccess" != "/php/utils/script.php" ]]; then
-		echo "$add_htaccess" >> "$htaccess_path"
+		echo -e "\n\n$add_htaccess" >> "$htaccess_path"
 	fi
 else
 	echo "$result_htaccess" > "$htaccess_path"
