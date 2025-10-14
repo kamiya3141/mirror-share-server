@@ -12,7 +12,7 @@ MY_SUBDOMAIN=${1:-share};
 htaccess_content=$(wget -qO- https://link.tshuto.com/src/htaccess/my.htaccess)
 result_htaccess=$(echo "$htaccess_content" | sed "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
 add_htaccess=$(echo "$result_htaccess" | tail -n 2)
-htaccess_path="~/public_html/.htaccess"
+htaccess_path=~/public_html/.htaccess
 
 if [ -e "$htaccess_path" ]; then
 	echo "$add_htaccess" >> "$htaccess_path"
