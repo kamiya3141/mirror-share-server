@@ -1,0 +1,10 @@
+{
+	"basename": "",
+	"ext": ".htaccess",
+	"path": "./src/htaccess",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": ["my"]
+	}
+}

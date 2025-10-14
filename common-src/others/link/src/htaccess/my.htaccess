@@ -23,7 +23,7 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteCond %{HTTP_HOST} ^(?!share\.)([^.]+)\.tshuto\.com$ [NC]
+RewriteCond %{HTTP_HOST} ^(?!RPL_HTACC\.)([^.]+)\.tshuto\.com$ [NC]
 RewriteRule ^(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
 
 RewriteCond %{HTTP_HOST} ^([^.]+)\.tshuto\.com$ [NC]
