@@ -56,6 +56,7 @@ function getMyQuery(): void {
 		$other_data_query = 'index.html';
 	if (substr($other_data_query, -1) == '/')
 		$other_data_query = url_join($other_data_query, 'index.html');
+	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
 }
 
 function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string {
