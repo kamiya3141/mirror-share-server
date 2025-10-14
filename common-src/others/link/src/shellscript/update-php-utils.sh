@@ -21,9 +21,9 @@ if [ ! -d "$HOME/public_html/php/utils" ]; then
 	mkdir -p "$HOME/public_html/php/utils"
 fi
 
-wget -q --no-cache -O ~/public_html/php/utils/utils.php https://share.tshuto.com/get/common-src/others/link/src/php/utils/utils.php
-wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php https://share.tshuto.com/get/common-src/others/link/src/php/utils/api-local-getDirContents.php
-wget -q --no-cache -O ~/public_html/php/utils/script.php https://share.tshuto.com/get/common-src/others/link/src/php/utils/script.php
+wget -q --no-cache -O ~/public_html/php/utils/utils.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/utils.php
+wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/api-local-getDirContents.php
+wget -q --no-cache -O ~/public_html/php/utils/script.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/script.php
 
 sed -i "s/--MYSUBDOMAIN--/$sub_domain/i" ~/public_html/php/utils/utils.php
 
