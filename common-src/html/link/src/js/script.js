@@ -1,6 +1,6 @@
 window.fetch("-:-JSON-URL-:-").then(res => res.json()).then(dt => {
 	const ol_title = document.getElementById("ol-title");
-	const base_url = String(dt["basename"]).substring(0, 4).includes("http") ? dt["basename"] : "https://link.tshuto.com/";
+	const base_url = String(dt["basename"]).substring(0, 4).includes("http") ? dt["basename"] : "https://share.tshuto.com/get/common-src/others/link/";
 	const type_arr = [
 		["number", _dt => {
 			const _tar_obj = _dt["info"]["range"];

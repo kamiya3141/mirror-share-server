@@ -1,0 +1,10 @@
+{
+	"basename": "",
+	"ext": ".sh",
+	"path": "./src/shellscript",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": ["update-php-utils"]
+	}
+}
