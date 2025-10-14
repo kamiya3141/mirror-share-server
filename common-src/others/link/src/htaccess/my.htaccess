@@ -1,0 +1,30 @@
+<IfModule mod_headers.c>
+	SetEnvIf Origin "^https://gakugei\.ohuda\.com$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://st3141\.cloudfree\.jp$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://ss1\.xrea\.com/gakugei\.s324\.xrea\.com$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://ss1\.xrea\.com/tamura3141\.s324\.xrea\.com$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://pure-knowing-ocelot\.ngrok-free\.app$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://tshuto\.com$" ORIGIN_ALLOWED=$0
+	SetEnvIf Origin "^https://([a-z0-9]+(-[a-z0-9]+)*)\.tshuto\.com$" ORIGIN_ALLOWED=$0
+
+	Header always set Access-Control-Allow-Origin "%{ORIGIN_ALLOWED}e" env=ORIGIN_ALLOWED
+	Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS" env=ORIGIN_ALLOWED
+	Header always set Access-Control-Allow-Headers "Content-Type, Authorization" env=ORIGIN_ALLOWED
+	Header always set Access-Control-Allow-Credentials "true" env=ORIGIN_ALLOWED
+</IfModule>
+
+<IfModule mod_session.c>
+	Session On
+	SessionStore file
+	SessionStoreFileName /var/lib/php/sessions/%{SESSIONID}.session
+	SessionCryptoPassphrase secret
+</IfModule>
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} ^(?!share\.)([^.]+)\.tshuto\.com$ [NC]
+RewriteRule ^(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
+
+RewriteCond %{HTTP_HOST} ^([^.]+)\.tshuto\.com$ [NC]
+RewriteRule ^(view|get)/(.*)$ /php/utils/script.php?target=%1&od=$1/$2 [E=FROM_REWRITE:1,L,QSA]
