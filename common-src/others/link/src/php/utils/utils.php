@@ -57,8 +57,6 @@ function getMyQuery(): void {
 	if (substr($other_data_query, -1) == '/')
 		$other_data_query = url_join($other_data_query, 'index.html');
 	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
-	
-	echoViewOrGetSite();
 }
 
 function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string {
@@ -228,3 +226,7 @@ function get_dir($_url): array {
 function get_contents($_url): array {
 	return glob($_url . '/*');
 }
+
+getMyQuery();
+
+echoViewOrGetSite();

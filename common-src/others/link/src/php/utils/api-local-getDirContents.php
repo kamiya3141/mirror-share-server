@@ -2,8 +2,6 @@
 
 require_once './utils.php';
 
-getMyQuery();
-
 $gt_dt = $_GET[getMyParamKey('dir')];
 $gt_bp = $_GET[getMyParamKey('basepath')];
 $gt_tg = rawurldecode($_GET[getMyParamKey('target')]) ?? '';

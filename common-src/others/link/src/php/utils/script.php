@@ -2,8 +2,6 @@
 
 require_once './utils.php';
 
-getMyQuery();
-
 $other_data_path = rawurldecode($other_data_query);
 $other_data_split_slash_array = (strpos($other_data_path, '/') ? explode('/', $other_data_path) : [$other_data_path]);
 
