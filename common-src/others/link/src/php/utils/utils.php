@@ -181,12 +181,12 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 	if ($view_site) {
 		$mime = $mimeMap['html'];
 		$add_param = [
-			getMyParamKey(VIEW_STRING) => $_url,
+			getMyParamKey(VIEW_STRING) => $result_url,
 			getMyParamKey(LINK_STRING) => '',
 			getMyParamKey('org') => ''
 		];
 		if ($created_html) {
-			$_created_url_param = end(explode('=', $_url));
+			$_created_url_param = end(explode('=', $result_url));
 			$add_param[getMyParamKey(VIEW_STRING)] = getMyParamKey(LINK_STRING);
 			$add_param[getMyParamKey(LINK_STRING)] = $_created_url_param;
 			$add_param[getMyParamKey('org')] = getMyHostName();
