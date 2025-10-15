@@ -215,7 +215,7 @@ function exist($_arg): bool {
 	return isset($_arg) && !empty($_arg);
 }
 function getFileName($_arg, $with_ext = true) {
-	$_ret = basename($_arg);//end(explode('/', $_arg));
+	$_ret = end(explode('/', $_arg));
 	return $with_ext ? $_ret : explode('.', $_ret)[0];
 }
 function getExt($_arg): string {
@@ -231,7 +231,7 @@ function download_file(string $_url): void {
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	setHeaders('', $mimeMap['none'], getFileName($_url));
 	$cts = file_get_contents($_url);
-	setHeaders($cts, $mimeMap['none'], getFileName($_url));
+	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
 	echo $cts;
 }
 function get_files(string $_url): array {
