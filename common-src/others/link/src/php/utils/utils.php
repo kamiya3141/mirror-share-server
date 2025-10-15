@@ -11,11 +11,12 @@ const NOT_DEFAULT_STRING = 'not-default';
 const GET_MIME_TYPE = 'application/octet-stream';
 const VIEW_STRING = 'view';
 const GET_STRING = 'get';
+const LINK_STRING = 'link';
 const REWRITE_STRING = '-:-';
 define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error/index.html'));
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
-	'link' => url_join(getMyHostName('api'), 'api-link.php'),
+	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
 	'error' => url_join(getMyHostName('api'), 'api-error.php'),
 	'getdir' => url_join(UTILS_DIR, 'api-local-getDirContents.php')
 ]);
@@ -164,17 +165,29 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 
 	$result_url = $_url;
 
+	if ($created_html) {
+		global $other_data_query;
+		$other_data_path = rawurldecode($other_data_query);
+		$other_data_split_slash_array = (strpos($other_data_path, '/') ? explode('/', $other_data_path) : [$other_data_path]);
+		if (count($other_data_split_slash_array) == 1 && !strpos($other_data_split_slash_array[0], '.html')) {
+			$_json_file_path = url_join(getMyHostName(), 'common-src/others/link/src/json', $other_data_split_slash_array[0] . '.json');
+			$result_url = API_URL[LINK_STRING] . '?' . http_build_query([
+				getMyParamKey(LINK_STRING) => $_json_file_path
+			]);
+		}
+	}
+
 	if ($view_site) {
 		$mime = $mimeMap['html'];
 		$add_param = [
-			getMyParamKey('view') => $_url,
-			getMyParamKey('link') => '',
+			getMyParamKey(VIEW_STRING) => $_url,
+			getMyParamKey(LINK_STRING) => '',
 			getMyParamKey('org') => ''
 		];
 		if ($created_html) {
 			$_created_url_param = end(explode('=', $_url));
-			$add_param[getMyParamKey('view')] = getMyParamKey('link');
-			$add_param[getMyParamKey('link')] = $_created_url_param;
+			$add_param[getMyParamKey(VIEW_STRING)] = getMyParamKey(LINK_STRING);
+			$add_param[getMyParamKey(LINK_STRING)] = $_created_url_param;
 			$add_param[getMyParamKey('org')] = getMyHostName();
 		}
 		$result_url = API_URL[VIEW_STRING] . '?' . http_build_query($add_param);
