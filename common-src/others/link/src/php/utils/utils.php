@@ -156,7 +156,7 @@ function setHeaders($_cts, $_mm = 'text/plain', $_file_name = '') {
 		header('Content-Length: ' . strlen($_cts));
 }
 
-function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = ''): void {
+function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): string {
 	global $mimeMap;
 
 	$ext = pathinfo(parse_url($_url, PHP_URL_PATH), PATHINFO_EXTENSION);
@@ -204,7 +204,10 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 	}
 
 	setHeaders($contents, $mime);
+	if ($mode_return)
+		return $contents;
 	echo $contents;
+	return '';
 }
 
 function exist($_arg): bool {
