@@ -178,7 +178,6 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 			$mime = $mimeMap['php'];
 		}
 	}
-
 	if ($view_site) {
 		$mime = $mimeMap['html'];
 		$add_param = [
