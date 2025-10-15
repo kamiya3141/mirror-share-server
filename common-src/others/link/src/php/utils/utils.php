@@ -70,7 +70,7 @@ function echoViewOrGetSite(): void {
 	global $other_data_query;
 	$_flag = substr($other_data_query, 0, 4);
 	if ($_flag == (GET_STRING . '/') || $_flag == VIEW_STRING) {
-		forwardRemoteFile(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])));
+		echo file_get_contents(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])));
 		exit;
 	}
 }
