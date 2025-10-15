@@ -22,6 +22,7 @@
 
 RewriteEngine On
 RewriteBase /
+RewriteCond %{REQUEST_URI} !^/php/root\.php$
 
 # サブドメインのリライト
 RewriteCond %{HTTP_HOST} ^(?!RPL_HTACC\.)([^.]+)\.tshuto\.com$ [NC]
