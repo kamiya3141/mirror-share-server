@@ -66,7 +66,7 @@ function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): strin
 	return ($with_protocol ? 'https://' : '') . $_sub_dmn . MY_DOMAIN;
 }
 
-function echoViewOrGetSite(): void {
+function echoViewOrGetSite($_redir_arr = []): void {
 	global $other_data_query;
 	$_flag = substr($other_data_query, 0, 4);
 	if ($_flag == (GET_STRING . '/') || $_flag == VIEW_STRING) {
@@ -220,19 +220,12 @@ function getMyParamKey(string $arg): string {
 	return "request-{$arg}-url";
 }
 
-function download_file(string $_url): string {
+function download_file(string $_url): void {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	$cts = file_get_contents($_url);
 	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
-	$fp = fopen($_url, 'rb');
-	if ($fp) {
-		fpassthru($fp);
-		fclose($fp);
-	}
-	exit;
 	echo $cts;
-	return '';
 }
 function get_files(string $_url): array {
 	return array_values(array_filter(get_contents($_url), 'is_file'));
