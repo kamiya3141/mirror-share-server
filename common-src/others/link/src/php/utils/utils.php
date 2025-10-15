@@ -230,7 +230,7 @@ function download_file(string $_url): void {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	setHeaders('', $mimeMap['none'], getFileName($_url));
-	$cts = file_get_contents($_url);
+	$cts = forwardRemoteFile($_url, false, false, 'none');
 	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
 	echo $cts;
 }
