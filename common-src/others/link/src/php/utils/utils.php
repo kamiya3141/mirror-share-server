@@ -175,6 +175,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 			$result_url = API_URL[LINK_STRING] . '?' . http_build_query([
 				getMyParamKey(LINK_STRING) => $_json_file_path
 			]);
+			$mime = $mimeMap['php'];
 		}
 	}
 
