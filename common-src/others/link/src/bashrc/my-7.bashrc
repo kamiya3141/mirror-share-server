@@ -23,7 +23,7 @@ set_prompt_command() {
 	current_dir=$(pwd)
 	display_dir=$(echo "$current_dir" | sed "s|^$HOME|~|")
 	user_host0="< a >-< ${USER} a $(hostname) >-< $display_dir >-"
-	user_host="${PROMPT_COLOR_MAIN}[${PROMPT_COLOR_RESET} $result_str ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_USER}${USER}${PROMPT_COLOR_RESET} $prompt_symbol ${PROMPT_COLOR_HOST}$(hostname)${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_DIR}$display_dir${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]┐${PROMPT_COLOR_RESET}"
+	user_host="${PROMPT_COLOR_MAIN}[${PROMPT_COLOR_RESET} $result_str ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_USER}${USER}${PROMPT_COLOR_RESET} $prompt_symbol ${PROMPT_COLOR_HOST}$(hostname)${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_DIR}$display_dir${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]─┐${PROMPT_COLOR_RESET}"
 	line_len=$(echo -e "$user_host0" | sed "s/\x1B\[[0-9;]*m//g" | wc -m)
 	underline=$(printf "─%.0s" $(seq 1 $line_len))
 	PS1="\n${user_host}\n${PROMPT_COLOR_MAIN}┌${underline}┘${PROMPT_COLOR_RESET}\n${PROMPT_COLOR_MAIN}└──⮞ \$${PROMPT_COLOR_RESET} "
