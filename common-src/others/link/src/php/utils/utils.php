@@ -228,5 +228,3 @@ function get_contents($_url): array {
 }
 
 getMyQuery();
-
-echoViewOrGetSite();
