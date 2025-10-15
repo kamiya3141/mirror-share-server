@@ -172,21 +172,22 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		$created_html = count($other_data_split_slash_array) == 1 && !str_contains($other_data_split_slash_array[0], '.html');
 		if ($created_html) {
 			$_json_file_path = url_join(getMyHostName(), 'common-src/others/link/src/json', $other_data_split_slash_array[0] . '.json');
-			$result_url = API_URL[LINK_STRING] . '?' . http_build_query([
+			$_url = API_URL[LINK_STRING] . '?' . http_build_query([
 				getMyParamKey(LINK_STRING) => $_json_file_path
 			]);
 			$mime = $mime == GET_MIME_TYPE ? $mime : $mimeMap['html'];
 		}
+		$result_url = $_url;
 	}
 	if ($view_site) {
 		$mime = $mimeMap['html'];
 		$add_param = [
-			getMyParamKey(VIEW_STRING) => $result_url,
+			getMyParamKey(VIEW_STRING) => $_url,
 			getMyParamKey(LINK_STRING) => '',
 			getMyParamKey('org') => ''
 		];
 		if ($created_html) {
-			$_created_url_param = end(explode('=', $result_url));
+			$_created_url_param = end(explode('=', $_url));
 			$add_param[getMyParamKey(VIEW_STRING)] = getMyParamKey(LINK_STRING);
 			$add_param[getMyParamKey(LINK_STRING)] = $_created_url_param;
 			$add_param[getMyParamKey('org')] = getMyHostName();
