@@ -156,7 +156,7 @@ function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '') {
 		header('Content-Length: ' . strlen($_cts));
 }
 
-function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): string {
+function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): void {
 	global $mimeMap;
 
 	$ext = pathinfo(parse_url($_url, PHP_URL_PATH), PATHINFO_EXTENSION);
@@ -175,7 +175,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 			$result_url = API_URL[LINK_STRING] . '?' . http_build_query([
 				getMyParamKey(LINK_STRING) => $_json_file_path
 			]);
-			$mime = $mimeMap['php'];
+			$mime = $mimeMap['html'];
 		}
 	}
 	if ($view_site) {
@@ -193,8 +193,6 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		}
 		$result_url = API_URL[VIEW_STRING] . '?' . http_build_query($add_param);
 	}
-	if ($created_html && $mime == $mimeMap['php'])
-		$mime = $mimeMap['html'];
 
 	setHeaders('', $mime);
 	$contents = file_get_contents($result_url);
@@ -205,10 +203,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 	}
 
 	setHeaders($contents, $mime);
-	if ($mode_return)
-		return $contents;
 	echo $contents;
-	return '';
 }
 
 function exist($_arg): bool {
