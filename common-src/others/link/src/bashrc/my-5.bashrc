@@ -7,10 +7,10 @@ PROMPT_COLOR_DIR="\[\033[0;33m\]"
 PROMPT_COLOR_CORRECT="\[\033[0;32m\]"
 PROMPT_COLOR_FAILED="\[\033[0;35m\]"
 PROMPT_COLOR_RESET="\[\033[0m\]"
-PRE_EXIT=$?
 
 # ===== PS1_setting-5 =====
 set_prompt_command() {
+	local PRE_EXIT="$?"
 	local current_dir display_dir user_host0 user_host line_len underline correct_str failed_str result_str
 	local correct_str="${PROMPT_COLOR_CORRECT}✓${PROMPT_COLOR_RESET}"
 	local failed_str="${PROMPT_COLOR_FAILED}✗${PROMPT_COLOR_RESET}"

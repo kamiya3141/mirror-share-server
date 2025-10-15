@@ -15,7 +15,7 @@ set_prompt_command() {
 	local correct_str="${PROMPT_COLOR_CORRECT}✓${PROMPT_COLOR_RESET}"
 	local failed_str="${PROMPT_COLOR_FAILED}✗${PROMPT_COLOR_RESET}"
 	local prompt_symbol="${PROMPT_COLOR_SYMBOL}⌬${PROMPT_COLOR_RESET}"
-	if [ $PRE_EXIT -eq 0 ]; then
+	if [ ${PRE_EXIT} -eq 0 ]; then
 			result_str="$correct_str"
 	else
 			result_str="$failed_str"
