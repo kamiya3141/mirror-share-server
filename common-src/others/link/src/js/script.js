@@ -7,4 +7,4 @@ fetch("https://link.tshuto.com/get-json").then(res => res.json()).then(dt => {
 
 const btn = document.getElementById("go-button");
 
-btn.mouseClickHandler = (me, e) => window.location.href = `https://link.tshuto.com/${main_sel.value}`;
+btn.mouseClickHandler = (me, e) => window.location.replace(`https://link.tshuto.com/${main_sel.value}`);
