@@ -21,7 +21,7 @@ define('API_URL', [
 	'getdir' => url_join(UTILS_DIR, 'api-local-getDirContents.php')
 ]);
 
-$mySubDomain = '--MYSUBDOMAIN--';
+$mySubDomain = 'share';
 
 $mimeMap = [
 	'js' => 'application/javascript',
@@ -70,7 +70,7 @@ function echoViewOrGetSite(): void {
 	global $other_data_query;
 	$_flag = substr($other_data_query, 0, 4);
 	if ($_flag == (GET_STRING . '/') || $_flag == VIEW_STRING) {
-		echo file_get_contents(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])));
+		forwardRemoteFile(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])));
 		exit;
 	}
 }
@@ -148,10 +148,10 @@ function getLatestDir(string $baseDir): ?array {
 	return exist($versionDirs) ? end($versionDirs) : null;
 }
 
-function setHeaders($_cts, $_mm = 'text/plain', $_file_name = '') {
-	if (exist($_file_name))
-		header('Content-Disposition: attachment; filename="' . basename($_file_name) . '"');
-	header('Content-Type: ' . $_mm . ';charset=utf-8');
+function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '') {
+	if (exist($_file_path))
+		header('Content-Disposition: attachment; filename="' . getFileName($_file_path) . '"');
+	header('Content-Type: ' . $_mm);
 	if (exist($_cts))
 		header('Content-Length: ' . strlen($_cts));
 }
@@ -169,7 +169,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		global $other_data_query;
 		$other_data_path = rawurldecode($other_data_query);
 		$other_data_split_slash_array = (strpos($other_data_path, '/') ? explode('/', $other_data_path) : [$other_data_path]);
-		$created_html = count($other_data_split_slash_array) == 1 && !strpos($other_data_split_slash_array[0], '.html');
+		$created_html = count($other_data_split_slash_array) == 1 && !str_contains($other_data_split_slash_array[0], '.html');
 		if ($created_html) {
 			$_json_file_path = url_join(getMyHostName(), 'common-src/others/link/src/json', $other_data_split_slash_array[0] . '.json');
 			$result_url = API_URL[LINK_STRING] . '?' . http_build_query([
@@ -225,14 +225,12 @@ function getMyParamKey(string $arg): string {
 	return "request-{$arg}-url";
 }
 
-function download_file(string $_url): void {
-	global $mimeMap;
+function download_file(string $_url): string {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
-	setHeaders('', $mimeMap['none'], getFileName($_url));
 	$cts = file_get_contents($_url);
 	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
-	echo $cts;
+	return $cts;
 }
 function get_files(string $_url): array {
 	return array_values(array_filter(get_contents($_url), 'is_file'));
