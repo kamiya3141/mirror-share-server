@@ -228,10 +228,10 @@ function getMyParamKey(string $arg): string {
 function download_file(string $_url): string {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
-	setHeaders('', GET_MIME_TYPE, getFileName($_url));
 	$cts = file_get_contents($_url);
 	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
-	return $cts;
+	echo $cts;
+	return '';
 }
 function get_files(string $_url): array {
 	return array_values(array_filter(get_contents($_url), 'is_file'));
