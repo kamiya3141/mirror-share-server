@@ -7,6 +7,7 @@ PROMPT_COLOR_DIR="\[\033[0;33m\]"
 PROMPT_COLOR_CORRECT="\[\033[0;32m\]"
 PROMPT_COLOR_FAILED="\[\033[0;35m\]"
 PROMPT_COLOR_RESET="\[\033[0m\]"
+PRE_EXIT="$?"
 
 # ===== PS1_setting-7 =====
 set_prompt_command() {
@@ -14,7 +15,7 @@ set_prompt_command() {
 	local correct_str="${PROMPT_COLOR_CORRECT}✓${PROMPT_COLOR_RESET}"
 	local failed_str="${PROMPT_COLOR_FAILED}✗${PROMPT_COLOR_RESET}"
 	local prompt_symbol="${PROMPT_COLOR_SYMBOL}⌬${PROMPT_COLOR_RESET}"
-	if [ $? -eq 0 ]; then
+	if [ $PRE_EXIT -eq 0 ]; then
 			result_str="$correct_str"
 	else
 			result_str="$failed_str"
