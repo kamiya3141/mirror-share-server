@@ -15,8 +15,7 @@ if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '/', $_flag)) {
 	if ($_flag == VIEW_STRING)
 		forwardRemoteFile($url, true);
 	else if ($_flag == GET_STRING) {
-		//echo download_file($url);
-		forwardRemoteFile($url, false, false, 'none');
+		echo download_file($url);
 	}
 } else
 	echoErrorSite(404, 'Server Error !!<br>File is not exist !!');
