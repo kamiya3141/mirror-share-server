@@ -65,6 +65,10 @@ function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): strin
 	return ($with_protocol ? 'https://' : '') . $_sub_dmn . MY_DOMAIN;
 }
 
+function echoViewOrGetSite($_tf0 = false, $_tf1 = false): void {
+	forwardRemoteFile(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])), $_tf0, $_tf1);
+}
+
 function echoErrorSite(int $_code = 404, string $_word = ''): void {
 	http_response_code($_code);
 	forwardRemoteFile(API_URL['error'] . '?' . http_build_query([
