@@ -15,14 +15,14 @@ window.fetch("-:-JSON-URL-:-").then(res => res.json()).then(dt => {
 			let _url_arr = [];
 			for (let i = 0; i < _tar_obj.length; i++)
 				_url_arr.push(
-					new URL(`${dt["path"]}/${dt["basename"]}${_dt["ext"] == "range" ? "." + _tar_obj[i] : _dt["ext"]}`, base_url).href);
+					new URL(`${_dt["path"]}/${_dt["basename"]}${_dt["ext"] == "range" ? "." + _tar_obj[i] : _dt["ext"]}`, base_url).href);
 			return _url_arr;
 		}],
 		["free", _dt => {
 			const _tar_obj = _dt["info"]["files"];
 			let _url_arr = [];
 			for (let i = 0; i < _tar_obj.length; i++)
-				_url_arr.push(_tar_obj[i]);
+				_url_arr.push(`${_dt["basename"]}/${_dt["path"]}/${_tar_obj[i]}${_dt["ext"]}`);
 			return _url_arr;
 		}]];
 	if (!dt.hasOwnProperty("info") || !dt["info"].hasOwnProperty("type") || (dt.hasOwnProperty("info") && dt["info"].hasOwnProperty("type") && !type_arr.some(c => c[0] == dt["info"]["type"]))) {
