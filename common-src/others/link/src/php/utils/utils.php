@@ -151,7 +151,7 @@ function getLatestDir(string $baseDir): ?array {
 function setHeaders($_cts, $_mm = 'text/plain', $_file_name = '') {
 	if (exist($_file_name))
 		header('Content-Disposition: attachment; filename="' . basename($_file_name) . '"');
-	header('Content-Type: ' . $_mm . '; charset=UTF-8');
+	header('Content-Type: ' . $_mm . ';charset=utf-8');
 	if (exist($_cts))
 		header('Content-Length: ' . strlen($_cts));
 }
