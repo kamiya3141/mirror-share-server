@@ -224,14 +224,14 @@ function download_file(string $_url): string {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	$cts = file_get_contents($_url);
-	//setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
-	//echo $cts;
+	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
 	$fp = fopen($_url, 'rb');
 	if ($fp) {
 		fpassthru($fp);
 		fclose($fp);
 	}
 	exit;
+	echo $cts;
 	return '';
 }
 function get_files(string $_url): array {
