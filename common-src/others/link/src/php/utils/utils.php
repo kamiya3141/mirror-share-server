@@ -26,7 +26,7 @@ $mimeMap = [
 	'js' => 'application/javascript',
 	'json' => 'application/json',
 	'css' => 'text/css',
-	#'php' => 'text/x+php',
+	'php' => 'text/x+php',
 	'png' => 'image/png',
 	'jpg' => 'image/jpeg',
 	'jpeg' => 'image/jpeg',
@@ -70,7 +70,7 @@ function echoErrorSite(int $_code = 404, string $_word = ''): void {
 	forwardRemoteFile(API_URL['error'] . '?' . http_build_query([
 		getMyParamKey('error-code') => "{$_code}",
 		getMyParamKey('error-word') => "{$_word}"
-	]));
+	]), false, false, 'html');
 	exit;
 }
 
