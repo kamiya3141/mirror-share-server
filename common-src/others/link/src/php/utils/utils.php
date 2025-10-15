@@ -21,7 +21,7 @@ define('API_URL', [
 	'getdir' => url_join(UTILS_DIR, 'api-local-getDirContents.php')
 ]);
 
-$mySubDomain = '--MYSUBDOMAIN--';
+$mySubDomain = "--MYSUBDOMAIN--";
 
 $mimeMap = [
 	'js' => 'application/javascript',

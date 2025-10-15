@@ -18,6 +18,7 @@ if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '/', $_flag)) {
 		echo download_file($url);
 } else
 	echoErrorSite(404, 'Server Error !!<br>File is not exist !!');
+	
 exit;
 
 ?>
