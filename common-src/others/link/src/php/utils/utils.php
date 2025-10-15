@@ -69,7 +69,7 @@ function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): strin
 function echoViewOrGetSite(): void {
 	global $other_data_query;
 	$_flag = substr($other_data_query, 0, 4);
-	if (str_contains($_flag, GET_STRING) || str_contains($_flag, VIEW_STRING)) {
+	if ($_flag == (GET_STRING . '/') || $_flag == VIEW_STRING) {
 		echo file_get_contents(url_join(getMyHostName(), 'php', UTILS_DIR, 'script.php?' . http_build_query([...$_GET, ...$_POST])));
 		exit;
 	}
