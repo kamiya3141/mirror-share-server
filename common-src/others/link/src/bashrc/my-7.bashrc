@@ -14,7 +14,7 @@ set_prompt_command() {
 	local current_dir display_dir user_host0 user_host line_len underline correct_str failed_str result_str
 	local correct_str="${PROMPT_COLOR_CORRECT}✓${PROMPT_COLOR_RESET}"
 	local failed_str="${PROMPT_COLOR_FAILED}✗${PROMPT_COLOR_RESET}"
-	local prompt_symbol="${PROMPT_COLOR_SYMBOL}⌬${PROMPT_COLOR_RESET}"
+	local prompt_symbol="${PROMPT_COLOR_SYMBOL}⌬ ${PROMPT_COLOR_RESET}"
 	if [ ${PRE_EXIT} -eq 0 ]; then
 			result_str="$correct_str"
 	else
@@ -23,7 +23,7 @@ set_prompt_command() {
 	current_dir=$(pwd)
 	display_dir=$(echo "$current_dir" | sed "s|^$HOME|~|")
 	user_host0="< a >-< ${USER} a $(hostname) >-< $display_dir >-"
-	user_host="${PROMPT_COLOR_MAIN}[${PROMPT_COLOR_RESET} $result_str ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_USER}${USER}${PROMPT_COLOR_RESET} $prompt_symbol ${PROMPT_COLOR_HOST}$(hostname)${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_DIR}$display_dir${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]─┐${PROMPT_COLOR_RESET}"
+	user_host="${PROMPT_COLOR_MAIN}[${PROMPT_COLOR_RESET} $result_str ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_USER}${USER}${PROMPT_COLOR_RESET} $prompt_symbol ${PROMPT_COLOR_HOST}$(hostname)${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]──[${PROMPT_COLOR_RESET} ${PROMPT_COLOR_DIR}$display_dir${PROMPT_COLOR_RESET} ${PROMPT_COLOR_MAIN}]┐${PROMPT_COLOR_RESET}"
 	line_len=$(echo -e "$user_host0" | sed "s/\x1B\[[0-9;]*m//g" | wc -m)
 	underline=$(printf "─%.0s" $(seq 1 $line_len))
 	PS1="\n${user_host}\n${PROMPT_COLOR_MAIN}┌${underline}┘${PROMPT_COLOR_RESET}\n${PROMPT_COLOR_MAIN}└──⮞ \$${PROMPT_COLOR_RESET} "
