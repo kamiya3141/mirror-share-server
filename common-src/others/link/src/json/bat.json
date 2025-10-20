@@ -1,0 +1,12 @@
+{
+	"basename": "",
+	"ext": ".bat",
+	"path": "./src/bat",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": [
+			"win11"
+		]
+	}
+}
