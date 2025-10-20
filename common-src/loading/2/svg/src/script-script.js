@@ -33,9 +33,6 @@ window.addEventListener("load", () => {
 		if (frame_count == 360) frame_count = 0;
 
 		if (SWITCH_FLAG == true && loading_text_id.innerHTML == loading_text[0]) {
-			//loading_text_id.classList.remove("before");
-			//loading_text_id.classList.add("after");
-			//loading_text_id.innerHTML = loading_text[1];
 			setTimeout(function () {
 				//setup();
 				parentElement.setAttribute("class", "loading animation-end");
