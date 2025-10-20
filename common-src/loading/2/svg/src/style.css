@@ -1,0 +1,176 @@
+svg {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+}
+
+text[class*='before'].loading-text-class {
+	animation: asobi 2s linear infinite;
+}
+
+text[class*='after'].loading-text-class {
+	animation: asobi2 3s ease forwards;
+}
+
+#lg-stop1 {
+	animation: step1 10s ease-in-out infinite;
+}
+
+#lg-stop2 {
+	animation: step2 10s ease-in-out infinite;
+}
+
+@keyframes asobi {
+	0% {
+		opacity: 1;
+	}
+
+	10% {
+		opacity: 0.8;
+	}
+
+	20% {
+		opacity: 0.6;
+	}
+
+	30% {
+		opacity: 0.4;
+	}
+
+	40% {
+		opacity: 0.2;
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	60% {
+		opacity: 0.2;
+	}
+
+	70% {
+		opacity: 0.4;
+	}
+
+	80% {
+		opacity: 0.6;
+	}
+
+	90% {
+		opacity: 0.8;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes asobi2 {
+	0% {
+		transform: translateY(0%);
+		opacity: 0.5;
+	}
+
+	50% {
+		transform: translateY(-5%);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateY(-20%);
+		opacity: 0;
+	}
+}
+
+@keyframes step1 {
+	0% {
+		stop-color: hsl(0, 100%, 50%);
+	}
+
+	10% {
+		stop-color: hsl(18, 100%, 50%);
+	}
+
+	20% {
+		stop-color: hsl(36, 100%, 50%);
+	}
+
+	30% {
+		stop-color: hsl(54, 100%, 50%);
+	}
+
+	40% {
+		stop-color: hsl(72, 100%, 50%);
+	}
+
+	50% {
+		stop-color: hsl(90, 100%, 50%);
+	}
+
+	60% {
+		stop-color: hsl(108, 100%, 50%);
+	}
+
+	70% {
+		stop-color: hsl(126, 100%, 50%);
+	}
+
+	80% {
+		stop-color: hsl(144, 100%, 50%);
+	}
+
+	90% {
+		stop-color: hsl(162, 100%, 50%);
+	}
+
+	100% {
+		stop-color: hsl(180, 100%, 50%);
+	}
+}
+
+@keyframes step2 {
+	0% {
+		stop-color: hsl(180, 100%, 50%);
+	}
+
+	10% {
+		stop-color: hsl(198, 100%, 50%);
+	}
+
+	20% {
+		stop-color: hsl(216, 100%, 50%);
+	}
+
+	30% {
+		stop-color: hsl(234, 100%, 50%);
+	}
+
+	40% {
+		stop-color: hsl(252, 100%, 50%);
+	}
+
+	50% {
+		stop-color: hsl(270, 100%, 50%);
+	}
+
+	60% {
+		stop-color: hsl(288, 100%, 50%);
+	}
+
+	70% {
+		stop-color: hsl(306, 100%, 50%);
+	}
+
+	80% {
+		stop-color: hsl(324, 100%, 50%);
+	}
+
+	90% {
+		stop-color: hsl(242, 100%, 50%);
+	}
+
+	100% {
+		stop-color: hsl(360, 100%, 50%);
+	}
+}
