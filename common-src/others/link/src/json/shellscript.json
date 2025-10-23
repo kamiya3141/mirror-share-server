@@ -7,7 +7,8 @@
 		"range": [],
 		"files": [
 			"update-php-utils",
-			"exec-update"
+			"exec-update",
+			"setup-my-env"
 		]
 	}
 }
