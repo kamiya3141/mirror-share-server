@@ -4,6 +4,7 @@ alias rbr="source ~/.bashrc && clear"
 alias ebr="sudo nano ~/.bashrc && rbr"
 
 alias updt_ba="touch ~/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://link.tshuto.com/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
+alias update-exec-utils="wget -q --no-cache -O ${HOME}/exec-update.sh https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/shellscript/exec-update.sh && bash ${HOME}/exec-update.sh"
 
 function wgmbr() {
         local bashrc_label_num=${1:-7}
