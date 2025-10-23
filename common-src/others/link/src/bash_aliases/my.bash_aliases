@@ -11,6 +11,7 @@ function wgmbr() {
         fi
         local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
         wget --no-cache -q -O "$HOME/my.bashrc" "$url"
+        rbr
 }
 
 function gitc() {
