@@ -22,12 +22,13 @@
 
 RewriteEngine On
 RewriteBase /
-RewriteCond %{REQUEST_URI} !^/php/root\.php$
+RewriteCond %{REQUEST_URI} ^/php/ [NC]
+RewriteRule ^ - [L]
 
 # サブドメインのリライト
 RewriteCond %{HTTP_HOST} ^(?!RPL_HTACC\.)([^.]+)\.tshuto\.com$ [NC]
-RewriteRule ^(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
+RewriteRule ^(?!view|get)(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
 
 # get/view用のリライト
-RewriteCond %{HTTP_HOST} ^RPL_HTACC\.tshuto\.com$ [NC]
-RewriteRule ^(view|get)/(.*)$ /php/utils/script.php?target=RPL_HTACC&od=$1/$2 [E=FROM_REWRITE:1,L,QSA]
+RewriteCond %{HTTP_HOST} ^([^.]+)\.tshuto\.com$ [NC]
+RewriteRule ^(view|get)/(.*)$ /php/utils/script.php?target=%1&od=$1/$2 [E=FROM_REWRITE:1,L,QSA]
