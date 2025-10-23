@@ -9,15 +9,20 @@ $remoteUrl = getMyHostName($target_query);
 
 $_flag = $other_data_split_slash_array[0];
 
-if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '/', $_flag)) {
+if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '|' . GETFILE_STRING . '/', $_flag)) {
 	array_shift($other_data_split_slash_array);
 	$url = url_join($remoteUrl, implode('/', $other_data_split_slash_array));
 	if ($_flag == VIEW_STRING)
 		forwardRemoteFile($url, true);
 	else if ($_flag == GET_STRING)
 		download_file($url);
-} else
-	echoErrorSite(404, 'Server Error !!<br>File is not exist !!');
+	else if ($_flag == GETFILE_STRING && $target_query == $mySubDomain)
+		json_encode(getFileName($url));
+	else
+		echoErrorSite(404, implode('<br>', ['Server Error !!', invalidURL($url)]));
+}
+
+echoErrorSite(404, 'Server Error !!<br>File is not exist !!');
 	
 exit;
 
