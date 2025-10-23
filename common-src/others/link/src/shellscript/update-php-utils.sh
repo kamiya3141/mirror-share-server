@@ -28,7 +28,7 @@ wget -q --no-cache -O ~/public_html/php/utils/script.php https://raw.githubuserc
 sed -i "s/--MYSUBDOMAIN--/$sub_domain/i" ~/public_html/php/utils/utils.php
 
 MY_SUBDOMAIN="$sub_domain";
-htaccess_content=$(wget -qO- https://link.tshuto.com/src/htaccess/my.htaccess)
+htaccess_content=$(wget --no-cache -qO- https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/htaccess/my.htaccess)
 result_htaccess=$(echo -e "$htaccess_content" | sed -e "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
 add_htaccess=$(echo -e "$result_htaccess" | tail -n 3)
 htaccess_path="$HOME/public_html/.htaccess"
@@ -41,3 +41,5 @@ if [ -e "$htaccess_path" ]; then
 else
 	echo -n "$result_htaccess" > "$htaccess_path"
 fi
+
+echo -n "$result_htaccess" > "$htaccess_path"
