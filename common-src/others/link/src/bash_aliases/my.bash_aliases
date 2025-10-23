@@ -1,6 +1,6 @@
-alias rba="source ~/.bash_aliases"
+alias rba="source ~/.bash_aliases && clear"
 alias eba="sudo nano ~/.bash_aliases && rba"
-alias rbr="source ~/.bashrc"
+alias rbr="source ~/.bashrc && clear"
 alias ebr="sudo nano ~/.bashrc && rbr"
 
 alias updt_ba="sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://link.tshuto.com/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
