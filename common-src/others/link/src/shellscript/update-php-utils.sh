@@ -37,10 +37,8 @@ htaccess_path="$HOME/public_html/.htaccess"
 if [ -e "$htaccess_path" ]; then
 	my_htaccess=$(cat "$htaccess_path")
 	if [[ "$my_htaccess" != *"/php/utils/script.php"* ]]; then
-		echo -e "\n\n$add_htaccess" >> "$htaccess_path"
+		echo -n "$result_htaccess" > "$htaccess_path"
 	fi
 else
 	echo -n "$result_htaccess" > "$htaccess_path"
 fi
-
-echo -n "$result_htaccess" > "$htaccess_path"
