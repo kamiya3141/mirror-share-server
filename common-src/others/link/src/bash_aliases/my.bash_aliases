@@ -20,7 +20,7 @@ function wgmbr() {
 function gitc() {
         local commit_str=${1:-"edit some files"}
         local dir_path=${2:-.}
-        cd ~/public_html && git add $dir_path && git commit -m "$commit_str" && git push && clear
+        git add $dir_path && git commit -m "$commit_str" && git push && clear
 }
 
 function sc_ts() {
