@@ -2,6 +2,7 @@
 
 my_update_cache="$HOME/.update-utils"
 sub_domain="$1"
+update_remote_url="$2"
 
 if [ ! -e "$my_update_cache" ]; then
 	touch "$my_update_cache"
@@ -21,14 +22,14 @@ if [ ! -d "$HOME/public_html/php/utils" ]; then
 	mkdir -p "$HOME/public_html/php/utils"
 fi
 
-wget -q --no-cache -O ~/public_html/php/utils/utils.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/utils.php
-wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/api-local-getDirContents.php
-wget -q --no-cache -O ~/public_html/php/utils/script.php https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/php/utils/script.php
+wget -q --no-cache -O ~/public_html/php/utils/utils.php "$update_remote_url"/php/utils/utils.php
+wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php "$update_remote_url"/php/utils/api-local-getDirContents.php
+wget -q --no-cache -O ~/public_html/php/utils/script.php "$update_remote_url"/php/utils/script.php
 
 sed -i "s/--MYSUBDOMAIN--/$sub_domain/i" ~/public_html/php/utils/utils.php
 
 MY_SUBDOMAIN="$sub_domain";
-htaccess_content=$(wget --no-cache -qO- https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/htaccess/my.htaccess)
+htaccess_content=$(wget --no-cache -qO- "$update_remote_url"/htaccess/my.htaccess)
 result_htaccess=$(echo -e "$htaccess_content" | sed -e "s/RPL_HTACC/$MY_SUBDOMAIN/gi")
 add_htaccess=$(echo -e "$result_htaccess" | tail -n 3)
 htaccess_path="$HOME/public_html/.htaccess"
