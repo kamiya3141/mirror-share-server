@@ -1,0 +1,12 @@
+{
+	"basename": "",
+	"ext": ".bash_aliases",
+	"path": "./src/bash_aliases",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": [
+			"my"
+		]
+	}
+}
