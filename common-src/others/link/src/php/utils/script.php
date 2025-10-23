@@ -20,10 +20,10 @@ if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '|' . GETFILE_STRING . '/'
 		json_encode(getFileName($url));
 	else
 		echoErrorSite(404, implode('<br>', ['Server Error !!', invalidURL($url)]));
+	exit;
 }
 
 echoErrorSite(404, 'Server Error !!<br>File is not exist !!');
-	
 exit;
 
 ?>
