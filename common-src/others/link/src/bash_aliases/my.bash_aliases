@@ -23,22 +23,21 @@ function gitc() {
         git add $dir_path && git commit -m "$commit_str" && git push && clear
 }
 
+function sc_dr() {
+        sudo systemctl daemon-reload
+}
 function sc_ts() {
         sudo systemctl status $@
 }
-
 function sc_st() {
         sudo systemctl restart $@
 }
-
 function sc_sp() {
         sudo systemctl stop $@
 }
-
 function sc_ea() {
         sudo systemctl enable $@
 }
-
 function sc_da() {
         sudo systemctl disable $@
 }
