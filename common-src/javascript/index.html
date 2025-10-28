@@ -115,7 +115,18 @@
 			const editor = monaco.editor.create(codeBody, {
 				value: ``,
 				language: "javascript",
-				theme: "vs-dark"
+				theme: "vs-dark",
+				fontSize: "18",
+				// fontFamily: "'Explex-Regular', sans-serif",
+				fontLigatures: true,
+				automaticLayout: true,
+				scrollBeyondLastLine: false,
+				wordWrap: "off",
+				scrollbar: {
+					vertical: "hidden",
+					horizontal: "auto",
+					handleMouseWheel: false
+				}
 			});
 			editor.onDidChangeModelContent(e => {
 				const code = editor.getValue();
