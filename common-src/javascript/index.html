@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8" />
+	<title>エディターテスト</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="エディター群だお">
+	<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+	<style>
+		:root {
+			--w: calc(100% / 2);
+			--c: calc(50% - var(--w) / 2);
+		}
+
+		body {
+			box-sizing: border-box;
+			display: block;
+			position: absolute;
+			left: 1vw;
+			top: 1vh;
+			width: 98vw;
+			height: 98vh;
+			color: white;
+			background-color: black;
+			overflow-x: hidden;
+		}
+
+		div#root {
+			display: flex;
+			position: relative;
+			flex-direction: column;
+			width: calc(var(--w) * 2);
+			height: calc(var(--w) * 2);
+
+			&>div#sandbox-root {
+				display: inherit;
+				position: inherit;
+				width: calc(var(--w) * 2);
+				height: calc(var(--w) * 1.5);
+
+				&>* {
+					display: block;
+					width: var(--w);
+					height: calc(var(--w) * 2);
+				}
+
+				&>iframe {
+					aspect-ratio: 16 / 9;
+					background-color: white;
+				}
+
+				&+div#console-root {
+					display: block;
+					position: inherit;
+					background-color: gray;
+					width: calc(var(--w) * 2);
+					height: calc(var(--w) * 0.5);
+					overflow-y: auto;
+				}
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<script defer src="https://jst.tshuto.com/tamura0.js"></script>
+	<div id="root">
+		<div id="sandbox-root">
+			<div id="code-body"></div>
+			<iframe id="sandbox-iframe" srcdoc='
+						<!doctype html>
+						<html lang="ja">
+						<head>
+							<meta charset="utf-8">
+							<title>JavaScript-TEST</title>
+							<meta name="viewport" content="width=device-width, initial-scale=1">
+							<meta name="description" content="JavaScriptテストページ">
+							<style></style>
+						</head>
+						
+						<body>
+							<script id="main-code"></script>
+						</body>
+						</html>
+			'></iframe>
+		</div>
+		<div id="console-root">
+			<p>Console:</p>
+			<div id="console-result"></div>
+		</div>
+	</div>
+
+	<script defer>
+		const codeBody = document.getElementById("code-body");
+		const sandboxIframe = document.getElementById("sandbox-iframe");
+		const consoleResult = document.getElementById("console-result");
+
+		const sandboxIframeWindow = sandboxIframe.contentWindow;
+
+		const tmp_script = document.createElement("script");
+		const getScriptTag = input => {
+			tmp_script.innerHTML = input;
+			return tmp_script.outerHTML;
+		};
+
+		require.config({
+			paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs" }
+		});
+
+		window.console.log = (...input) => consoleResult.innerHTML = `${input.join("<br>")}`;
+
+		require(["vs/editor/editor.main"], () => {
+			const editor = monaco.editor.create(codeBody, {
+				value: ``,
+				language: "javascript",
+				theme: "vs-dark"
+			});
+			editor.onDidChangeModelContent(e => {
+				const code = editor.getValue();
+				let correct_code = true;
+				try {
+					eval(code);
+				} catch (error) {
+					correct_code = false;
+					console.log(error);
+				} finally {
+					if (correct_code) {
+						const sandboxIframeDocument = sandboxIframeWindow.document;
+						sandboxIframeDocument.getElementById("main-code").innerHTML = code;
+					}
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
