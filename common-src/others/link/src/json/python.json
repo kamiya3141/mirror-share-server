@@ -1,0 +1,13 @@
+{
+	"basename": "",
+	"ext": "py",
+	"path": "./src/python",
+	"info": {
+		"type": "free",
+		"range": [],
+		"files": [
+			"hid/hid",
+			"test/script"
+		]
+	}
+}

@@ -8,7 +8,8 @@
 		"files": [
 			"update-php-utils",
 			"exec-update",
-			"setup-my-env"
+			"setup-my-env",
+			"hid_setup"
 		]
 	}
 }
