@@ -1,6 +1,6 @@
 {
 	"basename": "",
-	"ext": "py",
+	"ext": ".py",
 	"path": "./src/python",
 	"info": {
 		"type": "free",
