@@ -10,7 +10,7 @@ fi
 
 _sbdm=$(head -n 1 "$my_update_cache")
 if [ -z "$_sbdm" ]; then
-	_sbdm="share"
+	sed -i "1s/.*/$sub_domain/i" "$my_update_cache"
 fi
 if [ "$sub_domain" == none ]; then
 	sub_domain="$_sbdm"
