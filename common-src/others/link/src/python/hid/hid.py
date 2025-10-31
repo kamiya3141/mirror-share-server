@@ -131,6 +131,7 @@ keyboard = {
 	"consumer": None,
 	"system": None,
 }
+
 pt1 = re.compile(r"keyboard")
 
 for dev in devices:
