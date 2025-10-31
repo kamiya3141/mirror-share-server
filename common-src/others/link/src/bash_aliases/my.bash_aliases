@@ -11,44 +11,76 @@ alias update-exec-utils="wget -q --no-cache -O ${HOME}/exec-update.sh https://ra
 # --- function ---
 # 汎用
 function sc_dr() {
-        sudo systemctl daemon-reload
+	sudo systemctl daemon-reload
 }
 function sc_ts() {
-        sudo systemctl status $@
+	sudo systemctl status $@
 }
 function sc_st() {
-        sudo systemctl restart $@
+	sudo systemctl restart $@
 }
 function sc_sp() {
-        sudo systemctl stop $@
+	sudo systemctl stop $@
 }
 function sc_ea() {
-        sudo systemctl enable $@
+	sudo systemctl enable $@
 }
 function sc_da() {
-        sudo systemctl disable $@
-}
-function addf() {
-        local word=${2:-""}
-        if [ -e "$1" -a ! -z "$1" ]; then
-                echo "ok"
-        else
-                echo "no"
-        fi
+	sudo systemctl disable $@
 }
 # 個人
 function wgmbr() {
-        local bashrc_label_num=${1:-7}
-        local remote_url_path="https://share.tshuto.com/common-src/others/link/src"
-        if [ "$MY_UPDATE_REMOTE_URL" ]; then
-                remote_url_path="${MY_UPDATE_REMOTE_URL}"
-        fi
-        local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
-        wget --no-cache -q -O "$HOME/my.bashrc" "$url"
-        rbr
+	local bashrc_label_num=$1
+	local update_utils_path="${HOME}/.update-utils"
+
+	if [ ! bashrc_label_num ]; then
+		if [ -f "${update_utils_path}" ]; then
+			bashrc_label_num=$(head -n 1 "${update_utils_path}")
+		else
+			bashrc_label_num="7"
+			touch "${update_utils_path}"
+			echo -e "\n\n" >> "${update_utils_path}"
+		fi
+	fi
+	local remote_url_path="https://share.tshuto.com/common-src/others/link/src"
+	if [ "$MY_UPDATE_REMOTE_URL" ]; then
+		remote_url_path="${MY_UPDATE_REMOTE_URL}"
+	fi
+	local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
+	wget --no-cache -q -O "$HOME/my.bashrc" "$url"
+	sed -i "2s/.*/${bashrc_label_num}/" "${update_utils_path}"
+	rbr
+}
+function echo_with_color() {
+	if [ "$MYBASHRC" ]; then
+		if [ -f "$HOME/my.bashrc" ]; then
+			source "$HOME/my.bashrc"
+		else
+			wgmbr
+		fi
+	else
+		wgmbr
+	fi
+	local _words=${1:-""}
+	local _color=${2:-"${PROMPT_COLOR_FAILED}"}
+	echo -e "${_color}${_words}${PROMPT_COLOR_RESET}"
+}
+function addf() {
+	local word=${2:-""}
+	if [ "$1" ]; then
+		echo -e "\n${word}" | sudo tee -a $1 2> /dev/null
+		if [ "$?" -eq 0 ]; then
+			echo_with_color "Corrected!!" "${PROMPT_COLOR_CORRECT}"
+		else
+			echo_with_color "Failed!!"
+		fi
+	else
+		echo_with_color "The first argument does not exist."
+		return 1
+	fi
 }
 function gitc() {
-        local commit_str=${1:-"edit some files"}
-        local dir_path=${2:-.}
-        git add $dir_path && git commit -m "$commit_str" && git push && clear
+	local commit_str=${1:-"edit some files"}
+	local dir_path=${2:-.}
+	git add $dir_path && git commit -m "$commit_str" && git push && clear
 }
