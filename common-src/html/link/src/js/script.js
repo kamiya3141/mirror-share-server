@@ -40,9 +40,9 @@ window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 	if (checkHasLength(dt)) {
 		deleteSlashInArray(dt).forEach(c => {
-			const _url = `${DIRS_URL}/${c}/`;
+			const _url = `${MAIN_URL + c}/`;
 			console.log(_url);
-			// window.fetch(_url).then(res => res.json()).then(dt2 => main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`))));
+			window.fetch(_url).then(res => res.json()).then(dt2 => main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`))));
 		});
 	}
 });
@@ -70,7 +70,7 @@ function addChildLiElement(prt, _dt = []) {
 
 function createElement_ol_block(title = "title", _dt = []) {
 	const ol_element = document.createElement("ol");
-	ol_element.innerHTML += `<h3 class="ol-title">${title}</h3>`;
+	ol_element.innerHTML += `<h2 class="ol-title">・${title}</h2>`;
 	addChildLiElement(ol_element, _dt);
 	return ol_element;
 }
