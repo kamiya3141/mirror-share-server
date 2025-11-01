@@ -7,7 +7,7 @@ alias ebr="sudo nano ~/.bashrc && rbr"
 alias up-apt="sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove"
 # 個人
 alias updt_ba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://link.tshuto.com/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
-alias update-exec-utils="wget -q --no-cache -O ${HOME}/exec-update.sh https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/shellscript/exec-update.sh && bash ${HOME}/exec-update.sh"
+alias updt_exut="wget -q --no-cache -O ${HOME}/exec-update.sh https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/shellscript/exec-update.sh && bash ${HOME}/exec-update.sh"
 # --- function ---
 # 汎用
 function sc_dr() {
