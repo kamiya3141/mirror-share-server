@@ -31,12 +31,10 @@ if (yajuExist)
 window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 	if (checkHasLength(dt0)) {
 		let dt = deleteSlashInArray(dt0);
-		if (dt.includes(FREE_LINK_JSON_FILENAME)) {
-			dt.splice(dt.indexOf(FREE_LINK_JSON_FILENAME), 1);
-			window.fetch(`${MAIN_BASE_URL}/${FREE_LINK_JSON_FILENAME}.json`).then(res => res.json()).then(dt2 => {
-				if (checkHasLength(dt2["data"]))
-					main_ol.appendChild(createElement_ol_block("free-type-link", [...dt2["data"]]));
-			})
+		const _filename = FREE_LINK_JSON_FILENAME + ".json";
+		if (dt.includes(_filename)) {
+			dt.splice(dt.indexOf(_filename), 1);
+			loadLinkJson(MAIN_BASE_URL);
 		} else
 			addChildLiElement(main_ol, dt.map(c => MAIN_BASE_URL + c));
 	}
@@ -78,7 +76,12 @@ function moveNonYajuPage() {
 	window.location.href = new_url;
 }
 
-
+function loadLinkJson(base_url = MAIN_BASE_URL) {
+	window.fetch(`${base_url}/${FREE_LINK_JSON_FILENAME}.json`).then(res => res.json()).then(dt2 => {
+		if (checkHasLength(dt2["data"]))
+			main_ol.appendChild(createElement_ol_block("free-type-link", [...dt2["data"]]));
+	})
+}
 function checkHasLength(obj = []) {
 	return (Object.hasOwn(obj, "length") && [...obj].length > 0);
 }
