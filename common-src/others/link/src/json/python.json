@@ -6,8 +6,8 @@
 		"type": "free",
 		"range": [],
 		"files": [
-			"hid/hid",
-			"test/script"
+			"hid",
+			"console-test"
 		]
 	}
 }

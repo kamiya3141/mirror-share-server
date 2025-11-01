@@ -168,7 +168,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		$other_data_split_slash_array = (strpos($other_data_path, '/') ? explode('/', $other_data_path) : [$other_data_path]);
 		$created_html = count($other_data_split_slash_array) == 1 && !str_contains($other_data_split_slash_array[0], '.html');
 		if ($created_html) {
-			$_json_file_path = url_join(getMyHostName('share'), 'common-src/others/link/src/json', $other_data_split_slash_array[0] . '.json');
+			$_json_file_path = url_join(getMyHostName('share'), GETFILE_STRING, 'common-src/others/link/src', $other_data_split_slash_array[0]) . '/';
 			$_url = API_URL[LINK_STRING] . '?' . http_build_query([
 				getMyParamKey(LINK_STRING) => $_json_file_path
 			]);

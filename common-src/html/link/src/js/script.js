@@ -1,41 +1,64 @@
-window.fetch("-:-JSON-URL-:-").then(res => res.json()).then(dt => {
-	const ol_title = document.getElementById("ol-title");
-	const base_url = String(dt["basename"]).substring(0, 4).includes("http") ? dt["basename"] : "https://share.tshuto.com/get/common-src/others/link/";
-	const type_arr = [
-		["number", _dt => {
-			const _tar_obj = _dt["info"]["range"];
-			const _arr_len = Number(_tar_obj[1]) - Number(_tar_obj[0]) + 1;
-			let _url_arr = [];
-			for (let i = 0; i < _arr_len; i++)
-				_url_arr.push(new URL(`${dt["path"]}/${dt["basename"]}${i + Number(_tar_obj[0])}${dt["ext"]}`, base_url).href);
-			return _url_arr;
-		}],
-		["string", _dt => {
-			const _tar_obj = _dt["info"]["range"];
-			let _url_arr = [];
-			for (let i = 0; i < _tar_obj.length; i++)
-				_url_arr.push(
-					new URL(`${_dt["path"]}/${_dt["basename"]}${_dt["ext"] == "range" ? "." + _tar_obj[i] : _dt["ext"]}`, base_url).href);
-			return _url_arr;
-		}],
-		["free", _dt => {
-			const _tar_obj = _dt["info"]["files"];
-			let _url_arr = [];
-			for (let i = 0; i < _tar_obj.length; i++)
-				_url_arr.push(new URL(`${_dt["path"]}/${_tar_obj[i]}${_dt["ext"]}`, base_url).href);
-			return _url_arr;
-		}]];
-	if (!dt.hasOwnProperty("info") || !dt["info"].hasOwnProperty("type") || (dt.hasOwnProperty("info") && dt["info"].hasOwnProperty("type") && !type_arr.some(c => c[0] == dt["info"]["type"]))) {
-		document.body.appendChild(createL("Access denied", false));
-	} else {
-		for (let v of type_arr)
-			if (v[0] == dt["info"]["type"])
-				[...v[1](dt)].reverse().forEach(c => ol_title.parentElement.insertBefore(createL(c), ol_title.nextSibling));
+const NO_YAJU_QUERY_NAME = "yj";
+const YAJU_VALUE = "niKAylKNIEI";
+
+const BASE_URL = "https://share.tshuto.com/common-src/others/link/src";
+
+const MAIN_URL = "-:-JSON-URL-:-";
+const DIRS_URL = MAIN_URL.replace("get-files", "get-dirs");
+
+const yajuExist = (new URLSearchParams((new URL(window.location.toString())).search)).has(NO_YAJU_QUERY_NAME);
+const main_ol = document.getElementById("main-ol");
+const sub_ol = document.getElementById("main-ol");
+
+// 広告用のYoutubeリンクのクエリパラメータのキー "v" の値を格納した配列
+const youtube_v_array = [YAJU_VALUE, "39sjhHJrPLA", "6uv0rhZgDy0", "xi1Wk4kt1mA"].reverse();
+// 広告の差込み処理
+youtube_v_array.forEach(v => sub_ol.appendChild(createElement_li_articleYoutube(v)));
+// YAJU & U の消滅処理
+if (yajuExist)
+	document.getElementById(YAJU_VALUE).parentElement.style.setProperty("display", "none", "important");
+
+// ファイルを捜索
+window.fetch(MAIN_URL).then(res => res.json()).then(dt => {
+	main_ol = addChildLiElement(main_ol, dt);
+});
+// ディレクトリの中を捜索 (1回だけ)
+window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
+	if (checkHasLength(dt)) {
+		[...dt].forEach(c => {
+			const _url = `${BASE_URL}/${DIRS_URL.split("/").at(-1)}/${c}/`;
+			window.fetch(_url).then(res => res.json()).then(dt2 => {
+				main_ol.appendChild(createElement_ol_block(c, dt2));
+			});
+		});
 	}
 });
 
-function createL(inner_text = "", with_a_element = true) {
+
+function checkHasLength(obj = []) {
+	return (Object.hasOwn(_dt, "length") && [..._dt].length > 0);
+}
+
+function addChildLiElement(prt, _dt = []) {
+	if (checkHasLength(_dt))
+		[..._dt].forEach(c => prt.appendChild(createElement_li(c)));
+	// 意味ないけど念のため
+	return prt;
+}
+
+function createElement_ol_block(title = "title", _dt = []) {
+	const ol_element = document.createElement("ol");
+	ol_element.innerHTML += `<h3 class="ol-title">${title}</h3>`;
+	ol_element = addChildLiElement(ol_element, _dt);
+	return ol_element;
+}
+function createElement_li(inner_text = "", with_a_element = true) {
 	const el = document.createElement("li");
 	el.innerHTML = with_a_element ? `<a href="${inner_text}" download>${inner_text}</a>` : inner_text;
 	return el;
+}
+function createElement_li_articleYoutube(v = YAJU_VALUE) {
+	const article_element_text = `<article class="youtube" id="${v}"><iframe src="https://www.youtube.com/embed/${v}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></article>`;
+	const retval = createElement_li(article_element_text, false);
+	return retval;
 }
