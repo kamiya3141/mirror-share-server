@@ -3,6 +3,7 @@ const YAJU_VALUE = "niKAylKNIEI";
 
 const MAIN_URL = "-:-JSON-URL-:-";
 
+console.log(MAIN_URL);
 const main_url_tf = MAIN_URL.at(-1) != "/";
 
 const MAIN_BASE_URL = MAIN_URL.replace("get-files/", "");
