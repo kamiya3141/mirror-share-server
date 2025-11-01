@@ -8,6 +8,6 @@ const btn = document.getElementById("go-button");
 
 btn.addEventListener("click", () => {
 	let url = `https://link.tshuto.com/${main_sel.value}`;
-	url += "?yj&atc";
+	// url += "?yj&atc";
 	window.location.href = url;
 });
