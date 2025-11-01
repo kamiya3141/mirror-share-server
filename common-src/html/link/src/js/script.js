@@ -1,10 +1,14 @@
 const NO_YAJU_QUERY_NAME = "yj";
 const YAJU_VALUE = "niKAylKNIEI";
 
-const BASE_URL = "https://share.tshuto.com/common-src/others/link/src";
-
 const MAIN_URL = "-:-JSON-URL-:-";
-const DIRS_URL = MAIN_URL.replace("get-files", "get-dirs");
+
+const main_url_tf = MAIN_URL.at(-1) != "/";
+
+const MAIN_BASE_URL = MAIN_URL.replace("get-files/", "");
+const DIRS_URL = MAIN_URL.replace("get-files/", "get-dirs/");
+
+const FREE_LINK_JSON_FILENAME = "link";
 
 const yajuExist = (new URLSearchParams((new URL(window.location.toString())).search)).has(NO_YAJU_QUERY_NAME);
 const main_ol = document.getElementById("main-ol");
@@ -19,16 +23,30 @@ if (yajuExist)
 	document.getElementById(YAJU_VALUE).parentElement.style.setProperty("display", "none", "important");
 
 // ファイルを捜索
-window.fetch(MAIN_URL).then(res => res.json()).then(dt => {
-	main_ol = addChildLiElement(main_ol, dt);
+window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
+	if (main_url_tf) return;
+
+	if (checkHasLength(dt0)) {
+		let dt = deleteSlashInArray(dt0);
+		if (dt.includes(FREE_LINK_JSON_FILENAME)) {
+			dt.splice(dt.indexOf(FREE_LINK_JSON_FILENAME), 1);
+			window.fetch(`${MAIN_BASE_URL}/${FREE_LINK_JSON_FILENAME}.json`).then(res => res.json()).then(dt2 => {
+				if (checkHasLength(dt2["data"]))
+					main_ol.appendChild(createElement_ol_block("free-type-link", [...dt2["data"]]));
+			})
+		} else
+			main_ol = addChildLiElement(main_ol, dt);
+	}
 });
 // ディレクトリの中を捜索 (1回だけ)
 window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
+	if (main_url_tf) return;
+
 	if (checkHasLength(dt)) {
-		[...dt].forEach(c => {
-			const _url = `${BASE_URL}/${DIRS_URL.split("/").at(-1)}/${c}/`;
+		deleteSlashInArray(dt).forEach(c => {
+			const _url = `${DIRS_URL}/${c}/`;
 			window.fetch(_url).then(res => res.json()).then(dt2 => {
-				main_ol.appendChild(createElement_ol_block(c, dt2));
+				main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`)));
 			});
 		});
 	}
@@ -37,6 +55,15 @@ window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 
 function checkHasLength(obj = []) {
 	return (Object.hasOwn(_dt, "length") && [..._dt].length > 0);
+}
+
+/**
+ * 
+ * @param {Array.<String>} arr
+ * @returns {Array.<String>} 文字列 格納 配列
+ */
+function deleteSlashInArray(arr = []) {
+	return arr.map(c => String(c).replace("/", ""));
 }
 
 function addChildLiElement(prt, _dt = []) {
