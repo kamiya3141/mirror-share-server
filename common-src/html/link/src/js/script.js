@@ -36,7 +36,7 @@ window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 					main_ol.appendChild(createElement_ol_block("free-type-link", [...dt2["data"]]));
 			})
 		} else
-			main_ol = addChildLiElement(main_ol, dt);
+			addChildLiElement(main_ol, dt);
 	}
 });
 // ディレクトリの中を捜索 (1回だけ)
@@ -77,7 +77,7 @@ function addChildLiElement(prt, _dt = []) {
 function createElement_ol_block(title = "title", _dt = []) {
 	const ol_element = document.createElement("ol");
 	ol_element.innerHTML += `<h3 class="ol-title">${title}</h3>`;
-	ol_element = addChildLiElement(ol_element, _dt);
+	addChildLiElement(ol_element, _dt);
 	return ol_element;
 }
 function createElement_li(inner_text = "", with_a_element = true) {
