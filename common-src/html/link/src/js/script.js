@@ -3,8 +3,6 @@ const YAJU_VALUE = "niKAylKNIEI";
 
 const MAIN_URL = "-:-JSON-URL-:-";
 
-console.log(MAIN_URL);
-const main_url_tf = MAIN_URL.at(-1) != "/";
 
 const MAIN_BASE_URL = MAIN_URL.replace("get-files/", "");
 const DIRS_URL = MAIN_URL.replace("get-files/", "get-dirs/");
@@ -13,7 +11,7 @@ const FREE_LINK_JSON_FILENAME = "link";
 
 const yajuExist = (new URLSearchParams((new URL(window.location.toString())).search)).has(NO_YAJU_QUERY_NAME);
 const main_ol = document.getElementById("main-ol");
-const sub_ol = document.getElementById("main-ol");
+const sub_ol = document.getElementById("sub-ol");
 
 // 広告用のYoutubeリンクのクエリパラメータのキー "v" の値を格納した配列
 const youtube_v_array = [YAJU_VALUE, "39sjhHJrPLA", "6uv0rhZgDy0", "xi1Wk4kt1mA"].reverse();
@@ -25,7 +23,6 @@ if (yajuExist)
 
 // ファイルを捜索
 window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
-	if (main_url_tf) return;
 
 	if (checkHasLength(dt0)) {
 		let dt = deleteSlashInArray(dt0);
@@ -39,10 +36,9 @@ window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 			addChildLiElement(main_ol, dt);
 	}
 });
+/*
 // ディレクトリの中を捜索 (1回だけ)
 window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
-	if (main_url_tf) return;
-
 	if (checkHasLength(dt)) {
 		deleteSlashInArray(dt).forEach(c => {
 			const _url = `${DIRS_URL}/${c}/`;
@@ -52,7 +48,7 @@ window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 		});
 	}
 });
-
+*/
 
 function checkHasLength(obj = []) {
 	return (Object.hasOwn(obj, "length") && [...obj].length > 0);
