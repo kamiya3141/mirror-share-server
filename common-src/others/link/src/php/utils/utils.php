@@ -2,9 +2,13 @@
 
 session_start();
 
+$mySubDomain = "--MYSUBDOMAIN--";
+
 const UTILS_DIR = 'utils';
 define('MY_BASEPATH', realpath(__DIR__ . '/../../../public_html'));
 const MY_DOMAIN = '.tshuto.com';
+
+const INDEX_HTML = 'index.html';
 const UNKNOWN_STRING = 'UNKNOWN';
 const DEFAULT_STRING = 'default';
 const NOT_DEFAULT_STRING = 'not-default';
@@ -16,14 +20,12 @@ const GETDIR_STRING = 'get-dirs';
 const CONVERT_STRING = 'convert';
 const LINK_STRING = 'link';
 const REWRITE_STRING = '-:-';
-define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error/index.html'));
+define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error', INDEX_HTML));
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
 	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
 	'error' => url_join(getMyHostName('api'), 'api-error.php')
 ]);
-
-$mySubDomain = "--MYSUBDOMAIN--";
 
 $mimeMap = [
 	'js' => 'application/javascript',
@@ -45,20 +47,22 @@ $mimeMap = [
 $target_query = '';
 $other_data_query = '';
 
+$convert_query_exist = isset($_GET[CONVERT_STRING]);
+
 //--------------------------------------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------------------------------------
 
 // クエリの受け取り
 function getMyQuery(): void {
-	global $target_query, $other_data_query;
-
+	global $target_query, $other_data_query, $convert_query_exist;
+	$add_filename = ($convert_query_exist ? '' : INDEX_HTML);
 	$target_query = $_GET['target'] ?? '';
-	$other_data_query = $_GET['od'] ?? 'index.html';
+	$other_data_query = $_GET['od'] ?? $add_filename;
 	if (empty($other_data_query))
-		$other_data_query = 'index.html';
+		$other_data_query = $add_filename;
 	if (substr($other_data_query, -1) == '/')
-		$other_data_query = url_join($other_data_query, 'index.html');
+		$other_data_query = url_join($other_data_query, $add_filename);
 	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
 }
 
@@ -123,7 +127,7 @@ function url_join(string ...$_args): string {
 function getLatestDir(string $baseDir): ?array {
 	$versionDirs = [];
 	if (is_dir($baseDir)) {
-		$dirs = get_dir($baseDir);
+		$dirs = get_dirs($baseDir);
 		foreach ($dirs as $dirPath) {
 			$base_name = getFileName($dirPath);
 			if (preg_match('/^\d+\.\d+\.\d+$/', $base_name)) {

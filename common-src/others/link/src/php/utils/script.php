@@ -16,16 +16,13 @@ if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '|' . GETFILE_STRING . '|'
 		forwardRemoteFile($url, true);
 	else if ($_flag == GET_STRING)
 		download_file($url);
-	else if ($_flag == GETFILE_STRING) {
+	else if ($_flag == GETFILE_STRING || $_flag == GETDIR_STRING) {
+		$url = str_replace(INDEX_HTML, '', $url);
 		$new_url = file_get_contents($url . '?' . http_build_query([
-			CONVERT_STRING => ''
+			CONVERT_STRING => true
 		]));
-		echo json_encode(get_files(substr($new_url, 0, 4) == 'http' ? $new_url : $url));
-	} else if ($_flag == GETDIR_STRING) {
-		$new_url = file_get_contents($url . '?' . http_build_query([
-			CONVERT_STRING => ''
-		]));
-		echo json_encode(get_dirs(substr($new_url, 0, 4) == 'http' ? $new_url : $url));
+		$ret_arr = str_replace(MY_BASEPATH, getMyHostName(), $_flag == GETFILE_STRING ? get_files($new_url) : get_dirs($new_url));
+		echo json_encode($ret_arr);
 	} else
 		echoErrorSite(404, implode('<br>', ['Server Error !!', invalidURL($url)]));
 	exit;
