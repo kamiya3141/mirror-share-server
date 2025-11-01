@@ -36,19 +36,22 @@ window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 			addChildLiElement(main_ol, dt);
 	}
 });
-/*
+
 // ディレクトリの中を捜索 (1回だけ)
 window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 	if (checkHasLength(dt)) {
 		deleteSlashInArray(dt).forEach(c => {
 			const _url = `${DIRS_URL}/${c}/`;
+			console.log(_url);
+			/*
 			window.fetch(_url).then(res => res.json()).then(dt2 => {
 				main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`)));
 			});
+			*/
 		});
 	}
 });
-*/
+
 
 function checkHasLength(obj = []) {
 	return (Object.hasOwn(obj, "length") && [...obj].length > 0);
