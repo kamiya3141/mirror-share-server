@@ -21,10 +21,10 @@ echo "$sub_domain" > "$my_update_cache"
 if [ ! -d "$HOME/public_html/php/utils" ]; then
 	mkdir -p "$HOME/public_html/php/utils"
 fi
-
-wget -q --no-cache -O ~/public_html/php/utils/utils.php "$update_remote_url"/php/utils/utils.php
-wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php "$update_remote_url"/php/utils/api-local-getDirContents.php
-wget -q --no-cache -O ~/public_html/php/utils/script.php "$update_remote_url"/php/utils/script.php
+php_utils_base_url="$update_remote_url/phpscript/utils"
+wget -q --no-cache -O ~/public_html/php/utils/utils.php "$php_utils_base_url"/utils.php
+wget -q --no-cache -O ~/public_html/php/utils/api-local-getDirContents.php "$php_utils_base_url"/api-local-getDirContents.php
+wget -q --no-cache -O ~/public_html/php/utils/script.php "$php_utils_base_url"/script.php
 
 sed -i "s/--MYSUBDOMAIN--/$sub_domain/i" ~/public_html/php/utils/utils.php
 

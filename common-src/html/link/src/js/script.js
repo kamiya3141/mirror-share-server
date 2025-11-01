@@ -23,7 +23,6 @@ if (yajuExist)
 
 // ファイルを捜索
 window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
-
 	if (checkHasLength(dt0)) {
 		let dt = deleteSlashInArray(dt0);
 		if (dt.includes(FREE_LINK_JSON_FILENAME)) {
@@ -43,11 +42,7 @@ window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 		deleteSlashInArray(dt).forEach(c => {
 			const _url = `${DIRS_URL}/${c}/`;
 			console.log(_url);
-			/*
-			window.fetch(_url).then(res => res.json()).then(dt2 => {
-				main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`)));
-			});
-			*/
+			// window.fetch(_url).then(res => res.json()).then(dt2 => main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`))));
 		});
 	}
 });
