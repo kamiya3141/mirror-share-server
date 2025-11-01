@@ -175,10 +175,10 @@ window.addEventListener("resize", () => {
 let firstMsgElementCount = 0;
 document.addEventListener(TSOMessage.myEventName, () => {
 	let el = [...document.body.querySelectorAll(TSOMessage.myElementName)];
-	if (TSOMessage.loaded) {
-		window.ts_object_tester.displayFlex();
+	window.ts_object_tester.displayFlex();
+	if (TSOMessage.loaded)
 		window.ts_object_tester.add(...el.reverse());
-	} else {
+	else {
 		firstMsgElementCount++;
 
 		if (el.length == firstMsgElementCount) {
