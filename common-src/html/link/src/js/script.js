@@ -42,7 +42,7 @@ window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 		deleteSlashInArray(dt).forEach(c => {
 			const _url = `${MAIN_URL + c}/`;
 			console.log(_url);
-			window.fetch(_url).then(res => res.json()).then(dt2 => main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-dirs/", "")}/${c2}`))));
+			window.fetch(_url).then(res => res.json()).then(dt2 => main_ol.appendChild(createElement_ol_block(c, deleteSlashInArray(dt2).map(c2 => `${_url.replace("get-files/", "")}${c2}`))));
 		});
 	}
 });
@@ -69,15 +69,12 @@ function addChildLiElement(prt, _dt = []) {
 }
 
 function createElement_ol_block(title = "title", _dt = []) {
-	const root_ol_element = document.createElement("ol");
 	const ol_element = document.createElement("ol");
 	const title_h2_element = document.createElement("h2");
 	title_h2_element.classList.add("ol-title");
-	title_h2_element.innerHTML = title;
+	title_h2_element.innerHTML = `・${title}：`;
 	addChildLiElement(ol_element, _dt);
-	root_ol_element.appendChild(title_h2_element);
-	root_ol_element.appendChild(ol_element);
-	return root_ol_element;
+	return createElement_li(`${title_h2_element.outerHTML}${ol_element.outerHTML}`, false);
 }
 function createElement_li(inner_text = "", with_a_element = true) {
 	const el = document.createElement("li");
