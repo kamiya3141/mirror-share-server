@@ -69,10 +69,15 @@ function addChildLiElement(prt, _dt = []) {
 }
 
 function createElement_ol_block(title = "title", _dt = []) {
+	const root_ol_element = document.createElement("ol");
 	const ol_element = document.createElement("ol");
-	ol_element.innerHTML += `<h2 class="ol-title">・${title}</h2>`;
+	const title_h2_element = document.createElement("h2");
+	title_h2_element.classList.add("ol-title");
+	title_h2_element.innerHTML = title;
 	addChildLiElement(ol_element, _dt);
-	return ol_element;
+	root_ol_element.appendChild(title_h2_element);
+	root_ol_element.appendChild(ol_element);
+	return root_ol_element;
 }
 function createElement_li(inner_text = "", with_a_element = true) {
 	const el = document.createElement("li");
