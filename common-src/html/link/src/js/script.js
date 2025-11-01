@@ -55,7 +55,7 @@ window.fetch(DIRS_URL).then(res => res.json()).then(dt => {
 
 
 function checkHasLength(obj = []) {
-	return (Object.hasOwn(_dt, "length") && [..._dt].length > 0);
+	return (Object.hasOwn(obj, "length") && [...obj].length > 0);
 }
 
 /**
