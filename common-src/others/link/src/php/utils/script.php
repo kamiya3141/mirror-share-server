@@ -9,16 +9,24 @@ $remoteUrl = getMyHostName($target_query);
 
 $_flag = $other_data_split_slash_array[0];
 
-if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '|' . GETFILE_STRING . '/', $_flag)) {
+if (preg_match('/' . VIEW_STRING . '|' . GET_STRING . '|' . GETFILE_STRING . '|' . GETDIR_STRING . '/', $_flag)) {
 	array_shift($other_data_split_slash_array);
 	$url = url_join($remoteUrl, implode('/', $other_data_split_slash_array));
 	if ($_flag == VIEW_STRING)
 		forwardRemoteFile($url, true);
 	else if ($_flag == GET_STRING)
 		download_file($url);
-	else if ($_flag == GETFILE_STRING && $target_query == $mySubDomain)
-		json_encode(getFileName($url));
-	else
+	else if ($_flag == GETFILE_STRING) {
+		$new_url = file_get_contents($url . '?' . http_build_query([
+			CONVERT_STRING => ''
+		]));
+		echo json_encode(get_files(substr($new_url, 0, 4) == 'http' ? $new_url : $url));
+	} else if ($_flag == GETDIR_STRING) {
+		$new_url = file_get_contents($url . '?' . http_build_query([
+			CONVERT_STRING => ''
+		]));
+		echo json_encode(get_dirs(substr($new_url, 0, 4) == 'http' ? $new_url : $url));
+	} else
 		echoErrorSite(404, implode('<br>', ['Server Error !!', invalidURL($url)]));
 	exit;
 }

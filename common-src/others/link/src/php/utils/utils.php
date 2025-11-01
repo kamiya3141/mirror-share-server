@@ -11,16 +11,16 @@ const NOT_DEFAULT_STRING = 'not-default';
 const GET_MIME_TYPE = 'application/octet-stream';
 const VIEW_STRING = 'view';
 const GET_STRING = 'get';
-const GETFILE_STRING = 'getfile';
-const GETDIR_STRING = 'getdir';
+const GETFILE_STRING = 'get-files';
+const GETDIR_STRING = 'get-dirs';
+const CONVERT_STRING = 'convert';
 const LINK_STRING = 'link';
 const REWRITE_STRING = '-:-';
 define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error/index.html'));
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
 	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
-	'error' => url_join(getMyHostName('api'), 'api-error.php'),
-	GETDIR_STRING => url_join(UTILS_DIR, 'api-local-getDirContents.php')
+	'error' => url_join(getMyHostName('api'), 'api-error.php')
 ]);
 
 $mySubDomain = "--MYSUBDOMAIN--";
@@ -224,7 +224,7 @@ function download_file(string $_url): void {
 function get_files(string $_url): array {
 	return array_values(array_filter(get_contents($_url), 'is_file'));
 }
-function get_dir($_url): array {
+function get_dirs($_url): array {
 	return array_values(array_filter(get_contents($_url), 'is_dir'));
 }
 function get_contents($_url): array {
