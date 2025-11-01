@@ -2,7 +2,7 @@ const NO_YAJU_QUERY_NAME = "yj";
 const YAJU_VALUE = "niKAylKNIEI";
 
 const MAIN_URL = "-:-JSON-URL-:-";
-
+console.log(MAIN_URL);
 
 const MAIN_BASE_URL = MAIN_URL.replace("get-files/", "");
 const DIRS_URL = MAIN_URL.replace("get-files/", "get-dirs/");
