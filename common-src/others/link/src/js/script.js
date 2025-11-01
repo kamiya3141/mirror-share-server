@@ -6,4 +6,6 @@ fetch("https://link.tshuto.com/get-dirs/src/").then(res => res.json()).then(dt =
 
 const btn = document.getElementById("go-button");
 
-btn.mouseClickHandler = (me, e) => window.location.replace(`https://link.tshuto.com/${main_sel.value}`);
+btn.addEventListener("click", () => {
+	window.location.href = `https://link.tshuto.com/${main_sel.value}`;
+});
