@@ -25,6 +25,7 @@ if (yajuExist)
 window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 	if (checkHasLength(dt0)) {
 		let dt = deleteSlashInArray(dt0);
+		console.log(dt);
 		if (dt.includes(FREE_LINK_JSON_FILENAME)) {
 			dt.splice(dt.indexOf(FREE_LINK_JSON_FILENAME), 1);
 			window.fetch(`${MAIN_BASE_URL}/${FREE_LINK_JSON_FILENAME}.json`).then(res => res.json()).then(dt2 => {
@@ -32,7 +33,7 @@ window.fetch(MAIN_URL).then(res => res.json()).then(dt0 => {
 					main_ol.appendChild(createElement_ol_block("free-type-link", [...dt2["data"]]));
 			})
 		} else
-			addChildLiElement(main_ol, dt);
+			addChildLiElement(main_ol, dt.map(c => MAIN_BASE_URL + c));
 	}
 });
 
@@ -58,7 +59,7 @@ function checkHasLength(obj = []) {
  * @returns {Array.<String>} 文字列 格納 配列
  */
 function deleteSlashInArray(arr = []) {
-	return arr.map(c => String(c).replace("/", ""));
+	return arr.map(c => c.replace("/", ""));
 }
 
 function addChildLiElement(prt, _dt = []) {
