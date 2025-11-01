@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
 
 :root {
-	--vw: 1600px;
-	--vh: 900px;
+	--vw: 1920px;
+	--vh: 1080px;
 }
 
 * {
@@ -43,7 +43,7 @@ main {
 	width: 100%;
 	min-height: 85%;
 
-	&>section#main-section {
+	& > section#main-section {
 		width: 100%;
 		min-height: 100%;
 	}
