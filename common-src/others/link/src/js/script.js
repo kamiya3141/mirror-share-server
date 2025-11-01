@@ -1,7 +1,6 @@
 const main_sel = document.getElementById("main-sel");
 
 fetch("https://link.tshuto.com/get-dirs/src/").then(res => res.json()).then(dt => {
-	console.log(dt);
 	main_sel.innerHTML = [...dt].reduce((s, c) => s + `<option value="${c}">${c}</option>`, "");
 });
 
