@@ -64,7 +64,7 @@ function echo_with_color() {
 	local _words=${1:-""}
 	local _color=${2:-"${PROMPT_COLOR_FAILED}"}
 	local _reset="${PROMPT_COLOR_RESET}"
-	local echo_text=$(echo "${_color}${_words}${_reset}" | sed -r "s/\\\\\[(.*?)\\\\\]/\1/g")
+	local echo_text=$(echo "${_color}${_words}${_reset}" | sed -r "s/\\\\\[|\\\\\]//g")
 	echo -e "${echo_text}"
 }
 function addf() {
