@@ -62,10 +62,20 @@ function echo_with_color() {
 		wgmbr
 	fi
 	local _words=${1:-""}
-	local _color=${2:-"${PROMPT_COLOR_FAILED}"}
+	local _color="${2}"
 	local _reset="${PROMPT_COLOR_RESET}"
+	local _color_void=""
+	if [ ! "${_color}" ]; then
+		_color_void="true"
+		_color="${PROMPT_COLOR_FAILED}"
+	fi
 	local echo_text=$(echo "${_color}${_words}${_reset}" | sed -r "s/\\\\\[|\\\\\]//g")
-	echo -e "${echo_text}"
+	
+	if [ -z "${_color_void}" ]; then
+		echo -e "${echo_text}"
+	else
+		echo -e "${echo_text}" >&2
+	fi
 }
 function addf() {
 	local word=${2:-""}
