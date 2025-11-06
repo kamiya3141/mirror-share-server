@@ -132,14 +132,12 @@
 			editor.onDidChangeModelContent(e => {
 				const code = editor.getValue();
 				const sandboxIframeDocument = sandboxIframeWindow.document;
-				sandboxIframeDocument.getElementById("main-code").innerHTML = `eval(${code});`;
-				/*
+				sandboxIframeDocument.getElementById("main-code").innerHTML = `
 				try {
 					eval(${code});
 				} catch (error) {
 					console.log(error);
-				}
-				*/
+				}`;
 			});
 		});
 	</script>
