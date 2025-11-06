@@ -131,21 +131,7 @@
 			editor.onDidChangeModelContent(e => {
 				const code = editor.getValue();
 				const sandboxIframeDocument = sandboxIframeWindow.document;
-				sandboxIframeDocument.getElementById("main-code").innerHTML = code;
-				/*
-				let correct_code = true;
-				try {
-					eval(code);
-				} catch (error) {
-					correct_code = false;
-					console.log(error);
-				} finally {
-					if (correct_code) {
-						const sandboxIframeDocument = sandboxIframeWindow.document;
-						sandboxIframeDocument.getElementById("main-code").innerHTML = code;
-					}
-				}
-				*/
+				sandboxIframeDocument.getElementById("main-code").innerHTML = `eval(${code});`;
 			});
 		});
 	</script>
