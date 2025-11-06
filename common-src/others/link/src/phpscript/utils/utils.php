@@ -156,6 +156,11 @@ function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '') {
 function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): void {
 	global $mimeMap;
 
+	if (empty($_url)) {
+		echoErrorSite(404, invalidURL($_url));
+		exit;
+	}
+
 	$ext = pathinfo(parse_url($_url, PHP_URL_PATH), PATHINFO_EXTENSION);
 	$ext = exist($set_ext_without_dot) ? $set_ext_without_dot : $ext;
 	$mime = $mimeMap[strtolower($ext)] ?? $mimeMap['txt'];
