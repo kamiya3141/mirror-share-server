@@ -34,8 +34,8 @@ function wgmbr() {
 	local update_utils_path="${HOME}/.update-utils"
 
 	if [ ! bashrc_label_num ]; then
-		if [ -f "${update_utils_path}" ]; then
-			bashrc_label_num=$(head -n 1 "${update_utils_path}")
+		if [ -e "${update_utils_path}" ]; then
+			bashrc_label_num=$(head -n 2 "${update_utils_path}")
 		else
 			bashrc_label_num="7"
 			touch "${update_utils_path}"
@@ -48,7 +48,7 @@ function wgmbr() {
 	fi
 	local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
 	wget --no-cache -q -O "$HOME/my.bashrc" "$url"
-	sed -i "2s/.*/${bashrc_label_num}/" "${update_utils_path}"
+	sed -i "2s/.*/${bashrc_label_num}/i" "${update_utils_path}"
 	rbr
 }
 function echo_with_color() {
