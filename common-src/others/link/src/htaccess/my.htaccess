@@ -27,7 +27,7 @@ RewriteRule ^ - [L]
 
 # サブドメインのリライト
 RewriteCond %{HTTP_HOST} ^(?!RPL_HTACC\.)([^.]+)\.tshuto\.com$ [NC]
-RewriteRule ^(view|get|get-files|get-dirs)(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
+RewriteRule ^(?!view|get|get-files|get-dirs)(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
 
 # get/view用のリライト
 RewriteCond %{HTTP_HOST} ^([^.]+)\.tshuto\.com$ [NC]
