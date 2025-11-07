@@ -5,10 +5,13 @@ adds_head([
 	["link", "icon", "favicon.ico", "image/x-icon"],
 	["link", "stylesheet", "common-src/css/base.css"]
 ]);
-adds_body([
-	["script", "common-src/javascript/function/math.js"],
-	["script", "common-src/javascript/function/other.js"]
-]);
+
+const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css");
+if (!only_css)
+	adds_body([
+		["script", "common-src/javascript/function/math.js"],
+		["script", "common-src/javascript/function/other.js"]
+	]);
 
 function adds_head(arr = [["", "", ""]]) {
 	let head = document.getElementsByTagName("head")[0];
