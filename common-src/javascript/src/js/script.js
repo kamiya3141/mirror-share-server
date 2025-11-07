@@ -42,6 +42,7 @@ require(["vs/editor/editor.main"], () => {
 	editor.onDidChangeModelContent(e => {
 		const code = String(editor.getValue()).replace(new RegExp("document", "g"), `document.getElementById("sandbox-iframe").contentWindow.document`);
 		try {
+			document.getElementById("sandbox-iframe").contentWindow.document.body.innerHTML = "";
 			eval(code);
 		} catch (error) {
 			console.log(error);

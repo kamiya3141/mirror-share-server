@@ -28,19 +28,30 @@
 							<title>JavaScript-TEST</title>
 							<meta name="viewport" content="width=device-width, initial-scale=1">
 							<meta name="description" content="JavaScriptテストページ">
-							<style></style>
+							<style>
+								* {
+									color: inherit;
+									background-color: inherit;
+								}
+							</style>
 						</head>
 						
-						<body>
-							<script id="main-code"></script>
-						</body>
+						<body></body>
 						</html>
 			'></iframe>
 		</div>
 		<div id="sandbox-bottom-root">
 			<div id="console-root">
-				<p>Console:</p>
-				<div id="console-result"></div>
+				<p class="root-title">Console:</p>
+				<div class="root-body" id="console-result-body">
+					<div id="console-result"></div>
+				</div>
+			</div>
+			<div id="setting-root">
+				<p class="root-title">Setting:</p>
+				<div class="root-body" id="setting-body">
+					<div id="setting-box"></div>
+				</div>
 			</div>
 		</div>
 	</div>

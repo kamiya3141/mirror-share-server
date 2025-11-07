@@ -490,6 +490,11 @@
 	inherits: false;
 }
 
+@property --myElementBackgroundColor2 {
+	syntax: "<color>";
+	inherits: false;
+}
+
 @property --myElementPadding {
 	syntax: "<length>+";
 	inherits: false;
@@ -742,6 +747,7 @@
 	--myMainBackgroundColor: #ffffff;
 	--myTextColor: #131313;
 	--myElementBackgroundColor: #f9f9f9;
+	--myElementBackgroundColor2: #ffffff;
 	--myElementPadding: 0.5rem 2rem;
 }
 

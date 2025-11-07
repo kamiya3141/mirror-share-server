@@ -56,7 +56,8 @@ function setTheme() {
 		["StylingHeight", [ipt_h, ipt_h].map(c => `${c}px`)],
 		["MainBackgroundColor", ["#242424", "#ffffff"]],
 		["TextColor", ["#ffffff", "#131313"]],
-		["ElementBackgroundColor", ["#181818", "#f9f9f9"]]
+		["ElementBackgroundColor", ["#181818", "#f9f9f9"]],
+		["ElementBackgroundColor2", ["#303030", "#ffffff"]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 
