@@ -45,9 +45,12 @@ if (document.getElementById("console-ok") == null) {
 	console.log("コンソールに入力しないでください");
 }
 
+var checkCurrentSystemThemeLight = () => Boolean(!window.matchMedia("(prefers-color-scheme: dark)").matches);
+var checkCurrentSystemThemeDark = () => !checkCurrentSystemThemeLight();
+
 function setTheme() {
 	const ipt_w = document.documentElement.clientWidth, ipt_h = document.documentElement.clientHeight;
-	const tf = Number(Boolean(!window.matchMedia("(prefers-color-scheme: dark)").matches));
+	const tf = Number(checkCurrentSystemThemeLight());
 	[
 		["StylingWidth", [ipt_w, ipt_w].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h, ipt_h].map(c => `${c}px`)],
