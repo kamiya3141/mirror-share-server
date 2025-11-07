@@ -33,14 +33,7 @@
 	inherits: false;
 }
 
-:root {
-	--myStylingWidth: 100vw;
-	--myStylingHeight: 100vh;
-	--myMainBackgroundColor: #181818;
-	--myTextColor: #ffffff;
-	--myElementBackgroundColor: #242424;
-	--myElementPadding: 0.5rem 2rem;
-}
+
 
 * {
 	box-sizing: border-box;

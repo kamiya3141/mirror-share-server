@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+/* --- フォント宣言 --- */
+
 /*統合*/
 @font-face {
 	font-family: 0xProto;
@@ -437,10 +439,31 @@
 	font-weight: bold;
 }
 
+/* --- アニメーション宣言 --- */
+
+@keyframes rotate {
+	from {
+		transform: rotate(1deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rainbow-move {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+/* --- root設定（カラー） --- */
+
 :root {
-
-	/*color*/
-
 	--clear: rgba(0, 0, 0, 0);
 
 	--white10: rgba(255, 255, 255, 1.0);
@@ -563,6 +586,11 @@
 	--gray3: rgba(128, 128, 128, 0.3);
 	--gray2: rgba(128, 128, 128, 0.2);
 	--gray1: rgba(128, 128, 128, 0.1);
+}
+
+/* --- root設定（サイズ） --- */
+
+:root {
 
 	--sz-h1: 100%;
 	--sz-h2: 200%;
@@ -574,7 +602,11 @@
 	--sz-h8: 800%;
 	--sz-h9: 900%;
 	--sz-h10: 1000%;
+}
 
+/* --- root設定（アニメーション） --- */
+
+:root {
 	--rtt-anm10s: rotate 10s ease-in-out infinite;
 	--rtt-anm9s: rotate 9s ease-in-out infinite;
 	--rtt-anm8s: rotate 8s ease-in-out infinite;
@@ -612,8 +644,11 @@
 	--rainbow-b: linear-gradient(to right, #e60000, #f39800, #fff100, #009944, #0068b7, #1d2088, #920783, #1d2088, #0068b7, #009944, #fff100, #f39800) 0 / 200%;
 	--rainbow-c: linear-gradient(to right, #de4141, #e8ac51, #f2e55c, #39a869, #4784bf, #5d5099, #a55b9a, #4784bf, #39a869, #f2e55c, #e8ac51, #de4141) 0 / 200%;
 	--rainbow-d: linear-gradient(to right, #f59090, #fcd7a1, #fff9b1, #a5d4ad, #a3bce2, #a59aca, #cfa7cd, #a59aca, #a3bce2, #a5d4ad, #fff9b1, #fcd7a1) 0 / 200%;
+}
 
-	/*font*/
+/* --- root設定（フォント） --- */
+
+:root {
 	--zxproto: '0xProto';
 	--zxproto-r: '0xProto-Regular';
 	--zxproto-b: '0xProto-Bold';
@@ -671,25 +706,50 @@
 	--sotoportego: 'Sotoportego';
 }
 
-@keyframes rotate {
-	from {
-		transform: rotate(1deg);
-	}
+/* --- プロパティ宣言 --- */
 
-	to {
-		transform: rotate(360deg);
-	}
+@property --myStylingWidth {
+	syntax: "<length>";
+	inherits: false;
 }
 
-@keyframes rainbow-move {
-	0% {
-		background-position: 0% 50%;
-	}
-
-	100% {
-		background-position: 100% 50%;
-	}
+@property --myStylingHeight {
+	syntax: "<length>";
+	inherits: false;
 }
+
+@property --myMainBackgroundColor {
+	syntax: "<color>";
+	inherits: false;
+}
+
+@property --myTextColor {
+	syntax: "<color>";
+	inherits: false;
+}
+
+@property --myElementBackgroundColor {
+	syntax: "<color>";
+	inherits: false;
+}
+
+@property --myElementPadding {
+	syntax: "<length>+";
+	inherits: false;
+}
+
+/* --- root設定（プロパティ） --- */
+
+:root {
+	--myStylingWidth: 100vw;
+	--myStylingHeight: 100vh;
+	--myMainBackgroundColor: #ffffff;
+	--myTextColor: #131313;
+	--myElementBackgroundColor: #f9f9f9;
+	--myElementPadding: 0.5rem 2rem;
+}
+
+/* --- 共通スタイル --- */
 
 * {
 	tab-size: 4;
