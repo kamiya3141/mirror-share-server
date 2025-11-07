@@ -18,6 +18,12 @@
 				"name": "http://127.0.0.1:3000/public_html/common-src/javascript/index.html",
 				"request": "launch",
 				"url": "http://127.0.0.1:3000/public_html/common-src/javascript/index.html"
+			},
+			{
+				"type": "chrome",
+				"name": "http://127.0.0.1:1919/public_html/common-src/javascript/index.html",
+				"request": "launch",
+				"url": "http://127.0.0.1:1919/public_html/common-src/javascript/index.html"
 			}
 		]
 	}

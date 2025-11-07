@@ -13,17 +13,18 @@
 
 :root {
 	--w: calc(100% / 2);
+	--p1: 0.5rem;
+	--p2: calc(var(--p1) * 2);
 	--c: calc(50% - var(--w) / 2);
 	--c2: calc((var(--w) - var(--p2)) * 2);
 	--c3: calc(var(--w) * 2);
-	--p1: 1rem;
-	--p2: calc(var(--p1) * 2);
 }
 
-* {
+.my-element {
 	color: inherit;
 	background-color: inherit;
 	overflow: hidden;
+	font-size: var(--myStylingFontSize);
 }
 
 body {
@@ -51,7 +52,12 @@ body {
 		& > div#title-root {
 			flex: 5;
 
-			& > div#title-body {
+			& > * {
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				flex: 0.5;
 				font-size: calc(var(--myStylingFontSize) * 2);
 			}
 		}
@@ -71,26 +77,28 @@ body {
 			}
 
 			& > div#sandbox-root {
-				flex: 1.5;
+				flex: 3;
 				position: inherit;
 				flex-direction: row;
 
 				& > * {
 					display: block;
-					width: calc(var(--c2) / 2);
+					flex: 0.5;
 					height: var(--c2);
 					padding: var(--p2);
 				}
 
+				& > div#code-body {
+					background-color: unset;
+				}
+
 				& > iframe {
-					aspect-ratio: 16 / 9;
 					border: none;
-					background-color: var(--myElementBackgroundColor2);
 				}
 			}
 
 			& > div#sandbox-bottom-root {
-				flex: 0.5;
+				flex: 1;
 				position: relative;
 
 				& > * {
@@ -101,22 +109,23 @@ body {
 					flex-direction: column;
 					position: inherit;
 					width: var(--c2);
-					height: var(--c3);
+					height: var(--c2);
+					padding: var(--p2);
 
 					& > * {
-						width: inherit;
+						width: var(--c3);
 						display: block;
 						position: inherit;
 						background-color: var(--myElementBackgroundColor2);
 					}
 
 					& > *.root-title {
-						flex: 1;
-						font-size: 1rem;
+						flex: 2;
+						font-size: var(--myStylingFontSize);
 					}
 
 					& > *.root-body {
-						flex: 9;
+						flex: 8;
 					}
 				}
 
@@ -125,6 +134,6 @@ body {
 	}
 }
 
-div#console-result {
-	font-size: 0.9rem;
+select {
+	display: block;
 }

@@ -68,3 +68,7 @@ function setTheme() {
 }
 
 setTheme();
+
+window.addEventListener("resize", () => {
+	setTheme();
+});

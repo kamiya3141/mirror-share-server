@@ -92,6 +92,7 @@ const themeNameDataObject = {
 	"clouds": "Clouds",
 	"cobalt": "Cobalt",
 	"cobalt2": "Cobalt2",
+	"dominion-day": "Dominion Day",
 	"dawn": "Dawn",
 	"dracula": "Dracula",
 	"dreamweaver": "Dreamweaver",
@@ -210,6 +211,9 @@ require(["vs/editor/editor.main"], () => {
 				const res = await fetch(`https://cdn.jsdelivr.net/npm/monaco-themes/themes/${themeName}.json`);
 				const jsonData = await res.json();
 				cacheThemeJsonData[themeAttribute][themeName]["data"] = jsonData;
+
+				__debug__theme_check_arr.push(resultThemeName);
+
 				return jsonData;
 			})());
 			monaco.editor.defineTheme(resultThemeName, themeData);
@@ -222,10 +226,8 @@ require(["vs/editor/editor.main"], () => {
 
 	if (ALLOW_ALL_THEME_LOAD)
 		[...themeSetSelectElement.options].forEach(opt => {
-			__debug__theme_check_arr.push(opt.value);
 			loadTheme(opt.value);
 		});
-	console.log(__debug__theme_check_arr.join("\n"));
 
 	loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);
 
