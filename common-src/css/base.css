@@ -2,6 +2,8 @@
 
 /* --- フォント宣言 --- */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+
 /*統合*/
 @font-face {
 	font-family: 0xProto;
@@ -649,6 +651,8 @@
 /* --- root設定（フォント） --- */
 
 :root {
+	--note-sans-jp: 'Note Sans JP';
+
 	--zxproto: '0xProto';
 	--zxproto-r: '0xProto-Regular';
 	--zxproto-b: '0xProto-Bold';
@@ -753,5 +757,5 @@
 
 * {
 	tab-size: 4;
-	font-family: var(--explex);
+	font-family: var(--note-sans-jp);
 }
