@@ -63,7 +63,7 @@ function setTheme() {
 		["ElementBackgroundColor2", ["#303030", "#ffffff"]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 	[
-		["StylingFont", [`${(ipt_w + ipt_h) * 6 / 1000}px`]]
+		["StylingFont", [`${(ipt_w + ipt_h) * 6 / 1000}px`, `1rem`]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 
