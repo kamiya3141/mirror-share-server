@@ -66,22 +66,15 @@ body {
 			translate: -50% -50%;
 		}
 
-		&#panel-top {
-			align-content: end;
-
-			& > img {
-				--img-wh: calc((var(--myStylingWidth) + var(--myStylingHeight) / 2) / 16);
-				width: var(--img-wh);
-				height: var(--img-wh);
-			}
+		& > img {
+			--img-wh: calc((var(--myStylingWidth) + var(--myStylingHeight) / 2) / 16);
+			top: calc(100% - var(--img-wh) / 2);
+			width: var(--img-wh);
+			height: var(--img-wh);
 		}
 
-		&#panel-bottom {
-			align-content: start;
-
-			& > h1#main-text {
-				top: 25%;
-			}
+		& > h1#main-text {
+			top: 25%;
 		}
 	}
 }

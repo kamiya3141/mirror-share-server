@@ -13,7 +13,13 @@ document.body.prepend(div);
 document.body.style.overflowX = "hidden";
 document.body.style.overflowY = "hidden";
 
-const target_svg_url = `${loading_base_myurl}/svg/outer-index.svg`;
+// 名前雑すぎてごめん
+const set_path_func = (_base_path, _main_lang = "svg") => `${_base_path}/${_main_lang}/${_main_lang == "svg" ? "outer-" : ""}index.${_main_lang}`;
+
+loading_base_myurl = String(loading_base_myurl).replace("ld.tshuto.com", "share.tshuto.com/common-src/loading");
+
+const get_path_last = loading_base_myurl.split("/").map((c, c_i, c_a) => c_i > c_a.length - 2 - 1 ? c : "").filter(c => c);
+const target_svg_url = set_path_func(loading_base_myurl, get_path_last[0] == "loading" && get_path_last[1] == "2" ? "html" : "svg");
 
 let ifr = document.createElement("iframe");
 ifr.id = "loading-iframe";
@@ -30,6 +36,7 @@ window.addEventListener("message", e => {
 
 window.addEventListener("load", e => {
 	setTimeout(() => {
+		ifr = document.querySelector(`div#${div.id}`).getElementsByTagName("iframe")[0];
 		ifr.contentWindow.postMessage("loaded", "*");
 	}, 1500);
 });
