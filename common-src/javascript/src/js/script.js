@@ -10,6 +10,8 @@ require.config({
 	paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs" }
 });
 
+console.log(getComputedStyle(document.documentElement).fontSize);
+
 window.console.log = (...input) => consoleResult.innerHTML = `${input.join("<br>")}`;
 sandboxIframe.contentWindow.console.log = (...input) => console.log(...input);
 

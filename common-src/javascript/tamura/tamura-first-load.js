@@ -47,10 +47,13 @@ if (document.getElementById("console-ok") == null) {
 
 var checkCurrentSystemThemeLight = () => Boolean(!window.matchMedia("(prefers-color-scheme: dark)").matches);
 var checkCurrentSystemThemeDark = () => !checkCurrentSystemThemeLight();
+var checkCurrentDeviceMobile = () => Boolean((new RegExp("Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini", "i")).test(navigator.userAgentData ? (navigator.userAgentData.mobile ? "Android" : "PC") : navigator.userAgent));
+var checkCurrentDevicePC = () => !checkCurrentDeviceMobile();
 
 function setTheme() {
 	const ipt_w = document.documentElement.clientWidth, ipt_h = document.documentElement.clientHeight;
 	const tf = Number(checkCurrentSystemThemeLight());
+	const pc_or_mobile = Number(checkCurrentDeviceMobile);
 	[
 		["StylingWidth", [ipt_w, ipt_w].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h, ipt_h].map(c => `${c}px`)],
@@ -58,6 +61,9 @@ function setTheme() {
 		["TextColor", ["#ffffff", "#131313"]],
 		["ElementBackgroundColor", ["#181818", "#f9f9f9"]],
 		["ElementBackgroundColor2", ["#303030", "#ffffff"]]
+	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
+	[
+		["StylingFont", [`${(ipt_w + ipt_h) * 6 / 1000}px`]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 

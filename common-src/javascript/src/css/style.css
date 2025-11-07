@@ -5,9 +5,11 @@
 --myMainBackgroundColor: #ffffff;
 --myTextColor: #131313;
 --myElementBackgroundColor: #f9f9f9;
+--myElementBackgroundColor2: #ffffff;
 --myElementPadding: 0.5rem 2rem;
 
 */
+
 
 :root {
 	--w: calc(100% / 2);

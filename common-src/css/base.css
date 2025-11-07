@@ -500,6 +500,11 @@
 	inherits: false;
 }
 
+@property --myStylingFontSize {
+	syntax: "<length>";
+	inherits: false;
+}
+
 :root {
 
 	/* --- root設定（カラー） --- */
@@ -749,6 +754,7 @@
 	--myElementBackgroundColor: #f9f9f9;
 	--myElementBackgroundColor2: #ffffff;
 	--myElementPadding: 0.5rem 2rem;
+	--myStylingFontSize: calc((0.1vw + 0.1vh) * 6);
 }
 
 /* --- 共通スタイル --- */
