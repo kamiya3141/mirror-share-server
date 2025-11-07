@@ -18,8 +18,8 @@ const target_svg_url = `${loading_base_myurl}/svg/outer-index.svg`;
 let ifr = document.createElement("iframe");
 ifr.id = "loading-iframe";
 ifr.src = target_svg_url;
-ifr.width = "100%";
-ifr.height = "100%";
+ifr.width = `${document.documentElement.clientWidth}px`;
+ifr.height = `${document.documentElement.clientHeight}px`;
 div.appendChild(ifr);
 
 let svg_end_flag = false;
