@@ -13,50 +13,56 @@
 
 <body>
 	<span id="console-ok"></span>
-	<!--
+	<!--	
 	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
 	-->
 	<script defer src="https://jst.tshuto.com/tamura.js"></script>
 	<div id="root">
-		<div id="sandbox-root">
-			<div id="code-body"></div>
-			<iframe id="sandbox-iframe" srcdoc='
-						<!doctype html>
-						<html lang="ja">
-						<head>
-							<meta charset="utf-8">
-							<title>JavaScript-TEST</title>
-							<meta name="viewport" content="width=device-width, initial-scale=1">
-							<meta name="description" content="JavaScriptテストページ">
-							<style>
-								* {
-									color: inherit;
-									background-color: inherit;
-								}
-							</style>
-						</head>
-						
-						<body></body>
-						</html>
-			'></iframe>
+		<div id="title-root">
+			<div id="title-body">javascript</div>
 		</div>
-		<div id="sandbox-bottom-root">
-			<div id="console-root">
-				<p class="root-title">Console：</p>
-				<div class="root-body" id="console-result-body">
-					<div id="console-result"></div>
-				</div>
+		<div id="contents-root">
+			<div id="sandbox-root">
+				<div id="code-body"></div>
+				<iframe id="sandbox-iframe" srcdoc='
+									<!doctype html>
+									<html lang="ja">
+									<head>
+										<meta charset="utf-8">
+										<title>JavaScript-TEST</title>
+										<meta name="viewport" content="width=device-width, initial-scale=1">
+										<meta name="description" content="JavaScriptテストページ">
+										<style>
+											* {
+												color: inherit;
+												background-color: inherit;
+											}
+										</style>
+									</head>
+									
+									<body></body>
+									</html>
+						'></iframe>
 			</div>
-			<div id="setting-root">
-				<p class="root-title">Setting：</p>
-				<div class="root-body" id="setting-body">
-					<div id="setting-box">
-						<select id="theme-set-sel"></select>
+			<div id="sandbox-bottom-root">
+				<div id="console-root">
+					<p class="root-title">Console：</p>
+					<div class="root-body" id="console-result-body">
+						<div id="console-result"></div>
+					</div>
+				</div>
+				<div id="setting-root">
+					<p class="root-title">Setting：</p>
+					<div class="root-body" id="setting-body">
+						<div id="setting-box">
+							<select id="theme-set-sel"></select>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 
 </html>

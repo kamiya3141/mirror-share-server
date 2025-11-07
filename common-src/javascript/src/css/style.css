@@ -14,11 +14,16 @@
 :root {
 	--w: calc(100% / 2);
 	--c: calc(50% - var(--w) / 2);
+	--c2: calc((var(--w) - var(--p2)) * 2);
+	--c3: calc(var(--w) * 2);
+	--p1: 1rem;
+	--p2: calc(var(--p1) * 2);
 }
 
 * {
 	color: inherit;
 	background-color: inherit;
+	overflow: hidden;
 }
 
 body {
@@ -31,77 +36,90 @@ body {
 	height: calc(var(--myStylingHeight) * 98 / 100);
 	color: var(--myTextColor);
 	background-color: var(--myMainBackgroundColor);
-	overflow-x: hidden;
-}
 
-div#root {
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	width: calc(var(--w) * 2);
-	height: calc(var(--w) * 2);
-	color: inherit;
-	background-color: inherit;
-
-	& > div#sandbox-root {
-		display: inherit;
-		position: inherit;
-		width: calc(var(--w) * 2);
-		height: calc(var(--w) * 1.5);
+	div#root {
+		width: var(--c3);
+		height: var(--c3);
+		display: flex;
+		flex-direction: column;
 
 		& > * {
-			display: block;
-			width: var(--w);
-			height: calc(var(--w) * 2);
-		}
-
-		& > iframe {
-			aspect-ratio: 16 / 9;
-			border: none;
-		}
-
-		& + div#sandbox-bottom-root {
-			display: flex;
+			display: inherit;
 			width: calc(var(--w) * 2);
-			height: calc(var(--w) * 0.5);
-			overflow: hidden;
+		}
+
+		& > div#title-root {
+			flex: 5;
+
+			& > div#title-body {
+				font-size: calc(var(--myStylingFontSize) * 2);
+			}
+		}
+
+		& > div#contents-root {
+			flex: 95;
+			position: relative;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 
 			& > * {
-				display: flex;
-				flex-direction: column;
-				position: relative;
-				overflow-y: auto;
-				height: 100%;
+				justify-content: inherit;
+				align-items: inherit;
+				display: inherit;
+				width: var(--c3);
+			}
+
+			& > div#sandbox-root {
+				flex: 1.5;
+				position: inherit;
+				flex-direction: row;
 
 				& > * {
-					width: 100%;
-					display: inline-block;
+					display: block;
+					width: calc(var(--c2) / 2);
+					height: var(--c2);
+					padding: var(--p2);
+				}
+
+				& > iframe {
+					aspect-ratio: 16 / 9;
+					border: none;
+					background-color: var(--myElementBackgroundColor2);
+				}
+			}
+
+			& > div#sandbox-bottom-root {
+				flex: 0.5;
+				position: relative;
+
+				& > * {
+					flex: 0.5;
+					display: flex;
+					justify-content: inherit;
+					align-items: inherit;
+					flex-direction: column;
 					position: inherit;
+					width: var(--c2);
+					height: var(--c3);
+
+					& > * {
+						width: inherit;
+						display: block;
+						position: inherit;
+						background-color: var(--myElementBackgroundColor2);
+					}
+
+					& > *.root-title {
+						flex: 1;
+						font-size: 1rem;
+					}
+
+					& > *.root-body {
+						flex: 9;
+					}
 				}
 
-				& > *.root-title {
-					width: calc(100% - 1rem);
-					flex: 1;
-					padding-left: 1rem;
-					font-size: 1rem;
-				}
-
-				& > *.root-body {
-					width: calc(100% - 2rem);
-					flex: 9;
-					padding-left: 2rem;
-				}
-			}
-
-			& > div#console-root {
-				background-color: var(--myElementBackgroundColor2);
-				flex: 0.5;
-
-			}
-
-			& > div#setting-root {
-				background-color: var(--myElementBackgroundColor);
-				flex: 0.5;
 			}
 		}
 	}

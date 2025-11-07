@@ -12,6 +12,12 @@
 				"name": "http://127.0.0.1:3000/public_html/common-src/loading/2/html/outer-index.html",
 				"request": "launch",
 				"url": "http://127.0.0.1:3000/public_html/common-src/loading/2/html/outer-index.html"
+			},
+			{
+				"type": "chrome",
+				"name": "http://127.0.0.1:3000/public_html/common-src/javascript/index.html",
+				"request": "launch",
+				"url": "http://127.0.0.1:3000/public_html/common-src/javascript/index.html"
 			}
 		]
 	}
