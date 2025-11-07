@@ -54,6 +54,4 @@ function setTheme() {
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 
-window.addEventListener("load", () => {
-	setTheme();
-});
+setTheme();
