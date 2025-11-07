@@ -228,8 +228,10 @@ require(["vs/editor/editor.main"], () => {
 		[...themeSetSelectElement.options].forEach(opt => {
 			loadTheme(opt.value);
 		});
+	setTimeout(() => {
+		loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);
+	}, 1500);
 
-	loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);
 
 	editor.onDidChangeModelContent(e => {
 		let code = String(editor.getValue());
