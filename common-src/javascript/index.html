@@ -8,66 +8,15 @@
 	<meta name="description" content="エディター群だお">
 	<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
-	<style>
-		:root {
-			--w: calc(100% / 2);
-			--c: calc(50% - var(--w) / 2);
-		}
-
-		body {
-			box-sizing: border-box;
-			display: block;
-			position: absolute;
-			left: 1vw;
-			top: 1vh;
-			width: 98vw;
-			height: 98vh;
-			color: white;
-			background-color: black;
-			overflow-x: hidden;
-		}
-
-		div#root {
-			display: flex;
-			position: relative;
-			flex-direction: column;
-			width: calc(var(--w) * 2);
-			height: calc(var(--w) * 2);
-
-			&>div#sandbox-root {
-				display: inherit;
-				position: inherit;
-				width: calc(var(--w) * 2);
-				height: calc(var(--w) * 1.5);
-
-				&>* {
-					display: block;
-					width: var(--w);
-					height: calc(var(--w) * 2);
-				}
-
-				&>iframe {
-					aspect-ratio: 16 / 9;
-					background-color: white;
-				}
-
-				&+div#console-root {
-					display: block;
-					position: inherit;
-					background-color: gray;
-					width: calc(var(--w) * 2);
-					height: calc(var(--w) * 0.5);
-					overflow-y: auto;
-				}
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="./src/css/style.css">
 </head>
 
 <body>
 	<span id="console-ok"></span>
+	<!--
 	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
-	<script defer src="https://jst.tshuto.com/tamura0.js"></script>
+	-->
+	<script defer src="https://jst.tshuto.com/tamura.js"></script>
 	<div id="root">
 		<div id="sandbox-root">
 			<div id="code-body"></div>
@@ -88,59 +37,13 @@
 						</html>
 			'></iframe>
 		</div>
-		<div id="console-root">
-			<p>Console:</p>
-			<div id="console-result"></div>
+		<div id="sandbox-bottom-root">
+			<div id="console-root">
+				<p>Console:</p>
+				<div id="console-result"></div>
+			</div>
 		</div>
 	</div>
-
-	<script defer>
-		const codeBody = document.getElementById("code-body");
-		const sandboxIframe = document.getElementById("sandbox-iframe");
-		const consoleResult = document.getElementById("console-result");
-
-		const sandboxIframeWindow = sandboxIframe.contentWindow;
-
-		const tmp_script = document.createElement("script");
-		const getScriptTag = input => {
-			tmp_script.innerHTML = input;
-			return tmp_script.outerHTML;
-		};
-
-		require.config({
-			paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs" }
-		});
-
-		window.console.log = (...input) => consoleResult.innerHTML = `${input.join("<br>")}`;
-		sandboxIframe.contentWindow.console.log = (...input) => console.log(...input);
-
-		require(["vs/editor/editor.main"], () => {
-			const editor = monaco.editor.create(codeBody, {
-				value: ``,
-				language: "javascript",
-				theme: "vs-dark",
-				fontSize: "18",
-				// fontFamily: "'Explex-Regular', sans-serif",
-				fontLigatures: true,
-				automaticLayout: true,
-				scrollBeyondLastLine: false,
-				wordWrap: "off",
-				scrollbar: {
-					vertical: "hidden",
-					horizontal: "auto",
-					handleMouseWheel: false
-				}
-			});
-			editor.onDidChangeModelContent(e => {
-				const code = editor.getValue();
-				try {
-					eval(code);
-				} catch (error) {
-					console.log(error);
-				}
-			});
-		});
-	</script>
 </body>
 
 </html>

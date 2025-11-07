@@ -54,9 +54,9 @@ function setTheme() {
 	[
 		["StylingWidth", [ipt_w, ipt_w].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h, ipt_h].map(c => `${c}px`)],
-		["MainBackgroundColor", ["#181818", "#ffffff"]],
+		["MainBackgroundColor", ["#242424", "#ffffff"]],
 		["TextColor", ["#ffffff", "#131313"]],
-		["ElementBackgroundColor", ["#242424", "#f9f9f9"]]
+		["ElementBackgroundColor", ["#181818", "#f9f9f9"]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 

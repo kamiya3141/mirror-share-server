@@ -1,0 +1,58 @@
+:root {
+	--w: calc(100% / 2);
+	--c: calc(50% - var(--w) / 2);
+}
+
+body {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	left: 1vw;
+	top: 1vh;
+	width: 98vw;
+	height: 98vh;
+	color: white;
+	background-color: black;
+	overflow-x: hidden;
+}
+
+div#root {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	width: calc(var(--w) * 2);
+	height: calc(var(--w) * 2);
+
+	& > div#sandbox-root {
+		display: inherit;
+		position: inherit;
+		width: calc(var(--w) * 2);
+		height: calc(var(--w) * 1.5);
+
+		& > * {
+			display: block;
+			width: var(--w);
+			height: calc(var(--w) * 2);
+		}
+
+		& > iframe {
+			aspect-ratio: 16 / 9;
+			background-color: white;
+		}
+
+		& + div#sandbox-bottom-root {
+			width: calc(var(--w) * 2);
+			height: calc(var(--w) * 0.5);
+			overflow: none;
+
+			& > div#console-root {
+				display: block;
+				position: inherit;
+				background-color: gray;
+				width: 75%;
+				height: 100%;
+				overflow-y: auto;
+			}
+		}
+	}
+}
