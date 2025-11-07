@@ -1,4 +1,3 @@
-// parentElement = document.body;
 parentElement.setAttribute("my-attr-jump-href", "false");
 
 parentElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
