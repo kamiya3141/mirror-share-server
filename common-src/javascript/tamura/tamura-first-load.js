@@ -50,9 +50,9 @@ var checkCurrentSystemThemeDark = () => !checkCurrentSystemThemeLight();
 var checkCurrentDeviceMobile = () => Boolean((new RegExp("Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini", "i")).test(navigator.userAgentData ? (navigator.userAgentData.mobile ? "Android" : "PC") : navigator.userAgent));
 var checkCurrentDevicePC = () => !checkCurrentDeviceMobile();
 
-function setTheme() {
+function setTheme(forceTheme = false, themeLight = true) {
 	const ipt_w = document.documentElement.clientWidth, ipt_h = document.documentElement.clientHeight;
-	const tf = Number(checkCurrentSystemThemeLight());
+	const tf = Number(forceTheme ? themeLight : checkCurrentSystemThemeLight());
 	const pc_or_mobile = Number(checkCurrentDeviceMobile);
 	[
 		["StylingWidth", [ipt_w, ipt_w].map(c => `${c}px`)],
@@ -67,8 +67,6 @@ function setTheme() {
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 }
 
-setTheme();
-
 window.addEventListener("resize", () => {
 	setTheme();
 });
@@ -76,3 +74,6 @@ window.addEventListener("resize", () => {
 window.addEventListener("load", () => {
 	setTheme();
 });
+
+
+setTheme();
