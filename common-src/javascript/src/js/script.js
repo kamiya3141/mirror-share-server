@@ -149,13 +149,11 @@ Object.keys(themeNameDataObject).forEach(monacoOnlyThemeName => {
 
 const PRIMARY_THEME_KIND_NAME = "default";
 
-let __debug__theme_check_arr = [];
-
 /* --- 全部先にロードする --- */
 const ALLOW_ALL_THEME_LOAD = true;
 
-
 const themeSetSelectElement = document.getElementById("theme-set-sel");
+const asyncSetSelectElement = document.getElementById("async-set-sel");
 
 (function () {
 	const __FORCE_UPPER_CASE = true;
@@ -211,9 +209,6 @@ require(["vs/editor/editor.main"], () => {
 				const res = await fetch(`https://cdn.jsdelivr.net/npm/monaco-themes/themes/${themeName}.json`);
 				const jsonData = await res.json();
 				cacheThemeJsonData[themeAttribute][themeName]["data"] = jsonData;
-
-				__debug__theme_check_arr.push(resultThemeName);
-
 				return jsonData;
 			})());
 			monaco.editor.defineTheme(resultThemeName, themeData);

@@ -72,3 +72,7 @@ setTheme();
 window.addEventListener("resize", () => {
 	setTheme();
 });
+
+window.addEventListener("load", () => {
+	setTheme();
+});

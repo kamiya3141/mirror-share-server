@@ -27,12 +27,13 @@
 	font-size: var(--myStylingFontSize);
 }
 
+html {
+	display: initial;
+}
+
 body {
 	box-sizing: border-box;
 	display: block;
-	position: absolute;
-	left: calc(var(--myStylingWidth) * 1 / 100);
-	top: calc(var(--myStylingHeight) * 1 / 100);
 	width: calc(var(--myStylingWidth) * 98 / 100);
 	height: calc(var(--myStylingHeight) * 98 / 100);
 	color: var(--myTextColor);
