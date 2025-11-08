@@ -13,7 +13,7 @@ let defaultCommonThemeName = "";
 const setDefaultCommonThemeName = () => {
 	defaultCommonThemeName = `vs${checkCurrentSystemThemeLight() ? "" : "-dark"}`;
 };
-const getMyStylingFontSize = (computedFontSize = getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont")) => computedFontSize.replaceAll(new RegExp("px|rem|em|%", "i"), "");
+const getMyStylingFontSize = (computedFontSize = getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont")) => computedFontSize.replace(new RegExp("px|rem|em|%", "gi"), "");
 
 setDefaultCommonThemeName();
 
