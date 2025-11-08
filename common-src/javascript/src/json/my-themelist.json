@@ -1,0 +1,238 @@
+{
+	"default": {
+		"vs": {
+			"name": "vs",
+			"data": ""
+		},
+		"hc-light": {
+			"name": "hc-light",
+			"data": ""
+		},
+		"vs-dark": {
+			"name": "vs-dark",
+			"data": ""
+		},
+		"hc-black": {
+			"name": "hc-black",
+			"data": ""
+		}
+	},
+	"light": {
+		"Amy": {
+			"name": "amy",
+			"data": ""
+		},
+		"Chrome DevTools": {
+			"name": "chrome-devtools",
+			"data": ""
+		},
+		"Clouds": {
+			"name": "clouds",
+			"data": ""
+		},
+		"Dawn": {
+			"name": "dawn",
+			"data": ""
+		},
+		"Dreamweaver": {
+			"name": "dreamweaver",
+			"data": ""
+		},
+		"Eiffel": {
+			"name": "eiffel",
+			"data": ""
+		},
+		"GitHub Light": {
+			"name": "github-light",
+			"data": ""
+		},
+		"GitHub": {
+			"name": "github",
+			"data": ""
+		},
+		"IDLE": {
+			"name": "idle",
+			"data": ""
+		},
+		"iPlastic": {
+			"name": "iplastic",
+			"data": ""
+		},
+		"Katzenmilch": {
+			"name": "katzenmilch",
+			"data": ""
+		},
+		"Kuroir Theme": {
+			"name": "kuroir-theme",
+			"data": ""
+		},
+		"LAZY": {
+			"name": "lazy",
+			"data": ""
+		},
+		"MagicWB (Amiga)": {
+			"name": "magicwb--amiga-",
+			"data": ""
+		},
+		"Solarized-light": {
+			"name": "solarized-light",
+			"data": ""
+		},
+		"Textmate (Mac Classic)": {
+			"name": "textmate--mac-classic-",
+			"data": ""
+		},
+		"Tomorrow": {
+			"name": "tomorrow",
+			"data": ""
+		},
+		"Xcode_default": {
+			"name": "xcode-default",
+			"data": ""
+		}
+	},
+	"dark": {
+		"Active4D": {
+			"name": "active4d",
+			"data": ""
+		},
+		"All Hallows Eve": {
+			"name": "all-hallows-eve",
+			"data": ""
+		},
+		"Birds of Paradise": {
+			"name": "birds-of-paradise",
+			"data": ""
+		},
+		"Blackboard": {
+			"name": "blackboard",
+			"data": ""
+		},
+		"Brilliance Black": {
+			"name": "brilliance-black",
+			"data": ""
+		},
+		"Brilliance Dull": {
+			"name": "brilliance-dull",
+			"data": ""
+		},
+		"Clouds Midnight": {
+			"name": "clouds-midnight",
+			"data": ""
+		},
+		"Cobalt": {
+			"name": "cobalt",
+			"data": ""
+		},
+		"Cobalt2": {
+			"name": "cobalt2",
+			"data": ""
+		},
+		"Dominion Day": {
+			"name": "dominion-day",
+			"data": ""
+		},
+		"Dracula": {
+			"name": "dracula",
+			"data": ""
+		},
+		"Espresso Libre": {
+			"name": "espresso-libre",
+			"data": ""
+		},
+		"GitHub Dark": {
+			"name": "github-dark",
+			"data": ""
+		},
+		"idleFingers": {
+			"name": "idlefingers",
+			"data": ""
+		},
+		"Merbivore Soft": {
+			"name": "merbivore-soft",
+			"data": ""
+		},
+		"Merbivore": {
+			"name": "merbivore",
+			"data": ""
+		},
+		"monoindustrial": {
+			"name": "monoindustrial",
+			"data": ""
+		},
+		"Monokai Bright": {
+			"name": "monokai-bright",
+			"data": ""
+		},
+		"Monokai": {
+			"name": "monokai",
+			"data": ""
+		},
+		"Night Owl": {
+			"name": "night-owl",
+			"data": ""
+		},
+		"Nord": {
+			"name": "nord",
+			"data": ""
+		},
+		"Oceanic Next": {
+			"name": "oceanic-next",
+			"data": ""
+		},
+		"Slush and Poppies": {
+			"name": "slush-and-poppies",
+			"data": ""
+		},
+		"Solarized-dark": {
+			"name": "solarized-dark",
+			"data": ""
+		},
+		"SpaceCadet": {
+			"name": "spacecadet",
+			"data": ""
+		},
+		"Sunburst": {
+			"name": "sunburst",
+			"data": ""
+		},
+		"Tomorrow-Night": {
+			"name": "tomorrow-night",
+			"data": ""
+		},
+		"Tomorrow-Night-Blue": {
+			"name": "tomorrow-night-blue",
+			"data": ""
+		},
+		"Tomorrow-Night-Bright": {
+			"name": "tomorrow-night-bright",
+			"data": ""
+		},
+		"Tomorrow-Night-Eighties": {
+			"name": "tomorrow-night-eighties",
+			"data": ""
+		},
+		"Twilight": {
+			"name": "twilight",
+			"data": ""
+		},
+		"Upstream Sunburst": {
+			"name": "upstream-sunburst",
+			"data": ""
+		},
+		"Vibrant Ink": {
+			"name": "vibrant-ink",
+			"data": ""
+		},
+		"Zenburnesque": {
+			"name": "zenburnesque",
+			"data": ""
+		}
+	},
+	"other": {
+		"Pastels on Dark": {
+			"name": "pastels-on-dark",
+			"data": ""
+		}
+	}
+}

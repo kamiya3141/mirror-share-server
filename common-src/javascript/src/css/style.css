@@ -55,14 +55,15 @@ body {
 
 		& > * {
 			display: inherit;
-			width: calc(var(--w) * 2);
+			width: var(--c1);
 		}
 
 		& > div#title-root {
 			flex: 5;
+			flex-direction: row;
 
 			& > * {
-				flex-direction: row;
+				flex-direction: inherit;
 				justify-content: center;
 				align-items: center;
 				text-align: center;
@@ -74,7 +75,7 @@ body {
 		& > div#contents-root {
 			flex: 95;
 			position: relative;
-			flex-direction: column;
+			flex-direction: inherit;
 			justify-content: center;
 			align-items: center;
 
@@ -92,13 +93,12 @@ body {
 
 				& > * {
 					display: block;
-					flex: 1;
-					max-width: var(--w);
-					min-height: var(--c2);
+					height: var(--c2);
 					padding: var(--p2);
 				}
 
 				& > div#code-body {
+					width: calc(var(--c2) - var(--p2));
 					color: unset;
 					background-color: unset;
 					font-size: unset;
@@ -106,6 +106,7 @@ body {
 				}
 
 				& > iframe {
+					width: var(--c2);
 					border: none;
 				}
 			}
@@ -139,6 +140,7 @@ body {
 
 					& > *.root-body {
 						flex: 8;
+						overflow-y: auto;
 					}
 				}
 
