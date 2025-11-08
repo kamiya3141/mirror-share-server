@@ -15,9 +15,8 @@
 	--w: calc(100% / 2);
 	--p1: 0.5rem;
 	--p2: calc(var(--p1) * 2);
-	--c: calc(50% - var(--w) / 2);
-	--c2: calc((var(--w) - var(--p2)) * 2);
-	--c3: calc(var(--w) * 2);
+	--c1: calc(var(--w) * 2);
+	--c2: calc(var(--c1) - var(--p2) * 2);
 }
 
 .my-element {
@@ -28,22 +27,31 @@
 }
 
 html {
-	display: initial;
+	position: absolute;
+	left: calc(var(--myStylingWidth) * 1 / 100);
+	top: calc(var(--myStylingHeight) * 1 / 100);
+	width: calc(var(--myStylingWidth) * 98 / 100);
+	height: calc(var(--myStylingHeight) * 98 / 100);
 }
 
 body {
 	box-sizing: border-box;
-	display: block;
-	width: calc(var(--myStylingWidth) * 98 / 100);
-	height: calc(var(--myStylingHeight) * 98 / 100);
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	left: calc(var(--c1) * 1 / 100);
+	top: calc(var(--c1) * 1 / 100);
+	width: calc(var(--c1) * 98 / 100);
+	height: calc(var(--c1) * 98 / 100);
 	color: var(--myTextColor);
 	background-color: var(--myMainBackgroundColor);
 
 	div#root {
-		width: var(--c3);
-		height: var(--c3);
-		display: flex;
-		flex-direction: column;
+		width: var(--c1);
+		height: var(--c1);
+		position: relative;
+		display: inherit;
+		flex-direction: inherit;
 
 		& > * {
 			display: inherit;
@@ -74,7 +82,7 @@ body {
 				justify-content: inherit;
 				align-items: inherit;
 				display: inherit;
-				width: var(--c3);
+				width: var(--c1);
 			}
 
 			& > div#sandbox-root {
@@ -84,13 +92,17 @@ body {
 
 				& > * {
 					display: block;
-					flex: 0.5;
-					height: var(--c2);
+					flex: 1;
+					max-width: var(--w);
+					min-height: var(--c2);
 					padding: var(--p2);
 				}
 
 				& > div#code-body {
+					color: unset;
 					background-color: unset;
+					font-size: unset;
+					overflow: unset;
 				}
 
 				& > iframe {
@@ -114,7 +126,7 @@ body {
 					padding: var(--p2);
 
 					& > * {
-						width: var(--c3);
+						width: var(--c1);
 						display: block;
 						position: inherit;
 						background-color: var(--myElementBackgroundColor2);
@@ -137,4 +149,8 @@ body {
 
 select {
 	display: block;
+
+	&:focus {
+		outline: none;
+	}
 }

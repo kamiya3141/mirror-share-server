@@ -6,8 +6,8 @@
 	<title>エディターテスト</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="エディター群だお">
-	<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+	<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css" />
+	<script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 	<link rel="stylesheet" href="./src/css/style.css">
 </head>
 
@@ -24,7 +24,7 @@
 		</div>
 		<div id="contents-root" class="my-element">
 			<div id="sandbox-root" class="my-element">
-				<div id="code-body" class="my-element"></div>
+				<div id="code-body"></div>
 				<iframe id="sandbox-iframe" class="my-element" srcdoc='
 									<!doctype html>
 									<html lang="ja">

@@ -180,7 +180,7 @@ window.console.log = (...input) => {
 sandboxIframe.contentWindow.console.log = (...input) => console.log(...input);
 
 require.config({
-	paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs" }
+	paths: { vs: "https://unpkg.com/monaco-editor@latest/min/vs" }
 });
 
 require(["vs/editor/editor.main"], () => {
@@ -197,11 +197,13 @@ require(["vs/editor/editor.main"], () => {
 		scrollbar: {
 			vertical: "hidden",
 			horizontal: "auto",
-			handleMouseWheel: false
+			handleMouseWheel: true
 		}
 	});
 
-	async function loadTheme(themeName) {
+	async function loadTheme(themeName = null, prepareLoading = false) {
+		if (!themeName || String(themeName).length == 0)
+			return;
 		const themeAttribute = Object.keys(cacheThemeJsonData).find(c => cacheThemeJsonData[c].hasOwnProperty(themeName)) || "null";
 		const resultThemeName = cacheThemeJsonData[themeAttribute][themeName]["name"];
 		if (themeAttribute != PRIMARY_THEME_KIND_NAME) {
@@ -213,7 +215,8 @@ require(["vs/editor/editor.main"], () => {
 			})());
 			monaco.editor.defineTheme(resultThemeName, themeData);
 		}
-		monaco.editor.setTheme(resultThemeName);
+		if (!prepareLoading)
+			monaco.editor.setTheme(resultThemeName);
 	}
 	themeSetSelectElement.addEventListener("change", e => {
 		loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);
@@ -221,7 +224,7 @@ require(["vs/editor/editor.main"], () => {
 
 	if (ALLOW_ALL_THEME_LOAD)
 		[...themeSetSelectElement.options].forEach(opt => {
-			loadTheme(opt.value);
+			loadTheme(opt.value, true);
 		});
 	setTimeout(() => {
 		loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);

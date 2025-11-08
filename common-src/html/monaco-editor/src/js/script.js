@@ -1,5 +1,5 @@
 require.config({
-	paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs" }
+	paths: { vs: "https://unpkg.com/monaco-editor@latest/min/vs" }
 });
 fetch("-:-CODE-URL-:-").then(res => res.text()).then(dt => {
 	require(["vs/editor/editor.main"], () => {
