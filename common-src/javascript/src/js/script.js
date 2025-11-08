@@ -13,6 +13,7 @@ let defaultCommonThemeName = "";
 const setDefaultCommonThemeName = () => {
 	defaultCommonThemeName = `vs${checkCurrentSystemThemeLight() ? "" : "-dark"}`;
 };
+const getMyStylingFontSize = (computedFontSize = getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont")) => computedFontSize.replaceAll(new RegExp("px|rem|em|%", "i"), "");
 
 setDefaultCommonThemeName();
 
@@ -58,7 +59,7 @@ require(["vs/editor/editor.main"], () => {
 		value: ``,
 		language: "javascript",
 		theme: defaultCommonThemeName,
-		fontSize: "18",
+		fontSize: getMyStylingFontSize(),
 		fontFamily: "'Explex', sans-serif",
 		fontLigatures: true,
 		automaticLayout: true,
@@ -94,10 +95,8 @@ require(["vs/editor/editor.main"], () => {
 
 	function setEditorView() {
 		setDefaultCommonThemeName();
-
-		const computedFontSize = getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont");
 		editor.updateOptions({
-			fontSize: computedFontSize.substring(0, computedFontSize.length - 2),
+			fontSize: getMyStylingFontSize(),
 			theme: themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value
 		});
 		monaco.editor.remeasureFonts();
