@@ -1,8 +1,21 @@
+// テンプレートファイル内のtemplateを格納
+const templateElementArray = [
+	"toggle-switch"
+].reverse();
+
+for (let ifr_id of templateElementArray) {
+	const clone = document.getElementById(ifr_id).contentWindow.document.querySelector("template");
+	//console.log(clone);
+	//	clone.id = ifr_id;
+	document.body.prepend(clone);
+}
+
 const codeBody = document.getElementById("code-body");
 const sandboxIframe = document.getElementById("sandbox-iframe");
 const consoleResult = document.getElementById("console-result");
-const themeSetSelectElement = document.getElementById("theme-set-sel");
-const asyncSetSelectElement = document.getElementById("async-set-sel");
+const editorThemeSetSelectElement = document.getElementById("editor-theme-set-sel");
+const pageThemeSetSelectElement = document.getElementById("page-theme-set-sel");
+const restrictThemeSetSelectElement = document.getElementById("restrict-theme-set-sel");
 
 const sandboxIframeWindow = sandboxIframe.contentWindow;
 
@@ -40,7 +53,7 @@ setDefaultCommonThemeName();
 			}
 			optgroupElement.appendChild(optionElement);
 		});
-		themeSetSelectElement.appendChild(optgroupElement);
+		editorThemeSetSelectElement.appendChild(optgroupElement);
 	};
 })();
 
@@ -84,8 +97,8 @@ require(["vs/editor/editor.main"], () => {
 		monaco.editor.setTheme(resultThemeName);
 	}
 
-	themeSetSelectElement.addEventListener("change", e => {
-		loadTheme(themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value);
+	editorThemeSetSelectElement.addEventListener("change", e => {
+		loadTheme(editorThemeSetSelectElement.options[editorThemeSetSelectElement.selectedIndex].value);
 	});
 
 	setTimeout(() => {
@@ -97,7 +110,7 @@ require(["vs/editor/editor.main"], () => {
 		setDefaultCommonThemeName();
 		editor.updateOptions({
 			fontSize: getMyStylingFontSize(),
-			theme: themeSetSelectElement.options[themeSetSelectElement.selectedIndex].value
+			theme: editorThemeSetSelectElement.options[editorThemeSetSelectElement.selectedIndex].value
 		});
 		monaco.editor.remeasureFonts();
 	}

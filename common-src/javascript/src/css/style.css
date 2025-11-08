@@ -24,6 +24,22 @@
 	background-color: inherit;
 	overflow: hidden;
 	font-size: var(--myStylingFontSize);
+	display: inherit;
+}
+
+iframe.template-file {
+	outline: none;
+	border: none;
+	width: 0;
+	height: 0;
+}
+
+.main-contents-title {
+	padding-left: var(--p1);
+}
+
+.main-contents-body {
+	padding-left: var(--p2);
 }
 
 html {
@@ -50,11 +66,9 @@ body {
 		width: var(--c1);
 		height: var(--c1);
 		position: relative;
-		display: inherit;
 		flex-direction: inherit;
 
 		& > * {
-			display: inherit;
 			width: var(--c1);
 		}
 
@@ -63,6 +77,7 @@ body {
 			flex-direction: row;
 
 			& > * {
+				display: block;
 				flex-direction: inherit;
 				justify-content: center;
 				align-items: center;
@@ -82,7 +97,6 @@ body {
 			& > * {
 				justify-content: inherit;
 				align-items: inherit;
-				display: inherit;
 				width: var(--c1);
 			}
 
@@ -97,15 +111,20 @@ body {
 					padding: var(--p2);
 				}
 
-				& > div#code-body {
-					width: calc(var(--c2) - var(--p2));
-					color: unset;
-					background-color: unset;
-					font-size: unset;
-					overflow: unset;
+				& > div {
+					width: var(--c2);
+
+					& > div#code-body {
+						width: var(--c1);
+						height: var(--c1);
+						color: unset;
+						background-color: unset;
+						font-size: unset;
+						overflow: unset;
+					}
 				}
 
-				& > iframe {
+				& > iframe#sandbox-iframe {
 					width: var(--c2);
 					border: none;
 				}
@@ -120,7 +139,7 @@ body {
 					display: flex;
 					justify-content: inherit;
 					align-items: inherit;
-					flex-direction: column;
+					flex-direction: inherit;
 					position: inherit;
 					width: var(--c2);
 					height: var(--c2);
@@ -128,31 +147,88 @@ body {
 
 					& > * {
 						width: var(--c1);
-						display: block;
+						height: var(--c1);
+						flex-direction: column;
+						justify-content: inherit;
+						align-items: inherit;
 						position: inherit;
-						background-color: var(--myElementBackgroundColor2);
-					}
+						background-color: var(--myElementBackgroundColor);
 
-					& > *.root-title {
-						flex: 2;
-						font-size: var(--myStylingFontSize);
-					}
+						& > * {
+							width: var(--c1);
+							position: inherit;
+							background-color: var(--myElementBackgroundColor2);
+						}
 
-					& > *.root-body {
-						flex: 8;
-						overflow-y: auto;
+						& > *.root-title {
+							flex: 1;
+							font-size: var(--myStylingFontSize);
+							padding-top: calc(var(--p1) / 4);
+						}
+
+						& > *.root-body {
+							display: flex;
+							height: var(--c2);
+							flex-direction: inherit;
+							flex: 9;
+							overflow-y: auto;
+
+							& > * {
+								flex-direction: inherit;
+								padding-top: var(--p1);
+								padding-bottom: var(--p1);
+								min-height: var(--c2);
+
+								& > * {
+									flex-direction: inherit;
+									position: inherit;
+								}
+
+								& > *.body-children-group-title {
+									flex: 1.5;
+									height: var(--c1);
+
+									& > * {
+										display: inline !important;
+										font-size: 0.90rem;
+										/*text-decoration: underline;*/
+									}
+								}
+
+								& > *.body-children-group-body {
+									flex: 8.5;
+									height: var(--c1);
+									flex-direction: row;
+
+									& > *.body-children {
+										flex: 1;
+										flex-direction: column;
+										min-height: var(--c1);
+										position: inherit;
+
+										& > * {
+											flex-direction: inherit;
+											width: var(--c2);
+											padding: var(--p1);
+											position: inherit;
+											font-size: 0.75rem;
+										}
+
+										& > select {
+											border-radius: 9999em;
+											background-color: var(--myMainBackgroundColor);
+
+											&:focus {
+												outline: none;
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
-
 			}
 		}
-	}
-}
-
-select {
-	display: block;
-
-	&:focus {
-		outline: none;
 	}
 }
