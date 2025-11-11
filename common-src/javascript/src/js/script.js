@@ -18,6 +18,7 @@ const editorThemeSetSelectElement = document.getElementById("editor-theme-set-se
 const pageThemeSetSelectElement = document.getElementById("page-theme-set-sel");
 const restrictThemeSetSelectElement = document.getElementById("restrict-theme-set-sel");
 const editorFontSetSelectElement = document.getElementById("editor-font-set-sel");
+console.log(editorFontSetSelectElement);
 const pageFontSetSelectElement = document.getElementById("page-font-set-sel");
 
 const outputResultConsole = (...input) => {
@@ -42,7 +43,7 @@ let defaultCommonThemeName = "";
 const setDefaultCommonThemeName = () => {
 	defaultCommonThemeName = `vs${checkCurrentSystemThemeLight() ? "" : "-dark"}`;
 };
-const getMyStylingFontSize = () => getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont").replace(new RegExp("px|rem|em|%", "gi"), "");
+const getMyStylingFontSize = () => getComputedStyle(document.documentElement).getPropertyValue("--myStylingFontSize").replace(new RegExp("px|rem|em|%", "gi"), "");
 
 setDefaultCommonThemeName();
 
@@ -132,7 +133,15 @@ require(["vs/editor/editor.main"], () => {
 	}
 
 	function getSelectedValueInSelectElement(_selectElement) {
-		return _selectElement.options[_selectElement.selectedIndex].value;
+		const ret = _selectElement.options[_selectElement.selectedIndex];
+		let retval = "";
+		try {
+			retval = ret.value;
+		} catch (err) {
+			console.info(_selectElement);
+			return null;
+		}
+		return retval;
 	}
 
 	editorThemeSetSelectElement.addEventListener("change", e => {
@@ -143,8 +152,7 @@ require(["vs/editor/editor.main"], () => {
 		reloadEditorView();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		document.documentElement.style.setProperty("--myStylingFontFamily", `'${getSelectedValueInSelectElement(pageFontSetSelectElement)}'${defaultAddFontFamily}`);
-		
+		document.documentElement.style.setProperty("--myStylingFontFamily", `${getSelectedValueInSelectElement(pageFontSetSelectElement)}${defaultAddFontFamily}`);
 	});
 
 	setTimeout(() => {
@@ -155,7 +163,7 @@ require(["vs/editor/editor.main"], () => {
 	function reloadEditorView() {
 		setDefaultCommonThemeName();
 		editor.updateOptions({
-			fontFamily: `'${getSelectedValueInSelectElement(editorFontSetSelectElement)}'${defaultAddFontFamily}`,
+			fontFamily: `${getSelectedValueInSelectElement(editorFontSetSelectElement)}${defaultAddFontFamily}`,
 			fontSize: getMyStylingFontSize(),
 			theme: getSelectedValueInSelectElement(editorThemeSetSelectElement)
 		});
@@ -168,6 +176,7 @@ require(["vs/editor/editor.main"], () => {
 		newScriptElement.id = "main-script";
 		consoleResult.innerHTML = "";
 		const targetScriptElement = targetIframeDocumentElement.querySelector("script#main-script");
+		targetScriptElement.textContent = "";
 		targetScriptElement.replaceWith(newScriptElement);
 	}
 

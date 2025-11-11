@@ -508,7 +508,6 @@
 @property --myStylingFontFamily {
 	syntax: "<string> | <custom-ident>+";
 	inherits: false;
-	initial-value: sans-serif;
 }
 
 :root {
@@ -768,5 +767,5 @@
 
 * {
 	tab-size: 4;
-	font-family: var(--note-sans-jp);
+	font-family: var(--myStylingFontFamily);
 }
