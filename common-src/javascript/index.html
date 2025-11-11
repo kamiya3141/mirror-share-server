@@ -12,10 +12,10 @@
 </head>
 
 <body>
-	<iframe id="toggle-switch" class="template-file" src="./src/template/toggle-switch.template"></iframe>
-
 	<span id="console-ok"></span>
 	<!--
+	<iframe id="toggle-switch" class="zero-size" src="./src/template/toggle-switch.template"></iframe>
+	
 	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
 	-->
 	<script defer src="https://jst.tshuto.com/tamura.js"></script>
@@ -29,31 +29,7 @@
 				<div class="my-element">
 					<div id="code-body"></div>
 				</div>
-				<iframe id="sandbox-iframe" class="my-element" srcdoc='
-									<!doctype html>
-									<html lang="ja">
-									<head>
-										<meta charset="utf-8">
-										<title>JavaScript-TEST</title>
-										<meta name="viewport" content="width=device-width, initial-scale=1">
-										<meta name="description" content="JavaScriptテストページ">
-										<style>
-											* {
-												color: inherit;
-												font-size: inherit;
-											}
-											html {
-												background-color: var(--myElementBackgroundColor2);
-												font-size: var(--myStylingFontSize);
-											}
-										</style>
-									</head>
-									
-									<body>
-										<script defer src="https://jst.tshuto.com/tamura0.js"></script>
-									</body>
-									</html>
-						'></iframe>
+				<iframe id="sandbox-iframe" class="my-element" src="./src/html/iframe-root.html"></iframe>
 			</div>
 			<div id="sandbox-bottom-root" class="my-element">
 				<div id="console-root" class="my-element">
@@ -82,14 +58,14 @@
 										<select id="page-theme-set-sel" class="main-contents-body my-element">
 											<option value="light">ライト</option>
 											<option value="dark">ダーク</option>
-											<option value="system">システム</option>
+											<option value="system" selected>システム</option>
 										</select>
 									</div>
 									<div class="body-children my-element">
 										<div class="main-contents-title body-children-title my-element">エディターのテーマ制限：</div>
 										<select id="restrict-theme-set-sel" class="main-contents-body body-children-body my-element">
 											<option value="true">ページのテーマに合わせる</option>
-											<option value="false">ページのテーマに合わせない</option>
+											<option value="false" selected>ページのテーマに合わせない</option>
 										</select>
 									</div>
 								</div>

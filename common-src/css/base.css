@@ -505,6 +505,12 @@
 	inherits: false;
 }
 
+@property --myStylingFontFamily {
+	syntax: "<string> | <custom-ident>+";
+	inherits: false;
+	initial-value: sans-serif;
+}
+
 :root {
 
 	/* --- root設定（カラー） --- */
@@ -755,6 +761,7 @@
 	--myElementBackgroundColor2: #ffffff;
 	--myElementPadding: 0.5rem 2rem;
 	--myStylingFontSize: calc((0.1vw + 0.1vh) * 6);
+	--myStylingFontFamily: var(--note-sans-jp), sans-serif;
 }
 
 /* --- 共通スタイル --- */

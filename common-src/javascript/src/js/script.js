@@ -1,3 +1,4 @@
+/*
 // テンプレートファイル内のtemplateを格納
 const templateElementArray = [
 	"toggle-switch"
@@ -9,59 +10,92 @@ for (let ifr_id of templateElementArray) {
 	//	clone.id = ifr_id;
 	document.body.prepend(clone);
 }
-
+*/
 const codeBody = document.getElementById("code-body");
 const sandboxIframe = document.getElementById("sandbox-iframe");
 const consoleResult = document.getElementById("console-result");
 const editorThemeSetSelectElement = document.getElementById("editor-theme-set-sel");
 const pageThemeSetSelectElement = document.getElementById("page-theme-set-sel");
 const restrictThemeSetSelectElement = document.getElementById("restrict-theme-set-sel");
+const editorFontSetSelectElement = document.getElementById("editor-font-set-sel");
+const pageFontSetSelectElement = document.getElementById("page-font-set-sel");
 
-const sandboxIframeWindow = sandboxIframe.contentWindow;
+const outputResultConsole = (...input) => {
+	input = input.map(s => String(s).replaceAll("\n", "<br>"));
+	consoleResult.innerHTML += `${input.join("<br>")}`;
+};
+let sandboxIframeWindow = sandboxIframe.contentWindow;
+
+sandboxIframeWindow.console.log = (...input) => outputResultConsole(...input);
+sandboxIframeWindow.addEventListener("error", e => {
+	outputResultConsole(`Error: ${e.message}`);
+	e.preventDefault();
+});
 
 let cacheThemeJsonData = {};
+let cacheFontJsonData = {};
 
 const PRIMARY_THEME_KIND_NAME = "default";
+const defaultAddFontFamily = ", sans-serif";
+const defaultEditorFontFamily = "Explex";
 let defaultCommonThemeName = "";
 const setDefaultCommonThemeName = () => {
 	defaultCommonThemeName = `vs${checkCurrentSystemThemeLight() ? "" : "-dark"}`;
 };
-const getMyStylingFontSize = (computedFontSize = getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont")) => computedFontSize.replace(new RegExp("px|rem|em|%", "gi"), "");
+const getMyStylingFontSize = () => getComputedStyle(document.documentElement).getPropertyValue("--myStylingFont").replace(new RegExp("px|rem|em|%", "gi"), "");
 
 setDefaultCommonThemeName();
 
 (async function () {
-	const __FORCE_UPPER_CASE = true;
+	function createOptionElement(_opt_arg, _opt_add_arg = _opt_arg) {
+		const opt = {
+			"value": _opt_arg,
+			"text-content": _opt_add_arg
+		};
+		if (!_opt_arg)
+			console.error("第一引数が無効な値に設定されています");
+		else if (Array.isArray(_opt_arg))
+			[opt["value"], opt["text-content"]] = [..._opt_arg];
+		const optionElement = document.createElement("option");
+		optionElement.value = opt["value"];
+		optionElement.textContent = opt["text-content"];
+		return optionElement;
+	}
 
-	const res = await fetch("./src/json/my-themelist.json");
-	const data = await res.json();
-	cacheThemeJsonData = data;
+	// テーマ セット
+	const __FORCE_UPPER_CASE = true;
+	const themeListJsonResponse = await fetch("./src/json/my-themelist.json");
+	const themeListJsonData = await themeListJsonResponse.json();
+	cacheThemeJsonData = themeListJsonData;
 	for (let labelName of Object.keys(cacheThemeJsonData)) {
 		const optgroupElement = document.createElement("optgroup");
 		optgroupElement.label = __FORCE_UPPER_CASE ? labelName.toUpperCase() : labelName;
-		Object.keys(cacheThemeJsonData[labelName]).forEach(async (optionValue) => {
+		for (let optionValue of Object.keys(cacheThemeJsonData[labelName])) {
 			if (labelName != PRIMARY_THEME_KIND_NAME) {
 				const res2 = await fetch(`https://cdn.jsdelivr.net/npm/monaco-themes/themes/${optionValue}.json`);
 				const jsonData = await res2.json();
 				cacheThemeJsonData[labelName][optionValue]["data"] = jsonData;
 			}
-			const optionElement = document.createElement("option");
-			optionElement.value = optionValue;
-			optionElement.textContent = optionValue;
-			if (labelName == PRIMARY_THEME_KIND_NAME && optionValue == defaultCommonThemeName) {
-				optionElement.selected = true;
-			}
-			optgroupElement.appendChild(optionElement);
-		});
-		editorThemeSetSelectElement.appendChild(optgroupElement);
-	};
-})();
 
-window.console.log = (...input) => {
-	input = input.map(s => String(s).replaceAll("\n", "<br>"));
-	consoleResult.innerHTML = `${input.join("<br>")}`;
-};
-sandboxIframe.contentWindow.console.log = (...input) => console.log(...input);
+			const optionElement = createOptionElement(optionValue);
+
+			if (labelName == PRIMARY_THEME_KIND_NAME && optionValue == defaultCommonThemeName)
+				optionElement.selected = true;
+
+			optgroupElement.appendChild(optionElement);
+		}
+		editorThemeSetSelectElement.appendChild(optgroupElement);
+	}
+	// フォント セット
+	const fontListJsonResponse = await fetch("./src/json/my-fontlist.json");
+	const fontListJsonData = await fontListJsonResponse.json();
+	cacheFontJsonData = fontListJsonData;
+	Object.entries(cacheFontJsonData).forEach(optionValueAndTextContentArray => {
+		const optionElement = createOptionElement(optionValueAndTextContentArray[1], optionValueAndTextContentArray[1]);
+		editorFontSetSelectElement.appendChild(optionElement);
+		pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
+	});
+})();
 
 require.config({
 	paths: { vs: "https://unpkg.com/monaco-editor@latest/min/vs" }
@@ -73,7 +107,7 @@ require(["vs/editor/editor.main"], () => {
 		language: "javascript",
 		theme: defaultCommonThemeName,
 		fontSize: getMyStylingFontSize(),
-		fontFamily: "'Explex', sans-serif",
+		fontFamily: `'${defaultEditorFontFamily}'${defaultAddFontFamily}`,
 		fontLigatures: true,
 		automaticLayout: true,
 		scrollBeyondLastLine: false,
@@ -85,7 +119,7 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 
-	function loadTheme(themeName = null) {
+	function setLoadedTheme(themeName = null) {
 		if (!themeName || String(themeName).length == 0)
 			return;
 		const themeAttribute = Object.keys(cacheThemeJsonData).find(c => cacheThemeJsonData[c].hasOwnProperty(themeName)) || "null";
@@ -97,38 +131,52 @@ require(["vs/editor/editor.main"], () => {
 		monaco.editor.setTheme(resultThemeName);
 	}
 
+	function getSelectedValueInSelectElement(_selectElement) {
+		return _selectElement.options[_selectElement.selectedIndex].value;
+	}
+
 	editorThemeSetSelectElement.addEventListener("change", e => {
-		loadTheme(editorThemeSetSelectElement.options[editorThemeSetSelectElement.selectedIndex].value);
+		setLoadedTheme(getSelectedValueInSelectElement(editorThemeSetSelectElement));
+	});
+
+	editorFontSetSelectElement.addEventListener("change", e => {
+		reloadEditorView();
+	});
+	pageFontSetSelectElement.addEventListener("change", e => {
+		document.documentElement.style.setProperty("--myStylingFontFamily", `'${getSelectedValueInSelectElement(pageFontSetSelectElement)}'${defaultAddFontFamily}`);
+		
 	});
 
 	setTimeout(() => {
-		setEditorView();
+		reloadEditorView();
 	}, 1500);
 
 
-	function setEditorView() {
+	function reloadEditorView() {
 		setDefaultCommonThemeName();
 		editor.updateOptions({
+			fontFamily: `'${getSelectedValueInSelectElement(editorFontSetSelectElement)}'${defaultAddFontFamily}`,
 			fontSize: getMyStylingFontSize(),
-			theme: editorThemeSetSelectElement.options[editorThemeSetSelectElement.selectedIndex].value
+			theme: getSelectedValueInSelectElement(editorThemeSetSelectElement)
 		});
 		monaco.editor.remeasureFonts();
 	}
 
-	window.addEventListener("resize", () => {
-		setEditorView();
-	});
-
+	function reloadIframeScript(inputCode = "", targetIframeDocumentElement) {
+		const newScriptElement = targetIframeDocumentElement.createElement("script");
+		newScriptElement.textContent = inputCode;
+		newScriptElement.id = "main-script";
+		consoleResult.innerHTML = "";
+		const targetScriptElement = targetIframeDocumentElement.querySelector("script#main-script");
+		targetScriptElement.replaceWith(newScriptElement);
+	}
 
 	editor.onDidChangeModelContent(e => {
 		let code = String(editor.getValue());
-		code = code.replace(new RegExp("document|window.document", "g"), `document.getElementById("sandbox-iframe").contentWindow.document`);
-		code = code.replace(new RegExp("window", "g"), `document.getElementById("sandbox-iframe").contentWindow`);
-		try {
-			document.getElementById("sandbox-iframe").contentWindow.document.body.innerHTML = "";
-			eval(code);
-		} catch (error) {
-			console.log(error);
-		}
+		reloadIframeScript(code, sandboxIframeWindow.document);
+	});
+
+	window.addEventListener("resize", () => {
+		reloadEditorView();
 	});
 });

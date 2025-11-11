@@ -24,10 +24,11 @@
 	background-color: inherit;
 	overflow: hidden;
 	font-size: var(--myStylingFontSize);
+	font-family: inherit;
 	display: inherit;
 }
 
-iframe.template-file {
+iframe.zero-size {
 	outline: none;
 	border: none;
 	width: 0;
@@ -48,6 +49,7 @@ html {
 	top: calc(var(--myStylingHeight) * 1 / 100);
 	width: calc(var(--myStylingWidth) * 98 / 100);
 	height: calc(var(--myStylingHeight) * 98 / 100);
+	font-family: var(--myStylingFontFamily);
 }
 
 body {
