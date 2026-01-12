@@ -162,11 +162,13 @@ function createElementFromHTML(html) {
 	tempEl.innerHTML = html;
 	return tempEl;
 }
+/*
 function loadIframe(__iframe) {
 	return new Promise(resolve => {
 		__iframe.addEventListener("load", () => resolve(__iframe), { once: true });
 	});
 }
+*/
 function getParentElement(el, n = 1, getLastElement = true) {
 	let element_memory = [];
 	try {
@@ -259,7 +261,7 @@ function afterReplacedStringFunc() {
 }
 
 
-async function parseMarkdown() {
+function parseMarkdownV1() {
 	let currentPathname = winMyHrefPathname;
 	// 前後余分なスラッシュを削除
 	if (currentPathname.at(0) == "/")
@@ -270,11 +272,30 @@ async function parseMarkdown() {
 	const filePath = currentPathname;
 	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
 	let mdContentsBoxElement = document.getElementById("main-contentsbox");
-	const useVersionIndex = 0;
-	const VersionFunctionArray = [parseMarkDown2HTMLContextVersion1, parseMarkDown2HTMLContextVersion2];
 
-	mdContentsBoxElement.appendChild(await VersionFunctionArray[useVersionIndex](fileURL));
+	mdContentsBoxElement.appendChild(parseMarkDown2HTMLContextVersion1(fileURL));
 	afterReplacedStringFunc();
 }
 
-export { parseMarkdown as parseMD };
+async function parseMarkdownV2() {
+	let currentPathname = winMyHrefPathname;
+	// .comかindex.htmlで終わるようにアクセスされたときの対策
+	currentPathname = currentPathname.replace("/index.html", "/");
+	if (currentPathname == "/")
+		currentPathname = "/home";
+
+	// 前後余分なスラッシュを削除
+	if (currentPathname.at(0) == "/")
+		currentPathname = currentPathname.substring(1, currentPathname.length);
+	if (currentPathname.at(-1) == "/")
+		currentPathname = currentPathname.substring(0, currentPathname.length - 1);
+
+	const filePath = currentPathname;
+	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
+	let mdContentsBoxElement = document.getElementById("main-contentsbox");
+
+	mdContentsBoxElement.appendChild(await parseMarkDown2HTMLContextVersion2(fileURL));
+	afterReplacedStringFunc();
+}
+
+export { parseMarkdownV1 as parseMDv1, parseMarkdownV2 as parseMDv2 };
