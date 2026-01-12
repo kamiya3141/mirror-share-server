@@ -261,7 +261,7 @@ function afterReplacedStringFunc() {
 }
 
 
-function parseMarkdown(use_version_1 = true) {
+async function parseMarkdown(use_version_1 = true) {
 	let currentPathname = winMyHrefPathname;
 	// .comかindex.htmlで終わるようにアクセスされたときの対策
 	currentPathname = currentPathname.replace("/index.html", "/");
@@ -278,7 +278,7 @@ function parseMarkdown(use_version_1 = true) {
 	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
 	let mdContentsBoxElement = document.getElementById("main-contentsbox");
 
-	mdContentsBoxElement.appendChild((use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL));
+	mdContentsBoxElement.appendChild(await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL));
 	afterReplacedStringFunc();
 }
 
