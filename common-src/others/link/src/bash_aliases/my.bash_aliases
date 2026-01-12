@@ -132,7 +132,12 @@ function addf() {
 function gitc() {
 	local commit_str=${1:-"edit some files"}
 	local dir_path=${2:-.}
-	git add $dir_path && git commit -m "$commit_str" && git push && clear
+	git add $dir_path && git commit -m "$commit_str" && git push
+	clear
+	if [ -f ~/public_html/php/root.php ]; then
+		cp ~/public_html/php/root.php ~/public_html/bkp-root.php
+	fi
+	clear
 }
 
 
