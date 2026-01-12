@@ -261,23 +261,7 @@ function afterReplacedStringFunc() {
 }
 
 
-function parseMarkdownV1() {
-	let currentPathname = winMyHrefPathname;
-	// 前後余分なスラッシュを削除
-	if (currentPathname.at(0) == "/")
-		currentPathname = currentPathname.substring(1, currentPathname.length);
-	if (currentPathname.at(-1) == "/")
-		currentPathname = currentPathname.substring(0, currentPathname.length - 1);
-
-	const filePath = currentPathname;
-	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
-	let mdContentsBoxElement = document.getElementById("main-contentsbox");
-
-	mdContentsBoxElement.appendChild(parseMarkDown2HTMLContextVersion1(fileURL));
-	afterReplacedStringFunc();
-}
-
-async function parseMarkdownV2() {
+function parseMarkdown(use_version_1 = true) {
 	let currentPathname = winMyHrefPathname;
 	// .comかindex.htmlで終わるようにアクセスされたときの対策
 	currentPathname = currentPathname.replace("/index.html", "/");
@@ -294,8 +278,8 @@ async function parseMarkdownV2() {
 	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
 	let mdContentsBoxElement = document.getElementById("main-contentsbox");
 
-	mdContentsBoxElement.appendChild(await parseMarkDown2HTMLContextVersion2(fileURL));
+	mdContentsBoxElement.appendChild((use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL));
 	afterReplacedStringFunc();
 }
 
-export { parseMarkdownV1 as parseMDv1, parseMarkdownV2 as parseMDv2 };
+export { parseMarkdown as parseMD };
