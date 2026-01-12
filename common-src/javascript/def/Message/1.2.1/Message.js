@@ -18,7 +18,10 @@ class MessageElement extends HTMLElement {
 		super();
 		this.attachShadow({ mode: "open" });
 		this.metaURL = new URL(document.currentScript.src);
-		this.shadowTemplateURL = new URL("./.template", this.metaURL);
+		// this.shadowTemplateURL = new URL("./.template", this.metaURL);
+		this.myVersion = this.metaURL.toString().split("/").at(-2);
+		console.log(this.myVersion);
+		this.shadowTemplateURL = new URL(`https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/javascript/def/Message/${this.myVersion}/.template`);
 		this.initScriptURL = new URL("./init.js", this.metaURL);
 		const mySlotClassNameArray = ["alert", "warn", "normal"];
 		fetch(this.shadowTemplateURL).then(res => res.text()).then(templateText => {

@@ -20,7 +20,8 @@ const GETDIR_STRING = 'get-dirs';
 const CONVERT_STRING = 'convert';
 const LINK_STRING = 'link';
 const REWRITE_STRING = '-:-';
-define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error', INDEX_HTML));
+const ERROR_TEMPLATE_URL = 'https://kamiya3141.github.io/mirror-share-server/common-src/html/error/index.html';
+// define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error', INDEX_HTML));
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
 	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
