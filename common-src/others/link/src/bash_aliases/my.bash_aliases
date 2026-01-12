@@ -6,7 +6,7 @@ alias ebr="sudo nano ~/.bashrc && rbr"
 # 汎用
 alias up-apt="sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y autoremove"
 # 個人
-alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://link.tshuto.com/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
+alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
 alias updtexut="wget -q --no-cache -O ${HOME}/exec-update.sh https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/shellscript/exec-update.sh && bash ${HOME}/exec-update.sh"
 # --- function ---
 # 汎用
@@ -80,7 +80,7 @@ function wgmbr() {
 		fi
 		bashrc_label_num=$(awk "NR==2" "${update_utils_path}")
 	fi
-	local remote_url_path="https://share.tshuto.com/common-src/others/link/src"
+	local remote_url_path="https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src"
 	if [ "$MY_UPDATE_REMOTE_URL" ]; then
 		remote_url_path="${MY_UPDATE_REMOTE_URL}"
 	fi

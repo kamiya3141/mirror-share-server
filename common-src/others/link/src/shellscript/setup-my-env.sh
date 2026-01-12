@@ -8,7 +8,7 @@ my_update_cache="/home/${USER}/.update-utils"
 sudo touch "${bash_aliases_path}"
 sudo chmod 755 "${bash_aliases_path}"
 sudo chown ${USER}:${USER} "${bash_aliases_path}"
-wget --no-cache -qO - https://link.tshuto.com/src/bash_aliases/my.bash_aliases > "${bash_aliases_path}"
+wget --no-cache -qO - https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/bash_aliases/my.bash_aliases > "${bash_aliases_path}"
 
 
 if [ -f "${bashrc_path}" ]; then
