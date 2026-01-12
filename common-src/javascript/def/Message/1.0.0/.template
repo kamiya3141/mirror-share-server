@@ -1,0 +1,23 @@
+<template id="template">
+	<style>
+		div#message-box {
+			position: fixed;
+			left: 50%;
+			top: 0%;
+			width: auto;
+			height: auto;
+			background-color: pink;
+			border: red 0.1rem solid;
+			border-radius: 2.5rem;
+
+			>slot#body>* {
+				display: inline !important;
+			}
+		}
+	</style>
+	<div id="message-box">
+		<slot name="body">
+
+		</slot>
+	</div>
+</template>

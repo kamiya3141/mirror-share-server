@@ -1,0 +1,47 @@
+<template id="template">
+	<style>
+		div#message-box {
+			position: fixed;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: auto;
+			height: auto;
+			border-radius: 1rem;
+			display: inline-block;
+			padding: 1rem;
+			cursor: pointer;
+			opacity: 1;
+
+			&:hover {
+				opacity: 0.75;
+			}
+
+			&.ready {
+				opacity: 0;
+			}
+
+			&.alert {
+				border: red 0.1rem solid;
+				background-color: pink;
+				color: red;
+			}
+
+			&.normal {
+				border: blue 0.1rem solid;
+				background-color: skyblue;
+				color: blue;
+			}
+
+			&.warn {
+				border: black 0.1rem solid;
+				background-color: yellow;
+				color: black;
+			}
+		}
+	</style>
+	<div id="message-box" class="ready">
+		<slot id="slot-id">
+
+		</slot>
+	</div>
+</template>

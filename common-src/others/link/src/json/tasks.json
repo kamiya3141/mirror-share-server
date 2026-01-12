@@ -1,0 +1,95 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "run C",
+			"type": "shell",
+			"command": "~/public_html/clang/compileAndExecuteC.sh",
+			"args": [
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "debug C",
+			"type": "shell",
+			"command": "~/public_html/clang/compileAndDebugC.sh",
+			"args": [
+				"${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "run LCRZ",
+			"type": "shell",
+			"command": "~/public_html/llang/compileAndExecuteLCRZ.sh",
+			"args": [
+				"${file}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "run HCRZ",
+			"type": "shell",
+			"command": "~/public_html/hlang/compileAndExecuteHCRZ.sh",
+			"args": [
+				"${file}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "run YAJU",
+			"type": "shell",
+			"command": "~/public_html/yjlang/compileAndExecuteYAJU.sh",
+			"args": [
+				"${file}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared"
+			}
+		}
+	]
+}

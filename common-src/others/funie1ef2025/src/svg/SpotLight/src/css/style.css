@@ -1,0 +1,18 @@
+svg#parent-svg {
+	background-color: rgba(0, 0, 0, 0);
+
+	& > *.spot-light {
+		transition: stroke-opacity 0.5s ease-in 0s;
+		transition: fill-opacity 0.5s ease-out 0s;
+
+		&.off {
+			fill-opacity: 0.0;
+			stroke-opacity: 0.0;
+		}
+
+		&.on {
+			fill-opacity: 1.0;
+			stroke-opacity: 1.0;
+		}
+	}
+}

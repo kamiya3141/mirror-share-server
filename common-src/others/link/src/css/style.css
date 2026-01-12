@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	line-height: 2.0;
+	text-align: center;
+}
+
+body {
+	position: absolute;
+	width: 99vw;
+	height: 99vh;
+	left: 0.5vw;
+	top: 0.5vh;
+	background-color: black;
+	color: pink;
+}
+
+select#main-sel {
+	appearance: none;
+	background-color: lightgreen;
+	color: green;
+	min-width: 80%;
+	min-height: 10%;
+	font-size: 2.5em;
+	/*border-radius: 100em;*/
+}

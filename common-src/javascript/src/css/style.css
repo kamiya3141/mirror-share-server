@@ -1,0 +1,225 @@
+:root {
+	--w: calc(100% / 2);
+	--p1: 0.5rem;
+	--p2: calc(var(--p1) * 2);
+	--c1: calc(var(--w) * 2);
+	--c2: calc(var(--c1) - var(--p2) * 2);
+}
+
+.my-element {
+	color: inherit;
+	background-color: inherit;
+	overflow: hidden;
+	font-size: var(--myStylingFontSize);
+	font-family: inherit;
+	display: inherit;
+}
+
+iframe.zero-size {
+	outline: none;
+	border: none;
+	width: 0;
+	height: 0;
+}
+
+.main-contents-title {
+	padding-left: var(--p1);
+}
+
+.main-contents-body {
+	padding-left: var(--p2);
+}
+
+html {
+	position: absolute;
+	left: calc(var(--myStylingWidth) * 1 / 100);
+	top: calc(var(--myStylingHeight) * 1 / 100);
+	width: calc(var(--myStylingWidth) * 98 / 100);
+	height: calc(var(--myStylingHeight) * 98 / 100);
+	font-family: var(--myStylingFontFamily);
+}
+
+body {
+	font-family: var(--myStylingFontFamily);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	left: calc(var(--c1) * 1 / 100);
+	top: calc(var(--c1) * 1 / 100);
+	width: calc(var(--c1) * 98 / 100);
+	height: calc(var(--c1) * 98 / 100);
+	color: var(--myTextColor);
+	background-color: var(--myMainBackgroundColor);
+
+	div#root {
+		width: var(--c1);
+		height: var(--c1);
+		position: relative;
+		flex-direction: inherit;
+
+		& > * {
+			width: var(--c1);
+		}
+
+		& > div#title-root {
+			flex: 5;
+			flex-direction: row;
+
+			& > * {
+				display: block;
+				flex-direction: inherit;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				flex: 0.5;
+				font-size: calc(var(--myStylingFontSize) * 2);
+			}
+		}
+
+		& > div#contents-root {
+			flex: 95;
+			position: relative;
+			flex-direction: inherit;
+			justify-content: center;
+			align-items: center;
+
+			& > * {
+				justify-content: inherit;
+				align-items: inherit;
+				width: var(--c1);
+			}
+
+			& > div#sandbox-root {
+				flex: 3;
+				position: inherit;
+				flex-direction: row;
+
+				& > * {
+					display: block;
+					height: var(--c2);
+					padding: var(--p2);
+				}
+
+				& > div {
+					width: var(--c2);
+
+					& > div#code-body {
+						width: var(--c1);
+						height: var(--c1);
+						color: unset;
+						background-color: unset;
+						/*font-size: unset;*/
+						font-family: unset;
+						overflow: unset;
+					}
+				}
+
+				& > iframe#sandbox-iframe {
+					width: var(--c2);
+					border: none;
+				}
+			}
+
+			& > div#sandbox-bottom-root {
+				flex: 1;
+				position: relative;
+
+				& > * {
+					flex: 0.5;
+					display: flex;
+					justify-content: inherit;
+					align-items: inherit;
+					flex-direction: inherit;
+					position: inherit;
+					width: var(--c2);
+					height: var(--c2);
+					padding: var(--p2);
+
+					& > * {
+						width: var(--c1);
+						height: var(--c1);
+						flex-direction: column;
+						justify-content: inherit;
+						align-items: inherit;
+						position: inherit;
+						background-color: var(--myElementBackgroundColor);
+
+						& > * {
+							width: var(--c1);
+							position: inherit;
+							background-color: var(--myElementBackgroundColor2);
+						}
+
+						& > *.root-title {
+							flex: 1;
+							font-size: var(--myStylingFontSize);
+							padding-top: calc(var(--p1) / 4);
+						}
+
+						& > *.root-body {
+							display: flex;
+							height: var(--c2);
+							flex-direction: inherit;
+							flex: 9;
+							overflow-y: auto;
+
+							& > * {
+								flex-direction: inherit;
+								padding-top: var(--p1);
+								padding-bottom: var(--p1);
+								min-height: var(--c2);
+
+								& > * {
+									flex-direction: inherit;
+									position: inherit;
+								}
+
+								& > *.body-children-group-title {
+									flex: 1.5;
+									height: var(--c1);
+
+									& > * {
+										display: inline !important;
+										font-size: 0.90rem;
+										/*text-decoration: underline;*/
+									}
+								}
+
+								& > *.body-children-group-body {
+									flex: 8.5;
+									height: var(--c1);
+									flex-direction: row;
+
+									& > *.body-children {
+										flex: 1;
+										flex-direction: column;
+										min-height: var(--c1);
+										position: inherit;
+
+										& > * {
+											flex-direction: inherit;
+											width: var(--c2);
+											padding: var(--p1);
+											position: inherit;
+											font-size: 0.75rem;
+										}
+
+										& > select {
+											border-radius: 9999em;
+											background-color: var(--myMainBackgroundColor);
+
+											&:focus {
+												outline: none;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

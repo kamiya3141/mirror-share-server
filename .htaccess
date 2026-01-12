@@ -1,0 +1,26 @@
+<IfModule mod_headers.c>
+	Header always set Access-Control-Allow-Origin "*"
+	Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+	Header always set Access-Control-Allow-Headers "*"
+</IfModule>
+
+
+<IfModule mod_session.c>
+	Session On
+	SessionStore file
+	SessionStoreFileName /var/lib/php/sessions/%{SESSIONID}.session
+	SessionCryptoPassphrase secret
+</IfModule>
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^/php/ [NC]
+RewriteRule ^ - [L]
+
+# サブドメインのリライト
+RewriteCond %{HTTP_HOST} ^(?!share\.)([^.]+)\.tshuto\.com$ [NC]
+RewriteRule ^(?!view|get|get-files|get-dirs)(.*)$ /php/root.php?target=%1&od=$1 [E=FROM_REWRITE:1,L,QSA]
+
+# get/view用のリライト
+RewriteCond %{HTTP_HOST} ^([^.]+)\.tshuto\.com$ [NC]
+RewriteRule ^(view|get|get-files|get-dirs)/(.*)$ /php/utils/script.php?target=%1&od=$1/$2 [E=FROM_REWRITE:1,L,QSA]

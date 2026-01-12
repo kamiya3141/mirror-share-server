@@ -1,0 +1,6 @@
+tunnel: 2ddc3c99-f381-4203-a15c-1d98749899c4
+credentials-file: /home/tamura/.cloudflared/2ddc3c99-f381-4203-a15c-1d98749899c4.json
+ingress:
+  - hostname: ssh-dh0rz2.tshuto.com
+    service: ssh://localhost:22
+  - service: http_status:404

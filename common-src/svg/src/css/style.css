@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box;
+	user-select: none;
+	margin: 0;
+	padding: 0;
+	line-height: 2.0;
+	background-repeat: no-repeat;
+}
+
+body {
+	overflow: hidden;
+	display: block;
+	width: 100vw;
+	height: 100vh;
+}

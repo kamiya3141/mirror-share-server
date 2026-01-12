@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8" />
+	<title>エディターテスト</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="エディターテストだお・・・です・・・はい・・・">
+	<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css" />
+	<script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+	<link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+	<span id="console-ok"></span>
+	<!--
+	<iframe id="toggle-switch" class="zero-size" src="./src/template/toggle-switch.template"></iframe>
+	
+	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
+	-->
+	<script defer src="https://jst.tshuto.com/tamura.js"></script>
+	<div id="root" class="my-element">
+		<div id="title-root" class="my-element">
+			<div id="title-body" class="my-element">javascript</div>
+			<div id="preview-title-body" class="my-element">preview</div>
+		</div>
+		<div id="contents-root" class="my-element">
+			<div id="sandbox-root" class="my-element">
+				<div class="my-element">
+					<div id="code-body"></div>
+				</div>
+				<iframe id="sandbox-iframe" class="my-element" src="./src/html/iframe-root.html"></iframe>
+			</div>
+			<div id="sandbox-bottom-root" class="my-element">
+				<div id="console-root" class="my-element">
+					<div class="my-element">
+						<div id="test-debug-id" class="root-title my-element">Console：</div>
+						<div class="root-body my-element" id="console-result-body">
+							<div id="console-result" class="body-children my-element"></div>
+						</div>
+					</div>
+				</div>
+				<div id="setting-root" class="my-element">
+					<div class="my-element">
+						<div class="root-title my-element">ページ設定：</div>
+						<div class="root-body my-element">
+							<section class="my-element">
+								<div class="main-contents-title body-children-group-title my-element">
+									<div class="my-element">エディターの設定：</div>
+								</div>
+								<div class="main-contents-body body-children-group-body my-element">
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">インデントにタブを使用：</div>
+										<select id="editor-setting-use-tab-set-sel" class="main-contents-body my-element">
+											<option value="tab" selected>使用する</option>
+											<option value="space">使用しない</option>
+										</select>
+									</div>
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">タブのサイズ：</div>
+										<select id="editor-setting-tab-size-set-sel" class="main-contents-body my-element"></select>
+									</div>
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">オートインデント：</div>
+										<select id="editor-setting-auto-indent-set-sel" class="main-contents-body body-children-body my-element">
+											<option value="on" selected>オン</option>
+											<option value="off">オフ</option>
+										</select>
+									</div>
+								</div>
+							</section>
+							<section class="my-element">
+								<div class="main-contents-title body-children-group-title my-element">
+									<div class="my-element">テーマの設定：</div>
+								</div>
+								<div class="main-contents-body body-children-group-body my-element">
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">エディターのテーマ：</div>
+										<select id="editor-theme-set-sel" class="main-contents-body my-element"></select>
+									</div>
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">ページのテーマ：</div>
+										<select id="page-theme-set-sel" class="main-contents-body my-element">
+											<option value="light">ライト</option>
+											<option value="dark">ダーク</option>
+											<option value="system" selected>システム</option>
+										</select>
+									</div>
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">エディターのテーマ制限：</div>
+										<select id="restrict-theme-set-sel" class="main-contents-body body-children-body my-element">
+											<option value="true">ページのテーマに制限する</option>
+											<option value="false" selected>ページのテーマに制限しない</option>
+										</select>
+									</div>
+								</div>
+							</section>
+							<section class="my-element">
+								<div class="main-contents-title body-children-group-title my-element">
+									<div class="my-element">フォントの設定：</div>
+								</div>
+								<div class="main-contents-body body-children-group-body my-element">
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">エディターのフォント：</div>
+										<select id="editor-font-set-sel" class="main-contents-body my-element"></select>
+									</div>
+									<div class="body-children my-element">
+										<div class="main-contents-title body-children-title my-element">ページのフォント：</div>
+										<select id="page-font-set-sel" class="main-contents-body my-element"></select>
+									</div>
+									<div class="body-children my-element void-class">
+
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<template id="template">
+	<style>
+		div#message-box {
+			position: fixed;
+			left: 50%;
+			top: 0%;
+			transform: translate(-50%, -50%);
+			width: auto;
+			height: auto;
+			border: red 0.1rem solid;
+			background-color: pink;
+			color: red;
+			border-radius: 2.5rem;
+			display: inline-block;
+
+			&.alert {
+				border: red 0.1rem solid;
+				background-color: pink;
+				color: red;
+			}
+
+			&.normal {
+				border: blue 0.1rem solid;
+				background-color: skyblue;
+				color: blue;
+			}
+
+			&.warn {
+				border: black 0.1rem solid;
+				background-color: yellow;
+				color: black;
+			}
+		}
+	</style>
+	<div id="message-box">
+		<slot id="slot-id">
+
+		</slot>
+	</div>
+</template>

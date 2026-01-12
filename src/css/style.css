@@ -1,0 +1,52 @@
+:root {
+	--w: calc(100% / 2);
+	--p1: 0.5rem;
+	--p2: calc(var(--p1) * 2);
+	--c1: calc(var(--w) * 2);
+	--c2: calc(var(--c1) - var(--p2) * 2);
+}
+
+html {
+	position: absolute;
+	left: calc(var(--myStylingWidth) * 1 / 100);
+	top: calc(var(--myStylingHeight) * 1 / 100);
+	width: calc(var(--myStylingWidth) * 98 / 100);
+	min-height: calc(var(--myStylingHeight) * 98 / 100);
+	font-family: var(--myStylingFontFamily);
+	font-size: var(--myStylingFontSize);
+	color: var(--myTextColor);
+	background-color: var(--myMainBackgroundColor);
+
+	& * {
+		color: inherit;
+		background-color: inherit;
+		overflow: hidden;
+		font-family: inherit;
+		position: inherit;
+		display: inherit;
+	}
+
+	head {
+		display: unset;
+	}
+
+	& > body {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		left: calc(var(--c1) * 1 / 100);
+		top: calc(var(--c1) * 1 / 100);
+		width: calc(var(--c1) * 98 / 100);
+		height: calc(var(--c1) * 98 / 100);
+
+		& > main {
+			display: block;
+			text-align: center;
+
+			& div#div-box {
+				font-size: 1.5rem;
+				text-align: inherit;
+			}
+		}
+	}
+}

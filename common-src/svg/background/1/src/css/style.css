@@ -1,0 +1,14 @@
+@property --svgRectBackgroundColor {
+	syntax: "<color>";
+	inherits: false;
+}
+
+:root {
+	--svgRectBackgroundColor: red;
+}
+
+svg {
+	background-color: transparent;
+	overflow: hidden;
+	display: block;
+}

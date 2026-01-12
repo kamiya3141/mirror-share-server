@@ -1,0 +1,4 @@
+<?xml-stylesheet type="text/css" href="./src/css/style.css"?>
+<svg id="parent-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" style="background-color: rgba(0, 0, 0, 1);">
+	<script href="./src/js/script.js"></script>
+</svg>

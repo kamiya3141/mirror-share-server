@@ -1,0 +1,8 @@
+svg#parent-svg {
+	background-color: rgba(0, 0, 0, 0);
+
+	& > rect#canvas {
+		/* Debug color */
+		fill: rgba(255, 0, 0, 1);
+	}
+}
