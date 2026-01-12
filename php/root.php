@@ -4,6 +4,7 @@ require_once './utils/utils.php';
 
 $mySubDomain = 'share';
 
+
 // どんなことよりも、まずセッションファイルの保存フォルダのパーミッションを700にしろカス
 
 // 自分自身への直接アクセスを拒否
