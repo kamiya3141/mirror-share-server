@@ -320,6 +320,7 @@ html {
 							}
 
 							& ul {
+								display: block;
 								list-style-type: disc;
 								padding-inline-start: 1em;
 
