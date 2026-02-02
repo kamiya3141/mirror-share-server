@@ -87,8 +87,9 @@ html {
 			}
 
 			& > div#root {
-				left: calc(var(--w) - var(--c-mn-h) / 2);
-				width: var(--c-mn-h);
+				left: var(--c3);
+				width: var(--c4);
+				padding-top: calc(var(--c-hd-h) * 2);
 			}
 		}
 
@@ -105,6 +106,7 @@ html {
 			& > div#root {
 				left: calc(var(--w) - var(--w) / 2);
 				width: var(--w);
+				padding-top: calc(var(--c-hd-h) / 2);
 			}
 		}
 
@@ -198,7 +200,6 @@ html {
 		& > div#root {
 			top: auto;
 			min-height: calc(var(--c-hd-h) / 2);
-			padding-top: calc(var(--c-hd-h) / 2);
 
 			& > * {
 				position: relative;

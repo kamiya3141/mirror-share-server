@@ -180,15 +180,7 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
-async function copyCodeDataForClipBoard(e) {
-	try {
-		const rootElement = getParentElement(e.currentTarget, 6);
-		const codeText = rootElement.querySelector("code").innerText;
-		await navigator.clipboard.writeText(codeText);
-	} catch (error) {
-		console.log(error);
-	}
-}
+
 
 async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
@@ -226,8 +218,8 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
 	result_str = splited_result_str_arr.join("<br>");
 
-	const result_elm = createElementFromHTML(result_str);
-	result_str = result_elm;
+	//const result_elm = createElementFromHTML(result_str);
+	//result_str = result_elm;
 	return result_str;
 }
 
@@ -238,28 +230,9 @@ async function parseMarkDown2HTMLContextVersion2(mdurl = "") {
 	const html_data = await fetch(`https://api.tshuto.com/md?${new URLSearchParams({
 		"md-file-url": mdurl
 	})}`).then(res => res.text());
-	result_str = createElementFromHTML(html_data);
+	// result_str = createElementFromHTML(html_data);
 	return result_str;
 }
-
-function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
-	with_pathname = Boolean(with_pathname);
-	my_pathname = String(my_pathname);
-	if (my_pathname[0] != "/")
-		my_pathname = "/" + my_pathname;
-	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
-}
-
-function afterReplacedStringFunc() {
-	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
-		copyCodeDataForClipBoard(e);
-	}));
-	[...document.querySelectorAll("div.item-box.deco-text > a")].forEach(c => {
-		const preHref = c.getAttribute("href");
-		c.setAttribute("href", getCurrentURLProtocolAndHostname(`/${preHref.split("/").at(-1)}`));
-	});
-}
-
 
 async function parseMarkdown(use_version_1 = true) {
 	let currentPathname = winMyHrefPathname;
@@ -276,10 +249,9 @@ async function parseMarkdown(use_version_1 = true) {
 
 	const filePath = currentPathname;
 	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
-	let mdContentsBoxElement = document.getElementById("main-contentsbox");
+	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
-	mdContentsBoxElement.appendChild(await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL));
-	afterReplacedStringFunc();
+	return result_md_str;
 }
 
 export { parseMarkdown as parseMD };
