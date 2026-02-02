@@ -328,6 +328,15 @@ html {
 
 								& > li {
 									display: list-item;
+									&::marker {
+											font-family: "Segoe UI",
+												"Hiragino Sans",
+												"Noto Sans JP",
+												"BIZ UDPGothic",
+												"Meiryo",
+												sans-serif;
+											content: "▶ ";
+										}
 								}
 							}
 
