@@ -180,7 +180,13 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
-
+function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
+	with_pathname = Boolean(with_pathname);
+	my_pathname = String(my_pathname);
+	if (my_pathname[0] != "/")
+		my_pathname = "/" + my_pathname;
+	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
+}
 
 async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
@@ -254,4 +260,4 @@ async function parseMarkdown(use_version_1 = true) {
 	return result_md_str;
 }
 
-export { parseMarkdown as parseMD };
+export { parseMarkdown as parseMD, getCurrentURLProtocolAndHostname };

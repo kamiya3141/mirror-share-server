@@ -5,7 +5,15 @@ async function mainFunc() {
 
 	let mdContentsBoxElement = document.getElementById("main-contentsbox");
 	mdContentsBoxElement.innerHTML = result;
-	afterReplacedStringFunc();
+
+	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
+		copyCodeDataForClipBoard(e);
+	}));
+	[...document.querySelectorAll("div.item-box.deco-text > a")].forEach(c => {
+		const preHref = c.getAttribute("href");
+		c.setAttribute("href", PMD.getCurrentURLProtocolAndHostname(`/${preHref.split("/").at(-1)}`));
+	});
+
 }
 
 window.addEventListener("load", mainFunc);
@@ -18,23 +26,4 @@ async function copyCodeDataForClipBoard(e) {
 	} catch (error) {
 		console.log(error);
 	}
-}
-
-
-function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
-	with_pathname = Boolean(with_pathname);
-	my_pathname = String(my_pathname);
-	if (my_pathname[0] != "/")
-		my_pathname = "/" + my_pathname;
-	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
-}
-
-function afterReplacedStringFunc() {
-	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
-		copyCodeDataForClipBoard(e);
-	}));
-	[...document.querySelectorAll("div.item-box.deco-text > a")].forEach(c => {
-		const preHref = c.getAttribute("href");
-		c.setAttribute("href", getCurrentURLProtocolAndHostname(`/${preHref.split("/").at(-1)}`));
-	});
 }
