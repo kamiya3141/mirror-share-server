@@ -52,7 +52,7 @@ const before_replace_str_define_array = [
 	],
 	[
 		/((?:<li>.*<\/li>\n?)+)/g,
-		cts => `<ul>\n${cts}</ul>`
+		cts => `<ul>\n${cts}</ul>\n`
 	],
 	[
 		/:::\snote(\n[\s\S]*?):::/g,
