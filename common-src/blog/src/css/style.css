@@ -320,23 +320,11 @@ html {
 							}
 
 							& ul {
-								list-style: circle;
 								list-style-type: disc;
-								margin-block-start: 1em;
-								margin-block-end: 1em;
 								padding-inline-start: 1em;
 
 								& > li {
 									display: list-item;
-									&::marker {
-											font-family: "Segoe UI",
-												"Hiragino Sans",
-												"Noto Sans JP",
-												"BIZ UDPGothic",
-												"Meiryo",
-												sans-serif;
-											content: "▶ ";
-										}
 								}
 							}
 
