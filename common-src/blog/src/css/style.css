@@ -321,11 +321,12 @@ html {
 
 							& ul {
 								display: block;
-								list-style-type: disc;
-								padding-inline-start: 1em;
+								list-style-type: none;
+								padding-inline-start: 0;
 
-								& > li {
-									display: list-item;
+								& > li::before {
+									content: '・';
+									margin-right: 0.5em;
 								}
 							}
 
