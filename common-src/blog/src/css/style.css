@@ -324,7 +324,7 @@ html {
 								list-style-type: disc;
 								margin-block-start: 1em;
 								margin-block-end: 1em;
-								padding-inline-start: 40px;
+								padding-inline-start: 1em;
 
 								& > li {
 									display: list-item;
@@ -374,7 +374,6 @@ html {
 
 								&.code-frame {
 									position: relative;
-
 
 									&.code-iframe-common-styles {
 										border-radius: var(--p1);
