@@ -157,29 +157,6 @@ function createNoteInnerHTMLString(cls_nt_tp = "info", cts) {
 	return `<div class="note-class note-${cls_nt_tp}"><span class="note-mark-span fa fa-fw fa-${["check", "exclamation", "times"].at(["info", "warn", "alert"].indexOf(cls_nt_tp))}-circle"></span>${cts}</div>`;
 }
 
-function createElementFromHTML(html) {
-	const tempEl = document.createElement('div');
-	tempEl.innerHTML = html;
-	return tempEl;
-}
-/*
-function loadIframe(__iframe) {
-	return new Promise(resolve => {
-		__iframe.addEventListener("load", () => resolve(__iframe), { once: true });
-	});
-}
-*/
-function getParentElement(el, n = 1, getLastElement = true) {
-	let element_memory = [];
-	try {
-		for (n--; n > 0; n--)
-			el = element_memory.at(element_memory.push(el.parentElement) - 1);
-	} catch (error) {
-		console.log(element_memory, error);
-	}
-	return getLastElement ? element_memory.at(-1) : element_memory;
-}
-
 function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
 	with_pathname = Boolean(with_pathname);
 	my_pathname = String(my_pathname);
@@ -214,7 +191,7 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 				let chv = result_array[j];
 				const url = new URL(chv[1]);
 
-				const replaced_str = `<div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="${url.toString()}" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">${url.toString()}</div><div class="embed-iframe-inner-title-hostname">${url.hostname}</div></div><div class="embed-iframe-inner-embed-iframe-root">${url.hostname.includes("tshuto.com") ? `<iframe src="${url.toString()}"></iframe>` : ""}</div></a></div>`;
+				const replaced_str = `<div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="${url.toString()}" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">${url.toString()}</div><div class="embed-iframe-inner-title-hostname">${url.hostname}</div></div><div class="embed-iframe-inner-embed-iframe-root">${new RegExp("^(?:.*\.github\.io|raw\.githubusercontent\.com)$").test(url.hostname) ? `<iframe src="${url.toString()}"></iframe>` : ""}</div></a></div>`;
 
 				splited_result_str_arr[i] = splited_result_str_arr[i].replace(chv[1], replaced_str);
 			}
