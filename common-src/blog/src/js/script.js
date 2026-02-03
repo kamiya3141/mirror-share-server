@@ -27,3 +27,14 @@ async function copyCodeDataForClipBoard(e) {
 		console.log(error);
 	}
 }
+
+function getParentElement(el, n = 1, getLastElement = true) {
+	let element_memory = [];
+	try {
+		for (n--; n > 0; n--)
+			el = element_memory.at(element_memory.push(el.parentElement) - 1);
+	} catch (error) {
+		console.log(element_memory, error);
+	}
+	return getLastElement ? element_memory.at(-1) : element_memory;
+}
