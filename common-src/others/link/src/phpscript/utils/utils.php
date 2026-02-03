@@ -26,10 +26,9 @@ const ERROR_TEMPLATE_URL = 'https://raw.githubusercontent.com/kamiya3141/mirror-
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
 	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
-	'error' => ERROR_TEMPLATE_URL,
+	'error' => url_join(getMyHostName('api'), 'api-error.php'),
 	'md' => url_join(getMyHostName('api'), 'api-markdown.php')
 ]);
-// url_join(getMyHostName('api'), 'api-error.php')
 
 $mimeMap = [
 	'js' => 'application/javascript',
@@ -85,10 +84,12 @@ function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): strin
 function echoErrorSite(int $_code = 404, string $_word = ''): void
 {
 	http_response_code($_code);
-	forwardRemoteFile(API_URL['error'] . '?' . http_build_query([
+	$cts = file_get_contents(API_URL['error'] . '?' . http_build_query([
 		getMyParamKey('error-code') => "{$_code}",
 		getMyParamKey('error-word') => "{$_word}"
-	]), false, false, 'html');
+	]));
+	setHeaders($cts, 'text/html');
+	echo $cts;
 	exit;
 }
 
