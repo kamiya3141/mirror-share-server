@@ -26,9 +26,10 @@ const ERROR_TEMPLATE_URL = 'https://raw.githubusercontent.com/kamiya3141/mirror-
 define('API_URL', [
 	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
 	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
-	'error' => url_join(getMyHostName('api'), 'api-error.php'),
+	'error' => ERROR_TEMPLATE_URL,
 	'md' => url_join(getMyHostName('api'), 'api-markdown.php')
 ]);
+// url_join(getMyHostName('api'), 'api-error.php')
 
 $mimeMap = [
 	'js' => 'application/javascript',
@@ -59,7 +60,8 @@ $convert_query_exist = isset($_GET[CONVERT_STRING]);
 //--------------------------------------------------------------------------------------------------------------
 
 // クエリの受け取り
-function getMyQuery(): void {
+function getMyQuery(): void
+{
 	global $target_query, $other_data_query, $convert_query_exist;
 	$add_filename = ($convert_query_exist ? '' : INDEX_HTML);
 	$target_query = $_GET['target'] ?? '';
@@ -73,13 +75,15 @@ function getMyQuery(): void {
 	$_POST["php-input"] = file_get_contents("php://input") ?? '';
 }
 
-function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string {
+function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string
+{
 	global $mySubDomain;
 	$_sub_dmn = exist($_sub_dmn) ? $_sub_dmn : $mySubDomain;
 	return ($with_protocol ? 'https://' : '') . $_sub_dmn . MY_DOMAIN;
 }
 
-function echoErrorSite(int $_code = 404, string $_word = ''): void {
+function echoErrorSite(int $_code = 404, string $_word = ''): void
+{
 	http_response_code($_code);
 	forwardRemoteFile(API_URL['error'] . '?' . http_build_query([
 		getMyParamKey('error-code') => "{$_code}",
@@ -88,33 +92,39 @@ function echoErrorSite(int $_code = 404, string $_word = ''): void {
 	exit;
 }
 
-function invalidURL(string $_url = '', string $_add_msg = ''): string {
+function invalidURL(string $_url = '', string $_add_msg = ''): string
+{
 	return implode('<br>', ['<h1>Invalid URL</h1>', '* url -> ' . $_url, $_add_msg]);
 }
 
-function isFetchRequest(): bool {
+function isFetchRequest(): bool
+{
 	return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') || isset($_SERVER['HTTP_ORIGIN']) || isset($_SERVER['HTTP_X_REQUESTED_WITH']);
 }
 
-function ecex(mixed ...$_args): void {
+function ecex(mixed ...$_args): void
+{
 	foreach ($_args as $c)
 		echo print_r($c, true) . '<br><br>';
 	exit;
 }
 
-function errorString($_str_ = '-'): string {
+function errorString($_str_ = '-'): string
+{
 	return json_encode([
 		'data' => "error: {$_str_}"
 	]);
 }
 
-function debugString(...$args): string {
+function debugString(...$args): string
+{
 	array_unshift($args, '~begin~' . PHP_EOL);
 	array_push($args, PHP_EOL . '~end~');
 	return join(PHP_EOL, $args);
 }
 
-function getClientIp(): string {
+function getClientIp(): string
+{
 	if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		$ipList = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
 		return trim($ipList[0]);
@@ -122,7 +132,8 @@ function getClientIp(): string {
 	return $_SERVER['REMOTE_ADDR'] ?? UNKNOWN_STRING;
 }
 
-function url_join(string ...$_args): string {
+function url_join(string ...$_args): string
+{
 	$_url = implode('/', array_map(fn($p) => trim($p, '/'), $_args));
 	$_url = preg_replace('#(?<!:)//+#', '/', $_url);
 	if (substr($_url, 0, 5) == 'home/')
@@ -131,7 +142,8 @@ function url_join(string ...$_args): string {
 }
 
 // 最新のバージョンを返す
-function getLatestDir(string $baseDir): ?array {
+function getLatestDir(string $baseDir): ?array
+{
 	$versionDirs = [];
 	if (is_dir($baseDir)) {
 		$dirs = get_dirs($baseDir);
@@ -152,7 +164,8 @@ function getLatestDir(string $baseDir): ?array {
 	return exist($versionDirs) ? end($versionDirs) : null;
 }
 
-function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '') {
+function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '')
+{
 	if (exist($_file_path))
 		header('Content-Disposition: attachment; filename="' . getFileName($_file_path) . '"');
 	header('Content-Type: ' . $_mm);
@@ -160,7 +173,8 @@ function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '') {
 		header('Content-Length: ' . strlen($_cts));
 }
 
-function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): void {
+function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): void
+{
 	global $mimeMap;
 
 	if (empty($_url)) {
@@ -208,7 +222,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		unset($_GET["od"]);
 		$result_url .= (str_contains($result_url, "?") ? "&" : "?") . http_build_query(array_merge($_GET, $_POST));
 	}
-	
+
 	setHeaders('', $mime);
 	$contents = file_get_contents($result_url);
 
@@ -221,34 +235,42 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 	echo $contents;
 }
 
-function exist($_arg): bool {
+function exist($_arg): bool
+{
 	return isset($_arg) && !empty($_arg);
 }
-function getFileName($_arg, $with_ext = true) {
+function getFileName($_arg, $with_ext = true)
+{
 	$_ret = end(explode('/', $_arg));
 	return $with_ext ? $_ret : explode('.', $_ret)[0];
 }
-function getExt($_arg): string {
+function getExt($_arg): string
+{
 	return end(explode('.', getFileName($_arg)));
 }
-function getMyParamKey(string $arg): string {
+function getMyParamKey(string $arg): string
+{
 	return "request-{$arg}-url";
 }
 
-function download_file(string $_url): void {
+function download_file(string $_url): void
+{
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	$cts = file_get_contents($_url);
 	setHeaders($cts, GET_MIME_TYPE, getFileName($_url));
 	echo $cts;
 }
-function get_files(string $_url): array {
+function get_files(string $_url): array
+{
 	return array_values(array_filter(get_contents($_url), 'is_file'));
 }
-function get_dirs($_url): array {
+function get_dirs($_url): array
+{
 	return array_values(array_filter(get_contents($_url), 'is_dir'));
 }
-function get_contents($_url): array {
+function get_contents($_url): array
+{
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
 	return glob($_url . '/*');
