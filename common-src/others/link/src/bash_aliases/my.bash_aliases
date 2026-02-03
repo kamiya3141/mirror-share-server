@@ -8,6 +8,9 @@ alias up-apt="sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove &
 # 個人
 alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba"
 alias updtexut="wget -q --no-cache -O ${HOME}/exec-update.sh https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/shellscript/exec-update.sh && bash ${HOME}/exec-update.sh"
+
+alias scx="screen -xRR"
+alias shd="sudo shutdown now"
 # --- function ---
 # 汎用
 function scdr() {
@@ -27,6 +30,14 @@ function scea() {
 }
 function scda() {
 	sudo systemctl disable $@
+}
+
+function sjc() {
+	sudo journalctl -xeu $@
+}
+
+function sls() {
+	sudo ls -lah $@
 }
 
 function apis() {
