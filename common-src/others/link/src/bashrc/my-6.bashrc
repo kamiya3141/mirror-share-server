@@ -1,3 +1,6 @@
+MYBASHRC="checked"
+MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
+
 # ===== color_def =====
 PROMPT_COLOR_MAIN="\[\033[0;31m\]"
 PROMPT_COLOR_USER="\[\033[0;36m\]"
@@ -29,6 +32,3 @@ set_prompt_command() {
 	PS1="\n${user_host}\n${PROMPT_COLOR_MAIN}┌${underline}┘${PROMPT_COLOR_RESET}\n${PROMPT_COLOR_MAIN}└──> \$${PROMPT_COLOR_RESET} "
 }
 PROMPT_COMMAND=set_prompt_command
-
-export MYBASHRC="checked"
-export MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"

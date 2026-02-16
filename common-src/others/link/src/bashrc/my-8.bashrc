@@ -1,3 +1,6 @@
+MYBASHRC="checked"
+MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
+
 PROMPT_STYLE_ALL_RESET="\[\033[0m\]"
 
 # ===== color_def =====
@@ -83,6 +86,3 @@ function set_prompt_command() {
 
 }
 PROMPT_COMMAND=set_prompt_command
-
-export MYBASHRC="checked"
-export MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"

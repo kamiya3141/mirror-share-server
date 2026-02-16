@@ -1,3 +1,6 @@
+MYBASHRC="checked"
+MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
+
 PROMPT_STYLE_ALL_RESET="\[\033[0m\]"
 
 # ===== color_def =====
@@ -60,14 +63,14 @@ function set_prompt_command() {
 			result_str="$failed_str"
 	fi
 	
-	export LANG=C.UTF-8
-	export LC_ALL=C.UTF-8
+	LANG=C.UTF-8
+	LC_ALL=C.UTF-8
 
 	local current_date="${PROMPT_COLOR_TIME}$(date "+%Y/%m/%d/(%a)")${PROMPT_COLOR_RESET}"
 	local current_time="${PROMPT_COLOR_TIME}$(date "+%H:%M:%S")${PROMPT_COLOR_RESET}"
 
-	export LANG=ja_JP.UTF-8
-	export LC_ALL=ja_JP.UTF-8
+	LANG=ja_JP.UTF-8
+	LC_ALL=ja_JP.UTF-8
 
 	local user_str="${PROMPT_COLOR_USER}$(whoami)${PROMPT_COLOR_RESET}"
 	local host_str="${PROMPT_COLOR_HOST}$(hostname)${PROMPT_COLOR_RESET}"
@@ -81,6 +84,3 @@ function set_prompt_command() {
 
 }
 PROMPT_COMMAND=set_prompt_command
-
-export MYBASHRC="checked"
-export MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"

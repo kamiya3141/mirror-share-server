@@ -82,23 +82,29 @@ function create_exist_updt_utl_file() {
 function wgmbr() {
 	local bashrc_label_num=$1
 	local update_utils_path="/home/${USER}/.update-utils"
-
-	if [ ! "${bashrc_label_num}" ]; then
-		if [ ! -e "${update_utils_path}" ]; then			
-			bashrc_label_num="7"
-			create_exist_updt_utl_file
-			sed -i "2s/.*/${bashrc_label_num}/i" "${update_utils_path}"
+	if [ "${bashrc_label_num}" == "no" ]; then
+		unset PROMPT_COMMAND
+		if [ -e "${MYBASHRC}" ]; then
+			export MYBASHRC="unchecked"
 		fi
-		bashrc_label_num=$(awk "NR==2" "${update_utils_path}")
+	else
+		if [ ! "${bashrc_label_num}" ]; then
+			if [ ! -e "${update_utils_path}" ]; then			
+				bashrc_label_num="7"
+				create_exist_updt_utl_file
+				sed -i "2s/.*/${bashrc_label_num}/i" "${update_utils_path}"
+			fi
+			bashrc_label_num=$(awk "NR==2" "${update_utils_path}")
+		fi
+		local remote_url_path="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
+		if [ "$MY_UPDATE_REMOTE_URL" ]; then
+			remote_url_path="${MY_UPDATE_REMOTE_URL}"
+		fi
+		local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
+		wget --no-cache -q -O "$HOME/my.bashrc" "$url"
+		sed -i "2s/.*/${bashrc_label_num}/i" "${update_utils_path}"
+		rbr
 	fi
-	local remote_url_path="https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src"
-	if [ "$MY_UPDATE_REMOTE_URL" ]; then
-		remote_url_path="${MY_UPDATE_REMOTE_URL}"
-	fi
-	local url="${remote_url_path}/bashrc/my-${bashrc_label_num}.bashrc"
-	wget --no-cache -q -O "$HOME/my.bashrc" "$url"
-	sed -i "2s/.*/${bashrc_label_num}/i" "${update_utils_path}"
-	rbr
 }
 function echo_with_color() {
 	if [ "$MYBASHRC" ]; then
