@@ -50,7 +50,7 @@ html {
 		line-height: inherit;
 		border-collapse: inherit;
 		/*box-shadow: var(--myElementBoxShadow);*/
-		transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;
+		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
 	}
 
 	& > head {
