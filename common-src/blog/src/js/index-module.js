@@ -84,37 +84,37 @@ const before_replace_str_define_array = [
 	],
 	[
 		/(?<=^|\n)######\s(.+)/g,
-		cts => `<h6>${cts}</h6>`,
+		cts => createHnWithDivElement(cts, 6),
 		null,
 		false
 	],
 	[
 		/(?<=^|\n)#####\s(.+)/g,
-		cts => `<h5>${cts}</h5>`,
+		cts => createHnWithDivElement(cts, 5),
 		null,
 		false
 	],
 	[
 		/(?<=^|\n)####\s(.+)/g,
-		cts => `<h4>${cts}</h4>`,
+		cts => createHnWithDivElement(cts, 4),
 		null,
 		false
 	],
 	[
 		/(?<=^|\n)###\s(.+)/g,
-		cts => `<h3>${cts}</h3>`,
+		cts => createHnWithDivElement(cts, 3),
 		null,
 		false
 	],
 	[
 		/(?<=^|\n)##\s(.+)/g,
-		cts => `<h2>${cts}</h2>`,
+		cts => createHnWithDivElement(cts, 2),
 		null,
 		false
 	],
 	[
 		/(?<=^|\n)#\s(.+)/g,
-		cts => `<h1>${cts}</h1>`,
+		cts => createHnWithDivElement(cts, 1),
 		null,
 		false
 	],
@@ -143,6 +143,11 @@ const before_replace_str_define_array = [
 		false
 	]
 ];
+
+function createHnWithDivElement(cts, n) {
+	n = (Number(n) == NaN ? 1 : n);
+	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
+}
 
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 	let result_str = "";
