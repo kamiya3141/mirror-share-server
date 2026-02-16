@@ -191,7 +191,7 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 				let chv = result_array[j];
 				const url = new URL(chv[1]);
 
-				const replaced_str = `<div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="${url.toString()}" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">${url.toString()}</div><div class="embed-iframe-inner-title-hostname">${url.hostname}</div></div><div class="embed-iframe-inner-embed-iframe-root">${new RegExp("^(?:.*\.github\.io|.*\.tshuto\.com)$").test(url.hostname) ? `<iframe src="${url.toString()}"></iframe>` : ""}</div></a></div>`;
+				const replaced_str = `<div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="${url.toString()}" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">${url.toString()}</div><div class="embed-iframe-inner-title-hostname">${url.hostname}</div></div><div class="embed-iframe-inner-embed-iframe-root">${new RegExp("^(?:.*\.github\.io)$").test(url.hostname) ? `<iframe src="${url.toString()}"></iframe>` : ""}</div></a></div>`;
 
 				splited_result_str_arr[i] = splited_result_str_arr[i].replace(chv[1], replaced_str);
 			}
