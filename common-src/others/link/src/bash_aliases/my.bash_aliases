@@ -159,9 +159,9 @@ function gitc() {
 	clear
 }
 
-
+# alias
 # 個人 (wgmbrのため)
-alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba && wgmbr && rbr"
+alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba && wgmbr && rbr"
 
 
 
