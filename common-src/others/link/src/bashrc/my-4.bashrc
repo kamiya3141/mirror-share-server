@@ -1,4 +1,8 @@
-MYBASHRC="checked"
+TMP_MYBASHRC_VAL="checked"
+if [ -e "${MYBASHRC}" ]; then
+	TMP_MYBASHRC_VAL="${MYBASHRC}"
+fi
+MYBASHRC="${TMP_MYBASHRC_VAL}"
 MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
 
 # ===== color_def =====
