@@ -31,4 +31,4 @@ set_prompt_command() {
 PROMPT_COMMAND=set_prompt_command
 
 export MYBASHRC="checked"
-export MY_UPDATE_REMOTE_URL="https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src"
+export MY_UPDATE_REMOTE_URL="https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src"
