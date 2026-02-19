@@ -24,14 +24,14 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/```([\s\S]*?)```/g,
+		/```([^\r\n]*?)```/g,
 		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true),
 		null,
 		null,
 		null
 	],
 	[
-		/`([\s\S]*?)`/g,
+		/`([^\r\n]*?)`/g,
 		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true)
 	],
 	[
