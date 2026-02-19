@@ -79,7 +79,7 @@ var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
 var checkCurrentSystemThemeLight = () => Boolean(!window.matchMedia("(prefers-color-scheme: dark)").matches);
 var checkCurrentSystemThemeDark = () => !checkCurrentSystemThemeLight();
-var useOldUserAgentDataValue = true;
+var useOldUserAgentDataValue = false;
 var checkCurrentDeviceMobile = () => Boolean((new RegExp("Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini", "i")).test(useOldUserAgentDataValue ? navigator.userAgent : (navigator.userAgentData ? (navigator.userAgentData.mobile ? "Android" : "PC") : navigator.userAgent)));
 var checkCurrentDevicePC = () => !checkCurrentDeviceMobile();
 
