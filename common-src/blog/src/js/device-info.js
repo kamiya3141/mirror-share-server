@@ -7,7 +7,7 @@ var device = {
 	"height": 0,
 	"realWidth": 0,
 	"realHeight": 0,
-	"DEBUGMODE": false
+	"DEBUGMODE": true
 };
 
 function editDeviceInformation(_key = "", _value = null) {
