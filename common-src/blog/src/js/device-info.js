@@ -1,6 +1,6 @@
 var device = {
 	"force-theme": false,
-	"theme": (() => checkCurrentSystemThemeLight()),
+	"theme": true,
 	"force-mobile": false,
 	"mobile": true,
 	"width": 0,
