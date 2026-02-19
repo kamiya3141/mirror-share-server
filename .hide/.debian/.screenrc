@@ -1,0 +1,16 @@
+defutf8 on
+defencoding utf8
+encoding utf8 utf8
+
+startup_message off
+vbell off
+
+defscrollback 10000
+
+term xterm-256color
+
+termcapinfo xterm* ti@:te@
+
+escape ^Gg
+
+cjkwidth off

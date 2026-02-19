@@ -25,6 +25,7 @@ Host wrt2
 Host wsl-d0
 	HostName ssh-wsld0.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 
@@ -32,10 +33,12 @@ Host wsl-d0
 Host dn0
 	HostName ssh-dn0.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dn1
 	HostName ssh-dn1.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 
@@ -43,6 +46,7 @@ Host dn1
 Host grd
 	HostName ssh-grd.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 
@@ -50,20 +54,24 @@ Host grd
 Host r0
 	HostName ssh-r0.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host r1
 	HostName ssh-r1.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host r2
 	HostName ssh-r2.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 # Raspberry Pi Zero 2
 Host rz2
 	HostName ssh-rz2.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 
@@ -71,49 +79,69 @@ Host rz2
 Host dh0
 	HostName ssh-dh0.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dh0d0
 	HostName ssh-dh0d0.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dh0d1
 	HostName ssh-dh0d1.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dh0d5
 	HostName ssh-dh0d5.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dh0d6
 	HostName ssh-dh0d6.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
-
+Host dh0dvp
+	HostName ssh-dh0dvp.tshuto.com
+	User tamura
+	Port 22
+	ProxyCommand cloudflared access ssh --hostname %h
 
 # Debian 13 (GUI) - 1
 Host dh1
 	HostName ssh-dh1.tshuto.com
 	User tamura
-	ProxyCommand cloudflared access ssh --hostname %h
-Host dh1dmc
-	HostName ssh-dh1dmc.tshuto.com
-	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 Host dh1ds
 	HostName ssh-dh1ds.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
+Host dh1dmc
+	HostName ssh-dh1dmc.tshuto.com
+	User tamura
+	Port 22
+	ProxyCommand cloudflared access ssh --hostname %h
+
 
 
 # Debian 13 (CLI) - 2
 Host dh2
 	HostName ssh-dh2.tshuto.com
 	User tamura
+	Port 22
+	ProxyCommand cloudflared access ssh --hostname %h
+Host dh2dnc
+	HostName ssh-dnc.tshuto.com
+	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
 
 
-# Debian 13 (CLI) - 3 (HDD-0) -> Unknown
-Host dh3
-	HostName ssh-dh3.tshuto.com
+# Debian 13 (CLI) - [ mgmt-wrt (HDD-0), l3-switch (HDD-1) ]
+Host dmw
+	HostName ssh-dmw.tshuto.com
 	User tamura
+	Port 22
 	ProxyCommand cloudflared access ssh --hostname %h
