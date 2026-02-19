@@ -78,6 +78,10 @@ html {
 
 		&.mobile {
 
+			& * {
+				box-shadow: var(--myElementBoxShadow);
+			}
+
 			& .mobile-element {
 				display: initial;
 			}
@@ -126,6 +130,70 @@ html {
 				height: var(--c1);
 				position: relative;
 
+				& > div#header-div-root-mobile {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: var(--c1);
+					height: var(--c1);
+
+					& > nav.root-nav {
+						width: var(--c1);
+						height: var(--c1);
+
+						& > div {
+							flex: 1;
+							width: auto;
+							height: var(--c1);
+							display: block;
+
+							&#items-box-left-box {
+								display: flex;
+								flex: 8;
+								align-items: flex-end;
+
+								& > nav {
+									width: var(--c1);
+									height: var(--c1);
+
+									& > div#main-nav-box {
+										width: var(--c1);
+										height: var(--c1);
+										display: flex;
+										justify-content: space-between;
+
+										& > div.item-box {
+											flex: 1;
+											width: auto;
+											height: var(--c1);
+											align-items: center;
+											justify-content: center;
+
+											& > a {
+												width: auto;
+												height: auto;
+												text-decoration: none;
+
+												& > div {
+													width: var(--c1);
+													height: var(--c1);
+													font-size: calc(var(--p2) * 2);
+												}
+											}
+										}
+									}
+								}
+							}
+
+							&#items-box-right-box {
+								display: flex;
+								flex: 2;
+								align-items: flex-start;
+							}
+						}
+					}
+				}
+
 				& > div#header-div-root-desktop {
 					display: flex;
 					justify-content: center;
@@ -142,6 +210,18 @@ html {
 							width: auto;
 							height: var(--c1);
 							display: block;
+
+							&#items-box-left-box {
+								& > a {
+									aspect-ratio: 1 / 1;
+									min-width: var(--c-hd-h);
+									height: var(--c1);
+									background-image: url("https://share.tshuto.com/favicon.ico");
+									background-position: center center;
+									background-size: var(--c-mn-h) var(--c-mn-h);
+									background-repeat: no-repeat;
+								}
+							}
 
 							&#items-box-center-box {
 								display: flex;
@@ -180,16 +260,10 @@ html {
 								}
 							}
 
-							&#items-box-left-box {
-								& > a {
-									aspect-ratio: 1 / 1;
-									min-width: var(--c-hd-h);
-									height: var(--c1);
-									background-image: url("https://share.tshuto.com/favicon.ico");
-									background-position: center center;
-									background-size: var(--c-mn-h) var(--c-mn-h);
-									background-repeat: no-repeat;
-								}
+							&#items-box-right-box {
+								display: flex;
+								flex: 1;
+								align-items: center;
 							}
 						}
 					}

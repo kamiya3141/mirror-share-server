@@ -13,7 +13,7 @@
 	<script defer src="https://share.tshuto.com/All.js"></script>
 </head>
 
-<body class="desktop">
+<body>
 	<template id="toggle-switch">
 		<style>
 			@property --toggle-switch-width {
@@ -117,7 +117,33 @@
 				</nav>
 			</div>
 			<div id="header-div-root-mobile" class="mobile-element">
+				<nav id="header-items-box" class="root-nav">
+					<!-- === idの命名規則が不安定・危険 === -->
+					<div id="items-box-left-box">
+						<nav class="main-nav">
+							<div id="main-nav-box">
+								<div class="item-box deco-text">
+									<a href="./home">
+										<div>Home</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./article">
+										<div>Article</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./about">
+										<div>About</div>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+					<div id="items-box-right-box">
 
+					</div>
+				</nav>
 			</div>
 		</section>
 	</header>
