@@ -135,77 +135,17 @@ const before_replace_str_define_array = [
 		cts => `${cts}`,
 		null,
 		false
-	],
+	]
+];
+/*
+,
 	[
 		/<(\/?.+)>\n/g,
 		cts => `<${cts}>`,
 		null,
 		false
-	],
-	[
-		/:::\snote(\n[\s\S]*?):::/g,
-		cts => createNoteInnerHTMLString("info", cts),
-		null,
-		null,
-		null
-	],
-	[
-		/:::\snote\sinfo(\n[\s\S]*?\n):::/g,
-		cts => createNoteInnerHTMLString("info", cts),
-		null,
-		null,
-		null
-	],
-	[
-		/:::\snote\swarn(\n[\s\S]*?\n):::/g,
-		cts => createNoteInnerHTMLString("warn", cts),
-		null,
-		null,
-		null
-	],
-	[
-		/:::\snote\salert(\n[\s\S]*?\n):::/g,
-		cts => createNoteInnerHTMLString("alert", cts),
-		null,
-		null,
-		null
 	]
-];
-
-const before_replace_str_define_array_test = [
-	[
-		new RegExp(`(${SAND_SPL_STR("MYHOSTNAME")})`, "g"),
-		hostname => winMyHrefHostname,
-		null,
-		null,
-		null
-	],
-	[
-		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
-		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
-		[2, 3],
-		null,
-		null
-	],
-	[
-		/```([^\n]*?)\n([\s\S]*?)```/g,
-		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
-		[1, 2],
-		null,
-		null
-	],
-	[
-		/```([^\r\n]*?)```/g,
-		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true),
-		null,
-		null,
-		null
-	],
-	[
-		/`([^\r\n]*?)`/g,
-		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true)
-	]
-];
+*/
 
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
@@ -238,7 +178,7 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 	const mdtxt = await fetch(mdurl).then(res => res.text());
 	let result_str = mdtxt;
 
-	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array_test;
+	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 
 	for (let v of BEFORE_REPLACE_STR_DEFINE_ARRAY) {
 		const result_array = [...result_str.matchAll(v[0])];
