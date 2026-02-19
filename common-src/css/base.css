@@ -492,25 +492,25 @@
 @property --myMainBackgroundColor {
 	syntax: "<color>";
 	inherits: true;
-	/*initial-value: #ffffff;*/
+	initial-value: light-dark(#f6f6f6, #242424);
 }
 
 @property --myTextColor {
 	syntax: "<color>";
 	inherits: true;
-	/*initial-value: #131313;*/
+	initial-value: light-dark(#131313, #ececec);
 }
 
 @property --myElementBackgroundColor {
 	syntax: "<color>";
 	inherits: true;
-	/*initial-value: #f9f9f9;*/
+	initial-value: light-dark(#e7e7e7, #181818);
 }
 
 @property --myElementBackgroundColor2 {
 	syntax: "<color>";
 	inherits: true;
-	/*initial-value: #ffffff;*/
+	initial-value: light-dark(#ffffff, #303030);
 }
 
 @property --myElementBoxShadow {
