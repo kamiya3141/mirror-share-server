@@ -222,6 +222,39 @@ async function parseMarkDown2HTMLContextVersion2(mdurl = "") {
 	return result_str;
 }
 
+
+function afterWorker() {
+	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
+		copyCodeDataForClipBoard(e);
+	}));
+	[...document.querySelectorAll("div.item-box.deco-text > a")].forEach(c => {
+		const preHref = c.getAttribute("href");
+		c.setAttribute("href", getCurrentURLProtocolAndHostname(`/${preHref.split("/").at(-1)}`));
+	});
+}
+
+async function copyCodeDataForClipBoard(e) {
+	try {
+		const rootElement = getParentElement(e.currentTarget, 6);
+		const codeText = rootElement.querySelector("code").innerText;
+		await navigator.clipboard.writeText(codeText);
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+function getParentElement(el, n = 1, getLastElement = true) {
+	let element_memory = [];
+	try {
+		for (n--; n > 0; n--)
+			el = element_memory.at(element_memory.push(el.parentElement) - 1);
+	} catch (error) {
+		console.log(element_memory, error);
+	}
+	return getLastElement ? element_memory.at(-1) : element_memory;
+}
+
+
 async function parseMarkdown(use_version_1 = true) {
 	let currentPathname = winMyHrefPathname;
 	// .comかindex.htmlで終わるようにアクセスされたときの対策
@@ -242,4 +275,4 @@ async function parseMarkdown(use_version_1 = true) {
 	return result_md_str;
 }
 
-export { parseMarkdown as parseMD, getCurrentURLProtocolAndHostname };
+export { parseMarkdown as parseMD, afterWorker as afterFunction };
