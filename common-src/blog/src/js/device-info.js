@@ -1,6 +1,6 @@
 var device = {
 	"force-theme": false,
-	"theme": true,
+	"theme": (() => checkCurrentSystemThemeLight()),
 	"force-mobile": false,
 	"mobile": true,
 	"width": 0,
@@ -37,6 +37,6 @@ window.addEventListener("load", () => {
 	reloadDeviceInformation();
 });
 
-reloadDeviceInformation();
-
 useOldUserAgentDataValue = device["DEBUGMODE"];
+
+reloadDeviceInformation();
