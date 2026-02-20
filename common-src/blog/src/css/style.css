@@ -78,10 +78,6 @@ html {
 
 		&.mobile {
 
-			& * {
-				box-shadow: var(--myElementBoxShadow);
-			}
-
 			& .mobile-element {
 				display: initial;
 			}
@@ -129,70 +125,6 @@ html {
 				width: var(--c1);
 				height: var(--c1);
 				position: relative;
-
-				& > div#header-div-root-mobile {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					width: var(--c1);
-					height: var(--c1);
-
-					& > nav.root-nav {
-						width: var(--c1);
-						height: var(--c1);
-
-						& > div {
-							flex: 1;
-							width: auto;
-							height: var(--c1);
-							display: block;
-
-							&#items-box-left-box {
-								display: flex;
-								flex: 8;
-								align-items: flex-end;
-
-								& > nav {
-									width: var(--c1);
-									height: var(--c1);
-
-									& > div#main-nav-box {
-										width: var(--c1);
-										height: var(--c1);
-										display: flex;
-										justify-content: space-between;
-
-										& > div.item-box {
-											flex: 1;
-											width: auto;
-											height: var(--c1);
-											align-items: center;
-											justify-content: center;
-
-											& > a {
-												width: auto;
-												height: auto;
-												text-decoration: none;
-
-												& > div {
-													width: var(--c1);
-													height: var(--c1);
-													font-size: calc(var(--p2) * 2);
-												}
-											}
-										}
-									}
-								}
-							}
-
-							&#items-box-right-box {
-								display: flex;
-								flex: 2;
-								align-items: flex-start;
-							}
-						}
-					}
-				}
 
 				& > div#header-div-root-desktop {
 					display: flex;
@@ -249,7 +181,7 @@ html {
 												height: auto;
 												text-decoration: none;
 
-												& > div {
+												& > div.item-box_icon-summary {
 													width: var(--c1);
 													height: var(--c1);
 													font-size: calc(var(--p2) * 2);
@@ -264,6 +196,86 @@ html {
 								display: flex;
 								flex: 1;
 								align-items: center;
+							}
+						}
+					}
+				}
+
+				& > div#header-div-root-mobile {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: var(--c1);
+					height: var(--c1);
+
+					& > nav.root-nav {
+						width: var(--c1);
+						height: var(--c1);
+
+						& > div {
+							flex: 1;
+							width: auto;
+							height: var(--c1);
+							display: block;
+
+							&#items-box-left-box {
+								display: flex;
+								flex: 8;
+								align-items: flex-end;
+
+								& > nav {
+									width: var(--c1);
+									height: var(--c1);
+
+									& > div#main-nav-box {
+										width: var(--c1);
+										height: var(--c1);
+										display: flex;
+										justify-content: space-between;
+
+										& > div.item-box {
+											flex: 1;
+											width: auto;
+											height: var(--c1);
+											align-items: center;
+											justify-content: center;
+
+											& > a {
+												width: var(--c1);
+												height: var(--c1);
+												text-decoration: none;
+												flex-direction: column;
+
+												& > * {
+													width: var(--c1);
+													height: auto;
+												}
+
+												& > div.item-box_icon-box {
+													flex: 8;
+
+													& > svg.icon-box_icon-img {
+														aspect-ratio: 1/1;
+														width: 65%;
+														height: 65%;
+													}
+												}
+
+												& > div.item-box_icon-summary {
+													flex: 2;
+													min-height: var(--c-hd-h);
+													font-size: calc(var(--p2) * 2);
+												}
+											}
+										}
+									}
+								}
+							}
+
+							&#items-box-right-box {
+								display: flex;
+								flex: 2;
+								align-items: flex-start;
 							}
 						}
 					}

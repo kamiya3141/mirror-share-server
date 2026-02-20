@@ -95,17 +95,17 @@
 							<div id="main-nav-box">
 								<div class="item-box deco-text">
 									<a href="./home">
-										<div>Home</div>
+										<div class="item-box_icon-summary">Home</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
 									<a href="./article">
-										<div>Article</div>
+										<div class="item-box_icon-summary">Article</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
 									<a href="./about">
-										<div>About</div>
+										<div class="item-box_icon-summary">About</div>
 									</a>
 								</div>
 							</div>
@@ -118,23 +118,46 @@
 			</div>
 			<div id="header-div-root-mobile" class="mobile-element">
 				<nav id="header-items-box" class="root-nav">
-					<!-- === idの命名規則が不安定・危険 === -->
+					<!-- === idの命名規則が不安定・危険、作りが粗雑 === -->
 					<div id="items-box-left-box">
 						<nav class="main-nav">
 							<div id="main-nav-box">
 								<div class="item-box deco-text">
 									<a href="./home">
-										<div>Home</div>
+										<div class="item-box_icon-box">
+											<svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background-color: rgba(0, 0, 0, 0);">
+												<g fill="var(--myTextColor)">
+													<path d="M 60, 65 L 50, 65 L 40, 65 L 40, 90 L15, 90 L15, 50 L 5, 50 L 50, 10 L 95, 50 L 85, 50 L 85, 90 L 60, 90" />
+													<rect x="65" y="20" width="15" height="70" />
+												</g>
+											</svg>
+										</div>
+										<div class="item-box_icon-summary">Home</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
 									<a href="./article">
-										<div>Article</div>
+										<div class="item-box_icon-box">
+											<svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background-color: rgba(0, 0, 0, 0);">
+												<g stroke="var(--myTextColor)" stroke-linejoin="round" stroke-linecap="round" stroke-width="3" fill-opacity="0">
+													<rect x="15" y="15" width="70" height="70" />
+													<rect x="20" y="20" width="27" height="30" />
+													<line x1="55" y1="25" x2="80" y2="25" />
+													<line x1="55" y1="45" x2="80" y2="45" />
+													<line x1="20" y1="60" x2="80" y2="60" />
+													<line x1="20" y1="75" x2="80" y2="75" />
+												</g>
+											</svg>
+										</div>
+										<div class="item-box_icon-summary">Article</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
 									<a href="./about">
-										<div>About</div>
+										<div class="item-box_icon-box">
+											<img src="" class="icon-box_icon-img" />
+										</div>
+										<div class="item-box_icon-summary">About</div>
 									</a>
 								</div>
 							</div>
