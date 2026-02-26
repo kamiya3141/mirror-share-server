@@ -252,17 +252,17 @@ html {
 												}
 
 												& > div.item-box_icon-box {
-													flex: 8;
+													flex: 6;
 
 													& > svg.icon-box_icon-img {
 														aspect-ratio: 1/1;
-														width: 65%;
-														height: 65%;
+														width: 75%;
+														height: 75%;
 													}
 												}
 
 												& > div.item-box_icon-summary {
-													flex: 2;
+													flex: 4;
 													min-height: var(--c-hd-h);
 													font-size: calc(var(--p2) * 2);
 												}
