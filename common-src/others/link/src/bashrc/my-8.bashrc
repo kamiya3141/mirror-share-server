@@ -79,9 +79,9 @@ function set_prompt_command() {
 	local prevent_main_str=$(surround_item_char "${result_str}" "${current_date}" "${current_time}")
 
 	local main_str="${PROMPT_BG_COLOR_USER}"
-	local user_str="${PROMPT_COLOR_USER} \u ${PROMPT_BG_COLOR_HOST}${PROMPT_COLOR_USER}${PROMPT_OTHER_CHAR_MAIN}"
-	local host_str="${PROMPT_COLOR_HOST} \h ${PROMPT_BG_COLOR_CDIR}${PROMPT_COLOR_HOST}${PROMPT_OTHER_CHAR_MAIN}"
-	local cdir_str="${PROMPT_COLOR_CDIR} $(pwd) ${PROMPT_BG_COLOR_RESET}${PROMPT_COLOR_CDIR}${PROMPT_OTHER_CHAR_MAIN}"
+	local user_str="${PROMPT_COLOR_USER} \u ${PROMPT_BG_COLOR_HOST}${PROMPT_COLOR_USER2}${PROMPT_OTHER_CHAR_MAIN}"
+	local host_str="${PROMPT_COLOR_HOST} \h ${PROMPT_BG_COLOR_CDIR}${PROMPT_COLOR_HOST2}${PROMPT_OTHER_CHAR_MAIN}"
+	local cdir_str="${PROMPT_COLOR_CDIR} $(pwd) ${PROMPT_BG_COLOR_RESET}${PROMPT_COLOR_CDIR2}${PROMPT_OTHER_CHAR_MAIN}"
 	main_str+="${user_str}${host_str}${cdir_str}"
 	main_str+="${PROMPT_COLOR_RESET}${PROMPT_BG_COLOR_RESET}"
 	main_str+="${PROMPT_STYLE_ALL_RESET}"
