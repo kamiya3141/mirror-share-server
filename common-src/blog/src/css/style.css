@@ -260,12 +260,6 @@ html {
 
 											& > .item-box_icon-box {
 												flex: 6;
-
-												& > .icon-box_icon-img {
-													aspect-ratio: 1/1;
-													width: 75%;
-													height: 75%;
-												}
 											}
 
 											& > .item-box_icon-summary {
@@ -273,6 +267,13 @@ html {
 												min-height: var(--c-hd-h);
 												font-size: calc(var(--p2) * 2);
 											}
+										}
+
+										& .icon-box_icon-img {
+											aspect-ratio: 1/1;
+											width: 75%;
+											height: 75%;
+											color: var(--myTextColor);
 										}
 									}
 								}

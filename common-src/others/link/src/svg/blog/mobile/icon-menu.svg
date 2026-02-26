@@ -1,7 +1,10 @@
-<svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background-color: rgba(0, 0, 0, 0);">
-	<g stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="5">
-		<line x1="25" y1="30" x2="75" y2="30" />
-		<line x1="25" y1="50" x2="75" y2="50" />
-		<line x1="25" y1="70" x2="75" y2="70" />
-	</g>
+<svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+	<style>
+		rect {
+			fill: currentColor;
+		}
+	</style>
+	<rect x="12.5" y="15" width="75" height="10" />
+	<rect x="12.5" y="45" width="75" height="10" />
+	<rect x="12.5" y="75" width="75" height="10" />
 </svg>
