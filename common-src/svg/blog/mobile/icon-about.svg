@@ -1,4 +1,6 @@
-<svg id="parent-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background-color: rgba(0, 0, 0, 0); stroke: currentColor">
+<?xml-stylesheet type="text/css" href="https://css.tshuto.com/base.css"?>
+<svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+	<script href="https://jst.tshuto.com/tamura-first-load.js?svg"></script>
 	<g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-opacity="0">
 		<circle cx="50" cy="20" r="15" />
 		<path d="

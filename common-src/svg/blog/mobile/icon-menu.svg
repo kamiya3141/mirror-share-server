@@ -1,5 +1,7 @@
+<?xml-stylesheet type="text/css" href="https://css.tshuto.com/base.css"?>
 <svg class="icon-box_icon-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-	<g fill="white">
+	<script href="https://jst.tshuto.com/tamura-first-load.js?svg"></script>
+	<g fill="currentColor">
 		<rect x="12.5" y="15" width="75" height="10" />
 		<rect x="12.5" y="45" width="75" height="10" />
 		<rect x="12.5" y="75" width="75" height="10" />

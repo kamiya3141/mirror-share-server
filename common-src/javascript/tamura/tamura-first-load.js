@@ -36,26 +36,36 @@ var winMyHrefPTCHNPathname = `${winMyHrefPTCHostname}${winMyHrefPathname}`;
 var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
 (() => {
-	adds_head([
-		["link", "icon", "favicon.ico", "image/x-icon"],
-		["link", "stylesheet", "common-src/css/base.css"]
-	]);
+	const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))))).searchParams.has("svg") || false;
 
-	const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css") || true;
-	if (!only_css)
-		adds_body([
-			["script", "common-src/javascript/function/math.js"],
-			["script", "common-src/javascript/function/other.js"]
+	if (!this_is_svg_file) {
+
+		adds_head([
+			["link", "icon", "favicon.ico", "image/x-icon"],
+			["link", "stylesheet", "common-src/css/base.css"]
 		]);
+
+		const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css") || true;
+		if (!only_css)
+			adds_body([
+				["script", "common-src/javascript/function/math.js"],
+				["script", "common-src/javascript/function/other.js"]
+			]);
+	}
+
+	function createLinkElement(arr_ch = []) {
+		let l = document.createElement(arr_ch[0]);
+		l.setAttribute("rel", arr_ch[1]);
+		l.setAttribute("defer", "");
+		l.setAttribute("href", `${winMySrcFileBasePath}/${arr_ch[2]}`);
+		if (arr_ch[3] != null) l.setAttribute("type", arr_ch[3]);
+		return l;
+	}
 
 	function adds_head(arr = [["", "", ""]]) {
 		let head = document.getElementsByTagName("head")[0];
 		for (let i = 0; i < arr.length; i++) {
-			let link = document.createElement(arr[i][0]);
-			link.setAttribute("rel", arr[i][1]);
-			link.setAttribute("defer", "");
-			link.setAttribute("href", `${winMySrcFileBasePath}/${arr[i][2]}`);
-			if (arr[i][3] != null) link.setAttribute("type", arr[i][3]);
+			let link = createLinkElement(arr[i]);
 			if (String(arr[i][2]).includes("/base.css")) {
 				if ([...head.getElementsByTagName("link")].some(c => String(c.getAttribute("href")).includes("/base.css")))
 					continue;
