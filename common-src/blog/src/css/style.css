@@ -196,6 +196,10 @@ html {
 								display: flex;
 								flex: 1;
 								align-items: center;
+
+								& .setting-theme-box > * {
+									flex: 1;
+								}
 							}
 						}
 					}
@@ -273,7 +277,6 @@ html {
 											aspect-ratio: 1/1;
 											width: 75%;
 											height: 75%;
-											border: none;
 										}
 									}
 								}
@@ -700,6 +703,10 @@ html {
 
 		& section {
 			display: block;
+		}
+
+		& iframe {
+			border: none;
 		}
 
 		& .deco-text {
