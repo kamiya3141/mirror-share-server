@@ -143,6 +143,16 @@ html {
 							height: var(--c1);
 							display: block;
 
+							& > .main-nav {
+								width: var(--c1);
+								height: var(--c1);
+
+								& > .main-nav-box {
+									width: var(--c-mn-h);
+									height: var(--c1);
+								}
+							}
+
 							&#items-box-left-box {
 								& > a {
 									aspect-ratio: 1 / 1;
@@ -160,32 +170,25 @@ html {
 								flex: 3;
 								align-items: flex-start;
 
-								& > * {
-									width: var(--c1);
-									height: var(--c1);
+								& > .main-nav > .main-nav-box {
+									display: flex;
+									justify-content: space-between;
 
-									& > .main-nav-box {
-										width: var(--c-mn-h);
-										height: var(--c1);
-										display: flex;
-										justify-content: space-between;
+									& > .item-box {
+										min-width: calc(var(--c1) / 5);
+										height: var(--c-mn-h);
+										align-items: center;
+										justify-content: center;
 
-										& > .item-box {
-											min-width: calc(var(--c1) / 5);
-											height: var(--c-mn-h);
-											align-items: center;
-											justify-content: center;
+										& > a {
+											width: auto;
+											height: auto;
+											text-decoration: none;
 
-											& > a {
-												width: auto;
-												height: auto;
-												text-decoration: none;
-
-												& > .item-box_icon-summary {
-													width: var(--c1);
-													height: var(--c1);
-													font-size: calc(var(--p2) * 2);
-												}
+											& > .item-box_icon-summary {
+												width: var(--c1);
+												height: var(--c1);
+												font-size: calc(var(--p2) * 2);
 											}
 										}
 									}
@@ -197,8 +200,9 @@ html {
 								flex: 1;
 								align-items: center;
 
-								& .setting-theme-box > * {
-									flex: 1;
+								& > .main-nav > .main-nav-box > .setting-general-box > * {
+									width: 75%;
+									height: 75%;
 								}
 							}
 						}
@@ -272,17 +276,17 @@ html {
 												font-size: calc(var(--p2) * 2);
 											}
 										}
-
-										& .icon-box_icon-img {
-											aspect-ratio: 1/1;
-											width: 75%;
-											height: 75%;
-										}
 									}
 								}
 							}
 						}
 					}
+				}
+
+				& .icon-box_icon-img {
+					aspect-ratio: 1/1;
+					width: 75%;
+					height: 75%;
 				}
 			}
 		}
