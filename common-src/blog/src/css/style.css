@@ -296,6 +296,14 @@ html {
 			}
 		}
 
+		section#setting-display-section {
+			display: none;
+			position: fixed;
+			z-index: 999;
+			width: var(--myStylingWidth);
+			height: var(--myStylingHeight);
+		}
+
 		& > div#root {
 			top: auto;
 			min-height: calc(var(--c-hd-h) / 2);
