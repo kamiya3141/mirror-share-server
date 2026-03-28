@@ -2,18 +2,20 @@ const w = 100;
 const h = 100;
 const cx = w / 2;
 const cy = h / 2;
-const r1 = (w + h) / 4;
+const r1 = (w + h) / 8;
 const r2 = r1 * 0.5;
 const n = 6;
-const dtr = 5;
+const dtr = 20;
 
 let d = "";
 
 for (let i = 0; i < n; i++) {
-	const dis_r00 = i * (n / 360);
-	const dis_r10 = (i + 1) * (n / 360);
-	const dis_r01 = radians(dis_r00 + dtr);
-	const dis_r11 = radians(dis_r10 - dtr);
+	const dis_r0 = i * (360 / n) - 90;
+	const dis_r1 = (i + 1) * (360 / n) - 90;
+	const dis_r00 = radians(dis_r0);
+	const dis_r10 = radians(dis_r1);
+	const dis_r01 = radians(dis_r0 + dtr);
+	const dis_r11 = radians(dis_r1 - dtr);
 	// 歯車の根本
 	const x00 = cx + cos(dis_r01) * r1;
 	const y00 = cy + sin(dis_r01) * r1;
@@ -29,7 +31,7 @@ for (let i = 0; i < n; i++) {
 
 	const pos_arr_str = l_str + [[x00, y00], [x10, y10], [x11, y11]].map(c => ` ${c.join(", ")}`).join(l_str);
 
-	d += (i == 0 ? "M" : l_str) + ` ${x01}, ${y01}`;
+	d += (i == 0 ? "M" : l_str) + ` ${x01}, ${y01}` + pos_arr_str;
 
 }
 
