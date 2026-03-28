@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<template id="toggle-switch">
+	<template id="toggle-switch-template">
 		<style>
 			@property --toggle-switch-width {
 				syntax: "<length>";
@@ -77,6 +77,95 @@
 		<div class="toggle_button">
 			<input id="toggle" class="toggle_input" type="checkbox" />
 			<label for="toggle" class="toggle_label"></label>
+		</div>
+	</template>
+	<template id="display-template">
+		<style>
+			.display-item-box {
+				width: 100%;
+				height: 100%;
+			}
+
+			.contents {
+				width: 100%;
+			}
+
+			.main-contents {
+				height: 80%;
+			}
+
+			.sub-contents {
+				height: 10%;
+			}
+
+			.corner-box {
+				width: 20%;
+				height: 100%;
+			}
+
+
+			#corner-00 {
+				border-radius: 999em 0 0 0;
+			}
+
+			#corner-10 {
+				border-radius: 0 999em 0 0;
+			}
+
+			#corner-11 {
+				border-radius: 0 0 999em 0;
+			}
+
+			#corner-01 {
+				border-radius: 0 0 0 999em;
+			}
+
+			iframe {
+				aspect-ratio: 1/1;
+				width: 75%;
+				height: 75%;
+			}
+		</style>
+		<div class="display-item-box">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div id="corner-00"></div>
+						<div id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">
+						<div id="text-box"></div>
+					</div>
+					<div class="corner-box right-corner control-box">
+						<div id="control-box"></div>
+						<div id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents"></div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div id="corner-01"></div>
+						<div></div>
+					</div>
+					<div class="text-box footer-text">
+						<div id="text-box"></div>
+					</div>
+					<div class="corner-box right-corner">
+						<div></div>
+						<div id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</template>
+	<!-- 以下特殊用途のtemplate -->
+	<template id="display-setting-template">
+		<div style="font-size: large;">
+			This is me !!
 		</div>
 	</template>
 	<span id="console-ok"></span>
@@ -167,13 +256,18 @@
 				</nav>
 			</div>
 		</section>
+		<section id="setting-display-section">
+			<div id="setting-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings">
+
+			</div>
+		</section>
 	</header>
 	<div id="root">
 		<main id="root-main">
 			<section id="main-section">
 				<div id="main-contentsbox-root">
 					<div id="main-contentsbox">
-						記事を読み込み中・・・
+						コンテンツを読み込み中・・・
 					</div>
 				</div>
 			</section>

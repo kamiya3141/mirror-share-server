@@ -5,6 +5,10 @@ const scriptSettingObjectArray = [
 		"type": ""
 	},
 	{
+		"src": "src/js/setup.js",
+		"type": ""
+	},
+	{
 		"src": "src/js/script.js",
 		"type": "module"
 	}

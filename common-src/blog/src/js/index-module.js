@@ -3,6 +3,12 @@ const SAND_SPL_STR = _str_ => `${SPL_STR}${_str_}${SPL_STR}`;
 
 const before_replace_str_define_array = [
 	[
+		/<(\/?.+)>\n/g,
+		cts => `<${cts}>`,
+		null,
+		false
+	],
+	[
 		new RegExp(`(${SAND_SPL_STR("MYHOSTNAME")})`, "g"),
 		hostname => winMyHrefHostname,
 		null,
@@ -137,15 +143,6 @@ const before_replace_str_define_array = [
 		false
 	]
 ];
-/*
-,
-	[
-		/<(\/?.+)>\n/g,
-		cts => `<${cts}>`,
-		null,
-		false
-	]
-*/
 
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
