@@ -176,7 +176,7 @@ html {
 
 									& > .item-box {
 										min-width: calc(var(--c1) / 5);
-										height: var(--c-mn-h);
+										height: var(--c1);
 										align-items: center;
 										justify-content: center;
 
@@ -200,9 +200,14 @@ html {
 								flex: 1;
 								align-items: center;
 
-								& > .main-nav > .main-nav-box > .setting-general-box > * {
-									width: 75%;
-									height: 75%;
+								& > .main-nav > .main-nav-box > .setting-general-box {
+									width: var(--c1);
+									height: var(--c1);
+
+									& > iframe {
+										width: 75%;
+										height: 75%;
+									}
 								}
 							}
 						}
