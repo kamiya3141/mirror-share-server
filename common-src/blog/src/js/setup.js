@@ -30,18 +30,16 @@ function convertEnvVars(input_var = "") {
 			case "CLASS":
 				input_var = document.getElementsByClassName(res_arr[1])[0];
 				break;
-			case "ATTRIBUTE":
-				input_var = document.getAttribute(res_arr[1]);
-				break;
 			default:
 				break;
 		}
+		input_var = cloneTemplate(input_var, true);
 	}
 	return input_var;
 }
 
-function cloneTemplate(id_name = "") {
-	const template = document.getElementById(id_name);
+function cloneTemplate(input, not_id = false) {
+	const template = (not_id ? input : document.getElementById(input));
 	const flag = template.content.cloneNode(true);
 	return flag;
 }

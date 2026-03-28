@@ -297,11 +297,22 @@ html {
 		}
 
 		section#setting-display-section {
-			display: none;
+			display: flex;
+			opacity: 0.25;
 			position: fixed;
 			z-index: 999;
+			align-items: center;
+			justify-content: center;
+			left: 0;
+			top: 0;
 			width: var(--myStylingWidth);
 			height: var(--myStylingHeight);
+
+			& > #setting-display-div-main {
+				width: var(--c-mn-h);
+				height: var(--c-mn-h);
+
+			}
 		}
 
 		& > div#root {
