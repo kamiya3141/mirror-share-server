@@ -32,5 +32,3 @@ function switchingOpenDisplay(query = "") {
 	console.log(data);
 	document.querySelector(query).setAttribute(attr_name, (data == "false" ? "true" : "false"));
 }
-
-switchingOpenDisplay("#setting-display-section");

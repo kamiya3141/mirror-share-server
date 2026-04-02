@@ -305,11 +305,11 @@ html {
 		}
 
 		section#setting-display-section {
-			&[data-setting-menu-open="true"] {
+			&[data-display-open="true"] {
 				display: flex;
 			}
 
-			&[data-setting-menu-open="false"] {
+			&[data-display-open="false"] {
 				display: none;
 			}
 
