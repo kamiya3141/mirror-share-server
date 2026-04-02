@@ -11,6 +11,8 @@ async function mainFunc() {
 
 window.addEventListener("load", mainFunc);
 
+// https://nextcloud.tshuto.com/public.php/dav/files/RPi6mQDEFreTjr6/blog/md/home.md
+
 document.getElementById("open-setting-display-button-element").addEventListener("click", switchingOpenSettingDisplay, true);
 
 function switchingOpenSettingDisplay(e) {

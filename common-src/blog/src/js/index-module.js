@@ -270,8 +270,10 @@ async function parseMarkdown(use_version_1 = true) {
 	if (currentPathname.at(-1) == "/")
 		currentPathname = currentPathname.substring(0, currentPathname.length - 1);
 
-	const filePath = currentPathname;
-	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}.md`);
+	currentPathname = String(currentPathname);
+
+	const filePath = (currentPathname.slice(-3, currentPathname.length) == ".md" ? currentPathname : `${currentPathname}.md`);
+	const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}`);
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
 	return result_md_str;
