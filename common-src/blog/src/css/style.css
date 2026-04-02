@@ -746,7 +746,8 @@ html {
 			}
 		}
 
-		& .display-none {
+		& .display-none,
+		style {
 			display: none !important;
 		}
 
@@ -865,6 +866,10 @@ html {
 			#corner-01 {
 				border-radius: 0 0 0 999em;
 			}
+		}
+
+		& #display-setting-main-contents-setting {
+			overflow-y: auto;
 		}
 	}
 }

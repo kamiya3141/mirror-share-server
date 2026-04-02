@@ -31,7 +31,7 @@ async function mainFunc() {
 			});
 		});
 		focus_out_elem.addEventListener("focusout", e => {
-			if (getOpenDisplayStatus(switched_elem))
+			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem))
 				switchingOpenDisplay(switched_elem);
 		});
 	});

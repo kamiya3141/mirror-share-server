@@ -9,15 +9,26 @@ const template_data_function_map = {
 		else
 			main_contents.appendChild(contents);
 
+		convertTemplateElement(main_contents);
+
+		return flag;
+	},
+	"toggle-switch-template": device_setting_id => {
+		const flag = cloneTemplate("toggle-switch-template");
+		flag.querySelector(".toggle_input").addEventListener("change", e => editDeviceInformation(device_setting_id));
 		return flag;
 	}
 };
 
-[...document.getElementsByClassName("import-template-append")].forEach(c => {
-	const temp_id_data = c.getAttribute("template-id-data");
-	const temp_id_args = c.getAttribute("template-id-args").split(" ").map(arg => convertEnvVars(arg));
-	c.appendChild(template_data_function_map[temp_id_data](...temp_id_args));
-});
+convertTemplateElement(document);
+
+function convertTemplateElement(elem = document) {
+	[...elem.querySelectorAll(".import-template-append")].forEach(c => {
+		const temp_id_data = c.getAttribute("template-id-data");
+		const temp_id_args = c.getAttribute("template-id-args").split(" ").map(arg => convertEnvVars(arg));
+		c.appendChild(template_data_function_map[temp_id_data](...temp_id_args));
+	});
+}
 
 function convertEnvVars(input_var = "") {
 	const reg = new RegExp("%_(.*?):(.*?)");

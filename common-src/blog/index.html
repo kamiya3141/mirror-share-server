@@ -123,8 +123,28 @@
 	</template>
 	<!-- 以下特殊用途のtemplate -->
 	<template id="display-setting-template">
-		<div style="font-size: large;">
-			This is me !!
+		<div id="display-setting-main-contents-setting">
+			<section id="tab-bar">
+				<div class="tab-bar--contents" id="tb--appearance">
+					<div>表示設定</div>
+				</div>
+				<div class="tab-bar--contents" id="tb--user-data">
+					<div>ユーザデータ</div>
+				</div>
+				<div class="tab-bar--contents" id="tb--setting-data">
+					<div>設定データ</div>
+				</div>
+			</section>
+			<section id="tab-contents-box">
+				<div class="tab-contents-box--item" id="tc--appearance">
+					<div class="item-box">
+						<div>テーマの強制を許可</div>
+						<div class="import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--user-data"></div>
+				<div class="tab-contents-box--item" id="tc--setting-data"></div>
+			</section>
 		</div>
 	</template>
 	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
@@ -216,9 +236,7 @@
 		</section>
 	</header>
 	<section id="setting-display-section" data-display-open="false">
-		<div id="setting-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings">
-
-		</div>
+		<div id="setting-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings"></div>
 	</section>
 	<div id="root">
 		<main id="root-main">
