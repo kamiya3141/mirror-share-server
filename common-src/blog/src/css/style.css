@@ -315,7 +315,7 @@ html {
 
 			background-color: var(--myElementBackgroundColor);
 			position: fixed;
-			z-index: 999;
+			z-index: 991;
 			align-items: center;
 			justify-content: center;
 			left: 0;
@@ -327,6 +327,12 @@ html {
 				background-color: var(--clear);
 				width: var(--c-mn-h);
 				height: var(--c-mn-h);
+
+				&:focus {
+					& > div > div {
+						background-color: red;
+					}
+				}
 			}
 
 		}

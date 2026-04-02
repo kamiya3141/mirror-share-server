@@ -40,8 +40,10 @@ function switchingOpenDisplay(elem = "") {
 	const data = elem.getAttribute(attr_name);
 	let data_is_true = Boolean(data == "true");
 
-	if (!data_is_true)
+	if (!data_is_true) {
 		elem.focus();
+		console.log(elem.tabIndex);
+	}
 
 	elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
 }
