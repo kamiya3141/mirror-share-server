@@ -1,4 +1,4 @@
-<template>
+<template id="toggle-switch-template">
 	<style>
 		@property --toggle-switch-width {
 			syntax: "<length>";
@@ -29,10 +29,10 @@
 				&+.toggle_label {
 					width: var(--tgl-w);
 					height: var(--tgl-h);
-					background: #ccc;
+					background-color: #ccc;
 					border-radius: var(--tgl-r);
 					display: inline-block;
-					transition: background-color 0.4s;
+					transition: background-color 0.5s;
 					position: relative;
 
 					&::after {
@@ -40,7 +40,7 @@
 						position: absolute;
 						width: var(--tgl-h);
 						height: var(--tgl-h);
-						background: #fff;
+						background-color: #fff;
 						border-radius: 50%;
 						top: 0;
 						left: 0;
