@@ -272,8 +272,8 @@ async function parseMarkdown(use_version_1 = true) {
 
 	currentPathname = String(currentPathname);
 
-	const filePath = (currentPathname.slice(-3, currentPathname.length) == ".md" ? currentPathname : `${currentPathname}.md`);
-	// const fileURL = `https://nextcloud.tshuto.com/s/RPi6mQDEFreTjr6/download?path=/blog/md&files=${filePath}`;
+	const filePath = String(currentPathname.slice(-3, currentPathname.length) == ".md" ? currentPathname : `${currentPathname}.md`);
+	let resultPath = filePath.split("/");
 	const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/RPi6mQDEFreTjr6/blog/md/${filePath}`;
 	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}`);
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
