@@ -330,7 +330,7 @@ html {
 
 				&:focus {
 					& > div > div {
-						background-color: red;
+						background-color: red !important;
 					}
 				}
 			}
