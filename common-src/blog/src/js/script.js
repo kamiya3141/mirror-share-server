@@ -37,9 +37,27 @@ async function mainFunc() {
 				switchingOpenDisplay(switched_elem);
 		});
 	});
+
 	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
 	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
 		editDeviceInformation("prefer-color", e.target.value);
+	});
+
+	const setting_elem = document.getElementById("display-setting-main-contents-setting");
+	const setting_display_main_contents_tab_bar_item_array = ["appearance", "user-data", "setting-data"];
+
+	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
+		setting_elem.querySelector(c1).addEventListener("click", e => {
+			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
+				if (c1.split("--")[1] == c2.split("--")[1]) {
+					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
+					setting_elem.querySelector(c2).style.display = "flex";
+				} else {
+					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
+					setting_elem.querySelector(c2).style.display = "none";
+				}
+			});
+		});
 	});
 }
 
