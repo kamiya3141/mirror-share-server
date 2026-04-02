@@ -11,11 +11,18 @@ async function mainFunc() {
 
 window.addEventListener("load", mainFunc);
 
-// https://nextcloud.tshuto.com/public.php/dav/files/RPi6mQDEFreTjr6/blog/md/home.md
+const displayElementIdArray = [
+	"open-setting-display-button-element"
+];
+displayElementIdArray.forEach(id => {
+	document.getElementById(id).addEventListener("click", e => {
+		switchingOpenDisplay(id);
+	}, true);
+});
 
-document.getElementById("open-setting-display-button-element").addEventListener("click", switchingOpenSettingDisplay, true);
 
-function switchingOpenSettingDisplay(e) {
-	const data = document.getElementById("setting-display-section").getAttribute("data-setting-menu-open");
-	document.getElementById("setting-display-section").setAttribute("data-setting-menu-open", data == "false" ? "true" : "false");
+function switchingOpenDisplay(_id = "") {
+	const attr_name = "data-display-open";
+	const data = document.getElementById(_id).getAttribute(attr_name);
+	document.getElementById(_id).setAttribute(attr_name, (data == "false" ? "true" : "false"));
 }
