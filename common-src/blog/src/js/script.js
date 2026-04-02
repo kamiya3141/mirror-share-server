@@ -24,11 +24,11 @@ displayElementQueryArray.forEach(obj => {
 	obj["trigger-element"].forEach(el => {
 		document.querySelector(el).addEventListener("click", e => {
 			switchingOpenDisplay(obj["switched-element"]);
-		}, true);
+		});
 	});
 	document.querySelector(obj["focus-out-element"]).addEventListener("focusout", e => {
 		switchingOpenDisplay(obj["switched-element"]);
-	}, true);
+	});
 });
 
 
