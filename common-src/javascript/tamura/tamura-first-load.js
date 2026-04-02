@@ -135,10 +135,12 @@ window.addEventListener("resize", () => {
 
 window.addEventListener("load", () => {
 	setTheme(setThemeArgsHistory);
+	/*
 	(() => {
 		if (document.getElementById("console-ok") == null) {
 			console.clear();
 			console.log("コンソールに入力しないでください");
 		}
 	})();
+	*/
 });

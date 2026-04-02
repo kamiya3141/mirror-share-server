@@ -21,19 +21,16 @@ const displayElementQueryArray = [
 ];
 
 displayElementQueryArray.forEach(obj => {
-	obj["trigger-element"].forEach(el => {
-		document.querySelector(el).addEventListener("click", e => {
-			switchingOpenDisplay(obj["switched-element"]);
-		});
-	});
-	document.querySelector(obj["focus-out-element"]).addEventListener("focusout", e => {
-		switchingOpenDisplay(obj["switched-element"]);
-	});
+	obj["trigger-element"].forEach(el => document.querySelector(el).addEventListener("click", e => switchingOpenDisplay(obj["switched-element"])));
+	document.querySelector(obj["focus-out-element"]).addEventListener("blur", e => switchingOpenDisplay(obj["switched-element"]));
 });
 
 
 function switchingOpenDisplay(query = "") {
 	const attr_name = "data-display-open";
 	const data = document.querySelector(query).getAttribute(attr_name);
+	console.log(data);
 	document.querySelector(query).setAttribute(attr_name, (data == "false" ? "true" : "false"));
 }
+
+switchingOpenDisplay("#setting-display-section");
