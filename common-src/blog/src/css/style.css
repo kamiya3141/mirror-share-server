@@ -313,7 +313,7 @@ html {
 				display: none;
 			}
 
-			background-color: var(--myElementBackgroundColor);
+			background-color: var(--gray7);
 			position: fixed;
 			z-index: 991;
 			align-items: center;
@@ -328,11 +328,6 @@ html {
 				width: var(--c-mn-h);
 				height: var(--c-mn-h);
 			}
-
-			& > #setting-display-div-main:focus-within {
-				background-color: red !important;
-			}
-
 		}
 
 		& > div#root {
@@ -788,6 +783,10 @@ html {
 			flex-direction: column;
 			position: relative;
 
+			&:focus-visible {
+				outline: none;
+			}
+
 			& > .contents {
 				width: 100%;
 			}
@@ -808,7 +807,8 @@ html {
 					justify-content: space-between;
 
 					& > .text-box {
-						width: 80%;
+						flex: 9;
+						width: auto;
 						height: 100%;
 						background-color: var(--myElementBackgroundColor2);
 						align-items: center;
@@ -816,20 +816,22 @@ html {
 					}
 
 					& > .corner-box {
-						width: 20%;
+						flex: 1;
+						width: auto;
 						height: 100%;
 
 						& > * {
 							background-color: var(--myElementBackgroundColor2);
+							aspect-ratio: 1/1;
+							width: auto;
 							height: 100%;
 						}
 
-						& > .corner {
-							width: 25%;
-						}
-
-						& > .item {
-							width: 75%;
+						& > #control-box {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							font-size: calc(var(--p2) * 2);
 						}
 
 						& > #icon-box > iframe {
