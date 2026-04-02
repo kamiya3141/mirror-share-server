@@ -19,31 +19,34 @@ async function mainFunc() {
 
 	displayElementQueryArray.forEach(obj => {
 		let switched_elem = document.querySelector(obj["switched-element"]);
-		switched_elem.tabIndex = 0;
+
 		obj["trigger-element"].forEach(el => {
 			document.querySelector(el).addEventListener("click", e => {
 				switchingOpenDisplay(switched_elem);
-			}, true);
+				if (getOpenDisplayStatus(switched_elem))
+					switched_elem.focus();
+			});
 		});
-		document.querySelector(obj["focus-out-element"]).addEventListener("focusout", e => {
-			switchingOpenDisplay(switched_elem);
+		const focus_out_elem = document.querySelector(obj["focus-out-element"]);
+		focus_out_elem.tabIndex = 0;
+		focus_out_elem.addEventListener("focusout", e => {
+			if (!focus_out_elem.contains(e.relatedTarget))
+				switchingOpenDisplay(switched_elem);
 			console.log("ok!!");
-		}, true);
+		});
 	});
 }
 
 window.addEventListener("load", mainFunc);
 
 
-function switchingOpenDisplay(elem = "") {
+function switchingOpenDisplay(elem) {
+	let data_is_true = getOpenDisplayStatus(elem);
+	elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
+}
+
+function getOpenDisplayStatus(elem) {
 	const attr_name = "data-display-open";
 	const data = elem.getAttribute(attr_name);
-	let data_is_true = Boolean(data == "true");
-
-	if (!data_is_true) {
-		elem.focus();
-		console.log(elem.tabIndex);
-	}
-
-	elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
+	return Boolean(data == "true");
 }

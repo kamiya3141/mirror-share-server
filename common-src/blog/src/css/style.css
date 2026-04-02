@@ -327,12 +327,10 @@ html {
 				background-color: var(--clear);
 				width: var(--c-mn-h);
 				height: var(--c-mn-h);
+			}
 
-				&:focus {
-					& > div > div {
-						background-color: red !important;
-					}
-				}
+			& > #setting-display-div-main:focus-within {
+				background-color: red !important;
 			}
 
 		}
