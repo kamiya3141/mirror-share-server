@@ -7,23 +7,23 @@ async function mainFunc() {
 	mdContentsBoxElement.innerHTML = result;
 
 	PMD.afterFunction();
+
+
+	const displayElementQueryArray = [
+		{
+			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
+			"focus-out-element": "#setting-display-div-main",
+			"switched-element": "#setting-display-section"
+		}
+	];
+
+	displayElementQueryArray.forEach(obj => {
+		obj["trigger-element"].forEach(el => document.querySelector(el).addEventListener("click", e => switchingOpenDisplay(obj["switched-element"])));
+		document.querySelector(obj["focus-out-element"]).addEventListener("blur", e => switchingOpenDisplay(obj["switched-element"]));
+	});
 }
 
 window.addEventListener("load", mainFunc);
-
-
-const displayElementQueryArray = [
-	{
-		"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
-		"focus-out-element": "#setting-display-div-main",
-		"switched-element": "#setting-display-section"
-	}
-];
-
-displayElementQueryArray.forEach(obj => {
-	obj["trigger-element"].forEach(el => document.querySelector(el).addEventListener("click", e => switchingOpenDisplay(obj["switched-element"])));
-	document.querySelector(obj["focus-out-element"]).addEventListener("blur", e => switchingOpenDisplay(obj["switched-element"]));
-});
 
 
 function switchingOpenDisplay(query = "") {
