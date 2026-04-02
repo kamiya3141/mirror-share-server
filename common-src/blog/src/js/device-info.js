@@ -7,8 +7,21 @@ var device = {
 	"height": 0,
 	"realWidth": 0,
 	"realHeight": 0,
+	"prefer-color": "#00ff00",
+	"save--user-data--localstorage": false,
 	"DEBUGMODE": true
 };
+
+function getDeviceInformation(_key = "") {
+	let ret_val = null;
+
+	if (Object.hasOwn(device, _key))
+		ret_val = device[_key];
+	else
+		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません`);
+
+	return ret_val;
+}
 
 function editDeviceInformation(_key = "", _value = null) {
 	if (Object.hasOwn(device, _key))

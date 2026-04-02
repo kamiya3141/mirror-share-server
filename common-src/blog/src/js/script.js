@@ -30,10 +30,16 @@ async function mainFunc() {
 					focus_out_elem.focus();
 			});
 		});
+		if (getDeviceInformation("DEBUGMODE"))
+			return;
 		focus_out_elem.addEventListener("focusout", e => {
 			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem))
 				switchingOpenDisplay(switched_elem);
 		});
+	});
+	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
+	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
+		editDeviceInformation("prefer-color", e.target.value);
 	});
 }
 

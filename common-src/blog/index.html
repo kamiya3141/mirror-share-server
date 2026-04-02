@@ -19,72 +19,67 @@
 	-->
 	<template id="toggle-switch-template">
 		<style>
-			@property --toggle-switch-width {
-				syntax: "<length>";
-				inherits: false;
-			}
-
-			:root {
-				--toggle-switch-width: 25%;
-			}
-
 			.toggle_button {
-				--tgl-w: var(--toggle-switch-width);
-				--tgl-h: calc(var(--tgl-w) * 35 / 75);
-				--tgl-r: calc(var(--tgl-w) * 40 / 75);
+				--tgl-w-c1: 100%;
+				--tgl-w: calc(var(--tgl-w-c1) / 2);
+				--tgl-h: var(--tgl-w-c1);
+				--tgl-mv: 50%;
+				--tgl-r: 999em;
 
 				position: relative;
-				width: var(--tgl-w);
+				width: var(--tgl-w-c1);
 				height: var(--tgl-h);
 				margin: auto;
+			}
 
-				&>.toggle_input {
-					position: absolute;
-					width: 100%;
-					height: 100%;
-					opacity: 0;
-					cursor: pointer;
+			.toggle_input {
+				position: absolute;
+				width: var(--tgl-w-c1);
+				height: var(--tgl-h);
+				opacity: 0;
+				cursor: pointer;
+			}
 
-					&+.toggle_label {
-						width: var(--tgl-w);
-						height: var(--tgl-h);
-						background-color: #ccc;
-						border-radius: var(--tgl-r);
-						display: inline-block;
-						transition: background-color 0.5s;
-						position: relative;
+			.toggle_input:checked+.toggle_label {
+				background-color: #4BD865;
+			}
 
-						&::after {
-							content: "";
-							position: absolute;
-							width: var(--tgl-h);
-							height: var(--tgl-h);
-							background-color: #fff;
-							border-radius: 50%;
-							top: 0;
-							left: 0;
-							transition: left 0.4s;
-						}
-					}
+			.toggle_input:checked+.toggle_label::after {
+				left: var(--tgl-mv);
+			}
 
-					&:checked+.toggle_label {
-						background-color: #4BD865;
+			.toggle_label {
+				aspect-ratio: 2/1;
+				width: auto;
+				height: var(--tgl-h);
+				background-color: #ccc;
+				border-radius: var(--tgl-r);
+				display: inline-block;
+				transition: background-color 0.5s;
+				position: relative;
+			}
 
-						&::after {
-							left: var(--tgl-r);
-						}
-					}
-				}
+			.toggle_label::after {
+				content: "";
+				aspect-ratio: 1/1;
+				position: absolute;
+				width: auto;
+				height: 100%;
+				background-color: #fff;
+				border-radius: var(--tgl-r);
+				top: 0;
+				left: 0;
+				transition: left 0.4s;
 			}
 		</style>
-		<div class="toggle_button">
-			<input id="toggle" class="toggle_input" type="checkbox" />
-			<label for="toggle" class="toggle_label"></label>
-		</div>
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox" />
+			<span class="toggle_label"></span>
+		</label>
 	</template>
 	<template id="display-template">
 		<style>
-			& .display-item-box {
+			.display-item-box {
 				width: 100%;
 				height: 100%;
 				display: flex;
@@ -211,12 +206,74 @@
 	<template id="display-setting-template">
 		<style>
 			#display-setting-main-contents-setting {
-				overflow-y: auto;
-				
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				font-size: 1.5rem;
+
+				&>* {
+					flex-direction: column;
+					height: 100%;
+				}
+
+				&>.tab-bar {
+					font-size: 1.5rem;
+					width: 25%;
+					justify-content: flex-start;
+
+					&>.tab-bar--contents {
+						flex-direction: row;
+						justify-content: center;
+					}
+				}
+
+				&>.tab-contents-box {
+					width: 75%;
+					justify-content: space-around;
+
+					&>.tab-contents-box--item {
+						width: 80%;
+						height: 100%;
+
+						&>.item-all-box {
+							width: 100%;
+							height: 100%;
+							justify-content: space-between;
+							flex-direction: row;
+							margin-top: 2rem;
+							padding-top: 1.5rem;
+							border-top: var(--myTextColor) 2px solid;
+
+							&>* {
+								width: auto;
+								height: 100%;
+							}
+
+							&>.item-summary {
+								flex: 8;
+								justify-content: flex-start;
+							}
+
+							&>.item-box {
+								flex: 2;
+								justify-content: center;
+
+								&>.item {
+									width: 75%;
+									height: 75%;
+									justify-content: flex-end;
+								}
+							}
+						}
+					}
+				}
 			}
 		</style>
 		<div id="display-setting-main-contents-setting">
-			<section id="tab-bar">
+			<div class="tab-bar">
 				<div class="tab-bar--contents" id="tb--appearance">
 					<div>表示設定</div>
 				</div>
@@ -226,17 +283,44 @@
 				<div class="tab-bar--contents" id="tb--setting-data">
 					<div>設定データ</div>
 				</div>
-			</section>
-			<section id="tab-contents-box">
+			</div>
+			<div class="tab-contents-box">
 				<div class="tab-contents-box--item" id="tc--appearance">
-					<div class="item-box">
-						<div>テーマの強制を許可</div>
-						<div class="import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
+					<div class="item-all-box">
+						<div class="item-summary">テーマの設定</div>
+						<div class="item-box">
+
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">好みの色の設定</div>
+						<div class="item-box">
+							<input type="color" id="setting-display--appearance--input-color--prefer-color">
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定されたテーマの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">モバイルモードの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-mobile"></div>
+						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--user-data"></div>
+				<div class="tab-contents-box--item" id="tc--user-data">
+					<div class="item-all-box">
+						<div class="item-summary">ローカルストレージに設定を保存する</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="save--user-data--localstorage"></div>
+						</div>
+					</div>
+				</div>
 				<div class="tab-contents-box--item" id="tc--setting-data"></div>
-			</section>
+			</div>
 		</div>
 	</template>
 	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
