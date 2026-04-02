@@ -62,6 +62,12 @@ html {
 		flex-direction: column;
 		width: var(--c1);
 		height: calc(var(--c1) * 1);
+		/*
+		ローディング画面を出す場合は以下のoverflow-xをコメントアウトすること
+		*/
+		/*
+		overflow-x: hidden !important;
+		*/
 		overflow-y: auto;
 
 		& a:visited {
