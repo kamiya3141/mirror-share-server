@@ -11,18 +11,29 @@ async function mainFunc() {
 
 window.addEventListener("load", mainFunc);
 
-const displayElementIdArray = [
-	"open-setting-display-button-element"
+
+const displayElementQueryArray = [
+	{
+		"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
+		"focus-out-element": "#setting-display-div-main",
+		"switched-element": "#setting-display-section"
+	}
 ];
-displayElementIdArray.forEach(id => {
-	document.getElementById(id).addEventListener("click", e => {
-		switchingOpenDisplay(id);
+
+displayElementQueryArray.forEach(obj => {
+	obj["trigger-element"].forEach(el => {
+		document.querySelector(el).addEventListener("click", e => {
+			switchingOpenDisplay(obj["switched-element"]);
+		}, true);
+	});
+	document.querySelector(obj["focus-out-element"]).addEventListener("focusout", e => {
+		switchingOpenDisplay(obj["switched-element"]);
 	}, true);
 });
 
 
-function switchingOpenDisplay(_id = "") {
+function switchingOpenDisplay(query = "") {
 	const attr_name = "data-display-open";
-	const data = document.getElementById(_id).getAttribute(attr_name);
-	document.getElementById(_id).setAttribute(attr_name, (data == "false" ? "true" : "false"));
+	const data = document.querySelector(query).getAttribute(attr_name);
+	document.querySelector(query).setAttribute(attr_name, (data == "false" ? "true" : "false"));
 }

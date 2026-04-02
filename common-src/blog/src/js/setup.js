@@ -30,6 +30,9 @@ function convertEnvVars(input_var = "") {
 			case "CLASS":
 				input_var = document.getElementsByClassName(res_arr[1])[0];
 				break;
+			case "QUERY":
+				input_var = document.querySelector(res_arr[1]);
+				break;
 			default:
 				break;
 		}
