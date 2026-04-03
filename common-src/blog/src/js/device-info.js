@@ -29,6 +29,7 @@ function editDeviceInformation(_key = "", _value = null) {
 	else
 		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません`);
 	reloadDeviceInformation();
+	console.log(device);
 }
 
 function reloadDeviceInformation() {

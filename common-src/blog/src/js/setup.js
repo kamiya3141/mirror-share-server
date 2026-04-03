@@ -15,7 +15,7 @@ const template_data_function_map = {
 	},
 	"toggle-switch-template": device_setting_id => {
 		const flag = cloneTemplate("toggle-switch-template");
-		flag.querySelector(".toggle_input").addEventListener("change", e => editDeviceInformation(device_setting_id));
+		flag.querySelector(".toggle_input").addEventListener("change", e => editDeviceInformation(device_setting_id, e.target.checked));
 		return flag;
 	}
 };

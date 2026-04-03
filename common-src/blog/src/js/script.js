@@ -17,6 +17,11 @@ async function mainFunc() {
 		}
 	];
 
+	const setting_elem = document.getElementById("display-setting-main-contents-setting");
+	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
+
+	console.log(setting_display_main_contents_tab_bar_item_array);
+
 	displayElementQueryArray.forEach(obj => {
 		const switched_elem = document.querySelector(obj["switched-element"]);
 		switched_elem.tabIndex = 0;
@@ -26,8 +31,10 @@ async function mainFunc() {
 		obj["trigger-element"].forEach(el => {
 			document.querySelector(el).addEventListener("click", e => {
 				switchingOpenDisplay(switched_elem);
-				if (getOpenDisplayStatus(switched_elem))
+				if (getOpenDisplayStatus(switched_elem)) {
 					focus_out_elem.focus();
+					setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[0]}`).click();
+				}
 			});
 		});
 		if (getDeviceInformation("DEBUGMODE"))
@@ -43,8 +50,6 @@ async function mainFunc() {
 		editDeviceInformation("prefer-color", e.target.value);
 	});
 
-	const setting_elem = document.getElementById("display-setting-main-contents-setting");
-	const setting_display_main_contents_tab_bar_item_array = ["appearance", "user-data", "setting-data"];
 
 	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
