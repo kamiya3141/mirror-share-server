@@ -37,8 +37,8 @@ function reloadDeviceInformation() {
 	device["height"] = Number(getCSSLengthValue("--myStylingHeight"));
 	device["realWidth"] = Number(getCSSLengthValue("--myStylingRealWidth"));
 	device["realHeight"] = Number(getCSSLengthValue("--myStylingRealHeight"));
-	/*
 	device["mobile"] = checkCurrentDeviceMobile();
+	/*
 	if (device["force-mobile"] === false)
 		device["force-mobile"] = Boolean(!device["mobile"] && device["width"] < device["height"]);
 	*/

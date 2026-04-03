@@ -65,7 +65,8 @@ async function mainFunc() {
 		});
 	});
 
-	let tso_msg = new TSOMessage("Hello World", "warn");
+	let tso_msg = new TSOMessage("<h1>Hello World</h1>", "warn");
+	tso_msg.textColor = "#000000";
 
 }
 
