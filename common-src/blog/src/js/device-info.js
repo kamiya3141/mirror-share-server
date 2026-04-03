@@ -42,7 +42,7 @@ function reloadDeviceInformation() {
 	if (device["force-mobile"] === false)
 		device["force-mobile"] = Boolean(!device["mobile"] && device["width"] < device["height"]);
 	*/
-	document.body.className = (device["force-mobile"] || device["mobile"] ? "mobile" : "desktop");
+	document.body.className = ((device["force-mobile"] || device["mobile"]) ? "mobile" : "desktop");
 	setTheme(["force-theme", "theme", "force-mobile", "mobile"].map((v, i) => Number(Boolean(device[v])) * (2 ** i)).reduce((pv, cv, idx) => pv + cv, 0));
 }
 

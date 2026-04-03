@@ -64,6 +64,9 @@ async function mainFunc() {
 			});
 		});
 	});
+
+	let tso_msg = new TSOMessage("Hello World", "warn");
+
 }
 
 window.addEventListener("load", mainFunc);
