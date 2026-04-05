@@ -12,10 +12,10 @@
 
 html {
 	position: absolute;
-	left: calc(var(--myStylingWidth) * 1 / 100);
-	top: calc(var(--myStylingHeight) * 1 / 100);
-	width: var(--myStylingWidth);
-	height: var(--myStylingHeight);
+	left: calc(var(--myStylingRealWidth) * 1 / 100);
+	top: calc(var(--myStylingRealHeight) * 1 / 100);
+	width: var(--myStylingRealWidth);
+	height: var(--myStylingRealHeight);
 	font-family: var(--myStylingFontFamily);
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
@@ -52,6 +52,16 @@ html {
 		justify-content: center;
 		align-items: center;
 
+		&.mobile #section-box > .motion-contents-all-box {
+			max-width: var(--c1);
+			min-height: var(--w);
+		}
+
+		&.desktop #section-box > .motion-contents-all-box {
+			max-width: var(--w);
+			min-height: var(--c1);
+		}
+
 		& > main.main#main {
 			width: var(--c1);
 			height: var(--c1);
@@ -60,12 +70,11 @@ html {
 				width: var(--c1);
 				height: var(--c1);
 				overflow-y: auto;
-				grid-template-columns: repeat(2, 1fr);
+				display: flex;
 				justify-content: start;
 
 				& > .motion-contents-all-box {
-					aspect-ratio: 1 / 1;
-					min-height: var(--w);
+					aspect-ratio: 1/1;
 					grid-template-rows: var(--c5) auto;
 					justify-content: center;
 
