@@ -1,32 +1,21 @@
-@property --myLocalDefine-width {
-	syntax: "<length>";
-	inherits: true;
-	initial-value: 100%;
-}
-
-@property --myLocalDefine-height {
-	syntax: "<length>";
-	inherits: true;
-	initial-value: 100%;
-}
-
 :root {
 	--w: calc(100% / 2);
 	--p1: 0.5rem;
 	--p2: calc(var(--p1) * 2);
 	--c1: calc(var(--w) * 2);
 	--c2: calc(var(--c1) - var(--p2) * 2);
+	--c3: calc(var(--c1) * 1 / 100);
+	--c4: calc(var(--c1) * 98 / 100);
 
-	--myLocalDefine-width: 50%;
-	--myLocalDefine-height: 100%;
+	--c5: calc(var(--c1) * 80 / 100);
 }
 
 html {
 	position: absolute;
 	left: calc(var(--myStylingWidth) * 1 / 100);
 	top: calc(var(--myStylingHeight) * 1 / 100);
-	width: calc(var(--myStylingWidth) * 98 / 100);
-	min-height: calc(var(--myStylingHeight) * 98 / 100);
+	width: var(--myStylingWidth);
+	height: var(--myStylingHeight);
 	font-family: var(--myStylingFontFamily);
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
@@ -39,53 +28,113 @@ html {
 		font-family: inherit;
 		position: inherit;
 		display: inherit;
+		flex-direction: inherit;
+		justify-content: inherit;
+		align-items: inherit;
+		border: none;
+		padding: 0;
+		margin: 0;
+		outline: none;
 	}
 
-	head {
-		display: unset;
+	& > head {
+		display: none;
 	}
 
 	& > body {
 		position: relative;
+		left: var(--c3);
+		top: var(--c3);
+		width: var(--c4);
+		height: var(--c4);
 		display: flex;
 		flex-direction: column;
-		left: calc(var(--c1) * 1 / 100);
-		top: calc(var(--c1) * 1 / 100);
-		width: calc(var(--c1) * 98 / 100);
-		height: calc(var(--c1) * 98 / 100);
+		justify-content: center;
+		align-items: center;
 
 		& > main.main#main {
-			width: 100%;
-			height: 100%;
-			justify-content: center;
-			align-items: center;
+			width: var(--c1);
+			min-height: var(--c1);
+			overflow-y: auto;
 
-			& > iframe {
-				flex: 0.5;
-				width: var(--myLocalDefine-width);
-				height: var(--myLocalDefine-height);
-				border: none;
-				outline: none;
-				display: unset;
+			& > #section-box {
+				width: var(--c1);
+				height: var(--c1);
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+
+				& > * {
+					aspect-ratio: 1 / 1;
+				}
+
+				& > .motion-contents-all-box {
+					grid-template-rows: var(--c5) auto;
+
+					& > .img-box {
+						width: var(--c1);
+						height: var(--c1);
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						& > .motion-contents {
+							flex: 1;
+							display: block;
+						}
+					}
+
+					& > .title-box {
+						width: var(--c1);
+						height: var(--c1);
+						display: grid;
+						grid-template-columns: 1fr;
+						grid-template-rows: 4fr 1fr;
+						justify-content: center;
+
+						& > * {
+							display: flex;
+							justify-content: center;
+						}
+
+						& > .main-title-box {
+							width: var(--c1);
+							height: var(--c1);
+
+							> .main-title {
+								width: var(--c1);
+								height: var(--w);
+
+								& #main-title {
+									width: var(--c5);
+									height: var(--c1);
+									font-size: 1.25rem;
+									display: block;
+									white-space: nowrap;
+									text-overflow: ellipsis;
+									text-align: center;
+								}
+							}
+						}
+
+						& > .sub-title {
+							width: var(--c1);
+							height: var(--c1);
+
+							&[data-mydef--sub-title-status="normal"] {
+								background-color: lightgreen;
+							}
+
+							&[data-mydef--sub-title-status="warn"] {
+								background-color: yellow;
+							}
+
+							&[data-mydef--sub-title-status="alert"] {
+								background-color: lightcoral;
+							}
+						}
+					}
+				}
 			}
 		}
-	}
-}
-
-/*横長*/
-@media (min-aspect-ratio: 1/1) {
-	main.main#main {
-		flex-direction: row;
-		--myLocalDefine-width: 50%;
-		--myLocalDefine-height: 100%;
-	}
-}
-
-/*縦長*/
-@media (max-aspect-ratio: 1/1) {
-	main.main#main {
-		flex-direction: column;
-		--myLocalDefine-width: 100%;
-		--myLocalDefine-height: 50%;
 	}
 }
