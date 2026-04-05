@@ -65,9 +65,11 @@ async function mainFunc() {
 		});
 	});
 
-	let tso_msg = new TSOMessage("<h1>Hello World</h1>", "warn");
+	/*
+	const b2s = ipt => (ipt ? "true" : "false");
+	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-mobile"])}</h1>`, "warn");
 	tso_msg.textColor = "#000000";
-
+	*/
 }
 
 window.addEventListener("load", mainFunc);

@@ -1,2 +1,3 @@
-php/
+php/*
 .hide/.debian/config*
+.hide/motion/index.html
