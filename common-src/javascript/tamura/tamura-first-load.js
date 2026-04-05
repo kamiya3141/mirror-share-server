@@ -113,8 +113,13 @@ function setTheme(input_bit = -1) {
 
 	const n_idx = Number(checkCurrentDeviceMobile());
 	const r_idx = Number(!Boolean(n_idx));
+
+	let ipt_w = [document.documentElement.clientWidth, document.documentElement.clientWidth];
+	let ipt_h = [document.documentElement.clientHeight, document.documentElement.clientWidth];
+	/*
 	let ipt_w = [document.documentElement.clientWidth, screen.width];
 	let ipt_h = [document.documentElement.clientHeight, screen.height];
+	*/
 	const tf = Number(forceDevice ? deviceMobile : Boolean(n_idx));
 	[
 		["StylingWidth", [ipt_w[n_idx], ipt_w[n_idx]].map(c => `${c}px`)],

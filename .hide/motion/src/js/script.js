@@ -1,9 +1,11 @@
-setTheme(0b0011);
-
 const motionServerArray = [
 	{
 		"title": "debian13-note-0",
 		"word": "dn0"
+	},
+	{
+		"title": "debian13-note-2",
+		"word": "dn2"
 	},
 	{
 		"title": "debian13-note-2",

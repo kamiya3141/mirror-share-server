@@ -54,21 +54,20 @@ html {
 
 		& > main.main#main {
 			width: var(--c1);
-			min-height: var(--c1);
-			overflow-y: auto;
+			height: var(--c1);
 
 			& > #section-box {
 				width: var(--c1);
 				height: var(--c1);
-				display: grid;
+				overflow-y: auto;
 				grid-template-columns: repeat(2, 1fr);
-
-				& > * {
-					aspect-ratio: 1 / 1;
-				}
+				justify-content: start;
 
 				& > .motion-contents-all-box {
+					aspect-ratio: 1 / 1;
+					min-height: var(--w);
 					grid-template-rows: var(--c5) auto;
+					justify-content: center;
 
 					& > .img-box {
 						width: var(--c1);
