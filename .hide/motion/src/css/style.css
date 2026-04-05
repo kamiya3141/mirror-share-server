@@ -1,9 +1,24 @@
+@property --myLocalDefine-width {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 100%;
+}
+
+@property --myLocalDefine-height {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 100%;
+}
+
 :root {
 	--w: calc(100% / 2);
 	--p1: 0.5rem;
 	--p2: calc(var(--p1) * 2);
 	--c1: calc(var(--w) * 2);
 	--c2: calc(var(--c1) - var(--p2) * 2);
+
+	--myLocalDefine-width: 50%;
+	--myLocalDefine-height: 100%;
 }
 
 html {
@@ -40,10 +55,15 @@ html {
 		height: calc(var(--c1) * 98 / 100);
 
 		& > main.main#main {
+			width: 100%;
+			height: 100%;
 			justify-content: center;
 			align-items: center;
 
 			& > iframe {
+				flex: 0.5;
+				width: var(--myLocalDefine-width);
+				height: var(--myLocalDefine-height);
 				border: none;
 				outline: none;
 				display: unset;
@@ -56,6 +76,8 @@ html {
 @media (min-aspect-ratio: 1/1) {
 	main.main#main {
 		flex-direction: row;
+		--myLocalDefine-width: 50%;
+		--myLocalDefine-height: 100%;
 	}
 }
 
@@ -63,5 +85,7 @@ html {
 @media (max-aspect-ratio: 1/1) {
 	main.main#main {
 		flex-direction: column;
+		--myLocalDefine-width: 100%;
+		--myLocalDefine-height: 50%;
 	}
 }
