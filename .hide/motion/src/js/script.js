@@ -1,6 +1,3 @@
-const mobile_tf = checkCurrentDeviceMobile();
-document.body.classList.add(mobile_tf ? "mobile" : "desktop");
-
 const motionServerArray = [
 	{
 		"title": "debian13-note-0",
@@ -8,14 +5,6 @@ const motionServerArray = [
 	},
 	{
 		"title": "debian13-note-2",
-		"word": "dn2"
-	},
-	{
-		"title": "TEST1",
-		"word": "dn2"
-	},
-	{
-		"title": "TEST2",
 		"word": "dn2"
 	}
 ];

@@ -1,3 +1,28 @@
+@property --myLocalDefine--section-box--display {
+	syntax: "*";
+	inherits: true;
+	initial-value: block;
+}
+
+@property --myLocalDefine--motion-contents-all-box--width {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: auto;
+}
+
+@property --myLocalDefine--motion-contents-all-box--height {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: auto;
+}
+
+@property --myLocalDefine--main-title--font-size {
+	syntax: "<length>";
+	inherits: true;
+	initial-value: 1rem;
+}
+
+
 :root {
 	--w: calc(100% / 2);
 	--p1: 0.5rem;
@@ -8,14 +33,51 @@
 	--c4: calc(var(--c1) * 98 / 100);
 
 	--c5: calc(var(--c1) * 80 / 100);
+
+	--myLocalDefine--section-box--display: grid;
+	--myLocalDefine--motion-contents-all-box--width: auto;
+	--myLocalDefine--motion-contents-all-box--height: var(--c1);
+	--myLocalDefine--main-title--font-size: calc(var(--p1) * 3);
+
+}
+
+
+/* 横長 */
+@media (min-aspect-ratio: 1/1) {
+	:root {
+		--myLocalDefine--section-box--display: grid;
+		--myLocalDefine--motion-contents-all-box--width: auto;
+		--myLocalDefine--motion-contents-all-box--height: var(--c1);
+		--myLocalDefine--main-title--font-size: calc(var(--p1) * 3);
+	}
+}
+
+/* 縦長 */
+@media (max-aspect-ratio: 1/1) {
+	:root {
+		--myLocalDefine--section-box--display: flex;
+		--myLocalDefine--motion-contents-all-box--width: var(--c1);
+		--myLocalDefine--motion-contents-all-box--height: var(--w);
+		--myLocalDefine--main-title--font-size: calc(var(--p1) * 6);
+	}
 }
 
 html {
+	&[data-my-device-type="desktop"] {
+		left: calc(var(--myStylingWidth) * 1 / 100);
+		top: calc(var(--myStylingHeight) * 1 / 100);
+		width: var(--myStylingWidth);
+		height: var(--myStylingHeight);
+	}
+
+	&[data-my-device-type="mobile"] {
+		left: calc(var(--myStylingRealWidth) * 1 / 100);
+		top: calc(var(--myStylingRealHeight) * 1 / 100);
+		width: var(--myStylingRealWidth);
+		height: var(--myStylingRealHeight);
+	}
+
 	position: absolute;
-	left: calc(var(--myStylingRealWidth) * 1 / 100);
-	top: calc(var(--myStylingRealHeight) * 1 / 100);
-	width: var(--myStylingRealWidth);
-	height: var(--myStylingRealHeight);
 	font-family: var(--myStylingFontFamily);
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
@@ -52,29 +114,22 @@ html {
 		justify-content: center;
 		align-items: center;
 
-		&.mobile #section-box > .motion-contents-all-box {
-			max-width: var(--c1);
-			min-height: var(--w);
-		}
-
-		&.desktop #section-box > .motion-contents-all-box {
-			max-width: var(--w);
-			min-height: var(--c1);
-		}
-
 		& > main.main#main {
+			position: static;
 			width: var(--c1);
 			height: var(--c1);
 
 			& > #section-box {
+				display: var(--myLocalDefine--section-box--display);
 				width: var(--c1);
 				height: var(--c1);
 				overflow-y: auto;
-				display: flex;
+				grid-template-columns: repeat(2, 1fr);
 				justify-content: start;
 
 				& > .motion-contents-all-box {
-					aspect-ratio: 1/1;
+					width: var(--myLocalDefine--motion-contents-all-box--width);
+					height: var(--myLocalDefine--motion-contents-all-box--height);
 					grid-template-rows: var(--c5) auto;
 					justify-content: center;
 
@@ -82,8 +137,6 @@ html {
 						width: var(--c1);
 						height: var(--c1);
 						display: flex;
-						justify-content: center;
-						align-items: center;
 
 						& > .motion-contents {
 							flex: 1;
@@ -115,11 +168,11 @@ html {
 								& #main-title {
 									width: var(--c5);
 									height: var(--c1);
-									font-size: 1.25rem;
 									display: block;
 									white-space: nowrap;
 									text-overflow: ellipsis;
 									text-align: center;
+									font-size: var(--myLocalDefine--main-title--font-size);
 								}
 							}
 						}

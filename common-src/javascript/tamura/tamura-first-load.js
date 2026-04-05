@@ -127,6 +127,8 @@ function setTheme(input_bit = -1) {
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? ["dark", "light"][Number(themeLight)] : "system");
+
+	document.documentElement.setAttribute("data-my-device-type", tf ? "mobile" : "desktop");
 }
 
 window.addEventListener("resize", () => {
