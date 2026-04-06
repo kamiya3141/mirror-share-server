@@ -65,6 +65,28 @@ async function mainFunc() {
 		});
 	});
 
+	const themeSettingSelectElement = document.getElementById("setting-display--appearance--input-select--theme-setting");
+	[
+		{
+			"text": "システム",
+			"value": "system"
+		},
+		{
+			"text": "ライト",
+			"value": "light"
+		},
+		{
+			"text": "ダーク",
+			"value": "dark"
+		}
+	].forEach(c => {
+		let opt = document.createElement("option");
+		opt.text = c.text;
+		opt.value = c.value;
+		themeSettingSelectElement.appendChild(opt);
+	});
+	themeSettingSelectElement.addEventListener("change", e => document.documentElement.setAttribute("data-theme", e.target.value));
+
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
 	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-mobile"])}</h1>`, "warn");
