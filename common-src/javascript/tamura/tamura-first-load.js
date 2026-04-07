@@ -155,7 +155,7 @@ function setTheme() {
 	// let forceTheme, themeLight, forceDevice, deviceMobile;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
-	const n_idx = Number(checkCurrentDeviceMobile());
+	const n_idx = Number(deviceMobile);
 	const r_idx = Number(!Boolean(n_idx));
 	let ipt_w = [document.documentElement.clientWidth, screen.width];
 	let ipt_h = [document.documentElement.clientHeight, screen.height];

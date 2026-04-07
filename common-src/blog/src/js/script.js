@@ -45,27 +45,6 @@ async function mainFunc() {
 		});
 	});
 
-	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
-	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
-		editDeviceInformation("prefer-color", e.target.value);
-		
-	});
-
-
-	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
-		setting_elem.querySelector(c1).addEventListener("click", e => {
-			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
-				if (c1.split("--")[1] == c2.split("--")[1]) {
-					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
-					setting_elem.querySelector(c2).style.display = "flex";
-				} else {
-					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
-					setting_elem.querySelector(c2).style.display = "none";
-				}
-			});
-		});
-	});
-
 	const settingSelectElementDataArray = [
 		{
 			"select-id": "setting-display--appearance--input-select--theme-setting",
@@ -85,6 +64,8 @@ async function mainFunc() {
 			],
 			"select-change-event-function": e => {
 				document.documentElement.setAttribute("data-theme", e.target.value);
+				editDeviceInformation("theme", Boolean(e.target.value == "system" ? checkCurrentSystemThemeLight() : (e.target.value == "light")));
+				reloadDeviceInformation();
 			}
 		},
 		{
@@ -101,6 +82,8 @@ async function mainFunc() {
 			],
 			"select-change-event-function": e => {
 				document.documentElement.setAttribute("data-my-device-type", e.target.value);
+				editDeviceInformation("mobile", Boolean(e.target.value == "mobile"));
+				reloadDeviceInformation();
 			}
 		}
 	];
@@ -117,6 +100,27 @@ async function mainFunc() {
 			if (!data_is_true)
 				c1["select-change-event-function"](e);
 			e.target.setAttribute(attr_name, "false");
+		});
+	});
+
+	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
+	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
+		editDeviceInformation("prefer-color", e.target.value);
+		reloadDeviceInformation();
+	});
+
+
+	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
+		setting_elem.querySelector(c1).addEventListener("click", e => {
+			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
+				if (c1.split("--")[1] == c2.split("--")[1]) {
+					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
+					setting_elem.querySelector(c2).style.display = "flex";
+				} else {
+					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
+					setting_elem.querySelector(c2).style.display = "none";
+				}
+			});
 		});
 	});
 

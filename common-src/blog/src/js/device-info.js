@@ -42,8 +42,10 @@ function reloadDeviceInformation() {
 	setThemeArgsHistoryObject["themeLight"] = device["theme"];
 	setThemeArgsHistoryObject["forceDevice"] = device["force-device"];
 	setThemeArgsHistoryObject["deviceMobile"] = device["mobile"];
-	
+
 	setTheme();
+
+	console.log(setThemeArgsHistoryObject);
 }
 
 window.addEventListener("resize", () => {
