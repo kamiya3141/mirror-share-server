@@ -16,17 +16,13 @@ window[tamuraFirstLoadWindowVarsKeyName] = {
 		const inputType = String(typeof input);
 		const inputInArrayLengthRange = Boolean(input > 0 && input < this["__MySourceFileBasePathArray"].length);
 
-		let tf = Boolean(inputType == "number");
-
-		if (tf) {
+		if (inputType == "number") {
 			if (inputInArrayLengthRange)
 				this["__MySourceFileBasePathArrayIndex"] = Number(input);
 			else
 				console.error(`window["tamuraFirstLoading"]["mySourceFileBasePathArrayIndex"]に範囲外の値が入力されました。\ninput: ${input}`);
 		} else
 			console.error(`window["tamuraFirstLoading"]["mySourceFileBasePathArrayIndex"]に整数以外の値が入力されました。\ntypeof input: ${inputType}`);
-
-		return Boolean(tf && inputInArrayLengthRange);
 	}
 };
 
@@ -111,17 +107,53 @@ var getCSSLengthValue = propertyName => getComputedStyle(document.documentElemen
 // 前回の真偽値の引数を記録する数値
 var setThemeArgsHistory = 0b0000;
 
+// 前回の真偽値を保存するオブジェクト
+var setThemeArgsHistoryObject = {
+	"__forceTheme": false,
+	"__themeLight": false,
+	"__forceDevice": false,
+	"__deviceMobile": false,
+	"__check_and_input_boolean_func": (input = false, key_name = "") => {
+		if (typeof input != "boolean")
+			console.error(`setThemeArgsHistoryObject["${key_name}"]に真偽値以外の入力がありました。\ninput: ${input}\nkey_name: ${key_name}`);
+		else
+			this[`__${key_name}`] = input;
+	},
+	set "forceTheme"(input) {
+		this["__check_and_input_boolean_func"](input, "forceTheme");
+	},
+	set "themeLight"(input) {
+		this["__check_and_input_boolean_func"](input, "themeLight");
+	},
+	set "forceDevice"(input) {
+		this["__check_and_input_boolean_func"](input, "forceDevice");
+	},
+	set "deviceMobile"(input) {
+		this["__check_and_input_boolean_func"](input, "deviceMobile");
+	},
+	get "forceTheme"() {
+		return this["__forceTheme"];
+	},
+	get "themeLight"() {
+		return this["__themeLight"];
+	},
+	get "forceDevice"() {
+		return this["__forceDevice"];
+	},
+	get "deviceMobile"() {
+		return this["__deviceMobile"];
+	}
+};
+
 function dec2bin(ipt, len = 4, with_0b = false) {
 	return (with_0b ? "0b" : "") + String(String(ipt.toString(2)).padStart(len, "0"));
 }
 
-function setTheme(input_bit = -1) {
-	if (input_bit < 0 || isNaN(Number(input_bit)))
-		input_bit = setThemeArgsHistory;
-
-	setThemeArgsHistory = input_bit;
-	let forceTheme, themeLight, forceDevice, deviceMobile;
-	[forceTheme, themeLight, forceDevice, deviceMobile] = dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
+function setTheme() {
+	let { forceTheme, themeLight, forceDevice, deviceMobile } = setThemeArgsHistoryObject;
+	// console.log(forceTheme, themeLight, forceDevice, deviceMobile);
+	// let forceTheme, themeLight, forceDevice, deviceMobile;
+	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
 	const n_idx = Number(checkCurrentDeviceMobile());
 	const r_idx = Number(!Boolean(n_idx));
@@ -140,15 +172,18 @@ function setTheme(input_bit = -1) {
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? ["dark", "light"][Number(themeLight)] : "system");
 
-	document.documentElement.setAttribute("data-my-device-type", tf ? "mobile" : "desktop");
+	const dt_my_dv_type = (Boolean(tf) ? "mobile" : "desktop");
+	document.documentElement.setAttribute("data-my-device-type", dt_my_dv_type);
+	if (dt_my_dv_type == "mobile")
+		console.log(checkCurrentDeviceMobile(), n_idx, [forceDevice, deviceMobile, Boolean(n_idx)], [deviceMobile, Number(deviceMobile)], [Boolean(n_idx), Number(Boolean(n_idx))]);
 }
 
 window.addEventListener("resize", () => {
-	setTheme(setThemeArgsHistory);
+	setTheme();
 });
 
 window.addEventListener("load", () => {
-	setTheme(setThemeArgsHistory);
+	setTheme();
 });
 
 /*

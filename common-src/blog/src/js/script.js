@@ -20,7 +20,7 @@ async function mainFunc() {
 	const setting_elem = document.getElementById("display-setting-main-contents-setting");
 	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
 
-	console.log(setting_display_main_contents_tab_bar_item_array);
+	// console.log(setting_display_main_contents_tab_bar_item_array);
 
 	displayElementQueryArray.forEach(obj => {
 		const switched_elem = document.querySelector(obj["switched-element"]);
@@ -48,6 +48,7 @@ async function mainFunc() {
 	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
 	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
 		editDeviceInformation("prefer-color", e.target.value);
+		
 	});
 
 
@@ -65,31 +66,64 @@ async function mainFunc() {
 		});
 	});
 
-	const themeSettingSelectElement = document.getElementById("setting-display--appearance--input-select--theme-setting");
-	[
+	const settingSelectElementDataArray = [
 		{
-			"text": "システム",
-			"value": "system"
+			"select-id": "setting-display--appearance--input-select--theme-setting",
+			"select-option-data-array": [
+				{
+					"text": "システム",
+					"value": "system"
+				},
+				{
+					"text": "ライト",
+					"value": "light"
+				},
+				{
+					"text": "ダーク",
+					"value": "dark"
+				}
+			],
+			"select-change-event-function": e => {
+				document.documentElement.setAttribute("data-theme", e.target.value);
+			}
 		},
 		{
-			"text": "ライト",
-			"value": "light"
-		},
-		{
-			"text": "ダーク",
-			"value": "dark"
+			"select-id": "setting-display--appearance--input-select--device-mode-setting",
+			"select-option-data-array": [
+				{
+					"text": "デスクトップ",
+					"value": "desktop"
+				},
+				{
+					"text": "モバイル",
+					"value": "mobile"
+				}
+			],
+			"select-change-event-function": e => {
+				document.documentElement.setAttribute("data-my-device-type", e.target.value);
+			}
 		}
-	].forEach(c => {
-		let opt = document.createElement("option");
-		opt.text = c.text;
-		opt.value = c.value;
-		themeSettingSelectElement.appendChild(opt);
+	];
+
+	settingSelectElementDataArray.forEach(c1 => {
+		c1["select-option-data-array"].forEach(c2 => {
+			let opt = document.createElement("option");
+			Object.assign(opt, c2);
+			document.getElementById(c1["select-id"]).appendChild(opt);
+		});
+		document.getElementById(c1["select-id"]).addEventListener("change", e => {
+			const attr_name = "data-mydef-set-by-script";
+			const data_is_true = Boolean(e.target.getAttribute(attr_name) == "true");
+			if (!data_is_true)
+				c1["select-change-event-function"](e);
+			e.target.setAttribute(attr_name, "false");
+		});
 	});
-	themeSettingSelectElement.addEventListener("change", e => document.documentElement.setAttribute("data-theme", e.target.value));
+
 
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
-	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-mobile"])}</h1>`, "warn");
+	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-device"])}</h1>`, "warn");
 	tso_msg.textColor = "#000000";
 	*/
 }

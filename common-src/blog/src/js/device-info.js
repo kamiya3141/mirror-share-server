@@ -1,8 +1,8 @@
 var device = {
 	"force-theme": false,
-	"theme": true,
-	"force-mobile": false,
-	"mobile": true,
+	"theme": checkCurrentSystemThemeLight(),
+	"force-device": false,
+	"mobile": checkCurrentDeviceMobile(),
 	"width": 0,
 	"height": 0,
 	"realWidth": 0,
@@ -37,13 +37,13 @@ function reloadDeviceInformation() {
 	device["height"] = Number(getCSSLengthValue("--myStylingHeight"));
 	device["realWidth"] = Number(getCSSLengthValue("--myStylingRealWidth"));
 	device["realHeight"] = Number(getCSSLengthValue("--myStylingRealHeight"));
-	device["mobile"] = checkCurrentDeviceMobile();
-	/*
-	if (device["force-mobile"] === false)
-		device["force-mobile"] = Boolean(!device["mobile"] && device["width"] < device["height"]);
-	*/
-	document.body.className = ((device["force-mobile"] || device["mobile"]) ? "mobile" : "desktop");
-	setTheme(["force-theme", "theme", "force-mobile", "mobile"].map((v, i) => Number(Boolean(device[v])) * (2 ** i)).reduce((pv, cv, idx) => pv + cv, 0));
+
+	setThemeArgsHistoryObject["forceTheme"] = device["force-theme"];
+	setThemeArgsHistoryObject["themeLight"] = device["theme"];
+	setThemeArgsHistoryObject["forceDevice"] = device["force-device"];
+	setThemeArgsHistoryObject["deviceMobile"] = device["mobile"];
+	
+	setTheme();
 }
 
 window.addEventListener("resize", () => {

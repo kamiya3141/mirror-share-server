@@ -57,6 +57,40 @@ html {
 		display: none;
 	}
 
+	&[data-my-device-type="desktop"] > body {
+
+		& .mobile-element {
+			display: none !important;
+		}
+
+		& .desktop-element {
+			display: initial;
+		}
+
+		& > div#root {
+			left: calc(var(--w) - var(--w) / 2);
+			width: var(--w);
+			padding-top: calc(var(--c-hd-h) / 2);
+		}
+	}
+
+	&[data-my-device-type="mobile"] > body {
+
+		& .mobile-element {
+			display: initial;
+		}
+
+		& .desktop-element {
+			display: none !important;
+		}
+
+		& > div#root {
+			left: var(--c3);
+			width: var(--c4);
+			padding-top: calc(var(--c-hd-h) * 2);
+		}
+	}
+
 	& > body {
 		display: flex;
 		flex-direction: column;
@@ -80,40 +114,6 @@ html {
 
 		& .desktop-element {
 			display: initial;
-		}
-
-		&.mobile {
-
-			& .mobile-element {
-				display: initial;
-			}
-
-			& .desktop-element {
-				display: none !important;
-			}
-
-			& > div#root {
-				left: var(--c3);
-				width: var(--c4);
-				padding-top: calc(var(--c-hd-h) * 2);
-			}
-		}
-
-		&.desktop {
-
-			& .mobile-element {
-				display: none !important;
-			}
-
-			& .desktop-element {
-				display: initial;
-			}
-
-			& > div#root {
-				left: calc(var(--w) - var(--w) / 2);
-				width: var(--w);
-				padding-top: calc(var(--c-hd-h) / 2);
-			}
 		}
 
 		& > header#root-header {
