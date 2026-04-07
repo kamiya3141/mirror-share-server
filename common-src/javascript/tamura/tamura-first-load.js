@@ -1,26 +1,38 @@
-// "GithubMirrorServerBasePath": "https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main",
-
 var tamuraFirstLoadWindowVarsKeyName = "tamuraFirstLoading";
-window[tamuraFirstLoadWindowVarsKeyName] = new Object({
+window[tamuraFirstLoadWindowVarsKeyName] = {
+	"__MySourceFileBasePathArray": ["https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main", "https://kamiya3141.github.io/mirror-share-server", "https://share.tshuto.com"],
+	"__MySourceFileBasePathArrayIndex": 1,
 	"myHref": new URL(window.location.toString()),
-	"GithubMirrorServerBasePath": "https://kamiya3141.github.io/mirror-share-server",
-	"MyShareServerBasePath": "https://share.tshuto.com",
-	"___allowSourceFileFromGithubMirrorServer": true,
-	get "allowSourceFileFromGithubMirrorServer"() {
-		return this["___allowSourceFileFromGithubMirrorServer"];
+	get "mySourceFileBasePath"() {
+		return this["__MySourceFileBasePathArray"][this["__MySourceFileBasePathArrayIndex"]];
 	},
-	set "allowSourceFileFromGithubMirrorServer"(input) {
-		if (typeof input == "boolean")
-			this["___allowSourceFileFromGithubMirrorServer"] = Boolean(input);
-		else
-			console.error(`window.${tamuraFirstLoadWindowVarsKeyName}.allowSourceFileFromGithubMirrorServer setter error`);
-		return this["___allowSourceFileFromGithubMirrorServer"];
+	get "mySourceFileBasePathArray"() {
+		return this["__MySourceFileBasePathArray"];
+	},
+	get "mySourceFileBasePathArrayIndex"() {
+		return this["__MySourceFileBasePathArrayIndex"];
+	},
+	set "mySourceFileBasePathArrayIndex"(input) {
+		const inputType = String(typeof input);
+		const inputInArrayLengthRange = Boolean(input > 0 && input < this["__MySourceFileBasePathArray"].length);
+
+		let tf = Boolean(inputType == "number");
+
+		if (tf) {
+			if (inputInArrayLengthRange)
+				this["__MySourceFileBasePathArrayIndex"] = Number(input);
+			else
+				console.error(`window["tamuraFirstLoading"]["mySourceFileBasePathArrayIndex"]に範囲外の値が入力されました。\ninput: ${input}`);
+		} else
+			console.error(`window["tamuraFirstLoading"]["mySourceFileBasePathArrayIndex"]に整数以外の値が入力されました。\ntypeof input: ${inputType}`);
+
+		return Boolean(tf && inputInArrayLengthRange);
 	}
-});
+};
 
 var WINV = window[tamuraFirstLoadWindowVarsKeyName];
-WINV["mySourceFileBasePath"] = WINV["allowSourceFileFromGithubMirrorServer"] ? WINV["GithubMirrorServerBasePath"] : WINV["MyShareServerBasePath"];
 
+WINV["mySourceFileBasePathArrayIndex"] = 1;
 
 // window.location.href
 /**
