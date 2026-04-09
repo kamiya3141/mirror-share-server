@@ -57,10 +57,10 @@ async function mainFunc() {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
 			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
 				if (c1.split("--")[1] == c2.split("--")[1]) {
-					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
+					setting_elem.querySelector(c1).setAttribute("data-mydef--selected", "true");
 					setting_elem.querySelector(c2).style.display = "flex";
 				} else {
-					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
+					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef--selected", "false");
 					setting_elem.querySelector(c2).style.display = "none";
 				}
 			});
@@ -118,7 +118,7 @@ async function mainFunc() {
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
-			const attr_name = "data-mydef-set-by-script";
+			const attr_name = "data-mydef--set-by-script";
 			const data_is_true = Boolean(e.target.getAttribute(attr_name) == "true");
 			if (!data_is_true) {
 				c1["select-change-event-function"](e.target.value);

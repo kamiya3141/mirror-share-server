@@ -1,0 +1,54 @@
+.toggle_button {
+	--tgl-w-c1: var(--c1);
+	--tgl-w: calc(var(--tgl-w-c1) / 2);
+	--tgl-h: var(--tgl-w-c1);
+	--tgl-mv: var(--w);
+	--tgl-r: 999em;
+
+	position: relative;
+	width: var(--tgl-w-c1);
+	height: var(--tgl-h);
+	margin: auto;
+
+
+	& > .toggle_input {
+		position: absolute;
+		width: var(--tgl-w-c1);
+		height: var(--tgl-h);
+		opacity: 0;
+		cursor: pointer;
+
+		&:checked + .toggle_label {
+			background-color: #4BD865;
+
+			&::after {
+				content: "";
+				left: var(--tgl-mv);
+			}
+		}
+	}
+
+	& > .toggle_label {
+		aspect-ratio: 2/1;
+		width: auto;
+		height: var(--tgl-h);
+		background-color: #ccc;
+		border-radius: var(--tgl-r);
+		display: inline-block;
+		transition: background-color 0.5s;
+		position: relative;
+
+		&::after {
+			content: "";
+			aspect-ratio: 1/1;
+			position: absolute;
+			width: auto;
+			height: var(--c1);
+			background-color: #fff;
+			border-radius: var(--tgl-r);
+			top: 0;
+			left: 0;
+			transition: left 0.4s;
+		}
+	}
+}

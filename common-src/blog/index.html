@@ -10,6 +10,9 @@
 	<link rel="stylesheet" crossorigin="anonymous" href="https://unpkg.com/font-awesome@latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
 	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/style.css">
+	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/toggle-switch-template.css">
+	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/display-template.css">
+	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/display-setting-template.css">
 	<script defer src="https://share.tshuto.com/All.js"></script>
 </head>
 
@@ -18,153 +21,12 @@
 	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
 	-->
 	<template id="toggle-switch-template">
-		<style>
-			.toggle_button {
-				--tgl-w-c1: 100%;
-				--tgl-w: calc(var(--tgl-w-c1) / 2);
-				--tgl-h: var(--tgl-w-c1);
-				--tgl-mv: 50%;
-				--tgl-r: 999em;
-
-				position: relative;
-				width: var(--tgl-w-c1);
-				height: var(--tgl-h);
-				margin: auto;
-			}
-
-			.toggle_input {
-				position: absolute;
-				width: var(--tgl-w-c1);
-				height: var(--tgl-h);
-				opacity: 0;
-				cursor: pointer;
-
-				&:checked+.toggle_label {
-					background-color: #4BD865;
-
-					&::after {
-						content: "";
-						left: var(--tgl-mv);
-					}
-				}
-			}
-
-			.toggle_label {
-				aspect-ratio: 2/1;
-				width: auto;
-				height: var(--tgl-h);
-				background-color: #ccc;
-				border-radius: var(--tgl-r);
-				display: inline-block;
-				transition: background-color 0.5s;
-				position: relative;
-
-				&::after {
-					content: "";
-					aspect-ratio: 1/1;
-					position: absolute;
-					width: auto;
-					height: 100%;
-					background-color: #fff;
-					border-radius: var(--tgl-r);
-					top: 0;
-					left: 0;
-					transition: left 0.4s;
-				}
-			}
-		</style>
 		<label class="toggle_button">
 			<input class="toggle_input" type="checkbox" />
 			<span class="toggle_label"></span>
 		</label>
 	</template>
 	<template id="display-template">
-		<style>
-			.display-item-box {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				flex-direction: column;
-				position: relative;
-
-				&:focus-visible {
-					outline: none;
-				}
-
-				&>.contents {
-					width: 100%;
-				}
-
-				&>.main-contents {
-					height: 80%;
-					background-color: var(--myMainBackgroundColor);
-				}
-
-				&>.sub-contents {
-					height: 10%;
-					flex-direction: row;
-					background-color: var(--clear);
-
-					&>.item-box {
-						width: 100%;
-						height: 100%;
-						justify-content: space-between;
-
-						&>.text-box {
-							flex: 9;
-							width: auto;
-							height: 100%;
-							background-color: var(--myElementBackgroundColor2);
-							align-items: center;
-							justify-content: center;
-						}
-
-						&>.corner-box {
-							flex: 1;
-							width: auto;
-							height: 100%;
-
-							&>* {
-								background-color: var(--myElementBackgroundColor2);
-								aspect-ratio: 1/1;
-								width: auto;
-								height: 100%;
-							}
-
-							&>#control-box {
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								font-size: calc(var(--p2) * 2);
-							}
-
-							&>#icon-box>iframe {
-								aspect-ratio: 1/1;
-								width: 75%;
-								height: 75%;
-							}
-						}
-					}
-				}
-
-
-				#corner-00 {
-					border-radius: 999em 0 0 0;
-				}
-
-				#corner-10 {
-					border-radius: 0 999em 0 0;
-				}
-
-				#corner-11 {
-					border-radius: 0 0 999em 0;
-				}
-
-				#corner-01 {
-					border-radius: 0 0 0 999em;
-				}
-			}
-		</style>
 		<div class="display-item-box">
 			<header class="contents sub-contents">
 				<div class="item-box">
@@ -205,99 +67,6 @@
 	</template>
 	<!-- 以下特殊用途のtemplate -->
 	<template id="display-setting-template">
-		<style>
-			#display-setting-main-contents-setting {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				font-size: 1.5rem;
-
-				&>* {
-					flex-direction: column;
-					height: 100%;
-				}
-
-				&>.tab-bar {
-					font-size: 1.75rem;
-					width: 25%;
-					justify-content: flex-start;
-					border-right: var(--myTextColor) 0.125rem solid;
-
-					&>.tab-bar--contents {
-						width: 100%;
-						max-height: 20%;
-						flex-direction: row;
-						justify-content: center;
-
-
-						&>.tab-bar--contents--item {
-							width: 80%;
-							height: 80%;
-							padding-top: 0.25rem;
-							padding-bottom: 0.25rem;
-						}
-
-						&[data-mydef-selected="true"] {
-							&>.tab-bar--contents--item::after {
-								content: "";
-								position: absolute;
-								left: 0;
-								top: 0;
-								width: 100%;
-								height: 100%;
-								border-radius: 999rem;
-								background-color: var(--gray3);
-							}
-						}
-					}
-				}
-
-				&>.tab-contents-box {
-					width: 75%;
-					justify-content: space-around;
-
-					&>.tab-contents-box--item {
-						display: none;
-						width: 80%;
-						height: 100%;
-						justify-content: flex-start;
-
-						&>.item-all-box {
-							width: 100%;
-							justify-content: space-between;
-							flex-direction: row;
-							margin-top: 2rem;
-							padding-top: 1.5rem;
-							border-top: var(--myTextColor) 2px solid;
-
-							&>* {
-								width: auto;
-								height: 100%;
-							}
-
-							&>.item-summary {
-								flex: 8;
-								justify-content: flex-start;
-							}
-
-							&>.item-box {
-								flex: 2;
-								justify-content: center;
-
-								&>.item {
-									width: 75%;
-									height: 75%;
-									justify-content: flex-end;
-								}
-							}
-						}
-					}
-				}
-			}
-		</style>
 		<div id="display-setting-main-contents-setting">
 			<div class="tab-bar">
 				<div class="tab-bar--contents" id="tb--appearance">
@@ -319,7 +88,7 @@
 						<div class="item-summary">テーマの設定</div>
 						<div class="item-box">
 							<div class="item">
-								<select id="setting-display--appearance--input-select--theme-setting" data-mydef-set-by-script="false"></select>
+								<select id="setting-display--appearance--input-select--theme-setting" data-mydef--set-by-script="false"></select>
 							</div>
 						</div>
 					</div>
@@ -327,7 +96,7 @@
 						<div class="item-summary">デバイスモードの設定</div>
 						<div class="item-box">
 							<div class="item">
-								<select id="setting-display--appearance--input-select--device-mode-setting" data-mydef-set-by-script="false"></select>
+								<select id="setting-display--appearance--input-select--device-mode-setting" data-mydef--set-by-script="false"></select>
 							</div>
 						</div>
 					</div>

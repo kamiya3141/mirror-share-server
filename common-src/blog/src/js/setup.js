@@ -38,7 +38,7 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
 		return;
 	}
 	const __target_id = funcObj[key];
-	// document.getElementById(__target_id).setAttribute("data-mydef-set-by-script", "true");
+	// document.getElementById(__target_id).setAttribute("data-mydef--set-by-script", "true");
 	if (tf)
 		document.getElementById(__target_id).disabled = false;
 	else

@@ -177,7 +177,7 @@ window.addEventListener("load", () => {
 	setTheme();
 });
 
-
+/*
 const console_clear_ok = document.querySelector("span#console-ok");
 
 if (!Object.hasOwn(WINV, "console-ok"))
@@ -188,3 +188,4 @@ if (!WINV["console-ok"] && console_clear_ok === null) {
 	console.log("コンソールに入力しないでください");
 } else
 	WINV["console-ok"] = true;
+*/

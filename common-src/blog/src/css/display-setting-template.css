@@ -1,0 +1,109 @@
+#display-setting-main-contents-setting {
+	width: var(--c1);
+	height: var(--c1);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+
+	& > * {
+		flex-direction: column;
+		height: var(--c1);
+	}
+
+	& > .tab-bar {
+		font-size: 1.75rem;
+		width: calc(var(--c1) * 1 / 4);
+		justify-content: flex-start;
+		border-right: var(--myTextColor) 0.125rem solid;
+
+		& > .tab-bar--contents {
+			width: var(--c1);
+			max-height: calc(var(--c1) * 1 / 5);
+			flex-direction: row;
+			justify-content: center;
+
+
+			& > .tab-bar--contents--item {
+				width: calc(var(--c1) * 4 / 5);
+				height: calc(var(--c1) * 4 / 5);
+				padding-top: 0.25rem;
+				padding-bottom: 0.25rem;
+			}
+
+			&:hover {
+				& > .tab-bar--contents--item::after {
+					content: "";
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: var(--c1);
+					height: var(--c1);
+					border-radius: 999rem;
+					background-color: var(--gray1);
+				}
+			}
+
+			&[data-mydef--selected="true"] {
+				& > .tab-bar--contents--item::after {
+					content: "";
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: var(--c1);
+					height: var(--c1);
+					border-radius: 999rem;
+					background-color: var(--gray3);
+				}
+			}
+		}
+	}
+
+	& > .tab-contents-box {
+		width: calc(var(--c1) * 3 / 4);
+		justify-content: space-around;
+
+		& > .tab-contents-box--item {
+			display: none;
+			width: calc(var(--c1) * 4 / 5);
+			height: var(--c1);
+			justify-content: flex-start;
+
+			& > .item-all-box {
+				width: var(--c1);
+				justify-content: space-between;
+				flex-direction: row;
+				margin-top: 2rem;
+				padding-top: 1.5rem;
+				border-top: var(--myTextColor) 2px solid;
+
+				& > * {
+					width: auto;
+					height: var(--c1);
+				}
+
+				& > .item-summary {
+					flex: 8;
+					justify-content: flex-start;
+				}
+
+				& > .item-box {
+					flex: 2;
+					justify-content: center;
+
+					& > .item {
+						width: calc(var(--c1) * 3 / 4);
+						height: calc(var(--c1) * 3 / 4);
+						justify-content: flex-end;
+					}
+				}
+
+				& > .item {
+					width: var(--c1);
+					height: var(--c1);
+				}
+			}
+		}
+	}
+}
