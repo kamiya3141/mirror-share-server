@@ -37,7 +37,6 @@ function reloadDeviceInformation(add_msg = "") {
 	editDeviceInformation("realHeight", Number(getCSSLengthValue("--myStylingRealHeight")));
 
 	setThemeArgsHistoryObject["forceTheme"] = device["force-theme"];
-	console.log(setThemeArgsHistoryObject["forceTheme"]);
 	setThemeArgsHistoryObject["themeLight"] = device["theme"];
 	setThemeArgsHistoryObject["forceDevice"] = device["force-device"];
 	setThemeArgsHistoryObject["deviceMobile"] = device["mobile"];

@@ -127,6 +127,7 @@ async function mainFunc() {
 			}
 			e.target.setAttribute(attr_name, "false");
 		});
+		document.getElementById(c1["select-id"]).disabled = true;
 	});
 
 

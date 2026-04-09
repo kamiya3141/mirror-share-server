@@ -113,12 +113,6 @@ var setThemeArgsHistoryObject = {
 	"__themeLight": false,
 	"__forceDevice": false,
 	"__deviceMobile": false,
-	"__check_and_input_boolean_func": (input = false, key_name = "") => {
-		if (typeof input != "boolean")
-			console.error(`setThemeArgsHistoryObject["${key_name}"]に真偽値以外の入力がありました。\ninput: ${input}\nkey_name: ${key_name}`);
-		else
-			this[`__${key_name}`] = input;
-	},
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
@@ -151,7 +145,6 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 
 function setTheme() {
 	let { forceTheme, themeLight, forceDevice, deviceMobile } = setThemeArgsHistoryObject;
-	// console.log(forceTheme, themeLight, forceDevice, deviceMobile);
 	// let forceTheme, themeLight, forceDevice, deviceMobile;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
@@ -174,8 +167,6 @@ function setTheme() {
 
 	const dt_my_dv_type = (Boolean(tf) ? "mobile" : "desktop");
 	document.documentElement.setAttribute("data-my-device-type", dt_my_dv_type);
-	if (dt_my_dv_type == "mobile")
-		console.log(checkCurrentDeviceMobile(), n_idx, [forceDevice, deviceMobile, Boolean(n_idx)], [deviceMobile, Number(deviceMobile)], [Boolean(n_idx), Number(Boolean(n_idx))]);
 }
 
 window.addEventListener("resize", () => {
@@ -186,9 +177,9 @@ window.addEventListener("load", () => {
 	setTheme();
 });
 
-/*
-if (document.querySelector("span#console-ok") === null) {
+
+const console_clear_ok = document.querySelector("span#console-ok");
+if (console_clear_ok=== null) {
 	console.clear();
 	console.log("コンソールに入力しないでください");
 }
-*/
