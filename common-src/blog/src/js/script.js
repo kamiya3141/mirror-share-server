@@ -34,7 +34,7 @@ async function mainFunc() {
 				switchingOpenDisplay(switched_elem);
 				if (getOpenDisplayStatus(switched_elem)) {
 					focus_out_elem.focus();
-					setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[0]}`).click();
+					setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
 				}
 			});
 		});
@@ -86,7 +86,8 @@ async function mainFunc() {
 			],
 			"select-change-event-function": val => {
 				editDeviceInformation("theme", Boolean(val == "system" ? checkCurrentSystemThemeLight() : (val == "light")));
-			}
+			},
+			"init-disabled": true
 		},
 		{
 			"select-id": "setting-display--appearance--input-select--device-mode-setting",
@@ -106,7 +107,34 @@ async function mainFunc() {
 			],
 			"select-change-event-function": val => {
 				editDeviceInformation("mobile", Boolean(val == "device" ? checkCurrentDeviceMobile() : (val == "mobile")));
-			}
+			},
+			"init-disabled": true
+		},
+		{
+			"select-id": "setting-display--specific--input-select--setting-display-init-item",
+			"select-option-data-array": [
+				{
+					"text": "表示設定",
+					"value": "0"
+				},
+				{
+					"text": "詳細設定",
+					"value": "1"
+				},
+				{
+					"text": "ユーザデータの設定",
+					"value": "2"
+				},
+				{
+					"text": "設定の初期化",
+					"value": "3"
+				}
+			],
+			"select-change-event-function": val => {
+				editDeviceInformation("setting-display-init-item-index", Number(val));
+			},
+			"init-disabled": false,
+			"reload-cancel": true
 		}
 	];
 
@@ -127,7 +155,7 @@ async function mainFunc() {
 			}
 			e.target.setAttribute(attr_name, "false");
 		});
-		document.getElementById(c1["select-id"]).disabled = true;
+		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
 

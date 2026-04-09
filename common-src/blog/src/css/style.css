@@ -759,6 +759,10 @@ html {
 			border: none;
 		}
 
+		& *:disabled {
+			background-color: var(--gray7);
+		}
+
 		& .deco-text {
 			opacity: var(--c1);
 			transition: opacity calc(var(--mnt1) * 1.25) ease-in-out;
