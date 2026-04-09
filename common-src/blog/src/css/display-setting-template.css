@@ -96,12 +96,13 @@
 						width: calc(var(--c1) * 3 / 4);
 						height: calc(var(--c1) * 3 / 4);
 						justify-content: flex-end;
-					}
-				}
 
-				& > .item {
-					width: var(--c1);
-					height: var(--c1);
+						& > *.allow-expand {
+							display: block;
+							width: var(--c1);
+							height: var(--c1);
+						}
+					}
 				}
 			}
 		}

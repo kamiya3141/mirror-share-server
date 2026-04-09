@@ -43,9 +43,9 @@ var winMyHrefPTCHNPathname = `${winMyHrefPTCHostname}${winMyHrefPathname}`;
 // 相対パスで指定されたソースファイル取得時に元となるURLはGitHubのMirrorServer、share-serverのどちらか
 var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
-(() => {
-	const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))))).searchParams.has("svg") || false;
+const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))))).searchParams.has("svg") || false;
 
+(() => {
 	if (!this_is_svg_file) {
 
 		adds_head([
@@ -177,15 +177,10 @@ window.addEventListener("load", () => {
 	setTheme();
 });
 
-/*
+
 const console_clear_ok = document.querySelector("span#console-ok");
 
-if (!Object.hasOwn(WINV, "console-ok"))
-	WINV["console-ok"] = false;
-
-if (!WINV["console-ok"] && console_clear_ok === null) {
+if (!this_is_svg_file && console_clear_ok === null) {
 	console.clear();
 	console.log("コンソールに入力しないでください");
-} else
-	WINV["console-ok"] = true;
-*/
+}
