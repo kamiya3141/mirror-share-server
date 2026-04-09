@@ -1,8 +1,8 @@
 var device = {
 	"force-theme": false,
-	"theme": checkCurrentSystemThemeLight(),
+	"theme": false,
 	"force-device": false,
-	"mobile": checkCurrentDeviceMobile(),
+	"mobile": false,
 	"width": 0,
 	"height": 0,
 	"realWidth": 0,
@@ -28,33 +28,32 @@ function editDeviceInformation(_key = "", _value = null) {
 		device[_key] = _value;
 	else
 		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません`);
-	reloadDeviceInformation();
-	console.log(device);
 }
 
-function reloadDeviceInformation() {
-	device["width"] = Number(getCSSLengthValue("--myStylingWidth"));
-	device["height"] = Number(getCSSLengthValue("--myStylingHeight"));
-	device["realWidth"] = Number(getCSSLengthValue("--myStylingRealWidth"));
-	device["realHeight"] = Number(getCSSLengthValue("--myStylingRealHeight"));
+function reloadDeviceInformation(add_msg = "") {
+	editDeviceInformation("width", Number(getCSSLengthValue("--myStylingWidth")));
+	editDeviceInformation("height", Number(getCSSLengthValue("--myStylingHeight")));
+	editDeviceInformation("realWidth", Number(getCSSLengthValue("--myStylingRealWidth")));
+	editDeviceInformation("realHeight", Number(getCSSLengthValue("--myStylingRealHeight")));
 
 	setThemeArgsHistoryObject["forceTheme"] = device["force-theme"];
+	console.log(setThemeArgsHistoryObject["forceTheme"]);
 	setThemeArgsHistoryObject["themeLight"] = device["theme"];
 	setThemeArgsHistoryObject["forceDevice"] = device["force-device"];
 	setThemeArgsHistoryObject["deviceMobile"] = device["mobile"];
 
 	setTheme();
 
-	console.log(setThemeArgsHistoryObject);
+	console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
 }
 
 window.addEventListener("resize", () => {
-	reloadDeviceInformation();
+	reloadDeviceInformation("resize-event");
 });
 window.addEventListener("load", () => {
-	reloadDeviceInformation();
+	reloadDeviceInformation("load-event");
 });
 
 useOldUserAgentDataValue = device["DEBUGMODE"];
 
-reloadDeviceInformation();
+reloadDeviceInformation("init");

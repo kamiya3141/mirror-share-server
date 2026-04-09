@@ -120,16 +120,16 @@ var setThemeArgsHistoryObject = {
 			this[`__${key_name}`] = input;
 	},
 	set "forceTheme"(input) {
-		this["__check_and_input_boolean_func"](input, "forceTheme");
+		this["__forceTheme"] = Boolean(input);
 	},
 	set "themeLight"(input) {
-		this["__check_and_input_boolean_func"](input, "themeLight");
+		this["__themeLight"] = Boolean(input);
 	},
 	set "forceDevice"(input) {
-		this["__check_and_input_boolean_func"](input, "forceDevice");
+		this["__forceDevice"] = Boolean(input);
 	},
 	set "deviceMobile"(input) {
-		this["__check_and_input_boolean_func"](input, "deviceMobile");
+		this["__deviceMobile"] = Boolean(input);
 	},
 	get "forceTheme"() {
 		return this["__forceTheme"];

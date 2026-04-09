@@ -15,12 +15,35 @@ const template_data_function_map = {
 	},
 	"toggle-switch-template": device_setting_id => {
 		const flag = cloneTemplate("toggle-switch-template");
-		flag.querySelector(".toggle_input").addEventListener("change", e => editDeviceInformation(device_setting_id, e.target.checked));
+		flag.querySelector(".toggle_input").addEventListener("change", e => {
+			const chk = e.target.checked;
+			editDeviceInformation(device_setting_id, chk);
+			toggleSwitchChangeEventAddFunction(device_setting_id, chk);
+			reloadDeviceInformation("toggle-switch-template");
+		});
 		return flag;
 	}
 };
 
 convertTemplateElement(document);
+
+function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
+	const funcObj = {
+		"force-theme": "setting-display--appearance--input-select--theme-setting",
+		"force-device": "setting-display--appearance--input-select--device-mode-setting"
+	};
+
+	if (!Object.hasOwn(funcObj, key)) {
+		console.error(`キー名: ${key}は設定されたオブジェクトに存在しません`);
+		return;
+	}
+	const __target_id = funcObj[key];
+	// document.getElementById(__target_id).setAttribute("data-mydef-set-by-script", "true");
+	if (tf)
+		document.getElementById(__target_id).disabled = false;
+	else
+		document.getElementById(__target_id).disabled = true;
+}
 
 function convertTemplateElement(elem = document) {
 	[...elem.querySelectorAll(".import-template-append")].forEach(c => {

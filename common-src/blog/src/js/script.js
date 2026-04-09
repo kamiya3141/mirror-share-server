@@ -9,6 +9,7 @@ async function mainFunc() {
 	PMD.afterFunction();
 
 
+
 	const displayElementQueryArray = [
 		{
 			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
@@ -45,6 +46,27 @@ async function mainFunc() {
 		});
 	});
 
+	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
+	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
+		editDeviceInformation("prefer-color", e.target.value);
+		reloadDeviceInformation("prefer-color");
+	});
+
+
+	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
+		setting_elem.querySelector(c1).addEventListener("click", e => {
+			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
+				if (c1.split("--")[1] == c2.split("--")[1]) {
+					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
+					setting_elem.querySelector(c2).style.display = "flex";
+				} else {
+					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
+					setting_elem.querySelector(c2).style.display = "none";
+				}
+			});
+		});
+	});
+
 	const settingSelectElementDataArray = [
 		{
 			"select-id": "setting-display--appearance--input-select--theme-setting",
@@ -62,15 +84,17 @@ async function mainFunc() {
 					"value": "dark"
 				}
 			],
-			"select-change-event-function": e => {
-				document.documentElement.setAttribute("data-theme", e.target.value);
-				editDeviceInformation("theme", Boolean(e.target.value == "system" ? checkCurrentSystemThemeLight() : (e.target.value == "light")));
-				reloadDeviceInformation();
+			"select-change-event-function": val => {
+				editDeviceInformation("theme", Boolean(val == "system" ? checkCurrentSystemThemeLight() : (val == "light")));
 			}
 		},
 		{
 			"select-id": "setting-display--appearance--input-select--device-mode-setting",
 			"select-option-data-array": [
+				{
+					"text": "デバイス",
+					"value": "device"
+				},
 				{
 					"text": "デスクトップ",
 					"value": "desktop"
@@ -80,13 +104,12 @@ async function mainFunc() {
 					"value": "mobile"
 				}
 			],
-			"select-change-event-function": e => {
-				document.documentElement.setAttribute("data-my-device-type", e.target.value);
-				editDeviceInformation("mobile", Boolean(e.target.value == "mobile"));
-				reloadDeviceInformation();
+			"select-change-event-function": val => {
+				editDeviceInformation("mobile", Boolean(val == "device" ? checkCurrentDeviceMobile() : (val == "mobile")));
 			}
 		}
 	];
+
 
 	settingSelectElementDataArray.forEach(c1 => {
 		c1["select-option-data-array"].forEach(c2 => {
@@ -97,30 +120,12 @@ async function mainFunc() {
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
 			const attr_name = "data-mydef-set-by-script";
 			const data_is_true = Boolean(e.target.getAttribute(attr_name) == "true");
-			if (!data_is_true)
-				c1["select-change-event-function"](e);
+			if (!data_is_true) {
+				c1["select-change-event-function"](e.target.value);
+				if (!(Object.hasOwn(c1, "reload-cancel") && c1["reload-cancel"] == true))
+					reloadDeviceInformation("select-element-change-event");
+			}
 			e.target.setAttribute(attr_name, "false");
-		});
-	});
-
-	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
-	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
-		editDeviceInformation("prefer-color", e.target.value);
-		reloadDeviceInformation();
-	});
-
-
-	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
-		setting_elem.querySelector(c1).addEventListener("click", e => {
-			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
-				if (c1.split("--")[1] == c2.split("--")[1]) {
-					setting_elem.querySelector(c1).setAttribute("data-mydef-selected", "true");
-					setting_elem.querySelector(c2).style.display = "flex";
-				} else {
-					setting_elem.querySelector(c2.replace("tc", "tb")).setAttribute("data-mydef-selected", "false");
-					setting_elem.querySelector(c2).style.display = "none";
-				}
-			});
 		});
 	});
 
