@@ -179,7 +179,12 @@ window.addEventListener("load", () => {
 
 
 const console_clear_ok = document.querySelector("span#console-ok");
-if (console_clear_ok=== null) {
+
+if (!Object.hasOwn(WINV, "console-ok"))
+	WINV["console-ok"] = false;
+
+if (!WINV["console-ok"] && console_clear_ok === null) {
 	console.clear();
 	console.log("コンソールに入力しないでください");
-}
+} else
+	WINV["console-ok"] = true;
