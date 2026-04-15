@@ -9,12 +9,15 @@ async function mainFunc() {
 	PMD.afterFunction();
 
 
+	const attrName_SetByScript = "data-mydef--set-by-script";
+
 
 	const displayElementQueryArray = [
 		{
 			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
-			"switched-element": "#setting-display-section"
+			"switched-element": "#setting-display-section",
+			"tf-func": __tf => editDeviceInformation("setting-display-open", __tf)
 		}
 	];
 
@@ -31,7 +34,8 @@ async function mainFunc() {
 
 		obj["trigger-element"].forEach(el => {
 			document.querySelector(el).addEventListener("click", e => {
-				switchingOpenDisplay(switched_elem);
+				const return_data = switchingOpenDisplay(switched_elem);
+				obj["tf-func"](return_data);
 				if (getOpenDisplayStatus(switched_elem)) {
 					focus_out_elem.focus();
 					setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
@@ -40,8 +44,10 @@ async function mainFunc() {
 		});
 		focus_out_elem.addEventListener("focusout", e => {
 			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
-				if (!getDeviceInformation("DEBUGMODE"))
+				if (!getDeviceInformation("DEBUGMODE")) {
 					switchingOpenDisplay(switched_elem);
+					obj["tf-func"](return_data);
+				}
 			}
 		});
 	});
@@ -146,7 +152,7 @@ async function mainFunc() {
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
-			const attr_name = "data-mydef--set-by-script";
+			const attr_name = attrName_SetByScript;
 			const data_is_true = Boolean(e.target.getAttribute(attr_name) == "true");
 			if (!data_is_true) {
 				c1["select-change-event-function"](e.target.value);
@@ -158,8 +164,10 @@ async function mainFunc() {
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
-	if (getDeviceInformation("setting-display-open"))
-		switchingOpenDisplay(document.querySelector("#setting-display-section"))
+	if (getDeviceInformation("setting-display-open")) {
+		displayElementQueryArray[0]["switched-element"].setAttribute(attrName_SetByScript, true);
+		switchingOpenDisplay(displayElementQueryArray[0]["switched-element"]);
+	}
 
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
@@ -170,13 +178,19 @@ async function mainFunc() {
 
 window.addEventListener("load", mainFunc);
 
-
-function switchingOpenDisplay(elem, tf_func) {
+function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {
 	const attr_name = "data-display-open";
-	const data_is_true = getOpenDisplayStatus(elem);
-	elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
-	tf_
-	editDeviceInformation("setting-display-open", !data_is_true);
+	let data_is_true = getOpenDisplayStatus(elem);
+	if (forceStatusValue) {
+		if (inputData == "true" || inputData == true)
+			data_is_true = "true";
+		else if (inputData == "false" || inputData == false)
+			data_is_true = "false";
+	}
+	if (elem.getAttribute(attrName_SetByScript) != "true")
+		elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
+	elem.setAttribute(attrName_SetByScript, "false");
+	return !data_is_true;
 }
 
 function getOpenDisplayStatus(elem) {
