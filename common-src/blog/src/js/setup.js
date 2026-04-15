@@ -29,20 +29,18 @@ convertTemplateElement(document);
 
 function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
 	const funcObj = {
-		"force-theme": "setting-display--appearance--input-select--theme-setting",
-		"force-device": "setting-display--appearance--input-select--device-mode-setting"
+		"force-theme": __tf => document.getElementById("setting-display--appearance--input-select--theme-setting").disabled = !__tf,
+		"force-device": __tf => document.getElementById("setting-display--appearance--input-select--device-mode-setting").disabled = !__tf,
+		"save--user-data--localstorage": __tf => editDeviceInformation("save--user-data--localstorage", __tf)
 	};
 
 	if (!Object.hasOwn(funcObj, key)) {
 		console.error(`キー名: ${key}は設定されたオブジェクトに存在しません`);
 		return;
 	}
-	const __target_id = funcObj[key];
-	// document.getElementById(__target_id).setAttribute("data-mydef--set-by-script", "true");
-	if (tf)
-		document.getElementById(__target_id).disabled = false;
-	else
-		document.getElementById(__target_id).disabled = true;
+
+	funcObj[key](tf);
+
 }
 
 function convertTemplateElement(elem = document) {

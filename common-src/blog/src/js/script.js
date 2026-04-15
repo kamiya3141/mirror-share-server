@@ -38,11 +38,11 @@ async function mainFunc() {
 				}
 			});
 		});
-		if (getDeviceInformation("DEBUGMODE"))
-			return;
 		focus_out_elem.addEventListener("focusout", e => {
-			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem))
-				switchingOpenDisplay(switched_elem);
+			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
+				if (!getDeviceInformation("DEBUGMODE"))
+					switchingOpenDisplay(switched_elem);
+			}
 		});
 	});
 
@@ -158,6 +158,8 @@ async function mainFunc() {
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
+	if (getDeviceInformation("setting-display-open"))
+		switchingOpenDisplay(document.querySelector("#setting-display-section"))
 
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
@@ -169,10 +171,12 @@ async function mainFunc() {
 window.addEventListener("load", mainFunc);
 
 
-function switchingOpenDisplay(elem) {
+function switchingOpenDisplay(elem, tf_func) {
 	const attr_name = "data-display-open";
 	const data_is_true = getOpenDisplayStatus(elem);
 	elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
+	tf_
+	editDeviceInformation("setting-display-open", !data_is_true);
 }
 
 function getOpenDisplayStatus(elem) {
