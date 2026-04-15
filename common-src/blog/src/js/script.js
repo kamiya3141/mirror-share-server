@@ -8,10 +8,6 @@ async function mainFunc() {
 
 	PMD.afterFunction();
 
-
-	const attrName_SetByScript = "data-mydef--set-by-script";
-
-
 	const displayElementQueryArray = [
 		{
 			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
@@ -164,9 +160,10 @@ async function mainFunc() {
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
+
 	if (getDeviceInformation("setting-display-open")) {
-		document.querySelector(displayElementQueryArray[0]["switched-element"]).setAttribute(attrName_SetByScript, true);
-		switchingOpenDisplay(document.querySelector(displayElementQueryArray[0]["switched-element"]));
+		editDeviceInformation("setting-display-open", false);
+		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
 	}
 
 	/*

@@ -11,7 +11,7 @@ var device = {
 	"realHeight": 0,
 	"prefer-color": "#00ff00",
 	"setting-display-init-item-index": 0,
-	"save--user-data--localstorage": false,
+	"save--user-data--localstorage": true,
 	"setting-display-open": false,
 	"DEBUGMODE": true
 };
@@ -32,7 +32,7 @@ function editDeviceInformation(_key = "", _value = null) {
 		device[_key] = _value;
 	else
 		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません\n${Object.entries(device).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-	setDeviceDataForLocalStorage(device["save--user-data--localstorage"]);
+	setDeviceDataForLocalStorage(Boolean(localStorage.getItem(localStorageDeviceObjectKeyName)) || device["save--user-data--localstorage"]);
 }
 
 function reloadDeviceInformation(add_msg = "") {

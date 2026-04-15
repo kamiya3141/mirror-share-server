@@ -1,3 +1,5 @@
+var attrName_SetByScript = "data-mydef--set-by-script";
+
 const template_data_function_map = {
 	"display-template": (header_title = "title", contents = "", footer_title = "") => {
 		const flag = cloneTemplate("display-template");

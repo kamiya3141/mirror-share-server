@@ -11,6 +11,10 @@ const scriptSettingObjectArray = [
 	{
 		"src": "src/js/script.js",
 		"type": "module"
+	},
+	{
+		"src": "src/js/after.js",
+		"type": "text/javascript"
 	}
 	// ↓ カンマ演算子使ってるよ、読みづらいね(笑)
 ].map(scriptSettingObject => (scriptSettingObject["src"] = joinBaseHostname(scriptSettingObject["src"]), scriptSettingObject["defer"] = "", scriptSettingObject)).forEach(scriptSettingObject => {
