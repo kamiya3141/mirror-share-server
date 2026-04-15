@@ -11,6 +11,7 @@ const origin_device = {
 	"realHeight": 0,
 	"prefer-color": "#00ff00",
 	"setting-display-init-item-index": 0,
+	"allow--opening--setting-display--after--reload": false,
 	"save--user-data--localstorage": false,
 	"setting-display-open": false,
 	"DEBUGMODE": true
@@ -22,10 +23,9 @@ setOriginDeviceValueForDevice();
 if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
 	setDeviceDataForLocalStorage(true);
 
-function resetDeviceInformation() {
-	/*
-	ユーザデータの削除を警告する処理をここに挟む
-	*/
+function resetDeviceInformation(allowDisplayWarningMessage = true) {
+	if (allowDisplayWarningMessage)
+		alert("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
 	setOriginDeviceValueForDevice();
 }
 
@@ -47,7 +47,12 @@ function getDeviceInformation(_key = "") {
 function editDeviceInformation(_key = "", _value = null) {
 
 	if (_key == "save--user-data--localstorage" && _value == false) {
-		resetDeviceInformation();
+		const _tf = confirm("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
+		if (_tf) {
+			resetDeviceInformation(false);
+			setDeviceDataForLocalStorage(true);
+		} else
+			alert("初期化を中止しました。");
 	}
 
 	if (Object.hasOwn(device, _key))

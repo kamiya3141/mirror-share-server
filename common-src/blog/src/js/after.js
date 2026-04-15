@@ -155,7 +155,7 @@ function loadedFunc() {
 	});
 
 	if (saveUserDataLocalstorage) {
-		if (getDeviceInformation("setting-display-open")) {
+		if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 			editDeviceInformation("setting-display-open", false);
 			document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
 		}

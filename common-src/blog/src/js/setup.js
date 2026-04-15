@@ -33,13 +33,16 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
 	const funcObj = {
 		"force-theme": __tf => document.getElementById("setting-display--appearance--input-select--theme-setting").disabled = !__tf,
 		"force-device": __tf => document.getElementById("setting-display--appearance--input-select--device-mode-setting").disabled = !__tf,
-		"save--user-data--localstorage": __tf => editDeviceInformation("save--user-data--localstorage", __tf)
 	};
 
-	if (!Object.hasOwn(funcObj, key)) {
-		console.error(`キー名: ${key}は設定されたオブジェクトに存在しません`);
-		return;
+	if (!Object.hasOwn(funcObj, key))
+		funcObj[key] = __tf => editDeviceInformation(key, __tf);
+	/*
+	{
+		// console.error(`キー名: ${key}は設定されたオブジェクトに存在しません`);
+		return
 	}
+	*/
 
 	funcObj[key](tf);
 
