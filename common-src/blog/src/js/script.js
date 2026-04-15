@@ -45,7 +45,7 @@ async function mainFunc() {
 		focus_out_elem.addEventListener("focusout", e => {
 			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
 				if (!getDeviceInformation("DEBUGMODE")) {
-					switchingOpenDisplay(switched_elem);
+					const return_data = switchingOpenDisplay(switched_elem);
 					obj["tf-func"](return_data);
 				}
 			}
@@ -165,8 +165,8 @@ async function mainFunc() {
 	});
 
 	if (getDeviceInformation("setting-display-open")) {
-		displayElementQueryArray[0]["switched-element"].setAttribute(attrName_SetByScript, true);
-		switchingOpenDisplay(displayElementQueryArray[0]["switched-element"]);
+		document.querySelector(displayElementQueryArray[0]["switched-element"]).setAttribute(attrName_SetByScript, true);
+		switchingOpenDisplay(document.querySelector(displayElementQueryArray[0]["switched-element"]));
 	}
 
 	/*
