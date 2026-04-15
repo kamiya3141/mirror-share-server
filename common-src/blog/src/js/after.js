@@ -1,4 +1,7 @@
 function loadedFunc() {
+
+	const saveUserDataLocalstorage = getDeviceInformation("save--user-data--localstorage");
+
 	const displayElementQueryArray = [
 		{
 			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
@@ -151,19 +154,19 @@ function loadedFunc() {
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
+	if (saveUserDataLocalstorage) {
+		if (getDeviceInformation("setting-display-open")) {
+			editDeviceInformation("setting-display-open", false);
+			document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
+		}
 
-	if (getDeviceInformation("setting-display-open")) {
-		editDeviceInformation("setting-display-open", false);
-		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
+		[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
+			const _arg = c.getAttribute("template-id-args");
+			const data = getDeviceInformation(_arg);
+			if (data)
+				c.querySelector(".toggle_input").click();
+		});
 	}
-
-	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
-		const _arg = c.getAttribute("template-id-args");
-		const data = getDeviceInformation(_arg);
-		if (data)
-			c.querySelector(".toggle_input").click();
-	});
-
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
 	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-device"])}</h1>`, "warn");
