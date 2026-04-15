@@ -164,9 +164,7 @@ function setTheme() {
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? ["dark", "light"][Number(themeLight)] : "system");
-
-	const dt_my_dv_type = (Boolean(tf) ? "mobile" : "desktop");
-	document.documentElement.setAttribute("data-my-device-type", dt_my_dv_type);
+	document.documentElement.setAttribute("data-my-device-type", ["desktop", "mobile"][Number(forceDevice ? deviceMobile : checkCurrentDeviceMobile())]);
 }
 
 window.addEventListener("resize", () => {

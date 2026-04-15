@@ -4,7 +4,7 @@ const origin_device = {
 	"force-theme": false,
 	"theme": false,
 	"force-device": false,
-	"mobile": false,
+	"mobile": checkCurrentDeviceMobile(),
 	"width": 0,
 	"height": 0,
 	"realWidth": 0,
@@ -72,10 +72,14 @@ function reloadDeviceInformation(add_msg = "") {
 	editDeviceInformation("realWidth", Number(getCSSLengthValue("--myStylingRealWidth")));
 	editDeviceInformation("realHeight", Number(getCSSLengthValue("--myStylingRealHeight")));
 
-	setThemeArgsHistoryObject["forceTheme"] = device["force-theme"];
-	setThemeArgsHistoryObject["themeLight"] = device["theme"];
-	setThemeArgsHistoryObject["forceDevice"] = device["force-device"];
-	setThemeArgsHistoryObject["deviceMobile"] = device["mobile"];
+	setThemeArgsHistoryObject["forceTheme"] = getDeviceInformation("force-theme");
+	// edit の方に書くかは今後次第
+	setThemeArgsHistoryObject["themeLight"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme") : checkCurrentSystemThemeLight();
+
+
+	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
+	// edit の方に書くかは今後次第
+	setThemeArgsHistoryObject["deviceMobile"] = getDeviceInformation("force-device") ? getDeviceInformation("mobile") : checkCurrentDeviceMobile();
 
 	setTheme();
 

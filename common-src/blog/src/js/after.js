@@ -4,7 +4,7 @@ function loadedFunc() {
 
 	const displayElementQueryArray = [
 		{
-			"trigger-element": ["#open-setting-display-button-element", "#setting-display-div-main #control-box"],
+			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
 			"tf-func": __tf => editDeviceInformation("setting-display-open", __tf)
@@ -23,13 +23,15 @@ function loadedFunc() {
 		focus_out_elem.tabIndex = 0;
 
 		obj["trigger-element"].forEach(el => {
-			document.querySelector(el).addEventListener("click", e => {
-				const return_data = switchingOpenDisplay(switched_elem);
-				obj["tf-func"](return_data);
-				if (getOpenDisplayStatus(switched_elem)) {
-					focus_out_elem.focus();
-					setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
-				}
+			[...document.querySelectorAll(el)].forEach(el2 => {
+				el2.addEventListener("click", e => {
+					const return_data = switchingOpenDisplay(switched_elem);
+					obj["tf-func"](return_data);
+					if (getOpenDisplayStatus(switched_elem)) {
+						focus_out_elem.focus();
+						setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
+					}
+				});
 			});
 		});
 		focus_out_elem.addEventListener("focusout", e => {
