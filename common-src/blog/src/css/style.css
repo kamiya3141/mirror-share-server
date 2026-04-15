@@ -191,6 +191,7 @@ html {
 											text-decoration: none;
 
 											& > .item-box_icon-summary {
+												color: var(--myTextColor);
 												width: var(--c1);
 												height: var(--c1);
 												font-size: calc(var(--p2) * 2);
