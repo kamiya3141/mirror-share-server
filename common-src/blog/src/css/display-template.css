@@ -44,9 +44,12 @@
 
 				& > * {
 					background-color: var(--myElementBackgroundColor2);
-					aspect-ratio: 1/1;
-					width: auto;
+					width: var(--c1);
 					height: var(--c1);
+				}
+
+				& > .corner {
+					aspect-ratio: 1 / 1;
 				}
 
 				& > #control-box {
