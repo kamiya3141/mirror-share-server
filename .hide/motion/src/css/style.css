@@ -71,10 +71,16 @@ html {
 	}
 
 	&[data-my-device-type="mobile"] {
+		/*
 		left: calc(var(--myStylingRealWidth) * 1 / 100);
 		top: calc(var(--myStylingRealHeight) * 1 / 100);
 		width: var(--myStylingRealWidth);
 		height: var(--myStylingRealHeight);
+		*/
+		left: calc(var(--myStylingWidth) * 1 / 100);
+		top: calc(var(--myStylingHeight) * 1 / 100);
+		width: var(--myStylingWidth);
+		height: var(--myStylingHeight);
 	}
 
 	position: absolute;
