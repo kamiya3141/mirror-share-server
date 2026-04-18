@@ -84,7 +84,7 @@ function reloadDeviceInformation(add_msg = "") {
 
 	setTheme();
 
-	console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
+	// console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
 }
 
 // localStorage
