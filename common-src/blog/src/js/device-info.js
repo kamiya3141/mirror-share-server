@@ -78,9 +78,9 @@ function reloadDeviceInformation(add_msg = "") {
 	setThemeArgsHistoryObject["themeLight"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme") : checkCurrentSystemThemeLight();
 
 
-	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
+	setThemeArgsHistoryObject["forceDevice"] = (getDeviceInformation("force-device") || getDeviceInformation("allow--changing--device-mode--for--display-size"));
 	// edit の方に書くかは今後次第
-	setThemeArgsHistoryObject["deviceMobile"] = (getDeviceInformation("force-device") ? getDeviceInformation("mobile") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? Boolean(getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceMobile()));
+	setThemeArgsHistoryObject["deviceMobile"] = getDeviceInformation("force-device") ? getDeviceInformation("mobile") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? (getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceMobile());
 
 	setTheme();
 
