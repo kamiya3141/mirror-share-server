@@ -156,6 +156,7 @@ function loadedFunc() {
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
 
+	// すべて読みこんだ後に、deviceの値を設定画面に反映していく処理
 	if (saveUserDataLocalstorage) {
 		if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 			editDeviceInformation("setting-display-open", false);
@@ -168,6 +169,12 @@ function loadedFunc() {
 			if (data)
 				c.querySelector(".toggle_input").click();
 		});
+
+		if (getDeviceInformation("force-theme"))
+			document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme") ? "light" : "dark";
+
+		if (getDeviceInformation("force-device"))
+			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("mobile") ? "mobile" : "desktop";
 	}
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
