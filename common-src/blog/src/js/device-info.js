@@ -11,6 +11,7 @@ const origin_device = {
 	"realHeight": 0,
 	"prefer-color": "#00ff00",
 	"setting-display-init-item-index": 0,
+	"allow--changing--device-mode--for--display-size": true,
 	"allow--opening--setting-display--after--reload": false,
 	"save--user-data--localstorage": false,
 	"setting-display-open": false,
@@ -79,11 +80,11 @@ function reloadDeviceInformation(add_msg = "") {
 
 	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
 	// edit の方に書くかは今後次第
-	setThemeArgsHistoryObject["deviceMobile"] = getDeviceInformation("force-device") ? getDeviceInformation("mobile") : checkCurrentDeviceMobile();
+	setThemeArgsHistoryObject["deviceMobile"] = (getDeviceInformation("force-device") ? getDeviceInformation("mobile") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? Boolean(getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceMobile()));
 
 	setTheme();
 
-	// console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
+	console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
 }
 
 // localStorage

@@ -258,7 +258,19 @@ function getParentElement(el, n = 1, getLastElement = true) {
 
 
 async function parseMarkdown(use_version_1 = true) {
-	let currentPathname = winMyHrefPathname;
+	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
+	const targetFileName = new URL(winMyHref).searchParams.get("blog--target-file");
+	const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${(targetDirectoryName ? targetDirectoryName : "home")}${targetFileName ? ("/" + targetFileName) : ""}.md`;
+	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}`);
+	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
+
+	return result_md_str;
+}
+
+export { parseMarkdown as parseMD, afterWorker as afterFunction };
+
+/*
+let currentPathname = winMyHrefPathname;
 	// .comかindex.htmlで終わるようにアクセスされたときの対策
 	currentPathname = currentPathname.replace("/index.html", "/");
 	if (currentPathname == "/")
@@ -271,14 +283,4 @@ async function parseMarkdown(use_version_1 = true) {
 		currentPathname = currentPathname.substring(0, currentPathname.length - 1);
 
 	currentPathname = String(currentPathname);
-
-	const filePath = String(currentPathname.slice(-3, currentPathname.length) == ".md" ? currentPathname : `${currentPathname}.md`);
-	let resultPath = filePath.split("/");
-	const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${filePath}`;
-	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}`);
-	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
-
-	return result_md_str;
-}
-
-export { parseMarkdown as parseMD, afterWorker as afterFunction };
+*/

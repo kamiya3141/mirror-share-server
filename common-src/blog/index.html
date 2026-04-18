@@ -9,10 +9,11 @@
 	<meta name="color-scheme" content="dark light">
 	<link rel="stylesheet" crossorigin="anonymous" href="https://unpkg.com/font-awesome@latest/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
-	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/style.css">
-	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/toggle-switch-template.css">
-	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/display-template.css">
-	<link rel="stylesheet" href="https://blog.tshuto.com/src/css/display-setting-template.css">
+	<link rel="stylesheet" href="./src/css/style.css">
+	<link rel="stylesheet" href="./src/css/markdown.css">
+	<link rel="stylesheet" href="./src/css/toggle-switch-template.css">
+	<link rel="stylesheet" href="./src/css/display-template.css">
+	<link rel="stylesheet" href="./src/css/display-setting-template.css">
 	<script defer src="https://share.tshuto.com/All.js"></script>
 </head>
 
@@ -69,17 +70,19 @@
 	<template id="display-setting-template">
 		<div id="display-setting-main-contents-setting">
 			<div class="tab-bar">
-				<div class="tab-bar--contents" id="tb--appearance">
-					<div class="tab-bar--contents--item">表示設定</div>
-				</div>
-				<div class="tab-bar--contents" id="tb--specific">
-					<div class="tab-bar--contents--item">詳細設定</div>
-				</div>
-				<div class="tab-bar--contents" id="tb--user-data">
-					<div class="tab-bar--contents--item">ユーザデータの設定</div>
-				</div>
-				<div class="tab-bar--contents" id="tb--reset--setting-data">
-					<div class="tab-bar--contents--item">設定の初期化</div>
+				<div class="tab-bar--contents--box">
+					<div class="tab-bar--contents" id="tb--appearance">
+						<div class="tab-bar--contents--item text-overflow-element">表示設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--specific">
+						<div class="tab-bar--contents--item text-overflow-element">詳細設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--user-data">
+						<div class="tab-bar--contents--item text-overflow-element">ユーザデータの設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--reset--setting-data">
+						<div class="tab-bar--contents--item text-overflow-element">設定の初期化</div>
+					</div>
 				</div>
 			</div>
 			<div class="tab-contents-box">
@@ -118,6 +121,12 @@
 						<div class="item-summary">設定されたデバイスモードの強制</div>
 						<div class="item-box">
 							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-device"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">画面サイズによってデバイスモードの最適化を実行</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--changing--device-mode--for--display-size"></div>
 						</div>
 					</div>
 				</div>
@@ -163,17 +172,17 @@
 						<nav class="main-nav">
 							<div class="main-nav-box">
 								<div class="item-box deco-text">
-									<a href="./home">
+									<a href="./?blog--target-dir=home&blog--target-file=">
 										<div class="item-box_icon-summary">Home</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
-									<a href="./article">
+									<a href="./?blog--target-dir=article&blog--target-file=">
 										<div class="item-box_icon-summary">Article</div>
 									</a>
 								</div>
 								<div class="item-box deco-text">
-									<a href="./about">
+									<a href="./?blog--target-dir=about&blog--target-file=">
 										<div class="item-box_icon-summary">About</div>
 									</a>
 								</div>
@@ -199,7 +208,7 @@
 						<nav class="main-nav">
 							<div class="main-nav-box">
 								<div class="item-box deco-text">
-									<a href="./home">
+									<a href="./?blog--target-dir=home&blog--target-file=">
 										<div class="item-box_icon-box">
 											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-home.svg"></iframe>
 										</div>
@@ -207,7 +216,7 @@
 									</a>
 								</div>
 								<div class="item-box deco-text">
-									<a href="./article">
+									<a href="./?blog--target-dir=article&blog--target-file=">
 										<div class="item-box_icon-box">
 											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-article.svg"></iframe>
 										</div>
@@ -215,7 +224,7 @@
 									</a>
 								</div>
 								<div class="item-box deco-text">
-									<a href="./about">
+									<a href="./?blog--target-dir=about&blog--target-file=">
 										<div class="item-box_icon-box">
 											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-about.svg"></iframe>
 										</div>

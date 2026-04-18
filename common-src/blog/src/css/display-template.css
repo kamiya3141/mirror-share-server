@@ -35,6 +35,7 @@
 				background-color: var(--myElementBackgroundColor2);
 				align-items: center;
 				justify-content: center;
+				font-size: 2rem;
 			}
 
 			& > .corner-box {

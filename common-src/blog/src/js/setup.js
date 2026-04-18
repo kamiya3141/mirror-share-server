@@ -33,6 +33,13 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
 	const funcObj = {
 		"force-theme": __tf => document.getElementById("setting-display--appearance--input-select--theme-setting").disabled = !__tf,
 		"force-device": __tf => document.getElementById("setting-display--appearance--input-select--device-mode-setting").disabled = !__tf,
+		"allow--changing--device-mode--for--display-size": __tf => {
+			if (!__tf) {
+				const res = confirm("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
+				if (res)
+					editDeviceInformation(key, __tf);
+			}
+		}
 	};
 
 	if (!Object.hasOwn(funcObj, key))
