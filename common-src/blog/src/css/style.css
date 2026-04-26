@@ -373,7 +373,7 @@ html {
 				width: var(--c1);
 				background-color: var(--myElementBackgroundColor2);
 
-				& > section#main-section {
+				&#root-main > section#main-section {
 					width: var(--c1);
 					display: flex;
 					justify-content: center;
@@ -385,6 +385,10 @@ html {
 						padding-top: calc(var(--c-hd-h) / 2);
 						padding-bottom: calc(var(--c-hd-h) / 2);
 					}
+				}
+
+				&#embed-main > #embed-div--title {
+					font-size: clamp(14px, calc(0.8rem + 1vw), 25vh);
 				}
 			}
 
