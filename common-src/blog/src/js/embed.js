@@ -12,6 +12,7 @@ embedMainElement.id = "root-embed";
 const embedTitleDivElement = document.createElement("div");
 embedTitleDivElement.id = "embed-div--title";
 
+embedMainElement.appendChild(embedTitleDivElement);
 rootElement.appendChild(embedMainElement);
 
 const SPL_STR_ENV = "-%-";
@@ -23,7 +24,8 @@ const queryStr = `${(targetDirectoryName ? targetDirectoryName : "")}${targetFil
 const fileURL = `./src/md/${queryStr}`;
 fetch(fileURL).then(res => res.text()).then(data => {
 	[...String(data).matchAll(new RegExp("^-%-\n*(.*?)\n*-%-\n*", "gs"))].forEach(c => {
-		c.replaceAll("\n", "").split(",").forEach(c2 => {
+		console.log(c);
+		c[1].replaceAll("\n", "").split(",").forEach(c2 => {
 			if (String(c2).includes("TITLE:"))
 				embedTitleDivElement.innerHTML = String(c2).replace("TITLE:", "");
 		});
