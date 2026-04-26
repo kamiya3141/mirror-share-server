@@ -64,10 +64,10 @@
 
 html {
 	&[data-my-device-type="desktop"] {
-		left: calc(var(--myStylingWidth) * 1 / 100);
-		top: calc(var(--myStylingHeight) * 1 / 100);
-		width: var(--myStylingWidth);
-		height: var(--myStylingHeight);
+		left: 0;
+		top: 0;
+		width: 100vmax;
+		height: 100vmin;
 	}
 
 	&[data-my-device-type="mobile"] {
@@ -76,11 +76,16 @@ html {
 		top: calc(var(--myStylingRealHeight) * 1 / 100);
 		width: var(--myStylingRealWidth);
 		height: var(--myStylingRealHeight);
-		*/
+		
 		left: calc(var(--myStylingWidth) * 1 / 100);
 		top: calc(var(--myStylingHeight) * 1 / 100);
 		width: var(--myStylingWidth);
 		height: var(--myStylingHeight);
+		*/
+		left: 0;
+		top: 0;
+		width: 100vmin;
+		height: 100vmax;
 	}
 
 	position: absolute;

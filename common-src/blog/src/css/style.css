@@ -386,10 +386,6 @@ html {
 						padding-bottom: calc(var(--c-hd-h) / 2);
 					}
 				}
-
-				&#embed-main > #embed-div--title {
-					font-size: clamp(14px, calc(0.8rem + 1vw), 25vh);
-				}
 			}
 
 			& > footer {
@@ -407,6 +403,12 @@ html {
 					position: relative;
 				}
 			}
+		}
+
+		& > div#embed-div--title {
+			width: var(--c1);
+			height: var(--c1);
+			font-size: 20vmin
 		}
 
 		& .display-none,

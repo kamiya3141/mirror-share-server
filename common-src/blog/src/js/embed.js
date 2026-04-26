@@ -1,19 +1,14 @@
-["header", "main", "footer"].map(c => `#root-${c}`).forEach(c => {
+["-header", "", "-footer"].map(c => `#root${c}`).forEach(c => {
 	document.querySelector(c).classList.add("display-none");
 });
 
 
 
-const rootElement = document.querySelector("#root");
-
-const embedMainElement = document.createElement("main");
-embedMainElement.id = "root-embed";
 
 const embedTitleDivElement = document.createElement("div");
 embedTitleDivElement.id = "embed-div--title";
 
-embedMainElement.appendChild(embedTitleDivElement);
-rootElement.appendChild(embedMainElement);
+document.body.appendChild(embedTitleDivElement);
 
 const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
@@ -24,7 +19,6 @@ const queryStr = `${(targetDirectoryName ? targetDirectoryName : "")}${targetFil
 const fileURL = `./src/md/${queryStr}`;
 fetch(fileURL).then(res => res.text()).then(data => {
 	[...String(data).matchAll(new RegExp("^-%-\n*(.*?)\n*-%-\n*", "gs"))].forEach(c => {
-		console.log(c);
 		c[1].replaceAll("\n", "").split(",").forEach(c2 => {
 			if (String(c2).includes("TITLE:"))
 				embedTitleDivElement.innerHTML = String(c2).replace("TITLE:", "");
