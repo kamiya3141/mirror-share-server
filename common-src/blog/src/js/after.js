@@ -176,6 +176,13 @@ function loadedFunc() {
 		if (getDeviceInformation("force-device"))
 			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("mobile") ? "mobile" : "desktop";
 	}
+
+	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
+	const targetFileName = new URL(winMyHref).searchParams.get("blog--target-file");
+
+	if (targetDirectoryName == "" && targetFileName == "article")
+		loadAllArticles();
+
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
 	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-device"])}</h1>`, "warn");
@@ -186,6 +193,18 @@ function loadedFunc() {
 
 window.addEventListener("load", loadedFunc);
 
+function loadAllArticles() {
+	const parent_recent_articles = document.getElementById("article--article--recent-article");
+	const parent_populor_articles = document.getElementById("article--article--populor-article");
+	const parent_laugh_articles = document.getElementById("article--article--laugh-article");
+
+	const target_url = `${winMyHrefPTCHostname}/get-files/src/md/article`;
+
+	fetch(target_url).then(res => res.json()).then(dt => {
+		const _data_array = [...dt];
+
+	});
+}
 
 function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {
 	const attr_name = "data-display-open";

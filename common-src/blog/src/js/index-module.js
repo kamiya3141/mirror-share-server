@@ -1,19 +1,40 @@
-const SPL_STR = "-:-";
-const SAND_SPL_STR = _str_ => `${SPL_STR}${_str_}${SPL_STR}`;
+const SPL_STR_NML = "-:-";
+const SAND_SPL_STR_NML = _str_ => `${SPL_STR_NML}${_str_}${SPL_STR_NML}`;
+const SPL_STR_ENV = "-%-";
+const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
+const STR_ENV_CONV_OBJ = {
+	"TITLE": _v => document.title = `${_v} | ブログ - TSHUTO`
+};
 
 const before_replace_str_define_array = [
+	[
+		new RegExp(`^(${SAND_SPL_STR_ENV("\n*.*?\n*")})\n*`, "gs"),
+		envs => {
+			let target_str = String(envs).replaceAll(SPL_STR_ENV, "");
+			target_str = target_str.replaceAll("\n", "");
+			target_str.split(",").forEach(c => {
+				let [_k, _v] = c.split(":");
+				if (Object.hasOwn(STR_ENV_CONV_OBJ, _k))
+					STR_ENV_CONV_OBJ[_k](_v);
+			});
+			return "";
+		},
+		null,
+		null,
+		null
+	],
+	[
+		new RegExp(`(${SAND_SPL_STR_NML("MYHOSTNAME")})`, "g"),
+		hostname => winMyHrefHostname,
+		null,
+		null,
+		null
+	],
 	[
 		/<(\/?.+)>\n/g,
 		cts => `<${cts}>`,
 		null,
 		false
-	],
-	[
-		new RegExp(`(${SAND_SPL_STR("MYHOSTNAME")})`, "g"),
-		hostname => winMyHrefHostname,
-		null,
-		null,
-		null
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
@@ -260,8 +281,10 @@ function getParentElement(el, n = 1, getLastElement = true) {
 async function parseMarkdown(use_version_1 = true) {
 	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
 	const targetFileName = new URL(winMyHref).searchParams.get("blog--target-file");
-	const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${(targetDirectoryName ? targetDirectoryName : "home")}${targetFileName ? ("/" + targetFileName) : ""}.md`;
-	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${filePath}`);
+	const queryStr = `${(targetDirectoryName ? targetDirectoryName : "")}${targetFileName ? ("/" + targetFileName) : "home"}.md`;
+	// const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${queryStr}`;
+	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${queryStr}`);
+	const fileURL = `./src/md/${queryStr}`;
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
 	return result_md_str;
