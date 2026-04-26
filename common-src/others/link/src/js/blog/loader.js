@@ -26,7 +26,7 @@ const allScriptSettingObjectArrayObject = {
 	]
 };
 
-const embed_page_flag = new URL(winMyHref).searchParams.get("blog--embed-page");
+const embed_page_flag = new URL(winMyHref).searchParams.has("blog--embed-page");
 
 let resultScriptSettingObjectArray = allScriptSettingObjectArrayObject[embed_page_flag ? "embed" : "main"];
 
