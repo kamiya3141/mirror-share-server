@@ -14,6 +14,13 @@ div#main-contentsbox {
 		}
 	}
 
+	& [data-mydef--article-tag="title"] {
+		font-size: 2.5rem;
+		font-weight: 800;
+		width: var(--c1);
+		height: calc(var(--c-hd-h) * 1.75);
+	}
+
 	& table {
 		color: inherit;
 		border-collapse: collapse;

@@ -1,9 +1,14 @@
+let MARKDOWN_ARTICLE_TITLE = "No Title.";
+
 const SPL_STR_NML = "-:-";
 const SAND_SPL_STR_NML = _str_ => `${SPL_STR_NML}${_str_}${SPL_STR_NML}`;
 const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
 const STR_ENV_CONV_OBJ = {
-	"TITLE": _v => document.title = `${_v} | ブログ - TSHUTO`
+	"TITLE": _v => {
+		MARKDOWN_ARTICLE_TITLE = _v;
+		document.title = `${_v} | ブログ - TSHUTO`;
+	}
 };
 
 const before_replace_str_define_array = [
@@ -231,6 +236,7 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
 	//const result_elm = createElementFromHTML(result_str);
 	//result_str = result_elm;
+	result_str = `<div data-mydef--article-tag="title">${MARKDOWN_ARTICLE_TITLE}</div>` + result_str;
 	return result_str;
 }
 
@@ -250,10 +256,12 @@ function afterWorker() {
 	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
 		copyCodeDataForClipBoard(e);
 	}));
+	/*
 	[...document.querySelectorAll("div.item-box.deco-text > a")].forEach(c => {
 		const preHref = c.getAttribute("href");
 		c.setAttribute("href", getCurrentURLProtocolAndHostname(`/${preHref.split("/").at(-1)}`));
 	});
+	*/
 }
 
 async function copyCodeDataForClipBoard(e) {

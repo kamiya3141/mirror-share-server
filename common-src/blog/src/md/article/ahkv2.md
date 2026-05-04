@@ -1,5 +1,5 @@
 -%-
-TITLE: AutoHotkey v2.0.19 ~ 公立はこだて未来大学 Advent Calendar 2025 ~,
+TITLE: AutoHotkey v2.0.19<br> ~ 公立はこだて未来大学 Advent Calendar 2025 ~,
 TAG: TG0,
 VIEW: TRUE
 -%-
