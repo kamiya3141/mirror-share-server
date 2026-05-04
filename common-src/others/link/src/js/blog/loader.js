@@ -2,6 +2,10 @@ const joinBaseHostname = pathname => (pathname = String(pathname), `${winMyHrefP
 const allScriptSettingObjectArrayObject = {
 	"main": [
 		{
+			"src": "src/js/utils.js",
+			"type": "text/javascript"
+		},
+		{
 			"src": "src/js/device-info.js",
 			"type": "text/javascript"
 		},
