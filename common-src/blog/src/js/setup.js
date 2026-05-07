@@ -18,10 +18,13 @@ const template_data_function_map = {
 	"toggle-switch-template": device_setting_id => {
 		const flag = cloneTemplate("toggle-switch-template");
 		flag.querySelector(".toggle_input").addEventListener("change", e => {
-			const chk = e.target.checked;
-			editDeviceInformation(device_setting_id, chk);
-			toggleSwitchChangeEventAddFunction(device_setting_id, chk);
-			reloadDeviceInformation("toggle-switch-template");
+			if (e.target.getAttribute(attrName_SetByScript) != "true") {
+				const chk = e.target.checked;
+				editDeviceInformation(device_setting_id, chk);
+				toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
+				reloadDeviceInformation("toggle-switch-template");
+			}
+			e.target.setAttribute(attrName_SetByScript, "false");
 		});
 		return flag;
 	}
@@ -29,29 +32,28 @@ const template_data_function_map = {
 
 convertTemplateElement(document);
 
-function toggleSwitchChangeEventAddFunction(key = "", tf = false) {
+function toggleSwitchCancelFunction(elem, tf = null) {
+	elem.setAttribute(attrName_SetByScript, "true");
+	elem.checked = Boolean(tf == null ? !elem.checked : tf);
+}
+
+function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	const funcObj = {
 		"force-theme": __tf => document.getElementById("setting-display--appearance--input-select--theme-setting").disabled = !__tf,
 		"force-device": __tf => document.getElementById("setting-display--appearance--input-select--device-mode-setting").disabled = !__tf,
 		"allow--changing--device-mode--for--display-size": __tf => {
 			if (!__tf) {
 				const res = confirm("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
-				if (res)
-					editDeviceInformation(key, __tf);
+				if (!res) {
+					editDeviceInformation(key, !res);
+					toggleSwitchCancelFunction(elem);
+				}
 			}
 		}
 	};
 
-	if (!Object.hasOwn(funcObj, key))
-		funcObj[key] = __tf => editDeviceInformation(key, __tf);
-	/*
-	{
-		// console.error(`キー名: ${key}は設定されたオブジェクトに存在しません`);
-		return
-	}
-	*/
-
-	funcObj[key](tf);
+	if (Object.hasOwn(funcObj, key))
+		funcObj[key](tf);
 
 }
 
