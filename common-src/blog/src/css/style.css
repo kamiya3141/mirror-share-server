@@ -334,7 +334,7 @@ html {
 			}
 		}
 
-		section#setting-display-section {
+		& > section#setting-display-section {
 			&[data-display-open="true"] {
 				display: flex;
 			}
@@ -343,15 +343,8 @@ html {
 				display: none;
 			}
 
-			background-color: var(--gray7);
-			position: fixed;
-			z-index: 991;
 			align-items: center;
 			justify-content: center;
-			left: 0;
-			top: 0;
-			width: var(--myStylingWidth);
-			height: var(--myStylingHeight);
 
 			& > #setting-display-div-main {
 				background-color: var(--clear);
@@ -403,6 +396,16 @@ html {
 					position: relative;
 				}
 			}
+		}
+
+		& .background-blur {
+			background-color: var(--gray7);
+			position: fixed;
+			z-index: 991;
+			left: 0;
+			top: 0;
+			width: var(--myStylingWidth);
+			height: var(--myStylingHeight);
 		}
 
 		& > div#embed-div--title {

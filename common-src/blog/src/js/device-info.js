@@ -2,9 +2,9 @@ const localStorageDeviceObjectKeyName = "device-data";
 
 const origin_device = {
 	"force-theme": false,
-	"theme": false,
+	"theme-type": "system",
 	"force-device": false,
-	"mobile": checkCurrentDeviceMobile(),
+	"device-type": "device",
 	"width": 0,
 	"height": 0,
 	"realWidth": 0,
@@ -75,12 +75,12 @@ function reloadDeviceInformation(add_msg = "") {
 
 	setThemeArgsHistoryObject["forceTheme"] = getDeviceInformation("force-theme");
 	// edit の方に書くかは今後次第
-	setThemeArgsHistoryObject["themeLight"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme") : checkCurrentSystemThemeLight();
+	setThemeArgsHistoryObject["themeType"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme-type") : checkCurrentSystemThemeLight();
 
 
 	setThemeArgsHistoryObject["forceDevice"] = (getDeviceInformation("force-device") || getDeviceInformation("allow--changing--device-mode--for--display-size"));
 	// edit の方に書くかは今後次第
-	setThemeArgsHistoryObject["deviceMobile"] = getDeviceInformation("force-device") ? getDeviceInformation("mobile") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? (getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceMobile());
+	setThemeArgsHistoryObject["deviceType"] = getDeviceInformation("force-device") ? getDeviceInformation("device-type") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? checkCurrentDeviceString(getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceString());
 
 	setTheme();
 

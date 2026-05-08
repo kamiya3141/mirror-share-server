@@ -100,6 +100,7 @@ var checkCurrentSystemThemeDark = () => !checkCurrentSystemThemeLight();
 var useOldUserAgentDataValue = false;
 var checkCurrentDeviceMobile = () => Boolean((new RegExp("Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini", "i")).test(useOldUserAgentDataValue ? navigator.userAgent : (navigator.userAgentData ? (navigator.userAgentData.mobile ? "Android" : "PC") : navigator.userAgent)));
 var checkCurrentDevicePC = () => !checkCurrentDeviceMobile();
+var checkCurrentDeviceString = (__tf = checkCurrentDeviceMobile()) => ["desktop", "mobile"][Number(__tf)];
 
 // 毎回書くのがばかばかしいので関数化
 var getCSSLengthValue = propertyName => getComputedStyle(document.documentElement).getPropertyValue(propertyName).replace("px", "");
@@ -110,32 +111,32 @@ var setThemeArgsHistory = 0b0000;
 // 前回の真偽値を保存するオブジェクト
 var setThemeArgsHistoryObject = {
 	"__forceTheme": false,
-	"__themeLight": false,
+	"__themeType": "system",
 	"__forceDevice": false,
-	"__deviceMobile": false,
+	"__deviceType": "device",
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
-	set "themeLight"(input) {
-		this["__themeLight"] = Boolean(input);
+	set "themeType"(input) {
+		this["__themeType"] = String(input);
 	},
 	set "forceDevice"(input) {
 		this["__forceDevice"] = Boolean(input);
 	},
-	set "deviceMobile"(input) {
-		this["__deviceMobile"] = Boolean(input);
+	set "deviceType"(input) {
+		this["__deviceType"] = String(input);
 	},
 	get "forceTheme"() {
 		return this["__forceTheme"];
 	},
-	get "themeLight"() {
-		return this["__themeLight"];
+	get "themeType"() {
+		return this["__themeType"];
 	},
 	get "forceDevice"() {
 		return this["__forceDevice"];
 	},
-	get "deviceMobile"() {
-		return this["__deviceMobile"];
+	get "deviceType"() {
+		return this["__deviceType"];
 	}
 };
 
@@ -144,27 +145,27 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 }
 
 function setTheme() {
-	let { forceTheme, themeLight, forceDevice, deviceMobile } = setThemeArgsHistoryObject;
-	// let forceTheme, themeLight, forceDevice, deviceMobile;
+	let { forceTheme, themeType, forceDevice, deviceType } = setThemeArgsHistoryObject;
+	// let forceTheme, themeType, forceDevice, deviceType;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
-	const n_idx = Number(deviceMobile);
+	// カンマ演算子 + 参考演算子
+	const n_idx = (___a = Number(["device", "desktop", "mobile"].indexOf(deviceType) - 1), ___a < 0 ? Number(checkCurrentDeviceMobile()) : ___a);
 	const r_idx = Number(!Boolean(n_idx));
 	let ipt_w = [document.documentElement.clientWidth, screen.width];
 	let ipt_h = [document.documentElement.clientHeight, screen.height];
-	const tf = Number(forceDevice ? deviceMobile : Boolean(n_idx));
 	[
 		["StylingWidth", [ipt_w[n_idx], ipt_w[n_idx]].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
-	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
+	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
 	[
 		["StylingFont", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `1rem`]]
-	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][tf]));
+	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
 
-	document.documentElement.setAttribute("data-theme", forceTheme ? ["dark", "light"][Number(themeLight)] : "system");
-	document.documentElement.setAttribute("data-my-device-type", ["desktop", "mobile"][Number(forceDevice ? deviceMobile : checkCurrentDeviceMobile())]);
+	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
+	document.documentElement.setAttribute("data-my-device-type", forceDevice ? (deviceType == "device" ? checkCurrentDeviceString() : deviceType) : checkCurrentDeviceString());
 }
 
 window.addEventListener("resize", () => {

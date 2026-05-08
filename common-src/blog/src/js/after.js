@@ -83,7 +83,7 @@ function loadedFunc() {
 				}
 			],
 			"select-change-event-function": val => {
-				editDeviceInformation("theme", Boolean(val == "system" ? checkCurrentSystemThemeLight() : (val == "light")));
+				editDeviceInformation("theme-type", val);
 			},
 			"init-disabled": true
 		},
@@ -104,7 +104,7 @@ function loadedFunc() {
 				}
 			],
 			"select-change-event-function": val => {
-				editDeviceInformation("mobile", Boolean(val == "device" ? checkCurrentDeviceMobile() : (val == "mobile")));
+				editDeviceInformation("device-type", val);
 			},
 			"init-disabled": true
 		},
@@ -171,10 +171,10 @@ function loadedFunc() {
 		});
 
 		if (getDeviceInformation("force-theme"))
-			document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme") ? "light" : "dark";
+			document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme-type");
 
 		if (getDeviceInformation("force-device"))
-			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("mobile") ? "mobile" : "desktop";
+			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
 	}
 
 	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
