@@ -399,7 +399,7 @@ html {
 		}
 
 		& .background-blur {
-			background-color: var(--gray7);
+			background-color: var(--clear);
 			position: fixed;
 			z-index: 991;
 			left: 0;
@@ -407,11 +407,10 @@ html {
 			width: var(--myStylingWidth);
 			height: var(--myStylingHeight);
 
-			&::after {
-				background-color: var(--red7);
-				position: fixed;
-				z-index: 992;
-				filter: blur(1rem);
+			&::before {
+				content: "";
+				background-color: var(--gray7);
+				backdrop-filter: blur(0.125rem);
 				left: 0;
 				top: 0;
 				width: var(--c1);

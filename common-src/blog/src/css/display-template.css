@@ -5,6 +5,14 @@
 	flex-direction: column;
 	position: relative;
 
+	&[data-mydef--display-template--allow-exist-closed-button="true"] #control-box {
+		display: flex;
+	}
+
+	&[data-mydef--display-template--allow-exist-closed-button="false"] #control-box {
+		display: none;
+	}
+
 	&:focus-visible {
 		outline: none;
 	}
@@ -54,7 +62,6 @@
 				}
 
 				& > #control-box {
-					display: flex;
 					align-items: center;
 					justify-content: center;
 					font-size: calc(var(--p2) * 2);

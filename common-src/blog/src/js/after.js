@@ -19,8 +19,20 @@ function loadedFunc() {
 	displayElementQueryArray.forEach(obj => {
 		const switched_elem = document.querySelector(obj["switched-element"]);
 		switched_elem.tabIndex = 0;
-		const focus_out_elem = document.querySelector(obj["focus-out-element"]);
-		focus_out_elem.tabIndex = 0;
+		let focus_out_elem = null;
+
+		if (Object.hasOwn("focus-out-element") && String(obj["focus-out-element"]).length > 0) {
+			focus_out_elem = document.querySelector(obj["focus-out-element"]);
+			focus_out_elem.tabIndex = 0;
+			focus_out_elem.addEventListener("focusout", e => {
+				if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
+					if (!getDeviceInformation("DEBUGMODE")) {
+						const return_data = switchingOpenDisplay(switched_elem);
+						obj["tf-func"](return_data);
+					}
+				}
+			});
+		}
 
 		obj["trigger-element"].forEach(el => {
 			[...document.querySelectorAll(el)].forEach(el2 => {
@@ -28,20 +40,14 @@ function loadedFunc() {
 					const return_data = switchingOpenDisplay(switched_elem);
 					obj["tf-func"](return_data);
 					if (getOpenDisplayStatus(switched_elem)) {
-						focus_out_elem.focus();
+						if (focus_out_elem != null)
+							focus_out_elem.focus();
 						setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
 					}
 				});
 			});
 		});
-		focus_out_elem.addEventListener("focusout", e => {
-			if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
-				if (!getDeviceInformation("DEBUGMODE")) {
-					const return_data = switchingOpenDisplay(switched_elem);
-					obj["tf-func"](return_data);
-				}
-			}
-		});
+
 	});
 
 	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");

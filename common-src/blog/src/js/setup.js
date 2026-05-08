@@ -1,8 +1,9 @@
 var attrName_SetByScript = "data-mydef--set-by-script";
 
 const template_data_function_map = {
-	"display-template": (header_title = "title", contents = "", footer_title = "") => {
+	"display-template": (header_title = "title", contents = "", footer_title = "", closed_button = true) => {
 		const flag = cloneTemplate("display-template");
+		flag.querySelector(".display-item-box").setAttribute("data-mydef--display-template--allow-exist-closed-button", String(closed_button));
 		flag.querySelector(".header-text").textContent = header_title;
 		flag.querySelector(".footer-text").textContent = footer_title;
 		const main_contents = flag.querySelector(".main-contents");
