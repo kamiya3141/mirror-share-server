@@ -406,6 +406,17 @@ html {
 			top: 0;
 			width: var(--myStylingWidth);
 			height: var(--myStylingHeight);
+
+			&::after {
+				background-color: var(--red7);
+				position: fixed;
+				z-index: 992;
+				filter: blur(1rem);
+				left: 0;
+				top: 0;
+				width: var(--c1);
+				height: var(--c1);
+			}
 		}
 
 		& > div#embed-div--title {
