@@ -334,7 +334,7 @@ html {
 			}
 		}
 
-		& > section#setting-display-section {
+		& > .display-section {
 			&[data-display-open="true"] {
 				display: flex;
 			}
@@ -342,6 +342,9 @@ html {
 			&[data-display-open="false"] {
 				display: none;
 			}
+		}
+
+		& > section#setting-display-section {
 
 			align-items: center;
 			justify-content: center;
