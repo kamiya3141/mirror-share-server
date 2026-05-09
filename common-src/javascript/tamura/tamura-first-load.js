@@ -114,6 +114,7 @@ var setThemeArgsHistoryObject = {
 	"__themeType": "system",
 	"__forceDevice": false,
 	"__deviceType": "device",
+	"__preferColor": "#00ff00",
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
@@ -137,6 +138,12 @@ var setThemeArgsHistoryObject = {
 	},
 	get "deviceType"() {
 		return this["__deviceType"];
+	},
+	set "preferColor"(input) {
+		this["__preferColor"] = String(input);
+	},
+	get "preferColor"() {
+		return this["__preferColor"];
 	}
 };
 
@@ -145,7 +152,7 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 }
 
 function setTheme() {
-	let { forceTheme, themeType, forceDevice, deviceType } = setThemeArgsHistoryObject;
+	let { forceTheme, themeType, forceDevice, deviceType, preferColor } = setThemeArgsHistoryObject;
 	// let forceTheme, themeType, forceDevice, deviceType;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
@@ -159,9 +166,9 @@ function setTheme() {
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
-	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
-	[
-		["StylingFont", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `1rem`]]
+		["StylingFontSize", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `1rem`]],
+		["StylingFontFamily", [`"Note Sans JP", sans-serif`, `"Note Sans JP", sans-serif`]],
+		["StylingUserPreferColor", [preferColor, preferColor]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");

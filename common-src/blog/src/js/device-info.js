@@ -82,6 +82,8 @@ function reloadDeviceInformation(add_msg = "") {
 	// edit の方に書くかは今後次第
 	setThemeArgsHistoryObject["deviceType"] = getDeviceInformation("force-device") ? getDeviceInformation("device-type") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? checkCurrentDeviceString(getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceString());
 
+	setThemeArgsHistoryObject["preferColor"] = getDeviceInformation("prefer-color");
+
 	setTheme();
 
 	// console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);

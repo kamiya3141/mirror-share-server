@@ -782,7 +782,7 @@
 	--sotoportego: 'Sotoportego';
 
 	/* --- root設定（CSSプロパティ） --- */
-
+	--myStylingFontSize: calc(1vmin + 1vmax);
 	--myStylingFontFamily: var(--note-sans-jp), sans-serif;
 
 	/* --- その他の事前設定 --- */

@@ -6,6 +6,13 @@ async function mainFunc() {
 	mdContentsBoxElement.innerHTML = result;
 
 	PMD.afterFunction();
+
 }
 
 window.addEventListener("load", mainFunc);
+/*
+window.setTimeout(() => {
+	myAlertMessage(document.documentElement.getAttribute("data-my-device-type"));
+	myAlertMessage(JSON.stringify(device));
+}, 1000 * 5);
+*/

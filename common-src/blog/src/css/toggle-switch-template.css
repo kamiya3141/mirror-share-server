@@ -4,6 +4,7 @@
 	--tgl-h: var(--tgl-w-c1);
 	--tgl-mv: var(--w);
 	--tgl-r: 999em;
+	--tgl-btn-col: light-dark(#fff, #ccc);
 
 	position: relative;
 	width: var(--tgl-w-c1);
@@ -16,14 +17,15 @@
 		width: var(--tgl-w-c1);
 		height: var(--tgl-h);
 		opacity: 0;
-		cursor: pointer;
 
 		&:checked + .toggle_label {
-			background-color: #4BD865;
+			background-color: var(--myStylingUserPreferColor);
 
 			&::after {
 				content: "";
 				left: var(--tgl-mv);
+				background-color: var(--tgl-btn-col);
+				border: var(--myStylingUserPreferColor) 1px solid;
 			}
 		}
 	}
@@ -32,11 +34,12 @@
 		aspect-ratio: 2/1;
 		width: auto;
 		height: var(--tgl-h);
-		background-color: #ccc;
+		background-color:var(--tgl-btn-col);
 		border-radius: var(--tgl-r);
 		display: inline-block;
-		transition: background-color 0.5s;
+		transition: background-color 0.75s;
 		position: relative;
+		cursor: pointer;
 
 		&::after {
 			content: "";
@@ -44,11 +47,11 @@
 			position: absolute;
 			width: auto;
 			height: var(--c1);
-			background-color: #fff;
+			background-color: var(--myStylingUserPreferColor);
 			border-radius: var(--tgl-r);
 			top: 0;
 			left: 0;
-			transition: left 0.4s;
+			transition: left 0.5s;
 		}
 	}
 }
