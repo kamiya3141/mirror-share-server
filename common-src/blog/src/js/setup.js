@@ -40,8 +40,16 @@ function toggleSwitchCancelFunction(elem, tf = null) {
 
 function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	const funcObj = {
-		"force-theme": __tf => document.getElementById("setting-display--appearance--input-select--theme-setting").disabled = !__tf,
-		"force-device": __tf => document.getElementById("setting-display--appearance--input-select--device-mode-setting").disabled = !__tf,
+		"force-theme": __tf => {
+			const ___el = document.getElementById("setting-display--appearance--input-select--theme-setting");
+			___el.disabled = !__tf;
+			___el.value = getDeviceInformation("theme-type");
+		},
+		"force-device": __tf => {
+			const ___el = document.getElementById("setting-display--appearance--input-select--device-mode-setting");
+			___el.disabled = !__tf;
+			___el.value = getDeviceInformation("device-type");
+		},
 		"allow--changing--device-mode--for--display-size": __tf => {
 			if (!__tf) {
 				const res = confirm("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
