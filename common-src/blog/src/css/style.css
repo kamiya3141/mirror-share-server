@@ -342,19 +342,17 @@ html {
 			&[data-display-open="false"] {
 				display: none;
 			}
-		}
-
-		& > section#setting-display-section {
 
 			align-items: center;
 			justify-content: center;
 
-			& > #setting-display-div-main {
+			& > .display-section--div-main {
 				background-color: var(--clear);
 				width: var(--myStylingLocalDisplayWidth);
 				height: var(--myStylingLocalDisplayHeight);
 			}
 		}
+
 
 		& > div#root {
 			top: auto;

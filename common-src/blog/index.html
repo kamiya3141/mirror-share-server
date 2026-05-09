@@ -158,6 +158,16 @@
 			</div>
 		</div>
 	</template>
+	<template id="display-alert-template">
+		<div id="display-alert-main-contents-alert">
+
+		</div>
+	</template>
+	<template id="display-confirm-template">
+		<div id="display-confirm-main-contents-confirm">
+
+		</div>
+	</template>
 	<span id="console-ok"></span>
 	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
 	<header id="root-header">
@@ -249,13 +259,13 @@
 		</section>
 	</header>
 	<section id="setting-display-section" class="display-section background-blur" data-display-open="false" data-mydef--set-by-script="false">
-		<div id="setting-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings"></div>
+		<div id="setting-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings true"></div>
 	</section>
 	<section id="alert-display-section" class="display-section background-blur" data-display-open="false" data-mydef--set-by-script="false">
-		<div id="alert-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="警告 %_ID:display-setting-template alert false"></div>
+		<div id="alert-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="警告 %_ID:display-setting-template alert false"></div>
 	</section>
 	<section id="confirm-display-section" class="display-section background-blur" data-display-open="false" data-mydef--set-by-script="false">
-		<div id="confirm-display-div-main" class="import-template-append" template-id-data="display-template" template-id-args="確認 %_ID:display-setting-template confirm true"></div>
+		<div id="confirm-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="確認 %_ID:display-setting-template confirm true"></div>
 	</section>
 	<div id="root">
 		<main id="root-main">
