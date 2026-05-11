@@ -37,7 +37,7 @@ sudo mc
 mc
 
 
-wget https://kamiya3141.github.io/mirror-share-server/.hide/.debian/.screenrc -O ~/.screenrc
+wget https://share.tshuto.com/.hide/.debian/.screenrc -O ~/.screenrc
 
 echo -e '\nif [ -z "$STY" ] && [ "$TERM" != "dumb" ]; then\n\tscreen -xRR\nfi' | sudo tee -a "${profile_path}"
 
@@ -56,7 +56,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 
 
-read -p "cloudflaredをインストールしますか？	(Y) / N: " -n 1 _val
+read -p "cloudflaredをインストールしますか？	Y / (N): " -n 1 _val
 _val=${_val:-Y}
 case "$_val" in
 	Y|y)
