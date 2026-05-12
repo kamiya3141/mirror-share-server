@@ -1,23 +1,29 @@
-const motionServerArray = [
+const streamServerInfoArray = [
 	{
 		"title": "debian13-note-0",
-		"word": "dn0"
+		"url": createMotionURL("dn0"),
+		"element": "img"
 	},
 	{
 		"title": "debian13-note-2",
-		"word": "dn2"
+		"url": createMotionURL("dn2"),
+		"element": "img"
 	}
 ];
 
-motionServerArray.forEach(m => createMotionContentsSection(createMotionURL(m.word), m.title));
+streamServerInfoArray.forEach(m => createMotionContentsSection(m.url, m.title, m.element));
 
+function createTshutoURL(_str = "", add_path = "") {
+	return `https://${_str}.tshuto.com/${add_path}`;
+}
 function createMotionURL(word = "") {
-	return `https://motion-${word}.tshuto.com`;
+	return createTshutoURL(`motion-${word}`);
 }
 
-function createMotionContentsSection(url = "", title = "") {
+function createMotionContentsSection(url = "", title = "", element = "") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
+	const mainContents = element == "img" ? `<img class="motion-contents" src="${url}">` : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
 	if (!clear)
@@ -26,7 +32,7 @@ function createMotionContentsSection(url = "", title = "") {
 		const output_string = `
 		<section class="motion-contents-all-box">
 			<div class="img-box">
-				<img class="motion-contents" src="${url}">
+				${mainContents}
 			</div>
 			<div class="title-box">
 				<div class="main-title-box">
