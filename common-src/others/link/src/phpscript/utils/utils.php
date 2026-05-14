@@ -211,7 +211,8 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 			getMyParamKey('org') => ''
 		];
 		if ($created_html) {
-			$_created_url_param = end(explode('=', $_url));
+			$___explode_result = explode('=', $_url);
+			$_created_url_param = end($___explode_result);
 			$add_param[getMyParamKey(VIEW_STRING)] = getMyParamKey(LINK_STRING);
 			$add_param[getMyParamKey(LINK_STRING)] = $_created_url_param;
 			$add_param[getMyParamKey('org')] = getMyHostName();
@@ -242,12 +243,14 @@ function exist($_arg): bool
 }
 function getFileName($_arg, $with_ext = true)
 {
-	$_ret = end(explode('/', $_arg));
+	$___explode_result = explode('/', $_arg);
+	$_ret = end($___explode_result);
 	return $with_ext ? $_ret : explode('.', $_ret)[0];
 }
 function getExt($_arg): string
 {
-	return end(explode('.', getFileName($_arg)));
+	$___explode_result = explode('.', getFileName($_arg));
+	return end($___explode_result);
 }
 function getMyParamKey(string $arg): string
 {
