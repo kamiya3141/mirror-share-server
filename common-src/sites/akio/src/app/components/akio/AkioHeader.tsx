@@ -17,16 +17,15 @@ export function AkioHeader() {
   const navItems = [
     { label: 'プロフィール', href: '#profile' },
     { label: '戦歴', href: '#battles' },
-    { label:'スキル', href: '#skills' },
+    { label: 'スキル', href: '#skills' },
     { label: 'ギャラリー', href: '#gallery' },
     { label: '連絡', href: '#contact' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-stone-900/95 backdrop-blur-sm shadow-lg border-b-2 border-amber-700' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-stone-900/95 backdrop-blur-sm shadow-lg border-b-2 border-amber-700' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -50,9 +49,8 @@ export function AkioHeader() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`hover:text-amber-500 transition-colors font-semibold ${
-                  isScrolled ? 'text-stone-300' : 'text-amber-100'
-                }`}
+                className={`hover:text-amber-500 transition-colors font-semibold ${isScrolled ? 'text-stone-300' : 'text-amber-100'
+                  }`}
               >
                 {item.label}
               </motion.a>

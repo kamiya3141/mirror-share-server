@@ -63,21 +63,18 @@ export function AkioBattles() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className={`flex flex-col md:flex-row gap-8 items-center ${
-                  index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                }`}
+                className={`flex flex-col md:flex-row gap-8 items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                  }`}
               >
                 {/* Content */}
                 <div className="flex-1">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className={`bg-gradient-to-br from-stone-800 to-stone-900 border-2 border-amber-700 rounded-xl p-6 shadow-xl ${
-                      index % 2 === 0 ? 'md:text-right' : ''
-                    }`}
+                    className={`bg-gradient-to-br from-stone-800 to-stone-900 border-2 border-amber-700 rounded-xl p-6 shadow-xl ${index % 2 === 0 ? 'md:text-right' : ''
+                      }`}
                   >
-                    <div className={`flex items-center gap-3 mb-3 ${
-                      index % 2 === 0 ? 'md:flex-row-reverse md:justify-end' : ''
-                    }`}>
+                    <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:flex-row-reverse md:justify-end' : ''
+                      }`}>
                       <div className="w-10 h-10 bg-amber-900 rounded-full flex items-center justify-center border-2 border-amber-600">
                         <battle.icon className="w-5 h-5 text-amber-400" />
                       </div>

@@ -24,9 +24,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -50,9 +49,8 @@ export function Header() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`hover:text-emerald-600 transition-colors ${
-                  isScrolled ? 'text-gray-700' : 'text-white'
-                }`}
+                className={`hover:text-emerald-600 transition-colors ${isScrolled ? 'text-gray-700' : 'text-white'
+                  }`}
               >
                 {item.label}
               </motion.a>
