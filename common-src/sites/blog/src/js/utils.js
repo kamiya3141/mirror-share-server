@@ -4,6 +4,7 @@ const MyAlertMessageInfoObject = {
 	"alert--id": "#alert-display-section",
 	"message--id": "#alert--message",
 	"ok-button--id": "#alert--ok-button",
+	"message-array": [],
 	get "element"() {
 		return document.querySelector(this["alert--id"]);
 	},
@@ -11,18 +12,47 @@ const MyAlertMessageInfoObject = {
 		return this["element"].querySelector(this["message--id"]).innerHTML;
 	},
 	set "message"(input) {
-		console.log(this["element"], "message");
 		this["element"].querySelector(this["message--id"]).innerHTML = String(input);
 	},
 	get "ok-button"() {
 		return this["element"].querySelector(this["ok-button--id"]);
+	},
+	get "open-event-var"() {
+		return new CustomEvent("alert--event--open");
+	},
+	"open-event"(input_str = "") {
+		if (input_str.length > 0)
+			this["message-array"].push(input_str);
+		this["element"].dispatchEvent(this["open-event-var"]);
+	},
+	get "close-event-var"() {
+		return new CustomEvent("alert--event--close");
+	},
+	"close-event"() {
+		this["element"].dispatchEvent(this["close-event-var"]);
+	},
+	"__init__"() {
+		this["element"].addEventListener("alert--event--open", () => {
+			if (this["message-array"].length == 0) {
+				console.log("abc");
+				return;
+			}
+			const ___msg = this["message-array"].shift();
+			this["message"] = ___msg;
+			switchingOpenDisplay(this["element"]);
+		});
+		this["element"].addEventListener("alert--event--close", () => {
+			this["message"] = "";
+			if (this["message-array"].length > 0)
+				this["open-event"]();
+		});
 	}
 };
 
+MyAlertMessageInfoObject["__init__"]();
+
 function myAlertMessage(_str = "Alert Message Template.") {
-	MyAlertMessageInfoObject["message"] = _str;
-	switchingOpenDisplay(MyAlertMessageInfoObject["element"]);
-	// window.alert(_str);
+	MyAlertMessageInfoObject["open-event"](_str);
 }
 
 function myConfirmMessage(_str) {

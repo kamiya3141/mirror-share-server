@@ -15,15 +15,13 @@ function loadedFunc() {
 			"switched-element": "#alert-display-section",
 			"tf-func": __tf => {
 				if (!__tf)
-					MyAlertMessageInfoObject["message"] = "";
+					MyAlertMessageInfoObject["close-event"]();
 			}
 		}
 	];
 
 	const setting_elem = document.getElementById("display-setting-main-contents-setting");
 	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
-
-	// console.log(setting_display_main_contents_tab_bar_item_array);
 
 	displayElementQueryArray.forEach(obj => {
 		const switched_elem = document.querySelector(obj["switched-element"]);
