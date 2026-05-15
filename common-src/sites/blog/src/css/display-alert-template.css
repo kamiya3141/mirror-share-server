@@ -1,0 +1,22 @@
+#display-alert-main-contents-alert {
+	width: var(--c1);
+	height: var(--c1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+
+	& > .alert--main-contents-box {
+		width: var(--c1);
+		height: var(--c1);
+		display: grid;
+		grid-template-rows: 8fr 2fr;
+
+		& > * {
+			display: flex;
+		}
+		& input#alert--ok-button[type="button"] {
+			background-color: var(--myStylingUserPreferColor);
+		}
+	}
+}

@@ -164,13 +164,17 @@ html {
 			display: none;
 			height: var(--c1);
 			justify-content: flex-start;
+			overflow-y: auto;
 
 			& > .item-all-box {
 				width: var(--c1);
+				min-height: 3.5rem;
+				max-height: 5rem;
 				justify-content: space-between;
 				flex-direction: row;
-				margin-top: 2rem;
+				margin-top: 0.5rem;
 				padding-top: 1.5rem;
+				padding-bottom: 1rem;
 				border-top: var(--myTextColor) 2px solid;
 
 				& > * {

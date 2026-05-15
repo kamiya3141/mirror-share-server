@@ -1,5 +1,3 @@
-var attrName_SetByScript = "data-mydef--set-by-script";
-
 const template_data_function_map = {
 	"display-template": (header_title = "title", contents = "", footer_title = "", closed_button = true) => {
 		const flag = cloneTemplate("display-template");
@@ -19,13 +17,13 @@ const template_data_function_map = {
 	"toggle-switch-template": device_setting_id => {
 		const flag = cloneTemplate("toggle-switch-template");
 		flag.querySelector(".toggle_input").addEventListener("change", e => {
-			if (e.target.getAttribute(attrName_SetByScript) != "true") {
+			if (!get_SetByScript(e.target)) {
 				const chk = e.target.checked;
 				editDeviceInformation(device_setting_id, chk);
 				toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
 				reloadDeviceInformation("toggle-switch-template");
 			}
-			e.target.setAttribute(attrName_SetByScript, "false");
+			edit_SetByScript(e.target, false);
 		});
 		return flag;
 	}
@@ -34,7 +32,7 @@ const template_data_function_map = {
 convertTemplateElement(document);
 
 function toggleSwitchCancelFunction(elem, tf = null) {
-	elem.setAttribute(attrName_SetByScript, "true");
+	edit_SetByScript(elem, true);
 	elem.checked = Boolean(tf == null ? !elem.checked : tf);
 }
 

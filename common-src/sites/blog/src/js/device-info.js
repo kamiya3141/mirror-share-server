@@ -15,7 +15,7 @@ const origin_device = {
 	"allow--opening--setting-display--after--reload": false,
 	"save--user-data--localstorage": false,
 	"setting-display-open": false,
-	"DEBUGMODE": true
+	"DEBUGMODE": false
 };
 
 var device = {};
@@ -102,6 +102,7 @@ function getDeviceDataForLocalStorage() {
 
 function syncDeviceDataForLocalStorage() {
 	Object.assign(device, getDeviceDataForLocalStorage());
+	device["DEBUGMODE"] = origin_device["DEBUGMODE"];
 }
 
 // windowイベント設定

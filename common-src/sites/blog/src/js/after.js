@@ -8,6 +8,15 @@ function loadedFunc() {
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
 			"tf-func": __tf => editDeviceInformation("setting-display-open", __tf)
+		},
+		{
+			"trigger-element": ["#alert-display-div-main #alert--ok-button"],
+			"focus-out-element": "",
+			"switched-element": "#alert-display-section",
+			"tf-func": __tf => {
+				if (!__tf)
+					MyAlertMessageInfoObject["message"] = "";
+			}
 		}
 	];
 
@@ -21,15 +30,13 @@ function loadedFunc() {
 		switched_elem.tabIndex = 0;
 		let focus_out_elem = null;
 
-		if (Object.hasOwn("focus-out-element") && String(obj["focus-out-element"]).length > 0) {
+		if (!getDeviceInformation("DEBUGMODE") && Object.hasOwn(obj, "focus-out-element") && String(obj["focus-out-element"]).length > 0) {
 			focus_out_elem = document.querySelector(obj["focus-out-element"]);
 			focus_out_elem.tabIndex = 0;
 			focus_out_elem.addEventListener("focusout", e => {
 				if (!focus_out_elem.contains(e.relatedTarget) && getOpenDisplayStatus(switched_elem)) {
-					if (!getDeviceInformation("DEBUGMODE")) {
-						const return_data = switchingOpenDisplay(switched_elem);
-						obj["tf-func"](return_data);
-					}
+					if (obj["trigger-element"].length > 0)
+						document.querySelectorAll(obj["trigger-element"][0]).item(0).click();
 				}
 			});
 		}
@@ -150,14 +157,13 @@ function loadedFunc() {
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
-			const attr_name = attrName_SetByScript;
-			const data_is_true = Boolean(e.target.getAttribute(attr_name) == "true");
+			const data_is_true = get_SetByScript(e.target);
 			if (!data_is_true) {
 				c1["select-change-event-function"](e.target.value);
 				if (!(Object.hasOwn(c1, "reload-cancel") && c1["reload-cancel"] == true))
 					reloadDeviceInformation("select-element-change-event");
 			}
-			e.target.setAttribute(attr_name, "false");
+			edit_SetByScript(e.target, false);
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
@@ -220,10 +226,14 @@ function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto"
 			data_is_true = "true";
 		else if (inputData == "false" || inputData == false)
 			data_is_true = "false";
+		else {
+			console.error("inputDataがtrue, false意外だったので、強制的にfalseにしました。");
+			data_is_true = "false";
+		}
 	}
-	if (elem.getAttribute(attrName_SetByScript) != "true")
+	if (!get_SetByScript(elem))
 		elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
-	elem.setAttribute(attrName_SetByScript, "false");
+	edit_SetByScript(elem, false);
 	return !data_is_true;
 }
 
