@@ -26,7 +26,7 @@ if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
 
 function resetDeviceInformation(allowDisplayWarningMessage = true) {
 	if (allowDisplayWarningMessage)
-		alert("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
+		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
 	setOriginDeviceValueForDevice();
 }
 
@@ -48,12 +48,12 @@ function getDeviceInformation(_key = "") {
 function editDeviceInformation(_key = "", _value = null) {
 
 	if (_key == "save--user-data--localstorage" && _value == false) {
-		const _tf = confirm("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
+		const _tf = myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
 		if (_tf) {
 			resetDeviceInformation(false);
 			setDeviceDataForLocalStorage(true);
 		} else
-			alert("初期化を中止しました。");
+			myAlertMessage("初期化を中止しました。");
 	}
 
 	if (Object.hasOwn(device, _key))

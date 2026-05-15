@@ -108,7 +108,7 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/:::\snote\salert(\n[\s\S]*?\n):::/g,
+		/:::\snote\smyAlertMessage(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("alert", cts),
 		null,
 		null,

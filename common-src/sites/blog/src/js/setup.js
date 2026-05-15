@@ -52,7 +52,7 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 		},
 		"allow--changing--device-mode--for--display-size": __tf => {
 			if (!__tf) {
-				const res = confirm("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
+				const res = myConfirmMessage("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
 				if (!res) {
 					editDeviceInformation(key, !res);
 					toggleSwitchCancelFunction(elem);
