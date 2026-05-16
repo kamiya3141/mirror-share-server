@@ -128,16 +128,6 @@ html {
 			color: var(--A-Element-VISITED-COLOR) !important;
 		}
 
-		/*
-		& .mobile-element {
-			display: initial;
-		}
-
-		& .desktop-element {
-			display: initial;
-		}
-		*/
-
 		& > header#root-header {
 			width: var(--c1);
 			height: var(--c-hd-h);
