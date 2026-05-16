@@ -14,7 +14,7 @@ function reloadWindowInfo() {
 			window.screen.height
 		],
 		[
-			`win.visvwpt.wh${br}`,
+			`win.visvwpt.wh${_br}`,
 			window.visualViewport.width,
 			window.visualViewport.height
 		],
