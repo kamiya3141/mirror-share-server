@@ -10,13 +10,36 @@
 		width: var(--c1);
 		height: var(--c1);
 		display: grid;
+		grid-template-columns: 1fr;
 		grid-template-rows: 8fr 2fr;
 
 		& > * {
 			display: flex;
-		}
-		& input#alert--ok-button[type="button"] {
-			background-color: var(--myStylingUserPreferColor);
+			width: var(--c1);
+			height: var(--c1);
+
+			& > h1 {
+				width: var(--c1);
+			}
+
+			& > .button-box {
+				width: calc(var(--c1) / 2);
+			}
+
+			& > * {
+				height: var(--c1);
+
+				& > input#alert--ok-button[type="button"] {
+					max-width: var(--c-mn-h);
+					height: var(--c-mn-h);
+					background-color: var(--myStylingUserPreferColor);
+					font-size: 2.5rem;
+					border-radius: 999rem;
+					padding-right: 2.5rem;
+					padding-left: 2.5rem;
+					margin: var(--c-ft-h);
+				}
+			}
 		}
 	}
 }

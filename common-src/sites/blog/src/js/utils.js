@@ -20,10 +20,11 @@ const MyAlertMessageInfoObject = {
 	get "open-event-var"() {
 		return new CustomEvent("alert--event--open");
 	},
-	"open-event"(input_str = "") {
+	"open-event"(input_str = "", setByCloseEvent = false) {
 		if (input_str.length > 0)
 			this["message-array"].push(input_str);
-		this["element"].dispatchEvent(this["open-event-var"]);
+		if (this["message-array"].length == 1 || setByCloseEvent)
+			window.setTimeout(() => this["element"].dispatchEvent(this["open-event-var"]), setByCloseEvent ? 0 : 250);
 	},
 	get "close-event-var"() {
 		return new CustomEvent("alert--event--close");
@@ -44,7 +45,7 @@ const MyAlertMessageInfoObject = {
 		this["element"].addEventListener("alert--event--close", () => {
 			this["message"] = "";
 			if (this["message-array"].length > 0)
-				this["open-event"]();
+				this["open-event"]("", true);
 		});
 	}
 };

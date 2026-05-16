@@ -56,6 +56,19 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 					toggleSwitchCancelFunction(elem);
 				}
 			}
+		},
+		"save--user-data--localstorage": __tf => {
+			if (!__tf) {
+				const res = myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
+				if (res) {
+					resetDeviceInformation(false);
+					setDeviceDataForLocalStorage(true);
+				} else {
+					editDeviceInformation(key, !res);
+					toggleSwitchCancelFunction(elem);
+					myAlertMessage("初期化を中止しました。");
+				}
+			}
 		}
 	};
 
