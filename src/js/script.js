@@ -15,8 +15,8 @@ function reloadWindowInfo() {
 		],
 		[
 			`win.visvwpt.wh${_br}`,
-			window.visualViewport.width,
-			window.visualViewport.height
+			Math.floor(window.visualViewport.width),
+			Math.floor(window.visualViewport.height)
 		],
 		[
 			`mydef.real.wh${_br}`,
