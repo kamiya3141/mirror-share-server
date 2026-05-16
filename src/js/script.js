@@ -14,10 +14,16 @@ function reloadWindowInfo() {
 			window.screen.height
 		],
 		[
+			`win.visvwpt.wh${br}`,
+			window.visualViewport.width,
+			window.visualViewport.height
+		],
+		[
 			`mydef.real.wh${_br}`,
 			getCSSLengthValue("--myStylingRealWidth"),
 			getCSSLengthValue("--myStylingRealHeight")
 		],
+
 		[
 			`Using Device${_br}`,
 			"Device",
