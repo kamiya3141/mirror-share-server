@@ -94,7 +94,7 @@ html {
 
 	&[data-my-device-type="mobile"] > body {
 		--myStylingLocalDisplayWidth: var(--c1);
-		--myStylingLocalDisplayHeight: var(--c-mn-h);
+		--myStylingLocalDisplayHeight: var(--c1);
 
 		& .mobile-element {
 			display: initial;
