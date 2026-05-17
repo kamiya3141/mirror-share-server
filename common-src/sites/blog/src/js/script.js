@@ -11,7 +11,8 @@ async function mainFunc() {
 
 window.addEventListener("load", mainFunc);
 
-window.setTimeout(() => {
+window.setTimeout(async () => {
 	myAlertMessage(document.documentElement.getAttribute("data-my-device-type"));
-	myAlertMessage(JSON.stringify(device));
+	const res = await myConfirmMessage("abc???");
+	console.log(res);
 }, 1000 * 3);

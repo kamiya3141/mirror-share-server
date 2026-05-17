@@ -37,7 +37,8 @@
 					border-radius: 999rem;
 					padding-right: 2.5rem;
 					padding-left: 2.5rem;
-					margin: var(--c-ft-h);
+					margin-right: 2.5rem;
+					margin-left: 2.5rem;
 				}
 			}
 		}
