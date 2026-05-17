@@ -66,10 +66,17 @@ function loadedFunc() {
 
 	});
 
-	document.getElementById("setting-display--appearance--input-color--prefer-color").value = getDeviceInformation("prefer-color");
-	document.getElementById("setting-display--appearance--input-color--prefer-color").addEventListener("change", e => {
-		editDeviceInformation("prefer-color", e.target.value);
-		reloadDeviceInformation("prefer-color");
+	const userPreferColorElement = document.getElementById("setting-display--appearance--input-color--prefer-color");
+	userPreferColorElement.value = getDeviceInformation("prefer-color");
+	userPreferColorElement.addEventListener("change", async e => {
+		let __includes_special_color = ["MainBackgroundColor", "TextColor", "ElementBackgroundColor", "ElementBackgroundColor2"].map(c => rgbToHex(getCSSLengthValue(`--my${c}`))).includes(e.target.value);
+		if (__includes_special_color) {
+			myAlertMessage("指定不可能な値が選択されました。\n値を戻します。");
+			e.target.value = getDeviceInformation("prefer-color");
+		} else {
+			editDeviceInformation("prefer-color", e.target.value);
+			reloadDeviceInformation("prefer-color");
+		}
 	});
 
 

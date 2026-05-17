@@ -48,9 +48,12 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 			___el.disabled = !__tf;
 			___el.value = getDeviceInformation("device-type");
 		},
+		"abc": async __tf => {
+
+		},
 		"allow--changing--device-mode--for--display-size": async __tf => {
 			if (!__tf) {
-				const res = await myConfirmMessage("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
+				const res = await myConfirmMessage("OFFにすると\n表示が崩れる場合がございます。\nよろしいですか？");
 				if (!res) {
 					editDeviceInformation(key, !res);
 					toggleSwitchCancelFunction(elem);
@@ -59,7 +62,7 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 		},
 		"save--user-data--localstorage": async __tf => {
 			if (!__tf) {
-				const res = await myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
+				const res = await myConfirmMessage("この操作を完了すると\nユーザデータは削除されます。\n\n本当によろしいですか？");
 				if (res) {
 					resetDeviceInformation(false);
 					setDeviceDataForLocalStorage(true);

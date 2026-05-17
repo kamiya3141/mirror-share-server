@@ -1,3 +1,7 @@
+html[data-my-device-type="mobile"] #display-alert-main-contents-alert input[type="button"] {
+	width: 12rem;
+}
+
 #display-alert-main-contents-alert {
 	width: var(--c1);
 	height: var(--c1);

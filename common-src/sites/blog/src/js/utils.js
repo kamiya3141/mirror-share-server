@@ -14,7 +14,7 @@ const MyAlertMessageInfoObject = {
 		return this["element"].querySelector(this["message--id"]).innerHTML;
 	},
 	set "message"(input) {
-		this["element"].querySelector(this["message--id"]).innerHTML = String(input);
+		this["element"].querySelector(this["message--id"]).innerHTML = String(input).replaceAll("\n", "<br>");
 	},
 	get "ok-button"() {
 		return this["element"].querySelector(this["ok-button--id"]);
@@ -62,7 +62,7 @@ const MyConfirmMessageInfoObject = {
 		return this["element"].querySelector(this["message--id"]).innerHTML;
 	},
 	set "message"(input) {
-		this["element"].querySelector(this["message--id"]).innerHTML = String(input);
+		this["element"].querySelector(this["message--id"]).innerHTML = String(input).replaceAll("\n", "<br>");
 	},
 	get "ok-button"() {
 		return this["element"].querySelector(this["ok-button--id"]);
@@ -114,4 +114,18 @@ function get_SetByScript(elem) {
 function edit_SetByScript(elem, input_tf = "auto") {
 	let set_data = (input_tf != true && input_tf != false) ? !get_SetByScript(elem) : input_tf;
 	elem.setAttribute(attrName_SetByScript, String(set_data));
+}
+
+/**
+ * 
+ * @param {String} rgb 書くの面倒だったからchatgptに作ってもらった
+ * @returns {String}
+ */
+function rgbToHex(rgb) {
+	const nums = String(rgb).match(/[\d.]+/g);
+	const [r, g, b, a] = nums.map(Number);
+	let hex = `#${[r, g, b].map(v => v.toString(16).padStart(2, "0")).join("")}`;
+	if (a !== undefined)
+		hex += Math.round(a * 255).toString(16).padStart(2, "0");
+	return hex;
 }
