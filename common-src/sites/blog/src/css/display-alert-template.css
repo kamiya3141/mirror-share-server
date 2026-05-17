@@ -1,5 +1,5 @@
 html[data-my-device-type="mobile"] #display-alert-main-contents-alert input[type="button"] {
-	width: 12rem;
+	min-width: 12rem;
 }
 
 #display-alert-main-contents-alert {

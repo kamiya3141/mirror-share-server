@@ -1,3 +1,7 @@
+html[data-my-device-type="mobile"] #display-confirm-main-contents-confirm input[type="button"] {
+	min-width: 12rem;
+}
+
 #display-confirm-main-contents-confirm {
 	width: var(--c1);
 	height: var(--c1);
