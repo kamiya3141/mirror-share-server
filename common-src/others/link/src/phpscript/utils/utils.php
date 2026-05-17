@@ -24,10 +24,11 @@ const ERROR_TEMPLATE_URL = 'https://raw.githubusercontent.com/kamiya3141/mirror-
 // const ERROR_TEMPLATE_URL = 'https://kamiya3141.github.io/mirror-share-server/common-src/html/error/index.html';
 // define('ERROR_TEMPLATE_URL', url_join(getMyHostName('share'), 'common-src/html/error', INDEX_HTML));
 define('API_URL', [
-	VIEW_STRING => url_join(getMyHostName('api'), 'api-view.php'),
-	LINK_STRING => url_join(getMyHostName('api'), 'api-link.php'),
-	'error' => url_join(getMyHostName('api'), 'api-error.php'),
-	'md' => url_join(getMyHostName('api'), 'api-markdown.php')
+	VIEW_STRING => url_join(getMyHostName('api'), 'php/api-view.php'),
+	LINK_STRING => url_join(getMyHostName('api'), 'php/api-link.php'),
+	'error' => url_join(getMyHostName('api'), 'php/api-error.php'),
+	'md' => url_join(getMyHostName('api'), 'php/api-markdown.php'),
+	'motion' => url_join(getMyHostName('api'), 'php/api-motion.php')
 ]);
 
 $mimeMap = [
