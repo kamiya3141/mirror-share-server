@@ -203,5 +203,9 @@ html {
 				}
 			}
 		}
+
+		& > script {
+			display: none;
+		}
 	}
 }

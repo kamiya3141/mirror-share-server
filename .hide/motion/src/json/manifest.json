@@ -1,0 +1,15 @@
+{
+	"name": "Motion",
+	"short_name": "Motion",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#363636",
+	"icons": [
+		{
+			"src": "https://share.tshuto.com/favicon.png",
+			"sizes": "128x128",
+			"type": "image/x-icon"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"name": "Motion-Stop-Restart",
+	"short_name": "Motion-Stop-Restart",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#363636",
+	"icons": [
+		{
+			"src": "https://share.tshuto.com/favicon.png",
+			"sizes": "48x48",
+			"type": "image/x-icon"
+		}
+	]
+}
