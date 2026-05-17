@@ -7,15 +7,26 @@ function loadedFunc() {
 			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
-			"tf-func": __tf => editDeviceInformation("setting-display-open", __tf)
+			"tf-func": (__tf, __elem) => editDeviceInformation("setting-display-open", __tf)
 		},
 		{
 			"trigger-element": ["#alert-display-div-main #alert--ok-button"],
 			"focus-out-element": "",
 			"switched-element": "#alert-display-section",
-			"tf-func": __tf => {
+			"tf-func": (__tf, __elem) => {
 				if (!__tf)
 					MyAlertMessageInfoObject["close-event"]();
+			}
+		},
+		{
+			"trigger-element": ["#confirm-display-div-main #confirm--ok-button", "#confirm-display-div-main #confirm--cancel-button"],
+			"focus-out-element": "",
+			"switched-element": "#confirm-display-section",
+			"tf-func": (__tf, __elem) => {
+				if (!__tf) {
+					MyConfirmMessageInfoObject["close-event"]();
+					MyConfirmMessageInfoObject["result"] = String(__elem.id).includes("ok");
+				}
 			}
 		}
 	];
@@ -43,7 +54,7 @@ function loadedFunc() {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
 					const return_data = switchingOpenDisplay(switched_elem);
-					obj["tf-func"](return_data);
+					obj["tf-func"](return_data, e.target);
 					if (getOpenDisplayStatus(switched_elem)) {
 						if (focus_out_elem != null)
 							focus_out_elem.focus();
