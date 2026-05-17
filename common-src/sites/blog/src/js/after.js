@@ -24,8 +24,8 @@ function loadedFunc() {
 			"switched-element": "#confirm-display-section",
 			"tf-func": (__tf, __elem) => {
 				if (!__tf) {
-					MyConfirmMessageInfoObject["close-event"]();
 					MyConfirmMessageInfoObject["result"] = String(__elem.id).includes("ok");
+					MyConfirmMessageInfoObject["close-event"]();
 				}
 			}
 		}

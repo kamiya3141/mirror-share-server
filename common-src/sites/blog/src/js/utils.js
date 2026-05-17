@@ -78,7 +78,9 @@ const MyConfirmMessageInfoObject = {
 		this["element"].dispatchEvent(this["open-event-var"]);
 		while (this["result"] == null)
 			await utilsSleep(250);
-		return this["result"];
+		const res = this["result"];
+		this["result"] = null;
+		return res;
 	},
 	get "close-event-var"() {
 		return new CustomEvent("confirm--event--close");
@@ -88,10 +90,7 @@ const MyConfirmMessageInfoObject = {
 	},
 	"__init__"() {
 		this["element"].addEventListener("confirm--event--open", () => switchingOpenDisplay(this["element"]));
-		this["element"].addEventListener("confirm--event--close", () => {
-			this["message"] = "";
-			this["result"] = null;
-		});
+		this["element"].addEventListener("confirm--event--close", () => this["message"] = "");
 	}
 };
 
@@ -105,7 +104,6 @@ function myAlertMessage(_str = "Alert Message Template.") {
 async function myConfirmMessage(_str) {
 	//const res = window.confirm(_str);
 	const res = await MyConfirmMessageInfoObject["open-event"](_str);
-	console.log(String(res));
 	return res;
 }
 
