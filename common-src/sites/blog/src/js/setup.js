@@ -38,17 +38,17 @@ function toggleSwitchCancelFunction(elem, tf = null) {
 
 async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	const funcObj = {
-		"force-theme": __tf => {
+		"force-theme": async __tf => {
 			const ___el = document.getElementById("setting-display--appearance--input-select--theme-setting");
 			___el.disabled = !__tf;
 			___el.value = getDeviceInformation("theme-type");
 		},
-		"force-device": __tf => {
+		"force-device": async __tf => {
 			const ___el = document.getElementById("setting-display--appearance--input-select--device-mode-setting");
 			___el.disabled = !__tf;
 			___el.value = getDeviceInformation("device-type");
 		},
-		"allow--changing--device-mode--for--display-size": __tf => {
+		"allow--changing--device-mode--for--display-size": async __tf => {
 			if (!__tf) {
 				const res = await myConfirmMessage("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
 				if (!res) {
@@ -57,7 +57,7 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 				}
 			}
 		},
-		"save--user-data--localstorage": __tf => {
+		"save--user-data--localstorage": async __tf => {
 			if (!__tf) {
 				const res = await myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
 				if (res) {
@@ -73,7 +73,7 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	};
 
 	if (Object.hasOwn(funcObj, key))
-		funcObj[key](tf);
+		await funcObj[key](tf);
 
 }
 

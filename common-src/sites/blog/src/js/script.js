@@ -13,5 +13,5 @@ window.addEventListener("load", mainFunc);
 
 window.setTimeout(() => {
 	myAlertMessage(document.documentElement.getAttribute("data-my-device-type"));
-	// myAlertMessage(JSON.stringify(device));
+	myAlertMessage(JSON.stringify(device));
 }, 1000 * 3);

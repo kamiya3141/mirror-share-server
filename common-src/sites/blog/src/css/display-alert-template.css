@@ -29,7 +29,7 @@
 			& > * {
 				height: var(--c1);
 
-				& > input#alert--ok-button[type="button"] {
+				& > input[type="button"] {
 					max-width: var(--c-mn-h);
 					height: var(--c-mn-h);
 					background-color: var(--myStylingUserPreferColor);
