@@ -16,11 +16,11 @@ const template_data_function_map = {
 	},
 	"toggle-switch-template": device_setting_id => {
 		const flag = cloneTemplate("toggle-switch-template");
-		flag.querySelector(".toggle_input").addEventListener("change", e => {
+		flag.querySelector(".toggle_input").addEventListener("change", async e => {
 			if (!get_SetByScript(e.target)) {
 				const chk = e.target.checked;
 				editDeviceInformation(device_setting_id, chk);
-				toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
+				await toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
 				reloadDeviceInformation("toggle-switch-template");
 			}
 			edit_SetByScript(e.target, false);
@@ -36,7 +36,7 @@ function toggleSwitchCancelFunction(elem, tf = null) {
 	elem.checked = Boolean(tf == null ? !elem.checked : tf);
 }
 
-function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
+async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	const funcObj = {
 		"force-theme": __tf => {
 			const ___el = document.getElementById("setting-display--appearance--input-select--theme-setting");
@@ -50,7 +50,7 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 		},
 		"allow--changing--device-mode--for--display-size": __tf => {
 			if (!__tf) {
-				const res = myConfirmMessage("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
+				const res = await myConfirmMessage("OFFにすると表示が崩れる場合がございます\nよろしいですか？");
 				if (!res) {
 					editDeviceInformation(key, !res);
 					toggleSwitchCancelFunction(elem);
@@ -59,7 +59,7 @@ function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 		},
 		"save--user-data--localstorage": __tf => {
 			if (!__tf) {
-				const res = myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
+				const res = await myConfirmMessage("この操作を完了するとユーザデータは削除されます。\n本当によろしいですか？");
 				if (res) {
 					resetDeviceInformation(false);
 					setDeviceDataForLocalStorage(true);

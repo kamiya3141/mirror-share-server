@@ -56,7 +56,7 @@ function myAlertMessage(_str = "Alert Message Template.") {
 	MyAlertMessageInfoObject["open-event"](_str);
 }
 
-function myConfirmMessage(_str) {
+async function myConfirmMessage(_str) {
 	const res = window.confirm(_str);
 	return res;
 }
