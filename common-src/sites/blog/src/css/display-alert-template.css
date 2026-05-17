@@ -1,5 +1,6 @@
 html[data-my-device-type="mobile"] #display-alert-main-contents-alert input[type="button"] {
 	min-width: 12rem;
+	aspect-ratio: 1/1;
 }
 
 #display-alert-main-contents-alert {
