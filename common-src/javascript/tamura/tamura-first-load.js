@@ -178,6 +178,9 @@ function setTheme() {
 window.addEventListener("resize", () => {
 	setTheme();
 });
+window.visualViewport.addEventListener("resize", () => {
+	setTheme();
+});
 
 window.addEventListener("load", () => {
 	setTheme();

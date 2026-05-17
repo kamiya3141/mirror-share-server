@@ -100,6 +100,9 @@ function syncDeviceDataForLocalStorage() {
 window.addEventListener("resize", () => {
 	reloadDeviceInformation("resize-event");
 });
+window.visualViewport.addEventListener("resize", () => {
+	reloadDeviceInformation("window.visualViewport.resize-event");
+});
 window.addEventListener("load", () => {
 	reloadDeviceInformation("load-event");
 });
