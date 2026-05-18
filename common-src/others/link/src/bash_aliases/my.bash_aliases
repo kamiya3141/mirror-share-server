@@ -31,6 +31,10 @@ function scda() {
 	sudo systemctl disable $@
 }
 
+function sced() {
+	sudo nano /etc/systemd/system/$1.service
+}
+
 function sjc() {
 	sudo journalctl -xeu $@
 }
