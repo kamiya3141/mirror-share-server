@@ -14,6 +14,9 @@
 
 RewriteEngine On
 RewriteBase /
+
+# RewriteRule ^/common-src/sites/blog/src/php/article-api-local\.php$ - [L]
+
 RewriteCond %{REQUEST_URI} ^/php/ [NC]
 RewriteRule ^ - [L]
 
