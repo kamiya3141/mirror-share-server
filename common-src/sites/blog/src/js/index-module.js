@@ -284,19 +284,3 @@ async function parseMarkdown(use_version_1 = true) {
 }
 
 export { parseMarkdown as parseMD, afterWorker as afterFunction };
-
-/*
-let currentPathname = winMyHrefPathname;
-	// .comかindex.htmlで終わるようにアクセスされたときの対策
-	currentPathname = currentPathname.replace("/index.html", "/");
-	if (currentPathname == "/")
-		currentPathname = "/home";
-
-	// 前後余分なスラッシュを削除
-	if (currentPathname.at(0) == "/")
-		currentPathname = currentPathname.substring(1, currentPathname.length);
-	if (currentPathname.at(-1) == "/")
-		currentPathname = currentPathname.substring(0, currentPathname.length - 1);
-
-	currentPathname = String(currentPathname);
-*/
