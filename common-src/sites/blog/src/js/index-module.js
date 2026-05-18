@@ -182,8 +182,11 @@ function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = fals
 
 async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
-	const mdtxt = await fetch(mdurl).then(res => res.text());
+	const json_data = await fetch(mdurl).then(res => res.json());
+	const mdtxt = json_data["content"];
 	let result_str = mdtxt;
+
+	MARKDOWN_ARTICLE_TITLE = json_data["title"];
 
 	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 
@@ -265,12 +268,9 @@ function getParentElement(el, n = 1, getLastElement = true) {
 
 
 async function parseMarkdown(use_version_1 = true) {
-	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
-	const targetFileName = new URL(winMyHref).searchParams.get("blog--target-file");
-	const queryStr = `${(targetDirectoryName ? targetDirectoryName : "")}${targetFileName ? ("/" + targetFileName) : "home"}.md`;
-	// const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${queryStr}`;
-	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${queryStr}`);
-	const fileURL = `./md/${queryStr}`;
+	const targetSlugName = new URL(winMyHref).searchParams.get("id");
+	const fileURL = new URL("./src/php/article-api.php");
+	fileURL.searchParams.set("slug", targetSlugName);
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
 	return result_md_str;
