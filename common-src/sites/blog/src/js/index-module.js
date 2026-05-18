@@ -277,7 +277,7 @@ async function parseMarkdown(use_version_1 = true) {
 	const targetQueryName = "slug";
 	const targetQueryData = new URL(winMyHref).searchParams.get("id");
 	const fileURL = new URL(`${winMyHrefPTCHostname}/src/php/article-api-local.php`);
-	fileURL.searchParams.set(targetQueryName, targetQueryData);
+	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "2026-0401-230000--base--home");
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
 	return result_md_str;
