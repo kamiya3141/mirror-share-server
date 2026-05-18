@@ -4,12 +4,7 @@ const SPL_STR_NML = "-:-";
 const SAND_SPL_STR_NML = _str_ => `${SPL_STR_NML}${_str_}${SPL_STR_NML}`;
 const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
-const STR_ENV_CONV_OBJ = {
-	"TITLE": _v => {
-		MARKDOWN_ARTICLE_TITLE = _v;
-		document.title = `${_v} | ブログ - TSHUTO`;
-	}
-};
+const STR_ENV_CONV_OBJ = {};
 
 const before_replace_str_define_array = [
 	[
@@ -180,21 +175,24 @@ function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = fals
 	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
 }
 
+function setarticleTitle(_str = "No Title ...") {
+	document.title = [_str, document.title].join(` | `);
+	MARKDOWN_ARTICLE_TITLE = _str;
+}
+
 async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 
 	const res = await fetch(mdurl);
 	if (!res.ok) {
-		alert("NO!!");
-		return "no";
+		alert("404 Error !!");
+		return "<h1>404 Error ...</h1>";
 	}
 	const json_data = await res.json();
-
-	console.log(json_data);
 
 	const mdtxt = json_data["content"];
 	let result_str = mdtxt;
 
-	MARKDOWN_ARTICLE_TITLE = json_data["title"];
+	setarticleTitle(json_data["title"]);
 
 	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 
