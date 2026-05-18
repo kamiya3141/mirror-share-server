@@ -1,5 +1,4 @@
-**/php/
+php/
 .hide/.debian/config*
 .hide/motion/index.html
 node_modules
-! **/php/*-api-local.php
