@@ -3,4 +3,4 @@ php/
 .hide/motion/index.html
 node_modules
 
-! **/blog/src/php/article-api-local.php
+! **/blog/src/php/
