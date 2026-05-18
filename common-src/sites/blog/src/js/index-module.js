@@ -292,7 +292,7 @@ async function parseMarkdown(use_version_1 = true) {
 	const queryStr = `${(targetDirectoryName ? targetDirectoryName : "")}${targetFileName ? ("/" + targetFileName) : "home"}.md`;
 	// const fileURL = `https://nextcloud.tshuto.com/public.php/dav/files/ReCLgMoHtXzn9GD/blog/md/${queryStr}`;
 	// const fileURL = getCurrentURLProtocolAndHostname(`/src/md/${queryStr}`);
-	const fileURL = `./src/md/${queryStr}`;
+	const fileURL = `./md/${queryStr}`;
 	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
 
 	return result_md_str;
