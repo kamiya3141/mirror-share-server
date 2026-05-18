@@ -379,6 +379,7 @@ html {
 				width: var(--c1);
 				height: var(--c-ft-h);
 				background-color: var(--myMainBackgroundColor);
+				text-align: center;
 
 				section#footer-section {
 					width: var(--c1);
