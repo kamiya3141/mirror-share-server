@@ -1,7 +1,3 @@
--%-
-TITLE: About
--%-
-
 # About
 
 ## 所属

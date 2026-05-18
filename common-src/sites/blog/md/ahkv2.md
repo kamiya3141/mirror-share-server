@@ -1,9 +1,3 @@
--%-
-TITLE: AutoHotkey v2.0.19<br> ~ 公立はこだて未来大学 Advent Calendar 2025 ~,
-TAG: TG0,
-VIEW: TRUE
--%-
-
 # ・ AutoHotkeyについて
 ### ~~ggrks~~
 ### 以降の記事はAutoHotkeyについて、 「**存在と概要**」 をある程度知っている方向けの内容になります

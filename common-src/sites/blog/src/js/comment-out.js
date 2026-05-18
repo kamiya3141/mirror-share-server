@@ -88,3 +88,24 @@ function loadIframe(__iframe) {
 }
 
 */
+
+/*
+
+[
+	new RegExp(`^(${SAND_SPL_STR_ENV("\n*.*?\n*")})\n*`, "gs"),
+	envs => {
+		let target_str = String(envs).replaceAll(SPL_STR_ENV, "");
+		target_str = target_str.replaceAll("\n", "");
+		target_str.split(",").forEach(c => {
+			let [_k, _v] = c.split(":");
+			if (Object.hasOwn(STR_ENV_CONV_OBJ, _k))
+				STR_ENV_CONV_OBJ[_k](_v);
+		});
+		return "";
+	},
+	null,
+	null,
+	null
+],
+
+*/
