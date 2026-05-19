@@ -9,6 +9,7 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: 3fr 7fr;
 		gap: 2rem;
+		place-items: center;
 
 		& > *,
 		& > * > * {
@@ -59,11 +60,11 @@
 				}
 
 				& > * {
-					width: var(--c1);
+					width: var(--c-mn-h);
 					height: var(--c1);
-					text-align: center;
 					white-space: nowrap;
 					text-overflow: ellipsis;
+					text-align: center;
 				}
 
 				& > .article-card--title {
