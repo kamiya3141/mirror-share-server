@@ -1,5 +1,5 @@
 var appear_editArticleDisplay = (_tf, article_data) => {
-	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, _tf);
+	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	settingTextEditor(article_data["content"]);
 };
 

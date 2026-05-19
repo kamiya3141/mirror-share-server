@@ -1,1 +1,1 @@
-var appear_createNewArticleSettingDisplay = _tf => switchingOpenDisplay(document.getElementById("create-new-article-setting-display-section"), true, _tf);
+var appear_createNewArticleSettingDisplay = _tf => switchingOpenDisplay(document.getElementById("create-new-article-setting-display-section"), true, !_tf);

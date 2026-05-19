@@ -1,4 +1,4 @@
-#all-articles-display-template {
+#all-articles-display-div-main {
 	width: var(--c1);
 	height: var(--c1);
 	display: grid;
