@@ -324,7 +324,7 @@ html {
 			}
 		}
 
-		& > .display-section {
+		& .display-section {
 			&[data-display-open="true"] {
 				display: flex;
 			}
