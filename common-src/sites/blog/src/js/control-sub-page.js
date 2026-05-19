@@ -10,18 +10,19 @@ if (has_edit_flag) {
 	if (has_id_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
-		if (correct) {
-			// 編集画面起動
-		}
+		if (correct)
+			appear_editArticleDisplay();
 	} else {
-		// 全ての記事を一覧表示(検索バーの表示)
-
+		const decoded_json_data = await PMD.getAllArticleData();
+		correct &= decoded_json_data != null;
+		if (correct)
+			appear_allArticlesDisplay();
 	}
 	if (!correct)
 		alert("ID値が不正な値、もしくはクエリパラメータが存在していません");
-} else if (has_new_flag) {
-	// title, slug 等の設定入力画面を起動
-} else
+} else if (has_new_flag)
+	appear_createNewArticleSettingDisplay();
+else
 	alert("ID, EDITのどちらも存在しません\nどちらかのクエリパラメータの更新をしてください");
 
 function createEditArticleDisplay() {

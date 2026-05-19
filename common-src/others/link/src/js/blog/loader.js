@@ -32,7 +32,11 @@ const allScriptSettingObjectArrayObject = {
 			"type": "text/javascript"
 		},
 		{
-			"src": "src/js/edit-page.js",
+			"src": "src/js/appear-edit-display.js",
+			"type": "text/javascript"
+		},
+		{
+			"src": "src/js/control-sub-page.js",
 			"type": "module"
 		}
 	],
@@ -42,7 +46,7 @@ const allScriptSettingObjectArrayObject = {
 			"type": "text/javascript"
 		},
 		{
-			"src": "src/js/edit-page.js",
+			"src": "src/js/control-sub-page.js",
 			"type": "module"
 		}
 	],

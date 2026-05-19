@@ -232,12 +232,12 @@ function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto"
 	let data_is_true = getOpenDisplayStatus(elem);
 	if (forceStatusValue) {
 		if (inputData == "true" || inputData == true)
-			data_is_true = "true";
+			data_is_true = true;
 		else if (inputData == "false" || inputData == false)
-			data_is_true = "false";
+			data_is_true = false;
 		else {
-			console.error("inputDataがtrue, false意外だったので、強制的にfalseにしました。");
-			data_is_true = "false";
+			console.error("inputDataがtrue, false以外だったので、強制的にfalseにしました。");
+			data_is_true = false;
 		}
 	}
 	if (!get_SetByScript(elem))
