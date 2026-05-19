@@ -1,3 +1,5 @@
+document.getElementById("main-contentsbox").innerHTML = "";
+
 const PMD = await import(`./index-module.js`);
 const result = await PMD.parseMD();
 

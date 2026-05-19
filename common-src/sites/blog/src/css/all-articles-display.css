@@ -2,11 +2,13 @@
 	width: var(--c1);
 	height: var(--c1);
 	display: grid;
+	grid-template-columns: 1fr;
 
 	#all-articles-main-contents {
 		width: var(--c1);
 		height: var(--c1);
 		grid-template-rows: 3fr 7fr;
+		grid-template-columns: 1fr;
 		gap: 0.5rem;
 
 		& > *,
@@ -25,14 +27,15 @@
 				width: var(--c1);
 				height: calc(var(--c1) / 3);
 				border-radius: 999rem;
-				font-size: 2.5rem;
+				font-size: 150%;
+				padding: 2rem;
 			}
 		}
 
 		.article-contents--box {
-			grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 			gap: 2rem;
-			padding-top: 1rem;
+			padding: 1rem;
 
 			& > .article-card {
 				width: var(--c1);
@@ -64,10 +67,10 @@
 					white-space: nowrap;
 					text-overflow: ellipsis;
 					align-content: center;
+					text-align: center;
 				}
 
 				& > .article-card--title {
-					text-align: center;
 					font-size: 0.9rem;
 				}
 			}
