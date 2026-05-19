@@ -1,6 +1,6 @@
 const joinBaseHostname = pathname => (pathname = String(pathname), `${winMyHrefPTCHostname}${(pathname[0] != "/" ? "/" : "")}${pathname}`);
 const allScriptSettingObjectArrayObject = {
-	"main": [
+	"common": [
 		{
 			"src": "src/js/utils.js",
 			"type": "text/javascript"
@@ -12,14 +12,38 @@ const allScriptSettingObjectArrayObject = {
 		{
 			"src": "src/js/setup.js",
 			"type": "text/javascript"
-		},
-		{
-			"src": "src/js/script.js",
-			"type": "module"
-		},
+		}
+	],
+	"after": [
 		{
 			"src": "src/js/after.js",
 			"type": "text/javascript"
+		}
+	],
+	"main": [
+		{
+			"src": "src/js/script.js",
+			"type": "module"
+		}
+	],
+	"edit": [
+		{
+			"src": "src/js/display-all-articles.js",
+			"type": "text/javascript"
+		},
+		{
+			"src": "src/js/edit-page.js",
+			"type": "module"
+		}
+	],
+	"new": [
+		{
+			"src": "src/js/create-new-md-page.js",
+			"type": "text/javascript"
+		},
+		{
+			"src": "src/js/edit-page.js",
+			"type": "module"
 		}
 	],
 	"embed": [
@@ -30,9 +54,15 @@ const allScriptSettingObjectArrayObject = {
 	]
 };
 
-const embed_page_flag = new URL(winMyHref).searchParams.has("blog--embed-page");
+let setScriptObjectKey = "main";
+const page_flag = ["edit", "new", "embed"];
 
-let resultScriptSettingObjectArray = allScriptSettingObjectArrayObject[embed_page_flag ? "embed" : "main"];
+const hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);
+const getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
+
+page_flag.forEach(c => setScriptObjectKey = (hasFlag(c) ? c : setScriptObjectKey));
+
+let resultScriptSettingObjectArray = [...allScriptSettingObjectArrayObject["common"], ...allScriptSettingObjectArrayObject[setScriptObjectKey], ...allScriptSettingObjectArrayObject["after"]];
 
 // ↓ カンマ演算子使ってるよ、読みづらいね(笑)
 resultScriptSettingObjectArray.map(scriptSettingObject => (scriptSettingObject["defer"] = "", scriptSettingObject["src"] = `./${scriptSettingObject["src"]}`, scriptSettingObject)).forEach(scriptSettingObject => {

@@ -223,15 +223,8 @@ window.addEventListener("load", loadedFunc);
 
 function loadAllArticles() {
 	const parent_recent_articles = document.getElementById("article--article--recent-article");
-	const parent_populor_articles = document.getElementById("article--article--populor-article");
 	const parent_laugh_articles = document.getElementById("article--article--laugh-article");
 
-	const target_url = `${winMyHrefPTCHostname}/get-files/src/md/article`;
-
-	fetch(target_url).then(res => res.json()).then(dt => {
-		const _data_array = [...dt];
-
-	});
 }
 
 function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {

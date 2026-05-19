@@ -180,19 +180,12 @@ function setarticleTitle(_str = "No Title ...") {
 	MARKDOWN_ARTICLE_TITLE = _str;
 }
 
-async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
+async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 
-	const res = await fetch(mdurl);
-	if (!res.ok) {
-		alert("404 Error !!");
-		return "<h1>404 Error ...</h1>";
-	}
-	const json_data = await res.json();
-
-	const mdtxt = json_data["content"];
+	const mdtxt = decoded_json_data["content"];
 	let result_str = mdtxt;
 
-	setarticleTitle(json_data["title"]);
+	setarticleTitle(decoded_json_data["title"]);
 
 	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 
@@ -234,13 +227,15 @@ async function parseMarkDown2HTMLContextVersion1(mdurl = "") {
 }
 
 
-async function parseMarkDown2HTMLContextVersion2(mdurl = "") {
-	const mdtxt = await fetch(mdurl).then(res => res.text());
-	let result_str = mdtxt;
-	const html_data = await fetch(`https://api.tshuto.com/md?${new URLSearchParams({
-		"md-file-url": mdurl
+async function parseMarkDown2HTMLContextVersion2(decoded_json_data = {}) {
+
+	const mdurl = new URL(`${winMyHrefPTCHostname}/md/${decoded_json_data["file_name"]}`);
+	const mdcontent = decoded_json_data["content"];
+	let result_str = await fetch(`https://api.tshuto.com/md?${new URLSearchParams({
+		"md-file-url": mdurl,
+		"md-file-content": mdcontent
 	})}`).then(res => res.text());
-	// result_str = createElementFromHTML(html_data);
+
 	return result_str;
 }
 
@@ -272,15 +267,49 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
+function createAPIURL(_str) {
+	return new URL(`${winMyHrefPTCHostname}/src/php/${_str}`);
+}
+
+async function getArticleData() {
+	const targetQueryName = "slug";
+	const targetQueryData = getFlag("id");
+	const fileURL = createAPIURL(`article-get-api-local.php`);
+	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "2026-0401-230000--base--home");
+
+	const res = await fetch(fileURL);
+	if (!res.ok) {
+		alert("404 Error !!\narticle doesn't exist !!");
+		return null;
+	}
+	const json_data = await res.json();
+
+	return json_data;
+
+}
+
+async function getAllArticleData() {
+	const fileURL = createAPIURL(`article-get-all-api-local.php`);
+
+	const res = await fetch(fileURL);
+	if (!res.ok) {
+		alert("404 Error !!\nFailed to get articles.");
+		return null;
+	}
+	const json_data = await res.json();
+
+	return json_data;
+
+}
 
 async function parseMarkdown(use_version_1 = true) {
-	const targetQueryName = "slug";
-	const targetQueryData = new URL(winMyHref).searchParams.get("id");
-	const fileURL = new URL(`${winMyHrefPTCHostname}/src/php/article-api-local.php`);
-	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "2026-0401-230000--base--home");
-	const result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(fileURL);
+	let result_md_str = "<h1>404 Error ...</h1>";
+	const decoded_json_data = await getArticleData();
+
+	if (decoded_json_data != null)
+		result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(decoded_json_data);
 
 	return result_md_str;
 }
 
-export { parseMarkdown as parseMD, afterWorker as afterFunction };
+export { parseMarkdown as parseMD, afterWorker as afterFunction, getAllArticleData, getArticleData, createAPIURL};
