@@ -6,10 +6,8 @@
 	#all-articles-main-contents {
 		width: var(--c1);
 		height: var(--c1);
-		grid-template-columns: 1fr;
 		grid-template-rows: 3fr 7fr;
-		gap: 2rem;
-		place-items: center;
+		gap: 0.5rem;
 
 		& > *,
 		& > * > * {
@@ -24,26 +22,26 @@
 			align-items: center;
 
 			#main--input--type-search {
-				width: var(--c-mn-h);
+				width: var(--c1);
 				height: calc(var(--c1) / 3);
 				border-radius: 999rem;
+				font-size: 2.5rem;
 			}
 		}
 
 		.article-contents--box {
-			width: var(--c1);
-			height: var(--c1);
-			grid-template-rows: repeat(auto-fit, mixmax(320px, 1fr));
-			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-			gap: 1rem;
+			grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+			gap: 2rem;
+			padding-top: 1rem;
 
 			& > .article-card {
+				width: var(--c1);
+				height: var(--c1);
 				background-color: var(--myMainBackgroundColor);
-				min-width: auto;
-				min-height: auto;
 				aspect-ratio: 16/9;
 				grid-template-columns: 1fr;
 				grid-template-rows: 7fr 3fr;
+				place-items: center;
 
 				&:hover {
 					transform: scale(1.125);
@@ -60,14 +58,16 @@
 				}
 
 				& > * {
+					display: block;
 					width: var(--c-mn-h);
 					height: var(--c1);
 					white-space: nowrap;
 					text-overflow: ellipsis;
-					text-align: center;
+					align-content: center;
 				}
 
 				& > .article-card--title {
+					text-align: center;
 					font-size: 0.9rem;
 				}
 			}
