@@ -26,6 +26,18 @@ const template_data_function_map = {
 			edit_SetByScript(e.target, false);
 		});
 		return flag;
+	},
+	"all-articles-display-template": () => {
+		const flag = cloneTemplate("all-articles-display-template");
+		flag.querySelector("#main--input--type-search").addEventListener("change", async e => {
+			const val = e.target.value;
+			if (val == "")
+				[...flag.querySelector(".article-contents--box").children].forEach(c => c.style.display = "unset");
+			else {
+				
+			}
+		});
+		return flag;
 	}
 };
 

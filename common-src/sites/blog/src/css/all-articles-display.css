@@ -9,8 +9,10 @@
 		grid-template-columns: 1fr 8fr 1fr;
 		grid-template-rows: 1fr;
 
-		& > * {
+		& > *,
+		& > * > * {
 			box-shadow: var(--myElementBoxShadow);
+			background-color: var(--myMainBackgroundColor);
 		}
 
 		.type-search--input--box {
@@ -24,7 +26,6 @@
 				width: var(--c-mn-h);
 				height: calc(var(--c1) / 3);
 				border-radius: 999rem;
-				background-color: var(--myMainBackgroundColor);
 			}
 		}
 
@@ -34,8 +35,25 @@
 			grid-template-columns: repeat(auto-fit, mixmax(240px, 1fr));
 			grid-template-rows: auto;
 
-			& > * {
+			& > .article-card {
 				aspect-ratio: 16/9;
+				grid-template-columns: 7fr 3fr;
+				grid-template-rows: 1fr;
+
+				&:hover {
+					transform: scale(1.25);
+
+					&::after {
+						content: "";
+						position: absolute;
+						background-color: var(--gray7);
+						backdrop-filter: blur(0.125rem);
+						left: 0;
+						top: 0;
+						width: var(--c1);
+						height: var(--c1);
+					}
+				}
 			}
 		}
 	}
