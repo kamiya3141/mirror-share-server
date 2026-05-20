@@ -2,7 +2,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	font-size: 1.75rem;
 }
 
-div#main-contentsbox {
+.main-contentsbox {
 	width: var(--c1);
 	text-align: left;
 

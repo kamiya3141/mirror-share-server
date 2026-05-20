@@ -2,7 +2,7 @@ async function mainFunc() {
 	const PMD = await import(`./index-module.js`);
 	const result = await PMD.parseMD();
 
-	let mdContentsBoxElement = document.getElementById("main-contentsbox");
+	let mdContentsBoxElement = document.querySelector(".main-contentsbox");
 	mdContentsBoxElement.innerHTML = result;
 
 	PMD.afterFunction();

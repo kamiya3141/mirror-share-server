@@ -1,4 +1,4 @@
-document.getElementById("main-contentsbox").innerHTML = "";
+document.querySelector("#main-section").innerHTML = "";
 
 const PMD = await import(`./index-module.js`);
 const result = await PMD.parseMD();

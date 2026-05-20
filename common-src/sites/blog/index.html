@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="./src/css/display-confirm-template.css">
 	<link rel="stylesheet" href="./src/css/all-articles-display.css">
 	<link rel="stylesheet" href="./src/css/create-new-article-setting.css">
-	<link rel="stylesheet" href="./src/css/edit-article.css">
+	<link rel="stylesheet" href="./src/css/edit-article-display.css">
 
 	<!--
 	<script defer src="https://share.tshuto.com/All.js"></script>
@@ -215,8 +215,31 @@
 		</div>
 	</template>
 	<template id="edit-article-display-template">
-		<div id="edit-article-main-contents">
+		<div id="edit-article-main-contents" data-mydef--edit-article--new-data="false">
+			<div class="control--box">
+				<div class="button-div--box">
+					<div class="extra-space"></div>
+					<div class="button-div">
+						<input type="button" value="バックアップ保存" id="edit-article-display--input--button--backup">
+					</div>
+					<div class="button-div">
+						<input type="button" value="下書き保存" id="edit-article-display--input--button--draft">
+					</div>
+					<div class="button-div">
+						<input type="button" value="保存/上書き保存" id="edit-article-display--input--button--save">
+					</div>
+				</div>
+			</div>
+			<div class="editor-result--box">
+				<div class="textarea--box">
+					<textarea id="editor--textarea">
 
+					</textarea>
+				</div>
+				<div class="result-display--box">
+
+				</div>
+			</div>
 		</div>
 	</template>
 	<span id="console-ok"></span>
@@ -325,7 +348,7 @@
 		<main id="root-main">
 			<section id="main-section">
 				<div id="main-contentsbox-root">
-					<div id="main-contentsbox">
+					<div class="main-contentsbox">
 						コンテンツを読み込み中・・・
 					</div>
 				</div>
