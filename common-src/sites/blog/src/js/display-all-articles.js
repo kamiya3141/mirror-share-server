@@ -5,7 +5,13 @@ var appear_allArticlesDisplay = (_tf, all_article_data_object = []) => {
 };
 
 function createArticleCard(article_data_object) {
-	const all_articles_contents_box = document.querySelector("#all-articles-display-section .article-contents--box");
+	const my_root_section = document.querySelector("#all-articles-display-section");
+	my_root_section.querySelector("#main--input--type-search").addEventListener("change", async e => {
+		const val = String(e.target.value);
+		const data_mydef__article_card__array = ["title", "slug", "category", "tags", "excerpt", "content"].map(c => `data-mydef--article-card--${c}`);
+		[...my_root_section.querySelector(".article-contents--box").children].forEach(c => c.style.display = (val.length >= 0 && data_mydef__article_card__array.some(attr_nm => String(c.getAttribute(attr_nm)).includes(val))) ? "grid" : "none");
+	});
+	const all_articles_contents_box = my_root_section.querySelector(".article-contents--box");
 	const card_div_element = document.createElement("div");
 	card_div_element.classList.add("article-card");
 	Object.entries(article_data_object).forEach(([k, v]) => card_div_element.setAttribute(`data-mydef--article-card--${k}`, v));
