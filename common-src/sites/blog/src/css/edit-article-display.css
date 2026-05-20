@@ -68,13 +68,14 @@
 				display: flex;
 				width: var(--c1);
 				height: var(--c1);
-				overflow: auto auto;
-				align-items: center;
+				align-items: flex-start;
 				justify-content: flex-start;
 
 				& > #editor--textarea {
-					min-width: var(--c1);
-					min-height: var(--c1);
+					width: var(--c-mn-h);
+					height: var(--c1);
+					resize: none;
+					overflow-y: auto;
 				}
 			}
 
@@ -83,11 +84,13 @@
 				align-items: center;
 				justify-content: center;
 				width: var(--c1);
-				min-height: var(--c1);
-				overflow-y: auto;
+				height: var(--c1);
 
 				& > .result-display--root {
+					display: block;
 					width: calc(var(--c1) * 90 / 100);
+					min-height: var(--c1);
+					overflow-y: auto;
 				}
 			}
 		}
