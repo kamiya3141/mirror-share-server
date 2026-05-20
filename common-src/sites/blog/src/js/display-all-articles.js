@@ -11,7 +11,9 @@ function createArticleCard(article_data_object) {
 		const data_mydef__article_card__array = ["title", "slug", "category", "tags", "excerpt", "content"].map(c => `data-mydef--article-card--${c}`);
 		[...my_root_section.querySelector(".article-contents--box").children].forEach(c => c.style.display = (val.length >= 0 && data_mydef__article_card__array.some(attr_nm => String(c.getAttribute(attr_nm)).includes(val))) ? "grid" : "none");
 	});
+
 	const all_articles_contents_box = my_root_section.querySelector(".article-contents--box");
+
 	const card_div_element = document.createElement("div");
 	card_div_element.classList.add("article-card");
 	Object.entries(article_data_object).forEach(([k, v]) => card_div_element.setAttribute(`data-mydef--article-card--${k}`, v));
@@ -28,4 +30,11 @@ function createArticleCard(article_data_object) {
 	card_div_element.appendChild(card_title_div_element);
 
 	all_articles_contents_box.appendChild(card_div_element);
+
+
+	all_articles_contents_box.addEventListener("click", e => {
+		const next_url = new URL(winMyHref);
+		next_url.searchParams.set("id", e.target.getAttribute("data-mydef--article-card--slug"));
+		window.location.href = next_url;
+	});
 }
