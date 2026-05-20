@@ -30,6 +30,14 @@ const template_data_function_map = {
 	"all-articles-display-template": () => {
 		const flag = cloneTemplate("all-articles-display-template");
 		return flag;
+	},
+	"create-new-article-setting-template": () => {
+		const flag = cloneTemplate("create-new-article-setting-template");
+		return flag;
+	},
+	"edit-article-display-template": () => {
+		const flag = cloneTemplate("edit-article-display-template");
+		return flag;
 	}
 };
 
