@@ -1,12 +1,15 @@
 #edit-article-display-div-main {
+	background-color: var(--myMainBackgroundColor);
 	width: var(--c1);
 	height: var(--c1);
 	display: grid;
+	grid-template-rows: 1fr;
 	grid-template-columns: 1fr;
 
 	& > #edit-article-main-contents {
 		width: var(--c1);
 		height: var(--c1);
+		position: static;
 		grid-template-rows: 1fr 9fr;
 		grid-template-columns: 1fr;
 		gap: 0.0rem;
@@ -16,48 +19,62 @@
 			height: fit-content;
 		}
 
+		& > * {
+			width: var(--c1);
+			height: var(--c1);
+		}
+
 		& > .control--box {
+			background-color: var(--myElementBackgroundColor);
 			grid-template-rows: 1fr;
 			grid-template-columns: 7fr 3fr;
 
 			& > .button-div--box {
 				grid-template-rows: 1fr;
-				grid-template-columns: 3fr 3fr 3fr;
+				grid-template-columns: repeat(3, 1fr);
 				gap: 0.25rem;
 
-				& > input[type="button"] {
-					width: var(--c1);
-					height: var(--c1);
+				& > .button-div {
 
-					&#edit-article-display--input--button--backup {
-						background-color: light-dark(blue, lightblue);
+					& > input[type="button"] {
+						width: var(--c1);
+						height: var(--c1);
+
+						&#edit-article-display--input--button--backup {
+							background-color: light-dark(blue, lightblue);
+						}
+
+						&#edit-article-display--input--button--draft {
+							background-color: var(--myElementBackgroundColor);
+						}
+
+						&#edit-article-display--input--button--save {
+							background-color: light-dark(lightgreen, green);
+						}
+
+						:hover {
+							box-shadow: inset 0 0 0.5rem var(--myTextColor);
+						}
 					}
-
-					&#edit-article-display--input--button--draft {
-						background-color: var(--myElementBackgroundColor2);
-					}
-
-					&#edit-article-display--input--button--save {
-						background-color: light-dark(lightgreen, green);
-					}
-
-					:hover {
-						box-shadow: inset 0 0 0.5rem var(--myTextColor);
-					}
-
 				}
 			}
 		}
 
 		& > .editor-result--box {
 			grid-template-rows: 1fr;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: repeat(2, 1fr);
 
 			& > .textarea--box {
-				& > textarea {
-					display: block;
-					width: var(--c1);
-					height: var(--c1);
+				display: flex;
+				width: var(--c1);
+				height: var(--c1);
+				overflow: auto auto;
+				align-items: center;
+				justify-content: flex-start;
+
+				& > #editor--textarea {
+					min-width: var(--c1);
+					min-height: var(--c1);
 				}
 			}
 
@@ -68,6 +85,7 @@
 				width: var(--c1);
 				min-height: var(--c1);
 				overflow-y: auto;
+
 				& > .result-display--root {
 					width: calc(var(--c1) * 90 / 100);
 				}

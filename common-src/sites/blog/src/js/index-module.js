@@ -176,7 +176,8 @@ function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = fals
 }
 
 function setarticleTitle(_str = "No Title ...") {
-	document.title = [_str, document.title].join(` | `);
+	if (document.title == "ブログ - TSHUTO")
+		document.title = [_str, document.title].join(` | `);
 	MARKDOWN_ARTICLE_TITLE = _str;
 }
 
@@ -312,4 +313,4 @@ async function parseMarkdown(use_version_1 = true) {
 	return result_md_str;
 }
 
-export { parseMarkdown as parseMD, afterWorker as afterFunction, getAllArticleData, getArticleData, createAPIURL};
+export { parseMarkdown as parseMD, afterWorker as afterFunction, parseMarkDown2HTMLContextVersion1 as parseMD2HTMLv1, parseMarkDown2HTMLContextVersion2 as parseMD2HTMLv2, getAllArticleData, getArticleData, createAPIURL };

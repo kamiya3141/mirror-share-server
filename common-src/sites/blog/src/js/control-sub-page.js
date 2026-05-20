@@ -1,7 +1,6 @@
 document.querySelector("#main-section").innerHTML = "";
 
 const PMD = await import(`./index-module.js`);
-const result = await PMD.parseMD();
 
 const has_edit_flag = hasFlag(page_flag[0]);
 const has_new_flag = hasFlag(page_flag[1]);
@@ -13,7 +12,7 @@ if (has_edit_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
 		if (correct)
-			appear_editArticleDisplay(true, decoded_json_data);
+			appear_editArticleDisplay(true, decoded_json_data, PMD);
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
