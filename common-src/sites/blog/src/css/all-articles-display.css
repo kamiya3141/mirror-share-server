@@ -4,7 +4,7 @@
 	display: grid;
 	grid-template-columns: 1fr;
 
-	#all-articles-main-contents {
+	& > #all-articles-main-contents {
 		width: var(--c1);
 		height: var(--c1);
 		grid-template-rows: 3fr 7fr;
@@ -16,7 +16,7 @@
 			box-shadow: var(--myElementBoxShadow);
 		}
 
-		.type-search--input--box {
+		& > .type-search--input--box {
 			width: var(--c1);
 			height: var(--c1);
 			display: flex;
@@ -32,7 +32,7 @@
 			}
 		}
 
-		.article-contents--box {
+		& > .article-contents--box {
 			grid-auto-rows: 9rem;
 			grid-template-columns: repeat(auto-fit, minmax(12rem, 0.3fr));
 			gap: 1rem 3rem;
