@@ -223,7 +223,7 @@
 						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\-]+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern=".+">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern="^\s*[A-Za-z0-9_-]+\s*(,\s*[A-Za-z0-9_-]+\s*)*$">
 					</div>
 					<div class="input--box">
 						<input type="text" placeholder="見出し" name="excerpt" required pattern=".+">

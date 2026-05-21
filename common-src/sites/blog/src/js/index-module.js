@@ -175,9 +175,8 @@ function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = fals
 	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
 }
 
-function setarticleTitle(_str = "No Title ...") {
-	if (document.title == "ブログ - TSHUTO")
-		document.title = [_str, document.title].join(` | `);
+function setArticleAndHTMLTitle(_str = "No Title ...") {
+	setDocumentTitle(_str);
 	MARKDOWN_ARTICLE_TITLE = _str;
 }
 
@@ -186,7 +185,7 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 	const mdtxt = decoded_json_data["content"];
 	let result_str = mdtxt;
 
-	setarticleTitle(decoded_json_data["title"]);
+	setArticleAndHTMLTitle(decoded_json_data["title"]);
 
 	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 

@@ -116,6 +116,11 @@ function edit_SetByScript(elem, input_tf = "auto") {
 	elem.setAttribute(attrName_SetByScript, String(set_data));
 }
 
+function setDocumentTitle(_str) {
+	if (document.title == "ブログ - TSHUTO")
+		document.title = [_str, document.title].join(` | `);
+}
+
 /**
  * 
  * @param {String} rgb 書くの面倒だったからchatgptに作ってもらった

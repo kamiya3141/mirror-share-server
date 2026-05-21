@@ -1,6 +1,7 @@
 var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	await settingTextEditor(article_data, pmd);
+	setDocumentTitle("記事編集ページ");
 };
 let editArticleDisplay_copiedJsonData = {};
 
