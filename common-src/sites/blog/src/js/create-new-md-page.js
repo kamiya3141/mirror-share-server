@@ -8,6 +8,7 @@ var appear_createNewArticleSettingDisplay = async (_tf, _pmd) => {
 function settingNewArticleSettingDisplay(p_e, _pmd) {
 	const fm_el = p_e.querySelector("#create-new-article--form");
 	fm_el.addEventListener("submit", e => {
+		e.preventDefault();
 		const data = Object.fromEntries(new FormData(e.target));
 		console.log(data);
 
