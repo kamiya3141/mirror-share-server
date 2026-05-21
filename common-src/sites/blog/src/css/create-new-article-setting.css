@@ -7,27 +7,32 @@
 	#create-new-article-main-contents {
 		width: var(--c1);
 		height: var(--c1);
-		grid-template-rows: 9fr 1fr;
-		grid-template-columns: 1fr;
-		gap: 0.5rem;
 
-		& > *,
-		& > * > * {
+		& > form {
 			width: var(--c1);
 			height: var(--c1);
-		}
+			grid-template-rows: 9fr 1fr;
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
 
-		& .input--box {
-			padding-bottom: var(--p1);
+			& > *,
+			& > * > * {
+				width: var(--c1);
+				height: var(--c1);
+			}
 
-			& > input {
-				font-size: calc(var(--p2) * 2);
-				padding: var(--p2);
+			& .input--box {
+				padding-bottom: var(--p1);
 
-				&[type="text"] {
-					outline: none;
-					border: none;
-					border-bottom: calc(var(--p1) * 0.25) var(--myTextColor) solid;
+				& > input {
+					font-size: calc(var(--p2) * 2);
+					padding: var(--p2);
+
+					&[type="text"] {
+						outline: none;
+						border: none;
+						border-bottom: calc(var(--p1) * 0.25) var(--myTextColor) solid;
+					}
 				}
 			}
 		}
