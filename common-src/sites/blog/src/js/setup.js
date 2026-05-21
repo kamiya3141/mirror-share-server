@@ -26,18 +26,6 @@ const template_data_function_map = {
 			edit_SetByScript(e.target, false);
 		});
 		return flag;
-	},
-	"all-articles-display-template": () => {
-		const flag = cloneTemplate("all-articles-display-template");
-		return flag;
-	},
-	"create-new-article-setting-display-template": () => {
-		const flag = cloneTemplate("create-new-article-setting-display-template");
-		return flag;
-	},
-	"edit-article-display-template": () => {
-		const flag = cloneTemplate("edit-article-display-template");
-		return flag;
 	}
 };
 
@@ -98,6 +86,8 @@ function convertTemplateElement(elem = document) {
 		const temp_id_args = c.getAttribute("template-id-args").split(" ").map(arg => convertEnvVars(arg));
 		if (Object.hasOwn(template_data_function_map, temp_id_data))
 			c.appendChild(template_data_function_map[temp_id_data](...temp_id_args));
+		else if (document.querySelector(`#${temp_id_data}`) != null)
+			c.appendChild(cloneTemplate(temp_id_data));
 	});
 }
 

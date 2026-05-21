@@ -7,7 +7,7 @@
 	#create-new-article-main-contents {
 		width: var(--c1);
 		height: var(--c1);
-		grid-template-rows: 3fr 7fr;
+		grid-template-rows: 9fr 1fr;
 		grid-template-columns: 1fr;
 		gap: 0.5rem;
 
@@ -15,15 +15,20 @@
 		& > * > * {
 			width: var(--c1);
 			height: var(--c1);
-			box-shadow: var(--myElementBoxShadow);
 		}
 
 		& .input--box {
-			padding-top: var(--p1);
 			padding-bottom: var(--p1);
 
 			& > input {
-				font-size: calc(var(--p2) * 1.5);
+				font-size: calc(var(--p2) * 2);
+				padding: var(--p2);
+
+				&[type="text"] {
+					outline: none;
+					border: none;
+					border-bottom: calc(var(--p1) * 0.25) var(--myTextColor) solid;
+				}
 			}
 		}
 	}
