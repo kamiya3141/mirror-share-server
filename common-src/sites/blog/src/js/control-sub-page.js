@@ -1,3 +1,5 @@
+document.querySelector("#main-section").innerHTML = "";
+
 const PMD = await import(`./index-module.js`);
 
 const has_edit_flag = hasFlag(page_flag[0]);
