@@ -78,6 +78,7 @@
 				height: var(--c1);
 				align-items: flex-start;
 				justify-content: flex-start;
+				border-right: 1px var(--myTextColor) solid;
 
 				& > #editor--textarea {
 					width: var(--c-mn-h);
@@ -86,7 +87,6 @@
 					overflow-y: auto;
 					outline: none;
 					border: none;
-					border-right: 1px var(--myTextColor) solid;
 				}
 			}
 
