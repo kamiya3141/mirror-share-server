@@ -1,4 +1,4 @@
-var appear_allArticlesDisplay = (_tf, all_article_data_object = []) => {
+var appear_allArticlesDisplay = async (_tf, all_article_data_object = []) => {
 	switchingOpenDisplay(document.getElementById("all-articles-display-section"), true, !_tf);
 	console.log(all_article_data_object);
 	all_article_data_object.forEach(c => createArticleCard(c));

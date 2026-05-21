@@ -12,7 +12,6 @@
 		position: static;
 		grid-template-rows: 1fr 9fr;
 		grid-template-columns: 1fr;
-		gap: calc(var(--p2) * 1.125);
 
 		& > * {
 			width: var(--c1);
@@ -77,8 +76,7 @@
 				width: var(--c1);
 				height: var(--c1);
 				align-items: flex-start;
-				justify-content: flex-start;
-				border-right: 1px var(--myTextColor) solid;
+				justify-content: flex-end;
 
 				& > #editor--textarea {
 					width: var(--c-mn-h);
@@ -87,6 +85,7 @@
 					overflow-y: auto;
 					outline: none;
 					border: none;
+					border-right: var(--p1) var(--myTextColor) solid;
 				}
 			}
 

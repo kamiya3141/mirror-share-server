@@ -12,16 +12,16 @@ if (has_edit_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
 		if (correct)
-			appear_editArticleDisplay(true, decoded_json_data, PMD);
+			await appear_editArticleDisplay(true, decoded_json_data, PMD);
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
 		if (correct)
-			appear_allArticlesDisplay(true, decoded_json_data);
+			await appear_allArticlesDisplay(true, decoded_json_data);
 	}
 	if (!correct)
 		alert("ID値が不正な値、もしくはクエリパラメータが存在していません");
 } else if (has_new_flag)
-	appear_createNewArticleSettingDisplay(true);
+	await appear_createNewArticleSettingDisplay(true);
 else
 	alert("ID, EDITのどちらも存在しません\nどちらかのクエリパラメータの更新をしてください");
