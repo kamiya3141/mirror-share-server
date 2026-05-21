@@ -4,6 +4,8 @@ var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
 };
 let editArticleDisplay_copiedJsonData = {};
 
+document.querySelector("#main-section").innerHTML = "";
+
 async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
