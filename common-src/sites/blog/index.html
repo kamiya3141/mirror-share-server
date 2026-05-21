@@ -211,7 +211,28 @@
 	</template>
 	<template id="create-new-article-setting-template">
 		<div id="create-new-article-main-contents">
-
+			<div class="setting-info--box">
+				<div class="input--box">
+					<input type="text" placeholder="タイトル" id="create-new-article--input--title">
+				</div>
+				<div class="input--box">
+					<input type="text" placeholder="slug" id="create-new-article--input--slug">
+				</div>
+				<div class="input--box">
+					<input type="text" placeholder="カテゴリ" id="create-new-article--input--category">
+				</div>
+				<div class="input--box">
+					<input type="text" placeholder="タグ(,で区切る)" id="create-new-article--input--tags">
+				</div>
+				<div class="input--box">
+					<input type="text" placeholder="見出し" id="create-new-article--input--excerpt">
+				</div>
+			</div>
+			<div class="submit-button--box">
+				<div class="input--box">
+					<input type="button" value="新規作成" id="create-new-article--input--submit-button">
+				</div>
+			</div>
 		</div>
 	</template>
 	<template id="edit-article-display-template">
@@ -232,9 +253,7 @@
 			</div>
 			<div class="editor-result--box">
 				<div class="textarea--box">
-					<textarea id="editor--textarea">
-
-					</textarea>
+					<textarea id="editor--textarea"></textarea>
 				</div>
 				<div class="result-display--box">
 					<div class="result-display--root">

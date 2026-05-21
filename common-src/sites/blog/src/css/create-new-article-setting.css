@@ -1,0 +1,30 @@
+#create-new-article-setting-display-div-main {
+	width: var(--c1);
+	height: var(--c1);
+	display: grid;
+	grid-template-columns: 1fr;
+
+	#create-new-article-main-contents {
+		width: var(--c1);
+		height: var(--c1);
+		grid-template-rows: 3fr 7fr;
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
+
+		& > *,
+		& > * > * {
+			width: var(--c1);
+			height: var(--c1);
+			box-shadow: var(--myElementBoxShadow);
+		}
+
+		& .input--box {
+			padding-top: var(--p1);
+			padding-bottom: var(--p1);
+
+			& > input {
+				font-size: calc(var(--p2) * 1.5);
+			}
+		}
+	}
+}
