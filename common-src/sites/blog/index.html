@@ -211,22 +211,22 @@
 	</template>
 	<template id="create-new-article-setting-display-template">
 		<div id="create-new-article-main-contents">
-			<form>
+			<form id="create-new-article--form">
 				<div class="setting-info--box">
 					<div class="input--box">
-						<input type="text" placeholder="タイトル" id="create-new-article--input--title" required pattern=".+">
+						<input type="text" placeholder="タイトル" name="title" required pattern=".+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="slug" id="create-new-article--input--slug" required pattern="[A-Za-z0-9\-]+">
+						<input type="text" placeholder="slug" name="slug" required pattern="[A-Za-z0-9\-]+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="カテゴリ" id="create-new-article--input--category" required pattern="[A-Z\-]+">
+						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\-]+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="タグ(,で区切る)" id="create-new-article--input--tags" required pattern=".+">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern=".+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="見出し" id="create-new-article--input--excerpt" required pattern=".+">
+						<input type="text" placeholder="見出し" name="excerpt" required pattern=".+">
 					</div>
 				</div>
 				<div class="submit-button--box">

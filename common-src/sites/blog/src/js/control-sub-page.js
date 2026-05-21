@@ -22,6 +22,6 @@ if (has_edit_flag) {
 	if (!correct)
 		alert("ID値が不正な値、もしくはクエリパラメータが存在していません");
 } else if (has_new_flag)
-	await appear_createNewArticleSettingDisplay(true);
+	await appear_createNewArticleSettingDisplay(true, PMD);
 else
 	alert("ID, EDITのどちらも存在しません\nどちらかのクエリパラメータの更新をしてください");
