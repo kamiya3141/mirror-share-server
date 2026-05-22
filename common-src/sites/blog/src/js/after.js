@@ -219,12 +219,9 @@ async function loadedFunc() {
 window.addEventListener("load", async () => await loadedFunc());
 
 async function loadAllArticles() {
-	const parent_all_articles = document.getElementById("article--article--all-article");
-	if (myPMD != null) {
-		const all_decoded_json_data = await myPMD.getAllArticleData();
-		await appear_allArticlesDisplay(true, all_decoded_json_data);
-	} else
-		alert("pmd is null.");
+	const PMD = await import(`./index-module.js`);
+	const all_decoded_json_data = await PMD.getAllArticleData();
+	await appear_allArticlesDisplay(true, all_decoded_json_data);
 }
 
 function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {

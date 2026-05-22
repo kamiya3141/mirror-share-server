@@ -1,7 +1,5 @@
 var attrName_SetByScript = "data-mydef--set-by-script";
 
-var myPMD = null;
-
 const utilsSleep = ms => new Promise(rslv => setTimeout(rslv, ms));
 
 const MyAlertMessageInfoObject = {
