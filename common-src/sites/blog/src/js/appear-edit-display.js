@@ -22,7 +22,6 @@ function settingButtons(_pmd) {
 		const current_slug = String(editArticleDisplay_copiedJsonData["slug"]);
 		let current_slug_split = current_slug.split("--");
 		editArticleDisplay_copiedJsonData["slug"] = current_slug_split.length == 2 ? current_slug_split[1] : (() => current_slug_split.map((c, i) => c = (i == 0 ? "" : c)).join("--"));
-		editArticleDisplay_copiedJsonData["tags"].map(c => `"${c}"`);
 
 		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
@@ -36,7 +35,6 @@ function settingButtons(_pmd) {
 	draft_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] != "draft")
 			return;
-		editArticleDisplay_copiedJsonData["tags"].map(c => `"${c}"`);
 		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
@@ -48,7 +46,6 @@ function settingButtons(_pmd) {
 	save_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] == "draft")
 			editArticleDisplay_copiedJsonData["status"] = "published";
-		editArticleDisplay_copiedJsonData["tags"].map(c => `"${c}"`);
 		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
