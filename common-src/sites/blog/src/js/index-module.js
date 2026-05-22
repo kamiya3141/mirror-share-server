@@ -275,7 +275,7 @@ async function getArticleData() {
 	const targetQueryName = "slug";
 	const targetQueryData = getFlag(id_flag);
 	const fileURL = createAPIURL(`article-get-api-local.php`);
-	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "2026-0401-230000--base--home");
+	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "20260401230000--home");
 
 	const res = await fetch(fileURL);
 	if (!res.ok) {
