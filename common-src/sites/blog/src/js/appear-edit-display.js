@@ -16,6 +16,13 @@ function settingButtons(_pmd) {
 	if (editArticleDisplay_copiedJsonData["status"] != "draft")
 		draft_btn.disabled = true;
 
+	if (editArticleDisplay_copiedJsonData["type"] == "backup") {
+		backup_btn.disabled = true;
+		draft_btn.disabled = true;
+		save_btn.disabled = true;
+		myAlertMessage("バックアップデータのため編集できません");
+	}
+
 	backup_btn.addEventListener("click", async e => {
 		editArticleDisplay_copiedJsonData["type"] = "backup";
 		editArticleDisplay_copiedJsonData["status"] = "privated";
@@ -69,6 +76,9 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
 	await convertMarkdown2Html(txtara_elem.value, _pmd, parent_elem);
+
+	if (editArticleDisplay_copiedJsonData["type"] == "backup")
+		txtara_elem.readOnly = true;
 }
 
 async function convertMarkdown2Html(_txt, _pmd, _pr_el) {
