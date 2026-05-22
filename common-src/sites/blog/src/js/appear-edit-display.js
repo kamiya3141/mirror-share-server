@@ -2,8 +2,55 @@ var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	await settingTextEditor(article_data, pmd);
 	setDocumentTitle("記事編集ページ");
+
+
 };
 let editArticleDisplay_copiedJsonData = {};
+
+function settingButtons() {
+	const backup_btn = document.querySelector("#edit-article-display--input--button--backup");
+	const draft_btn = document.querySelector("#edit-article-display--input--button--draft");
+	const save_btn = document.querySelector("#edit-article-display--input--button--save");
+
+	if (editArticleDisplay_copiedJsonData["status"] == "draft")
+		backup_btn.disabled = true;
+	if (editArticleDisplay_copiedJsonData["status"] != "draft")
+		draft_btn.disabled = true;
+
+	backup_btn.addEventListener("click", async e => {
+		editArticleDisplay_copiedJsonData["type"] = "backup";
+		editArticleDisplay_copiedJsonData["status"] = "privated";
+		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
+			"method": "POST",
+			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
+		});
+		const _dt = await _res.json();
+		if (_dt["success"])
+			window.location.href = winMyHrefPTCHostname;
+	});
+	draft_btn.addEventListener("click", async e => {
+		if (editArticleDisplay_copiedJsonData["status"] != "draft")
+			return;
+		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
+			"method": "POST",
+			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
+		});
+		const _dt = await _res.json();
+		if (_dt["success"])
+			window.location.href = winMyHrefPTCHostname;
+	});
+	save_btn.addEventListener("click", async e => {
+		if (editArticleDisplay_copiedJsonData["status"] == "draft")
+			editArticleDisplay_copiedJsonData["status"] = "published";
+		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
+			"method": "POST",
+			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
+		});
+		const _dt = await _res.json();
+		if (_dt["success"])
+			window.location.href = `${winMyHrefPTCHostname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
+	});
+}
 
 async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
