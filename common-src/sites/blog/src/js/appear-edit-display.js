@@ -2,12 +2,11 @@ var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	await settingTextEditor(article_data, pmd);
 	setDocumentTitle("記事編集ページ");
-
-
+	settingButtons(pmd);
 };
 let editArticleDisplay_copiedJsonData = {};
 
-function settingButtons() {
+function settingButtons(_pmd) {
 	const backup_btn = document.querySelector("#edit-article-display--input--button--backup");
 	const draft_btn = document.querySelector("#edit-article-display--input--button--draft");
 	const save_btn = document.querySelector("#edit-article-display--input--button--save");
