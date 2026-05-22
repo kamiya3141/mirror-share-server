@@ -37,7 +37,7 @@ function createArticleCard(article_data_object) {
 	});
 
 	if (article_data_object["type"] != "article" || article_data_object["status"] != "published")
-		all_articles_contents_box.style.display = "none";
+		card_div_element.style.display = "none";
 
 	all_articles_contents_box.appendChild(card_div_element);
 }
