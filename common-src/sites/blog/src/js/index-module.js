@@ -66,7 +66,7 @@ const before_replace_str_define_array = [
 		cts => `<ul>\n${cts}</ul>\n`
 	],
 	[
-		/(?<!\/)\>\s+(.*?\n)/g,
+		/(?<!\/|\w)\>\s+(.+?\n)/g,
 		cts => convertByRefString(`> ${cts}<br>`)
 	],
 	[
