@@ -392,15 +392,15 @@ html {
 		}
 
 		& .important-section-0 {
-			z-index: 990;
+			z-index: 990 !important;
 		}
 
 		& .important-section-1 {
-			z-index: 991;
+			z-index: 991 !important;
 		}
 
 		& .important-section-2 {
-			z-index: 992;
+			z-index: 992 !important;
 		}
 
 		& .background-blur {
