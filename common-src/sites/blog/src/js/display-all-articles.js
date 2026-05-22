@@ -5,7 +5,7 @@ var appear_allArticlesDisplay = async (_tf, all_article_data_object = []) => {
 	my_root_section.querySelector("#main--input--type-search").addEventListener("change", async e => {
 		const val = String(e.target.value);
 		const data_mydef__article_card__array = ["title", "slug", "category", "tags", "excerpt", "type", "status", "content"].map(c => `data-mydef--article-card--${c}`);
-		[...my_root_section.querySelector(".article-contents--box").children].forEach(c => c.style.display = (data_mydef__article_card__array["data-mydef--article-card--type"] == "article" && data_mydef__article_card__array["data-mydef--article-card--status"] == "published" && val.length >= 0 && data_mydef__article_card__array.some(attr_nm => String(c.getAttribute(attr_nm)).includes(val))) ? "grid" : "none");
+		[...my_root_section.querySelector(".article-contents--box").children].forEach(c => c.style.display = (c.getAttribute(data_mydef__article_card__array[5]) == "article" && c.getAttribute(data_mydef__article_card__array[6]) == "published" && val.length >= 0 && data_mydef__article_card__array.some(attr_nm => String(c.getAttribute(attr_nm)).includes(val))) ? "grid" : "none");
 	});
 	all_article_data_object.forEach(c => createArticleCard(c));
 	setDocumentTitle("編集記事選択ページ");
@@ -13,6 +13,8 @@ var appear_allArticlesDisplay = async (_tf, all_article_data_object = []) => {
 
 function createArticleCard(article_data_object) {
 	const all_articles_contents_box = my_root_section.querySelector(".article-contents--box");
+
+	console.log(article_data_object["type"], article_data_object["status"]);
 
 	if (article_data_object["type"] != "article" || article_data_object["status"] != "published")
 		all_articles_contents_box.style.display = "none";
