@@ -1,4 +1,4 @@
-function loadedFunc() {
+async function loadedFunc() {
 
 	const saveUserDataLocalstorage = getDeviceInformation("save--user-data--localstorage");
 
@@ -204,12 +204,9 @@ function loadedFunc() {
 		if (getDeviceInformation("force-device"))
 			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
 	}
-
-	const targetDirectoryName = new URL(winMyHref).searchParams.get("blog--target-dir");
-	const targetFileName = new URL(winMyHref).searchParams.get("blog--target-file");
-
-	if (targetDirectoryName == "" && targetFileName == "article")
-		loadAllArticles();
+	console.log(getFlag(id_flag));
+	if (getFlag(id_flag) == "20260401230000--articles")
+		await loadAllArticles();
 
 	/*
 	const b2s = ipt => (ipt ? "true" : "false");
@@ -219,12 +216,15 @@ function loadedFunc() {
 }
 
 
-window.addEventListener("load", loadedFunc);
+window.addEventListener("load", async () => await loadedFunc());
 
-function loadAllArticles() {
-	const parent_recent_articles = document.getElementById("article--article--recent-article");
-	const parent_laugh_articles = document.getElementById("article--article--laugh-article");
-
+async function loadAllArticles() {
+	const parent_all_articles = document.getElementById("article--article--all-article");
+	if (myPMD != null) {
+		const all_decoded_json_data = await myPMD.getAllArticleData();
+		await appear_allArticlesDisplay(true, all_decoded_json_data);
+	} else
+		alert("pmd is null.");
 }
 
 function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {

@@ -22,6 +22,10 @@ const allScriptSettingObjectArrayObject = {
 	],
 	"main": [
 		{
+			"src": "src/js/display-all-articles.js",
+			"type": "text/javascript"
+		},
+		{
 			"src": "src/js/script.js",
 			"type": "module"
 		}
