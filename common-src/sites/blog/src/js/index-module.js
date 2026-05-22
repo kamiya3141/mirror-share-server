@@ -66,6 +66,10 @@ const before_replace_str_define_array = [
 		cts => `<ul>\n${cts}</ul>\n`
 	],
 	[
+		/(?<!\/)\>\s+(.+)/g,
+		cts => convertByRefString(cts)
+	],
+	[
 		/:::\snote(\n[\s\S]*?):::/g,
 		cts => createNoteInnerHTMLString("info", cts),
 		null,
@@ -149,6 +153,15 @@ const before_replace_str_define_array = [
 	]
 ];
 
+function convertByRefString(_str) {
+	const _rgex = /(?<!\/)\>\s+(.+)/g;
+	const _res = [...String(_str).matchAll(_rgex)];
+	if (_res.length)
+		for (let _c of _res)
+			_str = String(_str).replace(_c[0], `<div class="byref-div">${_c[1]}</div>`);
+	return _str;
+}
+
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
 	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
@@ -194,7 +207,7 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 		if (result_array.length) {
 			for (let chv of result_array) {
 				const _str = v[1](...(v[2] == null ? [1] : v[2]).map(c => chv[c]));
-				result_str = result_str.replace(chv[0], String(_str).replace("\n", (v.length == 5 ? "" : "\n"))); // .replaceAll(new RegExp("\n", "g"), "<br>"));
+				result_str = result_str.replace(chv[0], String(_str).replace("\n", (v.length == 5 ? "" : "\n")));
 			}
 		}
 		// replaceAllの前に、replace()を挟んでいるのは、見た目が不格好になるため
