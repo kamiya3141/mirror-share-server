@@ -1,7 +1,7 @@
 var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
-	await settingTextEditor(article_data, pmd);
 	setDocumentTitle("記事編集ページ");
+	await settingTextEditor(article_data, pmd);
 	settingButtons(pmd);
 };
 let editArticleDisplay_copiedJsonData = {};
@@ -19,13 +19,17 @@ function settingButtons(_pmd) {
 	backup_btn.addEventListener("click", async e => {
 		editArticleDisplay_copiedJsonData["type"] = "backup";
 		editArticleDisplay_copiedJsonData["status"] = "privated";
-		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
+		const current_slug = String(editArticleDisplay_copiedJsonData["slug"]);
+		let current_slug_split = current_slug.split("--");
+		editArticleDisplay_copiedJsonData["slug"] = current_slug_split.length == 2 ? current_slug_split[1] : (() => current_slug_split.map((c, i) => c = (i == 0 ? "" : c)).join("--"));
+		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
 		});
 		const _dt = await _res.json();
+		editArticleDisplay_copiedJsonData["slug"] = current_slug;
 		if (_dt["success"])
-			window.location.href = winMyHrefPTCHostname;
+			window.location.href = `${winMyHrefPTCHostname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
 	});
 	draft_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] != "draft")
