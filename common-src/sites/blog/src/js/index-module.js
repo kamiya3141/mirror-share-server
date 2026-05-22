@@ -66,8 +66,8 @@ const before_replace_str_define_array = [
 		cts => `<ul>\n${cts}</ul>\n`
 	],
 	[
-		/(?<!\/|\w)\>\s+(.+?\n)/g,
-		cts => convertByRefString(`> ${cts}<br>`)
+		/^>\s?(.*)\n/gm,
+		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`)
 	],
 	[
 		/:::\snote(\n[\s\S]*?):::/g,
@@ -154,14 +154,12 @@ const before_replace_str_define_array = [
 ];
 
 function convertByRefString(_str) {
-	const _rgex = /(?<!\/)\>\s+(.*)/g;
+	if (_str == ">  ")
+		return `<div class="byref-div">&nbsp;</div>`;
+	const _rgex = /^>\s?(.*)/gm;
 	const _res = [...String(_str).matchAll(_rgex)];
-	if (_res.length > 0) {
-		_res.forEach(_c => {
-			_str = String(_str).replaceAll(_c[0], `<div class="byref-div">${_c[1]}</div>`);
-		});
-		_str = convertByRefString(_str);
-	}
+	if (_res.length > 0)
+		_res.forEach(_c => _str = String(_str).replaceAll(_c[0], `<div class="byref-div">${convertByRefString(_c[1])}</div>`));
 	return _str;
 }
 
