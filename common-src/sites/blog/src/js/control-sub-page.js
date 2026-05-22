@@ -6,7 +6,7 @@ const has_edit_flag = hasFlag(page_flag[0]);
 const has_new_flag = hasFlag(page_flag[1]);
 
 if (has_edit_flag) {
-	const has_id_flag = hasFlag("id");
+	const has_id_flag = hasFlag(id_flag);
 	let correct = true;
 	if (has_id_flag) {
 		const decoded_json_data = await PMD.getArticleData();

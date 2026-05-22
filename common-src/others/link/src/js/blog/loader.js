@@ -59,6 +59,7 @@ const allScriptSettingObjectArrayObject = {
 };
 
 let setScriptObjectKey = "main";
+const id_flag = "id";
 const page_flag = ["edit", "new", "embed"];
 
 const hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);

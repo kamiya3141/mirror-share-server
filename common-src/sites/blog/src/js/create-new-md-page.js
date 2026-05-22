@@ -11,12 +11,16 @@ function settingNewArticleSettingDisplay(p_e, _pmd) {
 		e.preventDefault();
 		const data = Object.fromEntries(new FormData(e.target).entries());
 		console.log(data);
-		const _url = _pmd.createAPIURL("article-new-api-local.php");
-		const _res = await fetch(_url, {
+		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify(data)
 		});
 		const _dt = await _res.json();
-		console.log(_dt);
+		if (_dt["success"]) {
+			const next_url = new URL(`${winMyHrefPTCHostname}`);
+			next_url.searchParams.set(page_flag[0], "");
+			next_url.searchParams.set(id_flag, _dt["slug"]);
+			window.location.href = next_url;
+		}
 	});
 }

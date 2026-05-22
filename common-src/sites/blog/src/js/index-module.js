@@ -273,7 +273,7 @@ function createAPIURL(_str) {
 
 async function getArticleData() {
 	const targetQueryName = "slug";
-	const targetQueryData = getFlag("id");
+	const targetQueryData = getFlag(id_flag);
 	const fileURL = createAPIURL(`article-get-api-local.php`);
 	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "2026-0401-230000--base--home");
 

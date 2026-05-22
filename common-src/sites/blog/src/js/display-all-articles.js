@@ -35,7 +35,7 @@ function createArticleCard(article_data_object) {
 
 	all_articles_contents_box.addEventListener("click", e => {
 		const next_url = new URL(winMyHref);
-		next_url.searchParams.set("id", e.target.getAttribute("data-mydef--article-card--slug"));
+		next_url.searchParams.set(id_flag, e.target.getAttribute("data-mydef--article-card--slug"));
 		window.location.href = next_url;
 	});
 }
