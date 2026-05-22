@@ -66,8 +66,8 @@ const before_replace_str_define_array = [
 		cts => `<ul>\n${cts}</ul>\n`
 	],
 	[
-		/(?<!\/)\>\s+(.*)/g,
-		cts => convertByRefString(`> ${cts}`)
+		/(?<!\/)\>\s+(.*?\n)/g,
+		cts => convertByRefString(`> ${cts}<br>`)
 	],
 	[
 		/:::\snote(\n[\s\S]*?):::/g,
