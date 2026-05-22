@@ -391,6 +391,18 @@ html {
 			}
 		}
 
+		& .important-section-0 {
+			z-index: 990;
+		}
+
+		& .important-section-1 {
+			z-index: 991;
+		}
+
+		& .important-section-2 {
+			z-index: 992;
+		}
+
 		& .background-blur {
 			background-color: var(--clear);
 			position: fixed;
