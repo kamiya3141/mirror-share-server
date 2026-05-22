@@ -14,10 +14,6 @@ var appear_allArticlesDisplay = async (_tf, all_article_data_object = []) => {
 function createArticleCard(article_data_object) {
 	const all_articles_contents_box = my_root_section.querySelector(".article-contents--box");
 
-	console.log(article_data_object["type"], article_data_object["status"]);
-
-	if (article_data_object["type"] != "article" || article_data_object["status"] != "published")
-		all_articles_contents_box.style.display = "none";
 
 	const card_div_element = document.createElement("div");
 	card_div_element.classList.add("article-card");
@@ -34,12 +30,14 @@ function createArticleCard(article_data_object) {
 	card_div_element.appendChild(card_embed_div_element);
 	card_div_element.appendChild(card_title_div_element);
 
-	all_articles_contents_box.appendChild(card_div_element);
-
-
-	all_articles_contents_box.addEventListener("click", e => {
+	card_div_element.addEventListener("click", e => {
 		const next_url = new URL(winMyHref);
 		next_url.searchParams.set(id_flag, e.target.getAttribute("data-mydef--article-card--slug"));
 		window.location.href = next_url;
 	});
+
+	if (article_data_object["type"] != "article" || article_data_object["status"] != "published")
+		all_articles_contents_box.style.display = "none";
+
+	all_articles_contents_box.appendChild(card_div_element);
 }
