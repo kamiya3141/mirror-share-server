@@ -204,15 +204,8 @@ async function loadedFunc() {
 		if (getDeviceInformation("force-device"))
 			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
 	}
-	console.log(getFlag(id_flag));
 	if (getFlag(id_flag) == "20260401230000--articles")
 		await loadAllArticles();
-
-	/*
-	const b2s = ipt => (ipt ? "true" : "false");
-	let tso_msg = new TSOMessage(`<h1>${b2s(device["mobile"])} -:- ${b2s(device["force-device"])}</h1>`, "warn");
-	tso_msg.textColor = "#000000";
-	*/
 }
 
 
