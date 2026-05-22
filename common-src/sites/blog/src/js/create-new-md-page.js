@@ -15,12 +15,14 @@ function settingNewArticleSettingDisplay(p_e, _pmd) {
 			"method": "POST",
 			"body": JSON.stringify(data)
 		});
+		console.log(_res);
 		const _dt = await _res.json();
 		if (_dt["success"]) {
 			const next_url = new URL(`${winMyHrefPTCHostname}`);
 			next_url.searchParams.set(page_flag[0], "");
 			next_url.searchParams.set(id_flag, _dt["slug"]);
 			window.location.href = next_url;
-		}
+		} else
+			console.log(_dt);
 	});
 }
