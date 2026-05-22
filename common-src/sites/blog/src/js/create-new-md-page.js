@@ -10,7 +10,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd) {
 	fm_el.addEventListener("submit", async e => {
 		e.preventDefault();
 		const data = Object.fromEntries(new FormData(e.target).entries());
-		data["tags"] = String(data["tags"]).split(new RegExp(",\\s?")).map(c => `"${c}"`).join(", ");
+		data["tags"] = String(data["tags"]).split(new RegExp(",\\s?")).map(c => `"${c}"`);
 		console.log(data);
 		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
