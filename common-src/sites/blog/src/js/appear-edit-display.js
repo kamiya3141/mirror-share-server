@@ -16,11 +16,11 @@ function settingButtons(_pmd) {
 	if (editArticleDisplay_copiedJsonData["status"] != "draft")
 		draft_btn.disabled = true;
 
-	if (editArticleDisplay_copiedJsonData["type"] == "backup") {
+	if (editArticleDisplay_copiedJsonData["type"] == "backup" || editArticleDisplay_copiedJsonData["status"] == "deleted") {
 		backup_btn.disabled = true;
 		draft_btn.disabled = true;
 		save_btn.disabled = true;
-		myAlertMessage("バックアップデータのため編集できません");
+		myAlertMessage("バックアップまたは削除済みデータのため編集できません");
 	}
 
 	backup_btn.addEventListener("click", async e => {

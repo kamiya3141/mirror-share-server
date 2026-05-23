@@ -27,7 +27,7 @@ const allScriptSettingObjectArrayObject = {
 		},
 		{
 			"src": "src/js/script.js",
-			"type": "module"
+			"type": ""
 		}
 	],
 	"edit": [

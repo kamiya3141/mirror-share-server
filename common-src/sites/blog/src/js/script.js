@@ -7,6 +7,8 @@ async function mainFunc() {
 
 	PMD.afterFunction();
 
+	setTheme();
+
 }
 
 window.addEventListener("load", mainFunc);

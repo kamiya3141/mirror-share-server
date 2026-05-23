@@ -217,7 +217,7 @@
 						<input type="text" placeholder="タイトル" name="title" required pattern=".+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="slug" name="slug" required pattern="[A-Za-z0-9\-]+">
+						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required pattern="[A-Za-z0-9\-]+">
 					</div>
 					<div class="input--box">
 						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\-]+">
@@ -229,9 +229,15 @@
 						<input type="text" placeholder="見出し" name="excerpt" required pattern=".+">
 					</div>
 				</div>
-				<div class="submit-button--box">
-					<div class="input--box">
-						<input type="submit" value="新規作成" id="create-new-article--input--submit-button">
+				<div class="submit-button--box" data-mydef--create-new-article--submit-button-box--has-id="false">
+					<div class="input--box input-submit--box--has-id--true">
+						<input type="submit" value="削除" name="parts--deleted" id="create-new-article--input--submit--deleted-button">
+					</div>
+					<div class="input--box input-submit--box--has-id--true">
+						<input type="submit" value="更新" name="parts--updated" id="create-new-article--input--submit--updated-button">
+					</div>
+					<div class="input--box input-submit--box--has-id--false">
+						<input type="submit" value="作成" name="parts--created" id="create-new-article--input--submit--create-button">
 					</div>
 				</div>
 			</form>

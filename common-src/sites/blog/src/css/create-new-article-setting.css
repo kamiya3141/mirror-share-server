@@ -21,6 +21,33 @@
 				height: var(--c1);
 			}
 
+			& > .submit-button--box {
+				display: flex;
+				flex-direction: row;
+
+				&[data-mydef--create-new-article--submit-button-box--has-id="false"] {
+					& > .input-submit--box--has-id--true {
+						display: none;
+					}
+
+					& > .input-submit--box--has-id--false {
+						display: inherit;
+					}
+				}
+
+				&[data-mydef--create-new-article--submit-button-box--has-id="true"] {
+					& > .input-submit--box--has-id--true {
+						display: inherit;
+					}
+
+					& > .input-submit--box--has-id--false {
+						display: none;
+					}
+				}
+			}
+
+
+
 			& .input--box {
 				padding-bottom: var(--p1);
 
@@ -32,6 +59,20 @@
 						outline: none;
 						border: none;
 						border-bottom: calc(var(--p1) * 0.25) var(--myTextColor) solid;
+					}
+
+					&[type="submit"] {
+						&[name="parts--deleted"] {
+							background-color: lightcoral;
+						}
+
+						&[name="parts--updated"] {
+							background-color: cornflowerblue;
+						}
+
+						&[name="parts--created"] {
+							background-color: lightgreen;
+						}
 					}
 				}
 			}
