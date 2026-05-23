@@ -54,20 +54,46 @@
 						}
 
 						&[data-mydef--create-new-article--submit-button-box--article-status="published"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
+
 							& > .input-submit--box--status-published {
 								display: flex;
 							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="privated"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
 
 							& > .input-submit--box--status-privated {
+								display: flex;
+							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="draft"] {
+
+							& > [class*=" input-submit--box--status-"] {
 								display: none;
 							}
 
 							& > .input-submit--box--status-draft {
+								display: flex;
+							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="deleted"] {
+
+							& > [class*=" input-submit--box--status-"] {
 								display: none;
 							}
 
 							& > .input-submit--box--status-deleted {
-								display: none;
+								display: flex;
 							}
 						}
 					}
@@ -101,7 +127,19 @@
 
 					&[type="submit"] {
 						&[name="parts--deleted"] {
-							background-color: lightcoral;
+							background-color: red;
+						}
+
+						&[name="parts--drafted"] {
+							background-color: lightgray;
+						}
+
+						&[name="parts--privated"] {
+							background-color: lightsalmon;
+						}
+
+						&[name="parts--published"] {
+							background-color: var(--myStylingUserPreferColor);
 						}
 
 						&[name="parts--updated"] {
