@@ -107,14 +107,31 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
-	& ul {
+	& ul,
+	ol {
 		display: block;
-		list-style-type: none;
+		list-style-type: disc;
 		padding-inline-start: 0;
+		counter-reset: count 0;
 
-		& > li::before {
-			content: '・';
-			margin-right: 0.5em;
+		& > li {
+			display: list-item;
+
+			&::before {
+				margin-right: var(--p1);
+			}
+
+			&.simple-list::before {
+				content: '・';
+			}
+
+			&.number-list {
+				counter-increment: count 1;
+
+				&::before {
+					content: counter(count, decimal);
+				}
+			}
 		}
 	}
 

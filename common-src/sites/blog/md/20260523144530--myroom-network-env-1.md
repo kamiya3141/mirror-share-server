@@ -23,7 +23,9 @@
 > 主に使用した技術等
 
 1. OpenWRT
+2. abcd
 <details>
 aaa
 </details>
 * x86_64 PC
+* abc
