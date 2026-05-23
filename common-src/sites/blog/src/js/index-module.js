@@ -59,23 +59,38 @@ const before_replace_str_define_array = [
 	],
 	[
 		/(?<!\/)\*\s+(.+)/g,
-		cts => `<li class="simple-list">${cts}</li>`
+		cts => `<li class="simple-list">${cts}</li>`,
+		null,
+		null,
+		null
 	],
 	[
 		/((?:<li\sclass="simple-list">.*<\/li>\n?)+)/g,
-		cts => `<ul>\n${cts}</ul>\n`
+		cts => `<ul>\n${cts}</ul>\n`,
+		null,
+		null,
+		null
 	],
 	[
 		/(?<!\/)\d\.\s+(.+)/g,
-		cts => `<li class="number-list">${cts}</li>`
+		cts => `<li class="number-list">${cts}</li>`,
+		null,
+		null,
+		null
 	],
 	[
 		/((?:<li\sclass="number-list">.*<\/li>\n?)+)/g,
-		cts => `<ol>\n${cts}</ol>\n`
+		cts => `<ol>\n${cts}</ol>\n`,
+		null,
+		null,
+		null
 	],
 	[
 		/^>\s?(.*)\n/gm,
-		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`)
+		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`),
+		null,
+		null,
+		null
 	],
 	[
 		/:::\snote(\n[\s\S]*?):::/g,

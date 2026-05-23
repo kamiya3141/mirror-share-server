@@ -118,17 +118,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
-	& ol {
-		display: block;
-		list-style-type: none;
-		padding-inline-start: 0;
-
-		& > li::before {
-			content: '';
-			margin-right: 0.5em;
-		}
-	}
-
 	& strong {
 		display: inline;
 		font-weight: bold;

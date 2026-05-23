@@ -22,7 +22,7 @@
 
 > 主に使用した技術等
 
-1 OpenWRT
+1. OpenWRT
 <details>
 aaa
 </details>
