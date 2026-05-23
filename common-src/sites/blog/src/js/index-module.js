@@ -59,7 +59,7 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`
 	],
 	[
-		/(?<!\/)\*\s+(.+)\n$/g,
+		/(?<!\/)\*\s+(.+)\n/g,
 		cts => `<li class="simple-list">${cts}</li>`,
 		null,
 		null,
@@ -73,7 +73,7 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/(?<!\/)\d\.\s+(.+?)/g,
+		/(?<!\/)\d\.\s+(.+)\n/g,
 		cts => `<li class="number-list">${cts}</li>`,
 		null,
 		null,

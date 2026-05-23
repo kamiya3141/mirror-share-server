@@ -130,7 +130,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 				&::before {
 					content: counter(count, decimal);
-					/*content: attr(data-mydef--markdown--number-list-n);*/
 				}
 			}
 		}
