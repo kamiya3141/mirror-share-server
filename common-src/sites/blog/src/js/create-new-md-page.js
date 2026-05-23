@@ -12,6 +12,8 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 	const copiedDecodedJsonData = deepCopy(decoded_json_data);
 
 	p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--has-id", String(Boolean(has_id_flag)));
+	p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-type", copiedDecodedJsonData["type"]);
+	p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-status", copiedDecodedJsonData["status"]);
 
 	if (has_id_flag && decoded_json_data != null) {
 		[...new FormData(fm_el).entries()].map(([k, v]) => [k, fm_el.elements[k]]).forEach(([k, el]) => {
@@ -30,26 +32,37 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 
 	fm_el.addEventListener("submit", async e => {
 		e.preventDefault();
-		const button_type = e.submitter.name;
+		const button_type = String(e.submitter.name).split("--")[1];
 		const data = Object.fromEntries(new FormData(e.target).entries());
 
 		if (has_id_flag)
 			Object.entries(copiedDecodedJsonData).forEach(([k, v]) => data[k] = Object.hasOwn(data, k) ? data[k] : v);
 
 		data["tags"] = String(data["tags"]).split(new RegExp(",\\s?"));
-		console.log(data);
-		if (button_type == "parts--deleted") {
-			const cfm_res = await myConfirmMessage("この記事を本当に削除しますか？");
-			if (cfm_res)
-				data["status"] = "deleted";
+
+		if (has_id_flag && button_type != "updated") {
+			const bkp_status = data["status"];
+			data["status"] = button_type;
+			p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-status", data["status"]);
+
+			if (button_type == "deleted") {
+				const cfm_res = await myConfirmMessage("この記事を本当に削除しますか？");
+				if (!cfm_res) {
+					data["status"] = bkp_status;
+					p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-status", data["status"]);
+				}
+			}
 		}
+
+		console.log(data);
+
 		return;
 		const _res = await fetch(_pmd.createAPIURL(`article-${has_id_flag ? "set" : "new"}-api-local.php`), {
 			"method": "POST",
 			"body": JSON.stringify(data)
 		});
 		const _dt = await _res.json();
-		if (_dt["success"]) {
+		if (_dt["success"] && button_type == "updated") {
 			const next_url = new URL(`${winMyHrefPTCHostname}`);
 			next_url.searchParams.set(page_flag[0], "");
 			next_url.searchParams.set(id_flag, _dt["slug"]);
