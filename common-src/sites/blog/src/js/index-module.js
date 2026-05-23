@@ -18,7 +18,8 @@ const before_replace_str_define_array = [
 		/<(\/?.+)>\n/g,
 		cts => `<${cts}>`,
 		null,
-		false
+		null,
+		null
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
@@ -66,21 +67,21 @@ const before_replace_str_define_array = [
 	],
 	[
 		/((?:<li\sclass="simple-list">.*<\/li>\n?)+)/g,
-		cts => `<ul>\n${cts}</ul>\n`,
+		cts => `<pre><ul>${cts}</ul></pre>`,
 		null,
 		null,
 		null
 	],
 	[
-		/(?<!\/)\d\.\s+(.+)/g,
-		cts => `<li class="number-list">${cts}</li>`,
+		/(?<!\/)(\d)\.\s+(.+)/g,
+		(n, cts) => `<li class="number-list" data-mydef--markdown--number-list-n="${n}">${cts}</li>`,
 		null,
 		null,
 		null
 	],
 	[
 		/((?:<li\sclass="number-list">.*<\/li>\n?)+)/g,
-		cts => `<ol>\n${cts}</ol>\n`,
+		cts => `<pre><ol>${cts}</ol></pre>`,
 		null,
 		null,
 		null
