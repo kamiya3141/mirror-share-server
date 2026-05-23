@@ -59,11 +59,19 @@ const before_replace_str_define_array = [
 	],
 	[
 		/(?<!\/)\*\s+(.+)/g,
-		cts => `<li>${cts}</li>`
+		cts => `<li class="simple-list">${cts}</li>`
 	],
 	[
-		/((?:<li>.*<\/li>\n?)+)/g,
+		/((?:<li\sclass="simple-list">.*<\/li>\n?)+)/g,
 		cts => `<ul>\n${cts}</ul>\n`
+	],
+	[
+		/(?<!\/)\d\.\s+(.+)/g,
+		cts => `<li class="number-list">${cts}</li>`
+	],
+	[
+		/((?:<li\sclass="number-list">.*<\/li>\n?)+)/g,
+		cts => `<ol>\n${cts}</ol>\n`
 	],
 	[
 		/^>\s?(.*)\n/gm,

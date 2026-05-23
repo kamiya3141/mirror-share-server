@@ -48,7 +48,7 @@ function settingButtons(_pmd) {
 		});
 		const _dt = await _res.json();
 		if (_dt["success"])
-			window.location.href = winMyHrefPTCHostname;
+			myAlertMessage("おｋ");
 	});
 	save_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] == "draft")
