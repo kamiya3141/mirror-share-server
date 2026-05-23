@@ -59,7 +59,7 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`
 	],
 	[
-		/(?<!\/)\*\s+(.+)/g,
+		/(?<!\/)\*\s+(.+)\n$/g,
 		cts => `<li class="simple-list">${cts}</li>`,
 		null,
 		null,
@@ -67,21 +67,21 @@ const before_replace_str_define_array = [
 	],
 	[
 		/((?:<li\sclass="simple-list">.*<\/li>\n?)+)/g,
-		cts => `<pre><ul>${cts}</ul></pre>`,
+		cts => `<ul>${cts}</ul>`,
 		null,
 		null,
 		null
 	],
 	[
-		/(?<!\/)(\d)\.\s+(.+)/g,
-		(n, cts) => `<li class="number-list" data-mydef--markdown--number-list-n="${n}">${cts}</li>`,
+		/(?<!\/)\d\.\s+(.+?)/g,
+		cts => `<li class="number-list">${cts}</li>`,
 		null,
 		null,
 		null
 	],
 	[
 		/((?:<li\sclass="number-list">.*<\/li>\n?)+)/g,
-		cts => `<pre><ol>${cts}</ol></pre>`,
+		cts => `<ol>${cts}</ol>`,
 		null,
 		null,
 		null
