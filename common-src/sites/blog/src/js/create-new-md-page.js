@@ -9,7 +9,10 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 	const fm_el = p_e.querySelector("#create-new-article--form");
 
 	const has_id_flag = hasFlag(id_flag);
-	const copiedDecodedJsonData = deepCopy(decoded_json_data);
+	const copiedDecodedJsonData = decoded_json_data != null ? deepCopy(decoded_json_data) : {
+		"type": "article",
+		"status": "draft"
+	};
 
 	p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--has-id", String(Boolean(has_id_flag)));
 	p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-type", copiedDecodedJsonData["type"]);
@@ -63,7 +66,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 			"body": JSON.stringify(data)
 		});
 		const _dt = await _res.json();
-		if (_dt["success"] && button_type == "updated") {
+		if (_dt["success"] && (button_type == "created" || button_type == "updated")) {
 			const next_url = new URL(`${winMyHrefPTCHostname}`);
 			next_url.searchParams.set(page_flag[0], "");
 			next_url.searchParams.set(id_flag, _dt["slug"]);
