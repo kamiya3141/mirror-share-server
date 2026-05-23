@@ -43,6 +43,44 @@
 					& > .input-submit--box--has-id--false {
 						display: none;
 					}
+
+					&[data-mydef--create-new-article--submit-button-box--article-type="article"] {
+						& > .input-submit--box--type-backup {
+							display: none;
+						}
+
+						& > .input-submit--box--type-article {
+							display: inherit;
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="published"] {
+							& > .input-submit--box--status-published {
+								display: flex;
+							}
+
+							& > .input-submit--box--status-privated {
+								display: none;
+							}
+
+							& > .input-submit--box--status-draft {
+								display: none;
+							}
+
+							& > .input-submit--box--status-deleted {
+								display: none;
+							}
+						}
+					}
+
+					&[data-mydef--create-new-article--submit-button-box--article-type="backup"] {
+						& > .input-submit--box--type-backup {
+							display: inherit;
+						}
+
+						& > .input-submit--box--type-article {
+							display: none;
+						}
+					}
 				}
 			}
 
