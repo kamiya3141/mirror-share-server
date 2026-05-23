@@ -30,16 +30,21 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 
 	fm_el.addEventListener("submit", async e => {
 		e.preventDefault();
+		const button_type = e.submitter.name;
 		const data = Object.fromEntries(new FormData(e.target).entries());
-		let _url = `article-new-api-local.php`;
-		if (has_id_flag) {
-			_url = `article-set-api-local.php`;
-			data["slug"] = copiedDecodedJsonData["slug"];
-		}
+
+		if (has_id_flag)
+			Object.entries(copiedDecodedJsonData).forEach(([k, v]) => data[k] = Object.hasOwn(data, k) ? data[k] : v);
+
 		data["tags"] = String(data["tags"]).split(new RegExp(",\\s?"));
-		console.log(e.target, e.submitter, e.submitter.name, data);
+		console.log(data);
+		if (button_type == "parts--deleted") {
+			const cfm_res = await myConfirmMessage("この記事を本当に削除しますか？");
+			if (cfm_res)
+				data["status"] = "deleted";
+		}
 		return;
-		const _res = await fetch(_pmd.createAPIURL(_url), {
+		const _res = await fetch(_pmd.createAPIURL(`article-${has_id_flag ? "set" : "new"}-api-local.php`), {
 			"method": "POST",
 			"body": JSON.stringify(data)
 		});
