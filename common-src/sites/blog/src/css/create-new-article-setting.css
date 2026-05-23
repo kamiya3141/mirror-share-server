@@ -27,6 +27,7 @@
 				align-items: center;
 				justify-content: space-between;
 				gap: 1.5rem;
+				padding-top: calc(var(--p2) * 3);
 
 				&[data-mydef--create-new-article--submit-button-box--has-id="false"] {
 					& > .input-submit--box--has-id--true {
@@ -110,6 +111,14 @@
 							display: none;
 						}
 					}
+				}
+
+				&::before {
+					content: attr(data-mydef--create-new-article--submit-button-box--article-type) " : " attr(data-mydef--create-new-article--submit-button-box--article-status);
+					position: absolute;
+					left: calc(var(--w) * 5 / 10);
+					top: 0;
+					font-size: calc(var(--p2) * 2);
 				}
 			}
 

@@ -41,14 +41,16 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 		data["tags"] = String(data["tags"]).split(new RegExp(",\\s?"));
 
 		if (has_id_flag && button_type != "updated") {
-			const bkp_status = data["status"];
-			data["status"] = button_type;
+			const bkp_status = copiedDecodedJsonData["status"];
+			copiedDecodedJsonData["status"] = button_type;
+			data["status"] = copiedDecodedJsonData["status"];
 			p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-status", data["status"]);
 
 			if (button_type == "deleted") {
 				const cfm_res = await myConfirmMessage("この記事を本当に削除しますか？");
 				if (!cfm_res) {
-					data["status"] = bkp_status;
+					copiedDecodedJsonData["status"] = bkp_status;
+					data["status"] = copiedDecodedJsonData["status"];
 					p_e.querySelector(".submit-button--box").setAttribute("data-mydef--create-new-article--submit-button-box--article-status", data["status"]);
 				}
 			}
@@ -56,7 +58,6 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 
 		console.log(data);
 
-		return;
 		const _res = await fetch(_pmd.createAPIURL(`article-${has_id_flag ? "set" : "new"}-api-local.php`), {
 			"method": "POST",
 			"body": JSON.stringify(data)

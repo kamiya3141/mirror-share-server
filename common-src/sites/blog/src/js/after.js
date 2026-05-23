@@ -204,7 +204,7 @@ async function loadedFunc() {
 		if (getDeviceInformation("force-device"))
 			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
 	}
-	if (getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] =="articles")
+	if (hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
 }
 

@@ -53,9 +53,22 @@ function deepCopy(obj) {
 	return copy;
 }
 
-// const my_o1 = deepCopy(myObj);
-// const my_o2 = deepCopy(myObj);
-// console.log(["a", "b", "c"].join(", "));
+const obj1 = {
+	"a": "a1",
+	"b": "b1",
+	"c": "c1"
+};
+const obj2 = deepCopy(obj1);
+Object.entries(obj2).forEach(([k, v]) => obj2[k] = `${k}2`);
+obj2["d"] = "d2";
+
+Object.entries(obj2).forEach(([k, v]) => obj1[k] = Object.hasOwn(obj1, k) ? obj1[k] : v)
+
+function parseObj(_obj = {}) {
+	return Object.entries(_obj).map(c => c.join(" : ")).join(", ") + "\n";
+}
+
+console.log(parseObj(obj1), parseObj(obj2));
 
 console.clear();
 
