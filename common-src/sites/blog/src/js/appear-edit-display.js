@@ -114,7 +114,7 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
-	await convertMarkdown2Html(txtara_elem.value, _pmd, parent_elem);
+	await convertMD(txtara_elem, _pmd, parent_elem);
 
 	if (editArticleDisplay_copiedJsonData["type"] == "backup")
 		txtara_elem.readOnly = true;
