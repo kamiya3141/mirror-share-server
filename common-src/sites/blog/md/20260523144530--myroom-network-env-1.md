@@ -22,16 +22,18 @@
 1. x86_64 PC
 <details open>
 <summary>スペック</summary>
- * CPU: Intel core2 duo e7500
- * RAM: 2GB * 2
- * STORAGE: SD-CARD 32GB
+	<ul>
+		<li>CPU: Intel core2 duo e7500</li>
+		<li>RAM: 2GB × 2</li>
+		<li>STORAGE: SD-CARD 32GB</li>
+	</ul>
 </details>
 1. WHR-2533-DHP
 1. WSR-1166-DHP
 1. WN-AC-1600-DGR3
 </details>
 * VLAN
- 1. x86_64 PC
- 1. WHR-2533-DHP
- 1. WSR-1166-DHP
- 1. WN-AC-1600-DGR3
+  1. x86_64 PC
+  1. WHR-2533-DHP
+  1. WSR-1166-DHP
+  1. WN-AC-1600-DGR3

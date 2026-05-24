@@ -151,7 +151,6 @@ function convertULOL(input_str = "") {
 	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
 	let priority_ol = null;
 	const obj_n = [0, 0];
-	const obj_i0 = [0, 0];
 	return input_str.split("\n").map((str, i0) => {
 		const olul_obj = [
 			{
@@ -169,14 +168,6 @@ function convertULOL(input_str = "") {
 			let insert_before = "";
 			let insert_after = "";
 			if (c["res"].length) {
-				/*
-				if (priority_ol != null && Math.abs(obj_i0[priority_ol] - i0) <= 1) {
-					insert_before += `</${olul_obj[priority_ol]["el"]}>`;
-					if (obj_n[priority_ol] > 0)
-						obj_n[priority_ol]--;
-				}
-				priority_ol = i;
-				*/
 				c["res"].forEach(__res => {
 					const _ipt_n = __res[1].length;
 					if (_ipt_n < obj_n[i])
@@ -187,7 +178,6 @@ function convertULOL(input_str = "") {
 					str = str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
 				});
 			}
-			obj_i0[i] = i0;
 		});
 		return str;
 	}).join("\n");
