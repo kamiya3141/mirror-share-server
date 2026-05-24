@@ -18,7 +18,7 @@
 > 主に使用した技術等1
 
 1. OpenWRT
- 1. abc
+\t1. abc
 1. abcd
 1. a
 

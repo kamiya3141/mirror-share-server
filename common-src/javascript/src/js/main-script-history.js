@@ -69,9 +69,11 @@ function parseObj(_obj = {}) {
 }
 
 // console.log(parseObj(obj1), parseObj(obj2));
-const simple_reg = /(?<!\/)( *)[*+-] +(.+)/g;
-const _str = "    * abc";
-console.log([..._str.matchAll(simple_reg)][0].map(c => c.replaceAll(" ", "&nbsp;")));
+const simple_reg = /(?<!\/)( {2,})[*+-] +(.+)/g;
+const _str = "  * abc";
+const _res = _str.matchAll(simple_reg);
+const _res2 = structuredClone([..._res][0]);// .map(c => c.replaceAll(" ", "&nbsp;"));
+console.log(_res, _res2, [..._res][0]);
 console.clear();
 
 /*

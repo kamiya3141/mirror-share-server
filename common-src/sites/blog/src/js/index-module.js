@@ -11,7 +11,7 @@ const myTabSize = Number(getCSSLengthValue("--myStylingTabSize"));
 const before_replace_str_define_array = [
 	[
 		/(\\[a-z])/g,
-		cts => `${cts == "\\t" ? "&nbsp;".repeat(myTabSize) : (cts == "\\n" ? "<br>" : cts)}`,
+		cts => `${cts == "\\t" ? "&nbsp;".repeat(myTabSize) : cts}`,
 		null
 	],
 	[
@@ -59,7 +59,16 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`,
 		null
 	],
-
+	[
+		/((?:<li class="my-ul-li">.*<\/li>\n?)+)/g,
+		cts => `<ul>${cts}</ul>\n`,
+		null
+	],
+	[
+		/((?:<li class="my-ol-li">.*<\/li>\n?)+)/g,
+		cts => `<ol>${cts}</ol>\n`,
+		null
+	],
 	[
 		/^> ?(.*)\n/gm,
 		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`),
@@ -127,37 +136,41 @@ const before_replace_str_define_array = [
 	]
 ];
 
-/*
-[
-	/(?<!\/)( *)\* +(.+)\n/g,
-	(sp, cts) => `${" ".repeat(sp.length)}<li class="simple-list">${cts}</li>`,
-	[1, 2]
-],
-[
-	/((?:<li class="simple-list">.*<\/li>\n?)+)/g,
-	cts => `<ul class="my-ulol">${cts}</ul>`,
-	null
-],
-[
-	/(?<![\/])( *)\d\. +(.+?)\n/g,
-	(sp, cts) => `${" ".repeat(sp.length)}<li class="number-list">${cts}</li>`,
-	[1, 2]
-],
-[
-	/((?:<li class="number-list">.*<\/li>\n?)+)/g,
-	cts => `<ol class="my-ulol">${cts}</ol>`,
-	null
-],
-*/
-
 function convertULOL(input_str = "") {
-	const _str_split_arr = input_str.split("\n");
-	const simple_reg = /(?<!\/)( *)[*+-] +(.+)/g;
-	const number_reg = /(?<!\/)( *)\d +(.+)/g;
-	_str_split_arr.map(str => {
-
+	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
+	const number_reg = /^(?<!\/)( *)\d +(.+)$/gm;
+	[
+		{
+			"res": [...input_str.matchAll(simple_reg)],
+			"el": "ul"
+		},
+		{
+			"res": [...input_str.matchAll(number_reg)],
+			"el": "ol"
+		}
+	].forEach((c, i) => {
+		if (!c["res"].length)
+			return;
+		let _n = 0;
+		c["res"].forEach(__res => {
+			let insert_before = `<${c["el"]}>`;
+			let insert_after = `</${c["el"]}>`;
+			const _ipt_n = __res[1].length;
+			if (_ipt_n < _n) {
+				insert_before = "";
+				insert_after = insert_after.repeat(_n - _ipt_n);
+			} else if (_ipt_n > _n) {
+				insert_before = insert_before.repeat(_n - _ipt_n);
+				insert_after = "";
+			} else {
+				insert_before = "";
+				insert_after = "";
+			}
+			_n = _ipt_n;
+			input_str = input_str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
+		});
 	});
-	return _str_split_arr.join("\n");
+	return input_str;
 }
 
 
@@ -202,11 +215,13 @@ function setArticleAndHTMLTitle(_str = "No Title ...") {
 }
 
 async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
-
 	const mdtxt = decoded_json_data["content"];
 	let result_str = mdtxt;
 
 	setArticleAndHTMLTitle(decoded_json_data["title"]);
+
+	// 事前変換
+	result_str = convertULOL(result_str);
 
 	const BEFORE_REPLACE_STR_DEFINE_ARRAY = before_replace_str_define_array;
 
