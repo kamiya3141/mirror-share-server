@@ -36,7 +36,7 @@ function createArticleCard(article_data_object) {
 		window.location.href = next_url;
 	});
 
-	if (article_data_object["type"] != "article" || article_data_object["status"] != "published")
+	if (hasFlag(id_flag) && (article_data_object["type"] != "article" || article_data_object["status"] != "published"))
 		card_div_element.style.display = "none";
 
 	all_articles_contents_box.appendChild(card_div_element);
