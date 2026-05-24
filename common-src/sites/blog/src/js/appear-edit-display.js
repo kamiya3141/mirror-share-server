@@ -68,7 +68,7 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
 	/** @type {HTMLTextAreaElement} */
-	const txtara_elem = parent_elem.querySelector("#editor--textarea");
+	const txtara_elem = parent_elem.querySelector("#editor--txtara_elem");
 	const resdis_elem = parent_elem.querySelector(".result-display--root");
 	txtara_elem.addEventListener("input", async e => {
 		const _txt_el = e.target;
@@ -87,9 +87,27 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 		const start = txtara_elem.selectionStart;
 		const end = txtara_elem.selectionEnd;
 		const value = txtara_elem.value;
-		txtara_elem.value = value.substring(0, start) + key_object[e.key] + value.substring(end);
-		txtara_elem.selectionEnd = start + key_object[e.key].length;
-		txtara_elem.selectionStart = txtara_elem.selectionEnd;
+		const selected = value.slice(start, end);
+
+		// 単一行なら普通にtab挿入
+		if (!selected.includes("\n")) {
+			txtara_elem.setRangeText(key_object[e.key], start, end, "end");
+			return;
+		}
+
+		// 選択開始行の先頭
+		const lineStart = value.lastIndexOf("\n", start - 1) + 1;
+		// 行単位取得
+		const lines = value.slice(lineStart, end).split("\n");
+
+		// 各行にtab追加
+		const indented = lines.map(v => key_object[e.key] + v).join("\n");
+
+		txtara_elem.setRangeText(indented, lineStart, end, "select");
+
+		// 選択範囲補正
+		txtara_elem.selectionStart = start + key_object[e.key].length;
+		txtara_elem.selectionEnd = end + lines.length;
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
 	await convertMarkdown2Html(txtara_elem.value, _pmd, parent_elem);
