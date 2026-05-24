@@ -181,11 +181,13 @@ const before_replace_str_define_array = [
 ],
 */
 
-function convertULOL(_str = "") {
-	const _str_split_arr = _str.split("\n");
-	const simple_reg = /(?<!\/)( *)[\*] +(.+)/g;
+function convertULOL(input_str = "") {
+	const _str_split_arr = input_str.split("\n");
+	const simple_reg = /(?<!\/)( *)[*+-] +(.+)/g;
 	const number_reg = /(?<!\/)( *)\d +(.+)/g;
+	_str_split_arr.map(str => {
 
+	});
 }
 
 function convertByRefString(_str) {

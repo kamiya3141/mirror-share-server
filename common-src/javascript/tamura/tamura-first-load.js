@@ -147,22 +147,6 @@ var setThemeArgsHistoryObject = {
 	}
 };
 
-function deepCopy(obj) {
-	if (obj === null || typeof obj !== "object") {
-		return obj;
-	}
-	if (obj instanceof HTMLElement) {
-		return obj;
-	}
-	const copy = Array.isArray(obj) ? [] : {};
-	for (const key in obj) {
-		if (obj.hasOwnProperty(key)) {
-			copy[key] = deepCopy(obj[key]);
-		}
-	}
-	return copy;
-}
-
 function dec2bin(ipt, len = 4, with_0b = false) {
 	return (with_0b ? "0b" : "") + String(String(ipt.toString(2)).padStart(len, "0"));
 }

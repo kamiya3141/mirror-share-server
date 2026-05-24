@@ -9,7 +9,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 	const fm_el = p_e.querySelector("#create-new-article--form");
 
 	const has_id_flag = hasFlag(id_flag);
-	const copiedDecodedJsonData = decoded_json_data != null ? deepCopy(decoded_json_data) : {
+	const copiedDecodedJsonData = decoded_json_data != null ? structuredClone(decoded_json_data) : {
 		"type": "article",
 		"status": "draft"
 	};
