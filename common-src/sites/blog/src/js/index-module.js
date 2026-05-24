@@ -137,8 +137,8 @@ const before_replace_str_define_array = [
 ];
 
 function convertULOL(input_str = "") {
-	const simple_reg = /^(?<!\/)( *|\t*)[*+-] +(.+)$/g;
-	const number_reg = /^(?<!\/)( *|\t*)\d\. +(.+)$/g;
+	const simple_reg = /(?<!\/)( *|\t*)[*+-] +(.+)/g;
+	const number_reg = /(?<!\/)( *|\t*)\d\. +(.+)/g;
 	let priority_ol = null;
 	return input_str.split("\n").map(str => {
 		const olul_obj = [
@@ -182,8 +182,8 @@ function convertULOL(input_str = "") {
 					str = str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
 				});
 			}
-			return str;
 		});
+		return str;
 	}).join("\n");
 }
 
