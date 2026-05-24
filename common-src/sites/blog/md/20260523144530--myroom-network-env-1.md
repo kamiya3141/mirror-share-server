@@ -19,7 +19,7 @@
 
 * OpenWRT
 <details open>
- 1. x86_64 PC
+1. x86_64 PC
 	<details open>
 		<summary>スペック</summary>
 * CPU: Intel core2 duo e7500

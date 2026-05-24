@@ -64,19 +64,20 @@ function settingButtons(_pmd) {
 	});
 }
 
+async function convertMD(_el, _pmd, p_e) {
+	_el.style.height = "auto";
+	_el.style.height = `${_el.scrollHeight}px`;
+	await convertMarkdown2Html(_el.value, _pmd, p_e);
+}
+
 async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
 	/** @type {HTMLTextAreaElement} */
 	const txtara_elem = parent_elem.querySelector("#editor--textarea");
 	const resdis_elem = parent_elem.querySelector(".result-display--root");
-	txtara_elem.addEventListener("input", async e => {
-		const _txt_el = e.target;
-		_txt_el.style.height = "auto";
-		_txt_el.style.height = `${_txt_el.scrollHeight}px`;
-		await convertMarkdown2Html(_txt_el.value, _pmd, parent_elem);
-	});
-	txtara_elem.addEventListener("keydown", e => {
+	txtara_elem.addEventListener("input", async e => await convertMD(txtara_elem, _pmd, parent_elem));
+	txtara_elem.addEventListener("keydown", async e => {
 		const key_object = {
 			"Tab": "\t"
 		};
@@ -108,6 +109,9 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 		// 選択範囲補正
 		txtara_elem.selectionStart = start + key_object[e.key].length;
 		txtara_elem.selectionEnd = end + lines.length;
+
+		await convertMD(txtara_elem, _pmd, parent_elem);
+
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
 	await convertMarkdown2Html(txtara_elem.value, _pmd, parent_elem);
