@@ -68,7 +68,7 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
 	/** @type {HTMLTextAreaElement} */
-	const txtara_elem = parent_elem.querySelector("#editor--txtara_elem");
+	const txtara_elem = parent_elem.querySelector("#editor--textarea");
 	const resdis_elem = parent_elem.querySelector(".result-display--root");
 	txtara_elem.addEventListener("input", async e => {
 		const _txt_el = e.target;
