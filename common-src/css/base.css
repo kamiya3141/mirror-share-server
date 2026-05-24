@@ -541,6 +541,12 @@
 	initial-value: lightblue;
 }
 
+@property --myStylingTabSize {
+	syntax: "<integer>";
+	inherits: true;
+	initial-value: 4;
+}
+
 :root {
 
 	/* --- root設定（カラー） --- */
@@ -805,14 +811,14 @@
 	--myElementBackgroundColor2: light-dark(#ffffff, #303030);
 	--myElementBoxShadow: 0px 0px 8px gray;
 	--myStylingUserPreferColor: lightblue;
+	--myStylingTabSize: 4;
 	/*light-dark(lightblue, #32a0c4);*/
 
 	--A-Element-VISITED-COLOR: #2360a4;
 }
 
 /* --- 共通スタイル --- */
-
 * {
-	tab-size: 4;
+	tab-size: var(--myStylingTabSize);
 	font-family: inherit;
 }

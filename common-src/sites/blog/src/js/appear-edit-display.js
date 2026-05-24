@@ -84,7 +84,6 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 			e.preventDefault();
 		else
 			return;
-		console.log(e.key);
 		const start = txtara_elem.selectionStart;
 		const end = txtara_elem.selectionEnd;
 		const value = txtara_elem.value;

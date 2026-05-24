@@ -1,9 +1,4 @@
-
-
-
 自室のネットワーク環境についてまとめました。
-
-
 
 <details>
 <summary>なぜ「-1」？</summary>
@@ -38,14 +33,14 @@ aaa
 	<li>bbb</li>
     <ol>
 		<li>aaa</li>
-<li>bbb</li>
-    </ol>
-    <li>aaa</li>
-    <li>bbb</li>
-    <ol>
-        <li>aaa</li>
-        <li>bbb</li>
-    </ol>
-    <li>aaa</li>
-    <li>bbb</li>
+		<li>bbb</li>
+	</ol>
+	<li>aaa</li>
+	<li>bbb</li>
+	<ol>
+		<li>aaa</li>
+		<li>bbb</li>
+	</ol>
+	<li>aaa</li>
+	<li>bbb</li>
 </ol>

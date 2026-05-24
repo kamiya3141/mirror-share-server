@@ -6,147 +6,124 @@ const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
 const STR_ENV_CONV_OBJ = {};
 
+const myTabSize = Number(getCSSLengthValue("--myStylingTabSize"));
+
 const before_replace_str_define_array = [
 	[
-		/\\(.)/g,
-		cts => `\\${cts}`,
-		null,
-		false
+		/(\\[a-z])/g,
+		cts => `${cts == "\\t" ? "&nbsp;".repeat(myTabSize) : (cts == "\\n" ? "<br>" : cts)}`,
+		null
 	],
 	[
 		new RegExp(`(${SAND_SPL_STR_NML("MYHOSTNAME")})`, "g"),
 		hostname => winMyHrefHostname,
-		null,
-		null,
 		null
 	],
 	[
 		/<(\/?.+)>\n/g,
 		cts => `<${cts}>`,
-		null,
-		null,
 		null
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
 		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
-		[2, 3],
-		null,
-		null
+		[2, 3]
 	],
 	[
 		/```([^\n]*?)\n([\s\S]*?)```/g,
 		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
-		[1, 2],
-		null,
-		null
+		[1, 2]
 	],
 	[
 		/```([^\r\n]*?)```/g,
 		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true),
-		null,
-		null,
 		null
 	],
 	[
 		/`([^\r\n]*?)`/g,
-		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true)
+		cts => createCodeInnerHTMLString("line-solo code-frame-mini", "none", cts, true),
+		null
 	],
 	[
 		/~{2}(.*?)~{2}/g,
-		cts => `<div class="easy-text-deco text-line-through">${cts}</div>`
+		cts => `<div class="easy-text-deco text-line-through">${cts}</div>`,
+		null
 	],
 	[
 		/[*_]{2}(.*?)[*_]{2}/g,
-		cts => `<div class="easy-text-deco text-bold">${cts}</div>`
+		cts => `<div class="easy-text-deco text-bold">${cts}</div>`,
+		null
 	],
 	[
 		/ [*_]{1}(.*?)[*_]{1} /g,
-		cts => `<div class="easy-text-deco text-italic">${cts}</div>`
+		cts => `<div class="easy-text-deco text-italic">${cts}</div>`,
+		null
 	],
 
 	[
 		/^> ?(.*)\n/gm,
 		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`),
-		null,
-		null,
 		null
 	],
 	[
 		/::: note(\n[\s\S]*?):::/g,
 		cts => createNoteInnerHTMLString("info", cts),
-		null,
-		null,
 		null
 	],
 	[
 		/::: note info(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("info", cts),
-		null,
-		null,
 		null
 	],
 	[
 		/::: note warn(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("warn", cts),
-		null,
-		null,
 		null
 	],
 	[
 		/::: note alert(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("alert", cts),
-		null,
-		null,
 		null
 	],
 	[
 		/^###### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 6),
-		null,
-		false
+		null
 	],
 	[
 		/^##### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 5),
-		null,
-		false
+		null
 	],
 	[
 		/^#### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 4),
-		null,
-		false
+		null
 	],
 	[
 		/^### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 3),
-		null,
-		false
+		null
 	],
 	[
 		/^## (.+)$/gm,
 		cts => createHnWithDivElement(cts, 2),
-		null,
-		false
+		null
 	],
 	[
 		/^# (.+)$/gm,
 		cts => createHnWithDivElement(cts, 1),
-		null,
-		false
+		null
 	],
 	[
 		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(alt, url, ttl) => `<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`,
-		[1, 2, 3],
-		false
+		[1, 2, 3]
 	],
 	[
 		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(cts, url, ttl) => `<a href="${url}" title="${ttl ? ttl : url}">${cts ? cts : url}</a>`,
-		[1, 2, 3],
-		false
+		[1, 2, 3]
 	]
 ];
 
@@ -154,29 +131,21 @@ const before_replace_str_define_array = [
 [
 	/(?<!\/)( *)\* +(.+)\n/g,
 	(sp, cts) => `${" ".repeat(sp.length)}<li class="simple-list">${cts}</li>`,
-	[1, 2],
-	null,
-	null
+	[1, 2]
 ],
 [
 	/((?:<li class="simple-list">.*<\/li>\n?)+)/g,
 	cts => `<ul class="my-ulol">${cts}</ul>`,
-	null,
-	null,
 	null
 ],
 [
 	/(?<![\/])( *)\d\. +(.+?)\n/g,
 	(sp, cts) => `${" ".repeat(sp.length)}<li class="number-list">${cts}</li>`,
-	[1, 2],
-	null,
-	null
+	[1, 2]
 ],
 [
 	/((?:<li class="number-list">.*<\/li>\n?)+)/g,
 	cts => `<ol class="my-ulol">${cts}</ol>`,
-	null,
-	null,
 	null
 ],
 */
@@ -188,7 +157,10 @@ function convertULOL(input_str = "") {
 	_str_split_arr.map(str => {
 
 	});
+	return _str_split_arr.join("\n");
 }
+
+
 
 function convertByRefString(_str) {
 	if (_str == ">  ")
@@ -199,12 +171,10 @@ function convertByRefString(_str) {
 		_res.forEach(_c => _str = String(_str).replaceAll(_c[0], `<div class="byref-div">${convertByRefString(_c[1])}</div>`));
 	return _str;
 }
-
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
 	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
 }
-
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 	let result_str = "";
 	const line_multi_str = `<div class="code-frame ${cls}"><div class="code-option-root"><div class="file-info-box"><div class="file-name-box" code-frame-filename="${nm}"></div></div><div class="code-option-box"><div class="code-copied-flag-root"><div class="code-copied-flag display-none">Copied!!</div></div><div class="code-copy-button-root"><div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}"><button class="copy-code-button-element"><span class="fa fa-fw fa-clipboard"></span></button></div></div></div></div><pre><code>${cts}</code><pre></div>`;
@@ -245,10 +215,9 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 		if (result_array.length) {
 			for (let chv of result_array) {
 				const _str = v[1](...(v[2] == null ? [1] : v[2]).map(c => chv[c]));
-				result_str = result_str.replace(chv[0], String(_str).replace("\n", (v.length == 5 ? "" : "\n")));
+				result_str = result_str.replace(chv[0], String(_str));
 			}
 		}
-		// replaceAllの前に、replace()を挟んでいるのは、見た目が不格好になるため
 	}
 
 	// リンクカード整形

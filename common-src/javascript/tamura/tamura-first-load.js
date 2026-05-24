@@ -115,6 +115,7 @@ var setThemeArgsHistoryObject = {
 	"__forceDevice": false,
 	"__deviceType": "device",
 	"__preferColor": "#00ff00",
+	"__tabSize": 4,
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
@@ -144,6 +145,14 @@ var setThemeArgsHistoryObject = {
 	},
 	get "preferColor"() {
 		return this["__preferColor"];
+	},
+	set "tabSize"(input) {
+		if (isNaN(Number(input)))
+			input = 4;
+		this["__tabSize"] = Number(input);
+	},
+	get "tabSize"() {
+		return this["__tabSize"];
 	}
 };
 
@@ -152,7 +161,7 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 }
 
 function setTheme() {
-	let { forceTheme, themeType, forceDevice, deviceType, preferColor } = setThemeArgsHistoryObject;
+	let { forceTheme, themeType, forceDevice, deviceType, preferColor, tabSize } = setThemeArgsHistoryObject;
 	// let forceTheme, themeType, forceDevice, deviceType;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
@@ -168,7 +177,8 @@ function setTheme() {
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
 		["StylingFontSize", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `clamp(8px, 24px)`]],
 		["StylingFontFamily", [`"Note Sans JP", sans-serif`, `"Note Sans JP", sans-serif`]],
-		["StylingUserPreferColor", [preferColor, preferColor]]
+		["StylingUserPreferColor", [preferColor, preferColor]],
+		["StylingTabSize", [tabSize, tabSize]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
