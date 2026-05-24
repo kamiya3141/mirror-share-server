@@ -8,6 +8,12 @@ const STR_ENV_CONV_OBJ = {};
 
 const before_replace_str_define_array = [
 	[
+		/\\(.)/g,
+		cts => `\\${cts}`,
+		null,
+		false
+	],
+	[
 		new RegExp(`(${SAND_SPL_STR_NML("MYHOSTNAME")})`, "g"),
 		hostname => winMyHrefHostname,
 		null,
@@ -55,127 +61,132 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-bold">${cts}</div>`
 	],
 	[
-		/\s[*_]{1}(.*?)[*_]{1}\s/g,
+		/ [*_]{1}(.*?)[*_]{1} /g,
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`
 	],
+
 	[
-		/(?<!\/)\*\s+(.+)\n/g,
-		cts => `<li class="simple-list">${cts}</li>`,
-		null,
-		null,
-		null
-	],
-	[
-		/((?:<li\sclass="simple-list">.*<\/li>\n?)+)/g,
-		cts => `<ul>${cts}</ul>`,
-		null,
-		null,
-		null
-	],
-	[
-		/(?<!\/)\d\.\s+(.+)\n/g,
-		cts => `<li class="number-list">${cts}</li>`,
-		null,
-		null,
-		null
-	],
-	[
-		/((?:<li\sclass="number-list">.*<\/li>\n?)+)/g,
-		cts => `<ol>${cts}</ol>`,
-		null,
-		null,
-		null
-	],
-	[
-		/^>\s?(.*)\n/gm,
+		/^> ?(.*)\n/gm,
 		cts => convertByRefString(`> ${cts.length == 0 ? " " : cts}`),
 		null,
 		null,
 		null
 	],
 	[
-		/:::\snote(\n[\s\S]*?):::/g,
+		/::: note(\n[\s\S]*?):::/g,
 		cts => createNoteInnerHTMLString("info", cts),
 		null,
 		null,
 		null
 	],
 	[
-		/:::\snote\sinfo(\n[\s\S]*?\n):::/g,
+		/::: note info(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("info", cts),
 		null,
 		null,
 		null
 	],
 	[
-		/:::\snote\swarn(\n[\s\S]*?\n):::/g,
+		/::: note warn(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("warn", cts),
 		null,
 		null,
 		null
 	],
 	[
-		/:::\snote\salert(\n[\s\S]*?\n):::/g,
+		/::: note alert(\n[\s\S]*?\n):::/g,
 		cts => createNoteInnerHTMLString("alert", cts),
 		null,
 		null,
 		null
 	],
 	[
-		/(?<=^|\n)######\s(.+)/g,
+		/^###### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 6),
 		null,
 		false
 	],
 	[
-		/(?<=^|\n)#####\s(.+)/g,
+		/^##### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 5),
 		null,
 		false
 	],
 	[
-		/(?<=^|\n)####\s(.+)/g,
+		/^#### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 4),
 		null,
 		false
 	],
 	[
-		/(?<=^|\n)###\s(.+)/g,
+		/^### (.+)$/gm,
 		cts => createHnWithDivElement(cts, 3),
 		null,
 		false
 	],
 	[
-		/(?<=^|\n)##\s(.+)/g,
+		/^## (.+)$/gm,
 		cts => createHnWithDivElement(cts, 2),
 		null,
 		false
 	],
 	[
-		/(?<=^|\n)#\s(.+)/g,
+		/^# (.+)$/gm,
 		cts => createHnWithDivElement(cts, 1),
 		null,
 		false
 	],
 	[
-		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+)\s?["'`]?(.*?)["'`]?\)/g,
+		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(alt, url, ttl) => `<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`,
 		[1, 2, 3],
 		false
 	],
 	[
-		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+)\s?["'`]?(.*?)["'`]?\)/g,
+		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(cts, url, ttl) => `<a href="${url}" title="${ttl ? ttl : url}">${cts ? cts : url}</a>`,
 		[1, 2, 3],
 		false
-	],
-	[
-		/\\(.)/g,
-		cts => `${cts}`,
-		null,
-		false
 	]
 ];
+
+/*
+[
+	/(?<!\/)( *)\* +(.+)\n/g,
+	(sp, cts) => `${" ".repeat(sp.length)}<li class="simple-list">${cts}</li>`,
+	[1, 2],
+	null,
+	null
+],
+[
+	/((?:<li class="simple-list">.*<\/li>\n?)+)/g,
+	cts => `<ul class="my-ulol">${cts}</ul>`,
+	null,
+	null,
+	null
+],
+[
+	/(?<![\/])( *)\d\. +(.+?)\n/g,
+	(sp, cts) => `${" ".repeat(sp.length)}<li class="number-list">${cts}</li>`,
+	[1, 2],
+	null,
+	null
+],
+[
+	/((?:<li class="number-list">.*<\/li>\n?)+)/g,
+	cts => `<ol class="my-ulol">${cts}</ol>`,
+	null,
+	null,
+	null
+],
+*/
+
+function convertULOL(_str = "") {
+	const _str_split_arr = _str.split("\n");
+	const simple_reg = /(?<!\/)( *)[\*] +(.+)/g;
+	const number_reg = /(?<!\/)( *)\d +(.+)/g;
+
+}
 
 function convertByRefString(_str) {
 	if (_str == ">  ")

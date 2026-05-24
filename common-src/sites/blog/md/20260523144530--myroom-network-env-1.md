@@ -20,14 +20,32 @@
 100%その用語や行動が正しいわけではないことを承知の上でお読みください
 :::
 
-> 主に使用した技術等
+> 主に使用した技術等1
 
 1. OpenWRT
-2. abc
-3. abcd
+ 1. abc
+1. abcd
+1. a
+
 
 <details>
 aaa
 </details>
 * x86_64 PC
-* abc
+
+<ol>
+    <li>aaa</li>
+    <li>bbb</li>
+    <ol>
+        <li>aaa</li>
+        <li>bbb</li>
+    </ol>
+    <li>aaa</li>
+    <li>bbb</li>
+    <ol>
+        <li>aaa</li>
+        <li>bbb</li>
+    </ol>
+    <li>aaa</li>
+    <li>bbb</li>
+</ol>

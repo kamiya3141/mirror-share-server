@@ -51,13 +51,13 @@ html {
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
 	background-color: var(--myMainBackgroundColor);
+	overflow: hidden hidden;
 
 	& * {
 		color: inherit;
 		background-color: inherit;
 		font-family: inherit;
 		display: inherit;
-		overflow: hidden hidden;
 		margin: 0px;
 		flex-direction: inherit;
 		justify-content: inherit;
@@ -66,6 +66,7 @@ html {
 		position: inherit;
 		line-height: inherit;
 		border-collapse: inherit;
+		overflow: inherit;
 		/*box-shadow: var(--myElementBoxShadow);*/
 		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
 	}

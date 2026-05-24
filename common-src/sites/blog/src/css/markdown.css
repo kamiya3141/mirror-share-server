@@ -5,6 +5,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 .main-contentsbox {
 	width: var(--c1);
 	text-align: left;
+	overflow: unset;
 
 	& > * {
 		line-height: 1.5;
@@ -107,11 +108,20 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
-	& ul,
-	ol {
-		display: block;
-		list-style-type: disc;
-		padding-inline-start: 0;
+	& ol {
+		list-style: decimal;
+	}
+
+	& ul {
+		list-style: disc;
+	}
+
+	& li {
+		display: list-item;
+	}
+
+	/*
+	& ul.my-ulol {
 		counter-reset: count 0;
 
 		& > li {
@@ -122,19 +132,19 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 
 			&.simple-list::before {
-				content: '・';
+				content: attr(data-mydef--md--tab) '・';
 			}
 
 			&.number-list {
 				counter-increment: count 1;
 
 				&::before {
-					content: counter(count, decimal);
+					content: attr(data-mydef--md--tab) counter(count, decimal);
 				}
 			}
 		}
 	}
-
+*/
 	& strong {
 		display: inline;
 		font-weight: bold;

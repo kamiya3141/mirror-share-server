@@ -47,8 +47,9 @@ function settingButtons(_pmd) {
 			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
 		});
 		const _dt = await _res.json();
+
 		if (_dt["success"])
-			myAlertMessage("おｋ");
+			console.log("おｋ");
 	});
 	save_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] == "draft")
