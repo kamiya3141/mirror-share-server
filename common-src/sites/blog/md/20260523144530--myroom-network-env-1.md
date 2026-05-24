@@ -18,7 +18,7 @@
 > 主に使用した技術等1
 
 1. OpenWRT
-\t1. abc
+1. abc
 1. abcd
 1. a
 
@@ -28,19 +28,15 @@ aaa
 </details>
 * x86_64 PC
 
-<ol>
+<ul>
 	<li>aaa</li>
 	<li>bbb</li>
-    <ol>
-		<li>aaa</li>
-		<li>bbb</li>
-	</ol>
 	<li>aaa</li>
 	<li>bbb</li>
-	<ol>
-		<li>aaa</li>
-		<li>bbb</li>
-	</ol>
 	<li>aaa</li>
 	<li>bbb</li>
-</ol>
+	<li>aaa</li>
+	<li>bbb</li>
+	<li>aaa</li>
+	<li>bbb</li>
+</ul>
