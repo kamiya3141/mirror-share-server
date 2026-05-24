@@ -5,7 +5,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 .main-contentsbox {
 	width: var(--c1);
 	text-align: left;
-	overflow: unset;
 
 	& > * {
 		line-height: 1.5;
