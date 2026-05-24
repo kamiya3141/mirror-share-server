@@ -77,8 +77,18 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
+	& dl {
+		& > dt {
+			font-weight: bold;
+		}
+
+		& > dd {
+			margin-inline-start: 2rem;
+		}
+	}
+
 	& details {
-		& summary {
+		& > summary {
 			display: list-item;
 
 			&::marker {
@@ -92,7 +102,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 		}
 
-		&:open summary {
+		&:open > summary {
 			display: list-item;
 
 			&::marker {

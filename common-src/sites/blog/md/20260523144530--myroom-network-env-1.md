@@ -15,28 +15,21 @@
 100%その用語や行動が正しいわけではないことを承知の上でお読みください
 :::
 
-> 主に使用した技術等1
+> 主に使用した技術やハードウェア
 
 1. OpenWRT
- 1. abc
-1. abcd
-1. a
-
-
 <details>
-aaa
-</details>
 * x86_64 PC
-
-<ul>
-	<li>aaa</li>
-	<li>bbb</li>
-	<li>aaa</li>
-	<li>bbb</li>
-	<li>aaa</li>
-	<li>bbb</li>
-	<li>aaa</li>
-	<li>bbb</li>
-	<li>aaa</li>
-	<li>bbb</li>
-</ul>
+<details>
+	<summary>スペック</summary>
+	<ul>
+		<li>CPU: Intel core2 duo e7500</li>
+		<li>RAM: 2GB * 2</li>
+		<li>STORAGE: SD-CARD 32GB</li>
+	</ul>
+</details>
+* WHR-2533-DHP
+* WSR-1166-DHP
+* WN-AC-1600-DGR3
+</details>
+1. VLAN
