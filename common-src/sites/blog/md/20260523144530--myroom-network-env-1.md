@@ -17,19 +17,17 @@
 
 > 主に使用した技術やハードウェア
 
-1. OpenWRT
-<details>
-* x86_64 PC
-<details>
-	<summary>スペック</summary>
-	<ul>
-		<li>CPU: Intel core2 duo e7500</li>
-		<li>RAM: 2GB * 2</li>
-		<li>STORAGE: SD-CARD 32GB</li>
-	</ul>
+* OpenWRT
+<details open>
+ 1. x86_64 PC
+	<details open>
+		<summary>スペック</summary>
+* CPU: Intel core2 duo e7500
+* RAM: 2GB * 2
+* STORAGE: SD-CARD 32GB
+	</details>
+ 1. WHR-2533-DHP
+ 1. WSR-1166-DHP
+ 1. WN-AC-1600-DGR3
 </details>
-* WHR-2533-DHP
-* WSR-1166-DHP
-* WN-AC-1600-DGR3
-</details>
-1. VLAN
+* VLAN

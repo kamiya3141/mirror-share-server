@@ -137,8 +137,8 @@ const before_replace_str_define_array = [
 ];
 
 function convertULOL(input_str = "") {
-	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
-	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
+	const simple_reg = /^(?<!\/)( *|\t*)[*+-] +(.+)$/gm;
+	const number_reg = /^(?<!\/)( *|\t*)\d\. +(.+)$/gm;
 	[
 		{
 			"res": [...input_str.matchAll(simple_reg)],
