@@ -68,8 +68,10 @@ function parseObj(_obj = {}) {
 	return Object.entries(_obj).map(c => c.join(" : ")).join(", ") + "\n";
 }
 
-console.log(parseObj(obj1), parseObj(obj2));
-
+// console.log(parseObj(obj1), parseObj(obj2));
+const simple_reg = /(?<!\/)( *)[*+-] +(.+)/g;
+const _str = "    * abc";
+console.log([..._str.matchAll(simple_reg)][0].map(c => c.replaceAll(" ", "&nbsp;")));
 console.clear();
 
 /*

@@ -120,6 +120,12 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		display: list-item;
 	}
 
+	ol,
+	ul,
+	li {
+		overflow: visible;
+	}
+
 	/*
 	& ul.my-ulol {
 		counter-reset: count 0;

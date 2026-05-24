@@ -34,11 +34,11 @@ aaa
 * x86_64 PC
 
 <ol>
-    <li>aaa</li>
-    <li>bbb</li>
+	<li>aaa</li>
+	<li>bbb</li>
     <ol>
-        <li>aaa</li>
-        <li>bbb</li>
+		<li>aaa</li>
+<li>bbb</li>
     </ol>
     <li>aaa</li>
     <li>bbb</li>

@@ -67,6 +67,7 @@ function settingButtons(_pmd) {
 async function settingTextEditor(decoded_json_data = {}, _pmd) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
+	/** @type {HTMLTextAreaElement} */
 	const txtara_elem = parent_elem.querySelector("#editor--textarea");
 	const resdis_elem = parent_elem.querySelector(".result-display--root");
 	txtara_elem.addEventListener("input", async e => {
@@ -74,6 +75,22 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 		_txt_el.style.height = "auto";
 		_txt_el.style.height = `${_txt_el.scrollHeight}px`;
 		await convertMarkdown2Html(_txt_el.value, _pmd, parent_elem);
+	});
+	txtara_elem.addEventListener("keydown", e => {
+		const key_object = {
+			"Tab": "\t"
+		};
+		if (Object.keys(key_object).some(c => c == e.key))
+			e.preventDefault();
+		else
+			return;
+		console.log(e.key);
+		const start = txtara_elem.selectionStart;
+		const end = txtara_elem.selectionEnd;
+		const value = txtara_elem.value;
+		txtara_elem.value = value.substring(0, start) + key_object[e.key] + value.substring(end);
+		txtara_elem.selectionEnd = start + key_object[e.key].length;
+		txtara_elem.selectionStart = txtara_elem.selectionEnd;
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
 	await convertMarkdown2Html(txtara_elem.value, _pmd, parent_elem);
