@@ -137,42 +137,54 @@ const before_replace_str_define_array = [
 ];
 
 function convertULOL(input_str = "") {
-	const simple_reg = /^(?<!\/)( *|\t*)[*+-] +(.+)$/gm;
-	const number_reg = /^(?<!\/)( *|\t*)\d\. +(.+)$/gm;
-	[
-		{
-			"res": [...input_str.matchAll(simple_reg)],
-			"el": "ul"
-		},
-		{
-			"res": [...input_str.matchAll(number_reg)],
-			"el": "ol"
-		}
-	].forEach((c, i) => {
-		if (!c["res"].length)
-			return;
-		let _n = 0;
-		c["res"].forEach(__res => {
-			let start_element_str = `<${c["el"]}>`;
-			let end_element_str = `</${c["el"]}>`;
-			let insert_before = "";
-			let insert_after = "";
-			const _ipt_n = __res[1].length;
-			if (_ipt_n < _n) {
-				insert_before = end_element_str.repeat(_n - _ipt_n);
-				insert_after = _ipt_n ? start_element_str : "";
-			} else if (_ipt_n > _n) {
-				insert_before = start_element_str.repeat(_ipt_n - _n);
-				insert_after = "";
-			} else {
-				insert_before = "";
-				insert_after = "";
+	const simple_reg = /^(?<!\/)( *|\t*)[*+-] +(.+)$/g;
+	const number_reg = /^(?<!\/)( *|\t*)\d\. +(.+)$/g;
+	let priority_ol = null;
+	return input_str.split("\n").map(str => {
+		const olul_obj = [
+			{
+				"res": [...str.matchAll(simple_reg)],
+				"el": "ul",
+				"n": 0
+			},
+			{
+				"res": [...str.matchAll(number_reg)],
+				"el": "ol",
+				"n": 0
 			}
-			_n = _ipt_n;
-			input_str = input_str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
+		];
+		olul_obj.forEach(c => {
+			if (str.length == 0) {
+				if (priority_ol == null)
+					return str;
+				const _idx = Number(priority_ol);
+				str = olul_obj[_idx]["el"].repeat(olul_obj[_idx]["n"]);
+			}
+			if (c["res"].length) {
+				priority_ol = c["el"] == "ol";
+				c["res"].forEach(__res => {
+					let start_element_str = `<${c["el"]}>`;
+					let end_element_str = `</${c["el"]}>`;
+					let insert_before = "";
+					let insert_after = "";
+					const _ipt_n = __res[1].length;
+					if (_ipt_n < c["n"]) {
+						insert_before = end_element_str.repeat(c["n"] - _ipt_n);
+						insert_after = _ipt_n ? start_element_str : "";
+					} else if (_ipt_n > c["n"]) {
+						insert_before = start_element_str.repeat(_ipt_n - c["n"]);
+						insert_after = "";
+					} else {
+						insert_before = "";
+						insert_after = "";
+					}
+					c["n"] = _ipt_n;
+					str = str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
+				});
+			}
+			return str;
 		});
-	});
-	return input_str;
+	}).join("\n");
 }
 
 
