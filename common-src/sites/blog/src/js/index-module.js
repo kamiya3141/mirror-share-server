@@ -138,7 +138,7 @@ const before_replace_str_define_array = [
 
 function convertULOL(input_str = "") {
 	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
-	const number_reg = /^(?<!\/)( *)[\d] +(.+)$/gm;
+	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
 	[
 		{
 			"res": [...input_str.matchAll(simple_reg)],
@@ -153,14 +153,16 @@ function convertULOL(input_str = "") {
 			return;
 		let _n = 0;
 		c["res"].forEach(__res => {
-			let insert_before = `<${c["el"]}>`;
-			let insert_after = `</${c["el"]}>`;
+			let start_element_str = `<${c["el"]}>`;
+			let end_element_str = `</${c["el"]}>`;
+			let insert_before = "";
+			let insert_after = "";
 			const _ipt_n = __res[1].length;
 			if (_ipt_n < _n) {
-				insert_before = "";
-				insert_after = insert_after.repeat(_n - _ipt_n);
+				insert_before = end_element_str.repeat(_n - _ipt_n);
+				insert_after = _ipt_n ? start_element_str : "";
 			} else if (_ipt_n > _n) {
-				insert_before = insert_before.repeat(_n - _ipt_n);
+				insert_before = start_element_str.repeat(_ipt_n - _n);
 				insert_after = "";
 			} else {
 				insert_before = "";
