@@ -60,18 +60,8 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/ *?\* +(.*)/g,
-		cts => `<li class="my-ul-li">${cts}</li>`,
-		null
-	],
-	[
 		/((?:<li class="my-ul-li">.*<\/li>\n?)+)/g,
 		cts => `<ul>${cts}</ul>\n`,
-		null
-	],
-	[
-		/ *?\d\. +(.*)/g,
-		cts => `<li class="my-ol-li">${cts}</li>`,
 		null
 	],
 	[

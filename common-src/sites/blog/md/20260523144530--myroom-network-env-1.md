@@ -24,11 +24,11 @@
 1. x86_64 PC
 <details open>
 <summary>スペック</summary>
-	<ul>
-		<li>CPU: Intel core2 duo e7500</li>
-		<li>RAM: 2GB × 2</li>
-		<li>STORAGE: SD-CARD 32GB</li>
-	</ul>
+<ul>
+<li>CPU: Intel core2 duo e7500</li>
+<li>RAM: 2GB * 2</li>
+<li>STORAGE: SD-CARD 32GB</li>
+</ul>
 </details>
 1. WHR-2533-DHP
 1. WSR-1166-DHP
