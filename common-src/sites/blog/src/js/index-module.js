@@ -341,7 +341,7 @@ async function parseMarkdown(use_version_1 = true) {
 	let result_md_str = "<h1>404 Error ...</h1>";
 	const decoded_json_data = await getArticleData();
 
-	if (decoded_json_data != null)
+	if (decoded_json_data != null && decoded_json_data["type"] == "article" && decoded_json_data["status"] == "published")
 		result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(decoded_json_data);
 
 	return result_md_str;
