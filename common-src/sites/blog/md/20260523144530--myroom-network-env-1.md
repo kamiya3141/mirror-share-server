@@ -21,7 +21,7 @@
 
 * OpenWRT
 <details open>
-1. x86_64 PC
+1. x86_64 PC (L3-SW-0)
 <details open>
 <summary>スペック</summary>
 <ul>
@@ -30,8 +30,8 @@
 <li>STORAGE: SD-CARD 32GB</li>
 </ul>
 </details>
-1. WHR-2533-DHP
-1. WSR-1166-DHP
-1. WN-AC-1600-DGR3
+1. WHR-2533-DHP (L2-SW-0)
+1. WSR-1166-DHP (L2-SW-1)
+1. WN-AC-1600-DGR3 (L2-SW-2)
 </details>
 * VLAN
