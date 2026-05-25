@@ -32,13 +32,20 @@ function scda() {
 }
 
 function sced() {
-	sudo nano /etc/systemd/system/$1.service
+	sudo nano /etc/systemd/system/$1.service && scdr && scst $1
+}
+
+function sc() {
+	sudo systemctl $@
 }
 
 function sjc() {
 	sudo journalctl -xeu $@
 }
 
+function sct() {
+	sudo cat $1 | less
+}
 function sls() {
 	sudo ls -lah $@
 }
