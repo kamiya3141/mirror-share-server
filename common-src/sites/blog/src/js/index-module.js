@@ -11,7 +11,21 @@ const myTabSize = Number(getCSSLengthValue("--myStylingTabSize"));
 const before_replace_str_define_array = [
 	[
 		/(\\[a-z])/g,
-		cts => `${cts == "\\t" ? "&nbsp;".repeat(myTabSize) : cts}`,
+		cts => {
+			let res_str = "";
+			switch (cts) {
+				case "\\t":
+					res_str = "&nbsp;".repeat(myTabSize);
+					break;
+				case "\\n":
+					res_str = "<br>";
+					break;
+				default:
+					res_str = cts;
+					break;
+			}
+			return res_str;
+		},
 		null
 	],
 	[
