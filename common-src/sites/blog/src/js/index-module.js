@@ -147,6 +147,11 @@ const before_replace_str_define_array = [
 		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(cts, url, ttl) => `<a href="${url}" title="${ttl ? ttl : url}">${cts ? cts : url}</a>`,
 		[1, 2, 3]
+	],
+	[
+		/\\(.*)/g,
+		cts => cts,
+		null
 	]
 ];
 
