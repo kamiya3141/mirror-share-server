@@ -1,25 +1,5 @@
 const joinBaseHostname = pathname => (pathname = String(pathname), `${winMyHrefPTCHostname}${(pathname[0] != "/" ? "/" : "")}${pathname}`);
 const allScriptSettingObjectArrayObject = {
-	"common": [
-		{
-			"src": "src/js/utils.js",
-			"type": "text/javascript"
-		},
-		{
-			"src": "src/js/device-info.js",
-			"type": "text/javascript"
-		},
-		{
-			"src": "src/js/setup.js",
-			"type": "text/javascript"
-		}
-	],
-	"after": [
-		{
-			"src": "src/js/after.js",
-			"type": "text/javascript"
-		}
-	],
 	"main": [
 		{
 			"src": "src/js/display-all-articles.js",
@@ -71,7 +51,7 @@ const getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
 
 page_flag.forEach(c => setScriptObjectKey = (hasFlag(c) ? c : setScriptObjectKey));
 
-let resultScriptSettingObjectArray = [...allScriptSettingObjectArrayObject["common"], ...allScriptSettingObjectArrayObject[setScriptObjectKey], ...allScriptSettingObjectArrayObject["after"]];
+let resultScriptSettingObjectArray = allScriptSettingObjectArrayObject[setScriptObjectKey];
 
 // ↓ カンマ演算子使ってるよ、読みづらいね(笑)
 resultScriptSettingObjectArray.map(scriptSettingObject => (scriptSettingObject["defer"] = "", scriptSettingObject["src"] = `./${scriptSettingObject["src"]}`, scriptSettingObject)).forEach(scriptSettingObject => {
@@ -79,4 +59,3 @@ resultScriptSettingObjectArray.map(scriptSettingObject => (scriptSettingObject["
 	Object.entries(scriptSettingObject).forEach(([attributeName, attributeValue]) => scriptElement.setAttribute(attributeName, attributeValue));
 	document.body.appendChild(scriptElement);
 });
-// joinBaseHostname(scriptSettingObject["src"])
