@@ -1,0 +1,82 @@
+:root {
+	--w: 50%;
+	--p1: 0.5rem;
+	--p2: calc(var(--p1) * 2);
+	--c1: calc(var(--w) * 2);
+	--c2: calc(var(--c1) - var(--p2) * 2);
+	--c3: calc(var(--c1) * 1 / 100);
+	--c4: calc(var(--c1) * 98 / 100);
+
+	--c-hd-h: calc(var(--c3) * 10);
+	--c-mn-h: calc(var(--c-hd-h) * 8);
+	--c-ft-h: calc(var(--myStylingHeight) * 20 / 100);
+
+	--mnt1: 0.25s;
+
+}
+
+html {
+	position: absolute;
+	left: calc(var(--myStylingWidth) * 0 / 100);
+	top: calc(var(--myStylingHeight) * 0 / 100);
+	width: calc(var(--myStylingWidth) * 100 / 100);
+	height: calc(var(--myStylingHeight) * 100 / 100);
+	font-family: var(--myStylingFontFamily);
+	font-size: var(--myStylingFontSize);
+	color: var(--myTextColor);
+	background-color: var(--myMainBackgroundColor);
+
+	& * {
+		color: inherit;
+		background-color: inherit;
+		font-family: inherit;
+		display: inherit;
+		margin: 0px;
+		flex-direction: inherit;
+		justify-content: inherit;
+		align-items: inherit;
+		place-items: inherit;
+		position: inherit;
+		line-height: inherit;
+		border-collapse: inherit;
+		overflow: hidden hidden;
+		/*box-shadow: var(--myElementBoxShadow);*/
+		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
+	}
+
+
+	& > head {
+		display: none;
+	}
+
+	&[data-my-device-type="desktop"] > body {
+		& > div#root {
+			width: var(--c1);
+			height: var(--c1);
+			left: 0;
+			top: 0;
+		}
+	}
+	&[data-my-device-type="mobile"] > body {
+		position: static;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		& > div#root {
+			width: 98vmin;
+			height: 98vmin;
+		}
+	}
+
+	& > body > div#root {
+		& > section#main-contents {
+			width: var(--c1);
+			height: var(--c1);
+			& > button,iframe {
+				
+			}
+		}
+	}
+}
