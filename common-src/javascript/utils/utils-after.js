@@ -4,7 +4,7 @@ function loadedFunc() {
 
 	const displayElementQueryArray = [
 		{
-			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
+			"trigger-element": [".open-setting-display-button-element"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
 			"tf-func": (__tf, __elem) => editDeviceInformation("setting-display-open", __tf)
