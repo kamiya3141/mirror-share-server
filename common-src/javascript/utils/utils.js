@@ -1,5 +1,4 @@
-const header_class_element = document.body.querySelector(".header-class-element") ? document.body.querySelector(".header-class-element") : document.body;
-header_class_element.insertAdjacentHTML("afterbegin", `
+document.body.insertAdjacentHTML("afterbegin", `
 	<template id="toggle-switch-template">
 		<label class="toggle_button">
 			<input class="toggle_input" type="checkbox" />
