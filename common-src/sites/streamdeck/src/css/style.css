@@ -1,6 +1,7 @@
 :root {
 	--w: 50%;
-	--p1: 0.5rem;
+	--p1: calc((1vmin + 1vmax) * 16);
+	/*--p1: 0.5rem*/
 	--p2: calc(var(--p1) * 2);
 	--c1: calc(var(--w) * 2);
 	--c2: calc(var(--c1) - var(--p2) * 2);
@@ -55,27 +56,45 @@ html {
 			height: var(--c1);
 			left: 0;
 			top: 0;
+
+			position: static;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 		}
 	}
+
 	&[data-my-device-type="mobile"] > body {
 		position: static;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		
+
 		& > div#root {
 			width: 98vmin;
 			height: 98vmin;
 		}
 	}
 
-	& > body > div#root {
-		& > section#main-contents {
-			width: var(--c1);
-			height: var(--c1);
-			& > button,iframe {
-				
+	& > body > div#root > section#main-contents {
+		width: var(--c1);
+		height: var(--c1);
+		display: grid;
+
+
+		& > button[type="button"] {
+			display: block;
+			aspect-ratio: 1/1;
+			padding: var(--p1);
+			width: auto;
+			height: auto;
+
+			& > * {
+				aspect-ratio: 1/1;
+				width: var(--c1);
+				height: var(--c1);
 			}
 		}
 	}
