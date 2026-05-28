@@ -158,7 +158,6 @@ const before_replace_str_define_array = [
 function convertULOL(input_str = "") {
 	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
 	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
-	let priority_ol = null;
 	const obj_n = [0, 0];
 	return input_str.split("\n").map((str, i0) => {
 		const olul_obj = [
@@ -175,7 +174,6 @@ function convertULOL(input_str = "") {
 			let start_element_str = `<${c["el"]}>`;
 			let end_element_str = `</${c["el"]}>`;
 			let insert_before = "";
-			let insert_after = "";
 			if (c["res"].length) {
 				c["res"].forEach(__res => {
 					const _ipt_n = __res[1].length;
@@ -184,7 +182,7 @@ function convertULOL(input_str = "") {
 					else if (_ipt_n > obj_n[i])
 						insert_before += start_element_str;
 					obj_n[i] = _ipt_n;
-					str = str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>${insert_after}`);
+					str = str.replace(__res[0], `${insert_before}<li class="my-${c["el"]}-li">${__res[2]}</li>`);
 				});
 			}
 		});
