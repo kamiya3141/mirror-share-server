@@ -70,6 +70,7 @@ html {
 	}
 
 	& > body > div#root > section#main-contents {
+		position: static;
 		width: var(--c1);
 		height: var(--c1);
 		display: grid;
@@ -87,6 +88,17 @@ html {
 				width: var(--c1);
 				height: var(--c1);
 			}
+
+			& > .expanded-clear-element {
+				display: block;
+				position: relative;
+				left: 0;
+				top: calc(var(--c1) * -1);
+				opacity: 0;
+			}
 		}
+
+
+
 	}
 }
