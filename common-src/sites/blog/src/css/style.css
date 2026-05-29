@@ -1,27 +1,4 @@
-@property --myStylingLocalDisplayWidth {
-	syntax: "<length>";
-	inherits: true;
-	initial-value: 100%;
-}
-
-@property --myStylingLocalDisplayHeight {
-	syntax: "<length>";
-	inherits: true;
-	initial-value: 100%;
-}
-
 :root {
-	--w: 50%;
-	--p1: 0.5rem;
-	--p2: calc(var(--p1) * 2);
-	--c1: 100%;
-	--c2: calc(var(--c1) - var(--p2) * 2);
-	--c3: calc(var(--c1) * 1 / 100);
-	--c4: calc(var(--c1) * 98 / 100);
-
-	--c-hd-h: calc(var(--c1) * 10 / 100);
-	--c-mn-h: calc(var(--c-hd-h) * 8);
-	--c-ft-h: calc(var(--myStylingHeight) * 20 / 100);
 
 	--mnt1: 0.25s;
 
@@ -35,9 +12,6 @@
 
 	--debug-bgc1: aqua;
 	--debug-bgc2: red;
-
-	--myStylingLocalDisplayWidth: var(--c-mn-h);
-	--myStylingLocalDisplayHeight: var(--c-mn-h);
 
 }
 
