@@ -64,6 +64,8 @@
 		display: none;
 	}
 
+	width: var(--c1);
+	height: var(--c1);
 	align-items: center;
 	justify-content: center;
 
