@@ -1,0 +1,22 @@
+{
+	"name": "root",
+	"data": [
+		{
+			"name": "page--1",
+			"data": [
+				"reload-this-script",
+				{
+					"name": "dir--ssh",
+					"data": [
+						"ssh-dh0d0"
+					]
+				},
+				"open-command-prompt",
+				"media-prev",
+				"media-play-pause",
+				"media-next",
+				"open-windows-settings"
+			]
+		}
+	]
+}

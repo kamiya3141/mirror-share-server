@@ -325,25 +325,6 @@ html {
 			}
 		}
 
-		& .display-section {
-			&[data-display-open="true"] {
-				display: flex;
-			}
-
-			&[data-display-open="false"] {
-				display: none;
-			}
-
-			align-items: center;
-			justify-content: center;
-
-			& > .display-section--div-main {
-				background-color: var(--clear);
-				width: var(--myStylingLocalDisplayWidth);
-				height: var(--myStylingLocalDisplayHeight);
-			}
-		}
-
 
 		& > div#root {
 			top: auto;

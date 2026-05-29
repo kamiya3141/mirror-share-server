@@ -1,0 +1,158 @@
+{
+	"data-type": "root",
+	"define": {
+		"word": {
+			"null": "none",
+			"special": "sp",
+			"page": "page",
+			"directory": "dir",
+			"button": "icon",
+			"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
+		}
+	},
+	"icon": "%word.null",
+	"title": "%word.null",
+	"data": {
+		"goto-root": {
+			"data-type": "%word.special",
+			"icon": "%word.null",
+			"title": "ページ一覧に移動",
+			"data": "&goto-root"
+		},
+		"page--1": {
+			"data-type": "%word.dir",
+			"icon": "%word.url0;normal.png",
+			"title": "page1",
+			"data": "%word.null"
+		},
+		"dir--ssh": {
+			"data-type": "%word.dir",
+			"icon": "%word.url0;dir0.png",
+			"title": "SSH",
+			"data": "%word.null"
+		},
+		"reload-this-script": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;reload.png",
+			"title": "reload-ahkv2-script",
+			"data": {
+				"data-type": "%word.button",
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"ReloadThisScript"
+					]
+				],
+				"args": []
+			}
+		},
+		"open-command-prompt": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "open-cmdprt",
+			"data": {
+				"data-type": "%word.button",
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt"
+					]
+				],
+				"args": []
+			}
+		},
+		"ssh-dh0d0": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh0d0",
+			"data": {
+				"data-type": "%word.button",
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh0d0"
+						]
+					]
+				]
+			}
+		},
+		"media-next": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaNext.png",
+			"title": "media-next",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaNextFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"media-play-pause": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaPlayPause.png",
+			"title": "media-play-pause",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaPlayPauseFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"media-prev": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaPrev.png",
+			"title": "media-prev",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaPrevFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"open-windows-settings": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;settings.png",
+			"title": "win-settings",
+			"data": {
+				"cmd-type": [
+					"s"
+				],
+				"cmd": [
+					[
+						"#i"
+					]
+				],
+				"args": []
+			}
+		}
+	}
+}

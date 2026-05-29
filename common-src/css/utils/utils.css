@@ -1,0 +1,46 @@
+&[data-my-device-type="desktop"] > body {
+	--myStylingLocalDisplayWidth: var(--c-mn-h);
+	--myStylingLocalDisplayHeight: var(--c-mn-h);
+
+	& .mobile-element {
+		display: none !important;
+	}
+
+	& .desktop-element {
+		display: initial;
+	}
+
+}
+
+&[data-my-device-type="mobile"] > body {
+	--myStylingLocalDisplayWidth: var(--c1);
+	--myStylingLocalDisplayHeight: var(--c1);
+
+	& .mobile-element {
+		display: initial;
+	}
+
+	& .desktop-element {
+		display: none !important;
+	}
+
+}
+
+.display-section {
+	&[data-display-open="true"] {
+		display: flex;
+	}
+
+	&[data-display-open="false"] {
+		display: none;
+	}
+
+	align-items: center;
+	justify-content: center;
+
+	& > .display-section--div-main {
+		background-color: var(--clear);
+		width: var(--myStylingLocalDisplayWidth);
+		height: var(--myStylingLocalDisplayHeight);
+	}
+}
