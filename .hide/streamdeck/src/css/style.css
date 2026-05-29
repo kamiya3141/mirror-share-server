@@ -1,7 +1,5 @@
 :root {
-
 	--mnt1: 0.25s;
-
 }
 
 html {
@@ -39,6 +37,9 @@ html {
 	}
 
 	&[data-my-device-type="desktop"] > body {
+		width: var(--c1);
+		height: var(--c1);
+
 		& > div#root {
 			width: var(--c1);
 			height: var(--c1);
@@ -59,6 +60,8 @@ html {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		width: var(--c1);
+		height: var(--c1);
 
 		& > div#root {
 			width: 98vmin;
