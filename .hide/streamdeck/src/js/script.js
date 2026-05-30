@@ -18,7 +18,7 @@ function createButton(key_name = "", decoded_json_data = {}) {
 		else if (data_type == DEFINE_JSON_DIR["button"])
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
 	});
-	if (data_type == DEFINE_JSON_DIR["page"])
+	if (data_type == DEFINE_JSON_DIR["page"] || data_type == DEFINE_JSON_DIR["directory"])
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
 	return btn_el;
 }
@@ -26,7 +26,6 @@ function createButton(key_name = "", decoded_json_data = {}) {
 function setButtons() {
 	target_parent_element.innerHTML = "";
 	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
-	console.log(CURRENT_STACKED_DIR_DEPTH);
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(CMD_DATA["data"][CURRENT_STACKED_DIR_DEPTH.at(-1)]["title"]);
 }
 
