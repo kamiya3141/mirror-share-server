@@ -18,7 +18,7 @@
 			"data": null
 		},
 		"dir--ssh": {
-			"data-type": "%word.dir",
+			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
 			"title": "SSH",
 			"data": null
