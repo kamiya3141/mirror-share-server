@@ -1,5 +1,4 @@
 {
-	"data-type": "root",
 	"define": {
 		"word": {
 			"page": "page",
@@ -8,9 +7,13 @@
 			"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
 		}
 	},
-	"icon": null,
-	"title": null,
 	"data": {
+		"root": {
+			"data-type": "root",
+			"icon": null,
+			"title": "root",
+			"data": null
+		},
 		"void": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;void0.png",

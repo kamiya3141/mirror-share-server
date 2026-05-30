@@ -26,6 +26,7 @@ function createButton(key_name = "", decoded_json_data = {}) {
 function setButtons() {
 	target_parent_element.innerHTML = "";
 	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
+	console.log(CURRENT_STACKED_DIR_DEPTH);
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(CMD_DATA["data"][CURRENT_STACKED_DIR_DEPTH.at(-1)]["title"]);
 }
 
