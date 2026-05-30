@@ -4,6 +4,8 @@ var STRUCTURE_DATA = {};
 const MY_FUNCTIONS = {};
 let CURRENT_STACKED_DIR_DEPTH = [];
 
+// [...document.querySelectorAll("frame")].forEach(c => c.onload = () => c.style.visibility = "visible");
+
 async function loadedWindowSetupFunc() {
 	const res0 = await fetch(`./src/json/cmd-data.json`);
 	CMD_DATA = await res0.json();

@@ -128,10 +128,11 @@ html {
 					aspect-ratio: 1/1;
 					width: var(--c-mn-h);
 					height: auto;
+					pointer-events: none;
 				}
 
-				& > iframe {
-					pointer-events: none;
+				& > img.img-reverse {
+					transform: scaleX(-1);
 				}
 			}
 		}

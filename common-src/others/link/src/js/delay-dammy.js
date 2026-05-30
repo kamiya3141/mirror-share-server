@@ -1,0 +1,1 @@
+// this file exist to load cureentColor for stroke from css.
