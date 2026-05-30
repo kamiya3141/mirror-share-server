@@ -1,7 +1,5 @@
-var target_parent_element = document.querySelector("#button-box--item-box");
-
 function loadedWindowAfter() {
-	CURRENT_STACKED_DIR_DEPTH = [DEFINE_JSON_DIR["root"], "page--1"];
+	CURRENT_STACKED_DIR_DEPTH = [DEFINE_JSON_DIR["root"], PAGE_ARRAY[PAGE_ARRAY_INDEX]];
 	setButtons();
 }
 
@@ -17,6 +15,8 @@ function createButton(key_name = "", decoded_json_data = {}) {
 			MoveToUpDownDirectory(false, key_name);
 		else if (data_type == DEFINE_JSON_DIR["button"])
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
+		if (data_type == DEFINE_JSON_DIR["page"])
+			PAGE_ARRAY_INDEX = PAGE_ARRAY.indexOf(key_name);
 	});
 	if (data_type == DEFINE_JSON_DIR["page"] || data_type == DEFINE_JSON_DIR["directory"])
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
@@ -26,7 +26,7 @@ function createButton(key_name = "", decoded_json_data = {}) {
 function setButtons() {
 	target_parent_element.innerHTML = "";
 	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
-	document.querySelector("#contents--title-box > .title-element").innerHTML = String(CMD_DATA["data"][CURRENT_STACKED_DIR_DEPTH.at(-1)]["title"]);
+	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 
 function sendDataForWebSocketServer(decoded_json_data = {}) {
@@ -34,6 +34,15 @@ function sendDataForWebSocketServer(decoded_json_data = {}) {
 		myAlertMessage("送信予定のデータが空です");
 	else {
 		const send_data = JSON.stringify(decoded_json_data);
-		socket.send(send_data);
+		const socket = new WebSocket("wss://ws.tshuto.com");
+		socket.addEventListener("open", e => {
+			socket.send(send_data);
+		});
+		socket.addEventListener("close", e => {
+			console.log("ws close");
+		});
+		socket.addEventListener("error", e => {
+			console.error("ws error", e);
+		});
 	}
 }

@@ -1,5 +1,10 @@
 var CMD_DATA = {};
 var STRUCTURE_DATA = {};
+var PAGE_ARRAY = [];
+var PAGE_ARRAY_INDEX = 0;
+
+var target_parent_element = document.querySelector("#button-box--item-box");
+
 
 const MY_FUNCTIONS = {};
 let CURRENT_STACKED_DIR_DEPTH = [];
@@ -11,18 +16,13 @@ let DEFINE_JSON_DIR = {
 	"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
 };
 
-const socket = new WebSocket("wss://ws.tshuto.com");
-socket.addEventListener("open", e => {
-	console.log("ws ok");
-});
-socket.addEventListener("message", e => {
-	myAlertMessage(`Message from server\n ${e.data}`);
-});
 async function loadedWindowSetupFunc() {
 	const res0 = await fetch(`./src/json/cmd-data.json`);
 	CMD_DATA = await res0.json();
 	const res1 = await fetch(`./src/json/structure-data.json`);
 	STRUCTURE_DATA = await res1.json();
+
+	PAGE_ARRAY = Object.keys(STRUCTURE_DATA["root"]);
 
 	loadedWindowAfter();
 }
@@ -46,6 +46,14 @@ function DotToObject(org_obj = {}, input_str = "") {
 	return input_str.split(".").reduce((obj, key) => obj[key], _obj);
 }
 
+function CurrentStackedDirObject() {
+	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."));
+}
+
+function getCurrentStackedObjectData() {
+	return CMD_DATA["data"][CURRENT_STACKED_DIR_DEPTH.at(-1)];
+}
+
 function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 	if (up_down_tf == true) {
 		if (CURRENT_STACKED_DIR_DEPTH.length > 1) {
@@ -59,6 +67,17 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 	setButtons();
 }
 
-function CurrentStackedDirObject() {
-	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."));
+function MoveToPage(next_prev_tf = true) {
+	const data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
+	if (data_type == DEFINE_JSON_DIR["page"]) {
+		if (next_prev_tf)
+			PAGE_ARRAY_INDEX = ++PAGE_ARRAY_INDEX % PAGE_ARRAY.length;
+		else
+			PAGE_ARRAY_INDEX--;
+		if (PAGE_ARRAY_INDEX < 0)
+			PAGE_ARRAY_INDEX = PAGE_ARRAY.length - 1;
+		CURRENT_STACKED_DIR_DEPTH.pop();
+		CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
+	}
+	setButtons();
 }

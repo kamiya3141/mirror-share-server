@@ -5,11 +5,13 @@
 			"dir--ssh": {
 				"ssh-dh0d0": null
 			},
-			"media-prev": null,
-			"media-play-pause": null,
-			"media-next": null,
 			"open-command-prompt": null,
 			"open-windows-settings": null
+		},
+		"page--2": {
+			"media-prev": null,
+			"media-play-pause": null,
+			"media-next": null
 		}
 	}
 }

@@ -26,6 +26,12 @@
 			"title": "Page-1",
 			"data": null
 		},
+		"page--2": {
+			"data-type": "%word.page",
+			"icon": "%word.url0;normal.png",
+			"title": "Page-2",
+			"data": null
+		},
 		"dir--ssh": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
