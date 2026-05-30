@@ -90,7 +90,6 @@ html {
 			}
 
 			& > .expanded-clear-element {
-				display: block;
 				position: relative;
 				left: 0;
 				top: calc(var(--c1) * -1);
