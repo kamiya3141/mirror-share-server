@@ -3,8 +3,13 @@ var STRUCTURE_DATA = {};
 
 const MY_FUNCTIONS = {};
 let CURRENT_STACKED_DIR_DEPTH = [];
-
-// [...document.querySelectorAll("frame")].forEach(c => c.onload = () => c.style.visibility = "visible");
+let DEFINE_JSON_DIR = {
+	"root": "root",
+	"page": "page",
+	"directory": "dir",
+	"button": "icon",
+	"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
+};
 
 async function loadedWindowSetupFunc() {
 	const res0 = await fetch(`./src/json/cmd-data.json`);
@@ -30,8 +35,8 @@ function convertEnvVars(input_str = "") {
 }
 
 function DotToObject(org_obj = {}, input_str = "") {
-	const _obj = structuredClone(org_obj);
-	return input_str.split(".").reduce((c, currentValue) => currentValue[c], _obj);
+	const _obj = org_obj;
+	return input_str.split(".").reduce((obj, key) => obj[key], _obj);
 }
 
 function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
@@ -44,7 +49,7 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 		CURRENT_STACKED_DIR_DEPTH.push(dir_name);
 	} else
 		myAlertMessage(`指定されたディレクトリ名は無効です\n${String(dir_name)}`);
-	return CurrentStackedDirObject();
+	setButtons();
 }
 
 function CurrentStackedDirObject() {

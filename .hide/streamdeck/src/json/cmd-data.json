@@ -2,41 +2,32 @@
 	"data-type": "root",
 	"define": {
 		"word": {
-			"null": "none",
-			"special": "sp",
 			"page": "page",
 			"directory": "dir",
 			"button": "icon",
 			"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
 		}
 	},
-	"icon": "%word.null",
-	"title": "%word.null",
+	"icon": null,
+	"title": null,
 	"data": {
-		"goto-root": {
-			"data-type": "%word.special",
-			"icon": "%word.null",
-			"title": "ページ一覧に移動",
-			"data": "&goto-root"
-		},
 		"page--1": {
 			"data-type": "%word.page",
 			"icon": "%word.url0;normal.png",
 			"title": "Page-1",
-			"data": "%word.null"
+			"data": null
 		},
 		"dir--ssh": {
 			"data-type": "%word.dir",
 			"icon": "%word.url0;dir0.png",
 			"title": "SSH",
-			"data": "%word.null"
+			"data": null
 		},
 		"reload-this-script": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;reload.png",
 			"title": "reload-ahkv2-script",
 			"data": {
-				"data-type": "%word.button",
 				"cmd-type": [
 					"f"
 				],
@@ -53,7 +44,6 @@
 			"icon": "%word.url0;CmdPrt.png",
 			"title": "open-cmdprt",
 			"data": {
-				"data-type": "%word.button",
 				"cmd-type": [
 					"f"
 				],
@@ -70,7 +60,6 @@
 			"icon": "%word.url0;CmdPrt.png",
 			"title": "dh0d0",
 			"data": {
-				"data-type": "%word.button",
 				"cmd-type": [
 					"f"
 				],

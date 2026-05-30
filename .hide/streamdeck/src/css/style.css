@@ -98,7 +98,7 @@ html {
 		width: var(--c1);
 		height: var(--c1);
 		display: grid;
-		grid-auto-rows: 2fr 8fr;
+		grid-auto-rows: 0fr 10fr;
 		grid-template-columns: 1fr;
 		gap: 0.5rem;
 		padding: 0.25rem;
@@ -112,13 +112,30 @@ html {
 		& > #contents--button-box {
 			width: var(--c1);
 			height: var(--c1);
-			grid-auto-rows: calc(var(--p2) * 20);
-			grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 20), 1fr));
+			grid-template-rows: 7fr 3fr;
+			grid-template-columns: 1fr;
 			gap: calc(var(--p2) * 0.5);
-			padding: var(--p2);
-			overflow-y: auto;
 
-			& > button[type="button"] {
+			& > #button-box--item-box {
+				width: var(--c1);
+				height: var(--c1);
+				grid-auto-rows: calc(var(--p2) * 16);
+				grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 20), 1fr));
+				gap: calc(var(--p2) * 0.5);
+				overflow-y: auto;
+			}
+
+			& > #button-box--task-bar {
+				width: var(--c1);
+				height: var(--c1);
+				background-color: var(--myElementBackgroundColor2);
+				grid-auto-rows: calc(var(--p2) * 16);
+				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
+				gap: calc(var(--p2) * 0.5);
+			}
+
+			& > #button-box--item-box > button[type="button"],
+			& > #button-box--task-bar > button[type="button"] {
 				display: flex;
 				aspect-ratio: 1/1;
 				padding: var(--p1);
@@ -131,8 +148,19 @@ html {
 					pointer-events: none;
 				}
 
-				& > img.img-reverse {
-					transform: scaleX(-1);
+				& > img {
+
+					&.rl-reverse {
+						transform: scaleX(-1);
+					}
+
+					&.tb-reverse {
+						transform: scaleY(-1);
+					}
+
+					&.img-deg--90 {
+						transform: rotate(90deg);
+					}
 				}
 			}
 		}
