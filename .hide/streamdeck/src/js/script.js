@@ -2,7 +2,7 @@ function loadedWindowAfter() {
 
 }
 
-function createButton(input_src = "") {
+function createButton(input_src = "", decoded_json_data = {}) {
 	const btn_el = document.createElement("button");
 	btn_el.type = "button";
 	const img_el = document.createElement("img");
