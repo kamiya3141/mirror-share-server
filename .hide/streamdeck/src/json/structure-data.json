@@ -15,12 +15,15 @@
 			"run-browser-chrome-1": null,
 			"run-browser-chrome-2": null,
 			"run-browser-chrome-3": null,
-			"run-browser-edge": null
+			"run-browser-edge": null,
+			"run-chat-line": null,
+			"run-chat-discord": null
 		},
 		"page--2": {
 			"media-prev": null,
 			"media-play-pause": null,
-			"media-next": null
+			"media-next": null,
+			"run-youtube-music": null
 		}
 	}
 }

@@ -397,6 +397,103 @@
 					]
 				]
 			}
+		},
+		"run-chat-line": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;LINE.png",
+			"title": "LINE",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							5,
+							""
+						],
+						[
+							1
+						]
+					]
+				]
+			}
+		},
+		"run-chat-discord": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Discord.png",
+			"title": "discord",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							5,
+							""
+						],
+						[
+							2
+						]
+					]
+				]
+			}
+		},
+		"run-youtube-music": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;YoutubeMusic.png",
+			"title": "YoutubeMusic",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							6,
+							""
+						],
+						[
+							1
+						]
+					]
+				]
+			}
+		},
+		"run-youtube": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Youtube.png",
+			"title": "Youtube",
+			"data": {
+				"cmd-type": [
+					"r"
+				],
+				"cmd": [
+					[
+						"C:\\Users\\shuut\\Desktop\\shortcut\\YouTube.lnk"
+					]
+				],
+				"args": []
+			}
 		}
 	}
 }
