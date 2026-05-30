@@ -24,18 +24,21 @@
 			"data-type": "%word.page",
 			"icon": "%word.url0;normal.png",
 			"title": "Page-1",
+			"force-appear-title": null,
 			"data": null
 		},
 		"page--2": {
 			"data-type": "%word.page",
 			"icon": "%word.url0;normal.png",
 			"title": "Page-2",
+			"force-appear-title": null,
 			"data": null
 		},
 		"dir--ssh": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
 			"title": "SSH",
+			"force-appear-title": null,
 			"data": null
 		},
 		"reload-this-script": {
@@ -70,10 +73,36 @@
 				"args": []
 			}
 		},
+		"ssh-dh0": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh0",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh0"
+						]
+					]
+				]
+			}
+		},
 		"ssh-dh0d0": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;CmdPrt.png",
 			"title": "dh0d0",
+			"force-appear-title": null,
 			"data": {
 				"cmd-type": [
 					"f"
@@ -89,6 +118,106 @@
 						[],
 						[
 							"ssh dh0d0"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh0d5": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh0d5",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh0d5"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh0d6": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh0d6",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh0d6"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh1": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh1",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh1"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh1ds": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh1ds",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh1ds"
 						]
 					]
 				]
@@ -156,6 +285,117 @@
 					]
 				],
 				"args": []
+			}
+		},
+		"run-browser-chrome-1": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Chm1.png",
+			"title": "shuuto",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							1,
+							""
+						],
+						[
+							1
+						]
+					]
+				]
+			}
+		},
+		"run-browser-chrome-2": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Chm2.png",
+			"title": "tamura",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							1,
+							""
+						],
+						[
+							2
+						]
+					]
+				]
+			}
+		},
+		"run-browser-chrome-3": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Chm3.png",
+			"title": "kamiya",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							1,
+							""
+						],
+						[
+							3
+						]
+					]
+				]
+			}
+		},
+		"run-browser-edge": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;Edge.png",
+			"title": "edge",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							1,
+							""
+						],
+						[
+							4
+						]
+					]
+				]
 			}
 		}
 	}

@@ -17,18 +17,28 @@ function createButton(key_name = "", decoded_json_data = {}) {
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
 		if (data_type == DEFINE_JSON_DIR["page"])
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.indexOf(key_name);
-		document.querySelector("#move-page--next").disabled = Boolean(data_type == DEFINE_JSON_DIR["page"]);
-		document.querySelector("#move-page--prev").disabled = document.querySelector("#move-page--next").disabled;
 	});
-	if (data_type == DEFINE_JSON_DIR["page"] || data_type == DEFINE_JSON_DIR["directory"])
+	if (Object.hasOwn(decoded_json_data, "force-appear-title"))
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
 	return btn_el;
 }
 
 function setButtons() {
+	const data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
+	document.getElementById("move-page--next").disabled = Boolean(data_type != DEFINE_JSON_DIR["page"]);
+	document.getElementById("move-page--prev").disabled = Boolean(data_type != DEFINE_JSON_DIR["page"]);
 	target_parent_element.innerHTML = "";
 	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
+}
+
+const socket = new WebSocket("wss://ws.tshuto.com");
+socket.addEventListener("close", e => myAlertMessage("ws close"));
+socket.addEventListener("error", e => myAlertMessage("ws error"));
+window.setTimeout(() => SendPingPong(), 5 * 1000);
+function SendPingPong() {
+	socket.send("ping");
+	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
 }
 
 function sendDataForWebSocketServer(decoded_json_data = {}) {
@@ -36,11 +46,6 @@ function sendDataForWebSocketServer(decoded_json_data = {}) {
 		myAlertMessage("送信予定のデータが空です");
 	else {
 		const send_data = JSON.stringify(decoded_json_data);
-		const socket = new WebSocket("wss://ws.tshuto.com");
-		socket.addEventListener("open", e => {
-			socket.send(send_data);
-			socket.close();
-		});
-		socket.addEventListener("error", e => myAlertMessage("ws error"));
+		socket.send(send_data);
 	}
 }

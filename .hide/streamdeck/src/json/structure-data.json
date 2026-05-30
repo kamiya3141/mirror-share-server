@@ -3,10 +3,19 @@
 		"page--1": {
 			"reload-this-script": null,
 			"dir--ssh": {
-				"ssh-dh0d0": null
+				"ssh-dh0": null,
+				"ssh-dh0d0": null,
+				"ssh-dh0d5": null,
+				"ssh-dh0d6": null,
+				"ssh-dh1": null,
+				"ssh-dh1ds": null
 			},
 			"open-command-prompt": null,
-			"open-windows-settings": null
+			"open-windows-settings": null,
+			"run-browser-chrome-1": null,
+			"run-browser-chrome-2": null,
+			"run-browser-chrome-3": null,
+			"run-browser-edge": null
 		},
 		"page--2": {
 			"media-prev": null,
