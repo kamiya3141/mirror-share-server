@@ -11,6 +11,13 @@ let DEFINE_JSON_DIR = {
 	"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
 };
 
+const socket = new WebSocket("wss://ws.tshuto.com");
+socket.addEventListener("open", e => {
+	console.log("ws ok");
+});
+socket.addEventListener("message", e => {
+	myAlertMessage(`Message from server\n ${e.data}`);
+});
 async function loadedWindowSetupFunc() {
 	const res0 = await fetch(`./src/json/cmd-data.json`);
 	CMD_DATA = await res0.json();

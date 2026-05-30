@@ -34,5 +34,6 @@ function sendDataForWebSocketServer(decoded_json_data = {}) {
 		myAlertMessage("送信予定のデータが空です");
 	else {
 		const send_data = JSON.stringify(decoded_json_data);
+		socket.send(send_data);
 	}
 }
