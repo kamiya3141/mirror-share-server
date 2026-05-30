@@ -17,6 +17,8 @@ function createButton(key_name = "", decoded_json_data = {}) {
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
 		if (data_type == DEFINE_JSON_DIR["page"])
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.indexOf(key_name);
+		document.querySelector("#move-page--next").disabled = Boolean(data_type == DEFINE_JSON_DIR["page"]);
+		document.querySelector("#move-page--prev").disabled = document.querySelector("#move-page--next").disabled;
 	});
 	if (data_type == DEFINE_JSON_DIR["page"] || data_type == DEFINE_JSON_DIR["directory"])
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
@@ -37,12 +39,8 @@ function sendDataForWebSocketServer(decoded_json_data = {}) {
 		const socket = new WebSocket("wss://ws.tshuto.com");
 		socket.addEventListener("open", e => {
 			socket.send(send_data);
+			socket.close();
 		});
-		socket.addEventListener("close", e => {
-			console.log("ws close");
-		});
-		socket.addEventListener("error", e => {
-			console.error("ws error", e);
-		});
+		socket.addEventListener("error", e => myAlertMessage("ws error"));
 	}
 }
