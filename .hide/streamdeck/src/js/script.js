@@ -1,5 +1,5 @@
 function loadedWindowAfter() {
-
+	CURRENT_STACKED_DIR_DEPTH = [STRUCTURE_DATA["name"]];
 }
 
 function createButton(input_src = "", decoded_json_data = {}) {

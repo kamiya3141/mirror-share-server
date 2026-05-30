@@ -175,7 +175,7 @@ function setTheme() {
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
-		["StylingFontSize", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `clamp(8px, 24px)`]],
+		["StylingFontSize", [`${(ipt_w[1] + ipt_h[1]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
 		["StylingFontFamily", [`"Note Sans JP", sans-serif`, `"Note Sans JP", sans-serif`]],
 		["StylingUserPreferColor", [preferColor, preferColor]],
 		["StylingTabSize", [tabSize, tabSize]]

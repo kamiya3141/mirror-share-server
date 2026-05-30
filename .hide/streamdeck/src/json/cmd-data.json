@@ -22,7 +22,7 @@
 		"page--1": {
 			"data-type": "%word.dir",
 			"icon": "%word.url0;normal.png",
-			"title": "page1",
+			"title": "Page-1",
 			"data": "%word.null"
 		},
 		"dir--ssh": {

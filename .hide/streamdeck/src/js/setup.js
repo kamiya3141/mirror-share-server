@@ -21,12 +21,30 @@ function convertEnvVars(input_str = "") {
 	if (match_result == null && !input_str.includes(";"))
 		return input_str;
 	if (match_result[1] == "%") {
-		input_str = input_str.split(";").map((c, i, arr) => (c = arr.length == 1 ? Dot2Object(CMD_DATA["define"], match_result[2]) : convertEnvVars(c))).join("");
+		input_str = input_str.split(";").map((c, i, arr) => (c = arr.length == 1 ? DotToObject(CMD_DATA["define"], match_result[2]) : convertEnvVars(c))).join("");
 	} else
 		input_str = MY_FUNCTIONS[match_result[2]];
 	return input_str;
 }
 
-function Dot2Object(org_obj = {}, input_str = "") {
-	return input_str.split(".").reduce((c, currentValue) => currentValue[c], org_obj);
+function DotToObject(org_obj = {}, input_str = "") {
+	const _obj = structuredClone(org_obj);
+	return input_str.split(".").reduce((c, currentValue) => currentValue[c], _obj);
+}
+
+function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
+	if (up_down_tf == true) {
+		if (CURRENT_STACKED_DIR_DEPTH.length > 1) {
+			CURRENT_STACKED_DIR_DEPTH.pop();
+		} else
+			myAlertMessage("これ以上のデータにはアクセスできません");
+	} else if (dir_name) {
+		CURRENT_STACKED_DIR_DEPTH.push(dir_name);
+	} else
+		myAlertMessage(`指定されたディレクトリ名は無効です\n${String(dir_name)}`);
+	return CurrentStackedDirObject();
+}
+
+function CurrentStackedDirObject() {
+	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."));
 }
