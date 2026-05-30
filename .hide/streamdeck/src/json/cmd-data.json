@@ -20,7 +20,7 @@
 			"data": "&goto-root"
 		},
 		"page--1": {
-			"data-type": "%word.dir",
+			"data-type": "%word.page",
 			"icon": "%word.url0;normal.png",
 			"title": "Page-1",
 			"data": "%word.null"

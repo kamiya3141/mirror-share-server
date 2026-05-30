@@ -25,6 +25,8 @@
 
 	--myStylingLocalDisplayWidth: var(--c-mn-h);
 	--myStylingLocalDisplayHeight: var(--c-mn-h);
+
+	--mnt1: 0.25s;
 }
 
 &[data-my-device-type="desktop"] > body {
