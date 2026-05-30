@@ -11,21 +11,22 @@ function createButton(key_name = "", decoded_json_data = {}) {
 	const img_el = document.createElement("img");
 	img_el.src = convertEnvVars(decoded_json_data["icon"] ? decoded_json_data["icon"] : "%word.url0;void.png");
 	btn_el.appendChild(img_el);
+	const data_type = convertEnvVars(decoded_json_data["data-type"]);
 	btn_el.addEventListener("click", () => {
-		const data_type = convertEnvVars(decoded_json_data["data-type"]);
 		if (data_type == DEFINE_JSON_DIR["page"] || data_type == DEFINE_JSON_DIR["directory"])
 			MoveToUpDownDirectory(false, key_name);
 		else if (data_type == DEFINE_JSON_DIR["button"])
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
-
-		console.log(data_type, decoded_json_data["data-type"]);
 	});
+	if (data_type == DEFINE_JSON_DIR["page"])
+		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
 	return btn_el;
 }
 
 function setButtons() {
 	target_parent_element.innerHTML = "";
 	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
+	document.querySelector("#contents--title-box > .title-element").innerHTML = String(CMD_DATA["data"][CURRENT_STACKED_DIR_DEPTH.at(-1)]["title"]);
 }
 
 function sendDataForWebSocketServer(decoded_json_data = {}) {

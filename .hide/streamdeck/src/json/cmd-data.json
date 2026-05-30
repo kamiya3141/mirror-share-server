@@ -11,6 +11,12 @@
 	"icon": null,
 	"title": null,
 	"data": {
+		"void": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;void0.png",
+			"title": "void",
+			"data": null
+		},
 		"page--1": {
 			"data-type": "%word.page",
 			"icon": "%word.url0;normal.png",

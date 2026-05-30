@@ -47,7 +47,7 @@ html {
 			align-items: center;
 
 			& button[type="button"] {
-				width: calc(var(--w) * 1.25);
+				width: calc(var(--p2) * 12);
 				height: auto;
 			}
 		}
@@ -98,11 +98,15 @@ html {
 		width: var(--c1);
 		height: var(--c1);
 		display: grid;
-		grid-auto-rows: 0fr 10fr;
+		grid-auto-rows: 1fr 9fr;
 		grid-template-columns: 1fr;
 		gap: 0.5rem;
 		padding: 0.25rem;
 		place-items: center;
+
+		& .title-element {
+			font-size: 1.5rem;
+		}
 
 		& > #contents--title-box {
 			width: var(--c1);
@@ -112,14 +116,14 @@ html {
 		& > #contents--button-box {
 			width: var(--c1);
 			height: var(--c1);
-			grid-template-rows: 7fr 3fr;
+			grid-template-rows: 6fr 3fr;
 			grid-template-columns: 1fr;
 			gap: calc(var(--p2) * 0.5);
 
 			& > #button-box--item-box {
 				width: var(--c1);
 				height: var(--c1);
-				grid-auto-rows: calc(var(--p2) * 16);
+				/*grid-auto-rows: calc(var(--p2) * 16);*/
 				grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 				overflow-y: auto;
@@ -130,7 +134,7 @@ html {
 				height: var(--c1);
 				background-color: var(--myElementBackgroundColor2);
 				grid-auto-rows: calc(var(--p2) * 16);
-				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 			}
 
@@ -141,14 +145,11 @@ html {
 				padding: var(--p1);
 				border-radius: calc(var(--p2) * 2);
 
-				& > * {
+				& > img {
 					aspect-ratio: 1/1;
 					width: var(--c-mn-h);
 					height: auto;
 					pointer-events: none;
-				}
-
-				& > img {
 
 					&.rl-reverse {
 						transform: scaleX(-1);
