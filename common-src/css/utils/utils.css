@@ -129,4 +129,24 @@ html {
 			height: var(--myStylingLocalDisplayHeight);
 		}
 	}
+
+	& .background-blur {
+		background-color: var(--clear);
+		position: fixed;
+		z-index: 991;
+		left: 0;
+		top: 0;
+		width: var(--myStylingWidth);
+		height: var(--myStylingHeight);
+
+		&::before {
+			content: "";
+			background-color: var(--gray7);
+			backdrop-filter: blur(0.125rem);
+			left: 0;
+			top: 0;
+			width: var(--c1);
+			height: var(--c1);
+		}
+	}
 }
