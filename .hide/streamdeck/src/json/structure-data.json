@@ -23,7 +23,8 @@
 			"media-prev": null,
 			"media-play-pause": null,
 			"media-next": null,
-			"run-youtube-music": null
+			"run-youtube-music": null,
+			"run-youtube": null
 		}
 	}
 }
