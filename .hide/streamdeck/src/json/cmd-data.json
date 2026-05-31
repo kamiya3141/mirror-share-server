@@ -697,6 +697,22 @@
 				],
 				"args": []
 			}
+		},
+		"run-disney-plus": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;disney-plus.png",
+			"title": "Disney+",
+			"data": {
+				"cmd-type": [
+					"r"
+				],
+				"cmd": [
+					[
+						"C:\\Users\\shuut\\Desktop\\shortcut\\Disney+.lnk"
+					]
+				],
+				"args": []
+			}
 		}
 	}
 }
