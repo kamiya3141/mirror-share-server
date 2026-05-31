@@ -123,7 +123,7 @@ html {
 			& > #button-box--item-box {
 				width: var(--c1);
 				height: var(--c1);
-				/*grid-auto-rows: calc(var(--p2) * 16);*/
+				grid-auto-rows: calc(var(--p2) * 14);
 				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 				overflow-y: auto;
@@ -133,7 +133,7 @@ html {
 				width: var(--c1);
 				height: var(--c1);
 				background-color: var(--myElementBackgroundColor2);
-				grid-auto-rows: calc(var(--p2) * 16);
+				grid-auto-rows: calc(var(--p2) * 14);
 				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 			}
