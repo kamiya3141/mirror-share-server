@@ -101,6 +101,126 @@
 				"args": []
 			}
 		},
+		"media-next": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaNext.png",
+			"title": "media-next",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaNextFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"media-play-pause": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaPlayPause.png",
+			"title": "media-play-pause",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaPlayPauseFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"media-prev": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;MediaPrev.png",
+			"title": "media-prev",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"MediaPrevFunc"
+					]
+				],
+				"args": []
+			}
+		},
+		"open-windows-settings": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;settings.png",
+			"title": "win-settings",
+			"data": {
+				"cmd-type": [
+					"s"
+				],
+				"cmd": [
+					[
+						"#i"
+					]
+				],
+				"args": []
+			}
+		},
+		"control-8-screen-lock": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;LockScreen0.png",
+			"title": "AHK-Lock",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							8,
+							""
+						]
+					]
+				]
+			}
+		},
+		"switching-output-audio-devices": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;SwitchingOutputAudioDevices.png",
+			"title": "switch-audio-output",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"SwitchingOutputAudioDevices"
+					]
+				],
+				"args": []
+			}
+		},
+		"switching-input-audio-devices": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;SwitchingInputAudioDevices.png",
+			"title": "switch-audio-iutput",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"SwitchingInputAudioDevices"
+					]
+				],
+				"args": []
+			}
+		},
 		"ssh-dh0": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;CmdPrt.png",
@@ -421,94 +541,6 @@
 						[],
 						[
 							"ssh dh4d0"
-						]
-					]
-				]
-			}
-		},
-		"media-next": {
-			"data-type": "%word.button",
-			"icon": "%word.url0;MediaNext.png",
-			"title": "media-next",
-			"data": {
-				"cmd-type": [
-					"f"
-				],
-				"cmd": [
-					[
-						"MediaNextFunc"
-					]
-				],
-				"args": []
-			}
-		},
-		"media-play-pause": {
-			"data-type": "%word.button",
-			"icon": "%word.url0;MediaPlayPause.png",
-			"title": "media-play-pause",
-			"data": {
-				"cmd-type": [
-					"f"
-				],
-				"cmd": [
-					[
-						"MediaPlayPauseFunc"
-					]
-				],
-				"args": []
-			}
-		},
-		"media-prev": {
-			"data-type": "%word.button",
-			"icon": "%word.url0;MediaPrev.png",
-			"title": "media-prev",
-			"data": {
-				"cmd-type": [
-					"f"
-				],
-				"cmd": [
-					[
-						"MediaPrevFunc"
-					]
-				],
-				"args": []
-			}
-		},
-		"open-windows-settings": {
-			"data-type": "%word.button",
-			"icon": "%word.url0;settings.png",
-			"title": "win-settings",
-			"data": {
-				"cmd-type": [
-					"s"
-				],
-				"cmd": [
-					[
-						"#i"
-					]
-				],
-				"args": []
-			}
-		},
-		"control-8-screen-lock": {
-			"data-type": "%word.button",
-			"icon": "%word.url0;LockScreen0.png",
-			"title": "AHK-Lock",
-			"force-appear-title": null,
-			"data": {
-				"cmd-type": [
-					"f"
-				],
-				"cmd": [
-					[
-						"CtrlNFunc"
-					]
-				],
-				"args": [
-					[
-						[
-							8,
-							""
 						]
 					]
 				]

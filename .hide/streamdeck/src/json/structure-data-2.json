@@ -189,6 +189,14 @@
 							"data": null
 						},
 						{
+							"name": "switching-output-audio-devices",
+							"data": null
+						},
+						{
+							"name": "switching-input-audio-devices",
+							"data": null
+						},
+						{
 							"name": "run-youtube-music",
 							"data": null
 						},
@@ -198,14 +206,6 @@
 						},
 						{
 							"name": "run-disney-plus",
-							"data": null
-						},
-						{
-							"name": "void",
-							"data": null
-						},
-						{
-							"name": "void",
 							"data": null
 						},
 						{
