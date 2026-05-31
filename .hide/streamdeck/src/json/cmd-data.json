@@ -34,6 +34,13 @@
 			"force-appear-title": null,
 			"data": null
 		},
+		"page--3": {
+			"data-type": "%word.page",
+			"icon": "%word.url0;normal.png",
+			"title": "Page-3",
+			"force-appear-title": null,
+			"data": null
+		},
 		"dir--ssh": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
@@ -765,6 +772,38 @@
 				"cmd": [
 					[
 						"C:\\Users\\shuut\\Desktop\\shortcut\\Disney+.lnk"
+					]
+				],
+				"args": []
+			}
+		},
+		"run-edex-ui": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;edex-ui.png",
+			"title": "eDEX-UI",
+			"data": {
+				"cmd-type": [
+					"r"
+				],
+				"cmd": [
+					[
+						"C:\\Users\\shuut\\Desktop\\shortcut\\eDEX-UI.lnk"
+					]
+				],
+				"args": []
+			}
+		},
+		"run-jantama": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;jantama.png",
+			"title": "eDEX-UI",
+			"data": {
+				"cmd-type": [
+					"r"
+				],
+				"cmd": [
+					[
+						"C:\\Users\\shuut\\Desktop\\shortcut\\jantama.lnk"
 					]
 				],
 				"args": []
