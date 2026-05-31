@@ -98,6 +98,106 @@
 				]
 			}
 		},
+		"ssh-dh1": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh1",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh1"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh2": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh2",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh2"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh3": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh3",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh3"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh4": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh4",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh4"
+						]
+					]
+				]
+			}
+		},
 		"ssh-dh0d0": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;CmdPrt.png",
@@ -173,10 +273,10 @@
 				]
 			}
 		},
-		"ssh-dh1": {
+		"ssh-dvp": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;CmdPrt.png",
-			"title": "dh1",
+			"title": "dvp",
 			"force-appear-title": null,
 			"data": {
 				"cmd-type": [
@@ -192,7 +292,7 @@
 					[
 						[],
 						[
-							"ssh dh1"
+							"ssh dvp"
 						]
 					]
 				]
@@ -218,6 +318,81 @@
 						[],
 						[
 							"ssh dh1ds"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh1dmc": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh1dmc",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh1dmc"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh2dnc": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh2dnc",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh2dnc"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh4d0": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh4d0",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh4d0"
 						]
 					]
 				]

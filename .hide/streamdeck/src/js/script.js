@@ -28,7 +28,10 @@ function setButtons() {
 	document.getElementById("move-page--next").disabled = Boolean(data_type != DEFINE_JSON_DIR["page"]);
 	document.getElementById("move-page--prev").disabled = Boolean(data_type != DEFINE_JSON_DIR["page"]);
 	target_parent_element.innerHTML = "";
-	Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
+	if (STRUCTURE_DATA_VERSION == 1)
+		Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
+	else
+		CurrentStackedDirObject()["data"].forEach(c => target_parent_element.appendChild(createButton(c["name"], CMD_DATA["data"][c["name"]])));
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 

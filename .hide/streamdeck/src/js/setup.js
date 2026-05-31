@@ -1,3 +1,5 @@
+var STRUCTURE_DATA_VERSION = 2;
+
 var CMD_DATA = {};
 var STRUCTURE_DATA = {};
 var PAGE_ARRAY = [];
@@ -19,7 +21,7 @@ let DEFINE_JSON_DIR = {
 async function loadedWindowSetupFunc() {
 	const res0 = await fetch(`./src/json/cmd-data.json`);
 	CMD_DATA = await res0.json();
-	const res1 = await fetch(`./src/json/structure-data.json`);
+	const res1 = await fetch(`./src/json/structure-data-${STRUCTURE_DATA_VERSION}.json`);
 	STRUCTURE_DATA = await res1.json();
 
 	PAGE_ARRAY = Object.keys(STRUCTURE_DATA["root"]);
@@ -43,8 +45,20 @@ function convertEnvVars(input_str = "") {
 
 function DotToObject(org_obj = {}, input_str = "") {
 	const _obj = org_obj;
-	return input_str.split(".").reduce((obj, key) => obj[key], _obj);
+	return input_str.split(".").reduce((obj, key) => {
+		if (STRUCTURE_DATA_VERSION != 1) {
+			if (obj.hasOwnProperty("length"))
+				return obj.find(c => c["name"] == key);
+			else {
+				console.error("DotToObject実行中にエラーが発生：\nobjはlengthを持ちません");
+				myAlertMessage("DotToObject実行中にエラーが発生：\nobjはlengthを持ちません");
+			}
+		}
+		return obj[key];
+	}, _obj);
 }
+
+
 
 function CurrentStackedDirObject() {
 	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."));
