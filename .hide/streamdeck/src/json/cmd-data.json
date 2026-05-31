@@ -490,6 +490,30 @@
 				"args": []
 			}
 		},
+		"control-8-screen-lock": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;LockScreen0.png",
+			"title": "AHK-Lock",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							8,
+							""
+						]
+					]
+				]
+			}
+		},
 		"run-browser-chrome-1": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;Chm1.png",
