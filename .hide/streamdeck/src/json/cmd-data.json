@@ -41,6 +41,34 @@
 			"force-appear-title": null,
 			"data": null
 		},
+		"dir--ssh-dh0": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "Host-0",
+			"force-appear-title": null,
+			"data": null
+		},
+		"dir--ssh-dh1": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "Host-1",
+			"force-appear-title": null,
+			"data": null
+		},
+		"dir--ssh-dh2": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "Host-2",
+			"force-appear-title": null,
+			"data": null
+		},
+		"dir--ssh-dh4": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "Host-4",
+			"force-appear-title": null,
+			"data": null
+		},
 		"reload-this-script": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;reload.png",
