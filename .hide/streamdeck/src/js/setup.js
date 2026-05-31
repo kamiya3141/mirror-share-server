@@ -23,9 +23,10 @@ async function loadedWindowSetupFunc() {
 	CMD_DATA = await res0.json();
 	const res1 = await fetch(`./src/json/structure-data-${STRUCTURE_DATA_VERSION}.json`);
 	STRUCTURE_DATA = await res1.json();
-
-	PAGE_ARRAY = Object.keys(STRUCTURE_DATA["root"]);
-
+	if (STRUCTURE_DATA_VERSION == 1)
+		PAGE_ARRAY = Object.keys(STRUCTURE_DATA["root"]);
+	else
+		PAGE_ARRAY = STRUCTURE_DATA["data"][0]["data"].map(c => c["name"]);
 	loadedWindowAfter();
 }
 
@@ -47,8 +48,8 @@ function DotToObject(org_obj = {}, input_str = "") {
 	const _obj = org_obj;
 	return input_str.split(".").reduce((obj, key) => {
 		if (STRUCTURE_DATA_VERSION != 1) {
-			if (obj.hasOwnProperty("length"))
-				return obj.find(c => c["name"] == key);
+			if (obj["data"].hasOwnProperty("length"))
+				return obj["data"].find(c => c["name"] == key);
 			else {
 				console.error("DotToObject実行中にエラーが発生：\nobjはlengthを持ちません");
 				myAlertMessage("DotToObject実行中にエラーが発生：\nobjはlengthを持ちません");
