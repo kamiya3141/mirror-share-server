@@ -38,16 +38,16 @@ function convertEnvVars(input_str = "") {
 	if (match_result == null && !input_str.includes(";"))
 		return input_str;
 	if (match_result[1] == "%") {
-		input_str = input_str.split(";").map((c, i, arr) => (c = arr.length == 1 ? DotToObject(CMD_DATA["define"], match_result[2]) : convertEnvVars(c))).join("");
+		input_str = input_str.split(";").map((c, i, arr) => (c = arr.length == 1 ? DotToObject(CMD_DATA["define"], match_result[2], true) : convertEnvVars(c))).join("");
 	} else
 		input_str = MY_FUNCTIONS[match_result[2]];
 	return input_str;
 }
 
-function DotToObject(org_obj = {}, input_str = "") {
+function DotToObject(org_obj = {}, input_str = "", strc_ver_1 = false) {
 	const _obj = org_obj;
 	return input_str.split(".").reduce((obj, key) => {
-		if (STRUCTURE_DATA_VERSION != 1) {
+		if (STRUCTURE_DATA_VERSION != 1 && !strc_ver_1) {
 			if (obj["data"].hasOwnProperty("length"))
 				return obj["data"].find(c => c["name"] == key);
 			else {
@@ -61,8 +61,8 @@ function DotToObject(org_obj = {}, input_str = "") {
 
 
 
-function CurrentStackedDirObject() {
-	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."));
+function CurrentStackedDirObject(strc_ver_1 = false) {
+	return DotToObject(STRUCTURE_DATA, CURRENT_STACKED_DIR_DEPTH.join("."), strc_ver_1);
 }
 
 function getCurrentStackedObjectData() {
