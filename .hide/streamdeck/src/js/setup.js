@@ -14,8 +14,8 @@ let DEFINE_JSON_DIR = {
 	"root": "root",
 	"page": "page",
 	"directory": "dir",
-	"button": "icon",
-	"url0": "https://nextcloud.tshuto.com/remote.php/dav/files/shuuto/Other-Data/public/image/icon-png/"
+	"button": "icon"
+	/*"url0": "https://file-nextcloud.tshuto.com/image/icon-png/"*/
 };
 
 async function loadedWindowSetupFunc() {
