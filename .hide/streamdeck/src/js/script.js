@@ -18,7 +18,7 @@ function createButton(key_name = "", decoded_json_data = {}) {
 		if (data_type == DEFINE_JSON_DIR["page"])
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.indexOf(key_name);
 	});
-	if (Object.hasOwn(decoded_json_data, "force-appear-title"))
+	if (Object.hasOwn(decoded_json_data, "force-appear-title") && decoded_json_data["title"])
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
 	return btn_el;
 }
