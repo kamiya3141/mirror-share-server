@@ -162,3 +162,9 @@ html {
 		z-index: 992 !important;
 	}
 }
+
+@import url("./toggle-switch-template.css");
+@import url("./display-template.css");
+@import url("./display-setting-template.css");
+@import url("./display-confirm-template.css");
+@import url("./display-alert-template.css");
