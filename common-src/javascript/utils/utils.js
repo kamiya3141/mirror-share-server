@@ -1,3 +1,5 @@
+const addElementString = window["utils"] ? window["utils"] : "";
+
 document.body.insertAdjacentHTML("afterbegin", `
 	<template id="toggle-switch-template">
 		<label class="toggle_button">
@@ -259,6 +261,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 	<section id="confirm-display-section" class="display-section background-blur important-section-2" data-display-open="false" data-mydef--set-by-script="false">
 		<div id="confirm-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="確認 %_ID:display-confirm-template confirm false"></div>
 	</section>
+	${addElementString}
 `);
 
 var attrName_SetByScript = "data-mydef--set-by-script";
