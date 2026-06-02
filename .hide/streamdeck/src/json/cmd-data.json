@@ -44,7 +44,7 @@
 		"dir--code-workspace": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
-			"title": "code-workspace",
+			"title": "workspace",
 			"force-appear-title": null,
 			"data": null
 		},

@@ -153,6 +153,10 @@
 							"data": null
 						},
 						{
+							"name": "run-browser-edge",
+							"data": null
+						},
+						{
 							"name": "run-browser-chrome-1",
 							"data": null
 						},
@@ -162,10 +166,6 @@
 						},
 						{
 							"name": "run-browser-chrome-3",
-							"data": null
-						},
-						{
-							"name": "run-browser-edge",
 							"data": null
 						},
 						{
