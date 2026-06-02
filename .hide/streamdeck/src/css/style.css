@@ -19,7 +19,7 @@
 
 @container (aspect-ratio < 1) {
 	:root {
-		--myStylingLocalGridCols: 3;
+		--myStylingLocalGridCols: 5;
 		--myStylingLocalIconSize: 12;
 	}
 }
@@ -49,7 +49,7 @@ html {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
 
 		& > div#root {
 			width: 98vmax;
