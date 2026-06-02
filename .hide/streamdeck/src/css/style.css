@@ -19,7 +19,7 @@
 
 @container (aspect-ratio < 1) {
 	:root {
-		--myStylingLocalGridCols: 3;
+		--myStylingLocalGridCols: 5;
 		--myStylingLocalIconSize: 12;
 	}
 }
