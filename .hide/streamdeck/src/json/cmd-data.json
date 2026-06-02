@@ -41,6 +41,13 @@
 			"force-appear-title": null,
 			"data": null
 		},
+		"dir--code-workspace": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "code-workspace",
+			"force-appear-title": null,
+			"data": null
+		},
 		"dir--ssh": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
@@ -226,6 +233,29 @@
 					]
 				],
 				"args": []
+			}
+		},
+		"open--code-workspace--dh1ds": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;VS_WorkSpace.png",
+			"title": "wk-sp-dh1ds",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"SendWord_VSCode_RemoteSSH"
+					]
+				],
+				"args": [
+					[
+						[
+							"dh1ds",
+							"DHU/public_html/public_html.code-workspace"
+						]
+					]
+				]
 			}
 		},
 		"ssh-dh0": {

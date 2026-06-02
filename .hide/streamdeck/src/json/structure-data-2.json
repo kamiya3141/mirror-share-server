@@ -7,8 +7,13 @@
 					"name": "page--1",
 					"data": [
 						{
-							"name": "reload-this-script",
-							"data": null
+							"name": "dir--code-workspace",
+							"data": [
+								{
+									"name": "open--code-workspace--dh1ds",
+									"data": null
+								}
+							]
 						},
 						{
 							"name": "dir--ssh",
