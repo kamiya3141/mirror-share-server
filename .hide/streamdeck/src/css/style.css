@@ -1,6 +1,30 @@
+@property --myStylingLocalGridCols {
+	syntax: "<integer>";
+	inherits: false;
+	initial-value: 5;
+}
+
+@property --myStylingLocalIconSize {
+	syntax: "<integer>";
+	inherits: false;
+	initial-value: 14;
+}
+
+@container (aspect-ratio > 1) {
+	:root {
+		--myStylingLocalGridCols: 5;
+		--myStylingLocalIconSize: 15;
+	}
+}
+
+@container (aspect-ratio < 1) {
+	:root {
+		--myStylingLocalGridCols: 3;
+		--myStylingLocalIconSize: 12;
+	}
+}
+
 html {
-
-
 	&[data-my-device-type="desktop"] > body {
 
 		& > div#root {
@@ -21,24 +45,6 @@ html {
 	}
 
 	&[data-my-device-type="mobile"] > body {
-
-		& > div#root {
-			width: var(--c1);
-			height: var(--c1);
-
-			position: static;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-
-			& button[type="button"] {
-				width: calc(var(--w) * 1.25);
-				height: auto;
-			}
-		}
-
-		/*
 		position: static;
 		display: flex;
 		flex-direction: column;
@@ -46,7 +52,7 @@ html {
 		align-items: center;
 
 		& > div#root {
-			width: 98vmin;
+			width: 98vmax;
 			height: 98vmin;
 
 			& button[type="button"] {
@@ -54,7 +60,7 @@ html {
 				height: calc(var(--w) * 1.5);
 			}
 		}
-		*/
+
 	}
 
 	& > body > div#root > section#main-contents {
@@ -86,8 +92,8 @@ html {
 			& > #button-box--item-box {
 				width: var(--c1);
 				height: var(--c1);
-				grid-auto-rows: calc(var(--p2) * 14);
-				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
+				grid-auto-rows: calc(var(--p2) * var(--myStylingLocalIconSize));
+				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 				overflow-y: auto;
 			}
@@ -96,8 +102,8 @@ html {
 				width: var(--c1);
 				height: var(--c1);
 				background-color: var(--myElementBackgroundColor2);
-				grid-auto-rows: calc(var(--p2) * 14);
-				grid-template-columns: repeat(5, minmax(calc(var(--p2) * 20), 1fr));
+				grid-auto-rows: calc(var(--p2) * var(--myStylingLocalIconSize));
+				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * 20), 1fr));
 				gap: calc(var(--p2) * 0.5);
 			}
 
