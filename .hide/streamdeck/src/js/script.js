@@ -36,12 +36,24 @@ function setButtons() {
 }
 
 const socket = new WebSocket("wss://ws.tshuto.com");
-socket.addEventListener("close", e => myAlertMessage("ws close"));
-socket.addEventListener("error", e => myAlertMessage("ws error"));
+let socket_activate = true;
+socket.addEventListener("close", socketDeactivate);
+socket.addEventListener("error", socketDeactivate);
 window.setTimeout(() => SendPingPong(), 5 * 1000);
+
 function SendPingPong() {
+	if (!socket_activate)
+		return;
 	socket.send("ping");
 	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
+}
+/**
+ * 
+ * @param {Event} _e 
+ */
+function socketDeactivate(_e) {
+	socket_activate = false;
+	myAlertMessage(`ws ${_e.type}`);
 }
 
 function sendDataForWebSocketServer(decoded_json_data = {}) {
