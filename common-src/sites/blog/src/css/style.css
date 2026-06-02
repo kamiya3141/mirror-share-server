@@ -1,7 +1,5 @@
 :root {
 
-	--mnt1: 0.25s;
-
 	--note-info-bgc: light-dark(#dff4cf, #2b6300);
 	--note-warn-bgc: light-dark(#fff0b3, #685103);
 	--note-alert-bgc: light-dark(#ffdbdb, #6d0303);
@@ -16,74 +14,16 @@
 }
 
 html {
-	position: absolute;
-	left: calc(var(--myStylingWidth) * 0 / 100);
-	top: calc(var(--myStylingHeight) * 0 / 100);
-	width: calc(var(--myStylingWidth) * 100 / 100);
-	height: calc(var(--myStylingHeight) * 100 / 100);
-	font-family: var(--myStylingFontFamily);
-	font-size: var(--myStylingFontSize);
-	color: var(--myTextColor);
-	background-color: var(--myMainBackgroundColor);
-
-	& * {
-		color: inherit;
-		background-color: inherit;
-		font-family: inherit;
-		display: inherit;
-		margin: 0px;
-		flex-direction: inherit;
-		justify-content: inherit;
-		align-items: inherit;
-		place-items: inherit;
-		position: inherit;
-		line-height: inherit;
-		border-collapse: inherit;
-		overflow: hidden hidden;
-		/*box-shadow: var(--myElementBoxShadow);*/
-		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
+	&[data-my-device-type="desktop"] > body > div#root {
+		left: calc(var(--w) - var(--w) / 2);
+		width: var(--w);
+		padding-top: calc(var(--c-hd-h) / 2);
 	}
 
-	& > head {
-		display: none;
-	}
-
-	&[data-my-device-type="desktop"] > body {
-		--myStylingLocalDisplayWidth: var(--c-mn-h);
-		--myStylingLocalDisplayHeight: var(--c-mn-h);
-
-		& .mobile-element {
-			display: none !important;
-		}
-
-		& .desktop-element {
-			display: initial;
-		}
-
-		& > div#root {
-			left: calc(var(--w) - var(--w) / 2);
-			width: var(--w);
-			padding-top: calc(var(--c-hd-h) / 2);
-		}
-	}
-
-	&[data-my-device-type="mobile"] > body {
-		--myStylingLocalDisplayWidth: var(--c1);
-		--myStylingLocalDisplayHeight: var(--c1);
-
-		& .mobile-element {
-			display: initial;
-		}
-
-		& .desktop-element {
-			display: none !important;
-		}
-
-		& > div#root {
-			left: var(--c3);
-			width: var(--c4);
-			padding-top: calc(var(--c-hd-h) * 2);
-		}
+	&[data-my-device-type="mobile"] > body > div#root {
+		left: var(--c3);
+		width: var(--c4);
+		padding-top: calc(var(--c-hd-h) * 2);
 	}
 
 	& > body {

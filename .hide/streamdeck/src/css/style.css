@@ -1,40 +1,7 @@
 html {
-	position: absolute;
-	left: calc(var(--myStylingWidth) * 0 / 100);
-	top: calc(var(--myStylingHeight) * 0 / 100);
-	width: calc(var(--myStylingWidth) * 100 / 100);
-	height: calc(var(--myStylingHeight) * 100 / 100);
-	font-family: var(--myStylingFontFamily);
-	font-size: var(--myStylingFontSize);
-	color: var(--myTextColor);
-	background-color: var(--myMainBackgroundColor);
 
-	& * {
-		color: inherit;
-		background-color: inherit;
-		font-family: inherit;
-		display: inherit;
-		margin: 0px;
-		flex-direction: inherit;
-		justify-content: inherit;
-		align-items: inherit;
-		place-items: inherit;
-		position: inherit;
-		line-height: inherit;
-		border-collapse: inherit;
-		overflow: hidden hidden;
-		/*box-shadow: var(--myElementBoxShadow);*/
-		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
-	}
-
-
-	& > head {
-		display: none;
-	}
 
 	&[data-my-device-type="desktop"] > body {
-		width: var(--c1);
-		height: var(--c1);
 
 		& > div#root {
 			width: var(--c1);
@@ -54,8 +21,6 @@ html {
 	}
 
 	&[data-my-device-type="mobile"] > body {
-		width: var(--c1);
-		height: var(--c1);
 
 		& > div#root {
 			width: var(--c1);
@@ -79,8 +44,6 @@ html {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: var(--c1);
-		height: var(--c1);
 
 		& > div#root {
 			width: 98vmin;
