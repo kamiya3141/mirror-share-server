@@ -101,6 +101,8 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 }
 
 function MoveToPage(next_prev_tf = true, sp_page = false) {
+	while (CURRENT_STACKED_DIR_DEPTH.length > 2)
+		CURRENT_STACKED_DIR_DEPTH.pop();
 	let data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	const _fnc = () => {
 		if (next_prev_tf)
@@ -109,7 +111,8 @@ function MoveToPage(next_prev_tf = true, sp_page = false) {
 			PAGE_ARRAY_INDEX--;
 		if (PAGE_ARRAY_INDEX < 0)
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.length - 1;
-		CURRENT_STACKED_DIR_DEPTH.pop();
+		if (CURRENT_STACKED_DIR_DEPTH.length > 1)
+			CURRENT_STACKED_DIR_DEPTH.pop();
 		CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
 		data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	};
