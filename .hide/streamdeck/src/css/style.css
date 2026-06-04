@@ -1,12 +1,12 @@
 @property --myStylingLocalGridCols {
 	syntax: "<integer>";
-	inherits: false;
+	inherits: true;
 	initial-value: 5;
 }
 
 @property --myStylingLocalIconSize {
 	syntax: "<integer>";
-	inherits: false;
+	inherits: true;
 	initial-value: 14;
 }
 
@@ -22,6 +22,10 @@
 		/*--myStylingLocalGridCols: 5;*/
 		--myStylingLocalIconSize: 12;
 	}
+}
+
+:root {
+	--myStylingLocalGridCols: 5;
 }
 
 html {
