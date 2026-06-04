@@ -12,13 +12,13 @@ var target_parent_element = document.querySelector("#button-box--item-box");
 
 const MY_FUNCTIONS = {
 	"set-cols-3": () => {
-		document.documentElement.style.setProperty("--myStylingLocalGridCols", "3");
+		[["GridCols", 3], ["IconSize", 18]].forEach(c => document.documentElement.style.setProperty(`--myStylingLocal${c[0]}`, String(c[1])));
 	},
 	"set-cols-5": () => {
-		document.documentElement.style.setProperty("--myStylingLocalGridCols", "5");
+		[["GridCols", 5], ["IconSize", 15]].forEach(c => document.documentElement.style.setProperty(`--myStylingLocal${c[0]}`, String(c[1])));
 	},
 	"set-cols-7": () => {
-		document.documentElement.style.setProperty("--myStylingLocalGridCols", "7");
+		[["GridCols", 7], ["IconSize", 12]].forEach(c => document.documentElement.style.setProperty(`--myStylingLocal${c[0]}`, String(c[1])));
 	}
 };
 let CURRENT_STACKED_DIR_DEPTH = [];

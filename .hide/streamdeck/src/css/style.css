@@ -10,20 +10,21 @@
 	initial-value: 14;
 }
 
+/*
 @container (aspect-ratio > 1) {
 	:root {
-		/*--myStylingLocalGridCols: 5;*/
+		--myStylingLocalGridCols: 5;
 		--myStylingLocalIconSize: 15;
 	}
 }
 
 @container (aspect-ratio < 1) {
 	:root {
-		/*--myStylingLocalGridCols: 5;*/
+		--myStylingLocalGridCols: 5;
 		--myStylingLocalIconSize: 12;
 	}
 }
-
+*/
 :root {
 	--myStylingLocalGridCols: 5;
 }
@@ -93,11 +94,21 @@ html {
 			grid-template-columns: 1fr;
 			gap: calc(var(--p2) * 0.5);
 
+			& > * {
+				width: var(--c1);
+				height: var(--c1);
+				grid-auto-rows: calc(var(--p2) * var(--myStylingLocalIconSize));
+				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * var(--myStylingLocalIconSize)), 1fr));
+				gap: calc(var(--p2) * 0.5);
+				overflow-y: auto;
+			}
+
+			/*
 			& > #button-box--item-box {
 				width: var(--c1);
 				height: var(--c1);
 				grid-auto-rows: calc(var(--p2) * var(--myStylingLocalIconSize));
-				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * 20), 1fr));
+				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * var(--myStylingLocalIconSize)), 1fr));
 				gap: calc(var(--p2) * 0.5);
 				overflow-y: auto;
 			}
@@ -107,10 +118,11 @@ html {
 				height: var(--c1);
 				background-color: var(--myElementBackgroundColor2);
 				grid-auto-rows: calc(var(--p2) * var(--myStylingLocalIconSize));
-				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * 20), 1fr));
+				grid-template-columns: repeat(var(--myStylingLocalGridCols), minmax(calc(var(--p2) * var(--myStylingLocalIconSize)), 1fr));
 				gap: calc(var(--p2) * 0.5);
+				overflow-y: auto;
 			}
-
+*/
 			& > #button-box--item-box > button[type="button"],
 			& > #button-box--task-bar > button[type="button"] {
 				display: flex;
