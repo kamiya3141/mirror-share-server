@@ -3,6 +3,8 @@
 		"word": {
 			"page": "page",
 			"directory": "dir",
+			"special": "sp",
+			"special-button": "sp-btn",
 			"button": "icon",
 			"url0": "https://file-nextcloud.tshuto.com/image/icon-png/"
 		}
@@ -40,6 +42,34 @@
 			"title": "Page-3",
 			"force-appear-title": null,
 			"data": null
+		},
+		"sp--1": {
+			"data-type": "%word.special",
+			"icon": "%word.url0;button-red.png",
+			"title": "SP-1",
+			"force-appear-title": null,
+			"data": null
+		},
+		"sp--1--set-cols-3": {
+			"data-type": "%word.special-button",
+			"icon": "%word.url0;button-red.png",
+			"title": "Set-Cols-3",
+			"force-appear-title": null,
+			"data": "&set-cols-3"
+		},
+		"sp--1--set-cols-5": {
+			"data-type": "%word.special-button",
+			"icon": "%word.url0;button-red.png",
+			"title": "Set-Cols-5",
+			"force-appear-title": null,
+			"data": "&set-cols-5"
+		},
+		"sp--1--set-cols-7": {
+			"data-type": "%word.special-button",
+			"icon": "%word.url0;button-red.png",
+			"title": "Set-Cols-7",
+			"force-appear-title": null,
+			"data": "&set-cols-7"
 		},
 		"dir--code-workspace": {
 			"data-type": "%word.directory",

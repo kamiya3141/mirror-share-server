@@ -4,6 +4,23 @@
 			"name": "root",
 			"data": [
 				{
+					"name": "sp--1",
+					"data": [
+						{
+							"name": "sp--1--set-cols-3",
+							"data": null
+						},
+						{
+							"name": "sp--1--set-cols-5",
+							"data": null
+						},
+						{
+							"name": "sp--1--set-cols-7",
+							"data": null
+						}
+					]
+				},
+				{
 					"name": "page--1",
 					"data": [
 						{

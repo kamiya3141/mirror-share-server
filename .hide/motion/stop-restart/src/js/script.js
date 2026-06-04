@@ -16,7 +16,7 @@ streamServerInfoArray.forEach(m => {
 		const _url = new URL(m.url);
 		_url.searchParams.set("motion-order", m.title.toLowerCase());
 		window.fetch(_url).then(res => res.text()).then(dt => {
-			console.log(dt);
+			alert(dt);
 		});
 	});
 });

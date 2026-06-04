@@ -1,3 +1,5 @@
+document.documentElement.style.setProperty("--myStylingLocalGridCols", "5");
+
 var STRUCTURE_DATA_VERSION = 2;
 
 var CMD_DATA = {};
@@ -8,12 +10,24 @@ var PAGE_ARRAY_INDEX = 0;
 var target_parent_element = document.querySelector("#button-box--item-box");
 
 
-const MY_FUNCTIONS = {};
+const MY_FUNCTIONS = {
+	"set-cols-3": () => {
+		document.documentElement.style.setProperty("--myStylingLocalGridCols", "3");
+	},
+	"set-cols-5": () => {
+		document.documentElement.style.setProperty("--myStylingLocalGridCols", "5");
+	},
+	"set-cols-7": () => {
+		document.documentElement.style.setProperty("--myStylingLocalGridCols", "7");
+	}
+};
 let CURRENT_STACKED_DIR_DEPTH = [];
 let DEFINE_JSON_DIR = {
 	"root": "root",
 	"page": "page",
 	"directory": "dir",
+	"special": "sp",
+	"special-button": "sp-btn",
 	"button": "icon"
 	/*"url0": "https://file-nextcloud.tshuto.com/image/icon-png/"*/
 };
@@ -37,10 +51,14 @@ function convertEnvVars(input_str = "") {
 	const match_result = input_str.match(my_reg);
 	if (match_result == null && !input_str.includes(";"))
 		return input_str;
-	if (match_result[1] == "%") {
+	if (match_result[1] == "%")
 		input_str = input_str.split(";").map((c, i, arr) => (c = arr.length == 1 ? DotToObject(CMD_DATA["define"], match_result[2], true) : convertEnvVars(c))).join("");
-	} else
-		input_str = MY_FUNCTIONS[match_result[2]];
+	else {
+		if (Object.hasOwn(MY_FUNCTIONS, match_result[2]))
+			input_str = MY_FUNCTIONS[match_result[2]];
+		else
+			input_str = null;
+	}
 	return input_str;
 }
 
@@ -84,15 +102,18 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 
 function MoveToPage(next_prev_tf = true) {
 	const data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
-	if (data_type == DEFINE_JSON_DIR["page"]) {
+	const _fnc = () => {
 		if (next_prev_tf)
 			PAGE_ARRAY_INDEX = ++PAGE_ARRAY_INDEX % PAGE_ARRAY.length;
 		else
 			PAGE_ARRAY_INDEX--;
 		if (PAGE_ARRAY_INDEX < 0)
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.length - 1;
-		CURRENT_STACKED_DIR_DEPTH.pop();
-		CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
-	}
+	};
+	_fnc();
+	while (data_type != DEFINE_JSON_DIR["page"])
+		_fnc();
+	CURRENT_STACKED_DIR_DEPTH.pop();
+	CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
 	setButtons();
 }
