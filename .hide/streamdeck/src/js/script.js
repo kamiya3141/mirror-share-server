@@ -15,17 +15,23 @@ function createButton(key_name = "", decoded_json_data = {}) {
 			MoveToUpDownDirectory(false, key_name);
 		else if (data_type == DEFINE_JSON_DIR["button"])
 			sendDataForWebSocketServer(CMD_DATA["data"][key_name]["data"]);
+		else if (data_type == DEFINE_JSON_DIR["special"])
+			myAlertMessage("アクセスできません");
 		else if (data_type == DEFINE_JSON_DIR["special-button"]) {
 			const cnv_res = convertEnvVars(CMD_DATA["data"][key_name]["data"]);
 			if (cnv_res != null)
 				cnv_res();
 			else
 				alert("指定された関数が見つかりませんでした");
-		} if (data_type == DEFINE_JSON_DIR["page"])
+		}
+		if (data_type == DEFINE_JSON_DIR["page"])
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.indexOf(key_name);
 	});
+	/*
+	
 	if (data_type == DEFINE_JSON_DIR["special"])
 		btn_el.style.display = "none";
+	*/
 	if (Object.hasOwn(decoded_json_data, "force-appear-title") && decoded_json_data["title"])
 		btn_el.innerHTML += `<div class="title-element">${String(decoded_json_data["title"])}</div>`;
 	return btn_el;
