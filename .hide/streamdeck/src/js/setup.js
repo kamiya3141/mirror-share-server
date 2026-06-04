@@ -101,7 +101,7 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 }
 
 function MoveToPage(next_prev_tf = true) {
-	const data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
+	let data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	const _fnc = () => {
 		if (next_prev_tf)
 			PAGE_ARRAY_INDEX = ++PAGE_ARRAY_INDEX % PAGE_ARRAY.length;
@@ -109,13 +109,12 @@ function MoveToPage(next_prev_tf = true) {
 			PAGE_ARRAY_INDEX--;
 		if (PAGE_ARRAY_INDEX < 0)
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.length - 1;
+		CURRENT_STACKED_DIR_DEPTH.pop();
+		CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
+		data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	};
 	_fnc();
-	while (data_type != DEFINE_JSON_DIR["page"]) {
-		alert("ok");
+	while (data_type != DEFINE_JSON_DIR["page"])
 		_fnc();
-	}
-	CURRENT_STACKED_DIR_DEPTH.pop();
-	CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
 	setButtons();
 }
