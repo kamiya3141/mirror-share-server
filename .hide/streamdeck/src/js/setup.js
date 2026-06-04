@@ -100,7 +100,7 @@ function MoveToUpDownDirectory(up_down_tf = true, dir_name = "") {
 	setButtons();
 }
 
-function MoveToPage(next_prev_tf = true) {
+function MoveToPage(next_prev_tf = true, sp_page = false) {
 	let data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	const _fnc = () => {
 		if (next_prev_tf)
@@ -114,7 +114,7 @@ function MoveToPage(next_prev_tf = true) {
 		data_type = convertEnvVars(getCurrentStackedObjectData()["data-type"]);
 	};
 	_fnc();
-	while (data_type != DEFINE_JSON_DIR["page"])
+	while (data_type != DEFINE_JSON_DIR[sp_page ? "special" : "page"])
 		_fnc();
 	setButtons();
 }
