@@ -113,6 +113,13 @@
 			"force-appear-title": null,
 			"data": null
 		},
+		"dir--config": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;config.png",
+			"title": "Config",
+			"force-appear-title": null,
+			"data": null
+		},
 		"reload-this-script": {
 			"data-type": "%word.button",
 			"icon": "%word.url0;reload.png",

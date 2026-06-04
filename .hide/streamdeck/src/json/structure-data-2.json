@@ -214,9 +214,22 @@
 							"data": null
 						},
 						{
-							"name": "void",
-							"data": null
-						},
+							"name": "dir--config",
+							"data": [
+								{
+									"name": "sp--1--set-cols-3",
+									"data": null
+								},
+								{
+									"name": "sp--1--set-cols-5",
+									"data": null
+								},
+								{
+									"name": "sp--1--set-cols-7",
+									"data": null
+								}
+							]
+						}
 						{
 							"name": "control-8-screen-lock",
 							"data": null
