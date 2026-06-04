@@ -111,8 +111,10 @@ function MoveToPage(next_prev_tf = true) {
 			PAGE_ARRAY_INDEX = PAGE_ARRAY.length - 1;
 	};
 	_fnc();
-	while (data_type != DEFINE_JSON_DIR["page"])
+	while (data_type != DEFINE_JSON_DIR["page"]) {
+		alert("ok");
 		_fnc();
+	}
 	CURRENT_STACKED_DIR_DEPTH.pop();
 	CURRENT_STACKED_DIR_DEPTH.push(PAGE_ARRAY[PAGE_ARRAY_INDEX]);
 	setButtons();
