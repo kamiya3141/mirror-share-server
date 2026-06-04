@@ -49,8 +49,6 @@ function setButtons() {
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 
-const socket = new WebSocket("wss://ws.tshuto.com");
-let socket_activate = true;
 socket.addEventListener("close", socketDeactivate);
 socket.addEventListener("error", socketDeactivate);
 window.setTimeout(() => SendPingPong(), 5 * 1000);
@@ -60,6 +58,13 @@ function SendPingPong() {
 		return;
 	socket.send("ping");
 	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
+}
+
+function socketClose() {
+	if (socket_activate)
+		socket.close();
+	else
+		window.location.reload();
 }
 
 function socketDeactivate(_e) {

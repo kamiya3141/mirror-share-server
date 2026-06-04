@@ -1,3 +1,6 @@
+var socket = new WebSocket("wss://ws.tshuto.com");
+var socket_activate = true;
+
 document.documentElement.style.setProperty("--myStylingLocalGridCols", "5");
 
 var STRUCTURE_DATA_VERSION = 2;
