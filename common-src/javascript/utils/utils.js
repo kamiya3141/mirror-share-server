@@ -189,13 +189,13 @@ document.body.insertAdjacentHTML("afterbegin", `
 						<input type="text" placeholder="タイトル" name="title" required pattern=".+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required pattern="[A-Za-z0-9\-]+">
+						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required pattern="[A-Za-z0-9\\-]+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\-]+">
+						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\\-]+">
 					</div>
 					<div class="input--box">
-						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern="^\s*[^\[\]\{\}\\,']+\s*(,\s*[^\[\]\{\}\\,']+\s*)*$">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern="^\\s*[^\\[\\]\\{\\}\\\\,']+\\s*(,\\s*[^\\[\\]\\{\\}\\\\,']+\\s*)*$">
 					</div>
 					<div class="input--box">
 						<input type="text" placeholder="見出し" name="excerpt" required pattern=".+">
