@@ -196,6 +196,12 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			font-style: italic;
 		}
 
+		&.text-underline {
+			text-decoration-line: underline;
+			text-decoration-color: var(--myTextColor);
+			text-decoration-thickness: calc(var(--p1) / 4);
+		}
+
 		&.code-frame {
 			position: relative;
 

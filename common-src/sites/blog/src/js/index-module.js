@@ -71,13 +71,18 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/[*_]{2}(.*?)[*_]{2}/g,
+		/\*{2}(.*?)\*{2}/g,
 		cts => `<div class="easy-text-deco text-bold">${cts}</div>`,
 		null
 	],
 	[
-		/ [*_]{1}(.*?)[*_]{1} /g,
+		/ \*{1}(.*?)\*{1} /g,
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`,
+		null
+	],
+	[
+		/_{2}(.*?)_{2}/g,
+		cts => `<div class="easy-text-deco text-underline">${cts}</div>`,
 		null
 	],
 	/*[
