@@ -70,7 +70,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 			const next_url = new URL(`${winMyHrefPTCHostname}`);
 			next_url.searchParams.set(page_flag[0], "");
 			next_url.searchParams.set(id_flag, (has_id_flag ? data["slug"] : _dt["slug"]));
-			// window.location.href = next_url;
+			window.location.href = next_url;
 		} else
 			console.log(_dt);
 	});
