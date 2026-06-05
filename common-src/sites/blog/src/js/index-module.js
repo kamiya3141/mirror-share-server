@@ -347,7 +347,7 @@ function createAPIURL(_str) {
 async function getArticleData() {
 	const targetQueryName = "slug";
 	const targetQueryData = getFlag(id_flag);
-	const fileURL = createAPIURL(`article-get-api-local2.php`);
+	const fileURL = createAPIURL(`article-get-api-local.php`);
 	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "20260401230000--home");
 
 	const res = await fetch(fileURL);
@@ -362,7 +362,7 @@ async function getArticleData() {
 }
 
 async function getAllArticleData() {
-	const fileURL = createAPIURL(`article-get-all-api-local2.php`);
+	const fileURL = createAPIURL(`article-get-all-api-local.php`);
 
 	const res = await fetch(fileURL);
 	if (!res.ok) {

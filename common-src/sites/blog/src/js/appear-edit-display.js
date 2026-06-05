@@ -42,6 +42,11 @@ function settingButtons(_pmd) {
 	draft_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] != "draft")
 			return;
+
+		const _res = await fetch(_pmd.createAPIURL("test.php"));
+		const _dt = await _res.text();
+		console.log(_dt);
+		/*
 		const _res = await fetch(_pmd.createAPIURL("article-set-api-local2.php"), {
 			"method": "POST",
 			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
@@ -50,6 +55,7 @@ function settingButtons(_pmd) {
 
 		if (_dt["success"])
 			console.log("おｋ");
+		*/
 	});
 	save_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] == "draft")
