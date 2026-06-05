@@ -8,14 +8,21 @@ const STR_ENV_CONV_OBJ = {};
 
 const myTabSize = Number(getCSSLengthValue("--myStylingTabSize"));
 
+const nbsp = n => "&nbsp;".repeat(n);
+
 const before_replace_str_define_array = [
+	[
+		/@css\[(["'`])?(.*?)["'`]?\]\((.*?)\)/g,
+		(qu, stl, str) => `<pre style=${qu + stl + qu}>${str}</pre>`,
+		[1, 2, 3]
+	],
 	[
 		/(\\[a-z])/g,
 		cts => {
 			let res_str = "";
 			switch (cts) {
 				case "\\t":
-					res_str = "&nbsp;".repeat(myTabSize);
+					res_str = nbsp(myTabSize);
 					break;
 				case "\\n":
 					res_str = "<br>";
@@ -73,6 +80,16 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-italic">${cts}</div>`,
 		null
 	],
+	/*[
+		/^( *?)\* ?(.*)\n/gm,
+		(sp, cts) => `${nbsp(sp.length)}<ul><li class="my-ul-li">${cts}</li></ul>\n`,
+		[1, 2]
+	],
+	[
+		/^( *?)\d\. ?(.*)\n/gm,
+		(sp, cts) => `${nbsp(sp.length)}<ol><li class="my-ol-li">${cts}</li></ol>\n`,
+		[1, 2]
+	],*/
 	[
 		/((?:<li class="my-ul-li">.*<\/li>\n?)+)/g,
 		cts => `<ul>${cts}</ul>\n`,
@@ -267,14 +284,13 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 				splited_result_str_arr[i] = splited_result_str_arr[i].replace(chv[1], replaced_str);
 			}
 		}
-
 	}
 
 	result_str = splited_result_str_arr.join("<br>");
 
 	//const result_elm = createElementFromHTML(result_str);
 	//result_str = result_elm;
-	result_str = `<div data-mydef--article-tag="title">${MARKDOWN_ARTICLE_TITLE}</div>` + result_str;
+	result_str = `<pre><div data-mydef--article-tag="title">${MARKDOWN_ARTICLE_TITLE}</div>${result_str}</pre>`;
 	return result_str;
 }
 
