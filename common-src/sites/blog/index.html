@@ -27,6 +27,87 @@
 	-->
 	<span id="console-ok"></span>
 	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
+	<template id="all-articles-display-template">
+		<div id="all-articles-main-contents">
+			<div class="type-search--input--box">
+				<input type="search" placeholder="検索ワードを入力" id="main--input--type-search">
+			</div>
+			<div class="article-contents--box">
+
+			</div>
+		</div>
+	</template>
+	<template id="create-new-article-setting-display-template">
+		<div id="create-new-article-main-contents">
+			<form id="create-new-article--form">
+				<div class="setting-info--box">
+					<div class="input--box">
+						<input type="text" placeholder="タイトル" name="title" required pattern=".+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required pattern="[A-Za-z0-9\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="カテゴリ" name="category" required pattern="[A-Z\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required pattern="^\s*[^\[\]\{\}\\,']+\s*(,\s*[^\[\]\{\}\\,']+\s*)*$">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="見出し" name="excerpt" required pattern=".+">
+					</div>
+				</div>
+				<div class="submit-button--box" data-mydef--create-new-article--submit-button-box--has-id="false" data-mydef--create-new-article--submit-button-box--article-type="article" data-mydef--create-new-article--submit-button-box--article-status="draft">
+					<div class="input--box input-submit--box--has-id--true input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="削除" name="parts--deleted">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-deleted">
+						<input type="submit" value="下書き" name="parts--draft">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published">
+						<input type="submit" value="非公開" name="parts--privated">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="公開" name="parts--published">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="更新" name="parts--updated">
+					</div>
+					<div class="input--box input-submit--box--has-id--false">
+						<input type="submit" value="作成" name="parts--created">
+					</div>
+				</div>
+			</form>
+		</div>
+	</template>
+	<template id="edit-article-display-template">
+		<div id="edit-article-main-contents">
+			<div class="control--box">
+				<div class="extra-space"></div>
+				<div class="button-div--box">
+					<div class="button-div">
+						<input type="button" value="バックアップ保存" id="edit-article-display--input--button--backup">
+					</div>
+					<div class="button-div">
+						<input type="button" value="下書き保存" id="edit-article-display--input--button--draft">
+					</div>
+					<div class="button-div">
+						<input type="button" value="投稿/上書き保存" id="edit-article-display--input--button--save">
+					</div>
+				</div>
+			</div>
+			<div class="editor-result--box">
+				<div class="textarea--box">
+					<textarea id="editor--textarea"></textarea>
+				</div>
+				<div class="result-display--box">
+					<div class="result-display--root">
+						<div class="main-contentsbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 	<header id="root-header">
 		<section id="header-section">
 			<div id="header-div-root-desktop" class="desktop-element">
