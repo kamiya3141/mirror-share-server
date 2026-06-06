@@ -55,6 +55,8 @@ $other_data_query = '';
 
 $convert_query_exist = isset($_GET[CONVERT_STRING]);
 
+$php_input = "";
+
 //--------------------------------------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------------------------------------
@@ -62,7 +64,7 @@ $convert_query_exist = isset($_GET[CONVERT_STRING]);
 // クエリの受け取り
 function getMyQuery(): void
 {
-	global $target_query, $other_data_query, $convert_query_exist;
+	global $target_query, $other_data_query, $convert_query_exist, $php_input;
 	$add_filename = ($convert_query_exist ? '' : INDEX_HTML);
 	$target_query = $_GET['target'] ?? '';
 	$other_data_query = $_GET['od'] ?? $add_filename;
@@ -72,7 +74,20 @@ function getMyQuery(): void
 		$other_data_query = url_join($other_data_query, $add_filename);
 	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
 
-	$_POST["php-input"] = file_get_contents("php://input") ?? '';
+	$php_input = file_get_contents("php://input") ?: '';
+
+	normalizePhpInput($php_input);
+}
+
+function normalizePhpInput(string $input): void
+{
+	try {
+		$json = json_decode($input, true, 512, JSON_THROW_ON_ERROR);
+		if (is_array($json) && isset($json['data-type']) && $json['data-type'] === 'session')
+			$_SESSION['php-input'] = $input;
+	} catch (JsonException $e) {
+		$_POST['php-input'] = $input;
+	}
 }
 
 function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string
