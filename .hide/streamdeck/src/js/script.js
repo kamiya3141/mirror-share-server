@@ -49,6 +49,9 @@ function setButtons() {
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 
+
+socketActivate();
+
 socket.addEventListener("close", socketDeactivate);
 socket.addEventListener("error", socketDeactivate);
 window.setTimeout(() => SendPingPong(), 5 * 1000);

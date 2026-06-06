@@ -1,8 +1,6 @@
 var socket = null;
 var socket_activate = false;
 
-socketActivate();
-
 document.documentElement.style.setProperty("--myStylingLocalGridCols", "5");
 
 var STRUCTURE_DATA_VERSION = 2;
