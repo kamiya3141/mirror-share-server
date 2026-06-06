@@ -24,7 +24,7 @@ const MY_FUNCTIONS = {
 		[["GridCols", 7], ["IconSize", 12]].forEach(c => document.documentElement.style.setProperty(`--myStylingLocal${c[0]}`, String(c[1])));
 	},
 	"open-ws": () => {
-		socketActivate();
+		socketOpen();
 	},
 	"close-ws": () => {
 		socketClose();

@@ -45,7 +45,6 @@ function setButtons() {
 	if (STRUCTURE_DATA_VERSION == 1)
 		Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
 	else {
-		CurrentStackedDirObject()["data"].forEach(c => console.log(c["name"]));
 		CurrentStackedDirObject()["data"].forEach(c => target_parent_element.appendChild(createButton(c["name"], CMD_DATA["data"][c["name"]])));
 	}
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
@@ -54,6 +53,7 @@ function setButtons() {
 
 socketActivate();
 
+socket.addEventListener("open", socketActivate);
 socket.addEventListener("close", socketDeactivate);
 socket.addEventListener("error", socketDeactivate);
 window.setTimeout(() => SendPingPong(), 5 * 1000);
@@ -65,11 +65,14 @@ function SendPingPong() {
 	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
 }
 
-function socketActivate() {
-	if (!socket_activate) {
+function socketActivate(_e) {
+	socket_activate = true;
+	myAlertMessage(`ws ${_e.type}`);
+}
+
+function socketOpen() {
+	if (!socket_activate)
 		socket = new WebSocket("wss://ws.tshuto.com");
-		socket_activate = true;
-	}
 }
 
 function socketClose() {
