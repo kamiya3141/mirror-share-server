@@ -55,7 +55,7 @@ $other_data_query = '';
 
 $convert_query_exist = isset($_GET[CONVERT_STRING]);
 
-$php_input = "";
+$php_input = '';
 
 //--------------------------------------------------------------------------------------------------------------
 // Functions
@@ -75,15 +75,15 @@ function getMyQuery(): void
 	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
 
 	$__input =  file_get_contents("php://input") ?: '';
-	try {
-		$__json = json_decode($__input, true, 512, JSON_THROW_ON_ERROR);
-
-		if (is_array($__json) && isset($__json['data-type']) && $__json['data-type'] === 'session')
-			$php_input = isset($__json['data']) ? json_encode($__json['data']) : $__input;
-	} catch (JsonException $e) {
+	$__json = json_decode($__input, true, 512, JSON_BIGINT_AS_STRING);
+	if ($__json === false)
 		$_POST['php-input'] = $__input;
+	else {
+		if (is_array($__json) && isset($__json['data-type']) && $__json['data-type'] === 'php-input')
+			$php_input = isset($__json['data']) ? json_encode($__json['data']) : $__input;
 	}
 }
+
 
 
 function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string
