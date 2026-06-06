@@ -32,7 +32,10 @@ function settingButtons(_pmd) {
 
 		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
-			"body": JSON.stringify(editArticleDisplay_copiedJsonData)
+			"body": JSON.stringify({
+				"data-type": "session",
+				"data": editArticleDisplay_copiedJsonData
+			})
 		});
 		const _dt = await _res.json();
 		editArticleDisplay_copiedJsonData["slug"] = current_slug;
