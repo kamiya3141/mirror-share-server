@@ -71,6 +71,20 @@
 			"force-appear-title": null,
 			"data": "&set-cols-7"
 		},
+		"sp--1--open-ws": {
+			"data-type": "%word.special-button",
+			"icon": "%word.url0;button-red.png",
+			"title": "Open WS",
+			"force-appear-title": null,
+			"data": "&open-ws"
+		},
+		"sp--1--close-ws": {
+			"data-type": "%word.special-button",
+			"icon": "%word.url0;button-red.png",
+			"title": "Close WS",
+			"force-appear-title": null,
+			"data": "&close-ws"
+		},
 		"dir--normal": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",

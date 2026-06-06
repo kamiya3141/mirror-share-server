@@ -60,11 +60,16 @@ function SendPingPong() {
 	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
 }
 
+function socketActivate() {
+	if (!socket_activate) {
+		socket = new WebSocket("wss://ws.tshuto.com");
+		socket_activate = true;
+	}
+}
+
 function socketClose() {
 	if (socket_activate)
 		socket.close();
-	else
-		window.location.reload();
 }
 
 function socketDeactivate(_e) {
