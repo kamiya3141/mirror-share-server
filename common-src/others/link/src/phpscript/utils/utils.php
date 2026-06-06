@@ -74,21 +74,17 @@ function getMyQuery(): void
 		$other_data_query = url_join($other_data_query, $add_filename);
 	$_GET['rqorg'] = $_SERVER['HTTP_ORIGIN'] ?? null;
 
-	$php_input = file_get_contents("php://input") ?: '';
-
-	normalizePhpInput($php_input);
-}
-
-function normalizePhpInput(string $input): void
-{
+	$__input =  file_get_contents("php://input") ?: '';
 	try {
-		$json = json_decode($input, true, 512, JSON_THROW_ON_ERROR);
-		if (is_array($json) && isset($json['data-type']) && $json['data-type'] === 'session')
-			$_SESSION['php-input'] = isset($json['data']) ? json_encode($json['data']) : $input;
+		$__json = json_decode($__input, true, 512, JSON_THROW_ON_ERROR);
+
+		if (is_array($__json) && isset($__json['data-type']) && $__json['data-type'] === 'session')
+			$php_input = isset($__json['data']) ? json_encode($__json['data']) : $__input;
 	} catch (JsonException $e) {
-		$_POST['php-input'] = $input;
+		$_POST['php-input'] = $__input;
 	}
 }
+
 
 function getMyHostName(string $_sub_dmn = '', bool $with_protocol = true): string
 {
