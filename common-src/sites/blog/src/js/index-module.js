@@ -341,7 +341,8 @@ function getParentElement(el, n = 1, getLastElement = true) {
 }
 
 function createAPIURL(_str) {
-	return new URL(`${winMyHrefPTCHostname}/src/php/${_str}`);
+	// return new URL(`https://share.tshuto.com/common-src/sites/blog/src/php/${_str}`);
+	return `./src/php/${_str}`;
 }
 
 async function getArticleData() {
