@@ -44,8 +44,10 @@ function setButtons() {
 	target_parent_element.innerHTML = "";
 	if (STRUCTURE_DATA_VERSION == 1)
 		Object.keys(CurrentStackedDirObject()).forEach(c => target_parent_element.appendChild(createButton(c, CMD_DATA["data"][c])));
-	else
+	else {
+		CurrentStackedDirObject()["data"].forEach(c => console.log(c["name"]));
 		CurrentStackedDirObject()["data"].forEach(c => target_parent_element.appendChild(createButton(c["name"], CMD_DATA["data"][c["name"]])));
+	}
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 

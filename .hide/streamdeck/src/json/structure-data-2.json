@@ -227,6 +227,14 @@
 								{
 									"name": "sp--1--set-cols-7",
 									"data": null
+								},
+								{
+									"name": "sp--1--open-ws",
+									"data": null
+								},
+								{
+									"name": "sp--1--close-ws",
+									"data": null
 								}
 							]
 						},
@@ -270,14 +278,6 @@
 						},
 						{
 							"name": "sp--1--set-cols-7",
-							"data": null
-						},
-						{
-							"name": "sp--1--open-ws",
-							"data": null
-						},
-						{
-							"name": "sp--1--close-ws",
 							"data": null
 						}
 					]
