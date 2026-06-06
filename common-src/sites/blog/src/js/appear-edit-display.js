@@ -33,7 +33,7 @@ function settingButtons(_pmd) {
 		const _res = await fetch(_pmd.createAPIURL("article-new-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify({
-				"data-type": "session",
+				"data-type": "php-input",
 				"data": editArticleDisplay_copiedJsonData
 			})
 		});
@@ -53,7 +53,7 @@ function settingButtons(_pmd) {
 		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify({
-				"data-type": "session",
+				"data-type": "php-input",
 				"data": editArticleDisplay_copiedJsonData
 			})
 		});
@@ -69,7 +69,7 @@ function settingButtons(_pmd) {
 		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
 			"method": "POST",
 			"body": JSON.stringify({
-				"data-type": "session",
+				"data-type": "php-input",
 				"data": editArticleDisplay_copiedJsonData
 			})
 		});

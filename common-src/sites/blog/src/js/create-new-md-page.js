@@ -63,7 +63,10 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 
 		const _res = await fetch(_pmd.createAPIURL(`article-${has_id_flag ? "set" : "new"}-api-local.php`), {
 			"method": "POST",
-			"body": JSON.stringify(data)
+			"body": JSON.stringify({
+				"data-type": "php-input",
+				"data": data
+			})
 		});
 		const _dt = await _res.json();
 		if (_dt["success"] && (button_type == "created" || button_type == "updated")) {
