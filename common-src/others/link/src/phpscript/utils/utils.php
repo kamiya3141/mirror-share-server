@@ -84,7 +84,7 @@ function normalizePhpInput(string $input): void
 	try {
 		$json = json_decode($input, true, 512, JSON_THROW_ON_ERROR);
 		if (is_array($json) && isset($json['data-type']) && $json['data-type'] === 'session')
-			$_SESSION['php-input'] = $input;
+			$_SESSION['php-input'] = isset($json['data']) ? json_encode($json['data']) : $input;
 	} catch (JsonException $e) {
 		$_POST['php-input'] = $input;
 	}
