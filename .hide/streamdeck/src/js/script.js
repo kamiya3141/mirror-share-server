@@ -50,12 +50,9 @@ function setButtons() {
 	document.querySelector("#contents--title-box > .title-element").innerHTML = String(getCurrentStackedObjectData()["title"]);
 }
 
+socketOpen(false);
 
-socketActivate();
 
-socket.addEventListener("open", socketActivate);
-socket.addEventListener("close", socketDeactivate);
-socket.addEventListener("error", socketDeactivate);
 window.setTimeout(() => SendPingPong(), 5 * 1000);
 
 function SendPingPong() {
@@ -65,14 +62,19 @@ function SendPingPong() {
 	window.setTimeout(() => SendPingPong(), 10 * 1000 + Math.round(Math.random() * 100));
 }
 
-function socketActivate(_e) {
+function socketActivate(_e, _msg = true) {
 	socket_activate = true;
-	myAlertMessage(`ws ${_e.type}`);
+	if (_msg)
+		myAlertMessage(`ws ${_e.type}`);
 }
 
-function socketOpen() {
-	if (!socket_activate)
+function socketOpen(open_msg = true, close_msg = true, error_msg = true) {
+	if (!socket_activate) {
 		socket = new WebSocket("wss://ws.tshuto.com");
+		socket.addEventListener("open", e => socketActivate(e, open_msg));
+		socket.addEventListener("close", e => socketDeactivate(e, close_msg));
+		socket.addEventListener("error", e => socketDeactivate(e, error_msg));
+	}
 }
 
 function socketClose() {
@@ -80,9 +82,10 @@ function socketClose() {
 		socket.close();
 }
 
-function socketDeactivate(_e) {
+function socketDeactivate(_e, _msg = true) {
 	socket_activate = false;
-	myAlertMessage(`ws ${_e.type}`);
+	if (_msg)
+		myAlertMessage(`ws ${_e.type}`);
 }
 
 function sendDataForWebSocketServer(decoded_json_data = {}) {
