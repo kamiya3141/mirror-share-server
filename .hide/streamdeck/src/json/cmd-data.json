@@ -71,6 +71,12 @@
 			"force-appear-title": null,
 			"data": "&set-cols-7"
 		},
+		"dir--normal": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": null,
+			"data": null
+		},
 		"dir--code-workspace": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
@@ -807,6 +813,60 @@
 						],
 						[
 							1
+						]
+					]
+				]
+			}
+		},
+		"run-vscode": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;VSCode.png",
+			"title": "VSCode",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							2,
+							""
+						],
+						[
+							1
+						]
+					]
+				]
+			}
+		},
+		"run-notepad++": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;NotePad++.png",
+			"title": "notepad++",
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"CtrlNFunc",
+						"NumpadNFunc"
+					]
+				],
+				"args": [
+					[
+						[
+							2,
+							""
+						],
+						[
+							3
 						]
 					]
 				]
