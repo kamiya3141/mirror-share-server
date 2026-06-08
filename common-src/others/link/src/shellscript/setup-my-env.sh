@@ -59,21 +59,20 @@ sudo apt-get -y autoremove
 read -p "cloudflaredをインストールしますか？	Y / (N): " -n 1 _val
 _val=${_val:-Y}
 case "$_val" in
-	Y|y)
-		_val="Y"
-	;;
-	*)
-		_val="B"
-	;;
+	Y|y) _val="Y" ;;
+	*) _val="N" ;;
 esac
 
-if [[ $_var == Y ]]; then
+echo -e "\n${_val}"
+
+if [ $_var == "Y" ]; then
 	echo -e "\nYesが選択されました"
 	sudo mkdir -p --mode=0755 /usr/share/keyrings
 	curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
 	echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
-	sudo apt update
-	sudo apt -y install cloudflared
+	sudo apt-get -y update
+	sudo apt-get -y upgrade
+	sudo apt-get -y install cloudflared
 	echo -e "\nCloudflaredのインストールが終了しました\n"
 fi
 
