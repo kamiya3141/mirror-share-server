@@ -65,7 +65,7 @@ esac
 
 echo -e "\n${_val}"
 
-if [ $_var = "Y" ]; then
+if [ "${_val}" = "Y" ]; then
 	echo -e "\nYesが選択されました"
 	sudo mkdir -p --mode=0755 /usr/share/keyrings
 	curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
