@@ -12,11 +12,11 @@ const streamServerInfoArray = [
 streamServerInfoArray.forEach(m => createMotionContentsSection(m.title));
 streamServerInfoArray.forEach(m => {
 	document.querySelector(`#button-${m.title}`).addEventListener("click", e => {
-		console.log("clicked");
+		window.alert("clicked");
 		const _url = new URL(m.url);
 		_url.searchParams.set("motion-order", m.title.toLowerCase());
 		window.fetch(_url).then(res => res.text()).then(dt => {
-			alert(dt);
+			window.alert(dt);
 		});
 	});
 });
