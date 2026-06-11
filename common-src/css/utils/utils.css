@@ -37,10 +37,8 @@
 
 html {
 	position: absolute;
-	left: calc(var(--myStylingWidth) * 0 / 100);
-	top: calc(var(--myStylingHeight) * 0 / 100);
-	width: calc(var(--myStylingWidth) * 100 / 100);
-	height: calc(var(--myStylingHeight) * 100 / 100);
+	left: 0;
+	top: 0;
 	font-family: var(--myStylingFontFamily);
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
@@ -68,32 +66,42 @@ html {
 		display: none;
 	}
 
-	&[data-my-device-type="desktop"] > body {
-		--myStylingLocalDisplayWidth: var(--c-mn-h);
-		--myStylingLocalDisplayHeight: var(--c-mn-h);
+	&[data-my-device-type="desktop"] {
+		width: calc(var(--myStylingWidth) * 100 / 100);
+		height: calc(var(--myStylingHeight) * 100 / 100);
 
-		& .mobile-element {
-			display: none !important;
+		& > body {
+			--myStylingLocalDisplayWidth: var(--c-mn-h);
+			--myStylingLocalDisplayHeight: var(--c-mn-h);
+
+			& .mobile-element {
+				display: none !important;
+			}
+
+			& .desktop-element {
+				display: initial;
+			}
+
 		}
-
-		& .desktop-element {
-			display: initial;
-		}
-
 	}
 
-	&[data-my-device-type="mobile"] > body {
-		--myStylingLocalDisplayWidth: var(--c1);
-		--myStylingLocalDisplayHeight: var(--c1);
+	&[data-my-device-type="mobile"] {
+		width: calc(var(--myStylingRealWidth) * 100 / 100);
+		height: calc(var(--myStylingRealHeight) * 100 / 100);
 
-		& .mobile-element {
-			display: initial;
+		& > body {
+			--myStylingLocalDisplayWidth: calc(var(--c1) * 9 / 10);
+			--myStylingLocalDisplayHeight: calc(var(--c1) * 9 / 10);
+
+			& .mobile-element {
+				display: initial;
+			}
+
+			& .desktop-element {
+				display: none !important;
+			}
+
 		}
-
-		& .desktop-element {
-			display: none !important;
-		}
-
 	}
 
 	& > body {
@@ -178,8 +186,8 @@ html {
 		z-index: 991;
 		left: 0;
 		top: 0;
-		width: var(--myStylingWidth);
-		height: var(--myStylingHeight);
+		width: var(--c1);
+		height: var(--c1);
 
 		&::before {
 			content: "";
