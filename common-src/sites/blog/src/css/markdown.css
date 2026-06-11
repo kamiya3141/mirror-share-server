@@ -181,12 +181,10 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 
 		&.img-box {
-			width: var(100%);
-			height: var(100%);
-			
+			width: var(--c-mn-h);
+
 			& > img {
-				width: var(100%);
-				height: var(100%);
+				width: var(--c-mn-h);
 			}
 		}
 
