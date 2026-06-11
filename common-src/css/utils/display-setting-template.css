@@ -24,7 +24,7 @@ html {
 								top: 0;
 								width: var(--c1);
 								height: var(--c1);
-								border-radius: 999rem;
+								border-radius: calc(var(--p2) * 999);
 								background-color: var(--gray1);
 							}
 						}
@@ -38,7 +38,7 @@ html {
 								top: 0;
 								width: var(--c1);
 								height: var(--c1);
-								border-radius: 999rem;
+								border-radius: calc(var(--p2) * 999);
 								background-color: var(--gray3);
 							}
 						}

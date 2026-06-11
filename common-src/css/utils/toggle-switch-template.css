@@ -3,7 +3,7 @@
 	--tgl-w: calc(var(--tgl-w-c1) / 2);
 	--tgl-h: var(--tgl-w-c1);
 	--tgl-mv: var(--w);
-	--tgl-r: 999em;
+	--tgl-r: calc(var(--p2) * 999);
 	--tgl-btn-col: var(--myElementBackgroundColor2);
 
 	position: relative;

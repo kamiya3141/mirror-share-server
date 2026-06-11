@@ -37,7 +37,7 @@ html[data-my-device-type="mobile"] #display-confirm-main-contents-confirm input[
 				height: var(--c-mn-h);
 				background-color: var(--myStylingUserPreferColor);
 				font-size: 2.5rem;
-				border-radius: 999rem;
+				border-radius: calc(var(--p2) * 999);
 				padding-right: 2.5rem;
 				padding-left: 2.5rem;
 				margin-right: 2.5rem;

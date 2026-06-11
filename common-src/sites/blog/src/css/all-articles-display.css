@@ -26,7 +26,7 @@
 			#main--input--type-search {
 				width: var(--c1);
 				height: calc(var(--c1) / 3);
-				border-radius: 999rem;
+				border-radius: calc(var(--p2) * 999);
 				font-size: 150%;
 				padding: 2rem;
 			}
