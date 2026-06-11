@@ -208,28 +208,3 @@ function loadedFunc() {
 }
 
 window.addEventListener("load", () => loadedFunc());
-
-function switchingOpenDisplay(elem, forceStatusValue = false, inputData = "auto") {
-	const attr_name = "data-display-open";
-	let data_is_true = getOpenDisplayStatus(elem);
-	if (forceStatusValue) {
-		if (inputData == "true" || inputData == true)
-			data_is_true = true;
-		else if (inputData == "false" || inputData == false)
-			data_is_true = false;
-		else {
-			console.error("inputDataがtrue, false以外だったので、強制的にfalseにしました。");
-			data_is_true = false;
-		}
-	}
-	if (!get_SetByScript(elem))
-		elem.setAttribute(attr_name, (data_is_true ? "false" : "true"));
-	edit_SetByScript(elem, false);
-	return !data_is_true;
-}
-
-function getOpenDisplayStatus(elem) {
-	const attr_name = "data-display-open";
-	const data = elem.getAttribute(attr_name);
-	return Boolean(data == "true");
-}
