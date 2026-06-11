@@ -162,7 +162,7 @@ const before_replace_str_define_array = [
 	],
 	[
 		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
-		(alt, url, ttl) => `<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`,
+		(alt, url, ttl) => `<div class="img-box"><img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}"></div>`,
 		[1, 2, 3]
 	],
 	[
