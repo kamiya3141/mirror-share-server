@@ -12,6 +12,8 @@ html {
 				width: calc(var(--c1) * 1 / 4);
 
 				& > .tab-bar--contents--box {
+					width: var(--c1);
+
 					& > .tab-bar--contents {
 						width: var(--c1);
 						max-height: calc(var(--c-hd-h) * 2);
@@ -25,6 +27,8 @@ html {
 								width: var(--c1);
 								height: var(--c1);
 								border-radius: calc(var(--p2) * 999);
+								border-top-left-radius: 0;
+								border-bottom-left-radius: 0;
 								background-color: var(--gray1);
 							}
 						}
@@ -33,13 +37,16 @@ html {
 
 							& > .tab-bar--contents--item::after {
 								content: "";
+								opacity: 0.25;
 								position: absolute;
 								left: 0;
 								top: 0;
 								width: var(--c1);
 								height: var(--c1);
 								border-radius: calc(var(--p2) * 999);
-								background-color: var(--gray3);
+								border-top-left-radius: 0;
+								border-bottom-left-radius: 0;
+								background-color: var(--myStylingUserPreferColor);
 							}
 						}
 					}
@@ -81,6 +88,8 @@ html {
 				height: calc(var(--c-hd-h) * 2);
 
 				& > .tab-bar--contents--box {
+					width: var(--c1);
+
 					& > .tab-bar--contents {
 						width: calc(var(--c1) * 1.5 / 4);
 						max-height: calc(var(--c1) * 2);
@@ -132,25 +141,26 @@ html {
 
 	& > .tab-bar {
 		font-size: 1.75rem;
+		align-items: flex-start;
 		justify-content: flex-start;
 		border-right: var(--myTextColor) 0.125rem solid;
 
 		& > .tab-bar--contents--box {
-			min-width: calc(var(--c1) * 1);
 			height: var(--c1);
 			justify-content: start;
 			overflow: auto hidden;
 
 			& > .tab-bar--contents {
-				justify-content: center;
 				flex-shrink: 0;
 
 				& > .tab-bar--contents--item {
 					width: var(--c-mn-h);
 					height: var(--c1);
-					padding-top: 0.5rem;
-					padding-bottom: 0.5rem;
+					padding: var(--p1);
+					padding-left: var(--p2);
+					padding-right: 0;
 					font-size: 2.5rem;
+					text-align: start;
 				}
 			}
 		}
