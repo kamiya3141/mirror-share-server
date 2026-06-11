@@ -56,16 +56,16 @@ document.body.insertAdjacentHTML("afterbegin", `
 			<div class="tab-bar">
 				<div class="tab-bar--contents--box">
 					<div class="tab-bar--contents" id="tb--appearance">
-						<div class="tab-bar--contents--item text-overflow-element">表示設定</div>
+						<div class="tab-bar--contents--item text-overflow-element" title="表示設定">表示設定</div>
 					</div>
 					<div class="tab-bar--contents" id="tb--specific">
-						<div class="tab-bar--contents--item text-overflow-element">詳細設定</div>
+						<div class="tab-bar--contents--item text-overflow-element" title="詳細設定">詳細設定</div>
 					</div>
 					<div class="tab-bar--contents" id="tb--user-data">
-						<div class="tab-bar--contents--item text-overflow-element">ユーザデータの設定</div>
+						<div class="tab-bar--contents--item text-overflow-element" title="ユーザデータの設定">ユーザデータの設定</div>
 					</div>
 					<div class="tab-bar--contents" id="tb--reset--setting-data">
-						<div class="tab-bar--contents--item text-overflow-element">設定の初期化</div>
+						<div class="tab-bar--contents--item text-overflow-element" title="設定の初期化">設定の初期化</div>
 					</div>
 				</div>
 			</div>

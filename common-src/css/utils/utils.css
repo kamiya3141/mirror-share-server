@@ -211,4 +211,17 @@ html {
 	& .important-section-2 {
 		z-index: 992 !important;
 	}
+
+	& [data-mydef--element-attr-title]:hover::after {
+		content: attr(data-mydef--element-attr-title);
+		position: absolute;
+		left: 0;
+		top: 0;
+		min-width: var(--w);
+		min-height: var(--w);
+		display: block;
+		font-size: calc(var(--p2) * 1.125);
+		border: calc(var(--p2) * 0.125) var(--myTextColor) solid;
+		background-color: var(--myMainBackgroundColor);
+	}
 }

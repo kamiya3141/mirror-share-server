@@ -22,7 +22,7 @@ html {
 							justify-content: start;
 						}
 
-						&:hover > .tab-bar--contents--item::after {
+						&:hover > .tab-bar--contents--item::before {
 							content: "";
 							position: absolute;
 							left: 0;
@@ -35,7 +35,7 @@ html {
 							background-color: var(--gray1);
 						}
 
-						&[data-mydef--selected="true"] > .tab-bar--contents--item::after {
+						&[data-mydef--selected="true"] > .tab-bar--contents--item::before {
 							content: "";
 							opacity: 0.25;
 							position: absolute;
@@ -136,13 +136,13 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.5rem;
+	font-size: calc(var(--p2) * 1.5);
 
 	& > .tab-bar {
 		font-size: 1.75rem;
 		align-items: flex-start;
 		justify-content: flex-start;
-		border-right: var(--myTextColor) 0.125rem solid;
+		border-right: var(--myTextColor) calc(var(--p2) * 0.125) solid;
 
 		& > .tab-bar--contents--box {
 			height: var(--c1);
@@ -157,7 +157,7 @@ html {
 					padding: var(--p1);
 					padding-left: var(--p2);
 					padding-right: 0;
-					font-size: 2.5rem;
+					font-size: calc(var(--p2) * 2.5);
 					text-align: start;
 				}
 			}
@@ -176,13 +176,13 @@ html {
 
 			& > .item-all-box {
 				width: var(--c1);
-				min-height: 3.5rem;
-				max-height: 5rem;
+				min-height: calc(var(--p2) * 3.5);
+				max-height: calc(var(--p2) * 5);
 				justify-content: space-between;
 				flex-direction: row;
-				margin-top: 0.5rem;
-				padding-top: 1.5rem;
-				padding-bottom: 1rem;
+				margin-top: var(--p1);
+				padding-top: calc(var(--p2) * 1.5);
+				padding-bottom: var(--p2);
 				border-top: var(--myTextColor) 2px solid;
 
 				& > * {
