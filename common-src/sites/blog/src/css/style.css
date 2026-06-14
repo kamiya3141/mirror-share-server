@@ -58,15 +58,6 @@ html {
 				height: var(--c1);
 				position: relative;
 
-				& .open-setting-display-button-element {
-					background-color: var(--clear);
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: var(--c1);
-					height: var(--c1);
-				}
-
 				& > div#header-div-root-desktop {
 					display: flex;
 					justify-content: center;
@@ -150,6 +141,15 @@ html {
 										width: 75%;
 										height: 75%;
 									}
+
+									& > .open-setting-display-button-element {
+										background-color: var(--clear);
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: var(--c1);
+										height: var(--c1);
+									}
 								}
 							}
 						}
@@ -183,6 +183,15 @@ html {
 								display: flex;
 								flex: 2;
 								align-items: flex-start;
+
+								& > .open-setting-display-button-element {
+									background-color: var(--clear);
+									position: absolute;
+									top: 0;
+									left: 0;
+									width: var(--c1);
+									height: var(--c1);
+								}
 							}
 
 							& > nav {
