@@ -65,6 +65,7 @@
 					align-items: center;
 					justify-content: center;
 					font-size: calc(var(--p2) * 2);
+					cursor: pointer;
 				}
 
 				& > #icon-box > iframe {
