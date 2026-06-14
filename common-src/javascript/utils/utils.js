@@ -319,3 +319,18 @@ function rgbToHex(rgb) {
 		hex += Math.round(a * 255).toString(16).padStart(2, "0");
 	return hex;
 }
+
+function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
+	const rdm = Math.floor(Math.random() * (10 ** 12));
+	return `
+		<div class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-${rdm}">
+			${el_str0}
+		</div>
+		<div id="utils--popover--elements--popover-${rdm}" class="utils--popover--elements--popover-class" popover>
+			<div class="utils--popover--elements--popover--close-button-box">
+				<button popovertarget="utils--popover--elements--popover-${rdm}">CLOSE</button>
+			</div>
+			${el_str1}
+		</div>
+	`.replaceAll("\n", "").replaceAll("\t", "");
+}

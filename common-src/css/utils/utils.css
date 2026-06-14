@@ -224,4 +224,59 @@ html {
 		border: calc(var(--p2) * 0.125) var(--myTextColor) solid;
 		background-color: var(--myMainBackgroundColor);
 	}
+
+	& .utils--popover--elements--popover--show-button {
+		width: var(--c-mn-h);
+		cursor: pointer;
+		border: none;
+
+		& > * {
+			width: var(--c1);
+		}
+
+		& + .utils--popover--elements--popover-class {
+			border: none;
+			padding: 0;
+			background-color: var(--clear);
+			display: none;
+
+
+			&:popover-open {
+				position: fixed;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				width: var(--c1);
+				height: var(--c1);
+			}
+
+			&::backdrop {
+				background-color: var(--black8);
+			}
+
+			& > * {
+				position: static;
+				flex-direction: row;
+			}
+
+			& > .utils--popover--elements--popover--close-button-box {
+				width: calc(var(--c-hd-h) + var(--c-mn-h));
+				height: var(--c-hd-h);
+				justify-content: right;
+				align-items: center;
+
+				& > button {
+					display: inline-flex;
+					height: var(--c1);
+					font-size: calc(var(--p2) * 1.5);
+				}
+			}
+
+			& > img {
+				width: auto;
+				height: calc(var(--c-hd-h) + var(--c-mn-h));
+			}
+		}
+	}
 }
