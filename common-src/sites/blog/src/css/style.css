@@ -59,6 +59,7 @@ html {
 				position: relative;
 
 				& .open-setting-display-button-element {
+					cursor: pointer;
 					background-color: var(--clear);
 					position: absolute;
 					top: 0;
