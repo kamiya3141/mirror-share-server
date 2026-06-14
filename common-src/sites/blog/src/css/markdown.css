@@ -150,7 +150,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		width: var(--c-mn-h);
 		cursor: pointer;
 		border: none;
-		padding: 0;
 
 		& > img {
 			width: var(--c-mn-h);
@@ -179,11 +178,11 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 			& > * {
 				position: static;
-				width: calc(var(--c-hd-h) + var(--c-mn-h));
 				flex-direction: row;
 			}
 
 			& > .md-dialog-close-button-box {
+				width: calc(var(--c-hd-h) + var(--c-mn-h));
 				height: var(--c-hd-h);
 				justify-content: right;
 				align-items: center;
