@@ -176,18 +176,7 @@ const before_replace_str_define_array = [
 		null
 	]
 ];
-/*
-`
-		<button class="img-box" commandfor="md-dialog-${rdm}" command="show-modal">
-			<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">
-		</button>
-		<dialog id="md-dialog-${rdm}">
-			<div class="md-dialog-close-button-box">
-				<button commandfor="md-dialog-${rdm}" command="close">CLOSE</button>
-			</div>
-			<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">
-		</dialog>`.replaceAll("\n", "").replaceAll("\t", "")
-*/
+
 function convertULOL(input_str = "") {
 	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
 	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
