@@ -189,18 +189,31 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 
 			& > dialog {
-				display: none;
 				border: none;
 				padding: 0;
 				background-color: var(--clear);
 
+
 				&:open {
-					max-width: 90vw;
 					display: block;
+					width: var(--c1);
+					height: var(--c1);
+				}
+
+				&:not([open]) {
+					display: none;
 				}
 
 				&::backdrop {
 					background-color: var(--black8);
+				}
+
+				& > img {
+					position: relative;
+					left: 0;
+					top: 0;
+					width: calc(var(--c-hd-h) + var(--c-mn-h));
+					height: calc(var(--c-hd-h) + var(--c-mn-h));
 				}
 			}
 		}
