@@ -182,9 +182,24 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 		&.img-box {
 			width: var(--c-mn-h);
+			cursor: pointer;
 
 			& > img {
 				width: var(--c-mn-h);
+			}
+
+			& > dialog {
+				border: none;
+				padding: 0;
+				background-color: var(--clear);
+
+				&::backdrop {
+					background-color: var(--black8);
+				}
+
+				& > img {
+					max-width: 90vw;
+				}
 			}
 		}
 
