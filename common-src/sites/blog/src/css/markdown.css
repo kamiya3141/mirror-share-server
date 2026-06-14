@@ -149,6 +149,8 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	& .img-box {
 		width: var(--c-mn-h);
 		cursor: pointer;
+		border: none;
+		padding: 0;
 
 		& > img {
 			width: var(--c-mn-h);
@@ -158,6 +160,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			border: none;
 			padding: 0;
 			background-color: var(--clear);
+			display: none;
 
 
 			&:open {
@@ -170,27 +173,25 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				height: var(--c1);
 			}
 
-			&:not([open]) {
-				display: none;
-			}
-
 			&::backdrop {
 				background-color: var(--black8);
 			}
 
 			& > * {
+				position: static;
 				width: calc(var(--c-hd-h) + var(--c-mn-h));
 				flex-direction: row;
 			}
 
 			& > .md-dialog-close-button-box {
 				height: var(--c-hd-h);
-				justify-content: flex-end;
+				justify-content: right;
 				align-items: center;
 
 				& > button {
-					aspect-ratio: 1 / 1;
+					display: inline-flex;
 					height: var(--c1);
+					font-size: calc(var(--p2) * 1.5);
 				}
 			}
 

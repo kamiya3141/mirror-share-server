@@ -165,8 +165,7 @@ const before_replace_str_define_array = [
 		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => `
 		<button class="img-box" commandfor="md-dialog-${rdm}" command="show-modal">
 			<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">
-		</button>
-		<dialog id="md-dialog-${rdm}">
+		</button><dialog id="md-dialog-${rdm}">
 			<div class="md-dialog-close-button-box">
 				<button commandfor="md-dialog-${rdm}" command="close">CLOSE</button>
 			</div>
