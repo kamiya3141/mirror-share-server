@@ -146,6 +146,60 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		display: inline;
 	}
 
+	& .img-box {
+		width: var(--c-mn-h);
+		cursor: pointer;
+
+		& > img {
+			width: var(--c-mn-h);
+		}
+
+		& + dialog {
+			border: none;
+			padding: 0;
+			background-color: var(--clear);
+
+
+			&:open {
+				position: fixed;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				width: var(--c1);
+				height: var(--c1);
+			}
+
+			&:not([open]) {
+				display: none;
+			}
+
+			&::backdrop {
+				background-color: var(--black8);
+			}
+
+			& > * {
+				width: calc(var(--c-hd-h) + var(--c-mn-h));
+				flex-direction: row;
+			}
+
+			& > .md-dialog-close-button-box {
+				height: var(--c-hd-h);
+				justify-content: flex-end;
+				align-items: center;
+
+				& > button {
+					aspect-ratio: 1 / 1;
+					height: var(--c1);
+				}
+			}
+
+			& > img {
+				height: calc(var(--c-hd-h) + var(--c-mn-h));
+			}
+		}
+	}
+
 	& div {
 		&.hn-div {
 			padding-bottom: calc(var(--c-hd-h) / 4);
@@ -177,43 +231,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				width: calc(var(--p1) * 3 / 4);
 				height: 100%;
 				background-color: var(--myStylingUserPreferColor);
-			}
-		}
-
-		&.img-box {
-			width: var(--c-mn-h);
-			cursor: pointer;
-
-			& > img {
-				width: var(--c-mn-h);
-			}
-
-			& > dialog {
-				border: none;
-				padding: 0;
-				background-color: var(--clear);
-
-
-				&:open {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					width: var(--c1);
-					height: var(--c1);
-				}
-
-				&:not([open]) {
-					display: none;
-				}
-
-				&::backdrop {
-					background-color: var(--black8);
-				}
-
-				& > img {
-					width: calc(var(--c-hd-h) + var(--c-mn-h));
-					height: calc(var(--c-hd-h) + var(--c-mn-h));
-				}
 			}
 		}
 
