@@ -202,12 +202,15 @@ html {
 						width: calc(var(--c1) * 3 / 4);
 						height: calc(var(--c1) * 3 / 4);
 						justify-content: flex-end;
-						cursor: pointer;
 
-						& > *.allow-expand {
-							display: block;
-							width: var(--c1);
-							height: var(--c1);
+						& > * {
+							cursor: pointer;
+
+							&.allow-expand {
+								display: block;
+								width: var(--c1);
+								height: var(--c1);
+							}
 						}
 					}
 				}
