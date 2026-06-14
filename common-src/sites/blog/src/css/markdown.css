@@ -195,6 +195,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 
 			& > img {
+				width: auto;
 				height: calc(var(--c-hd-h) + var(--c-mn-h));
 			}
 		}
