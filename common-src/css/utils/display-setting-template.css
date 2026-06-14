@@ -17,6 +17,7 @@ html {
 					& > .tab-bar--contents {
 						width: var(--c1);
 						max-height: calc(var(--c-hd-h) * 2);
+						cursor: pointer;
 
 						& > .tab-bar--contents--item {
 							justify-content: start;
