@@ -189,16 +189,18 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 
 			& > dialog {
+				display: none;
 				border: none;
 				padding: 0;
 				background-color: var(--clear);
 
-				&::backdrop {
-					background-color: var(--black8);
+				&:open {
+					max-width: 90vw;
+					display: block;
 				}
 
-				& > img {
-					max-width: 90vw;
+				&::backdrop {
+					background-color: var(--black8);
 				}
 			}
 		}
