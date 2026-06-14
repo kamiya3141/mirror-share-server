@@ -162,7 +162,7 @@ const before_replace_str_define_array = [
 	],
 	[
 		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
-		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => `<div class="img-box" onclick="document.getElementById('md-dialog-${rdm}').showModal()"><img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}"><dialog id="md-dialog-${rdm}"><img onclick="document.getElementById('md-dialog-${rdm}').close()" src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}"></dialog></div>`,
+		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => `<div class="img-box" onclick="javascript:document.getElementById('md-dialog-${rdm}').showModal()"><img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}"><dialog id="md-dialog-${rdm}"><img onclick="javascript:document.getElementById('md-dialog-${rdm}').close()" src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}"></dialog></div>`,
 		[1, 2, 3]
 	],
 	[

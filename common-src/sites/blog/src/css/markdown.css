@@ -195,7 +195,9 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 
 				&:open {
-					display: block;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 					width: var(--c1);
 					height: var(--c1);
 				}
@@ -209,9 +211,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				}
 
 				& > img {
-					position: relative;
-					left: 0;
-					top: 0;
 					width: calc(var(--c-hd-h) + var(--c-mn-h));
 					height: calc(var(--c-hd-h) + var(--c-mn-h));
 				}
