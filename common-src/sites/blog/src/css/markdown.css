@@ -229,7 +229,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 					height: var(--c1);
 					text-decoration: none;
 					color: initial;
-					display: inherit;
+					display: flex;
 
 					& > div.embed-iframe-inner-title-root {
 						flex: 7;
