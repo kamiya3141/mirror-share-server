@@ -223,6 +223,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				height: calc(var(--c-ft-h) * 8 / 10);
 				box-shadow: var(--myElementBoxShadow);
 				cursor: pointer;
+				align-items: center;
 
 				& > a {
 					width: var(--c1);

@@ -47,12 +47,12 @@ const before_replace_str_define_array = [
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
-		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
+		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts),
 		[2, 3]
 	],
 	[
 		/```([^\n]*?)\n([\s\S]*?)```/g,
-		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm, cts),
+		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts),
 		[1, 2]
 	],
 	[
