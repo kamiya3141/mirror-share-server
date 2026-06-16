@@ -243,7 +243,6 @@ html {
 			background-color: var(--clear);
 			display: none;
 
-
 			&:popover-open {
 				position: fixed;
 				display: flex;
