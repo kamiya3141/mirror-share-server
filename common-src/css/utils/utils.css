@@ -267,7 +267,7 @@ html {
 			& > .utils--popover--elements--popover--close-button-box {
 				width: var(--c1);
 				height: var(--c-hd-h);
-				justify-content: right;
+				justify-content: center;
 				align-items: center;
 
 				& > button {
