@@ -96,13 +96,10 @@ function syncDeviceDataForLocalStorage() {
 }
 
 // windowイベント設定
+// tamura-first-load.js が読み込まれている場合はonresizeを上書きするためにonresizeで設定
+window.onresize = reloadDeviceInformation("resize-event");
+window.visualViewport.onresize = reloadDeviceInformation("window.visualViewport.resize-event");
 
-window.addEventListener("resize", () => {
-	reloadDeviceInformation("resize-event");
-});
-window.visualViewport.addEventListener("resize", () => {
-	reloadDeviceInformation("window.visualViewport.resize-event");
-});
 window.addEventListener("load", () => {
 	reloadDeviceInformation("load-event");
 });
