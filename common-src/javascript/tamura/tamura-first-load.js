@@ -184,14 +184,14 @@ function setTheme() {
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
 	document.documentElement.setAttribute("data-my-device-type", forceDevice ? (deviceType == "device" ? checkCurrentDeviceString() : deviceType) : checkCurrentDeviceString());
 }
-
+/*
 window.addEventListener("resize", () => {
 	setTheme();
 });
 window.visualViewport.addEventListener("resize", () => {
 	setTheme();
 });
-
+*/
 window.addEventListener("load", () => {
 	setTheme();
 });
