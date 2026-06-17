@@ -117,7 +117,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 						<div class="item-summary">デバイスモードの最適化</div>
 						<div class="item-box">
 							<div class="item">
-								<button onclick="javascript:reloadDeviceInformation('setting-display--exec-button-0')">実行</button>
+								<button class="allow-expand" onclick="javascript:reloadDeviceInformation('setting-display--exec-button-0')">実行</button>
 							</div>
 						</div>
 					</div>
@@ -146,7 +146,24 @@ document.body.insertAdjacentHTML("afterbegin", `
 						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--reset--setting-data"></div>
+				<div class="tab-contents-box--item" id="tc--reset--setting-data">
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータの初期化</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:resetDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータを削除</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:removeDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</template>

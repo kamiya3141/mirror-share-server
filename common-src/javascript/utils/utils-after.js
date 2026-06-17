@@ -1,8 +1,8 @@
+let displayElementQueryArray = [];
+
 function loadedFunc() {
 
-	const saveUserDataLocalstorage = getDeviceInformation("save--user-data--localstorage");
-
-	const displayElementQueryArray = [
+	displayElementQueryArray = [
 		{
 			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
@@ -185,26 +185,30 @@ function loadedFunc() {
 	});
 
 	// すべて読みこんだ後に、deviceの値を設定画面に反映していく処理
-	if (saveUserDataLocalstorage) {
-		if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
-			editDeviceInformation("setting-display-open", false);
-			document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
-		}
-
-		[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
-			const _arg = c.getAttribute("template-id-args");
-			const data = getDeviceInformation(_arg);
-			if (data)
-				c.querySelector(".toggle_input").click();
-		});
-
-		if (getDeviceInformation("force-theme"))
-			document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme-type");
-
-		if (getDeviceInformation("force-device"))
-			document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
-	}
-
+	if (getDeviceInformation("save--user-data--localstorage"))
+		reloadDisplaySettingValues();
 }
 
 window.addEventListener("load", () => loadedFunc());
+window.addEventListener("setting-display-reload", () => reloadDisplaySettingValues());
+
+function reloadDisplaySettingValues() {
+	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
+		editDeviceInformation("setting-display-open", false);
+		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
+		[...document.querySelectorAll("#display-setting-main-contents-setting tab-bar--contents")][Number(getDeviceInformation("setting-display-init-item-index"))].click();
+	}
+
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
+		const _arg = c.getAttribute("template-id-args");
+		const data = getDeviceInformation(_arg);
+		if (data)
+			c.querySelector(".toggle_input").click();
+	});
+
+	if (getDeviceInformation("force-theme"))
+		document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme-type");
+	if (getDeviceInformation("force-device"))
+		document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
+	document.querySelector("#setting-display--specific--input-select--setting-display-init-item").value = String(getDeviceInformation("setting-display-init-item-index"));
+}

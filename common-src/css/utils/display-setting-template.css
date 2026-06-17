@@ -204,6 +204,7 @@ html {
 						justify-content: flex-end;
 
 						& > * {
+							font-size: calc(var(--p2) * 1.25);
 							cursor: pointer;
 
 							&.allow-expand {

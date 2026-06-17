@@ -24,10 +24,18 @@ setOriginDeviceValueForDevice();
 if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
 	setDeviceDataForLocalStorage(true);
 
-function resetDeviceInformation(allowDisplayWarningMessage = true) {
+function resetDeviceInformationData(allowDisplayWarningMessage = true) {
 	if (allowDisplayWarningMessage)
 		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
 	setOriginDeviceValueForDevice();
+	window.dispatchEvent(new CustomEvent("setting-display-reload"));
+}
+
+function removeDeviceInformationData(allowDisplayWarningMessage = true) {
+	resetDeviceInformationData(false);
+	setDeviceDataForLocalStorage(true);
+	if (allowDisplayWarningMessage)
+		myAlertMessage("ユーザーデータを削除しました。");
 }
 
 function setOriginDeviceValueForDevice() {
@@ -50,7 +58,7 @@ function editDeviceInformation(_key = "", _value = null) {
 		device[_key] = _value;
 	else
 		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません\n${Object.entries(device).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-	setDeviceDataForLocalStorage(device["save--user-data--localstorage"]);
+	setDeviceDataForLocalStorage(getDeviceInformation("save--user-data--localstorage"));
 }
 
 function reloadDeviceInformation(add_msg = "") {
