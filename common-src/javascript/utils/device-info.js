@@ -58,7 +58,7 @@ function editDeviceInformation(_key = "", _value = null) {
 		device[_key] = _value;
 	else
 		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません\n${Object.entries(device).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-	setDeviceDataForLocalStorage(getDeviceInformation("save--user-data--localstorage"));
+	setDeviceDataForLocalStorage(_key == "save--user-data--localstorage" ? true : getDeviceInformation("save--user-data--localstorage"));
 }
 
 function reloadDeviceInformation(add_msg = "") {
