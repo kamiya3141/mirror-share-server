@@ -65,7 +65,7 @@ function reloadDeviceInformation(add_msg = "") {
 
 	setThemeArgsHistoryObject["forceTheme"] = getDeviceInformation("force-theme");
 	// edit の方に書くかは今後次第
-	setThemeArgsHistoryObject["themeType"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme-type") : checkCurrentSystemThemeLight();
+	setThemeArgsHistoryObject["themeType"] = getDeviceInformation("force-theme") ? checkCurrentSystemThemeString(getDeviceInformation("theme-type")) : checkCurrentSystemThemeString();
 
 
 	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
