@@ -195,7 +195,10 @@ window.visualViewport.addEventListener("resize", () => {
 		setTheme();
 });
 
-window.addEventListener("load", () => setTheme());
+window.addEventListener("load", () => {
+	if (!WINV["resize-event-cancel"])
+		setTheme();
+});
 
 
 const console_clear_ok = document.querySelector("span#console-ok");
