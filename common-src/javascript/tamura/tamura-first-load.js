@@ -187,18 +187,15 @@ function setTheme() {
 }
 
 window.addEventListener("resize", () => {
-
-	setTheme();
+	if (!WINV["resize-event-cancel"])
+		setTheme();
 });
 window.visualViewport.addEventListener("resize", () => {
 	if (!WINV["resize-event-cancel"])
 		setTheme();
 });
 
-window.addEventListener("load", () => {
-	if (!WINV["resize-event-cancel"])
-		setTheme();
-});
+window.addEventListener("load", () => setTheme());
 
 
 const console_clear_ok = document.querySelector("span#console-ok");
