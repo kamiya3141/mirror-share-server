@@ -7,7 +7,9 @@ function loadedFunc() {
 			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
 			"focus-out-element": "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
-			"tf-func": (__tf, __elem) => editDeviceInformation("setting-display-open", __tf)
+			"tf-func": (__tf, __elem) => {
+				editDeviceInformation("setting-display-open", __tf);
+			}
 		},
 		{
 			"trigger-element": ["#alert-display-div-main #alert--ok-button"],
@@ -190,9 +192,10 @@ function loadedFunc() {
 }
 
 window.addEventListener("load", () => loadedFunc());
-window.addEventListener("setting-display-reload", () => reloadDisplaySettingValues());
+document.addEventListener("setting-display-reload", () => reloadDisplaySettingValues("abc"));
 
-function reloadDisplaySettingValues() {
+function reloadDisplaySettingValues(msg = "") {
+	console.log(msg);
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 		editDeviceInformation("setting-display-open", false);
 		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
@@ -202,8 +205,8 @@ function reloadDisplaySettingValues() {
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");
 		const data = getDeviceInformation(_arg);
-		if (data)
-			c.querySelector(".toggle_input").click();
+		if (data != null)
+			c.querySelector(".toggle_input").checked = Boolean(data);
 	});
 
 	if (getDeviceInformation("force-theme"))

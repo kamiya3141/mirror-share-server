@@ -28,7 +28,6 @@ function resetDeviceInformationData(allowDisplayWarningMessage = true) {
 	if (allowDisplayWarningMessage)
 		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
 	setOriginDeviceValueForDevice();
-	window.dispatchEvent(new CustomEvent("setting-display-reload"));
 }
 
 function removeDeviceInformationData(allowDisplayWarningMessage = true) {
@@ -36,6 +35,7 @@ function removeDeviceInformationData(allowDisplayWarningMessage = true) {
 	setDeviceDataForLocalStorage(true);
 	if (allowDisplayWarningMessage)
 		myAlertMessage("ユーザーデータを削除しました。");
+	document.dispatchEvent(new CustomEvent("setting-display-reload"));
 }
 
 function setOriginDeviceValueForDevice() {
