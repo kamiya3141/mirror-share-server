@@ -48,9 +48,6 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 			___el.disabled = !__tf;
 			___el.value = getDeviceInformation("device-type");
 		},
-		"abc": async __tf => {
-
-		},
 		"allow--changing--device-mode--for--display-size": async __tf => {
 			if (!__tf) {
 				const res = await myConfirmMessage("OFFにすると\n表示が崩れる場合がございます。\nよろしいですか？");
