@@ -60,10 +60,9 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 		"save--user-data--localstorage": async __tf => {
 			if (!__tf) {
 				const res = await myConfirmMessage("この操作を完了すると\nユーザデータは削除されます。\n\n本当によろしいですか？");
-				if (res) {
-					resetDeviceInformation(false);
-					setDeviceDataForLocalStorage(true);
-				} else {
+				if (res)
+					removeDeviceInformation();
+				else {
 					editDeviceInformation(key, !res);
 					toggleSwitchCancelFunction(elem);
 					myAlertMessage("初期化を中止しました。");
