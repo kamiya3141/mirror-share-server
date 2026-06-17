@@ -68,15 +68,13 @@ function reloadDeviceInformation(add_msg = "") {
 	setThemeArgsHistoryObject["themeType"] = getDeviceInformation("force-theme") ? getDeviceInformation("theme-type") : checkCurrentSystemThemeLight();
 
 
-	setThemeArgsHistoryObject["forceDevice"] = (getDeviceInformation("force-device") || getDeviceInformation("allow--changing--device-mode--for--display-size"));
+	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
 	// edit の方に書くかは今後次第
 	setThemeArgsHistoryObject["deviceType"] = getDeviceInformation("force-device") ? getDeviceInformation("device-type") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? checkCurrentDeviceString(getDeviceInformation("width") < getDeviceInformation("height")) : checkCurrentDeviceString());
 
 	setThemeArgsHistoryObject["preferColor"] = getDeviceInformation("prefer-color");
 
-	setTheme();
-
-	// console.log(add_msg.length == 0 ? "reloadD" : add_msg, device, setThemeArgsHistoryObject);
+	setTheme(add_msg.length == 0 ? "reloadD" : add_msg);
 }
 
 // localStorage

@@ -114,7 +114,7 @@ var setThemeArgsHistoryObject = {
 	"__forceTheme": false,
 	"__themeType": "system",
 	"__forceDevice": false,
-	"__deviceType": "device",
+	"__deviceType": checkCurrentDeviceString(),
 	"__preferColor": "#00ff00",
 	"__tabSize": 4,
 	set "forceTheme"(input) {
@@ -161,7 +161,7 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 	return (with_0b ? "0b" : "") + String(String(ipt.toString(2)).padStart(len, "0"));
 }
 
-function setTheme() {
+function setTheme(add_msg = "") {
 	let { forceTheme, themeType, forceDevice, deviceType, preferColor, tabSize } = setThemeArgsHistoryObject;
 	// let forceTheme, themeType, forceDevice, deviceType;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
@@ -169,8 +169,8 @@ function setTheme() {
 	// カンマ演算子 + 参考演算子
 	const n_idx = (___a = Number(["device", "desktop", "mobile"].indexOf(deviceType) - 1), ___a < 0 ? Number(checkCurrentDeviceMobile()) : ___a);
 	const r_idx = Number(!Boolean(n_idx));
-	let ipt_w = [document.documentElement.clientWidth, screen.width];
-	let ipt_h = [document.documentElement.clientHeight, screen.height];
+	let ipt_w = [document.documentElement.clientWidth, window.screen.width];
+	let ipt_h = [document.documentElement.clientHeight, window.screen.height];
 	[
 		["StylingWidth", [ipt_w[n_idx], ipt_w[n_idx]].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
@@ -183,7 +183,9 @@ function setTheme() {
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
-	document.documentElement.setAttribute("data-my-device-type", forceDevice ? (deviceType == "device" ? checkCurrentDeviceString() : deviceType) : checkCurrentDeviceString());
+	document.documentElement.setAttribute("data-my-device-type", (forceDevice && deviceType == "device") ? checkCurrentDeviceString() : deviceType);
+	if (add_msg.length > 0)
+		console.log(add_msg, setThemeArgsHistoryObject);
 }
 
 window.addEventListener("resize", () => {
