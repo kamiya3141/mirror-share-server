@@ -29,6 +29,7 @@ window[tamuraFirstLoadWindowVarsKeyName] = {
 var WINV = window[tamuraFirstLoadWindowVarsKeyName];
 
 WINV["mySourceFileBasePathArrayIndex"] = 1;
+WINV["resize-event-cancel"] = false;
 
 // window.location.href
 /**
@@ -185,12 +186,18 @@ function setTheme() {
 	document.documentElement.setAttribute("data-my-device-type", forceDevice ? (deviceType == "device" ? checkCurrentDeviceString() : deviceType) : checkCurrentDeviceString());
 }
 
-// あえてonresize
-window.onresize = setTheme();
-window.visualViewport.onresize = setTheme();
+window.addEventListener("resize", () => {
+
+	setTheme();
+});
+window.visualViewport.addEventListener("resize", () => {
+	if (!WINV["resize-event-cancel"])
+		setTheme();
+});
 
 window.addEventListener("load", () => {
-	setTheme();
+	if (!WINV["resize-event-cancel"])
+		setTheme();
 });
 
 
