@@ -192,10 +192,9 @@ function loadedFunc() {
 }
 
 window.addEventListener("load", () => loadedFunc());
-document.addEventListener("setting-display-reload", () => reloadDisplaySettingValues("abc"));
+document.addEventListener("setting-display-reload", () => reloadDisplaySettingValues());
 
-function reloadDisplaySettingValues(msg = "") {
-	console.log(msg);
+function reloadDisplaySettingValues() {
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 		editDeviceInformation("setting-display-open", false);
 		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
