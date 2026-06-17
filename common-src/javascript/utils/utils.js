@@ -108,9 +108,17 @@ document.body.insertAdjacentHTML("afterbegin", `
 						</div>
 					</div>
 					<div class="item-all-box">
-						<div class="item-summary">画面サイズによってデバイスモードの最適化を実行</div>
+						<div class="item-summary">画面サイズによってデバイスモードの最適化を自動で実行</div>
 						<div class="item-box">
 							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--changing--device-mode--for--display-size"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">デバイスモードの最適化</div>
+						<div class="item-box">
+							<div class="item">
+								<button onclick="javascript:reloadDeviceInformation('setting-display--exec-button-0')">実行</button>
+							</div>
 						</div>
 					</div>
 				</div>
