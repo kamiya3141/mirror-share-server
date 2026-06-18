@@ -69,8 +69,26 @@
 					text-align: center;
 				}
 
+				& > .article-card--info-box {
+					width: var(--c1);
+					display: flex;
+					position: absolute;
+					left: 0;
+					top: 0;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: flex-end;
+					background-color: var(--clear);
+
+					& > .article-card--info {
+						position: static;
+						display: inline-flex;
+						font-size: calc(var(--p2) * 1.25);
+					}
+				}
+
 				& > .article-card--title {
-					font-size: 0.9rem;
+					font-size: calc(var(--p2) * 0.9);
 				}
 			}
 		}
