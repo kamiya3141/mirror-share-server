@@ -40,7 +40,7 @@ function settingButtons(_pmd) {
 		const _dt = await _res.json();
 		editArticleDisplay_copiedJsonData["slug"] = current_slug;
 		if (_dt["success"])
-			window.location.href = `${winMyHrefPTCHostname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
+			window.location.href = `${winMyHrefPTCHNPathname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
 	});
 	draft_btn.addEventListener("click", async e => {
 		if (editArticleDisplay_copiedJsonData["status"] != "draft")
@@ -75,7 +75,7 @@ function settingButtons(_pmd) {
 		});
 		const _dt = await _res.json();
 		if (_dt["success"])
-			window.location.href = `${winMyHrefPTCHostname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
+			window.location.href = `${winMyHrefPTCHNPathname}?${id_flag}=${editArticleDisplay_copiedJsonData["slug"]}`;
 	});
 }
 
