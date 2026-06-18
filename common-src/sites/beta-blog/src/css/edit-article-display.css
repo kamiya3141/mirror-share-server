@@ -1,0 +1,108 @@
+#edit-article-display-div-main {
+	background-color: var(--myMainBackgroundColor);
+	width: var(--c1);
+	height: var(--c1);
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+
+	& > #edit-article-main-contents {
+		width: var(--c1);
+		height: var(--c1);
+		position: static;
+		grid-template-rows: 1fr 9fr;
+		grid-template-columns: 1fr;
+
+		& > * {
+			width: var(--c1);
+			height: var(--c1);
+		}
+
+		& .extra-space {
+			width: var(--c1);
+			height: var(--c1);
+		}
+
+		& > .control--box {
+			display: flex;
+			background-color: var(--myElementBackgroundColor);
+			justify-content: flex-start;
+			flex-direction: row;
+
+			& > .button-div--box {
+				min-width: calc(var(--c1) * 3 / 10);
+				height: var(--c1);
+				justify-content: center;
+				padding-left: calc(var(--p2) * 2);
+				padding-right: calc(var(--p2) * 2);
+
+				& > .button-div {
+					width: var(--c1);
+					height: var(--c1);
+
+					& > input[type="button"] {
+						font-size: calc(var(--p2) * 1.125);
+						border-radius: calc(var(--p2) * 999);
+						min-width: var(--c-mn-h);
+						height: var(--c-mn-h);
+						padding: calc(var(--p2) * 1.125);
+
+						&#edit-article-display--input--button--backup {
+							background-color: light-dark(blue, lightblue);
+						}
+
+						&#edit-article-display--input--button--draft {
+							background-color: var(--myElementBackgroundColor);
+						}
+
+						&#edit-article-display--input--button--save {
+							background-color: light-dark(lightgreen, green);
+						}
+
+						:hover {
+							box-shadow: inset 0 0 var(--p1) var(--myTextColor);
+						}
+					}
+				}
+			}
+		}
+
+		& > .editor-result--box {
+			grid-template-rows: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+
+			& > .textarea--box {
+				display: flex;
+				width: var(--c1);
+				height: var(--c1);
+				align-items: flex-start;
+				justify-content: flex-end;
+
+				& > #editor--textarea {
+					width: var(--c-mn-h);
+					min-height: var(--c1);
+					resize: none;
+					overflow-y: auto;
+					outline: none;
+					border: none;
+					border-right: var(--p1) var(--myTextColor) solid;
+				}
+			}
+
+			& > .result-display--box {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: var(--c1);
+				height: var(--c1);
+
+				& > .result-display--root {
+					display: block;
+					width: calc(var(--c1) * 90 / 100);
+					min-height: var(--c1);
+					overflow-y: auto;
+				}
+			}
+		}
+	}
+}

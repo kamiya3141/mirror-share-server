@@ -1,0 +1,296 @@
+:root {
+
+	--note-info-bgc: light-dark(#dff4cf, #2b6300);
+	--note-warn-bgc: light-dark(#fff0b3, #685103);
+	--note-alert-bgc: light-dark(#ffdbdb, #6d0303);
+
+	--note-info-bgc-rvs: light-dark(#2b6300, #dff4cf);
+	--note-warn-bgc-rvs: light-dark(#685103, #fff0b3);
+	--note-alert-bgc-rvs: light-dark(#6d0303, #ffdbdb);
+
+	--debug-bgc1: aqua;
+	--debug-bgc2: red;
+
+}
+
+html {
+	&[data-my-device-type="desktop"] > body > div#root {
+		left: calc(var(--w) - var(--w) / 2);
+		width: var(--w);
+		padding-top: calc(var(--c-hd-h) / 2);
+	}
+
+	&[data-my-device-type="mobile"] > body > div#root {
+		left: var(--c3);
+		width: var(--c4);
+		padding-top: calc(var(--c-hd-h) * 2);
+	}
+
+	& > body {
+		display: flex;
+		flex-direction: column;
+		width: var(--c1);
+		height: calc(var(--c1) * 1);
+		/*
+		ローディング画面を出す場合は以下のoverflow-xをコメントアウトすること
+		*/
+		/*
+		overflow-x: hidden !important;
+		*/
+		overflow-y: auto;
+
+		& a:visited {
+			color: var(--A-Element-VISITED-COLOR) !important;
+		}
+
+		& > header#root-header {
+			width: var(--c1);
+			height: var(--c-hd-h);
+			left: 0px;
+			top: 0px;
+			position: fixed;
+			background-color: var(--myElementBackgroundColor);
+			flex-direction: row;
+			z-index: 990;
+
+			& > section {
+				width: var(--c1);
+				height: var(--c1);
+				position: relative;
+
+				& .open-setting-display-button-element {
+					cursor: pointer;
+					background-color: var(--clear);
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: var(--c1);
+					height: var(--c1);
+				}
+
+				& > div#header-div-root-desktop {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: var(--c1);
+					height: var(--c1);
+
+					& > nav.root-nav {
+						width: var(--c-mn-h);
+						height: var(--c1);
+
+						& > div {
+							flex: 1;
+							width: auto;
+							height: var(--c1);
+							display: block;
+
+							& > .main-nav {
+								width: var(--c1);
+								height: var(--c1);
+
+								& > .main-nav-box {
+									width: var(--c-mn-h);
+									height: var(--c1);
+								}
+							}
+
+							&#items-box-left-box {
+								& > a {
+									aspect-ratio: 1 / 1;
+									min-width: var(--c-hd-h);
+									height: var(--c1);
+									background-image: url("https://share.tshuto.com/favicon.ico");
+									background-position: center center;
+									background-size: var(--c-mn-h) var(--c-mn-h);
+									background-repeat: no-repeat;
+								}
+							}
+
+							&#items-box-center-box {
+								display: flex;
+								flex: 3;
+								align-items: flex-start;
+
+								& > .main-nav > .main-nav-box {
+									display: flex;
+									justify-content: space-between;
+
+									& > .item-box {
+										min-width: calc(var(--c1) / 5);
+										height: var(--c1);
+										align-items: center;
+										justify-content: center;
+
+										& > a {
+											width: auto;
+											height: auto;
+											text-decoration: none;
+
+											& > .item-box_icon-summary {
+												color: var(--myTextColor);
+												width: var(--c1);
+												height: var(--c1);
+												font-size: calc(var(--p2) * 2);
+											}
+										}
+									}
+								}
+							}
+
+							&#items-box-right-box {
+								display: flex;
+								flex: 1;
+								align-items: center;
+
+								& > .main-nav > .main-nav-box > .setting-general-box {
+									width: var(--c1);
+									height: var(--c1);
+
+									& > iframe {
+										width: 75%;
+										height: 75%;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				& > div#header-div-root-mobile {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: var(--c1);
+					height: var(--c1);
+
+					& > nav.root-nav {
+						width: var(--c1);
+						height: var(--c1);
+
+						& > * {
+							flex: 1;
+							width: auto;
+							height: var(--c1);
+							display: block;
+
+							&#items-box-left-box {
+								display: flex;
+								flex: 8;
+								align-items: flex-end;
+							}
+
+							&#items-box-right-box {
+								display: flex;
+								flex: 2;
+								align-items: flex-start;
+							}
+
+							& > nav {
+								width: var(--c1);
+								height: var(--c1);
+
+								& > .main-nav-box {
+									width: var(--c1);
+									height: var(--c1);
+									display: flex;
+									justify-content: space-between;
+
+									& > .item-box {
+										flex: 1;
+										width: auto;
+										height: var(--c1);
+										align-items: center;
+										justify-content: center;
+
+										& > a {
+											width: var(--c1);
+											height: var(--c1);
+											text-decoration: none;
+											flex-direction: column;
+
+											& > * {
+												color: var(--myTextColor);
+												width: var(--c1);
+												height: auto;
+											}
+
+											& > .item-box_icon-box {
+												flex: 6;
+											}
+
+											& > .item-box_icon-summary {
+												flex: 4;
+												min-height: var(--c-hd-h);
+												font-size: calc(var(--p2) * 2);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				& .icon-box_icon-img {
+					aspect-ratio: 1/1;
+					width: 75%;
+					height: 75%;
+				}
+			}
+		}
+
+
+		& > div#root {
+			top: auto;
+			min-height: calc(var(--c-hd-h) / 2);
+
+			& > * {
+				position: relative;
+			}
+
+			& > main {
+				display: block;
+				width: var(--c1);
+				background-color: var(--myElementBackgroundColor2);
+
+				&#root-main > section#main-section {
+					width: var(--c1);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					& > div#main-contentsbox-root {
+						display: block;
+						width: calc(var(--c1) * 90 / 100);
+						padding-top: calc(var(--c-hd-h) / 2);
+						padding-bottom: calc(var(--c-hd-h) / 2);
+					}
+				}
+			}
+
+			& > footer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: var(--c1);
+				height: var(--c-ft-h);
+				background-color: var(--myMainBackgroundColor);
+				text-align: center;
+
+				section#footer-section {
+					width: var(--c1);
+					height: var(--w);
+					border-top: calc(var(--p1) / 4) var(--myTextColor) solid;
+					position: relative;
+				}
+			}
+		}
+
+		& > div#embed-div--title {
+			width: var(--c1);
+			height: var(--c1);
+			font-size: 20vmin
+		}
+	}
+}

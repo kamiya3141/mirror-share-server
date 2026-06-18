@@ -1,0 +1,171 @@
+#create-new-article-setting-display-div-main {
+	width: var(--c1);
+	height: var(--c1);
+	display: grid;
+	grid-template-columns: 1fr;
+
+	#create-new-article-main-contents {
+		width: var(--c1);
+		height: var(--c1);
+
+		& > form {
+			width: var(--c1);
+			height: var(--c1);
+			grid-template-rows: 9fr 1fr;
+			grid-template-columns: 1fr;
+			gap: 5rem;
+
+			& > .setting-info--box {
+				height: var(--c1);
+			}
+
+			& > .submit-button--box {
+				width: var(--c1);
+				height: var(--c1);
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.5rem;
+				padding-top: calc(var(--p2) * 3);
+
+				&[data-mydef--create-new-article--submit-button-box--has-id="false"] {
+					& > .input-submit--box--has-id--true {
+						display: none;
+					}
+
+					& > .input-submit--box--has-id--false {
+						display: inherit;
+					}
+				}
+
+				&[data-mydef--create-new-article--submit-button-box--has-id="true"] {
+					& > .input-submit--box--has-id--true {
+						display: inherit;
+					}
+
+					& > .input-submit--box--has-id--false {
+						display: none;
+					}
+
+					&[data-mydef--create-new-article--submit-button-box--article-type="article"] {
+						& > .input-submit--box--type-backup {
+							display: none;
+						}
+
+						& > .input-submit--box--type-article {
+							display: inherit;
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="published"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
+
+							& > .input-submit--box--status-published {
+								display: flex;
+							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="privated"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
+
+							& > .input-submit--box--status-privated {
+								display: flex;
+							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="draft"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
+
+							& > .input-submit--box--status-draft {
+								display: flex;
+							}
+						}
+
+						&[data-mydef--create-new-article--submit-button-box--article-status="deleted"] {
+
+							& > [class*=" input-submit--box--status-"] {
+								display: none;
+							}
+
+							& > .input-submit--box--status-deleted {
+								display: flex;
+							}
+						}
+					}
+
+					&[data-mydef--create-new-article--submit-button-box--article-type="backup"] {
+						& > .input-submit--box--type-backup {
+							display: inherit;
+						}
+
+						& > .input-submit--box--type-article {
+							display: none;
+						}
+					}
+				}
+
+				&::before {
+					content: attr(data-mydef--create-new-article--submit-button-box--article-type) " : " attr(data-mydef--create-new-article--submit-button-box--article-status);
+					position: absolute;
+					left: calc(var(--w) * 5 / 10);
+					top: 0;
+					font-size: calc(var(--p2) * 2);
+				}
+			}
+
+
+
+			& .input--box {
+				padding-bottom: var(--p1);
+
+				& > input {
+					font-size: calc(var(--p2) * 2);
+					padding: var(--p1);
+					padding-left: calc(var(--p2) * 3);
+					padding-right: calc(var(--p2) * 3);
+
+					&[type="text"] {
+						outline: none;
+						border: none;
+						border-bottom: calc(var(--p1) * 0.25) var(--myTextColor) solid;
+					}
+
+					&[type="submit"] {
+						&[name="parts--deleted"] {
+							background-color: red;
+						}
+
+						&[name="parts--drafted"] {
+							background-color: lightgray;
+						}
+
+						&[name="parts--privated"] {
+							background-color: lightsalmon;
+						}
+
+						&[name="parts--published"] {
+							background-color: var(--myStylingUserPreferColor);
+						}
+
+						&[name="parts--updated"] {
+							background-color: cornflowerblue;
+						}
+
+						&[name="parts--created"] {
+							background-color: lightgreen;
+						}
+					}
+				}
+			}
+		}
+	}
+}
