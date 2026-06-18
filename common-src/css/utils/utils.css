@@ -122,7 +122,8 @@ html {
 		border: none;
 	}
 
-	& button {
+	& button,
+	.cursor-pointer {
 		cursor: pointer;
 	}
 

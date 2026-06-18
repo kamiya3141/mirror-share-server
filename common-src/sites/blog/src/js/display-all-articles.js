@@ -17,6 +17,7 @@ function createArticleCard(article_data_object) {
 
 	const card_div_element = document.createElement("div");
 	card_div_element.classList.add("article-card");
+	card_div_element.classList.add("cursor-pointer");
 	Object.entries(article_data_object).forEach(([k, v]) => card_div_element.setAttribute(`data-mydef--article-card--${k}`, v));
 
 	const card_embed_div_element = document.createElement("div");
