@@ -340,7 +340,7 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
-const BASE_URL = await fetch(`${winMyHrefPTCHostname}?convert=true`).then(res => res.text());
+const BASE_URL = await fetch(`https://blog.tshuto.com?convert=true`).then(res => res.text());
 
 function createAPIURL(_str) {
 	return new URL(`${BASE_URL}src/php/${_str}`);
