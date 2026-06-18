@@ -25,7 +25,7 @@ function createArticleCard(article_data_object) {
 	// info
 	const card_info_button_div_element = document.createElement("div");
 	card_info_button_div_element.classList.add("article-card--info");
-	card_info_button_div_element.innerHTML = "&#133";
+	card_info_button_div_element.innerHTML = "&vellip;";
 	// embed
 	const card_embed_div_element = document.createElement("div");
 	card_embed_div_element.classList.add("artcile-card--embed");

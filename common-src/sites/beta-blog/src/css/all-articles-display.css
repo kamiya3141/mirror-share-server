@@ -84,6 +84,7 @@
 						position: static;
 						display: inline-flex;
 						font-size: calc(var(--p2) * 1.25);
+						padding: 0 var(--p1);
 					}
 				}
 
