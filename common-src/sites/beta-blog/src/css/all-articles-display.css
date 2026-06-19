@@ -47,7 +47,7 @@
 
 				&:hover {
 					transform: scale(1.075);
-
+					/*
 					&::after {
 						content: "";
 						position: absolute;
@@ -56,7 +56,7 @@
 						top: 0;
 						width: var(--c1);
 						height: var(--c1);
-					}
+					}*/
 				}
 
 				& > * {
@@ -77,22 +77,24 @@
 					background-color: var(--clear);
 
 					& > .article-card--info {
-						display: inline-flex;
 						position: absolute;
-						right: calc(var(--p2) * 0.5);
-						top: calc(var(--p2) * 0.5);
-						padding: calc(var(--p2) * 0.85);
+						width: calc(var(--p2) * 1.25);
+						height: calc(var(--p2) * 1.25);
+						right: calc(var(--p2) * 0.25);
+						top: calc(var(--p2) * 0.25);
+						padding: calc(var(--p1) * 0.5);
+						font-size: calc(var(--p2) * 1.125);
+						font-weight: bold;
 
 						&::after {
-							content: "⋯";
+							content: "";
 							position: absolute;
 							left: 0;
 							top: 0;
 							width: var(--c1);
+							height: var(--c1);
 							border-radius: calc(var(--p2) * 999);
 							background-color: var(--clear);
-							font-size: calc(var(--p2) * 1.25);
-							aspect-ratio: 1 / 1 !important;
 						}
 
 						&:hover::after {
