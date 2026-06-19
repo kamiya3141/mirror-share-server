@@ -34,7 +34,7 @@ function createArticleCard(article_data_object) {
 		card_div_element.addEventListener("contextmenu", e => card_info_button_div_element.click());
 	}
 	card_info_button_div_element.addEventListener("click", e => {
-
+		e.preventDefault();
 	});
 
 	// embed
