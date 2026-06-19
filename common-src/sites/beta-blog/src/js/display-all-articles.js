@@ -26,15 +26,14 @@ function createArticleCard(article_data_object) {
 	const card_info_button_div_element = document.createElement("div");
 	card_info_button_div_element.classList.add("article-card--info");
 	card_info_button_div_element.innerHTML = "&ctdot;";
-
+	card_div_element.addEventListener("contextmenu", e => card_info_button_div_element.click());
 	const _dev_tp = document.documentElement.getAttribute("data-my-device-type");
 	// デスクトップなら ⋯ を、モバイルなら長押し or 右クリック
-	if (_dev_tp != "desktop") {
+	if (_dev_tp != "desktop")
 		card_info_button_div_element.style.display = "none";
-		card_div_element.addEventListener("contextmenu", e => card_info_button_div_element.click());
-	}
 	card_info_button_div_element.addEventListener("click", e => {
-		e.preventDefault();
+		e.stopPropagation();
+		
 	});
 
 	// embed
