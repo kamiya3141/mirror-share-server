@@ -22,11 +22,20 @@ function createArticleCard(article_data_object) {
 	// info-box
 	const card_info_button_box_div_element = document.createElement("div");
 	card_info_button_box_div_element.classList.add("article-card--info-box");
-	// info
+	// info-button
 	const card_info_button_div_element = document.createElement("div");
 	card_info_button_div_element.classList.add("article-card--info");
-	if (document.documentElement.getAttribute("data-my-device-type") == "desktop")
-		card_info_button_div_element.innerHTML = `&ctdot;`;
+	card_info_button_div_element.innerHTML = "&ctdot;";
+
+	const _dev_tp = document.documentElement.getAttribute("data-my-device-type");
+	// デスクトップなら ⋯ を、モバイルなら長押し or 右クリック
+	if (_dev_tp != "desktop") {
+		card_info_button_div_element.style.display = "none";
+		card_div_element.addEventListener("contextmenu", e => card_info_button_div_element.click());
+	}
+	card_info_button_div_element.addEventListener("click", e => {
+
+	});
 
 	// embed
 	const card_embed_div_element = document.createElement("div");

@@ -233,6 +233,7 @@ html {
 	& button.utils--popover--elements--popover--show-button {
 		width: var(--c-mn-h);
 		border: none;
+		background-color: var(--clear);
 
 		& > * {
 			width: var(--c1);

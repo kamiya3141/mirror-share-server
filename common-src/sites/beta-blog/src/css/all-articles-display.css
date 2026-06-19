@@ -47,16 +47,6 @@
 
 				&:hover {
 					transform: scale(1.075);
-					/*
-					&::after {
-						content: "";
-						position: absolute;
-						background-color: var(--gray3);
-						left: 0;
-						top: 0;
-						width: var(--c1);
-						height: var(--c1);
-					}*/
 				}
 
 				& > * {
