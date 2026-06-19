@@ -23,7 +23,7 @@
 			justify-content: center;
 			align-items: center;
 
-			#main--input--type-search {
+			& > #main--input--type-search {
 				width: var(--c1);
 				height: calc(var(--c1) / 3);
 				border-radius: calc(var(--p2) * 999);

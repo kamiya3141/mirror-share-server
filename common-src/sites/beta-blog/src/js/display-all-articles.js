@@ -25,7 +25,8 @@ function createArticleCard(article_data_object) {
 	// info
 	const card_info_button_div_element = document.createElement("div");
 	card_info_button_div_element.classList.add("article-card--info");
-	card_info_button_div_element.innerHTML = `&${getDeviceInformation("device") == "mobile" ? "vellip" : "ctdot"};`;
+	if (document.documentElement.getAttribute("data-my-device-type") == "desktop")
+		card_info_button_div_element.innerHTML = `&ctdot;`;
 
 	// embed
 	const card_embed_div_element = document.createElement("div");
