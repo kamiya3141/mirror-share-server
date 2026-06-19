@@ -46,8 +46,8 @@
 				place-items: center;
 
 				&:hover {
-					transform: scale(1.125);
-					/*
+					transform: scale(1.075);
+
 					&::after {
 						content: "";
 						position: absolute;
@@ -57,7 +57,6 @@
 						width: var(--c1);
 						height: var(--c1);
 					}
-					*/
 				}
 
 				& > * {
@@ -82,8 +81,7 @@
 						position: absolute;
 						right: calc(var(--p2) * 0.5);
 						top: calc(var(--p2) * 0.5);
-						padding: calc(var(--p2) * 0.775);
-						aspect-ratio: 1 / 1;
+						padding: calc(var(--p2) * 0.85);
 
 						&::after {
 							content: "⋯";
@@ -91,10 +89,10 @@
 							left: 0;
 							top: 0;
 							width: var(--c1);
-							height: var(--c1);
 							border-radius: calc(var(--p2) * 999);
 							background-color: var(--clear);
 							font-size: calc(var(--p2) * 1.25);
+							aspect-ratio: 1 / 1 !important;
 						}
 
 						&:hover::after {
