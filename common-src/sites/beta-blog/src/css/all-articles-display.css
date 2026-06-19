@@ -71,34 +71,33 @@
 				}
 
 				& > .article-card--info-box {
-					width: var(--c1);
-					display: flex;
 					position: absolute;
 					left: 0;
 					top: 0;
-					flex-direction: column;
-					justify-content: flex-start;
-					align-items: flex-end;
+					width: var(--c1);
 					background-color: var(--clear);
 
-					& {
-						font-size: calc(var(--p2) * 1.25);
-						padding: var(--p2);
-						aspect-ratio: 1 / 1;
-					}
-
 					& > .article-card--info {
-						position: relative;
 						display: inline-flex;
+						position: absolute;
+						right: calc(var(--p2) * 0.75);
+						top: calc(var(--p2) * 0.75);
+						padding: var(--p1);
+						aspect-ratio: 1 / 1;
 
-						&:hover::after {
-							content: "";
+						&::after {
+							content: "⋯";
 							position: absolute;
 							left: 0;
 							top: 0;
 							width: var(--c1);
 							height: var(--c1);
 							border-radius: calc(var(--p2) * 999);
+							background-color: var(--clear);
+							font-size: calc(var(--p2) * 0.75);
+						}
+
+						&:hover::after {
 							background-color: var(--gray5);
 						}
 					}
