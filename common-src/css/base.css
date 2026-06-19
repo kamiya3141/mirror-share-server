@@ -814,7 +814,7 @@
 	--myStylingTabSize: 4;
 	/*light-dark(lightblue, #32a0c4);*/
 
-	--A-Element-VISITED-COLOR: #2360a4;
+	--A-Element-VISITED-COLOR: light-dark(#2360a4, #0080ff);
 }
 
 /* --- 共通スタイル --- */
