@@ -80,9 +80,9 @@
 					& > .article-card--info {
 						display: inline-flex;
 						position: absolute;
-						right: calc(var(--p2) * 0.75);
-						top: calc(var(--p2) * 0.75);
-						padding: var(--p1);
+						right: calc(var(--p2) * 0.5);
+						top: calc(var(--p2) * 0.5);
+						padding: calc(var(--p2) * 0.775);
 						aspect-ratio: 1 / 1;
 
 						&::after {
@@ -94,7 +94,7 @@
 							height: var(--c1);
 							border-radius: calc(var(--p2) * 999);
 							background-color: var(--clear);
-							font-size: calc(var(--p2) * 0.75);
+							font-size: calc(var(--p2) * 1.25);
 						}
 
 						&:hover::after {

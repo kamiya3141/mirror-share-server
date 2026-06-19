@@ -71,7 +71,7 @@ function loadedFunc() {
 	const userPreferColorElement = document.getElementById("setting-display--appearance--input-color--prefer-color");
 	userPreferColorElement.value = getDeviceInformation("prefer-color");
 	userPreferColorElement.addEventListener("change", e => {
-		let __includes_special_color = ["MainBackgroundColor", "TextColor", "ElementBackgroundColor", "ElementBackgroundColor2"].map(c => rgbToHex(getCSSLengthValue(`--my${c}`))).includes(e.target.value);
+		let __includes_special_color = ["myMainBackgroundColor", "myTextColor", "myElementBackgroundColor", "myElementBackgroundColor2", "A-Element-VISITED-COLOR"].map(c => rgbToHex(getCSSLengthValue(`--${c}`))).includes(e.target.value);
 		if (__includes_special_color) {
 			myAlertMessage("指定不可能な値が選択されました。\n値を戻します。");
 			e.target.value = getDeviceInformation("prefer-color");
