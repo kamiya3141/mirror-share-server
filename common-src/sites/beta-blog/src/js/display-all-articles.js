@@ -26,14 +26,12 @@ function createArticleCard(article_data_object) {
 	const card_info_button_div_element = document.createElement("div");
 	card_info_button_div_element.classList.add("article-card--info");
 	card_info_button_div_element.innerHTML = "&ctdot;";
-	card_div_element.addEventListener("contextmenu", e => card_info_button_div_element.click());
 	const _dev_tp = document.documentElement.getAttribute("data-my-device-type");
 	// デスクトップなら ⋯ を、モバイルなら長押し or 右クリック
 	if (_dev_tp != "desktop")
 		card_info_button_div_element.style.display = "none";
 	card_info_button_div_element.addEventListener("click", e => {
 		e.stopPropagation();
-		
 	});
 
 	// embed
@@ -50,6 +48,10 @@ function createArticleCard(article_data_object) {
 	card_info_button_box_div_element.appendChild(card_info_button_div_element);
 	card_div_element.appendChild(card_info_button_box_div_element);
 
+	card_div_element.addEventListener("contextmenu", e => {
+		e.preventDefault();
+		card_info_button_div_element.click();
+	});
 	card_div_element.addEventListener("click", e => {
 		const next_url = new URL(winMyHref);
 		next_url.searchParams.set(id_flag, card_div_element.getAttribute("data-mydef--article-card--slug"));
