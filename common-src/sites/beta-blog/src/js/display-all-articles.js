@@ -28,6 +28,7 @@ function createArticleCard(article_data_object) {
 	const card_info_item_copy_id_div_element = document.createElement("div");
 	card_info_item_copy_id_div_element.innerHTML = "記事のIDをコピー";
 	card_info_item_copy_id_div_element.addEventListener("click", async e => {
+		card_info_item_box_div_element.close();
 		const tf = Object.hasOwn(article_data_object, "id");
 		if (tf)
 			await navigator.clipboard.writeText(article_data_object["id"]);

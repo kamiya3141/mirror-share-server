@@ -373,7 +373,6 @@ function addEventPopoverElementsMini(btn, ppov, stop_propagation = false) {
 		ppov.showPopover();
 		const btn_rect = btn.getBoundingClientRect();
 		const ppov_rect = ppov.getBoundingClientRect();
-		console.log(btn_rect, ppov_rect, window.innerWidth, window.innerHeight);
 		ppov.style.left = `${Math.max(0, Math.min(btn_rect.right, window.innerWidth - ppov_rect.width))}px`;
 		ppov.style.top = `${Math.max(0, Math.min(btn_rect.bottom, window.innerHeight - ppov_rect.height))}px`;
 	});

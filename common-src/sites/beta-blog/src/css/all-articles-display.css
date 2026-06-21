@@ -94,16 +94,20 @@
 						}
 
 						& > .article-card--info-item-box {
+							background-color: var(--myElementBackgroundColor);
 							position: absolute;
 							display: none;
 							flex-direction: column;
 							justify-content: center;
 							align-items: center;
 							min-width: calc(var(--p2) * 8);
-							min-height: calc(var(--p2) * 8);
+							min-height: calc(var(--p2) * 4);
 
 							&:popover-open {
 								display: flex;
+								border: none;
+								padding: 0;
+								font-weight: normal;
 							}
 
 							& > * {
