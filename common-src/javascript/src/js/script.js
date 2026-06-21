@@ -142,7 +142,12 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 	function saveMainScriptHitoryForRemoteFile(tf = false) {
-		fetch("https://js.tshuto.com/src/php/server.php?rewrite-script-file-path=js/main-script-history.js&rewrite-script-file-open-mode=w", {
+		const url = new URL("https://share.tshuto.com/common-src/javascript/src/php/server.php");
+		url.searchParams.set("rewrite-script-file-path", "js/main-script-history.js");
+		url.searchParams.set("rewrite-script-file-open-mode", "w");
+		url.searchParams.set("data", cacheMainScriptHistoryData);
+		/*
+		"https://share.tshuto.com/common-src/javascript/src/php/server.php?rewrite-script-file-path=js/main-script-history.js&rewrite-script-file-open-mode=w", {
 			"method": "POST",
 			"headers": {
 				"Content-Type": "application/json"
@@ -150,7 +155,9 @@ require(["vs/editor/editor.main"], () => {
 			"body": JSON.stringify({
 				"data": cacheMainScriptHistoryData
 			})
-		}).then(res => res.text()).then(dt => {
+		}
+		*/
+		fetch(url).then(res => res.text()).then(dt => {
 			if (dt != "true")
 				console.log(dt);
 			if (tf)

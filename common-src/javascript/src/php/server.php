@@ -1,14 +1,10 @@
 <?php
-
-require_once '/home/tamura/public_html/php/utils/utils.php';
-
-
 $target_script_path = $_GET["rewrite-script-file-path"];
 $target_script_open_mode = $_GET["rewrite-script-file-open-mode"];
 if ($target_script_path == "js/main-script-history.js" && $target_script_open_mode == "w") {
-	$jsonData = json_decode($_GET["php-input"], true);
-	$scriptData = $jsonData ? $jsonData["data"] : "";
+	$scriptData = $_GET["data"] ? $_GET["data"] : "";
 
-	$result = file_put_contents(("/home/tamura/public_html/common-src/javascript/src/" .  $target_script_path), $scriptData);
-	echo ($result ? "true" : "false");
+	$result = file_put_contents((__DIR__ . '/../' .  $target_script_path), $scriptData);
+	// echo ($result ? "true" : "false");
+	echo json_encode($_GET);
 }
