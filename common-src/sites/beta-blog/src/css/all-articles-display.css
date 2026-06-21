@@ -96,6 +96,7 @@
 						& > .article-card--info-item-box {
 							background-color: var(--myElementBackgroundColor);
 							display: none;
+							position: fixed;
 							flex-direction: column;
 							justify-content: center;
 							align-items: center;
@@ -110,11 +111,12 @@
 								font-weight: normal;
 							}
 
-							& > * {
+							& > .article-card--info-item {
 								position: static;
 								display: block;
 								min-width: var(--c1);
 								min-height: var(--c1);
+								padding: calc(var(--p2) * 1.25);
 							}
 						}
 					}

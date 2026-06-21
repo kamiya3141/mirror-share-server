@@ -27,6 +27,7 @@ function createArticleCard(article_data_object) {
 	// info-item
 	[["id", "インデックス"], ["title", "タイトル"], ["slug", "ID"], ["file_name", "ファイル名"], ["category", "カテゴリ"], ["tags", "タグ"], ["excerpt", "見出し"], ["created_at", "作成日"], ["updated_at", "最終更新日"]].forEach(c => {
 		const card_info_item_div_element = document.createElement("div");
+		card_info_item_div_element.classList.add("article-card--info-item");
 		card_info_item_div_element.innerHTML = `記事の${c[1]}をコピー`;
 		card_info_item_div_element.addEventListener("click", async e => {
 			card_info_item_box_div_element.hidePopover();
