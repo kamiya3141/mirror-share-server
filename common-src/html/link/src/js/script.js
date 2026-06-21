@@ -1,5 +1,5 @@
 const NO_YAJU_QUERY_NAME_ARRAY = ["yj", "yaju", "yajuu"];
-const NO_ARTICLE_QUERY_NAME = "atc";
+const NO_ARTICLE_QUERY_NAME_ARRAY = ["atc", "ad", "adv"];
 const YAJU_VALUE = "niKAylKNIEI";
 
 const MAIN_URL = "-:-JSON-URL-:-";
@@ -13,7 +13,7 @@ const FREE_LINK_JSON_FILEFULLNAME = `${FREE_LINK_JSON_FILENAME}.json`;
 
 const current_query = new URLSearchParams((new URL(window.location.toString())).search);
 const yajuExist = NO_YAJU_QUERY_NAME_ARRAY.some(c => current_query.has(c));
-const notArticleFlagExist = current_query.has(NO_ARTICLE_QUERY_NAME);
+const notArticleFlagExist = NO_ARTICLE_QUERY_NAME_ARRAY.some(c => current_query.has(c));
 
 let main_ol = document.getElementById("main-ol");
 let sub_ol = document.getElementById("sub-ol");
@@ -86,7 +86,9 @@ function deleteSlashInArray(arr = []) {
 }
 function addChildLiElement(prt, _dt = [], with_a_element = true) {
 	if (checkHasLength(_dt))
-		[..._dt].forEach(c => prt.appendChild(createElement_li(c, with_a_element)));
+		[..._dt].forEach(c => {
+			prt.appendChild(createElement_li(c, with_a_element));
+		});
 	// 意味ないけど念のため
 	return prt;
 }
@@ -164,7 +166,13 @@ function createElement_ol_block(title = "title", _dt = [], _direct_ol = false) {
 }
 function createElement_li(inner_text = "", with_a_element = true) {
 	const el = document.createElement("li");
-	el.innerHTML = with_a_element ? `<a href="${inner_text}" download>${inner_text}</a>` : inner_text;
+	if (!with_a_element)
+		el.innerHTML = inner_text;
+	else {
+		const get_url = `https://${new URL(inner_text).hostname}/get/${new URL(inner_text).pathname}`;
+		const view_url = `https://${new URL(inner_text).hostname}/view/${new URL(inner_text).pathname}`;
+		el.innerHTML = `<pre><a href="${get_url}" download>${get_url}</a>  |  <a href="${view_url}">VIEW</a></pre>`;
+	}
 	return el;
 }
 function createElement_li_articleYoutube(v = YAJU_VALUE) {
