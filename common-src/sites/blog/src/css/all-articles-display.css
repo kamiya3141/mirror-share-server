@@ -12,7 +12,8 @@
 		gap: 0.5rem;
 
 		& > *,
-		& > * > * {
+		& > * > *,
+		& .article-card--info-item-box {
 			box-shadow: var(--myElementBoxShadow);
 		}
 
@@ -23,18 +24,18 @@
 			justify-content: center;
 			align-items: center;
 
-			#main--input--type-search {
+			& > #main--input--type-search {
 				width: var(--c1);
 				height: calc(var(--c1) / 3);
 				border-radius: calc(var(--p2) * 999);
 				font-size: 150%;
-				padding: 2rem;
+				padding: calc(var(--p2) * 2);
 			}
 		}
 
 		& > .article-contents--box {
 			grid-auto-rows: 9rem;
-			grid-template-columns: repeat(auto-fit, minmax(12rem, 0.3fr));
+			grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 12), 0.3fr));
 			gap: 1rem 3rem;
 			padding: 1.5rem;
 
@@ -46,17 +47,7 @@
 				place-items: center;
 
 				&:hover {
-					transform: scale(1.125);
-
-					&::after {
-						content: "";
-						position: absolute;
-						background-color: var(--gray5);
-						left: 0;
-						top: 0;
-						width: var(--c1);
-						height: var(--c1);
-					}
+					transform: scale(1.075);
 				}
 
 				& > * {
@@ -69,8 +60,73 @@
 					text-align: center;
 				}
 
+				& > .article-card--info-button-box {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: var(--c1);
+					background-color: var(--clear);
+
+					& > .article-card--info--button {
+						position: absolute;
+						width: calc(var(--p2) * 1.25);
+						height: calc(var(--p2) * 1.25);
+						right: calc(var(--p2) * 0.25);
+						top: calc(var(--p2) * 0.25);
+						padding: calc(var(--p1) * 0.5);
+						font-size: calc(var(--p2) * 1.125);
+						font-weight: bold;
+						border: none;
+						padding: 0;
+
+						&::after {
+							content: "";
+							position: absolute;
+							left: 0;
+							top: 0;
+							width: var(--c1);
+							height: var(--c1);
+							border-radius: calc(var(--p2) * 999);
+							background-color: var(--clear);
+						}
+
+						&:hover::after {
+							background-color: var(--gray5);
+						}
+
+						& > .article-card--info-item-box {
+							background-color: var(--myElementBackgroundColor);
+							display: none;
+							position: fixed;
+							flex-direction: column;
+							justify-content: center;
+							align-items: center;
+							min-width: calc(var(--p2) * 8);
+							min-height: calc(var(--p2) * 4);
+							text-align: start;
+
+							&:popover-open {
+								display: flex;
+								border: none;
+								font-weight: normal;
+							}
+
+							& > .article-card--info-item {
+								position: static;
+								display: block;
+								min-width: var(--c1);
+								min-height: var(--c1);
+								padding: calc(var(--p2) * 0.85);
+								font-size: calc(var(--p2) * 1.125);
+								border: none;
+								border-bottom: solid var(--myTextColor) calc(var(--p1) * 0.25);
+							}
+						}
+					}
+				}
+
 				& > .article-card--title {
-					font-size: 0.9rem;
+					font-size: calc(var(--p2) * 0.9);
 				}
 			}
 		}
