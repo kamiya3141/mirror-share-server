@@ -13,8 +13,7 @@
 
 		& > *,
 		& > * > *,
-		& .article-card--info-item-box, 
-		& .article-card--info-item {
+		& .article-card--info-item-box {
 			box-shadow: var(--myElementBoxShadow);
 		}
 
@@ -118,6 +117,7 @@
 								min-width: var(--c1);
 								min-height: var(--c1);
 								padding: calc(var(--p2) * 0.85);
+								border-bottom: solid var(--myTextColor) calc(var(--p1) * 0.25);
 							}
 						}
 					}

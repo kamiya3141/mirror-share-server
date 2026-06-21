@@ -31,9 +31,9 @@ function createArticleCard(article_data_object) {
 		card_info_item_div_element.innerHTML = `記事の${c[1]}をコピー`;
 		card_info_item_div_element.addEventListener("click", async e => {
 			card_info_item_box_div_element.hidePopover();
-			const tf = Object.hasOwn(__article_data_object, c[0]);
+			const tf = Object.hasOwn(article_data_object, c[0]);
 			if (tf)
-				await navigator.clipboard.writeText(__article_data_object[c[0]]);
+				await navigator.clipboard.writeText(article_data_object[c[0]]);
 			myAlertMessage(c[1] + tf ? "をコピーしました。" : "が存在しません。");
 		});
 		card_info_item_box_div_element.appendChild(card_info_item_div_element);
