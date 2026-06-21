@@ -28,13 +28,13 @@
 				height: calc(var(--c1) / 3);
 				border-radius: calc(var(--p2) * 999);
 				font-size: 150%;
-				padding: 2rem;
+				padding: calc(var(--p2) * 2);
 			}
 		}
 
 		& > .article-contents--box {
 			grid-auto-rows: 9rem;
-			grid-template-columns: repeat(auto-fit, minmax(12rem, 0.3fr));
+			grid-template-columns: repeat(auto-fit, minmax(calc(var(--p2) * 12), 0.3fr));
 			gap: 1rem 3rem;
 			padding: 1.5rem;
 
@@ -75,6 +75,8 @@
 						padding: calc(var(--p1) * 0.5);
 						font-size: calc(var(--p2) * 1.125);
 						font-weight: bold;
+						border: none;
+						padding: 0;
 
 						&::after {
 							content: "";
@@ -92,12 +94,13 @@
 						}
 
 						& > .article-card--info-item-box {
+							position: absolute;
 							display: none;
 							flex-direction: column;
 							justify-content: center;
 							align-items: center;
-							min-width: var(--w);
-							min-height: var(--w);
+							min-width: calc(var(--p2) * 8);
+							min-height: calc(var(--p2) * 8);
 
 							&:popover-open {
 								display: flex;

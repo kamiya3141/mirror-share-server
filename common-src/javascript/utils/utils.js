@@ -359,15 +359,23 @@ function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
 		</div>
 	`.replaceAll("\n", "").replaceAll("\t", "");
 }
-
+/**
+ * 
+ * @param {HTMLButtonElement} btn 
+ * @param {HTMLElement} ppov 
+ * @param {Boolean} stop_propagation 
+ * @returns 
+ */
 function addEventPopoverElementsMini(btn, ppov, stop_propagation = false) {
 	btn.addEventListener("click", e => {
 		if (stop_propagation)
 			e.stopPropagation();
 		ppov.showPopover();
-		const rect = ppov.getBoundingClientRect();
-		ppov.style.left = `${Math.max(0, Math.min(rect.left, window.innerWidth - rect.width))}px`;
-		ppov.style.top = `${Math.max(0, Math.min(rect.top, window.innerHeight - rect.height))}px`;
+		const btn_rect = btn.getBoundingClientRect();
+		const ppov_rect = ppov.getBoundingClientRect();
+		console.log(btn_rect, ppov_rect, window.innerWidth, window.innerHeight);
+		ppov.style.left = `${Math.max(0, Math.min(btn_rect.right, window.innerWidth - ppov_rect.width))}px`;
+		ppov.style.top = `${Math.max(0, Math.min(btn_rect.bottom, window.innerHeight - ppov_rect.height))}px`;
 	});
 	return btn;
 }
