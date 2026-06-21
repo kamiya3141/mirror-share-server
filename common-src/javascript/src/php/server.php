@@ -5,6 +5,6 @@ if ($target_script_path == "js/main-script-history.js" && $target_script_open_mo
 	$scriptData = $_GET["data"] ? $_GET["data"] : "";
 
 	$result = file_put_contents((__DIR__ . '/../' .  $target_script_path), $scriptData);
-	// echo ($result ? "true" : "false");
-	echo json_encode($_GET);
+	echo ($result ? "true" : "false");
+	// echo json_encode($_GET);
 }
