@@ -25,17 +25,18 @@ function createArticleCard(article_data_object) {
 	card_info_item_box_div_element.classList.add("article-card--info-item-box");
 	card_info_item_box_div_element.setAttribute("popover", "auto");
 	// info-item
-	const card_info_item_copy_id_div_element = document.createElement("div");
-	card_info_item_copy_id_div_element.innerHTML = "記事のIDをコピー";
-	card_info_item_copy_id_div_element.addEventListener("click", async e => {
-		card_info_item_box_div_element.close();
-		const tf = Object.hasOwn(article_data_object, "id");
-		if (tf)
-			await navigator.clipboard.writeText(article_data_object["id"]);
-		myAlertMessage(tf ? "IDをコピーしました。" : "IDが存在しません。");
+	[["id", "インデックス"], ["title", "タイトル"], ["slug", "ID"], ["file_name", "ファイル名"], ["category", "カテゴリ"], ["tags", "タグ"], ["excerpt", "見出し"], ["created_at", "作成日"], ["updated_at", "最終更新日"]].forEach(c => {
+		const card_info_item_div_element = document.createElement("div");
+		card_info_item_div_element.innerHTML = `記事の${c[1]}をコピー`;
+		card_info_item_div_element.addEventListener("click", async e => {
+			card_info_item_box_div_element.hidePopover();
+			const tf = Object.hasOwn(__article_data_object, c[0]);
+			if (tf)
+				await navigator.clipboard.writeText(__article_data_object[c[0]]);
+			myAlertMessage(c[1] + tf ? "をコピーしました。" : "が存在しません。");
+		});
+		card_info_item_box_div_element.appendChild(card_info_item_div_element);
 	});
-	const card_info_item_open_other_info_div_element = document.createElement("div");
-	card_info_item_open_other_info_div_element.innerHTML = "その他の情報";
 
 	// info-button-box
 	const card_info_button_box_div_element = document.createElement("div");
@@ -60,8 +61,6 @@ function createArticleCard(article_data_object) {
 
 	card_div_element.appendChild(card_embed_div_element);
 	card_div_element.appendChild(card_title_div_element);
-	card_info_item_box_div_element.appendChild(card_info_item_copy_id_div_element);
-	card_info_item_box_div_element.appendChild(card_info_item_open_other_info_div_element);
 	card_info_button_div_element.appendChild(card_info_item_box_div_element);
 	card_info_button_box_div_element.appendChild(card_info_button_div_element);
 	card_div_element.appendChild(card_info_button_box_div_element);
