@@ -34,6 +34,7 @@ function createArticleCard(article_data_object) {
 		myAlertMessage(tf ? "IDをコピーしました。" : "IDが存在しません。");
 	});
 	const card_info_item_open_other_info_div_element = document.createElement("div");
+	card_info_item_open_other_info_div_element.innerHTML = "その他の情報";
 
 	// info-button-box
 	const card_info_button_box_div_element = document.createElement("div");
