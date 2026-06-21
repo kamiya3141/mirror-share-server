@@ -92,12 +92,16 @@
 						}
 
 						& > .article-card--info-item-box {
-							display: flex;
+							display: none;
 							flex-direction: column;
 							justify-content: center;
 							align-items: center;
 							min-width: var(--w);
 							min-height: var(--w);
+
+							&:popover-open {
+								display: flex;
+							}
 
 							& > * {
 								position: static;
