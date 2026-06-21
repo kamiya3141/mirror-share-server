@@ -351,7 +351,7 @@ function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
 		<button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-${rdm}">
 			${el_str0}
 		</button>
-		<div id="utils--popover--elements--popover-${rdm}" class="utils--popover--elements--popover-class" popover>
+		<div id="utils--popover--elements--popover-${rdm}" class="utils--popover--elements--popover-class" popover="auto">
 			<div class="utils--popover--elements--popover--close-button-box">
 				<button popovertarget="utils--popover--elements--popover-${rdm}">CLOSE</button>
 			</div>
@@ -360,3 +360,14 @@ function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
 	`.replaceAll("\n", "").replaceAll("\t", "");
 }
 
+function addEventPopoverElementsMini(btn, ppov, stop_propagation = false) {
+	btn.addEventListener("click", e => {
+		if (stop_propagation)
+			e.stopPropagation();
+		ppov.showPopover();
+		const rect = ppov.getBoundingClientRect();
+		ppov.style.left = `${Math.max(0, Math.min(rect.left, window.innerWidth - rect.width))}px`;
+		ppov.style.top = `${Math.max(0, Math.min(rect.top, window.innerHeight - rect.height))}px`;
+	});
+	return btn;
+}

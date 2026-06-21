@@ -19,20 +19,33 @@ function createArticleCard(article_data_object) {
 	card_div_element.classList.add("cursor-pointer");
 	Object.entries(article_data_object).forEach(([k, v]) => card_div_element.setAttribute(`data-mydef--article-card--${k}`, v));
 
-	// info-box
+
+	// info-item-box
+	const card_info_item_box_div_element = document.createElement("div");
+	card_info_item_box_div_element.classList.add("article-card--info-item-box");
+	card_info_item_box_div_element.setAttribute("popover", "auto");
+	// info-item
+	const card_info_item_copy_id_div_element = document.createElement("div");
+	card_info_item_copy_id_div_element.innerHTML = "記事のIDをコピー";
+	card_info_item_copy_id_div_element.addEventListener("click", async e => {
+		const tf = Object.hasOwn(article_data_object, "id");
+		if (tf)
+			await navigator.clipboard.writeText(article_data_object["id"]);
+		myAlertMessage(tf ? "IDをコピーしました。" : "IDが存在しません。");
+	});
+	const card_info_item_open_other_info_div_element = document.createElement("div");
+
+	// info-button-box
 	const card_info_button_box_div_element = document.createElement("div");
-	card_info_button_box_div_element.classList.add("article-card--info-box");
+	card_info_button_box_div_element.classList.add("article-card--info-button-box");
 	// info-button
-	const card_info_button_div_element = document.createElement("div");
-	card_info_button_div_element.classList.add("article-card--info");
-	card_info_button_div_element.innerHTML = "&ctdot;";
+	const card_info_button_div_element = document.createElement("button");
+	card_info_button_div_element.classList.add("article-card--info--button");
+	addEventPopoverElementsMini(card_info_button_div_element, card_info_item_box_div_element, true);
 	const _dev_tp = document.documentElement.getAttribute("data-my-device-type");
 	// デスクトップなら ⋯ を、モバイルなら長押し or 右クリック
-	if (_dev_tp != "desktop")
-		card_info_button_div_element.style.display = "none";
-	card_info_button_div_element.addEventListener("click", e => {
-		e.stopPropagation();
-	});
+	if (_dev_tp == "desktop")
+		card_info_button_div_element.innerHTML += "&ctdot;";
 
 	// embed
 	const card_embed_div_element = document.createElement("div");
@@ -45,6 +58,9 @@ function createArticleCard(article_data_object) {
 
 	card_div_element.appendChild(card_embed_div_element);
 	card_div_element.appendChild(card_title_div_element);
+	card_info_item_box_div_element.appendChild(card_info_item_copy_id_div_element);
+	card_info_item_box_div_element.appendChild(card_info_item_open_other_info_div_element);
+	card_info_button_div_element.appendChild(card_info_item_box_div_element);
 	card_info_button_box_div_element.appendChild(card_info_button_div_element);
 	card_div_element.appendChild(card_info_button_box_div_element);
 

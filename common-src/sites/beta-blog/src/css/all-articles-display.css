@@ -59,14 +59,14 @@
 					text-align: center;
 				}
 
-				& > .article-card--info-box {
+				& > .article-card--info-button-box {
 					position: absolute;
 					left: 0;
 					top: 0;
 					width: var(--c1);
 					background-color: var(--clear);
 
-					& > .article-card--info {
+					& > .article-card--info--button {
 						position: absolute;
 						width: calc(var(--p2) * 1.25);
 						height: calc(var(--p2) * 1.25);
@@ -89,6 +89,22 @@
 
 						&:hover::after {
 							background-color: var(--gray5);
+						}
+
+						& > .article-card--info-item-box {
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							align-items: center;
+							min-width: var(--w);
+							min-height: var(--w);
+
+							& > * {
+								position: static;
+								min-width: var(--c1);
+								min-height: var(--c1);
+								text-align: start;
+							}
 						}
 					}
 				}
