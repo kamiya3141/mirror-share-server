@@ -56,6 +56,10 @@ const setDefaultCommonThemeName = () => {
 	defaultCommonThemeName = `vs${checkCurrentSystemThemeLight() ? "" : "-dark"}`;
 };
 const getMyStylingFontSize = () => getCSSLengthValue("--myStylingFontSize");
+const tabSizeMinMaxObject = {
+	"min": 2,
+	"max": 8
+};
 
 const BASE_URL = "https://share.tshuto.com/common-src/javascript";
 
@@ -87,8 +91,8 @@ require(["vs/editor/editor.main"], () => {
 		}
 
 		// タブ サイズ
-		for (let i = 2; i <= 8; i++)
-			tabSizeEditorSettingSetSelectElement.appendChild(createOptionElement(i, `TabSize: ${i}`, 4));
+		for (let i = tabSizeMinMaxObject["min"]; i <= tabSizeMinMaxObject["max"]; i++)
+			tabSizeEditorSettingSetSelectElement.appendChild(createOptionElement(i, `TabSize: ${i}`, tabSizeMinMaxObject["min"] + 2));
 
 		// テーマ セット
 		const __FORCE_UPPER_CASE = false;
