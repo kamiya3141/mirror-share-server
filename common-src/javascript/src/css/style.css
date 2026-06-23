@@ -1,11 +1,3 @@
-:root {
-	--w: calc(100% / 2);
-	--p1: 0.5rem;
-	--p2: calc(var(--p1) * 2);
-	--c1: calc(var(--w) * 2);
-	--c2: calc(var(--c1) - var(--p2) * 2);
-}
-
 .my-element {
 	color: inherit;
 	background-color: inherit;
@@ -28,15 +20,6 @@ iframe.zero-size {
 
 .main-contents-body {
 	padding-left: var(--p2);
-}
-
-html {
-	position: absolute;
-	left: calc(var(--myStylingWidth) * 1 / 100);
-	top: calc(var(--myStylingHeight) * 1 / 100);
-	width: calc(var(--myStylingWidth) * 98 / 100);
-	height: calc(var(--myStylingHeight) * 98 / 100);
-	font-family: var(--myStylingFontFamily);
 }
 
 body {
@@ -124,14 +107,11 @@ body {
 			& > div#sandbox-bottom-root {
 				flex: 1;
 				position: relative;
+				flex-direction: row;
 
 				& > * {
 					flex: 0.5;
-					display: flex;
-					justify-content: inherit;
-					align-items: inherit;
-					flex-direction: inherit;
-					position: inherit;
+					align-items: flex-start;
 					width: var(--c2);
 					height: var(--c2);
 					padding: var(--p2);
@@ -140,14 +120,10 @@ body {
 						width: var(--c1);
 						height: var(--c1);
 						flex-direction: column;
-						justify-content: inherit;
-						align-items: inherit;
-						position: inherit;
 						background-color: var(--myElementBackgroundColor);
 
 						& > * {
 							width: var(--c1);
-							position: inherit;
 							background-color: var(--myElementBackgroundColor2);
 						}
 
@@ -158,22 +134,14 @@ body {
 						}
 
 						& > *.root-body {
-							display: flex;
 							height: var(--c2);
-							flex-direction: inherit;
 							flex: 9;
 							overflow-y: auto;
 
 							& > * {
-								flex-direction: inherit;
 								padding-top: var(--p1);
 								padding-bottom: var(--p1);
 								min-height: var(--c2);
-
-								& > * {
-									flex-direction: inherit;
-									position: inherit;
-								}
 
 								& > *.body-children-group-title {
 									flex: 1.5;
@@ -195,13 +163,10 @@ body {
 										flex: 1;
 										flex-direction: column;
 										min-height: var(--c1);
-										position: inherit;
 
 										& > * {
-											flex-direction: inherit;
 											width: var(--c2);
 											padding: var(--p1);
-											position: inherit;
 											font-size: 0.75rem;
 										}
 
