@@ -146,9 +146,8 @@ require(["vs/editor/editor.main"], () => {
 	});
 	function saveMainScriptHitoryForRemoteFile(tf = false) {
 		const url = new URL("https://share.tshuto.com/common-src/javascript/src/php/server.php");
-		url.searchParams.set("rewrite-script-file-path", "js/main-script-history.js");
+		url.searchParams.set("rewrite-script-file-path", "src/js/main-script-history.js");
 		url.searchParams.set("rewrite-script-file-open-mode", "w");
-		// url.searchParams.set("data", cacheMainScriptHistoryData);
 
 		fetch(url, {
 			"method": "POST",
