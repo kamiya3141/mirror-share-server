@@ -145,25 +145,23 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 	function saveMainScriptHitoryForRemoteFile(tf = false) {
-		/*
 		const url = new URL("https://share.tshuto.com/common-src/javascript/src/php/server.php");
 		url.searchParams.set("rewrite-script-file-path", "js/main-script-history.js");
 		url.searchParams.set("rewrite-script-file-open-mode", "w");
-		url.searchParams.set("data", cacheMainScriptHistoryData);
-		fetch(url)
-		*/
-		fetch("https://share.tshuto.com/common-src/javascript/src/php/server.php?rewrite-script-file-path=js/main-script-history.js&rewrite-script-file-open-mode=w", {
+		// url.searchParams.set("data", cacheMainScriptHistoryData);
+
+		fetch(url, {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
 				"data": cacheMainScriptHistoryData
 			})
 		}).then(res => res.text()).then(dt => {
-				if (dt != "true")
-					console.log(dt);
-				if (tf)
-					editor.setValue(cacheMainScriptHistoryData);
-			});
+			if (dt != "true")
+				console.log(dt);
+			if (tf)
+				editor.setValue(cacheMainScriptHistoryData);
+		});
 	}
 	codeBody.addEventListener("keydown", e => {
 		if (e.ctrlKey && String(e.key).toLowerCase() == "s") {
