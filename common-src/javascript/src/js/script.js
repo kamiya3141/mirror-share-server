@@ -57,6 +57,8 @@ const setDefaultCommonThemeName = () => {
 };
 const getMyStylingFontSize = () => getCSSLengthValue("--myStylingFontSize");
 
+const BASE_URL = "https://share.tshuto.com/common-src/javascript";
+
 setDefaultCommonThemeName();
 
 require.config({
@@ -122,7 +124,10 @@ require(["vs/editor/editor.main"], () => {
 			pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
 		});
 
-		const mainScriptHistoryResponse = await fetch(`${WINV["mySourceFileBasePath"]}/common-src/javascript/src/js/main-script-history.js`);
+		const read_url = new URL(`${BASE_URL}/src/php/server.php`);
+		read_url.searchParams.set("rewrite-script-file-path", "src/js/main-script-history.js");
+		read_url.searchParams.set("rewrite-script-file-open-mode", "r");
+		const mainScriptHistoryResponse = await fetch(read_url);
 		const mainScriptHistoryData = await mainScriptHistoryResponse.text();
 		cacheMainScriptHistoryData = mainScriptHistoryData;
 		saveMainScriptHitoryForRemoteFile(true);
@@ -145,7 +150,7 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 	function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const url = new URL("https://share.tshuto.com/common-src/javascript/src/php/server.php");
+		const url = new URL(`${BASE_URL}/src/php/server.php`);
 		url.searchParams.set("rewrite-script-file-path", "src/js/main-script-history.js");
 		url.searchParams.set("rewrite-script-file-open-mode", "w");
 
