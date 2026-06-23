@@ -9,5 +9,5 @@ if ($target_script_path == "js/main-script-history.js" && $target_script_open_mo
 
 	$result = file_put_contents(('./../' .  $target_script_path), $scriptData);
 	// echo ($result ? "true" : "false");
-	echo ($result ? "true" : "false") . " : " . json_encode($php_input);
+	echo ($result ? "true" : "false") . " : " . $scriptData;
 }
