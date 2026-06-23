@@ -9,5 +9,5 @@ if ($target_script_path == "js/main-script-history.js" && $target_script_open_mo
 
 	$result = file_put_contents(('/home/tamura/common-src/javascript/src/' .  $target_script_path), $scriptData);
 	// echo ($result ? "true" : "false");
-	echo json_encode($_GET);
+	echo json_encode($php_input);
 }
