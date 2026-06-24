@@ -69,7 +69,7 @@ function parseObj(_obj = {}) {
 }
 
 console.log(parseObj(obj1), parseObj(obj2));
-// abc
+console.log("abc");
 console.clear();
 
 /*

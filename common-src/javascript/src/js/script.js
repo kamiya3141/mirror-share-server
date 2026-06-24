@@ -162,12 +162,15 @@ require(["vs/editor/editor.main"], () => {
 			editorFontSetSelectElement.appendChild(optionElement);
 			pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
 		});
-
+		Object.keys(codeLangTitleObject).forEach(async k => {
+			await getMainScriptHitoryForRemoteFile(false, true, k);
+		});
 		await getMainScriptHitoryForRemoteFile();
 
 		codeLangTitleSelectElement.addEventListener("change", async e => {
 			await saveMainScriptHitoryForRemoteFile(false);
 			codeLangTitleSelectedValue = e.target.value;
+			reloadEditorView();
 			await getMainScriptHitoryForRemoteFile();
 		});
 	})();
@@ -188,11 +191,14 @@ require(["vs/editor/editor.main"], () => {
 			handleMouseWheel: true
 		}
 	});
-	async function getMainScriptHitoryForRemoteFile() {
-		const g_res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue));
+	async function getMainScriptHitoryForRemoteFile(tf = true, exec = false, lang = codeLangTitleSelectedValue) {
+		const g_res = await fetch(CREATE_MY_FETCH_URL("r", lang));
 		const g_dt = await g_res.text();
 		cacheMainScriptHistoryData = g_dt;
-		editor.setValue(cacheMainScriptHistoryData);
+		if (tf)
+			editor.setValue(cacheMainScriptHistoryData);
+		if (exec)
+			reloadIframeScript(cacheMainScriptHistoryData, sandboxIframeWindow.document, lang);
 	}
 	async function saveMainScriptHitoryForRemoteFile(tf = false) {
 		const s_res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue), {
@@ -207,7 +213,7 @@ require(["vs/editor/editor.main"], () => {
 		if (tf)
 			editor.setValue(cacheMainScriptHistoryData);
 	}
-	codeBody.addEventListener("keydown", async (e) => {
+	codeBody.addEventListener("keydown", async e => {
 		if (e.ctrlKey && String(e.key).toLowerCase() == "s") {
 			e.preventDefault();
 			await saveMainScriptHitoryForRemoteFile();
@@ -286,9 +292,9 @@ require(["vs/editor/editor.main"], () => {
 		monaco.editor.remeasureFonts();
 	}
 
-	function reloadIframeScript(inputCode = "", targetIframeDocumentElement) {
+	function reloadIframeScript(inputCode = "", targetIframeDocumentElement = sandboxIframeWindow.document, lang = codeLangTitleSelectedValue) {
 		consoleResult.innerHTML = "";
-		switch (codeLangTitleSelectedValue) {
+		switch (lang) {
 			case "js": {
 				[...targetIframeDocumentElement.body.children].forEach(c => {
 					if (!(c.hasAttribute("src") && String(c.getAttribute("src")).includes(".tshuto.com") || c.id == "main-js"))
@@ -313,7 +319,7 @@ require(["vs/editor/editor.main"], () => {
 
 	editor.onDidChangeModelContent(e => {
 		cacheMainScriptHistoryData = String(editor.getValue());
-		reloadIframeScript(cacheMainScriptHistoryData, sandboxIframeWindow.document);
+		reloadIframeScript(cacheMainScriptHistoryData);
 	});
 
 	window.addEventListener("resize", () => {
