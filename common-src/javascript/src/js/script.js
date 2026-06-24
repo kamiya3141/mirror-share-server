@@ -203,15 +203,14 @@ require(["vs/editor/editor.main"], () => {
 			})
 		});
 		const s_dt = await s_res.text();
-		if (s_dt != "true")
-			console.log(s_dt);
+		console.log(s_dt != "true" ? s_dt : "ok");
 		if (tf)
 			editor.setValue(cacheMainScriptHistoryData);
 	}
 	codeBody.addEventListener("keydown", async (e) => {
 		if (e.ctrlKey && String(e.key).toLowerCase() == "s") {
-			await saveMainScriptHitoryForRemoteFile();
 			e.preventDefault();
+			await saveMainScriptHitoryForRemoteFile();
 		}
 	});
 
