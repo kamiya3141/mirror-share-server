@@ -199,9 +199,7 @@ require(["vs/editor/editor.main"], () => {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
-				"data": {
-					"code": cacheMainScriptHistoryData
-				}
+				"data": cacheMainScriptHistoryData
 			})
 		});
 		const s_dt = await s_res.text();
