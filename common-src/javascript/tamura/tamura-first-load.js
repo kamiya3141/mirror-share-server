@@ -208,6 +208,6 @@ window.addEventListener("load", () => {
 const console_clear_ok = document.querySelector("span#console-ok");
 
 if (!this_is_svg_file && console_clear_ok === null) {
-	console.clear();
+	// console.clear();
 	console.log("コンソールに入力しないでください");
 }
