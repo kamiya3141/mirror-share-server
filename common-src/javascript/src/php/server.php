@@ -9,8 +9,9 @@ if ($target_script_open_mode == "w") {
 	$scriptData = $php_input ? json_decode($php_input, true) : "";
 
 	$result = file_put_contents($result_script_path, $scriptData);
-	// echo ($result ? "true" : "false");
-	echo ($result ? "true" : "false") . " : " . $scriptData;
+	$last_result = ($result ? "true" : "false");
+	echo $last_result;
+	// echo $last_result . " : " . $scriptData;
 } else if ($target_script_open_mode == "r")
 	echo file_get_contents($result_script_path);
 exit;
