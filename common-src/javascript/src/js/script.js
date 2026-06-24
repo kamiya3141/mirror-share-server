@@ -189,13 +189,14 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 	async function getMainScriptHitoryForRemoteFile() {
-		const res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue));
+		const res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue).toString());
 		const dt = await res.text();
 		cacheMainScriptHistoryData = dt;
 		editor.setValue(cacheMainScriptHistoryData);
 	}
 	async function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue), {
+		console.log(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue));
+		const res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue).toString(), {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
@@ -275,7 +276,6 @@ require(["vs/editor/editor.main"], () => {
 	function reloadEditorView() {
 		setDefaultCommonThemeName();
 		const inputData = {
-			language: codeLangTitleObject[codeLangTitleSelectedValue]["lang"],
 			fontFamily: `${getSelectedValueInSelectElement(editorFontSetSelectElement)}${defaultAddFontFamily}`,
 			fontSize: getMyStylingFontSize(),
 			theme: getSelectedValueInSelectElement(editorThemeSetSelectElement),
@@ -284,6 +284,7 @@ require(["vs/editor/editor.main"], () => {
 			detectIndentation: (getSelectedValueInSelectElement(autoIndentEditorSettingSetSelectElement) == "on")
 		};
 		editor.updateOptions(inputData);
+		monaco.editor.setModelLanguage(editor.getModel(), codeLangTitleObject[codeLangTitleSelectedValue]["lang"]);
 		monaco.editor.remeasureFonts();
 	}
 
