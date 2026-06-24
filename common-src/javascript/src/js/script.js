@@ -189,22 +189,22 @@ require(["vs/editor/editor.main"], () => {
 		}
 	});
 	async function getMainScriptHitoryForRemoteFile() {
-		const res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue).toString());
-		const dt = await res.text();
-		cacheMainScriptHistoryData = dt;
+		const g_res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue));
+		const g_dt = await g_res.text();
+		cacheMainScriptHistoryData = g_dt;
 		editor.setValue(cacheMainScriptHistoryData);
 	}
 	async function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue).toString(), {
+		const s_res = await fetch(BASE_URL + "/src/php/server.php", {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
 				"data": cacheMainScriptHistoryData
 			})
 		});
-		const dt = await res.text();
-		if (dt != "true")
-			console.log(dt);
+		const s_dt = await s_res.text();
+		if (s_dt != "true")
+			console.log(s_dt);
 		if (tf)
 			editor.setValue(cacheMainScriptHistoryData);
 	}
