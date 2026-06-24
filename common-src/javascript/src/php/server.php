@@ -6,8 +6,7 @@ $target_script_path = $_GET["rewrite-script-file-path"];
 $target_script_open_mode = $_GET["rewrite-script-file-open-mode"];
 $result_script_path = './../../' .  $target_script_path;
 if ($target_script_open_mode == "w") {
-	$scriptData = $php_input ? json_decode($php_input, true) : "";
-
+	$scriptData = $php_input ? $php_input : "";
 	$result = file_put_contents($result_script_path, $scriptData);
 	$last_result = ($result ? "true" : "false");
 	echo $last_result;

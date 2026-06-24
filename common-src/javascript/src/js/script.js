@@ -195,9 +195,7 @@ require(["vs/editor/editor.main"], () => {
 		editor.setValue(cacheMainScriptHistoryData);
 	}
 	async function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const url = CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue).toString();
-		console.log(url);
-		const res = await fetch(url, {
+		const res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue).toString(), {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
