@@ -33,12 +33,12 @@ const codeLangTitleObject = {
 	"js": {
 		"title": "JavaScript",
 		"lang": "javascript",
-		"file-path": "js/main-script-history.js"
+		"file-path": "src/js/main-script-history.js"
 	},
 	"css": {
 		"title": "CSS",
 		"lang": "css",
-		"file-path": "css/main-script-history.css"
+		"file-path": "src/css/main-script-history.css"
 	}
 };
 
