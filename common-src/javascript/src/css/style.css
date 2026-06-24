@@ -131,34 +131,36 @@ body {
 						}
 
 						& > *.root-title {
-							flex: 1;
+							flex: 2;
+							height: calc(var(--c-hd-h) * 2);
 							font-size: var(--myStylingFontSize);
 							padding-top: calc(var(--p1) / 4);
+							border-bottom: var(--myTextColor) calc(var(--p1) * 0.25) solid;
 						}
 
 						& > *.root-body {
-							height: var(--c2);
-							flex: 9;
+							min-height: var(--c-mn-h);
+							flex: 8;
 							overflow-y: auto;
 
 							& > * {
 								padding-top: var(--p1);
 								padding-bottom: var(--p1);
-								min-height: var(--c2);
+								min-height: var(--c1);
 
 								& > *.body-children-group-title {
-									flex: 1.5;
+									flex: 2;
 									height: var(--c1);
 
 									& > * {
 										display: inline !important;
-										font-size: 0.90rem;
+										font-size: calc(var(--p2) * 0.9);
 										/*text-decoration: underline;*/
 									}
 								}
 
 								& > *.body-children-group-body {
-									flex: 8.5;
+									flex: 8;
 									height: var(--c1);
 									flex-direction: row;
 
