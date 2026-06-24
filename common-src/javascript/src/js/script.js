@@ -195,11 +195,13 @@ require(["vs/editor/editor.main"], () => {
 		editor.setValue(cacheMainScriptHistoryData);
 	}
 	async function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const s_res = await fetch(BASE_URL + "/src/php/server.php", {
+		const s_res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue), {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
-				"data": cacheMainScriptHistoryData
+				"data": {
+					"code": cacheMainScriptHistoryData
+				}
 			})
 		});
 		const s_dt = await s_res.text();
@@ -208,7 +210,7 @@ require(["vs/editor/editor.main"], () => {
 		if (tf)
 			editor.setValue(cacheMainScriptHistoryData);
 	}
-	codeBody.addEventListener("keydown", async e => {
+	codeBody.addEventListener("keydown", async (e) => {
 		if (e.ctrlKey && String(e.key).toLowerCase() == "s") {
 			await saveMainScriptHitoryForRemoteFile();
 			e.preventDefault();
