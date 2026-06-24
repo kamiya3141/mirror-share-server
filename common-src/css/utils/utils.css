@@ -62,7 +62,8 @@ html {
 		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
 	}
 
-	& > head {
+	& > head,
+	& script {
 		display: none;
 	}
 
