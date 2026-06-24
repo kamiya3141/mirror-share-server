@@ -35,3 +35,9 @@
 1. WN-AC-1600-DGR3 (L2-SW-2)
 </details>
 * VLAN
+<details open>
+ 1. ID = 5	|	mgmt		|	192.168.10.1/24
+ 1. ID = 6	|	srv			|	192.168.20.1/24
+ 1. ID = 50	|	wired		|	192.168.50.1/24
+ 1. ID = 60	|	wireless	|	192.168.60.1/24
+</details>
