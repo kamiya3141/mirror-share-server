@@ -39,7 +39,6 @@ body {
 		width: var(--c1);
 		height: var(--c1);
 		position: relative;
-		flex-direction: inherit;
 
 		& > * {
 			width: var(--c1);
@@ -50,13 +49,19 @@ body {
 			flex-direction: row;
 
 			& > * {
-				display: block;
-				flex-direction: inherit;
 				justify-content: center;
 				align-items: center;
 				text-align: center;
 				flex: 0.5;
 				font-size: calc(var(--myStylingFontSize) * 2);
+
+				& > select {
+					display: flex;
+					text-align: center;
+					width: var(--c-mn-h);
+					height: var(--c1);
+					font-size: calc(var(--p2) * 2);
+				}
 			}
 		}
 
