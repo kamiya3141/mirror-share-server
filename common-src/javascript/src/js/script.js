@@ -33,12 +33,12 @@ const codeLangTitleObject = {
 	"js": {
 		"title": "JavaScript",
 		"lang": "javascript",
-		"file-path": "src/js/main-script-history.js"
+		"file-path": "src/js/main-js-history.js"
 	},
 	"css": {
 		"title": "CSS",
 		"lang": "css",
-		"file-path": "src/css/main-script-history.css"
+		"file-path": "src/css/main-js-history.css"
 	}
 };
 
@@ -50,6 +50,7 @@ const outputResultConsole = (...input) => {
 let sandboxIframeWindow = sandboxIframe.contentWindow;
 
 sandboxIframeWindow.console.log = (...input) => outputResultConsole(...input);
+sandboxIframeWindow.console.clear = () => outputResultConsole();
 sandboxIframeWindow.addEventListener("error", e => {
 	outputResultConsole(`Error: ${e.message}`);
 	e.preventDefault();
@@ -95,6 +96,7 @@ let codeLangTitleSelectedValue = "";
 	});
 	codeLangTitle.appendChild(codeLangTitleSelectElement);
 })();
+editDeviceInformation("force-theme", true);
 
 setDefaultCommonThemeName();
 
@@ -222,9 +224,8 @@ require(["vs/editor/editor.main"], () => {
 	editorThemeSetSelectElement.addEventListener("change", e => setup());
 	pageThemeSetSelectElement.addEventListener("change", e => {
 		const val = e.currentTarget.value;
-		const input_bit = [val != "system", val == "light", false, false].map(v => Boolean(v)).reverse().reduce((pv, cv, i) => (pv + (Number(cv) * (2 ** i))), 0);
-		console.log(input_bit);
-		setTheme(input_bit);
+		editDeviceInformation("theme-type", val);
+		reloadDeviceInformation();
 	});
 	restrictThemeSetSelectElement.addEventListener("change", e => {
 		const val = e.currentTarget.value == "true";
@@ -288,17 +289,27 @@ require(["vs/editor/editor.main"], () => {
 
 	function reloadIframeScript(inputCode = "", targetIframeDocumentElement) {
 		consoleResult.innerHTML = "";
-		[...targetIframeDocumentElement.body.children].forEach(c => {
-			if (!(c.hasAttribute("src") && String(c.getAttribute("src")).includes(".tshuto.com") || c.id == "main-script"))
-				c.remove();
-		});
-		const newScriptElement = targetIframeDocumentElement.createElement("script");
-		newScriptElement.textContent = `(() => {
-			${inputCode}
-		})();`;
-		newScriptElement.id = "main-script";
-		const targetScriptElement = targetIframeDocumentElement.querySelector("script#main-script");
-		targetScriptElement.replaceWith(newScriptElement);
+		switch (codeLangTitleSelectedValue) {
+			case "js": {
+				[...targetIframeDocumentElement.body.children].forEach(c => {
+					if (!(c.hasAttribute("src") && String(c.getAttribute("src")).includes(".tshuto.com") || c.id == "main-js"))
+						c.remove();
+				});
+				const newScriptElement = targetIframeDocumentElement.createElement("script");
+				newScriptElement.textContent = `(() => {${inputCode}})();`;
+				newScriptElement.id = "main-js";
+				const targetScriptElement = targetIframeDocumentElement.querySelector("script#main-js");
+				targetScriptElement.replaceWith(newScriptElement);
+				break;
+			}
+			case "css": {
+				const style = targetIframeDocumentElement.head.querySelector("style#main-css");
+				style.textContent = inputCode;
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	editor.onDidChangeModelContent(e => {
