@@ -81,7 +81,7 @@ const CREATE_MY_FETCH_URL = (mode = "r", key = "js") => {
 };
 
 const codeLangTitleSelectElement = document.createElement("select");
-const codeLangTitleSelectedValue = "";
+let codeLangTitleSelectedValue = "";
 (() => {
 	codeLangTitleSelectElement.id = "code-lang-title-select-element";
 	Object.entries(codeLangTitleObject).forEach(([k, v], i) => {
