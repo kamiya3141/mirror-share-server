@@ -14,4 +14,6 @@ if ($target_script_open_mode == "w") {
 	// echo $last_result . " : " . $scriptData;
 } else if ($target_script_open_mode == "r")
 	echo file_get_contents($result_script_path);
+else
+	echo "hello";
 exit;
