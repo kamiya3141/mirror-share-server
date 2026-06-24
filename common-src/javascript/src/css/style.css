@@ -90,13 +90,6 @@ body {
 					& > div#code-body {
 						width: var(--c1);
 						height: var(--c1);
-						/*
-						color: unset;
-							background-color: unset;
-							font-size: unset;
-							font-family: unset;
-							overflow: unset;
-						*/
 					}
 				}
 
@@ -113,7 +106,8 @@ body {
 
 				& > * {
 					flex: 0.5;
-					align-items: flex-start;
+					align-items: stretch;
+					justify-content: space-evenly;
 					width: var(--c2);
 					height: var(--c2);
 					padding: var(--p2);

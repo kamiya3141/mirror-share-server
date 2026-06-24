@@ -12,8 +12,6 @@ for (let ifr_id of templateElementArray) {
 }
 */
 
-WINV["mySourceFileBasePathArrayIndex"] = 2;
-
 const codeBody = document.getElementById("code-body");
 const sandboxIframe = document.getElementById("sandbox-iframe");
 const consoleResult = document.getElementById("console-result");
