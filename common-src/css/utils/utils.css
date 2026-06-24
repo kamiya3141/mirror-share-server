@@ -44,7 +44,7 @@ html {
 	color: var(--myTextColor);
 	background-color: var(--myMainBackgroundColor);
 
-	& *:where(:not(.utils--org--element)) {
+	& *:where(:not(.utils--org--element, .utils--org--element *)) {
 		color: inherit;
 		background-color: inherit;
 		font-family: inherit;
