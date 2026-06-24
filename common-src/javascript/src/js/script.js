@@ -11,6 +11,7 @@ for (let ifr_id of templateElementArray) {
 	document.body.prepend(clone);
 }
 */
+const codeLangTitle = document.getElementById("title-body");
 
 const codeBody = document.getElementById("code-body");
 const sandboxIframe = document.getElementById("sandbox-iframe");
@@ -28,6 +29,18 @@ const tabSizeEditorSettingSetSelectElement = document.getElementById("editor-set
 const autoIndentEditorSettingSetSelectElement = document.getElementById("editor-setting-auto-indent-set-sel");
 
 
+const codeLangTitleObject = {
+	"js": {
+		"title": "JavaScript",
+		"lang": "javascript",
+		"file-path": "src/js/main-script-history.js"
+	},
+	"css": {
+		"title": "CSS",
+		"lang": "css",
+		"file-path": "src/css/main-script-history.css"
+	}
+};
 
 const outputResultConsole = (...input) => {
 	const __str_eof__ = "<br>";
@@ -60,6 +73,28 @@ const tabSizeMinMaxObject = {
 };
 
 const BASE_URL = "https://share.tshuto.com/common-src/javascript";
+const CREATE_MY_FETCH_URL = (mode = "r", key = "js") => {
+	const result_url = new URL(`${BASE_URL}/src/php/server.php`);
+	result_url.searchParams.set("rewrite-script-file-open-mode", mode);
+	result_url.searchParams.set("rewrite-script-file-path", codeLangTitleObject[key]["file-path"]);
+	return result_url;
+};
+
+const codeLangTitleSelectElement = document.createElement("select");
+const codeLangTitleSelectedValue = "";
+(() => {
+	codeLangTitleSelectElement.id = "code-lang-title-select-element";
+	Object.entries(codeLangTitleObject).forEach(([k, v], i) => {
+		const lng_opt = document.createElement("option");
+		lng_opt.value = k;
+		lng_opt.textContent = v["title"];
+		lng_opt.selected = Boolean(i == 0);
+		if (i == 0)
+			codeLangTitleSelectedValue = k;
+		codeLangTitleSelectElement.appendChild(lng_opt);
+	});
+	codeLangTitle.appendChild(codeLangTitleSelectElement);
+})();
 
 setDefaultCommonThemeName();
 
@@ -126,18 +161,18 @@ require(["vs/editor/editor.main"], () => {
 			pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
 		});
 
-		const read_url = new URL(`${BASE_URL}/src/php/server.php`);
-		read_url.searchParams.set("rewrite-script-file-path", "src/js/main-script-history.js");
-		read_url.searchParams.set("rewrite-script-file-open-mode", "r");
-		const mainScriptHistoryResponse = await fetch(read_url);
-		const mainScriptHistoryData = await mainScriptHistoryResponse.text();
-		cacheMainScriptHistoryData = mainScriptHistoryData;
-		saveMainScriptHitoryForRemoteFile(true);
+		await getMainScriptHitoryForRemoteFile();
+
+		codeLangTitleSelectElement.addEventListener("change", async e => {
+			await saveMainScriptHitoryForRemoteFile(false);
+			codeLangTitleSelectedValue = e.target.value;
+			await getMainScriptHitoryForRemoteFile();
+		});
 	})();
 
 	const editor = monaco.editor.create(codeBody, {
 		value: cacheMainScriptHistoryData,
-		language: "javascript",
+		language: codeLangTitleObject[codeLangTitleSelectedValue]["lang"],
 		theme: defaultCommonThemeName,
 		fontSize: getMyStylingFontSize(),
 		fontFamily: `'${defaultEditorFontFamily}'${defaultAddFontFamily}`,
@@ -151,27 +186,29 @@ require(["vs/editor/editor.main"], () => {
 			handleMouseWheel: true
 		}
 	});
-	function saveMainScriptHitoryForRemoteFile(tf = false) {
-		const url = new URL(`${BASE_URL}/src/php/server.php`);
-		url.searchParams.set("rewrite-script-file-path", "src/js/main-script-history.js");
-		url.searchParams.set("rewrite-script-file-open-mode", "w");
-
-		fetch(url, {
+	async function getMainScriptHitoryForRemoteFile() {
+		const res = await fetch(CREATE_MY_FETCH_URL("r", codeLangTitleSelectedValue));
+		const dt = await res.text();
+		cacheMainScriptHistoryData = dt;
+		editor.setValue(cacheMainScriptHistoryData);
+	}
+	async function saveMainScriptHitoryForRemoteFile(tf = false) {
+		const res = await fetch(CREATE_MY_FETCH_URL("w", codeLangTitleSelectedValue), {
 			"method": "POST",
 			"body": JSON.stringify({
 				"data-type": "php-input",
 				"data": cacheMainScriptHistoryData
 			})
-		}).then(res => res.text()).then(dt => {
-			if (dt != "true")
-				console.log(dt);
-			if (tf)
-				editor.setValue(cacheMainScriptHistoryData);
 		});
+		const dt = await res.text();
+		if (dt != "true")
+			console.log(dt);
+		if (tf)
+			editor.setValue(cacheMainScriptHistoryData);
 	}
-	codeBody.addEventListener("keydown", e => {
+	codeBody.addEventListener("keydown", async e => {
 		if (e.ctrlKey && String(e.key).toLowerCase() == "s") {
-			saveMainScriptHitoryForRemoteFile();
+			await saveMainScriptHitoryForRemoteFile();
 			e.preventDefault();
 		}
 	});
@@ -182,9 +219,7 @@ require(["vs/editor/editor.main"], () => {
 		return retval;
 	}
 
-	editorThemeSetSelectElement.addEventListener("change", e => {
-		setup();
-	});
+	editorThemeSetSelectElement.addEventListener("change", e => setup());
 	pageThemeSetSelectElement.addEventListener("change", e => {
 		const val = e.currentTarget.value;
 		const input_bit = [val != "system", val == "light", false, false].map(v => Boolean(v)).reverse().reduce((pv, cv, i) => (pv + (Number(cv) * (2 ** i))), 0);
@@ -239,6 +274,7 @@ require(["vs/editor/editor.main"], () => {
 	function reloadEditorView() {
 		setDefaultCommonThemeName();
 		const inputData = {
+			language: codeLangTitleObject[codeLangTitleSelectedValue]["lang"],
 			fontFamily: `${getSelectedValueInSelectElement(editorFontSetSelectElement)}${defaultAddFontFamily}`,
 			fontSize: getMyStylingFontSize(),
 			theme: getSelectedValueInSelectElement(editorThemeSetSelectElement),
