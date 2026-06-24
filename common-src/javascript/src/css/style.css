@@ -90,11 +90,13 @@ body {
 					& > div#code-body {
 						width: var(--c1);
 						height: var(--c1);
+						/*
 						color: unset;
-						background-color: unset;
-						/*font-size: unset;*/
-						font-family: unset;
-						overflow: unset;
+							background-color: unset;
+							font-size: unset;
+							font-family: unset;
+							overflow: unset;
+						*/
 					}
 				}
 
