@@ -10,3 +10,4 @@
 ||html-load.com^
 ||content-loader.com^
 ||onelink.me^
+||zucks.net^
