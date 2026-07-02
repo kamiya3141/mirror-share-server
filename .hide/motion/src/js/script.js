@@ -11,7 +11,7 @@ const streamServerInfoArray = [
 	}
 ];
 
-streamServerInfoArray.forEach(m => createMotionContentsSection(m.url, m.title, m.element));
+streamServerInfoArray.forEach(async m => await createMotionContentsSection(m.url, m.title, m.element));
 
 function createTshutoURL(_str = "", add_path = "") {
 	return `https://${_str}.tshuto.com/${add_path}`;
@@ -20,9 +20,11 @@ function createMotionURL(word = "") {
 	return createTshutoURL(`motion-${word}`);
 }
 
-function createMotionContentsSection(url = "", title = "", element = "") {
+async function createMotionContentsSection(url = "", title = "", element = "") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
+	const _res = await window.fetch(url);
+	const _status = _res.ok ? "normal" : "alert";
 	const mainContents = element == "img" ? createPopoverElements(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 

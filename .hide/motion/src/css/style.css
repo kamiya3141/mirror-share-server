@@ -141,14 +141,26 @@ html {
 
 							&[data-mydef--sub-title-status="normal"] {
 								background-color: var(--myStylingUserPreferColor);
-							}
-
-							&[data-mydef--sub-title-status="warn"] {
-								background-color: yellow;
+								&::after {
+									content: "OK";
+									font-size: 1.5rem;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									transform: translate(-50%. -50%);
+								}
 							}
 
 							&[data-mydef--sub-title-status="alert"] {
 								background-color: lightcoral;
+								&::after {
+									content: "Error";
+									font-size: 1.5rem;
+									position: absolute;
+									left: 50%;
+									top: 50%;
+									transform: translate(-50%. -50%);
+								}
 							}
 						}
 					}
