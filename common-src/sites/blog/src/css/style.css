@@ -1,16 +1,6 @@
 :root {
-
-	--note-info-bgc: light-dark(#dff4cf, #2b6300);
-	--note-warn-bgc: light-dark(#fff0b3, #685103);
-	--note-alert-bgc: light-dark(#ffdbdb, #6d0303);
-
-	--note-info-bgc-rvs: light-dark(#2b6300, #dff4cf);
-	--note-warn-bgc-rvs: light-dark(#685103, #fff0b3);
-	--note-alert-bgc-rvs: light-dark(#6d0303, #ffdbdb);
-
 	--debug-bgc1: aqua;
 	--debug-bgc2: red;
-
 }
 
 html {
@@ -30,7 +20,7 @@ html {
 		display: flex;
 		flex-direction: column;
 		width: var(--c1);
-		height: calc(var(--c1) * 1);
+		height: var(--c1);
 		/*
 		ローディング画面を出す場合は以下のoverflow-xをコメントアウトすること
 		*/

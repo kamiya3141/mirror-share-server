@@ -24,16 +24,6 @@
 
 
 :root {
-	--w: calc(100% / 2);
-	--p1: 0.5rem;
-	--p2: calc(var(--p1) * 2);
-	--c1: calc(var(--w) * 2);
-	--c2: calc(var(--c1) - var(--p2) * 2);
-	--c3: calc(var(--c1) * 1 / 100);
-	--c4: calc(var(--c1) * 98 / 100);
-
-	--c5: calc(var(--c1) * 80 / 100);
-
 	--myLocalDefine--section-box--display: grid;
 	--myLocalDefine--motion-contents-all-box--width: auto;
 	--myLocalDefine--motion-contents-all-box--height: var(--c1);
@@ -63,56 +53,12 @@
 }
 
 html {
-	&[data-my-device-type="desktop"] {
-		left: 0;
-		top: 0;
-		width: 100vmax;
-		height: 100vmin;
-	}
-
-	&[data-my-device-type="mobile"] {
-		/*
-		left: calc(var(--myStylingRealWidth) * 1 / 100);
-		top: calc(var(--myStylingRealHeight) * 1 / 100);
-		width: var(--myStylingRealWidth);
-		height: var(--myStylingRealHeight);
-		
-		left: calc(var(--myStylingWidth) * 1 / 100);
-		top: calc(var(--myStylingHeight) * 1 / 100);
-		width: var(--myStylingWidth);
-		height: var(--myStylingHeight);
-		*/
-		left: 0;
-		top: 0;
-		width: 100vmin;
-		height: 100vmax;
-	}
-
-	position: absolute;
-	font-family: var(--myStylingFontFamily);
-	font-size: var(--myStylingFontSize);
-	color: var(--myTextColor);
-	background-color: var(--myMainBackgroundColor);
-
-	& * {
-		color: inherit;
-		background-color: inherit;
-		overflow: hidden;
-		font-family: inherit;
-		position: inherit;
-		display: inherit;
-		flex-direction: inherit;
-		justify-content: inherit;
-		align-items: inherit;
-		border: none;
-		padding: 0;
-		margin: 0;
-		outline: none;
-	}
-
-	& > head {
-		display: none;
-	}
+	display: flex;
+	width: var(--c1);
+	height: var(--c1);
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
 	& > body {
 		position: relative;
@@ -120,10 +66,6 @@ html {
 		top: var(--c3);
 		width: var(--c4);
 		height: var(--c4);
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 
 		& > main.main#main {
 			position: static;
@@ -141,7 +83,7 @@ html {
 				& > .motion-contents-all-box {
 					width: var(--myLocalDefine--motion-contents-all-box--width);
 					height: var(--myLocalDefine--motion-contents-all-box--height);
-					grid-template-rows: var(--c5) auto;
+					grid-template-rows: var(--c-mn-h) auto;
 					justify-content: center;
 
 					& > .img-box {
@@ -177,7 +119,7 @@ html {
 								height: var(--w);
 
 								& #main-title {
-									width: var(--c5);
+									width: var(--c-mn-h);
 									height: var(--c1);
 									display: block;
 									white-space: nowrap;
