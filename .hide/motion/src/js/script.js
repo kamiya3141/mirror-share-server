@@ -23,7 +23,7 @@ function createMotionURL(word = "") {
 function createMotionContentsSection(url = "", title = "", element = "") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
-	const mainContents = element == "img" ? `<img class="motion-contents" src="${url}">` : `<iframe class="motion-contents" href="${url}"></iframe>`;
+	const mainContents = element == "img" ? createPopoverElements(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
 	if (!clear)

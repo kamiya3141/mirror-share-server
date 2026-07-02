@@ -47,7 +47,7 @@ function createArticleCard(article_data_object) {
 	// info-button
 	const card_info_button_div_element = document.createElement("button");
 	card_info_button_div_element.classList.add("article-card--info--button");
-	addEventPopoverElementsMini(card_info_button_div_element, card_info_item_box_div_element, true);
+	addEventPopoverElementsMiniEvent(card_info_button_div_element, card_info_item_box_div_element, true);
 	const _dev_tp = document.documentElement.getAttribute("data-my-device-type");
 	// デスクトップなら ⋯ を、モバイルなら長押し or 右クリック
 	if (_dev_tp == "desktop")
