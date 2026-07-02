@@ -53,14 +53,12 @@
 }
 
 html {
-	display: flex;
-	width: var(--c1);
-	height: var(--c1);
+
+	& > body {
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-
-	& > body {
 		position: relative;
 		left: var(--c3);
 		top: var(--c3);
@@ -73,9 +71,16 @@ html {
 			height: var(--c1);
 
 			& > #section-box {
+				& + #setting-button {
+					text-align: center;
+					width: var(--c1);
+					height: calc(var(--c-hd-h) * 2);
+					font-size: 3rem;
+				}
+
 				display: var(--myLocalDefine--section-box--display);
 				width: var(--c1);
-				height: var(--c1);
+				height: var(--c-mn-h);
 				overflow-y: auto;
 				grid-template-columns: repeat(2, 1fr);
 				justify-content: start;
@@ -88,7 +93,7 @@ html {
 
 					& > .img-box {
 						width: var(--c1);
-						height: var(--c1);
+						height: var(--c-mn-h);
 						display: flex;
 
 						& > .motion-contents {
@@ -99,7 +104,7 @@ html {
 
 					& > .title-box {
 						width: var(--c1);
-						height: var(--c1);
+						height: calc(var(--c-hd-h) * 2);
 						display: grid;
 						grid-template-columns: 1fr;
 						grid-template-rows: 4fr 1fr;
@@ -135,7 +140,7 @@ html {
 							height: var(--c1);
 
 							&[data-mydef--sub-title-status="normal"] {
-								background-color: lightgreen;
+								background-color: var(--myStylingUserPreferColor);
 							}
 
 							&[data-mydef--sub-title-status="warn"] {
