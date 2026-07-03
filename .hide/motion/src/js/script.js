@@ -23,8 +23,9 @@ function createMotionURL(word = "") {
 async function createMotionContentsSection(url = "", title = "", element = "") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
-	const _res = await window.fetch(url);
-	const _status = _res.ok ? "normal" : "alert";
+	// const _res = await window.fetch(url);
+	// const _status = _res.ok ? "normal" : "alert";
+	const _status = "normal";
 	const mainContents = element == "img" ? createPopoverElements(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
@@ -42,7 +43,7 @@ async function createMotionContentsSection(url = "", title = "", element = "") {
 						<div id="main-title">${title}</div>
 					</div>
 				</div>
-				<div id="${title}" class="sub-title" data-mydef--sub-title-status="normal"></div>
+				<div id="${title}" class="sub-title" data-mydef--sub-title-status="${_status}"></div>
 			</div>
 		</section>`;
 		document.getElementById("section-box").innerHTML += output_string;

@@ -140,13 +140,15 @@ html {
 							height: var(--c1);
 
 							&[data-mydef--sub-title-status="normal"] {
-								background-color: var(--myStylingUserPreferColor);
+								background-color: var(--lightgreen10);
 								&::after {
 									content: "OK";
+									width: var(--c1);
+									height: var(--c1);
 									font-size: 1.5rem;
-									position: absolute;
+									position: relative;
 									left: 50%;
-									top: 50%;
+									top: -12.5%;
 									transform: translate(-50%. -50%);
 								}
 							}
@@ -155,11 +157,9 @@ html {
 								background-color: lightcoral;
 								&::after {
 									content: "Error";
+									width: var(--c1);
+									height: var(--c1);
 									font-size: 1.5rem;
-									position: absolute;
-									left: 50%;
-									top: 50%;
-									transform: translate(-50%. -50%);
 								}
 							}
 						}
