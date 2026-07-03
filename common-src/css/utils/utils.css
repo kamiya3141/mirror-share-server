@@ -277,6 +277,7 @@ html {
 					display: inline-flex;
 					height: var(--c1);
 					font-size: calc(var(--p2) * 1.5);
+					background-color: var(--myMainBackgroundColor);
 				}
 			}
 
