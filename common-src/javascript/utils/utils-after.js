@@ -208,9 +208,15 @@ function reloadDisplaySettingValues() {
 			c.querySelector(".toggle_input").checked = Boolean(data);
 	});
 
-	if (getDeviceInformation("force-theme"))
-		document.querySelector("#setting-display--appearance--input-select--theme-setting").value = getDeviceInformation("theme-type");
-	if (getDeviceInformation("force-device"))
-		document.querySelector("#setting-display--appearance--input-select--device-mode-setting").value = getDeviceInformation("device-type");
+	if (getDeviceInformation("force-theme")) {
+		const _sel = document.querySelector("#setting-display--appearance--input-select--theme-setting");
+		_sel.disabled = false;
+		_sel.value = getDeviceInformation("theme-type");
+	}
+	if (getDeviceInformation("force-device")) {
+		const _sel = document.querySelector("#setting-display--appearance--input-select--device-mode-setting");
+		_sel.disabled = false;
+		_sel.value = getDeviceInformation("device-type");
+	}
 	document.querySelector("#setting-display--specific--input-select--setting-display-init-item").value = String(getDeviceInformation("setting-display-init-item-index"));
 }
