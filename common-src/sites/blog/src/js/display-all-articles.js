@@ -36,7 +36,7 @@ function createArticleCard(article_data_object) {
 			const tf = Object.hasOwn(article_data_object, c[0]);
 			if (tf)
 				await navigator.clipboard.writeText(article_data_object[c[0]]);
-			myAlertMessage(c[1] + tf ? "をコピーしました。" : "が存在しません。");
+			myAlertMessage(`${c[1]}${(tf ? "をコピーしました" : "が存在しません")}。`);
 		});
 		card_info_item_box_div_element.appendChild(card_info_item_div_element);
 	});
