@@ -290,11 +290,13 @@ html {
 }
 
 [popover] {
+	--mnt1t2: calc(var(--mnt1) * 4);
+	--es-f: ease-in-out;
 	opacity: 0;
 	transform: translateY(-8px);
-	transition: opacity 0.2s ease, transform 0.2s ease,
-		display 0.2s ease allow-discrete,
-		overlay 0.2s ease allow-discrete;
+	transition: opacity var(--mnt1t2) var(--es-f), transform var(--es-f),
+		display var(--mnt1t2) var(--es-f) allow-discrete,
+		overlay var(--mnt1t2) var(--es-f) allow-discrete;
 }
 
 [popover]:popover-open {
