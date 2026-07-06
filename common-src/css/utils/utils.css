@@ -16,16 +16,6 @@
 	initial-value: 100%;
 }
 
-@keyframes utils--popover--animation {
-	from {
-		transform: translateY(-50%);
-	}
-
-	to {
-		transform: translateY(0);
-	}
-}
-
 :root {
 	--w: 50%;
 	--p1: 0.5rem;
@@ -299,15 +289,23 @@ html {
 	}
 
 	& *[popover] {
-		--mnt1t2: calc(var(--mnt1) * 4);
-		--es-f: ease-in-out;
+		--mnt1t2: calc(var(--mnt1) * 1.25);
+		--es-f: ease-in;
 
 		&:popover-open {
 			animation: utils--popover--animation var(--mnt1t2) var(--es-f) forwards;
 		}
+	}
+}
 
-		&:not(*:popover-open) {
-			animation: utils--popover--animation var(--mnt1t2) var(--es-f) reverse;
-		}
+@keyframes utils--popover--animation {
+	from {
+		opacity: 0;
+		transform: translateY(-20%);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
