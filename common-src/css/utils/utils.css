@@ -301,7 +301,7 @@ html {
 @keyframes utils--popover--animation {
 	from {
 		opacity: 0;
-		transform: translateY(-20%);
+		transform: translateY(-10%);
 	}
 
 	to {
