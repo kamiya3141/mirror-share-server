@@ -16,6 +16,16 @@
 	initial-value: 100%;
 }
 
+@keyframes utils--popover--animation {
+	from {
+		transform: translateY(-var(--p1));
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
 :root {
 	--w: 50%;
 	--p1: 0.5rem;
@@ -287,26 +297,10 @@ html {
 			}
 		}
 	}
-}
 
-[popover] {
-	--mnt1t2: calc(var(--mnt1) * 4);
-	--es-f: ease-in-out;
-	opacity: 0;
-	transform: translateY(-8px);
-	transition: opacity var(--mnt1t2) var(--es-f), transform var(--es-f),
-		display var(--mnt1t2) var(--es-f) allow-discrete,
-		overlay var(--mnt1t2) var(--es-f) allow-discrete;
-}
-
-[popover]:popover-open {
-	opacity: 1;
-	transform: translateY(0);
-}
-
-@starting-style {
-	[popover]:popover-open {
-		opacity: 0;
-		transform: translateY(-8px);
+	& *[popover] {
+		--mnt1t2: calc(var(--mnt1) * 4);
+		--es-f: ease-in-out;
+		animation: utils--popover--animation var(--mnt1t2) var(--es-f) forwards;
 	}
 }
