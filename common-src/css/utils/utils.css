@@ -18,7 +18,7 @@
 
 @keyframes utils--popover--animation {
 	from {
-		transform: translateY(-var(--p1));
+		transform: translateY(-50%);
 	}
 
 	to {
@@ -301,6 +301,13 @@ html {
 	& *[popover] {
 		--mnt1t2: calc(var(--mnt1) * 4);
 		--es-f: ease-in-out;
-		animation: utils--popover--animation var(--mnt1t2) var(--es-f) forwards;
+
+		&:popover-open {
+			animation: utils--popover--animation var(--mnt1t2) var(--es-f) forwards;
+		}
+
+		&:not(*:popover-open) {
+			animation: utils--popover--animation var(--mnt1t2) var(--es-f) reverse;
+		}
 	}
 }
