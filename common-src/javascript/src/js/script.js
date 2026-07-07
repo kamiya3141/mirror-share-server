@@ -61,7 +61,7 @@ let cacheThemeJsonData = {};
 let cacheFontJsonData = {};
 
 const PRIMARY_THEME_KIND_NAME = "default";
-const defaultAddFontFamily = ", sans-serif";
+const defaultAddFontFamily = "";
 const defaultEditorFontFamily = "'Explex'";
 let defaultCommonThemeName = "";
 const setDefaultCommonThemeName = () => {
@@ -223,12 +223,13 @@ require(["vs/editor/editor.main"], () => {
 	function getSelectedValueInSelectElement(_selectElement) {
 		const ret = _selectElement.options[_selectElement.selectedIndex];
 		let retval = ret.value;
-		return retval;
+		//return retval;
+		return _selectElement.value;
 	}
 
 	editorThemeSetSelectElement.addEventListener("change", e => setup());
 	pageThemeSetSelectElement.addEventListener("change", e => {
-		const val = e.currentTarget.value;
+		const val = e.target.value;
 		editDeviceInformation("theme-type", val);
 		reloadDeviceInformation();
 	});
@@ -251,9 +252,8 @@ require(["vs/editor/editor.main"], () => {
 		setup();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		console.log(getSelectedValueInSelectElement(pageFontSetSelectElement));
-		editDeviceInformation("font-family", getSelectedValueInSelectElement(pageFontSetSelectElement));
-		reloadDeviceInformation("page-font-set-select-element");
+		editDeviceInformation("font-family", e.target.value);
+		reloadDeviceInformation();
 	});
 
 	useTabEditorSettingSetSelectElement.addEventListener("change", e => {

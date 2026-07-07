@@ -83,7 +83,6 @@ function reloadDeviceInformation(add_msg = "") {
 	setThemeArgsHistoryObject["deviceType"] = getDeviceInformation("force-device") ? getDeviceInformation("device-type") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? checkCurrentDeviceString(_tf) : checkCurrentDeviceString());
 	setThemeArgsHistoryObject["preferColor"] = getDeviceInformation("prefer-color");
 	setThemeArgsHistoryObject["fontFamily"] = getComputedStyle(document.documentElement).getPropertyValue(`--${getDeviceInformation("font-family")}`);
-	console.log(getDeviceInformation("font-family"), "\n", setThemeArgsHistoryObject["fontFamily"], "\n", getComputedStyle(document.documentElement).getPropertyValue(`--${getDeviceInformation("font-family")}`));
 	setTheme(add_msg.length == 0 ? "reloadD" : add_msg);
 }
 

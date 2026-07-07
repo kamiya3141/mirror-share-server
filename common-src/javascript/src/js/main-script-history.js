@@ -9,7 +9,7 @@ new Array(15).fill("asd").map((c, i) => c + i).forEach(c => {
 document.body.appendChild(sel);
 
 sel.addEventListener("change", e => {
-	console.log(e.currentTarget.value);
+	console.log(e.target.value);
 });
 
 const myObj = new Object({
