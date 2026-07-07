@@ -1,6 +1,8 @@
+var MY_DOMAIN = "tshuto.com";
+var CREATE_MY_DOMAIN_URL = (_sb = "") => `https://${String(_sb) + ".".repeat(Number(Boolean(String(_sb).length))) + MY_DOMAIN}`;
 var tamuraFirstLoadWindowVarsKeyName = "tamuraFirstLoading";
 window[tamuraFirstLoadWindowVarsKeyName] = {
-	"__MySourceFileBasePathArray": ["https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main", "https://kamiya3141.github.io/mirror-share-server", "https://share.tshuto.com"],
+	"__MySourceFileBasePathArray": ["https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main", "https://kamiya3141.github.io/mirror-share-server", CREATE_MY_DOMAIN_URL("share")],
 	"__MySourceFileBasePathArrayIndex": 1,
 	"myHref": new URL(window.location.toString()),
 	get "mySourceFileBasePath"() {

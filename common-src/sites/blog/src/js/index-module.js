@@ -304,7 +304,7 @@ async function parseMarkDown2HTMLContextVersion2(decoded_json_data = {}) {
 
 	const mdurl = new URL(`${winMyHrefPTCHostname}/md/${decoded_json_data["file_name"]}`);
 	const mdcontent = decoded_json_data["content"];
-	let result_str = await fetch(`https://api.tshuto.com/md?${new URLSearchParams({
+	let result_str = await fetch(`${CREATE_MY_DOMAIN_URL("api")}/md?${new URLSearchParams({
 		"md-file-url": mdurl,
 		"md-file-content": mdcontent
 	})}`).then(res => res.text());
@@ -340,7 +340,7 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
-const BASE_URL = "https://share.tshuto.com/common-src/sites/blog/";
+const BASE_URL = CREATE_MY_DOMAIN_URL("share") + "/common-src/sites/blog/";
 
 function createAPIURL(_str) {
 	return new URL(`${BASE_URL}src/php/${_str}`);
