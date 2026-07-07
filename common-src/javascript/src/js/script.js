@@ -251,7 +251,8 @@ require(["vs/editor/editor.main"], () => {
 		setup();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		document.documentElement.style.setProperty("--myStylingFontFamily", `${getSelectedValueInSelectElement(pageFontSetSelectElement)}${defaultAddFontFamily}`);
+		setThemeArgsHistoryObject["fontFamily"] = getSelectedValueInSelectElement(pageFontSetSelectElement);
+		// editDeviceInformation("font-family", getSelectedValueInSelectElement(pageFontSetSelectElement));
 		setup();
 	});
 
