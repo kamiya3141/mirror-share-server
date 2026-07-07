@@ -251,5 +251,6 @@ function reloadDisplaySettingValues() {
 		_sel.disabled = false;
 		_sel.value = getDeviceInformation("device-type");
 	}
+	document.querySelector("#setting-display--appearance--input-select--font-setting").value = String(getDeviceInformation("font-family"));
 	document.querySelector("#setting-display--specific--input-select--setting-display-init-item").value = String(getDeviceInformation("setting-display-init-item-index"));
 }
