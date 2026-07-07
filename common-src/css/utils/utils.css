@@ -47,7 +47,7 @@ html {
 	& *:where(:not(.utils--org--element--only-me, .utils--org--element, .utils--org--element *)) {
 		color: inherit;
 		background-color: inherit;
-		font-family: inherit;
+		font-family: inherit !important;
 		display: inherit;
 		margin: 0px;
 		flex-direction: inherit;

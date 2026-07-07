@@ -153,10 +153,10 @@ var setThemeArgsHistoryObject = {
 		return this["__preferColor"];
 	},
 	set "fontFamily"(input) {
-		this["__preferColor"] = `${input}, ${this["__fontFamilyAddString"]}`;
+		this["__fontFamily"] = `${input}, ${this["__fontFamilyAddString"]}`;
 	},
 	get "fontFamily"() {
-		return this["__fontFamily"].replace(`, ${this["__fontFamilyAddString"]}`, "");
+		return this["__fontFamily"];
 	},
 	set "tabSize"(input) {
 		if (isNaN(Number(input)))
@@ -173,7 +173,7 @@ function dec2bin(ipt, len = 4, with_0b = false) {
 }
 
 function setTheme(add_msg = "") {
-	let { forceTheme, themeType, forceDevice, deviceType, preferColor, tabSize } = setThemeArgsHistoryObject;
+	let { forceTheme, themeType, forceDevice, deviceType, preferColor, fontFamily, tabSize } = setThemeArgsHistoryObject;
 	// let forceTheme, themeType, forceDevice, deviceType;
 	// dec2bin(setThemeArgsHistory).split("").map(v => Boolean(Number(v)));
 
@@ -188,7 +188,7 @@ function setTheme(add_msg = "") {
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
-		["StylingFontFamily", [`"Note Sans JP", sans-serif`, `"Note Sans JP", sans-serif`]],
+		["StylingFontFamily", [fontFamily, fontFamily]],
 		["StylingUserPreferColor", [preferColor, preferColor]],
 		["StylingTabSize", [tabSize, tabSize]]
 	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));

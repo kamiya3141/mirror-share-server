@@ -144,31 +144,31 @@ function loadedFunc() {
 			"select-option-data-array": [
 				{
 					"text": "デフォルト",
-					"value": "var(--note-sans-jp)"
+					"value": "note-sans-jp"
 				},
 				{
 					"text": "Explex",
-					"value": "var(--explex)"
+					"value": "explex"
 				},
 				{
 					"text": "0XProto",
-					"value": "var(--zxproto)"
+					"value": "zxproto"
 				},
 				{
 					"text": "Fira Code",
-					"value": "var(--firacode)"
+					"value": "firacode"
 				},
 				{
 					"text": "HackGen-Regular",
-					"value": "var(--hack-r)"
+					"value": "hack-r"
 				},
 				{
 					"text": "怨霊",
-					"value": "var(--onryou)"
+					"value": "onryou"
 				},
 			],
 			"select-change-event-function": val => {
-				editDeviceInformation("font-family", val);
+				editDeviceInformation("font-family", getComputedStyle(document).getPropertyValue(val));
 			},
 			"init-disabled": false
 		},
