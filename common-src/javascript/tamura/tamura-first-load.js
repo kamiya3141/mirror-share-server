@@ -119,7 +119,7 @@ var setThemeArgsHistoryObject = {
 	"__forceDevice": false,
 	"__deviceType": checkCurrentDeviceString(),
 	"__preferColor": "#00ff00",
-	"__fontFamily": "var(--note-sans-jp)",
+	"__fontFamily": "'Note Sans JP'",
 	"__fontFamilyAddString": "",	//", sans-serif",
 	"__tabSize": 4,
 	set "forceTheme"(input) {
