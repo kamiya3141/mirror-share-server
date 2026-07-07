@@ -140,6 +140,39 @@ function loadedFunc() {
 			"init-disabled": true
 		},
 		{
+			"select-id": "setting-display--appearance--input-select--font-setting",
+			"select-option-data-array": [
+				{
+					"text": "デフォルト",
+					"value": "var(--note-sans-jp)"
+				},
+				{
+					"text": "Explex",
+					"value": "var(--explex)"
+				},
+				{
+					"text": "0XProto",
+					"value": "var(--zxproto)"
+				},
+				{
+					"text": "Fira Code",
+					"value": "var(--firacode)"
+				},
+				{
+					"text": "HackGen-Regular",
+					"value": "var(--hack-r)"
+				},
+				{
+					"text": "怨霊",
+					"value": "var(--onryou)"
+				},
+			],
+			"select-change-event-function": val => {
+				editDeviceInformation("font-family", val);
+			},
+			"init-disabled": false
+		},
+		{
 			"select-id": "setting-display--specific--input-select--setting-display-init-item",
 			"select-option-data-array": [
 				{

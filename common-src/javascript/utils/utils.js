@@ -96,6 +96,14 @@ document.body.insertAdjacentHTML("afterbegin", `
 						</div>
 					</div>
 					<div class="item-all-box">
+						<div class="item-summary">フォントの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--font-setting" class="allow-expand" data-mydef--set-by-script="false"></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
 						<div class="item-summary">設定されたテーマの強制</div>
 						<div class="item-box">
 							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
