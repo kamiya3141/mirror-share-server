@@ -12,8 +12,6 @@ for (let ifr_id of templateElementArray) {
 }
 */
 
-WINV["mySourceFileBasePathArrayIndex"] = 2;
-
 const codeLangTitle = document.getElementById("title-body");
 
 const codeBody = document.getElementById("code-body");
@@ -161,7 +159,7 @@ require(["vs/editor/editor.main"], () => {
 		const fontListJsonData = await fontListJsonResponse.json();
 		cacheFontJsonData = fontListJsonData["font-data"];
 		cacheFontJsonData.forEach(optionValue => {
-			const optionElement = createOptionElement(`'${optionValue["value"]}'`, optionValue["text"], "explex");
+			const optionElement = createOptionElement(optionValue["value"], optionValue["text"], "explex");
 			editorFontSetSelectElement.appendChild(optionElement);
 			pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
 		});
