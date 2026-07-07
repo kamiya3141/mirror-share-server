@@ -253,7 +253,7 @@ require(["vs/editor/editor.main"], () => {
 	pageFontSetSelectElement.addEventListener("change", e => {
 		console.log(getSelectedValueInSelectElement(pageFontSetSelectElement));
 		editDeviceInformation("font-family", getSelectedValueInSelectElement(pageFontSetSelectElement));
-		setup();
+		reloadDeviceInformation();
 	});
 
 	useTabEditorSettingSetSelectElement.addEventListener("change", e => {
