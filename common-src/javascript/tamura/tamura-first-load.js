@@ -120,7 +120,7 @@ var setThemeArgsHistoryObject = {
 	"__deviceType": checkCurrentDeviceString(),
 	"__preferColor": "#00ff00",
 	"__fontFamily": "var(--note-sans-jp)",
-	"__fontFamilyAddString": ", ",	//", sans-serif",
+	"__fontFamilyAddString": "",	//", sans-serif",
 	"__tabSize": 4,
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
