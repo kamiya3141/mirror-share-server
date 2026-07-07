@@ -158,7 +158,7 @@ require(["vs/editor/editor.main"], () => {
 		const fontListJsonData = await fontListJsonResponse.json();
 		cacheFontJsonData = fontListJsonData["font-data"];
 		cacheFontJsonData.forEach(optionValue => {
-			const optionElement = createOptionElement(`'${optionValue}'`, optionValue, "Explex");
+			const optionElement = createOptionElement(`'${optionValue["value"]}'`, optionValue["text"], "Explex");
 			editorFontSetSelectElement.appendChild(optionElement);
 			pageFontSetSelectElement.appendChild(optionElement.cloneNode(true));
 		});
@@ -251,8 +251,7 @@ require(["vs/editor/editor.main"], () => {
 		setup();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		setThemeArgsHistoryObject["fontFamily"] = getSelectedValueInSelectElement(pageFontSetSelectElement);
-		// editDeviceInformation("font-family", getSelectedValueInSelectElement(pageFontSetSelectElement));
+		editDeviceInformation("font-family", getSelectedValueInSelectElement(pageFontSetSelectElement));
 		setup();
 	});
 
