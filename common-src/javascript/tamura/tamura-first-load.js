@@ -196,8 +196,8 @@ function setTheme(add_msg = "") {
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
 	document.documentElement.setAttribute("data-my-device-type", (forceDevice && deviceType == "device") ? checkCurrentDeviceString() : deviceType);
 
-	if (add_msg.length > 0)
-		console.log(add_msg, forceTheme, themeType, forceDevice, deviceType, preferColor, fontFamily, tabSize);
+	/*	if (add_msg.length > 0)
+		console.log(add_msg, forceTheme, themeType, forceDevice, deviceType, preferColor, fontFamily, tabSize);*/
 }
 
 window.addEventListener("resize", () => {
