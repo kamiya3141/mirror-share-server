@@ -168,7 +168,7 @@ function loadedFunc() {
 				},
 			],
 			"select-change-event-function": val => {
-				editDeviceInformation("font-family", getComputedStyle(document.documentElement).getPropertyValue(`--${val}`));
+				editDeviceInformation("font-family", val);
 			},
 			"init-disabled": false
 		},
