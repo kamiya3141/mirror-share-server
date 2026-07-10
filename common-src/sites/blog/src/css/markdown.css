@@ -390,12 +390,15 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 
 		&.note-class {
-			font-family: "FontAwesome";
 			font-weight: normal;
 			border-radius: var(--p1);
 			padding: calc(var(--p2) * 1.25);
 			margin: calc(var(--p2) * 1.25);
 			color: var(--myTextColor);
+
+			& > * > span.note-mark-span {
+				font-family: "FontAwesome";
+			}
 
 			&.note-info {
 				background-color: var(--note-info-bgc);
