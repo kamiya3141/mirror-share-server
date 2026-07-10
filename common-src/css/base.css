@@ -530,7 +530,7 @@
 }
 
 @property --myStylingFontFamily {
-	syntax: "<string>";
+	syntax: "*";
 	inherits: true;
 	initial-value: sans-serif;
 }
