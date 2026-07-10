@@ -64,7 +64,7 @@
 				& > #control-box {
 					align-items: center;
 					justify-content: center;
-					font-family: var(--noto-sans-jp);
+					font-family: var(--note-sans-jp);
 					font-size: calc(var(--p2) * 2);
 					cursor: pointer;
 				}
