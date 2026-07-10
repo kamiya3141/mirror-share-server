@@ -5,13 +5,13 @@
 @import url("./display-alert-template.css");
 
 @property --myStylingLocalDisplayWidth {
-	syntax: "<length>";
+	syntax: "*";
 	inherits: true;
 	initial-value: 100%;
 }
 
 @property --myStylingLocalDisplayHeight {
-	syntax: "<length>";
+	syntax: "*";
 	inherits: true;
 	initial-value: 100%;
 }
