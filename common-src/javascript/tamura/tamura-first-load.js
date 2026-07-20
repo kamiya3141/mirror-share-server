@@ -53,7 +53,7 @@ const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("s
 
 		adds_head([
 			["link", "icon", "favicon.ico", "image/x-icon"],
-			["link", "stylesheet", "common-src/css/base.css"]
+			["link", "stylesheet", "common-src/css/base.css"],
 		]);
 
 		const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css") || true;
@@ -67,7 +67,7 @@ const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("s
 	function createLinkElement(arr_ch = []) {
 		let l = document.createElement(arr_ch[0]);
 		l.setAttribute("rel", arr_ch[1]);
-		l.setAttribute("defer", "");
+		// l.setAttribute("defer", "");
 		l.setAttribute("href", `${winMySrcFileBasePath}/${arr_ch[2]}`);
 		if (arr_ch[3] != null) l.setAttribute("type", arr_ch[3]);
 		return l;

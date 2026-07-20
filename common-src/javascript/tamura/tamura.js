@@ -1,7 +1,9 @@
 var host_url0 = "https://share.tshuto.com/common-src/javascript/tamura";
+const script_url = new URL(`${host_url0}/tamura-first-load.js`);
+script_url.search = new URL(document.currentScript).search;
 const script0 = document.createElement("script");
 script0.setAttribute("defer", "");
-script0.setAttribute("src", `${host_url0}/tamura-first-load.js`);
+script0.setAttribute("src", script_url);
 document.body.prepend(script0);
 script0.onload = function () {
 	const script1 = document.createElement("script");
