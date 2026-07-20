@@ -20,7 +20,7 @@
 	--w: 50%;
 	--p1: 0.5rem;
 	--p2: calc(var(--p1) * 2);
-	--c1: 100%;
+	--c1: calc(var(--w) * 2);
 	--c2: calc(var(--c1) - var(--p2) * 2);
 	--c3: calc(var(--c1) * 1 / 100);
 	--c4: calc(var(--c1) * 98 / 100);

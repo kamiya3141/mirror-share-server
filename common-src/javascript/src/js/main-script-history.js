@@ -68,8 +68,9 @@ function parseObj(_obj = {}) {
 	return Object.entries(_obj).map(c => c.join(" : ")).join(", ") + "\n";
 }
 
-console.log(parseObj(obj1), parseObj(obj2));
-console.log("abc", "abc", "abc");
+console.log(parseObj(obj2));
+delete obj2["a"];
+console.log(parseObj(obj2));
 console.clear();
 
 /*
