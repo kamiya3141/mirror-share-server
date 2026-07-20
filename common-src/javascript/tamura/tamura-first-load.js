@@ -46,22 +46,26 @@ var winMyHrefPTCHNPathname = `${winMyHrefPTCHostname}${winMyHrefPathname}`;
 // 相対パスで指定されたソースファイル取得時に元となるURLはGitHubのMirrorServer、share-serverのどちらか
 var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
-const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))))).searchParams.has("svg") || false;
+const this_file_url = new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))));
+const this_is_svg_file = this_file_url.searchParams.has("svg") || false;
+const this_is_full_version = this_file_url.searchParams.has("full") || false;
 
 (() => {
 	if (!this_is_svg_file) {
-
+		const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
 		adds_head([
 			["link", "icon", "favicon.ico", "image/x-icon"],
 			["link", "stylesheet", "common-src/css/base.css"],
-		]);
+		].push(...add_arr_css));
 
 		const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css") || true;
-		if (!only_css)
+		if (!only_css) {
+			const add_arr_js = this_is_full_version ? ["device-info.js", "setup.js", "utils.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
 			adds_body([
 				["script", "common-src/javascript/function/math.js"],
 				["script", "common-src/javascript/function/other.js"]
-			]);
+			].push(...add_arr_js));
+		}
 	}
 
 	function createLinkElement(arr_ch = []) {
@@ -76,6 +80,8 @@ const this_is_svg_file = (new URL(String((document.currentScript.getAttribute("s
 	function adds_head(arr = [["", "", ""]]) {
 		let head = document.getElementsByTagName("head")[0];
 		for (let i = 0; i < arr.length; i++) {
+			if (arr.length < 1)
+				continue;
 			let link = createLinkElement(arr[i]);
 			if (String(arr[i][2]).includes("/base.css")) {
 				if ([...head.getElementsByTagName("link")].some(c => String(c.getAttribute("href")).includes("/base.css")))
