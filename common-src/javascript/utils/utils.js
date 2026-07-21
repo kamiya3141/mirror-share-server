@@ -367,7 +367,9 @@ function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
 			<div class="utils--popover--elements--popover--close-button-box">
 				<button popovertarget="utils--popover--elements--popover-${rdm}">CLOSE</button>
 			</div>
-			${el_str1}
+			<div class="utils--popover--elements--popover--main-contents-box">
+				${el_str1}
+			</div>
 		</div>
 	`.replaceAll("\n", "").replaceAll("\t", "");
 }

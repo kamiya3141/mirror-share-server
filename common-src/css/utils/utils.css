@@ -300,9 +300,12 @@ html {
 				}
 			}
 
-			& > img {
-				width: var(--c1);
-				height: auto;
+			& > .utils--popover--elements--popover--close-button-box {
+				display: inline-block;
+
+				& > * {
+					display: block;
+				}
 			}
 		}
 	}
