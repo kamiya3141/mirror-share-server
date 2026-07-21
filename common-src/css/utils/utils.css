@@ -301,10 +301,13 @@ html {
 			}
 
 			& > .utils--popover--elements--popover--close-button-box {
-				display: inline-block;
+				display: block;
+				width: var(--c1);
+				height: var(--c1);
 
 				& > * {
-					display: block;
+					max-width: var(--c-mn-h);
+					max-height: var(--c-mn-h);
 				}
 			}
 		}
