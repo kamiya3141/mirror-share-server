@@ -45,11 +45,17 @@ function reloadWindowInfo() {
 }
 
 const parent_element = document.querySelector("div#div-box-2");
+
 document.addEventListener("click", e => {
-	parent_element.querySelector("div#child-0").innerHTML = `screenXY: ${e.screenX}, ${e.screenY}`;
+	parent_element.querySelector("div#child-0").innerHTML = `screenXY: ${Math.floor(e.screenX)}, ${Math.floor(e.screenY)}`;
 });
+
+document.addEventListener("touchmove", e => {
+	parent_element.querySelector("div#child-1").innerHTML = `screenXY: ${Math.floor(e.touches.item(0).screenX)}, ${Math.floor(e.touches.item(0).screenY)}`;
+});
+
 document.addEventListener("touchend", e => {
-	parent_element.querySelector("div#child-1").innerHTML = `screenXY: ${e.changedTouches.item(0).screenX}, ${e.changedTouches.item(0).screenY}`;
+	parent_element.querySelector("div#child-2").innerHTML = `screenXY: ${Math.floor(e.changedTouches.item(0).screenX)}, ${Math.floor(e.changedTouches.item(0).screenY)}`;
 });
 
 window.addEventListener("resize", () => {
