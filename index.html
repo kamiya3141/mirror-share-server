@@ -7,29 +7,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="share-server (dh1ds)">
 	<meta name="color-scheme" content="light dark">
+	<!--
 	<script defer src="https://share.tshuto.com/common-src/javascript/def/Message/1.2.1/Message.js"></script>
+	-->
+	<script defer src="https://share.tshuto.com/All.js"></script>
+	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
+	<link rel="stylesheet" href="https://css.tshuto.com/utils/utils.css">
 	<link rel="stylesheet" href="./src/css/style.css">
 </head>
 
 <body>
 	<span id="console-ok"></span>
 	<!--script defer src="https://ld.tshuto.com/loading.js?2"></script-->
-	<script defer src="https://jst.tshuto.com/tamura.js"></script>
-	
-	<ts-message class="alert">
+	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
+	<script defer src="https://js.tshuto.com/utils/utils.js"></script>
+	<script defer src="https://js.tshuto.com/utils/setup.js"></script>
+	<script defer src="https://js.tshuto.com/utils/device-info.js"></script>
+	<script defer src="https://js.tshuto.com/utils/utils-after.js"></script>
+	<script defer src="./src/js/script.js"></script>
+	<!--
+	<ts-message color-type="alert">
 		<div>
 			Hello, This is Message Library.(type: alert)<br>
 			If you wanted to remove this, you would need to touch me.
 		</div>
 	</ts-message>
-	<!--
-	<ts-message class="warn">
+	<ts-message color-type="warn">
 		<div>
 			Hello, This is Message Library.(type: warn)<br>
 			If you wanted to remove this, you would need to touch me.
 		</div>
 	</ts-message>
-	<ts-message class="normal">
+	<ts-message color-type="normal">
 		<div>
 			Hello, This is Message Library.(type: normal)<br>
 			If you wanted to remove this, you would need to touch me.
@@ -38,7 +47,7 @@
 	<ts-message>
 		<div>
 			これは ts-message のclass名を指定していない例です。<br>
-			このように、強制的にclass="normal"になります。
+			このように、強制的にcolor-type="normal"になります。
 		</div>
 	</ts-message>
 	<ts-message color-type="black">
@@ -49,7 +58,6 @@
 		</div>
 	</ts-message>
 	-->
-
 	<main>
 		<h1>Hello Debian-share</h1>
 		<div id="div-box"></div>
