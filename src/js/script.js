@@ -49,7 +49,7 @@ document.addEventListener("click", e => {
 	parent_element.querySelector("div#child-0").innerHTML = `screenXY: ${e.screenX}, ${e.screenY}`;
 });
 document.addEventListener("touchend", e => {
-	parent_element.querySelector("div#child-1").innerHTML = `screenXY: ${e.touches.item(0).screenX}, ${e.touches.item(0).screenY}`;
+	parent_element.querySelector("div#child-1").innerHTML = `screenXY: ${e.changedTouches.item(0).screenX}, ${e.changedTouches.item(0).screenY}`;
 });
 
 window.addEventListener("resize", () => {
