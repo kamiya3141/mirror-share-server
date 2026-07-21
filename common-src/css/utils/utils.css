@@ -287,7 +287,7 @@ html {
 
 			& > .utils--popover--elements--popover--close-button-box {
 				width: var(--c1);
-				height: calc(var(--p2) * 6);
+				height: calc(var(--p2) * 9);
 				justify-content: center;
 				align-items: center;
 				margin: calc(var(--p2) * 1.5) 0;
@@ -295,7 +295,7 @@ html {
 				& > button {
 					display: inline-flex;
 					height: var(--c1);
-					padding: calc(var(--p2) * 3) calc(var(--p2) * 3);
+					padding: calc(var(--p2) * 1.5) calc(var(--p2) * 3);
 					font-size: calc(var(--p2) * 3);
 					background-color: var(--myMainBackgroundColor);
 				}
