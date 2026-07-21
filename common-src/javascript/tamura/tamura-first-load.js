@@ -49,6 +49,8 @@ var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 const this_file_url = new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))));
 const this_is_svg_file = this_file_url.searchParams.has("svg") || false;
 const this_is_full_version = this_file_url.searchParams.has("full") || false;
+const this_is_only_css = this_file_url.searchParams.has("css") || false;
+
 
 (() => {
 	if (!this_is_svg_file) {
@@ -56,15 +58,16 @@ const this_is_full_version = this_file_url.searchParams.has("full") || false;
 		adds_head([
 			["link", "icon", "favicon.ico", "image/x-icon"],
 			["link", "stylesheet", "common-src/css/base.css"],
-		].push(...add_arr_css));
+			...add_arr_css
+		]);
 
-		const only_css = (new URL(String(document.currentScript.getAttribute("src")))).searchParams.has("css") || true;
-		if (!only_css) {
+		if (!this_is_only_css) {
 			const add_arr_js = this_is_full_version ? ["device-info.js", "setup.js", "utils.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
 			adds_body([
 				["script", "common-src/javascript/function/math.js"],
-				["script", "common-src/javascript/function/other.js"]
-			].push(...add_arr_js));
+				["script", "common-src/javascript/function/other.js"],
+				...add_arr_js
+			]);
 		}
 	}
 
