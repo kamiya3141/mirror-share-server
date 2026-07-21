@@ -88,8 +88,8 @@ html {
 		& > body {
 			--myStylingLocalDisplayWidth: var(--c-mn-h);
 			--myStylingLocalDisplayHeight: var(--c-mn-h);
-			--myStylingLocalPopoverContentsWidth: var(--c1);
-			--myStylingLocalPopoverContentsHeight: var(--c1);
+			--myStylingLocalPopoverContentsWidth: var(--myStylingLocalDisplayWidth);
+			--myStylingLocalPopoverContentsHeight: auto;
 
 			& .mobile-element {
 				display: none !important;
@@ -109,8 +109,8 @@ html {
 		& > body {
 			--myStylingLocalDisplayWidth: calc(var(--c1) * 9 / 10);
 			--myStylingLocalDisplayHeight: calc(var(--c1) * 9 / 10);
-			--myStylingLocalPopoverContentsWidth: var(--myStylingLocalDisplayWidth);
-			--myStylingLocalPopoverContentsHeight: var(--myStylingLocalDisplayHeight);
+			--myStylingLocalPopoverContentsWidth: var(--c1);
+			--myStylingLocalPopoverContentsHeight: var(--c1);
 
 			& .mobile-element {
 				display: initial;
@@ -272,8 +272,8 @@ html {
 				align-items: center;
 				justify-self: center;
 				align-self: center;
-				width: var(--myStylingLocalPopoverContentsWidth);
-				height: var(--myStylingLocalPopoverContentsHeight);
+				width: var(--c1);
+				height: var(--c1);
 			}
 
 			&::backdrop {
@@ -300,14 +300,14 @@ html {
 				}
 			}
 
-			& > .utils--popover--elements--popover--close-button-box {
-				display: block;
+			& > .utils--popover--elements--popover--main-contents-box {
 				width: var(--c1);
-				height: var(--c1);
+				min-height: var(--c-hd-h);
 
 				& > * {
-					max-width: var(--c-mn-h);
-					max-height: var(--c-mn-h);
+					display: inline-block;
+					width: var(--myStylingLocalPopoverContentsWidth);
+					height: var(--myStylingLocalPopoverContentsHeight);
 				}
 			}
 		}
