@@ -42,8 +42,12 @@ function reloadWindowInfo() {
 	_arr.push([_br + _br + `${_arr[3][0]} = ${_arr[_pushed_idx][0]}`.replace(_br, "")]);
 	// この繋げ方は思いついたとき、最高な気分になった
 	document.querySelector("div#div-box").innerHTML = `<div>${_arr.map((c, i, a) => c.join(__joinning_str) + `${(i + 1) < a.length ? __joinning_str : ""}${_br}${_br}`).join("</div><div>")}</div>`;
-	
 }
+
+const parent_element = document.querySelector("div#div-box-2");
+document.addEventListener("click", e => {
+	parent_element.querySelector("div#child-0").innerHTML = `screenXY: ${e.screenX}, ${e.screenY}`;
+});
 
 window.addEventListener("resize", () => {
 	reloadWindowInfo();
