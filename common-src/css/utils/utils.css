@@ -290,11 +290,12 @@ html {
 				height: calc(var(--p2) * 6);
 				justify-content: center;
 				align-items: center;
+				margin: calc(var(--p2) * 1.5) 0;
 
 				& > button {
 					display: inline-flex;
 					height: var(--c1);
-					padding: 0 calc(var(--p2) * 3);
+					padding: calc(var(--p2) * 3) calc(var(--p2) * 3);
 					font-size: calc(var(--p2) * 3);
 					background-color: var(--myMainBackgroundColor);
 				}
@@ -305,9 +306,9 @@ html {
 				min-height: var(--c-hd-h);
 
 				& > * {
-					display: inline-block;
-					width: var(--myStylingLocalPopoverContentsWidth);
-					height: var(--myStylingLocalPopoverContentsHeight);
+					width: var(--c1);
+					height: var(--c1);
+					object-fit: contain;
 				}
 			}
 		}
