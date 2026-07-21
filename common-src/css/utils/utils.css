@@ -16,18 +16,6 @@
 	initial-value: 100%;
 }
 
-@property --myStylingLocalPopoverContentsWidth {
-	syntax: "*";
-	inherits: true;
-	initial-value: 100%;
-}
-
-@property --myStylingLocalPopoverContentsHeight {
-	syntax: "*";
-	inherits: true;
-	initial-value: 100%;
-}
-
 :root {
 	--w: 50%;
 	--p1: 0.5rem;
@@ -43,8 +31,6 @@
 
 	--myStylingLocalDisplayWidth: var(--c-mn-h);
 	--myStylingLocalDisplayHeight: var(--c-mn-h);
-	--myStylingLocalPopoverContentsWidth: var(--c1);
-	--myStylingLocalPopoverContentsHeight: var(--c1);
 
 	--mnt1: 0.25s;
 }
@@ -88,8 +74,6 @@ html {
 		& > body {
 			--myStylingLocalDisplayWidth: var(--c-mn-h);
 			--myStylingLocalDisplayHeight: var(--c-mn-h);
-			--myStylingLocalPopoverContentsWidth: var(--myStylingLocalDisplayWidth);
-			--myStylingLocalPopoverContentsHeight: auto;
 
 			& .mobile-element {
 				display: none !important;
@@ -109,8 +93,6 @@ html {
 		& > body {
 			--myStylingLocalDisplayWidth: calc(var(--c1) * 9 / 10);
 			--myStylingLocalDisplayHeight: calc(var(--c1) * 9 / 10);
-			--myStylingLocalPopoverContentsWidth: var(--c1);
-			--myStylingLocalPopoverContentsHeight: var(--c1);
 
 			& .mobile-element {
 				display: initial;
