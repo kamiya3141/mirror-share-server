@@ -75,13 +75,14 @@ function createArticleCard(article_data_object) {
 		card_div_element.setAttribute("data-mydef--article-card--activated-contextmenu", "true");
 	});
 	card_div_element.addEventListener("touchstart", e => {
-		e.preventDefault();
 		card_div_element.setAttribute("data-mydef--article-card--activated-contextmenu", "false");
 	});
 	card_div_element.addEventListener("touchend", e => {
 		e.preventDefault();
 		if (card_div_element.getAttribute("data-mydef--article-card--activated-contextmenu") == "true")
 			card_info_button_div_element.click();
+		else
+			card_div_element.click();
 	});
 	card_div_element.addEventListener("click", e => {
 		const next_url = new URL(winMyHref);
