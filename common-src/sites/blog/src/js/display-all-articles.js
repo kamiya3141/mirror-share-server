@@ -17,6 +17,7 @@ function createArticleCard(article_data_object) {
 	const card_div_element = document.createElement("div");
 	card_div_element.classList.add("article-card");
 	card_div_element.classList.add("cursor-pointer");
+	card_div_element.setAttribute("data-mydef--article-card--activated-contextmenu", "false");
 	Object.entries(article_data_object).forEach(([k, v]) => card_div_element.setAttribute(`data-mydef--article-card--${k}`, v));
 
 
@@ -71,13 +72,17 @@ function createArticleCard(article_data_object) {
 	card_div_element.addEventListener("contextmenu", e => {
 		e.preventDefault();
 		card_info_button_div_element.click();
+		card_div_element.setAttribute("data-mydef--article-card--activated-contextmenu", "true");
 	});
-	/*
+	card_div_element.addEventListener("touchstart", e => {
+		e.preventDefault();
+		card_div_element.setAttribute("data-mydef--article-card--activated-contextmenu", "false");
+	});
 	card_div_element.addEventListener("touchend", e => {
 		e.preventDefault();
-		card_info_button_div_element.click();
+		if (card_div_element.getAttribute("data-mydef--article-card--activated-contextmenu") == "true")
+			card_info_button_div_element.click();
 	});
-	*/
 	card_div_element.addEventListener("click", e => {
 		const next_url = new URL(winMyHref);
 		next_url.searchParams.set(id_flag, card_div_element.getAttribute("data-mydef--article-card--slug"));
