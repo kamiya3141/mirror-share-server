@@ -1,6 +1,13 @@
+*[data-mydef--my-editor--parent-element] > .utils--my-editor--root {
+	background-color: var(--myMainBackgroundColor);
+}
+
+*[data-mydef--my-editor--parent-element*=""] > .utils--my-editor--root {
+	background-color: attr(data-mydef--my-editor--parent-element);
+}
+
 .utils--my-editor--root {
 	color: var(--myTextColor);
-	background-color: var(--myMainBackgroundColor);
 	width: var(--c1);
 	height: var(--c1);
 	display: flex;

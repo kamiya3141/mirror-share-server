@@ -51,7 +51,7 @@ const myEditorsObject = {
 };
 
 async function settingMyEditor() {
-	[...document.querySelectorAll("[data-mydef--my-editor--parent-element]")].forEach(c => myEditorsObject["editors"] = c);
+	[...document.querySelectorAll(`*[data-mydef--my-editor--parent-element]`)].forEach(c => myEditorsObject["editors"] = c);
 	myEditorsObject["setupEditors"]();
 }
 
