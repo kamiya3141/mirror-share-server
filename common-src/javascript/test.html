@@ -2,68 +2,30 @@
 <html lang="ja">
 
 <head>
-	<meta charset="utf-8" />
-	<title>エディターテストのテスト</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="エディターテストのテスト">
-	<style>
-		.toggle_button {
-			--tgl-w: 25vw;
-			--tgl-h: calc(var(--tgl-w) * 35 / 75);
-			--tgl-r: calc(var(--tgl-w) * 40 / 75);
-
-			position: relative;
-			width: var(--tgl-w);
-			height: var(--tgl-h);
-			margin: auto;
-
-			&>.toggle_input {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				opacity: 0;
-				cursor: pointer;
-
-				&+.toggle_label {
-					width: var(--tgl-w);
-					height: var(--tgl-h);
-					background: #ccc;
-					border-radius: var(--tgl-r);
-					display: inline-block;
-					transition: background-color 0.4s;
-					position: relative;
-
-					&::after {
-						content: "";
-						position: absolute;
-						width: var(--tgl-h);
-						height: var(--tgl-h);
-						background: #fff;
-						border-radius: 50%;
-						top: 0;
-						left: 0;
-						transition: left 0.4s;
-					}
-				}
-
-				&:checked+.toggle_label {
-					background-color: #4BD865;
-
-					&::after {
-						left: var(--tgl-r);
-					}
-				}
-			}
-		}
-	</style>
+	<meta charset="utf-8">
+	<title>テストページ</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
+	<link rel="stylesheet" href="https://css.tshuto.com/utils/utils.css">
 </head>
 
 <body>
-	<script defer src="https://jst.tshuto.com/tamura0.js"></script>
-	<div class="toggle_button">
-		<input id="toggle" class="toggle_input" type="checkbox" />
-		<label for="toggle" class="toggle_label"></label>
+	<span id="console-ok"></span>
+	<div id="root">
+		<section id="main-contents">
+			<div data-mydef--my-editor--parent-element="inherit"></div>
+		</section>
 	</div>
+	<!--共通ファイル読み込み用スクリプト読み込み-->
+	<script defer src="https://jst.tshuto.com/tamura-first-load.js"></script>
+	<script defer src="https://js.tshuto.com/utils/utils.js"></script>
+	<script defer src="https://js.tshuto.com/utils/setup.js"></script>
+	<script defer src="https://js.tshuto.com/utils/device-info.js"></script>
+	<script defer src="https://js.tshuto.com/utils/utils-after.js"></script>
+	<script defer src="https://js.tshuto.com/utils/my-editor.js"></script>
+
 </body>
 
 </html>
