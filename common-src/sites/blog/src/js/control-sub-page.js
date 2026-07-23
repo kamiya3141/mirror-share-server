@@ -1,3 +1,5 @@
+import { settingMyEditor } from "https://js.tshuto.com/utils/my-editor.js";
+
 document.querySelector("#main-section").innerHTML = "";
 
 const PMD = await import(`./index-module.js`);
@@ -11,8 +13,10 @@ if (has_edit_flag) {
 	if (has_id_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
-		if (correct)
+		if (correct) {
 			await appear_editArticleDisplay(true, decoded_json_data, PMD);
+			await settingMyEditor();
+		}
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
