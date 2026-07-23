@@ -42,13 +42,11 @@
 
 		& > .utils--my-editor--editor--box {
 			width: var(--c1);
-			height: var(--c1);
 
 			& > .utils--my-editor--editor {
-				min-width: calc(var(--c1) * 0.95);
-				min-height: calc(var(--c1) * 0.95);
+				width: calc(var(--c1) * 0.95);
 				text-align: left;
-				display: inline-block;
+				display: block;
 				white-space: nowrap;
 				overflow-x: auto;
 				border: calc(var(--p2) * 0.125) solid var(--myTextColor);
