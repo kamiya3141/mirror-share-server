@@ -9,6 +9,13 @@
 	<meta name="color-scheme" content="light dark">
 	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
 	<link rel="stylesheet" href="https://css.tshuto.com/utils/utils.css">
+	<style>
+		#root,
+		#root>* {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
 </head>
 
 <body>
@@ -24,8 +31,10 @@
 	<script defer src="https://js.tshuto.com/utils/setup.js"></script>
 	<script defer src="https://js.tshuto.com/utils/device-info.js"></script>
 	<script defer src="https://js.tshuto.com/utils/utils-after.js"></script>
-	<script defer src="https://js.tshuto.com/utils/my-editor.js"></script>
-
+	<script type="module">
+		import { settingMyEditor } from "https://js.tshuto.com/utils/my-editor.js";
+		settingMyEditor();
+	</script>
 </body>
 
 </html>

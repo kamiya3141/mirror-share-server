@@ -1,4 +1,4 @@
-*[data-mydef--my-editor--parent-element] > .utils--my-editor--root {
+*[data-mydef--my-editor--parent-element=""] > .utils--my-editor--root {
 	background-color: var(--myMainBackgroundColor);
 }
 
