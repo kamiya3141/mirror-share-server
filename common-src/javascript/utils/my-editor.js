@@ -21,10 +21,17 @@ const myEditorsObject = {
 		editor_div_element.innerHTML = `
 		<div class="utils--my-editor--main-contents-box">
 			<div class="utils--my-editor--line-number--box">
-				<div class="utils--my-editor--line-number"></div>
+				<div class="utils--my-editor--line-number" data-mydef--editor--length--line-number="1">
+					<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="1">1</div>
+				</div>
 			</div>
 			<div class="utils--my-editor--editor--box">
-				<div class="utils--my-editor--editor" contenteditable="true"></div>
+				<div class="utils--my-editor--editor" contenteditable="plaintext-only" tabindex="0"></div>
+				<!--
+				<textarea class="utils--my-editor--editor" tabindex="0">
+					<pre></pre>
+				</textarea>
+				-->
 			</div>
 		</div>
 		`;
@@ -40,8 +47,9 @@ const myEditorsObject = {
 			const lineNumber = c.querySelector(".utils--my-editor--line-number");
 			const editor = c.querySelector(".utils--my-editor--editor");
 			editor.addEventListener("input", e => {
-				const lineNumberLength = e.target.textContent.split("\n");
-				if (!lineNumber.hasAttribute("data-mydef--editor--length--line-number") || lineNumber.getAttribute("data-mydef--editor--length--line-number") != String(lineNumberLength)) {
+				const editorTextContent = String(e.target.textContent);
+				const lineNumberLength = editorTextContent.replace(/\n$/, "").split("\n").length;
+				if (lineNumber.getAttribute("data-mydef--editor--length--line-number") != String(lineNumberLength)) {
 					lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 					lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 				}
