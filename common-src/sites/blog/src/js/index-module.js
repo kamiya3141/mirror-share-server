@@ -6,6 +6,8 @@ const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
 const STR_ENV_CONV_OBJ = {};
 
+const defaultRedirectArticleSlug = "20260401230000--home";
+
 const myTabSize = Number(getCSSLengthValue("--myStylingTabSize"));
 
 const nbsp = n => "&nbsp;".repeat(n);
@@ -350,7 +352,7 @@ async function getArticleData() {
 	const targetQueryName = "slug";
 	const targetQueryData = getFlag(id_flag);
 	const fileURL = createAPIURL(`article-get-api-local.php`);
-	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : "20260401230000--home");
+	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : defaultRedirectArticleSlug);
 
 	const res = await fetch(fileURL);
 	if (!res.ok) {
