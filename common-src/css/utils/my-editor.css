@@ -35,6 +35,7 @@
 				& > .utils--my-editor--line-number--line-number {
 					display: inline-block;
 					width: var(--c1);
+					
 				}
 			}
 		}

@@ -48,7 +48,7 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 			editor.addEventListener("input", e => {
 				const editorTextContent = String(e.target.textContent);
-				const lineNumberLength = editorTextContent.replace(/\n$/, "").split("\n").length;
+				const lineNumberLength = editorTextContent.replaceAll("<br>", "").replace(/\n$/, "").split("\n").length;
 				if (lineNumber.getAttribute("data-mydef--editor--length--line-number") != String(lineNumberLength)) {
 					lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 					lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
