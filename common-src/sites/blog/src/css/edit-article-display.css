@@ -80,7 +80,8 @@
 
 				& > #editor--textarea {
 					width: var(--c-mn-h);
-					min-height: var(--c1);
+					height: 0;
+					/*min-height: var(--c1);*/
 					resize: none;
 					overflow-y: auto;
 					outline: none;
