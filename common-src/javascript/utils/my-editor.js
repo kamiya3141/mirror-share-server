@@ -9,10 +9,11 @@
 *   set editors(input: HTMLElement)
 *	readonly values: string[]
 *	setupEditors: function(): void
-*	insertText: function(): string
 *	setCursorPosition: function(): void,
 *	getEditorRange: function(): Range|null
 *	replaceRange: function(): void
+*	getCaretOffset: function(): number
+*	getCurrentLineString: function(): string
 * }}
 */
 const myEditorsObject = {
@@ -59,16 +60,19 @@ const myEditorsObject = {
 				const key_object = {
 					"Tab": {
 						"str": "\t",
-						"func": (key = "", str = "") => {
+						"func": (e, key = "", str = "") => {
 							const range = myEditorsObject["getEditorRange"](e.target);
-							let exec_cmd_str = str;
-							if (range.collapsed)
-								myEditorsObject["insertText"](range, exec_cmd_str);
-							else {
-								exec_cmd_str = range.toString().split("\n").map(c => str + c).join("\n")
-								myEditorsObject["replaceRange"](range, exec_cmd_str);
+							if (e.shiftKey) {
+								let input_str = range.toString().split("\n").map(c => c.replace(/^\t|^ {1,4}/, "")).join("\n");
+								if (range.collapsed)
+									input_str = myEditorsObject["getCurrentLineString"](e.target);
+								myEditorsObject["replaceRange"](range, input_str, !range.collapsed);
+							} else {
+								let input_str = range.toString().split("\n").map(c => str + c).join("\n");
+								if (range.collapsed)
+									input_str = str;
+								myEditorsObject["replaceRange"](range, input_str, !range.collapsed);
 							}
-							document.execCommand("insertText", false, exec_cmd_str);
 						}
 					}
 				};
@@ -76,28 +80,13 @@ const myEditorsObject = {
 					if (c != e.key)
 						return;
 					e.preventDefault();
-					key_object[c]["func"](c, key_object[c]["str"]);
+					key_object[c]["func"](e, c, key_object[c]["str"]);
 				});
 			});
 		});
 	},
 	get "values"() {
 		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
-	},
-	"insertText": function (range, text) {
-		range.deleteContents();
-
-		const node = document.createTextNode(text);
-
-		range.insertNode(node);
-
-		range.setStartAfter(node);
-		range.collapse(true);
-
-		const sel = window.getSelection();
-
-		sel.removeAllRanges();
-		sel.addRange(range);
 	},
 	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
 		const range = document.createRange();
@@ -120,19 +109,45 @@ const myEditorsObject = {
 			return null;
 		return range;
 	},
-	"replaceRange": function (range, text) {
+	"replaceRange": function (range, text, select = false) {
 		range.deleteContents();
 
 		const node = document.createTextNode(text);
 
 		range.insertNode(node);
 
-		range.selectNode(node);
+		if (select)
+			range.selectNode(node);
+		else {
+			range.setStartAfter(node);
+			range.collapse(true);
+		}
 
 		const sel = window.getSelection();
 
 		sel.removeAllRanges();
 		sel.addRange(range);
+	},
+	"getCaretOffset": function (editor) {
+		const sel = window.getSelection();
+		if (!sel.rangeCount) return 0;
+
+		const range = sel.getRangeAt(0);
+
+		const preRange = range.cloneRange();
+		preRange.selectNodeContents(editor);
+		preRange.setEnd(range.startContainer, range.startOffset);
+
+		return preRange.toString().length;
+	},
+	"getCurrentLineString": function (editor) {
+		const text = editor.innerText;
+		const offset = this["getCaretOffset"](editor);
+
+		const lineStart = text.lastIndexOf("\n", offset - 1) + 1;
+		const lineEnd = text.indexOf("\n", offset);
+
+		return text.slice(lineStart, lineEnd === -1 ? text.length : lineEnd);
 	}
 };
 
