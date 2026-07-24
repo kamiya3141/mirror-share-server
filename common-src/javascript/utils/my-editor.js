@@ -1,6 +1,7 @@
 /**
  * @typedef {Object} MyEditorsObject
  * @property {HTMLElement[]} __editors
+* @property {function(string)[]} __inputFunc
  */
 
 /** 
@@ -18,6 +19,7 @@
 */
 const myEditorsObject = {
 	"__editors": [],
+	"__inputFunc": [],
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -48,14 +50,16 @@ const myEditorsObject = {
 			const lineNumber = c.querySelector(".utils--my-editor--line-number");
 			const editor = c.querySelector(".utils--my-editor--editor");
 
-			editor.addEventListener("input", e => {
+			editor.addEventListener("input", async e => {
 				const editorInnerText = String(e.target.innerText);
 				const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
 				lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 				lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
+				// input時に呼び出される外部からくわえられた関数
+				this["__inputFunc"].forEach(f => f(editorInnerText));
 			});
 
-			editor.addEventListener("keydown", e => {
+			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
 					"Tab": {
