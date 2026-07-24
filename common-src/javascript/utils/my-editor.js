@@ -46,28 +46,29 @@ const myEditorsObject = {
 		this["__editors"].forEach(c => {
 			const lineNumber = c.querySelector(".utils--my-editor--line-number");
 			const editor = c.querySelector(".utils--my-editor--editor");
-			/*
+
 			editor.addEventListener("input", e => {
 				const editorInnerText = String(e.target.innerText);
 				const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
-				if (true || lineNumber.getAttribute("data-mydef--editor--length--line-number") != String(lineNumberLength)) {
-					lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
-					lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
-				}
+				lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
+				lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 			});
-			*/
+
 			editor.addEventListener("keydown", e => {
-				let editorInnerText = String(e.target.innerText);
 				// エディターで使用するための特殊なキー
 				const key_object = {
 					"Tab": {
 						"str": "\t",
 						"func": (key = "", str = "") => {
 							const range = myEditorsObject["getEditorRange"](e.target);
+							let exec_cmd_str = str;
 							if (range.collapsed)
-								myEditorsObject["insertText"](range, str);
-							else
-								myEditorsObject["replaceRange"](range, range.toString().split("\n").map(c => str + c).join("\n"));
+								myEditorsObject["insertText"](range, exec_cmd_str);
+							else {
+								exec_cmd_str = range.toString().split("\n").map(c => str + c).join("\n")
+								myEditorsObject["replaceRange"](range, exec_cmd_str);
+							}
+							document.execCommand("insertText", false, exec_cmd_str);
 						}
 					}
 				};
@@ -77,13 +78,6 @@ const myEditorsObject = {
 					e.preventDefault();
 					key_object[c]["func"](c, key_object[c]["str"]);
 				});
-				// 行数調整
-				editorInnerText = String(e.target.innerText);
-				const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
-				if (true || lineNumber.getAttribute("data-mydef--editor--length--line-number") != String(lineNumberLength)) {
-					lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
-					lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
-				}
 			});
 		});
 	},
