@@ -7,13 +7,16 @@
 /** 
 * @type {MyEditorsObject & {
 *   readonly editors: HTMLElement[],
-*   set editors(input: HTMLElement)
-*	readonly values: string[]
-*	setupEditors: function(): void
+*   set editors,
+*	readonly values: string[],
+*	set values,
+*	registInputFunc: function(): void,
+*	removeInputFunc: function(): void,
+*	setupEditors: function(): void,
 *	setCursorPosition: function(): void,
-*	getEditorRange: function(): Range|null
-*	replaceRange: function(): void
-*	getCaretOffset: function(): number
+*	getEditorRange: function(): Range|null,
+*	replaceRange: function(): void,
+*	getCaretOffset: function(): number,
 *	getCurrentLineString: function(): string
 * }}
 */
@@ -56,7 +59,7 @@ const myEditorsObject = {
 				lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 				lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 				// input時に呼び出される外部からくわえられた関数
-				this["__inputFunc"].forEach(f => f(editorInnerText));
+				this["__inputFunc"].forEach(async f => await f(editorInnerText));
 			});
 
 			editor.addEventListener("keydown", async e => {
@@ -89,8 +92,26 @@ const myEditorsObject = {
 			});
 		});
 	},
+	set "values"(input_arr = []) {
+		this["__editors"][input_arr[0]].innerHTML = input_arr[1];
+	},
 	get "values"() {
 		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
+	},
+	"registInputFunc": function (key = "", value = () => null) {
+		if (Object.hasOwn(this["__inputFunc"], key))
+			console.error(`inputFuncにはすでに${key}が存在します`);
+		else {
+			const obj = {};
+			obj[key] = value;
+			this["__inputFunc"].push(obj);
+		}
+	},
+	"removeInputFunc": function (key = "") {
+		if (!Object.hasOwn(this["__inputFunc"], key))
+			console.error(`inputFuncには${key}が存在しません`);
+		else
+			delete this["__inputFunc"][key];
 	},
 	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
 		const range = document.createRange();
@@ -163,4 +184,4 @@ async function settingMyEditor() {
 	myEditorsObject["setupEditors"]();
 }
 
-export { settingMyEditor };
+export { settingMyEditor, myEditorsObject };

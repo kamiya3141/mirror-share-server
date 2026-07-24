@@ -1,7 +1,7 @@
-var appear_editArticleDisplay = async (_tf, article_data, pmd) => {
+var appear_editArticleDisplay = async (_tf, article_data, pmd, med) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	setDocumentTitle("記事編集ページ");
-	await settingTextEditor(article_data, pmd);
+	await settingTextEditor(article_data, pmd, med);
 	settingButtons(pmd);
 };
 let editArticleDisplay_copiedJsonData = {};
@@ -85,12 +85,18 @@ async function convertMD(_el, _pmd, p_e) {
 	await convertMarkdown2Html(_el.value, _pmd, p_e);
 }
 
-async function settingTextEditor(decoded_json_data = {}, _pmd) {
+async function inputTextConvertMD(input_text = "") {
+	convertMarkdown2Html(input_text, _pmd, parent_elem);
+}
+
+async function settingTextEditor(decoded_json_data = {}, _pmd, _med) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
-	/** @type {HTMLTextAreaElement} */
+	await _med.settingMyEditor();
+	_med.myEditorsObject["values"]([0, editArticleDisplay_copiedJsonData["contents"]]);
+	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", () => (async () => await inputTextConvertMD)());
+	/*
 	const txtara_elem = parent_elem.querySelector("#editor--textarea");
-	const resdis_elem = parent_elem.querySelector(".result-display--root");
 	txtara_elem.addEventListener("input", async e => await convertMD(txtara_elem, _pmd, parent_elem));
 	txtara_elem.addEventListener("keydown", async e => {
 		const key_object = {
@@ -133,6 +139,7 @@ async function settingTextEditor(decoded_json_data = {}, _pmd) {
 
 	if (editArticleDisplay_copiedJsonData["type"] == "backup")
 		txtara_elem.readOnly = true;
+	*/
 }
 
 async function convertMarkdown2Html(_txt, _pmd, _pr_el) {

@@ -1,4 +1,4 @@
-import { settingMyEditor } from "https://js.tshuto.com/utils/my-editor.js";
+import * as MED from "https://js.tshuto.com/utils/my-editor.js";
 
 document.querySelector("#main-section").innerHTML = "";
 
@@ -14,8 +14,7 @@ if (has_edit_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
 		if (correct) {
-			await appear_editArticleDisplay(true, decoded_json_data, PMD);
-			await settingMyEditor();
+			await appear_editArticleDisplay(true, decoded_json_data, PMD, MED);
 		}
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
