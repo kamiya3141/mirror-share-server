@@ -71,6 +71,10 @@ function parseObj(_obj = {}) {
 console.log(parseObj(obj2));
 delete obj2["a"];
 console.log(parseObj(obj2));
+const mytext = "aaabbbcccdddeee";
+const start_pos = 6;
+let result = mytext.slice(0, start_pos) + "|" + mytext.slice(start_pos);
+console.log(result);
 console.clear();
 
 /*
