@@ -8,8 +8,11 @@
 *   readonly editors: HTMLElement[],
 *   set editors(input: HTMLElement)
 *	readonly values: string[]
-*	insertText: function(): string
 *	setupEditors: function(): void
+*	insertText: function(): string
+*	setCursorPosition: function(): void,
+*	getEditorRange: function(): Range|null
+*	replaceRange: function(): void
 * }}
 */
 const myEditorsObject = {
@@ -60,15 +63,11 @@ const myEditorsObject = {
 					"Tab": {
 						"str": "\t",
 						"func": (key = "", str = "") => {
-							const win_sel = window.getSelection();
-							const win_range = win_sel.getRangeAt(0);
-							const win_rg_start = win_range.startOffset;
-							const win_rg_end = win_range.endOffset;
-							const range_text = win_range.cloneContents().textContent;
-							if (range_text.length)
-								e.target.innerText = editorInnerText.slice(0, win_rg_start) + range_text.split("\n").map(c => `${str}${c}`).join("\n") + editorInnerText.slice(win_rg_end);
+							const range = myEditorsObject["getEditorRange"](e.target);
+							if (range.collapsed)
+								myEditorsObject["insertText"](range, str);
 							else
-								e.target.innerText = myEditorsObject["insertText"](editorInnerText, str, win_rg_start);
+								myEditorsObject["replaceRange"](range, range.toString().split("\n").map(c => str + c).join("\n"));
 						}
 					}
 				};
@@ -91,18 +90,57 @@ const myEditorsObject = {
 	get "values"() {
 		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
 	},
-	"insertText": function (text = "", input = "", start = 0) {
-		return text.slice(0, start) + input + text.slice(start);
+	"insertText": function (range, text) {
+		range.deleteContents();
+
+		const node = document.createTextNode(text);
+
+		range.insertNode(node);
+
+		range.setStartAfter(node);
+		range.collapse(true);
+
+		const sel = window.getSelection();
+
+		sel.removeAllRanges();
+		sel.addRange(range);
+	},
+	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
+		const range = document.createRange();
+		const sel = window.getSelection();
+
+		const textNode = el.firstChild;
+
+		range.setStart(textNode, index);
+		range.setEnd(textNode, index);
+
+		sel.removeAllRanges();
+		sel.addRange(range);
+	},
+	"getEditorRange": function (editor) {
+		const sel = window.getSelection();
+		if (!sel.rangeCount)
+			return null;
+		const range = sel.getRangeAt(0);
+		if (!editor.contains(range.commonAncestorContainer))
+			return null;
+		return range;
+	},
+	"replaceRange": function (range, text) {
+		range.deleteContents();
+
+		const node = document.createTextNode(text);
+
+		range.insertNode(node);
+
+		range.selectNode(node);
+
+		const sel = window.getSelection();
+
+		sel.removeAllRanges();
+		sel.addRange(range);
 	}
 };
-
-document.addEventListener('mouseup', () => {
-	const selection = window.getSelection();
-	const range = selection.getRangeAt(0);
-	const start = range.startOffset;
-	const text = range.cloneContents().textContent;
-	console.log(text.split(start));
-});
 
 async function settingMyEditor() {
 	const arr = [...document.querySelectorAll(`*[data-mydef--my-editor--parent-element]`)];
