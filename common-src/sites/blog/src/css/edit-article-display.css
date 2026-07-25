@@ -81,7 +81,7 @@
 				& > #editor--my-editor {
 					width: var(--c1);
 					height: var(--c1);
-					display: inline-block;
+					display: block;
 				}
 
 				& > #editor--textarea {
