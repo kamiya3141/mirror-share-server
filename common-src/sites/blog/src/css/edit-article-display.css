@@ -78,6 +78,12 @@
 				align-items: flex-start;
 				justify-content: flex-end;
 
+				& > #editor--my-editor {
+					width: var(--c1);
+					height: var(--c1);
+					display: inline-block;
+				}
+
 				& > #editor--textarea {
 					width: var(--c-mn-h);
 					height: 0;

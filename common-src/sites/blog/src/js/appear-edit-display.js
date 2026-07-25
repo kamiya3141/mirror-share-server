@@ -1,7 +1,7 @@
 var appear_editArticleDisplay = async (_tf, article_data, pmd, med) => {
 	switchingOpenDisplay(document.getElementById("edit-article-display-section"), true, !_tf);
 	setDocumentTitle("記事編集ページ");
-	await settingTextarea(article_data, pmd);
+	// await settingTextarea(article_data, pmd);
 	await settingMyEditor(article_data, pmd, med);
 	settingButtons(pmd);
 };
@@ -86,7 +86,7 @@ async function convertMD(_el, _pmd, p_e) {
 	await convertMarkdown2Html(_el.value, _pmd, p_e);
 }
 
-async function inputTextConvertMD(input_text = "") {
+async function inputTextConvertMD(input_text = "", _pmd, parent_elem) {
 	convertMarkdown2Html(input_text, _pmd, parent_elem);
 }
 
@@ -139,13 +139,13 @@ async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
 }
 
 async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
+	console.log(decoded_json_data);
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
+	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await inputTextConvertMD(txt, _pmd, parent_elem));
 	await _med.settingMyEditor();
-	_med.myEditorsObject["values"] = [0, editArticleDisplay_copiedJsonData["contents"]];
-	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await inputTextConvertMD(txt));
+	_med.myEditorsObject["values"] = [0, editArticleDisplay_copiedJsonData["content"]];
 }
-
 async function convertMarkdown2Html(_txt, _pmd, _pr_el) {
 	editArticleDisplay_copiedJsonData["content"] = _txt;
 	const _result = await _pmd.parseMD2HTMLv1(editArticleDisplay_copiedJsonData);

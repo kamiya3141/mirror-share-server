@@ -59,7 +59,7 @@ const myEditorsObject = {
 				lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 				lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 				// input時に呼び出される外部からくわえられた関数
-				this["__inputFunc"].forEach(async f => await f(editorInnerText));
+				this["__inputFunc"].forEach(async obj => await obj[Object.keys(obj)[0]](editorInnerText));
 			});
 
 			editor.addEventListener("keydown", async e => {
@@ -93,7 +93,7 @@ const myEditorsObject = {
 		});
 	},
 	set "values"(input_arr = []) {
-		this["__editors"][input_arr[0]].innerHTML = input_arr[1];
+		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
 	},
 	get "values"() {
 		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
