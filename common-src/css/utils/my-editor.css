@@ -10,46 +10,52 @@
 	color: var(--myTextColor);
 	width: var(--c1);
 	height: var(--c1);
-	overflow: auto auto;
-	display: inline-block;
 
 	& > .utils--my-editor--main-contents-box {
-		min-width: var(--c1);
-		min-height: calc(var(--c1) * 0.95);
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		justify-content: flex-start;
+		width: var(--c1);
+		height: var(--c1);
+		overflow: auto auto;
+		display: inline-block;
 
-		& > .utils--my-editor--line-number--box {
-			flex-direction: column;
+		& > .utils--my-editor--main-contents {
+			min-width: var(--c1);
+			min-height: calc(var(--c1) * 0.95);
+			display: flex;
+			flex-direction: row;
 			align-items: flex-start;
-			width: calc(var(--p2) * 4);
-			padding-right: var(--p1);
-			user-select: none;
+			justify-content: flex-start;
+			font-family: var(--explex35c);
 
-			& > .utils--my-editor--line-number {
-				position: unset;
-				width: var(--c1);
+			& > .utils--my-editor--line-number--box {
+				flex-direction: column;
+				align-items: flex-start;
+				width: calc(var(--p2) * 4);
+				padding-right: var(--p1);
+				user-select: none;
 
-				& > .utils--my-editor--line-number--line-number {
+				& > .utils--my-editor--line-number {
+					position: unset;
 					width: var(--c1);
-					text-align: right;
-					box-shadow: inset 0 calc(var(--p1) * -0.125) 0 var(--myTextColor);
+
+					& > .utils--my-editor--line-number--line-number {
+						width: var(--c1);
+						text-align: right;
+						box-shadow: inset 0 calc(var(--p1) * -0.125) 0 var(--myTextColor);
+					}
 				}
 			}
-		}
 
-		& > .utils--my-editor--editor--box {
-			width: var(--c1);
+			& > .utils--my-editor--editor--box {
+				width: var(--c1);
 
-			& > .utils--my-editor--editor {
-				width: calc(var(--c1) * 0.95);
-				text-align: left;
-				display: block;
-				white-space: nowrap;
-				overflow-x: auto;
-				border: calc(var(--p2) * 0.125) solid var(--myTextColor);
+				& > .utils--my-editor--editor {
+					width: calc(var(--c1) * 0.95);
+					text-align: left;
+					display: block;
+					white-space: nowrap;
+					overflow-x: auto;
+					border: calc(var(--p2) * 0.125) solid var(--myTextColor);
+				}
 			}
 		}
 	}

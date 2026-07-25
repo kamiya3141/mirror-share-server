@@ -139,7 +139,6 @@ async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
 }
 
 async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
-	console.log(decoded_json_data);
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
 	const parent_elem = document.querySelector("#edit-article-main-contents");
 	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await inputTextConvertMD(txt, _pmd, parent_elem));

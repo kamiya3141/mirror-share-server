@@ -31,13 +31,15 @@ const myEditorsObject = {
 		editor_div_element.classList.add("utils--my-editor--root");
 		editor_div_element.innerHTML = `
 		<div class="utils--my-editor--main-contents-box">
-			<div class="utils--my-editor--line-number--box">
-				<div class="utils--my-editor--line-number" data-mydef--editor--length--line-number="1">
-					<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="1">1</div>
+			<div class="utils--my-editor--main-contents">
+				<div class="utils--my-editor--line-number--box">
+					<div class="utils--my-editor--line-number" data-mydef--editor--length--line-number="1">
+						<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="1">1</div>
+					</div>
 				</div>
-			</div>
-			<div class="utils--my-editor--editor--box">
-				<div class="utils--my-editor--editor" contenteditable="plaintext-only" tabindex="0">\n</div>
+				<div class="utils--my-editor--editor--box">
+					<div class="utils--my-editor--editor" contenteditable="plaintext-only" tabindex="0">\n</div>
+				</div>
 			</div>
 		</div>
 		`;
