@@ -10,6 +10,7 @@
 *   set editors,
 *	readonly values: string[],
 *	set values,
+*	redesignLineNumber: function(): void,
 *	registInputFunc: function(): void,
 *	removeInputFunc: function(): void,
 *	setupEditors: function(): void,
@@ -55,14 +56,7 @@ const myEditorsObject = {
 			const lineNumber = c.querySelector(".utils--my-editor--line-number");
 			const editor = c.querySelector(".utils--my-editor--editor");
 
-			editor.addEventListener("input", async e => {
-				const editorInnerText = String(e.target.innerText);
-				const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
-				lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
-				lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
-				// input時に呼び出される外部からくわえられた関数
-				this["__inputFunc"].forEach(async obj => await obj[Object.keys(obj)[0]](editorInnerText));
-			});
+			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
 
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
@@ -94,8 +88,19 @@ const myEditorsObject = {
 			});
 		});
 	},
+	"redesignLineNumber": function (parent) {
+		const lineNumber = parent.querySelector(".utils--my-editor--line-number");
+		const editor = parent.querySelector(".utils--my-editor--editor");
+		const editorInnerText = String(editor.innerText);
+		const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
+		lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
+		lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
+		// input時に呼び出される外部からくわえられた関数
+		this["__inputFunc"].forEach(async obj => await obj[Object.keys(obj)[0]](editorInnerText));
+	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
+		this["redesignLineNumber"](this["__editors"][input_arr[0]]);
 	},
 	get "values"() {
 		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
