@@ -16,7 +16,6 @@
 *	setupEditors: function(): void,
 *	setCursorPosition: function(): void,
 *	getEditorRange: function(): Range|null,
-*	insertText: function(): void,
 *	wrapSelection: function(): void,
 *	replaceRange: function(): void,
 *	getCaretOffset: function(): number,
@@ -141,23 +140,7 @@ const myEditorsObject = {
 		const text = range.toString();
 		this["replaceRange"](range, before_str + text + after_str, true);
 	},
-	"insertText": function (range, text = "", move = 0) {
-		range.deleteContents();
-
-		const node = document.createTextNode(text);
-
-		range.insertNode(node);
-
-		const pos = text.length + move;
-
-		range.setStart(node, pos);
-		range.collapse(true);
-
-		const sel = window.getSelection();
-		sel.removeAllRanges();
-		sel.addRange(range);
-	},
-	"replaceRange": function (range, text, select = false) {
+	"replaceRange": function (range, text = "", select = false, move = 0, move_pos = text.length) {
 		range.deleteContents();
 
 		const node = document.createTextNode(text);
@@ -165,12 +148,11 @@ const myEditorsObject = {
 		range.insertNode(node);
 
 		if (select)
-			range.selectNode(node);
+			range.selectNodeContents(node);
 		else {
-			range.setStartAfter(node);
+			range.setStart(node, Math.max(0, Math.min(text.length, move_pos + move)));
 			range.collapse(true);
 		}
-
 		const sel = window.getSelection();
 		sel.removeAllRanges();
 		sel.addRange(range);
