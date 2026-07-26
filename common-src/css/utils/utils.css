@@ -3,6 +3,7 @@
 @import url("./display-setting-template.css");
 @import url("./display-confirm-template.css");
 @import url("./display-alert-template.css");
+@import url("./display-data-template.css");
 
 @property --myStylingLocalDisplayWidth {
 	syntax: "*";

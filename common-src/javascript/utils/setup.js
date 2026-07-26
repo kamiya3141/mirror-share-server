@@ -58,21 +58,10 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 			}
 		},
 		"save--user-data--localstorage": async __tf => {
-			if (!__tf) {
-				/*
-				const res = await myConfirmMessage("この操作を完了すると\nユーザデータは削除されます。\n\n本当によろしいですか？");
-				if (res)
-					removeDeviceInformationData();
-				else {
-					editDeviceInformation(key, !res);
-					toggleSwitchCancelFunction(elem);
-					myAlertMessage("初期化を中止しました。");
-				}
-				*/
-			} else {
-				syncDeviceDataForLocalStorage();
-				document.dispatchEvent(new CustomEvent("setting-display-reload"));
-			}
+			if (!__tf)
+				return;
+			syncDeviceDataForLocalStorage();
+			document.dispatchEvent(new CustomEvent("setting-display-reload"));
 		}
 	};
 

@@ -204,6 +204,27 @@ document.body.insertAdjacentHTML("afterbegin", `
 			</div>
 		</div>
 	</template>
+	<template id="display-data-template">
+		<div id="display-data-main-contents-data">
+			<div class="data--main-contents-box">
+				<div class="main-contents--top">
+					<h3 id="data--message"></h3>
+				</div>
+				<div class="main-contents--middle">
+					<input type="text" place-holder=", でデータを区切る" id="data--text-input">
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="CANCEL" id="data--cancel-button">
+						<input type="button" value="OK" id="data--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<section id="data-display-section" class="display-section background-blur important-section-0" data-display-open="false" data-mydef--set-by-script="false">
+		<div id="data-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="データ入力 %_ID:display-data-template input-data true"></div>
+	</section>
 	<section id="setting-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
 		<div id="setting-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings true"></div>
 	</section>
@@ -312,19 +333,69 @@ const MyConfirmMessageInfoObject = {
 	}
 };
 
+const MyDataMessageInfoObject = {
+	"data--id": "#data-display-section",
+	"message--id": "#data--message",
+	"ok-button--id": "#data--ok-button",
+	"cancel-button--id": "#data--cancel-button",
+	"result": null,
+	get "element"() {
+		return document.querySelector(this["data--id"]);
+	},
+	get "message"() {
+		return this["element"].querySelector(this["message--id"]).innerHTML;
+	},
+	set "message"(input) {
+		this["element"].querySelector(this["message--id"]).innerHTML = String(input).replaceAll("\n", "<br>");
+	},
+	get "ok-button"() {
+		return this["element"].querySelector(this["ok-button--id"]);
+	},
+	get "cancel-button"() {
+		return this["element"].querySelector(this["cancel-button--id"]);
+	},
+	get "open-event-var"() {
+		return new CustomEvent("data--event--open");
+	},
+	async "open-event"(input_str = "") {
+		this["message"] = input_str;
+		this["element"].dispatchEvent(this["open-event-var"]);
+		while (this["result"] == null)
+			await utilsSleep(250);
+		const res = this["result"];
+		this["result"] = null;
+		return res;
+	},
+	get "close-event-var"() {
+		return new CustomEvent("data--event--close");
+	},
+	"close-event"() {
+		this["element"].dispatchEvent(this["close-event-var"]);
+	},
+	"__init__"() {
+		this["element"].addEventListener("data--event--open", () => switchingOpenDisplay(this["element"]));
+		this["element"].addEventListener("data--event--close", () => this["message"] = "");
+	}
+};
+
 MyAlertMessageInfoObject["__init__"]();
 MyConfirmMessageInfoObject["__init__"]();
+MyDataMessageInfoObject["__init__"]();
 
 function myAlertMessage(_str = "Alert Message Template.") {
 	MyAlertMessageInfoObject["open-event"](_str);
 }
 
-async function myConfirmMessage(_str) {
-	//const res = window.confirm(_str);
+async function myConfirmMessage(_str = "Confirm Message Template.") {
 	const res = await MyConfirmMessageInfoObject["open-event"](_str);
 	return res;
 }
 
+async function myDataMessage(_str = "InputData Message Template.", func = _res => _res) {
+	const res0 = await MyDataMessageInfoObject["open-event"](_str);
+	const res = func(res0);
+	return res;
+}
 
 function get_SetByScript(elem) {
 	return elem.getAttribute(attrName_SetByScript) == "true";
