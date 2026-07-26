@@ -164,11 +164,16 @@ const myEditorsObject = {
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
-		if (!sel.rangeCount)
-			return null;
-		const range = sel.getRangeAt(0);
-		if (!editor.contains(range.commonAncestorContainer))
-			return null;
+		if (sel.rangeCount) {
+			const range = sel.getRangeAt(0);
+			if (editor.contains(range.commonAncestorContainer))
+				return range;
+		}
+		// エディタ末尾のRangeを作成
+		const range = document.createRange();
+		range.selectNodeContents(editor);
+		// false: 末尾, true: 先頭
+		range.collapse(false);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
