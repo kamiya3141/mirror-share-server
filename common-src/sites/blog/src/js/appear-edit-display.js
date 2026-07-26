@@ -207,6 +207,18 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 				allow_insert_response_for_editor: true
 			},
 			{
+				key: "css-block",
+				appearance_text: `<div>CSS</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: `@css[""](`,
+						after_str: ")"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
 				key: "a-link",
 				appearance_text: `<div>https...</div>`,
 				func: async function () {
