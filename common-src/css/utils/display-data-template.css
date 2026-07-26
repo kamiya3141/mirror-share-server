@@ -16,7 +16,7 @@ html[data-my-device-type="mobile"] #display-data-main-contents-data input[type="
 		height: var(--c1);
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 2fr 6fr 2fr;
+		grid-template-rows: 6fr 2fr 2fr;
 
 		& > * {
 			display: flex;
@@ -25,6 +25,10 @@ html[data-my-device-type="mobile"] #display-data-main-contents-data input[type="
 
 			& > h3 {
 				width: var(--c1);
+			}
+
+			& > input[type="text"] {
+				font-size: 2.5rem;
 			}
 
 			& > .button-box {

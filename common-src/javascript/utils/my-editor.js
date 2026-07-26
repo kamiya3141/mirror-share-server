@@ -134,7 +134,7 @@ const myEditorsObject = {
 		button.addEventListener("click", async e => {
 			const { text = "", before_str = "", after_str = "" } = await func();
 			if (allow_insert_response_for_editor) {
-				const _range = this["getEditorRange"](this["__editors"][editor_index]);
+				const _range = this["getEditorRange"](this["__editors"][editor_index].querySelector(".utils--my-editor--editor"));
 				this["wrapSelection"](_range, before_str + text, after_str);
 			}
 		});

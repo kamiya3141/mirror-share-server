@@ -222,7 +222,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 			</div>
 		</div>
 	</template>
-	<section id="data-display-section" class="display-section background-blur important-section-0" data-display-open="false" data-mydef--set-by-script="false">
+	<section id="data-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
 		<div id="data-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="データ入力 %_ID:display-data-template input-data true"></div>
 	</section>
 	<section id="setting-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">

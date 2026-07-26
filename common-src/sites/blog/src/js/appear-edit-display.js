@@ -223,7 +223,7 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 							res.push("");
 
 					return {
-						text: `[${res[1]}](${res[0]} ${res[2]})`,
+						text: `[${res[1]}](${res[0]} ${res[2] ? res[2] : res[1]})`,
 						before_str: "",
 						after_str: ""
 					};
@@ -247,7 +247,7 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 							res.push("");
 
 					return {
-						text: `![${res[1]}](${res[0]} ${res[2]})`,
+						text: `![${res[1]}](${res[0]} ${res[2] ? res[2] : res[1]})`,
 						before_str: "",
 						after_str: ""
 					};
