@@ -256,12 +256,7 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 			},
 		]
 	];
-	registerButtonsInfo.forEach((c, i) => {
-		c.forEach(obj => _med.myEditorsObject["registSubContentsButton"](i, obj["key"], obj["appearance_text"], async () => {
-			_med.myEditorsObject["redesignLineNumber"](_med.myEditorsObject["editors"][i]);
-			await obj["func"]();
-		}, obj["allow_insert_response_for_editor"]));
-	});
+	registerButtonsInfo.forEach((c, i) => c.forEach(obj => _med.myEditorsObject["registSubContentsButton"](i, ...Object.values(obj))));
 }
 async function convertMarkdown2Html(_txt, _pmd, _pr_el) {
 	editArticleDisplay_copiedJsonData["content"] = _txt;
