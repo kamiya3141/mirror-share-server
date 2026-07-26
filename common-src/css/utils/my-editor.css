@@ -13,7 +13,7 @@
 
 	& > .utils--my-editor--main-contents-box {
 		width: var(--c1);
-		height: var(--c1);
+		height: var(--c-mn-h);
 		overflow: auto auto;
 		display: inline-block;
 
@@ -56,6 +56,25 @@
 					overflow-x: auto;
 					border: calc(var(--p2) * 0.125) solid var(--myTextColor);
 				}
+			}
+		}
+	}
+
+	& > .utils--my-editor--sub-contents-box {
+		width: var(--c1);
+		height: calc(var(--c-hd-h) * 2);
+
+		& > .utils--my-editor--sub-contents {
+			width: var(--c1);
+			height: var(--c1);
+			display: grid;
+			grid-auto-rows: calc(var(--p2) * 12);
+			grid-template-columns: repeat(6, minmax(calc(var(--p2) * 12), 1fr));
+			gap: calc(var(--p2) * 0.5);
+
+			& > .utils--my-editor--sub-contents--button {
+				width: var(--c1);
+				height: var(--c1);
 			}
 		}
 	}

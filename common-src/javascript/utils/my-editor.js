@@ -44,6 +44,9 @@ const myEditorsObject = {
 				</div>
 			</div>
 		</div>
+		<div class="utils--my-editor--sub-contents-box">
+			<div class="utils--my-editor--sub-contents"></div>
+		</div>
 		`;
 		input.appendChild(editor_div_element);
 		this["__editors"].push(editor_div_element);
@@ -114,6 +117,24 @@ const myEditorsObject = {
 			console.error(`inputFuncには${key}が存在しません`);
 		else
 			delete this["__inputFunc"][key];
+	},
+	"registSubContentsButton": function (editor_index = 0, key = "", appearance_text = key, func, allow_insert_response_for_editor = true) {
+		const sub_contents = this["__editors"][editor_index].querySelector(".utils--my-editor--sub-contents");
+		if (sub_contents.querySelector(`#${key}`))
+			return console.error(`${key}は既に存在します`);
+		const button = document.createElement("button");
+		button.id = key;
+		button.classList.add("utils--my-editor--sub-contents--button");
+		button.innerHTML = `<div class="utils--my-editor--sub-contents--button-text">${appearance_text}</div>`;
+		button.addEventListener("click", async e => {
+			const { text = "", move = 0, move_pos = text.length, before_str = "", after_str = "" } = await func();
+			if (allow_insert_response_for_editor) {
+				const _range = this["getEditorRange"](this["__editors"][editor_index]);
+				const _selected = !_range.collapsed;
+				const output_text = _selected ? (before_str + text + after_str) : text;
+				this["replaceRange"](_range, output_text, _selected, move, move_pos);
+			}
+		});
 	},
 	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
 		const range = document.createRange();

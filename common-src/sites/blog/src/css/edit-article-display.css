@@ -76,11 +76,11 @@
 				width: var(--c1);
 				height: var(--c1);
 				align-items: flex-start;
-				justify-content: flex-end;
+				justify-content: flex-start;
 
 				& > #editor--my-editor {
-					width: var(--c1);
-					height: var(--c1);
+					width: calc(var(--c1) * 1.0);
+					height: calc(var(--c1) * 1.0);
 				}
 
 				& > #editor--textarea {
