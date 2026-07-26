@@ -11,6 +11,8 @@
 *	readonly values: string[],
 *	set values,
 *	redesignLineNumber: function(): void,
+*	registSubContentsButton: function(): void,
+*	removeSubContentsButton: function(): void,
 *	registInputFunc: function(): void,
 *	removeInputFunc: function(): void,
 *	setupEditors: function(): void,
@@ -135,6 +137,13 @@ const myEditorsObject = {
 				this["replaceRange"](_range, output_text, _selected, move, move_pos);
 			}
 		});
+	},
+	"removeSubContentsButton": function (editor_index = 0, key = "") {
+		const sub_contents = this["__editors"][editor_index].querySelector(".utils--my-editor--sub-contents");
+		const child = sub_contents.querySelector(`#${key}`);
+		if (!child)
+			return console.error(`${key}は存在しません`);
+		return child.remove();
 	},
 	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
 		const range = document.createRange();

@@ -75,6 +75,12 @@
 			& > .utils--my-editor--sub-contents--button {
 				width: var(--c1);
 				height: var(--c1);
+
+				& > * {
+					width: var(--c1);
+					height: var(--c1);
+					object-fit: contain;
+				}
 			}
 		}
 	}
