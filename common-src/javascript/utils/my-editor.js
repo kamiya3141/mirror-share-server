@@ -122,6 +122,9 @@ const myEditorsObject = {
 	},
 	"registSubContentsButton": function (editor_index = 0, key = "", appearance_text = key, func, allow_insert_response_for_editor = true) {
 		const sub_contents = this["__editors"][editor_index].querySelector(".utils--my-editor--sub-contents");
+		if (key == "*")
+			return console.error(`${key}は登録できません`);
+		key = `utils--my-editor--sub-contents--button--${key}`;
 		if (sub_contents.querySelector(`#${key}`))
 			return console.error(`${key}は既に存在します`);
 		const button = document.createElement("button");
@@ -129,17 +132,19 @@ const myEditorsObject = {
 		button.classList.add("utils--my-editor--sub-contents--button");
 		button.innerHTML = `<div class="utils--my-editor--sub-contents--button-text">${appearance_text}</div>`;
 		button.addEventListener("click", async e => {
-			const { text = "", move = 0, move_pos = text.length, before_str = "", after_str = "" } = await func();
+			const { text = "", before_str = "", after_str = "" } = await func();
 			if (allow_insert_response_for_editor) {
 				const _range = this["getEditorRange"](this["__editors"][editor_index]);
-				const _selected = !_range.collapsed;
-				const output_text = _selected ? (before_str + text + after_str) : text;
-				this["replaceRange"](_range, output_text, _selected, move, move_pos);
+				this["wrapSelection"](_range, before_str + text, after_str);
 			}
 		});
+		sub_contents.appendChild(button);
 	},
 	"removeSubContentsButton": function (editor_index = 0, key = "") {
 		const sub_contents = this["__editors"][editor_index].querySelector(".utils--my-editor--sub-contents");
+		if (key == "*")
+			return sub_contents.replaceChildren();
+		key = `utils--my-editor--sub-contents--button--${key}`;
 		const child = sub_contents.querySelector(`#${key}`);
 		if (!child)
 			return console.error(`${key}は存在しません`);
@@ -167,8 +172,12 @@ const myEditorsObject = {
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
-		const text = range.toString();
-		this["replaceRange"](range, before_str + text + after_str, true);
+		if (range.collapsed)
+			this["replaceRange"](range, before_str + after_str, false, -after_str.length);
+		else {
+			const text = range.toString();
+			this["replaceRange"](range, before_str + text + after_str, true);
+		}
 	},
 	"replaceRange": function (range, text = "", select = false, move = 0, move_pos = text.length) {
 		range.deleteContents();

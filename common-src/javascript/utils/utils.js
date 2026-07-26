@@ -336,6 +336,7 @@ const MyConfirmMessageInfoObject = {
 const MyDataMessageInfoObject = {
 	"data--id": "#data-display-section",
 	"message--id": "#data--message",
+	"input--id": "#data--text-input",
 	"ok-button--id": "#data--ok-button",
 	"cancel-button--id": "#data--cancel-button",
 	"result": null,
@@ -348,6 +349,9 @@ const MyDataMessageInfoObject = {
 	set "message"(input) {
 		this["element"].querySelector(this["message--id"]).innerHTML = String(input).replaceAll("\n", "<br>");
 	},
+	get "input"() {
+		return this["element"].querySelector(this["input--id"]);
+	},
 	get "ok-button"() {
 		return this["element"].querySelector(this["ok-button--id"]);
 	},
@@ -359,6 +363,7 @@ const MyDataMessageInfoObject = {
 	},
 	async "open-event"(input_str = "") {
 		this["message"] = input_str;
+		this["input"].addEventListener("input", e => this["ok-button"].setAttribute("data-mydef--localdata--input-data", this["input"].value));
 		this["element"].dispatchEvent(this["open-event-var"]);
 		while (this["result"] == null)
 			await utilsSleep(250);

@@ -144,6 +144,121 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await inputTextConvertMD(txt, _pmd, parent_elem));
 	await _med.settingMyEditor();
 	_med.myEditorsObject["values"] = [0, editArticleDisplay_copiedJsonData["content"]];
+	const registerButtonsInfo = [
+		[
+			{
+				key: "text-remove",
+				appearance_text: `<div style="text-decoration: line-through;">text</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: "~~",
+						after_str: "~~"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "text-bold",
+				appearance_text: `<div style="font-weight: 900;">text</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: "**",
+						after_str: "**"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "text-italic",
+				appearance_text: `<div style="font-style: italic;">text</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: "*",
+						after_str: "*"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "text-underline",
+				appearance_text: `<div style="text-decoration-line: underline; text-decoration-color: var(--myTextColor); text-decoration-thickness: calc(var(--p1) / 4);">text</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: "__",
+						after_str: "__"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "code-block",
+				appearance_text: `<div style="border: var(--myTextColor) calc(var(--p2) * 0.125) solid;">&gt;_</div>`,
+				func: async function () {
+					return {
+						text: "",
+						before_str: "```",
+						after_str: "```"
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "a-link",
+				appearance_text: `<div>https...</div>`,
+				func: async function () {
+					let res = await myDataMessage("リンク,表示テキスト,代替文字列");
+					if (typeof res != "object")
+						return {
+							text: "失敗♡",
+							before_str: "",
+							after_str: ""
+						};
+
+					for (let i = 0; i < 2; i++)
+						if (res.length == i + 1)
+							res.push("");
+
+					return {
+						text: `[${res[1]}](${res[0]} ${res[2]})`,
+						before_str: "",
+						after_str: ""
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+			{
+				key: "img-link",
+				appearance_text: `<div>Image</div>`,
+				func: async function () {
+					let res = await myDataMessage("画像リンク,表示テキスト,代替文字列");
+					if (typeof res != "object")
+						return {
+							text: "失敗♡",
+							before_str: "",
+							after_str: ""
+						};
+
+					for (let i = 0; i < 2; i++)
+						if (res.length == i + 1)
+							res.push("");
+
+					return {
+						text: `![${res[1]}](${res[0]} ${res[2]})`,
+						before_str: "",
+						after_str: ""
+					};
+				},
+				allow_insert_response_for_editor: true
+			},
+		]
+	];
+	registerButtonsInfo.forEach((c, i) => {
+		c.forEach(obj => _med.myEditorsObject["registSubContentsButton"](i, ...Object.values(obj)));
+	});
 }
 async function convertMarkdown2Html(_txt, _pmd, _pr_el) {
 	editArticleDisplay_copiedJsonData["content"] = _txt;

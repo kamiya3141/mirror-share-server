@@ -30,6 +30,20 @@ function loadedFunc() {
 					MyConfirmMessageInfoObject["close-event"]();
 				}
 			}
+		},
+		{
+			"trigger-element": ["#data-display-div-main #data--ok-button", "#data-display-div-main #data--cancel-button"],
+			"focus-out-element": "",
+			"switched-element": "#data-display-section",
+			"tf-func": (__tf, __elem) => {
+				if (!__tf) {
+					if (String(__elem.id).includes("ok"))
+						MyDataMessageInfoObject["result"] = [...String(__elem.getAttribute("data-mydef--localdata--input-data")).split(new RegExp(", ?"))];
+					else
+						MyDataMessageInfoObject["result"] = [""];
+					MyDataMessageInfoObject["close-event"]();
+				}
+			}
 		}
 	];
 
