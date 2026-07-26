@@ -16,6 +16,8 @@
 *	setupEditors: function(): void,
 *	setCursorPosition: function(): void,
 *	getEditorRange: function(): Range|null,
+*	insertText: function(): void,
+*	wrapSelection: function(): void,
 *	replaceRange: function(): void,
 *	getCaretOffset: function(): number,
 *	getCurrentLineString: function(): string
@@ -23,7 +25,7 @@
 */
 const myEditorsObject = {
 	"__editors": [],
-	"__inputFunc": [],
+	"__inputFunc": {},
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -96,23 +98,17 @@ const myEditorsObject = {
 		lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 		lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 		// input時に呼び出される外部からくわえられた関数
-		this["__inputFunc"].forEach(async obj => await obj[Object.keys(obj)[0]](editorInnerText));
+		Object.values(this["__inputFunc"]).forEach(async func => await func(editorInnerText));
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
 		this["redesignLineNumber"](this["__editors"][input_arr[0]]);
 	},
 	get "values"() {
-		return new Array(this["__editors"].length).map((c, i) => this["__editors"][i].innerText);
+		return this["__editors"].map(c => c.querySelector(".utils--my-editor--editor").innerText);
 	},
-	"registInputFunc": function (key = "", value = () => null) {
-		if (Object.hasOwn(this["__inputFunc"], key))
-			console.error(`inputFuncにはすでに${key}が存在します`);
-		else {
-			const obj = {};
-			obj[key] = value;
-			this["__inputFunc"].push(obj);
-		}
+	"registInputFunc": function (key = "", func) {
+		this["__inputFunc"] = func;
 	},
 	"removeInputFunc": function (key = "") {
 		if (!Object.hasOwn(this["__inputFunc"], key))
@@ -141,6 +137,26 @@ const myEditorsObject = {
 			return null;
 		return range;
 	},
+	"wrapSelection": function (range, before_str = "", after_str = "") {
+		const text = range.toString();
+		this["replaceRange"](range, before_str + text + after_str, true);
+	},
+	"insertText": function (range, text = "", move = 0) {
+		range.deleteContents();
+
+		const node = document.createTextNode(text);
+
+		range.insertNode(node);
+
+		const pos = text.length + move;
+
+		range.setStart(node, pos);
+		range.collapse(true);
+
+		const sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(range);
+	},
 	"replaceRange": function (range, text, select = false) {
 		range.deleteContents();
 
@@ -156,7 +172,6 @@ const myEditorsObject = {
 		}
 
 		const sel = window.getSelection();
-
 		sel.removeAllRanges();
 		sel.addRange(range);
 	},
