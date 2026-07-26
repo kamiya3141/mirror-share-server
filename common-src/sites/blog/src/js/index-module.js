@@ -15,7 +15,7 @@ const nbsp = n => "&nbsp;".repeat(n);
 const before_replace_str_define_array = [
 	[
 		/@css\[(["'`])?(.*?)["'`]?\]\((.*?)\)/g,
-		(qu, stl, str) => `<pre style=${qu + stl + qu}>${str}</pre>`,
+		(qu, stl, str) => `<div class="div--add--css-styles"><pre style=${qu + stl + qu}>${str}</pre></div>`,
 		[1, 2, 3]
 	],
 	[

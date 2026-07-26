@@ -30,5 +30,5 @@
  * pnpm
 * Windows11 PC
  * AutoHotkey v2.0.19
-* 最新版のchrome or safariが利用できるpcとは別の端末
+* @css["color:yellow;"](最新版)のchrome or safariが利用できるpcとは別の端末
 > ~~できればAndroidが良いと思います、なぜなら私はAndroidが好きで、iosが嫌いだからです~~

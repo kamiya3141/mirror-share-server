@@ -190,7 +190,8 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			}
 		}
 
-		&.easy-text-deco {
+		&.easy-text-deco,
+		&.div--add--css-styles {
 			display: inline;
 		}
 
