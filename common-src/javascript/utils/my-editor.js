@@ -107,7 +107,7 @@ const myEditorsObject = {
 		return this["__editors"].map(c => c.querySelector(".utils--my-editor--editor").innerText);
 	},
 	"registInputFunc": function (key = "", func) {
-		this["__inputFunc"] = func;
+		this["__inputFunc"][key] = func;
 	},
 	"removeInputFunc": function (key = "") {
 		if (!Object.hasOwn(this["__inputFunc"], key))
