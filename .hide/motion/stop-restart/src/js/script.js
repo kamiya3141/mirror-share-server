@@ -45,7 +45,7 @@ function createMotionContentsSection(title = "") {
 						<div id="main-title">${title}</div>
 					</div>
 				</div>
-				<div id="${title}" class="sub-title" data-mydef--sub-title-status="normal"></div>
+				<div id="${title.toLowerCase()}" class="sub-title" data-mydef--sub-title-status="normal"></div>
 			</div>
 		</section>`;
 		document.getElementById("section-box").innerHTML += output_string;
