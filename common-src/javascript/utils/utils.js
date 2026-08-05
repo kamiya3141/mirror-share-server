@@ -1,4 +1,4 @@
-const addElementString = window["utils"] ? window["utils"] : "";
+const addElementString = window["utils--temp--add-str"] ? window["utils--temp--add-str"] : "";
 
 document.body.insertAdjacentHTML("afterbegin", `
 	<template id="toggle-switch-template">
@@ -433,7 +433,7 @@ function createRDM() {
 	return Math.floor(Math.random() * (10 ** 12));
 }
 
-function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
+function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0) {
 	const rdm = createRDM();
 	return `
 		<div class="utils--popover--elements--popover--root">
@@ -463,34 +463,39 @@ function addEventPopoverElementsMiniEvent(btn, ppov, stop_propagation = false) {
 	});
 }
 function imageViewerElement(...img_elm_strs) {
-	const rdm = createRDM();
+	const root_div = createDivElement("utils--imgvwr--element--root");
+	const mainContentsBox_div = createDivElement("utils--imgvwr--element--main-contents-box");
+	const leftBox_div = createScrollButtonDivElement("left", "&lt;", root_div);
+	const rightBox_div = createScrollButtonDivElement("right", "&gt;", root_div);
+	const mainContents_div = createDivElement("utils--imgvwr--element--main-contents");
+	mainContents_div.innerHTML = `<div class="utils--imgvwr--element--img-box">${img_elm_strs.join("")}</div>`;
 
-	return `
-		<div id="utils--imgvwr--element--${rdm}" class="utils--imgvwr--element--root">
-			<div class="utils--imgvwr--element--main-contents-box">
-				<div class="utils--imgvwr--element--btn-box utils--imgvwr--element--left-box">
-					<div>&lt;</div>
-				</div>
-				<div class="utils--imgvwr--element--main-contents">
-					<div class="utils--imgvwr--element--img-box">
-						${img_elm_strs.join("")}
-					</div>
-				</div>
-				<div class="utils--imgvwr--element--btn-box utils--imgvwr--element--right-box">
-					<div>&gt;</div>
-				</div>
-			</div>
-		</div>
-	`.replaceAll("\n", "").replaceAll("\t", "");
+	mainContentsBox_div.appendChild(leftBox_div);
+	mainContentsBox_div.appendChild(mainContents_div);
+	mainContentsBox_div.appendChild(rightBox_div);
+	root_div.appendChild(mainContentsBox_div);
+
+	return root_div;
 }
-function imageViewerElementScrollButtonClicked(rdm = createRDM()) {
-	const img_box = document.querySelector(`#utils--imgvwr--element--${rdm} .utils--imgvwr--element--img-box`);
-	if (!img_box)
-		return console.error(`img_boxが見つかりません!, ID: ${rdm}`);
-	[...document.querySelectorAll(`#utils--imgvwr--element--${rdm} .utils--imgvwr--element--btn-box`)].forEach(c => {
-		c.addEventListener("click", e => img_box.scrollBy({
-			"left": img_box.clientWidth * ((c.className.includes("right") ? 1 : -1)),
+
+function createScrollButtonDivElement(dir = "", btn_txt = "", root) {
+	const div = createDivElement(`utils--imgvwr--element--button-box utils--imgvwr--element--${dir}-box`);
+	div.innerHTML = `<button>${btn_txt}</button>`;
+	div.addEventListener("click", e => {
+		const img_box = root.querySelector(".utils--imgvwr--element--img-box");
+		if (!img_box)
+			return console.error("img_boxが存在しません");
+		img_box.scrollBy({
+			"left": img_box.clientWidth * ((dir.includes("right") ? 1 : -1)),
 			"behavior": "smooth"
-		}));
+		});
 	});
+	return div;
+}
+
+function createDivElement(class_name = "", id = "") {
+	const div = document.createElement("div");
+	div.id = id;
+	div.className = class_name;
+	return div;
 }

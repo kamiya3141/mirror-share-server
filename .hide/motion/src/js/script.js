@@ -26,7 +26,7 @@ async function createMotionContentsSection(url = "", title = "", element = "") {
 	// const _res = await window.fetch(url);
 	// const _status = _res.ok ? "normal" : "alert";
 	const _status = "normal";
-	const mainContents = element == "img" ? createPopoverElements(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
+	const mainContents = element == "img" ? createPopoverElementsStr(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
 	if (!clear)

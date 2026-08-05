@@ -51,12 +51,12 @@
 		import { settingMyEditor } from "https://js.tshuto.com/utils/my-editor.js";
 		await settingMyEditor();
 	</script>
-	<script defer>
+	<script>
 		function test() {
 			const arr = ["8236b237-a32e-41c7-86ca-e7f74fd0ae29.jpeg", "f6522349-2005-4485-815d-d05b6da7effe.jpeg"];
-			const res = imageViewerElement(...(arr.map(c => (url = `https://file-nextcloud.tshuto.com/image/Screenshots/${c}`, createPopoverElements(`<img alt="image" title="${url}" src="${url}">`)))));
+			const res = imageViewerElement(...(arr.map(c => (url = `https://file-nextcloud.tshuto.com/image/Screenshots/${c}`, createPopoverElementsStr(`<img alt="image" title="${url}" src="${url}">`)))));
 			const test_place = document.getElementById("test-place");
-			test_place.innerHTML = res;
+			test_place.appendChild(res);
 		}
 		window.addEventListener("load", test);
 	</script>

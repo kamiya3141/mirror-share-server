@@ -164,7 +164,7 @@ const before_replace_str_define_array = [
 	],
 	[
 		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
-		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => createPopoverElements(`<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`),
+		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => createPopoverElementsStr(`<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`),
 		[1, 2, 3]
 	],
 	[
