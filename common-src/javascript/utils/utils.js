@@ -466,15 +466,15 @@ function imageViewerElement(...img_elm_strs = [""]) {
 		<div id="utils--imgvwr--element--${rdm}" class="utils--imgvwr--element--root">
 			<div class="utils--imgvwr--element--main-contents-box">
 				<div class="utils--imgvwr--element--left-box">
-					<span class="utils--imgvwr--element--left">&lt;</span>
+					<div>&lt;</div>
 				</div>
 				<div class="utils--imgvwr--element--main-contents">
 					<div class="utils--imgvwr--element--img-box">
-						${img_elm_strs}
+						${img_elm_strs.join("")}
 					</div>
 				</div>
 				<div class="utils--imgvwr--element--right-box">
-					<span class="utils--imgvwr--element--right">&gt;</span>
+					<div>&gt;</div>
 				</div>
 			</div>
 		</div>

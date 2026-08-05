@@ -305,6 +305,43 @@ html {
 			animation: utils--popover--animation var(--mnt1t2) var(--es-f) forwards;
 		}
 	}
+
+	& .utils--imgvwr--element--root {
+		width: var(--c1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+
+		& > .utils--imgvwr--element--main-contents-box {
+			width: var(--c1);
+
+			& > .utils--imgvwr--element--left-box,
+			& > .utils--imgvwr--element--right-box {
+				width: var(--c-hd-h);
+				text-align: center;
+
+				& > * {
+					display: inline-block;
+				}
+			}
+
+			& > .utils--imgvwr--element--main-contents {
+				width: var(--c-mn-h);
+
+				& > .utils--imgvwr--element--img-box {
+					width: var(--c1);
+
+					& > * {
+						width: var(--c1);
+						height: var(--c1);
+						object-fit: contain;
+					}
+				}
+			}
+
+		}
+	}
 }
 
 @keyframes utils--popover--animation {
