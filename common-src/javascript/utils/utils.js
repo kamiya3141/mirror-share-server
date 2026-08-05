@@ -462,7 +462,7 @@ function addEventPopoverElementsMiniEvent(btn, ppov, stop_propagation = false) {
 }
 function imageViewerElement(...img_elm_strs) {
 	const rdm = createRDM();
-	return html`
+	return `
 		<div id="utils--imgvwr--element--${rdm}" class="utils--imgvwr--element--root">
 			<div class="utils--imgvwr--element--main-contents-box">
 				<div class="utils--imgvwr--element--left-box">

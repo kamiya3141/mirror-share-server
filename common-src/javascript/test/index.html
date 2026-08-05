@@ -17,7 +17,16 @@
 			height: 100%;
 		}
 
+		#root>* {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: row;
+			text-align: center;
+		}
+
 		#root>*>* {
+			display: unset;
 			width: 50%;
 			height: 100%;
 		}
@@ -49,7 +58,7 @@
 			const test_place = document.getElementById("test-place");
 			test_place.innerHTML = res;
 		}
-		test();
+		window.addEventListener("load", test);
 	</script>
 </body>
 
