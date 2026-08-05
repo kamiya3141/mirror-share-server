@@ -339,6 +339,7 @@ html {
 					width: var(--c1);
 					overflow: auto hidden;
 					scroll-snap-type: x mandatory;
+					scrollbar-width: none;
 
 					& > * {
 						flex: 0 0 auto;
