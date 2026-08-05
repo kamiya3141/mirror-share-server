@@ -344,6 +344,7 @@ html {
 					& > * {
 						flex: 0 0 auto;
 						scroll-snap-align: center;
+						scroll-behavior: smooth;
 						width: var(--c1);
 						object-fit: contain;
 					}

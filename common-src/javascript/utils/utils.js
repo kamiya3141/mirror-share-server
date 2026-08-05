@@ -486,8 +486,7 @@ function createScrollButtonDivElement(dir = "", btn_txt = "", root) {
 		if (!img_box)
 			return console.error("img_boxが存在しません");
 		img_box.scrollBy({
-			"left": img_box.clientWidth * 0.25 * ((dir.includes("right") ? 1 : -1)),
-			"behavior": "smooth"
+			"left": img_box.clientWidth * 0.25 * ((dir.includes("right") ? 1 : -1))
 		});
 	});
 	return div;
