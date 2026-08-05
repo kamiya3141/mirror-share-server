@@ -232,66 +232,70 @@ html {
 		background-color: var(--myMainBackgroundColor);
 	}
 
-	& button.utils--popover--elements--popover--show-button {
+	.utils--popover--elements--popover--root {
 		width: var(--c-mn-h);
-		border: none;
-		background-color: var(--clear);
 
-		& > * {
+		& button.utils--popover--elements--popover--show-button {
 			width: var(--c1);
-		}
-
-		& + .utils--popover--elements--popover-class {
 			border: none;
-			padding: 0;
 			background-color: var(--clear);
-			display: none;
-
-			&:popover-open {
-				position: fixed;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				justify-self: center;
-				align-self: center;
-				width: var(--c1);
-				height: var(--c1);
-			}
-
-			&::backdrop {
-				background-color: var(--black8);
-			}
 
 			& > * {
-				position: static;
-				flex-direction: row;
+				width: var(--c1);
 			}
 
-			& > .utils--popover--elements--popover--close-button-box {
-				width: var(--c1);
-				height: calc(var(--p2) * 9);
-				justify-content: center;
-				align-items: center;
-				margin: calc(var(--p2) * 1.5) 0;
+			& + .utils--popover--elements--popover-class {
+				border: none;
+				padding: 0;
+				background-color: var(--clear);
+				display: none;
 
-				& > button {
-					display: inline-flex;
-					height: var(--c1);
-					padding: calc(var(--p2) * 1.5) calc(var(--p2) * 3);
-					font-size: calc(var(--p2) * 3);
-					background-color: var(--myMainBackgroundColor);
-				}
-			}
-
-			& > .utils--popover--elements--popover--main-contents-box {
-				width: var(--c1);
-				min-height: var(--c-hd-h);
-
-				& > * {
+				&:popover-open {
+					position: fixed;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					justify-self: center;
+					align-self: center;
 					width: var(--c1);
 					height: var(--c1);
-					object-fit: contain;
+				}
+
+				&::backdrop {
+					background-color: var(--black8);
+				}
+
+				& > * {
+					position: static;
+					flex-direction: row;
+				}
+
+				& > .utils--popover--elements--popover--close-button-box {
+					width: var(--c1);
+					height: calc(var(--p2) * 9);
+					justify-content: center;
+					align-items: center;
+					margin: calc(var(--p2) * 1.5) 0;
+
+					& > button {
+						display: inline-flex;
+						height: var(--c1);
+						padding: calc(var(--p2) * 1.5) calc(var(--p2) * 3);
+						font-size: calc(var(--p2) * 3);
+						background-color: var(--myMainBackgroundColor);
+					}
+				}
+
+				& > .utils--popover--elements--popover--main-contents-box {
+					width: var(--c1);
+					min-height: var(--c-hd-h);
+
+					& > * {
+						width: var(--c1);
+						height: var(--c1);
+						object-fit: contain;
+					}
 				}
 			}
 		}
@@ -313,6 +317,7 @@ html {
 		align-items: center;
 		flex-direction: row;
 
+
 		& > .utils--imgvwr--element--main-contents-box {
 			width: var(--c1);
 
@@ -330,15 +335,22 @@ html {
 				width: var(--c-mn-h);
 
 				& > .utils--imgvwr--element--img-box {
+					display: inline-block;
 					width: var(--c1);
 					overflow: auto hidden;
 					scroll-snap-type: x mandatory;
 
 					& > * {
-						width: var(--c1);
-						height: var(--c1);
-						object-fit: contain;
-						scroll-snap-align: center;
+						display: block;
+						min-height: var(--c-mn-h);
+
+						& > * {
+							display: unset;
+
+							& img {
+								scroll-snap-align: center;
+							}
+						}
 					}
 				}
 			}

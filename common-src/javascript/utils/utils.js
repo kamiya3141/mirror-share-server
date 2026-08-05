@@ -436,15 +436,17 @@ function createRDM() {
 function createPopoverElements(el_str0 = "", el_str1 = el_str0) {
 	const rdm = createRDM();
 	return `
-		<button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-${rdm}">
-			${el_str0}
-		</button>
-		<div id="utils--popover--elements--popover-${rdm}" class="utils--popover--elements--popover-class" popover="auto">
-			<div class="utils--popover--elements--popover--close-button-box">
-				<button popovertarget="utils--popover--elements--popover-${rdm}">CLOSE</button>
-			</div>
-			<div class="utils--popover--elements--popover--main-contents-box">
-				${el_str1}
+		<div class="utils--popover--elements--popover--root">
+			<button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-${rdm}">
+				${el_str0}
+			</button>
+			<div id="utils--popover--elements--popover-${rdm}" class="utils--popover--elements--popover-class" popover="auto">
+				<div class="utils--popover--elements--popover--close-button-box">
+					<button popovertarget="utils--popover--elements--popover-${rdm}">CLOSE</button>
+				</div>
+				<div class="utils--popover--elements--popover--main-contents-box">
+					${el_str1}
+				</div>
 			</div>
 		</div>
 	`.replaceAll("\n", "").replaceAll("\t", "");
