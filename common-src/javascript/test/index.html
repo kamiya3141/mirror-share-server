@@ -44,8 +44,10 @@
 	</script>
 	<script defer>
 		function test() {
-			const arr = [""];
-			const res = imageViewerElement();
+			const arr = ["8236b237-a32e-41c7-86ca-e7f74fd0ae29.jpeg", "f6522349-2005-4485-815d-d05b6da7effe.jpeg"];
+			const res = imageViewerElement(...(arr.map(c => (url = `https://file-nextcloud.tshuto.com/image/Screenshots/${c}`, `<img alt="image" title="${url}" src="${url}">`))));
+			const test_place = document.getElementById("test-place");
+			test_place.innerHTML = res;
 		}
 		test();
 	</script>

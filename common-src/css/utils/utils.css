@@ -331,11 +331,14 @@ html {
 
 				& > .utils--imgvwr--element--img-box {
 					width: var(--c1);
+					overflow: auto hidden;
+					scroll-snap-type: x mandatory;
 
 					& > * {
 						width: var(--c1);
 						height: var(--c1);
 						object-fit: contain;
+						scroll-snap-align: center;
 					}
 				}
 			}
