@@ -468,7 +468,7 @@ function imageViewerElement(...img_elm_strs) {
 	const leftBox_div = createScrollButtonDivElement("left", "&lt;", root_div);
 	const rightBox_div = createScrollButtonDivElement("right", "&gt;", root_div);
 	const mainContents_div = createDivElement("utils--imgvwr--element--main-contents");
-	mainContents_div.innerHTML = `<div class="utils--imgvwr--element--img-box">${img_elm_strs.join("")}</div>`;
+	mainContents_div.innerHTML = `<div class="utils--imgvwr--element--img-box" data-mydef--utils--imgvwr--img-box--idx="0">${img_elm_strs.join("")}</div>`;
 
 	mainContentsBox_div.appendChild(leftBox_div);
 	mainContentsBox_div.appendChild(mainContents_div);
@@ -485,8 +485,16 @@ function createScrollButtonDivElement(dir = "", btn_txt = "", root) {
 		const img_box = root.querySelector(".utils--imgvwr--element--img-box");
 		if (!img_box)
 			return console.error("img_boxが存在しません");
-		img_box.scrollBy({
-			"left": img_box.clientWidth * 0.25 * ((dir.includes("right") ? 1 : -1))
+		const chn = img_box.children;
+		const chnl = chn.length;
+		const idx = Number(img_box.getAttribute("data-mydef--utils--imgvwr--img-box--idx"));
+		const add = dir.includes("right") ? 1 : -1;
+		const rst_idx = ((idx + add) % chnl + chnl) % chnl;
+		img_box.setAttribute("data-mydef--utils--imgvwr--img-box--idx", rst_idx);
+		chn[rst_idx].scrollIntoView({
+			behavior: "smooth",
+			inline: "start",
+			block: "nearest",
 		});
 	});
 	return div;
