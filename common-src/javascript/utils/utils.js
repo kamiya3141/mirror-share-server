@@ -460,7 +460,7 @@ function addEventPopoverElementsMiniEvent(btn, ppov, stop_propagation = false) {
 		ppov.style.top = `${Math.max(Number(getCSSLengthValue("--myStylingHeight")) / 8, Math.min(btn_rect.bottom, window.innerHeight - ppov_rect.height))}px`;
 	});
 }
-function imageViewerElement(...img_elm_strs = [""]) {
+function imageViewerElement(...img_elm_strs) {
 	const rdm = createRDM();
 	return html`
 		<div id="utils--imgvwr--element--${rdm}" class="utils--imgvwr--element--root">
