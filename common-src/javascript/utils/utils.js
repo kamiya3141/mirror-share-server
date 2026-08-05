@@ -464,10 +464,11 @@ function addEventPopoverElementsMiniEvent(btn, ppov, stop_propagation = false) {
 }
 function imageViewerElement(...img_elm_strs) {
 	const rdm = createRDM();
+
 	return `
 		<div id="utils--imgvwr--element--${rdm}" class="utils--imgvwr--element--root">
 			<div class="utils--imgvwr--element--main-contents-box">
-				<div class="utils--imgvwr--element--left-box">
+				<div class="utils--imgvwr--element--btn-box utils--imgvwr--element--left-box">
 					<div>&lt;</div>
 				</div>
 				<div class="utils--imgvwr--element--main-contents">
@@ -475,10 +476,21 @@ function imageViewerElement(...img_elm_strs) {
 						${img_elm_strs.join("")}
 					</div>
 				</div>
-				<div class="utils--imgvwr--element--right-box">
+				<div class="utils--imgvwr--element--btn-box utils--imgvwr--element--right-box">
 					<div>&gt;</div>
 				</div>
 			</div>
 		</div>
 	`.replaceAll("\n", "").replaceAll("\t", "");
+}
+function imageViewerElementScrollButtonClicked(rdm = createRDM()) {
+	const img_box = document.querySelector(`#utils--imgvwr--element--${rdm} .utils--imgvwr--element--img-box`);
+	if (!img_box)
+		return console.error(`img_boxが見つかりません!, ID: ${rdm}`);
+	[...document.querySelectorAll(`#utils--imgvwr--element--${rdm} .utils--imgvwr--element--btn-box`)].forEach(c => {
+		c.addEventListener("click", e => img_box.scrollBy({
+			"left": img_box.clientWidth * ((c.className.includes("right") ? 1 : -1)),
+			"behavior": "smooth"
+		}));
+	});
 }
