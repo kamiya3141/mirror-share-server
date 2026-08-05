@@ -335,22 +335,16 @@ html {
 				width: var(--c-mn-h);
 
 				& > .utils--imgvwr--element--img-box {
-					display: inline-block;
+					justify-content: start;
 					width: var(--c1);
 					overflow: auto hidden;
 					scroll-snap-type: x mandatory;
 
 					& > * {
-						display: block;
-						min-height: var(--c-mn-h);
-
-						& > * {
-							display: unset;
-
-							& img {
-								scroll-snap-align: center;
-							}
-						}
+						flex: 0 0 auto;
+						scroll-snap-align: center;
+						width: var(--c1);
+						object-fit: contain;
 					}
 				}
 			}
