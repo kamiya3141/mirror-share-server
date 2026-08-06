@@ -463,10 +463,12 @@ function addEventPopoverElementsMiniEvent(btn, ppov, stop_propagation = false) {
 	});
 }
 function imageViewerElement(...img_elm_strs) {
-	const root_div = createDivElement("utils--imgvwr--element--root");
+	const rdm = createRDM();
+	const root_id = `utils--imgvwr--element--${rdm}`;
+	const root_div = createDivElement("utils--imgvwr--element--root", root_id);
 	const mainContentsBox_div = createDivElement("utils--imgvwr--element--main-contents-box");
-	const leftBox_div = createScrollButtonDivElement("left", "&lt;");
-	const rightBox_div = createScrollButtonDivElement("right", "&gt;");
+	const leftBox_div = createScrollButtonDivElement("left", "&lt;", root_id);
+	const rightBox_div = createScrollButtonDivElement("right", "&gt;", root_id);
 	const mainContents_div = createDivElement("utils--imgvwr--element--main-contents");
 	mainContents_div.innerHTML = `<div class="utils--imgvwr--element--img-box" data-mydef--utils--imgvwr--img-box--idx="0">${img_elm_strs.join("")}</div>`;
 
@@ -478,17 +480,17 @@ function imageViewerElement(...img_elm_strs) {
 	return root_div;
 }
 
-function createScrollButtonDivElement(dir = "", btn_txt = "") {
+function createScrollButtonDivElement(dir = "", btn_txt = "", id = "") {
 	const div = createDivElement(`utils--imgvwr--element--button-box utils--imgvwr--element--${dir}-box`);
 	div.innerHTML = `<button>${btn_txt}</button>`;
 	// div.addEventListener("click", e => imgVwrButtonBoxOnClick(e, dir));
-	div.setAttribute("onclick", `imgVwrButtonBoxOnClick(this, "${dir}")`);
+	div.setAttribute("onclick", `javascript:imgVwrButtonBoxOnClick(this, '${dir}', '${id}')`);
 	return div;
 }
 
-function imgVwrButtonBoxOnClick(e, dir) {
-	console.log(e, dir);
-	const root = e.target;
+function imgVwrButtonBoxOnClick(elem, dir, id) {
+	alert(elem, dir, id);
+	const root = document.querySelector(id);
 	const img_box = root.querySelector(".utils--imgvwr--element--img-box");
 	if (!img_box)
 		return console.error("img_boxが存在しません");
