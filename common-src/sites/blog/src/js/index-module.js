@@ -158,8 +158,8 @@ const before_replace_str_define_array = [
 		[1, 2, 3]
 	],
 	[
-		/((?:<div class="utils--popover--elements--popover--root">.*<\/div>\n?)+)/g,
-		cts => `${imageViewerElement(cts).outerHTML}\n`,
+		/((?:<div class="utils--popover--elements--popover--root">.*<\/div>\n?){2,})/g,
+		cts => `${imageViewerElement(cts).outerHTML.replaceAll("\n", "").replaceAll("\t", "")}\n`,
 		null
 	],
 	[

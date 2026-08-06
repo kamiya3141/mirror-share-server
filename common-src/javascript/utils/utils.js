@@ -489,8 +489,7 @@ function createScrollButtonDivElement(dir = "", btn_txt = "", id = "") {
 }
 
 function imgVwrButtonBoxOnClick(elem, dir, id) {
-	alert(elem, dir, id);
-	const root = document.querySelector(id);
+	const root = elem.parentElement;
 	const img_box = root.querySelector(".utils--imgvwr--element--img-box");
 	if (!img_box)
 		return console.error("img_boxが存在しません");
