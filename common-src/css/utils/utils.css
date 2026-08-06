@@ -328,7 +328,7 @@ html {
 				& > * {
 					width: var(--c1);
 					font-size: calc(var(--p2) * 3);
-					padding: calc(var(--p2) * 6) 0;
+					padding: calc(var(--p2) * 9) 0;
 				}
 			}
 
