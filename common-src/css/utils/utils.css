@@ -324,11 +324,11 @@ html {
 			& > .utils--imgvwr--element--left-box,
 			& > .utils--imgvwr--element--right-box {
 				width: var(--c-hd-h);
-				padding: auto 0;
 
 				& > * {
 					width: var(--c1);
-					border: none;
+					font-size: calc(var(--p2) * 3);
+					padding: calc(var(--p2) * 6) 0;
 				}
 			}
 
