@@ -87,16 +87,6 @@ const before_replace_str_define_array = [
 		cts => `<div class="easy-text-deco text-underline">${cts}</div>`,
 		null
 	],
-	/*[
-		/^( *?)\* ?(.*)\n/gm,
-		(sp, cts) => `${nbsp(sp.length)}<ul><li class="my-ul-li">${cts}</li></ul>\n`,
-		[1, 2]
-	],
-	[
-		/^( *?)\d\. ?(.*)\n/gm,
-		(sp, cts) => `${nbsp(sp.length)}<ol><li class="my-ol-li">${cts}</li></ol>\n`,
-		[1, 2]
-	],*/
 	[
 		/((?:<li class="my-ul-li">.*<\/li>\n?)+)/g,
 		cts => `<ul>${cts}</ul>\n`,
@@ -166,6 +156,11 @@ const before_replace_str_define_array = [
 		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
 		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => createPopoverElementsStr(`<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`),
 		[1, 2, 3]
+	],
+	[
+		/((?:<div class="utils--popover--elements--popover--root">.*<\/div>\n?)+)/g,
+		cts => `${imageViewerElement(cts).outerHTML}\n`,
+		null
 	],
 	[
 		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
