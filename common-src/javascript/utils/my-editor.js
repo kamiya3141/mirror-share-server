@@ -64,7 +64,7 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-
+			editor.addEventListener("input", async e => this["saveLastCaretOffset"](c));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
@@ -102,8 +102,12 @@ const myEditorsObject = {
 		const lineNumberLength = editorInnerText.replace(/\n$/, "").split("\n").length;
 		lineNumber.setAttribute("data-mydef--editor--length--line-number", lineNumberLength);
 		lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
-		// input時に呼び出される外部からくわえられた関数
+		// input時に呼び出される外部から加えられた関数
 		Object.values(this["__inputFunc"]).forEach(async func => await func(editorInnerText));
+	},
+	"saveLastCaretOffset": function (parent) {
+		const editor = parent.querySelector(".utils--my-editor--editor");
+		this["__lastCaretOffsets"].set(editor, this["getCaretOffset"](editor));
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -190,8 +194,7 @@ const myEditorsObject = {
 		if (sel.rangeCount) {
 			let range = sel.getRangeAt(0);
 			if (editor.contains(range.commonAncestorContainer)) {
-				const offset = this["getCaretOffset"](editor);
-				range = this["setCursorPosition"](editor, offset);
+				range = this["setCursorPosition"](editor, this["getCaretOffset"](editor));
 				return range;
 			}
 		}
