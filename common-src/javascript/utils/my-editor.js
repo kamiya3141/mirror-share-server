@@ -27,6 +27,7 @@
 const myEditorsObject = {
 	"__editors": [],
 	"__inputFunc": {},
+	"__lastRanges": new WeakMap(),
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -167,14 +168,26 @@ const myEditorsObject = {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
 			const range = sel.getRangeAt(0);
-			if (editor.contains(range.commonAncestorContainer))
+			if (editor.contains(range.commonAncestorContainer)) {
+				const savedRange = range.cloneRange();
+				this["__lastRanges"].set(editor, savedRange);
 				return range;
+			}
 		}
+
+		const lastRange = this["__lastRanges"].get(editor);
+
+		if (lastRange)
+			return lastRange.cloneRange();
+
 		// エディタ末尾のRangeを作成
 		const range = document.createRange();
 		range.selectNodeContents(editor);
 		// false: 末尾, true: 先頭
 		range.collapse(false);
+		
+		this["__lastRanges"].set(editor, range.cloneRange());
+
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
