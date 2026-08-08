@@ -27,7 +27,7 @@
 const myEditorsObject = {
 	"__editors": [],
 	"__inputFunc": {},
-	"__lastRanges": new WeakMap(),
+	"__lastCaretOffsets": new WeakMap(),
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -152,41 +152,57 @@ const myEditorsObject = {
 			return console.error(`${key}は存在しません`);
 		return child.remove();
 	},
-	"setCursorPosition": function (el = new HTMLElement(), index = 0) {
+	"setCursorPosition": function (editor, index = 0) {
 		const range = document.createRange();
 		const sel = window.getSelection();
 
-		const textNode = el.firstChild;
+		const walker = document.createTreeWalker(
+			editor,
+			NodeFilter.SHOW_TEXT
+		);
 
-		range.setStart(textNode, index);
-		range.setEnd(textNode, index);
+		let node;
+		let offset = index;
+
+		while (node = walker.nextNode()) {
+			if (offset <= node.nodeValue.length) {
+				range.setStart(node, offset);
+				range.collapse(true);
+
+				sel.removeAllRanges();
+				sel.addRange(range);
+				return;
+			}
+
+			offset -= node.nodeValue.length;
+		}
+
+		// indexが文字数を超えていた場合は末尾
+		range.selectNodeContents(editor);
+		range.collapse(false);
 
 		sel.removeAllRanges();
 		sel.addRange(range);
+		return range;
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
-			const range = sel.getRangeAt(0);
+			let range = sel.getRangeAt(0);
 			if (editor.contains(range.commonAncestorContainer)) {
-				const savedRange = range.cloneRange();
-				this["__lastRanges"].set(editor, savedRange);
+				const offset = this["getCaretOffset"](editor);
+				range = this["setCursorPosition"](editor, offset);
 				return range;
 			}
 		}
-
-		const lastRange = this["__lastRanges"].get(editor);
-
-		if (lastRange)
-			return lastRange.cloneRange();
 
 		// エディタ末尾のRangeを作成
 		const range = document.createRange();
 		range.selectNodeContents(editor);
 		// false: 末尾, true: 先頭
 		range.collapse(false);
-		
-		this["__lastRanges"].set(editor, range.cloneRange());
+
+		this["__lastCaretOffsets"].set(editor, this["getCaretOffset"](editor));
 
 		return range;
 	},
