@@ -65,7 +65,8 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-			editor.addEventListener("input", async e => this["saveLastCaretOffset"](editor));
+			editor.addEventListener("click", async e => this["saveLastCaretOffset"](editor));
+			editor.addEventListener("keydown", async e => this["saveLastCaretOffset"](editor));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
@@ -109,6 +110,7 @@ const myEditorsObject = {
 	"saveLastCaretOffset": function (editor) {
 		const offset = this["getCaretOffset"](editor);
 		this["__lastCaretOffsets"].set(editor, offset);
+		console.log(offset);
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -189,7 +191,7 @@ const myEditorsObject = {
 		sel.removeAllRanges();
 		sel.addRange(range);
 
-		return range;
+		return range.cloneRange();
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
@@ -235,11 +237,11 @@ const myEditorsObject = {
 		sel.removeAllRanges();
 		sel.addRange(range);
 	},
-	"getCaretOffset": function (editor) {
+	"getCaretOffset": function (editor, input_range = null) {
 		const sel = window.getSelection();
 		if (!sel.rangeCount) return 0;
 
-		const range = sel.getRangeAt(0);
+		const range = input_range == null ? sel.getRangeAt(0) : input_range;
 
 		const preRange = range.cloneRange();
 		preRange.selectNodeContents(editor);
