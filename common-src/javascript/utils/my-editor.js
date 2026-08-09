@@ -187,14 +187,13 @@ const myEditorsObject = {
 
 		sel.removeAllRanges();
 		sel.addRange(range);
-		return range;
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
-			let range = sel.getRangeAt(0);
+			const range = sel.getRangeAt(0);
 			if (editor.contains(range.commonAncestorContainer)) {
-				range = this["setCursorPosition"](editor, this["getCaretOffset"](editor));
+				this["setCursorPosition"](editor, this["getCaretOffset"](editor));
 				return range;
 			}
 		}
