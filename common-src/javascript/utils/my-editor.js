@@ -109,8 +109,8 @@ const myEditorsObject = {
 	},
 	"saveLastCaretOffset": function (editor) {
 		const offset = this["getCaretOffset"](editor);
-		this["__lastCaretOffsets"].set(editor, offset);
-		console.log(offset);
+		// + 1 しないと、1文字前に挿入される
+		this["__lastCaretOffsets"].set(editor, offset + 1);
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -178,7 +178,7 @@ const myEditorsObject = {
 
 				sel.removeAllRanges();
 				sel.addRange(range);
-				return;
+				return range;
 			}
 
 			offset -= node.nodeValue.length;
@@ -190,8 +190,7 @@ const myEditorsObject = {
 
 		sel.removeAllRanges();
 		sel.addRange(range);
-
-		return range.cloneRange();
+		return range;
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
@@ -200,7 +199,6 @@ const myEditorsObject = {
 			if (editor.contains(range.commonAncestorContainer)) {
 				const offset = this["__lastCaretOffsets"].get(editor);
 				this["setCursorPosition"](editor, offset);
-				console.log(offset);
 				return range;
 			}
 		}
@@ -208,8 +206,8 @@ const myEditorsObject = {
 		let offset = this["__lastCaretOffsets"].get(editor);
 		if (!offset)
 			offset = 0;
-		console.log(offset);
 		const range = this["setCursorPosition"](editor, offset);
+		console.log(offset);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
