@@ -158,6 +158,63 @@ const myEditorsObject = {
 			return console.error(`${key}は存在しません`);
 		return child.remove();
 	},
+	"moveCaret": function (range, n = 0) {
+		const root = range.commonAncestorContainer.nodeType === Node.TEXT_NODE
+			? range.commonAncestorContainer.parentElement
+			: range.commonAncestorContainer;
+
+		const walker = document.createTreeWalker(
+			root,
+			NodeFilter.SHOW_TEXT
+		);
+
+		const nodes = [];
+		let node;
+
+		while (node = walker.nextNode())
+			nodes.push(node);
+
+		let nodeIndex = nodes.indexOf(range.startContainer);
+
+		if (nodeIndex === -1)
+			return range;
+
+		let offset = range.startOffset + n;
+
+		// 前方向
+		while (offset > nodes[nodeIndex].nodeValue.length) {
+			offset -= nodes[nodeIndex].nodeValue.length;
+			nodeIndex++;
+
+			if (nodeIndex >= nodes.length) {
+				nodeIndex = nodes.length - 1;
+				offset = nodes[nodeIndex].nodeValue.length;
+				break;
+			}
+		}
+
+		// 後方向
+		while (offset < 0) {
+			nodeIndex--;
+
+			if (nodeIndex < 0) {
+				nodeIndex = 0;
+				offset = 0;
+				break;
+			}
+
+			offset += nodes[nodeIndex].nodeValue.length;
+		}
+
+		range.setStart(nodes[nodeIndex], offset);
+		range.collapse(true);
+
+		const sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(range);
+
+		return range;
+	},
 	"setCursorPosition": function (editor, index = 0) {
 		const range = document.createRange();
 		const sel = window.getSelection();
@@ -199,10 +256,11 @@ const myEditorsObject = {
 				return range;
 		}
 
-		let offset = this["__lastCaretOffsets"].get(editor);
-		if (!offset)
-			offset = 0;
-		const range = this["setCursorPosition"](editor, offset);
+		let offset = this["__lastCaretOffsets"].get(editor) ?? 0;
+		// const range = this["setCursorPosition"](editor, offset);
+		let range = document.createRange();
+		range.selectNodeContents(editor);
+		range = this["moveCaret"](range, offset);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
