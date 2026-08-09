@@ -113,7 +113,6 @@ const myEditorsObject = {
 		this["__lastCaretOffsets"].set(editor, offset);
 		const range = document.createRange();
 		range.selectNodeContents(editor);
-		range.setStart(range.startContainer, range.startOffset + offset);
 		range.collapse(true);
 		this["__lastRanges"].set(editor, range);
 	},
