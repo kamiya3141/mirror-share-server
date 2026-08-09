@@ -161,7 +161,7 @@ const myEditorsObject = {
 
 		const range = document.createRange();
 		range.selectNodeContents(editor);
-		range.collapse(false);
+		range.collapse(true);
 
 		return range;
 	},
