@@ -361,8 +361,9 @@ const MyDataMessageInfoObject = {
 	get "open-event-var"() {
 		return new CustomEvent("data--event--open");
 	},
-	async "open-event"(input_str = "") {
+	async "open-event"(input_str = "", input_init_value = "") {
 		this["message"] = input_str;
+		this["input"].value = input_init_value;
 		this["input"].addEventListener("input", e => this["ok-button"].setAttribute("data-mydef--localdata--input-data", this["input"].value));
 		this["element"].dispatchEvent(this["open-event-var"]);
 		while (this["result"] == null)
@@ -379,7 +380,10 @@ const MyDataMessageInfoObject = {
 	},
 	"__init__"() {
 		this["element"].addEventListener("data--event--open", () => switchingOpenDisplay(this["element"]));
-		this["element"].addEventListener("data--event--close", () => this["message"] = "");
+		this["element"].addEventListener("data--event--close", () => {
+			this["message"] = "";
+			this["input"].value = "";
+		});
 	}
 };
 
@@ -396,8 +400,8 @@ async function myConfirmMessage(_str = "Confirm Message Template.") {
 	return res;
 }
 
-async function myDataMessage(_str = "InputData Message Template.", func = _res => _res) {
-	const res0 = await MyDataMessageInfoObject["open-event"](_str);
+async function myDataMessage(_str = "InputData Message Template.", _init_value = "", func = _res => _res) {
+	const res0 = await MyDataMessageInfoObject["open-event"](_str, _init_value);
 	const res = func(res0);
 	return res;
 }
