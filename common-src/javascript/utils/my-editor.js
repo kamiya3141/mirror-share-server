@@ -175,10 +175,13 @@ const myEditorsObject = {
 
 		let nodeIndex = nodes.indexOf(range.startContainer);
 
-		if (nodeIndex === -1)
+		if (nodeIndex === -1) {
+			console.log("やばい");
 			return range;
+		}
 
 		let offset = range.startOffset + n;
+		console.log(offset);
 
 		// 前方向
 		while (offset > nodes[nodeIndex].nodeValue.length) {
@@ -222,13 +225,11 @@ const myEditorsObject = {
 				return range;
 		}
 
-		let offset = this["__lastCaretOffsets"].get(editor) ?? 0;
-		console.log(offset);
-		let range = document.createRange();
+		const offset = this["__lastCaretOffsets"].get(editor) ?? 0;
+		const range = document.createRange();
 		range.selectNodeContents(editor);
-		range.collapse(false);
-		range = this["moveCaret"](range, offset);
-		return range;
+		range.collapse(true);
+		return this["moveCaret"](range, offset);
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
 		if (range.collapsed)
