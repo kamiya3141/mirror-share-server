@@ -1,7 +1,8 @@
 /**
  * @typedef {Object} MyEditorsObject
  * @property {HTMLElement[]} __editors
-* @property {function(string)[]} __inputFunc
+ * @property {function(string)[]} __inputFunc
+ * @property {WeakMap<Element,number>} __lastCaretOffsets
  */
 
 /** 
@@ -64,24 +65,24 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-			editor.addEventListener("input", async e => this["saveLastCaretOffset"](c));
+			editor.addEventListener("input", async e => this["saveLastCaretOffset"](editor));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
 					"Tab": {
 						"str": "\t",
 						"func": (e, key = "", str = "") => {
-							const range = myEditorsObject["getEditorRange"](e.target);
+							const range = this["getEditorRange"](e.target);
 							if (e.shiftKey) {
 								let input_str = range.toString().split("\n").map(c => c.replace(/^\t|^ {1,4}/, "")).join("\n");
 								if (range.collapsed)
-									input_str = myEditorsObject["getCurrentLineString"](e.target);
-								myEditorsObject["replaceRange"](range, input_str, !range.collapsed);
+									input_str = this["getCurrentLineString"](e.target);
+								this["replaceRange"](range, input_str, !range.collapsed);
 							} else {
 								let input_str = range.toString().split("\n").map(c => str + c).join("\n");
 								if (range.collapsed)
 									input_str = str;
-								myEditorsObject["replaceRange"](range, input_str, !range.collapsed);
+								this["replaceRange"](range, input_str, !range.collapsed);
 							}
 						}
 					}
@@ -105,9 +106,9 @@ const myEditorsObject = {
 		// input時に呼び出される外部から加えられた関数
 		Object.values(this["__inputFunc"]).forEach(async func => await func(editorInnerText));
 	},
-	"saveLastCaretOffset": function (parent) {
-		const editor = parent.querySelector(".utils--my-editor--editor");
-		this["__lastCaretOffsets"].set(editor, this["getCaretOffset"](editor));
+	"saveLastCaretOffset": function (editor) {
+		const offset = this["getCaretOffset"](editor);
+		this["__lastCaretOffsets"].set(editor, offset);
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -187,25 +188,26 @@ const myEditorsObject = {
 
 		sel.removeAllRanges();
 		sel.addRange(range);
+
+		return range;
 	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
 			const range = sel.getRangeAt(0);
 			if (editor.contains(range.commonAncestorContainer)) {
-				this["setCursorPosition"](editor, this["getCaretOffset"](editor));
+				const offset = this["__lastCaretOffsets"].get(editor);
+				this["setCursorPosition"](editor, offset);
+				console.log(offset);
 				return range;
 			}
 		}
 
-		// エディタ末尾のRangeを作成
-		const range = document.createRange();
-		range.selectNodeContents(editor);
-		// false: 末尾, true: 先頭
-		range.collapse(false);
-
-		this["__lastCaretOffsets"].set(editor, this["getCaretOffset"](editor));
-
+		let offset = this["__lastCaretOffsets"].get(editor);
+		if (!offset)
+			offset = 0;
+		console.log(offset);
+		const range = this["setCursorPosition"](editor, offset);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
