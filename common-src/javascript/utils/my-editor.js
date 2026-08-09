@@ -17,7 +17,6 @@
 *	registInputFunc: function(): void,
 *	removeInputFunc: function(): void,
 *	setupEditors: function(): void,
-*	setCursorPosition: function(): void,
 *	getEditorRange: function(): Range|null,
 *	wrapSelection: function(): void,
 *	replaceRange: function(): void,
@@ -215,39 +214,6 @@ const myEditorsObject = {
 
 		return range;
 	},
-	"setCursorPosition": function (editor, index = 0) {
-		const range = document.createRange();
-		const sel = window.getSelection();
-
-		const walker = document.createTreeWalker(
-			editor,
-			NodeFilter.SHOW_TEXT
-		);
-
-		let node;
-		let offset = index;
-
-		while (node = walker.nextNode()) {
-			if (offset <= node.nodeValue.length) {
-				range.setStart(node, offset);
-				range.collapse(true);
-
-				sel.removeAllRanges();
-				sel.addRange(range);
-				return range;
-			}
-
-			offset -= node.nodeValue.length;
-		}
-
-		// indexが文字数を超えていた場合は末尾
-		range.selectNodeContents(editor);
-		range.collapse(false);
-
-		sel.removeAllRanges();
-		sel.addRange(range);
-		return range;
-	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
@@ -257,10 +223,10 @@ const myEditorsObject = {
 		}
 
 		let offset = this["__lastCaretOffsets"].get(editor) ?? 0;
-		// const range = this["setCursorPosition"](editor, offset);
+		console.log(offset);
 		let range = document.createRange();
 		range.selectNodeContents(editor);
-		range.collapse(true);
+		range.collapse(false);
 		range = this["moveCaret"](range, offset);
 		return range;
 	},
