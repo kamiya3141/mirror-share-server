@@ -64,7 +64,7 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-			editor.addEventListener("input", async e => this["saveEditorsRange"](editor));
+			editor.addEventListener("click", async e => this["saveEditorsRange"](editor));
 			editor.addEventListener("keydown", async e => this["saveEditorsRange"](editor));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
