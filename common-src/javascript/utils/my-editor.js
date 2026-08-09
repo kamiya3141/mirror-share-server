@@ -3,6 +3,7 @@
  * @property {HTMLElement[]} __editors
  * @property {function(string)[]} __inputFunc
  * @property {WeakMap<Element,number>} __lastCaretOffsets
+ * @property {WeakMap<Element,Range>} __lastRanges
  */
 
 /** 
@@ -28,6 +29,7 @@ const myEditorsObject = {
 	"__editors": [],
 	"__inputFunc": {},
 	"__lastCaretOffsets": new WeakMap(),
+	"__lastRanges": new WeakMap(),
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -109,6 +111,11 @@ const myEditorsObject = {
 	"saveLastCaretOffset": function (editor) {
 		const offset = this["getCaretOffset"](editor);
 		this["__lastCaretOffsets"].set(editor, offset);
+		const range = document.createRange();
+		range.selectNodeContents(editor);
+		range.setStart(range.startContainer, range.startOffset + offset);
+		range.collapse(true);
+		this["__lastRanges"].set(editor, range);
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -157,87 +164,6 @@ const myEditorsObject = {
 			return console.error(`${key}は存在しません`);
 		return child.remove();
 	},
-	"moveCaret": function (range, n = 0) {
-		const root = range.commonAncestorContainer.nodeType === Node.TEXT_NODE
-			? range.commonAncestorContainer.parentElement
-			: range.commonAncestorContainer;
-
-		const walker = document.createTreeWalker(
-			root,
-			NodeFilter.SHOW_TEXT
-		);
-
-		const nodes = [];
-		let node;
-
-		while (node = walker.nextNode())
-			nodes.push(node);
-
-		// Rangeの開始位置をTextNodeに変換
-		let nodeIndex;
-		let offset;
-
-		if (range.startContainer.nodeType === Node.TEXT_NODE) {
-			nodeIndex = nodes.indexOf(range.startContainer);
-			offset = range.startOffset;
-		} else {
-			// Elementの場合
-			const target = range.startContainer.childNodes[range.startOffset];
-
-			if (target) {
-				nodeIndex = nodes.indexOf(target);
-
-				// TextNodeではなくElementだった場合、その中の最初のTextNodeを探す
-				if (nodeIndex === -1) {
-					nodeIndex = nodes.findIndex(c => target.contains(c));
-				}
-
-				offset = 0;
-			} else {
-				nodeIndex = nodes.length - 1;
-				offset = nodes[nodeIndex]?.nodeValue.length ?? 0;
-			}
-		}
-
-		if (nodeIndex === -1 || nodeIndex === undefined)
-			return range;
-
-		offset += n;
-
-		// 前方向
-		while (offset > nodes[nodeIndex].nodeValue.length) {
-			offset -= nodes[nodeIndex].nodeValue.length;
-			nodeIndex++;
-
-			if (nodeIndex >= nodes.length) {
-				nodeIndex = nodes.length - 1;
-				offset = nodes[nodeIndex].nodeValue.length;
-				break;
-			}
-		}
-
-		// 後方向
-		while (offset < 0) {
-			nodeIndex--;
-
-			if (nodeIndex < 0) {
-				nodeIndex = 0;
-				offset = 0;
-				break;
-			}
-
-			offset += nodes[nodeIndex].nodeValue.length;
-		}
-
-		range.setStart(nodes[nodeIndex], offset);
-		range.collapse(true);
-
-		const sel = window.getSelection();
-		sel.removeAllRanges();
-		sel.addRange(range);
-
-		return range;
-	},
 	"getEditorRange": function (editor) {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
@@ -245,12 +171,14 @@ const myEditorsObject = {
 			if (editor.contains(range.commonAncestorContainer))
 				return range;
 		}
-
-		const offset = this["__lastCaretOffsets"].get(editor) ?? 0;
-		const range = document.createRange();
-		range.selectNodeContents(editor);
-		range.collapse(true);
-		return this["moveCaret"](range, offset);
+		let range = this["__lastRanges"].get(editor);
+		if (!range) {
+			range = document.createRange();
+			range = document.createRange();
+			range.selectNodeContents(editor);
+			range.collapse(true);
+		}
+		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
 		if (range.collapsed)
@@ -276,6 +204,50 @@ const myEditorsObject = {
 		const sel = window.getSelection();
 		sel.removeAllRanges();
 		sel.addRange(range);
+	},
+	"setCursorPosition": function (editor, index = 0) {
+		const text = editor.innerText;
+
+		const walker = document.createTreeWalker(
+			editor,
+			NodeFilter.SHOW_TEXT
+		);
+
+		let textIndex = 0;
+		let node;
+
+		while (node = walker.nextNode()) {
+			const nodeText = node.nodeValue;
+
+			// TextNode内
+			for (let i = 0; i <= nodeText.length; i++) {
+				if (textIndex === index) {
+					const range = document.createRange();
+
+					range.setStart(node, i);
+					range.collapse(true);
+
+					return range;
+				}
+
+				if (i < nodeText.length)
+					textIndex++;
+			}
+
+			// TextNodeの後ろにinnerText上の改行がある
+			if (
+				textIndex < text.length &&
+				text[textIndex] === "\n"
+			) {
+				textIndex++;
+			}
+		}
+
+		const range = document.createRange();
+		range.selectNodeContents(editor);
+		range.collapse(false);
+
+		return range;
 	},
 	"getCaretOffset": function (editor, input_range = null) {
 		const sel = window.getSelection();
