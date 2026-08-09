@@ -260,6 +260,7 @@ const myEditorsObject = {
 		// const range = this["setCursorPosition"](editor, offset);
 		let range = document.createRange();
 		range.selectNodeContents(editor);
+		range.collapse(true);
 		range = this["moveCaret"](range, offset);
 		return range;
 	},
