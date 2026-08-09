@@ -2,8 +2,6 @@
  * @typedef {Object} MyEditorsObject
  * @property {HTMLElement[]} __editors
  * @property {function(string)[]} __inputFunc
- * @property {WeakMap<Element,number>} __lastCaretOffsets
- * @property {WeakMap<Element,Range>} __lastRanges
  */
 
 /** 
@@ -28,8 +26,6 @@
 const myEditorsObject = {
 	"__editors": [],
 	"__inputFunc": {},
-	"__lastCaretOffsets": new WeakMap(),
-	"__lastRanges": new WeakMap(),
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -66,8 +62,6 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-			editor.addEventListener("click", async e => this["saveLastCaretOffset"](editor));
-			editor.addEventListener("keydown", async e => this["saveLastCaretOffset"](editor));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
@@ -108,14 +102,6 @@ const myEditorsObject = {
 		// input時に呼び出される外部から加えられた関数
 		Object.values(this["__inputFunc"]).forEach(async func => await func(editorInnerText));
 	},
-	"saveLastCaretOffset": function (editor) {
-		const offset = this["getCaretOffset"](editor);
-		this["__lastCaretOffsets"].set(editor, offset);
-		const range = document.createRange();
-		range.selectNodeContents(editor);
-		range.collapse(true);
-		this["__lastRanges"].set(editor, range);
-	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
 		this["redesignLineNumber"](this["__editors"][input_arr[0]]);
@@ -145,8 +131,10 @@ const myEditorsObject = {
 		button.innerHTML = `<div class="utils--my-editor--sub-contents--button-text">${appearance_text}</div>`;
 		button.addEventListener("click", async e => {
 			const { text = "", before_str = "", after_str = "" } = await func();
+			const editor = this["__editors"][editor_index].querySelector(".utils--my-editor--editor");
+			editor.click();
 			if (allow_insert_response_for_editor) {
-				const _range = this["getEditorRange"](this["__editors"][editor_index].querySelector(".utils--my-editor--editor"));
+				const _range = this["getEditorRange"](editor);
 				this["wrapSelection"](_range, before_str + text, after_str);
 				this["redesignLineNumber"](this["__editors"][editor_index]);
 			}
@@ -170,13 +158,11 @@ const myEditorsObject = {
 			if (editor.contains(range.commonAncestorContainer))
 				return range;
 		}
-		let range = this["__lastRanges"].get(editor);
-		if (!range) {
-			range = document.createRange();
-			range = document.createRange();
-			range.selectNodeContents(editor);
-			range.collapse(true);
-		}
+
+		const range = document.createRange();
+		range.selectNodeContents(editor);
+		range.collapse(false);
+
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
