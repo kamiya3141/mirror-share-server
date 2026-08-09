@@ -195,18 +195,14 @@ const myEditorsObject = {
 		const sel = window.getSelection();
 		if (sel.rangeCount) {
 			const range = sel.getRangeAt(0);
-			if (editor.contains(range.commonAncestorContainer)) {
-				const offset = this["__lastCaretOffsets"].get(editor);
-				this["setCursorPosition"](editor, offset);
+			if (editor.contains(range.commonAncestorContainer))
 				return range;
-			}
 		}
 
 		let offset = this["__lastCaretOffsets"].get(editor);
 		if (!offset)
 			offset = 0;
-		const range = this["setCursorPosition"](editor, offset);
-		console.log(offset);
+		const range = this["setCursorPosition"](editor, offset + 1);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
