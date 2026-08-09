@@ -10,8 +10,8 @@ __対策していただく__ため、以下に記述する方法では**@css["co
 :::
 
 ## 不正の仕組み
-
-![](https://file-nextcloud.tshuto.com/image/Screenshots/no-image.png)
+![](https://file-nextcloud.tshuto.com/image/Screenshots/no-image.png )
+![](https://file-nextcloud.tshuto.com/image/Screenshots/nakayubi.jpg )
 ## 用意するもの
 * usb-wifi アダプタ
 * QEMUインストール済みノートPC
