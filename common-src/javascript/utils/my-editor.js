@@ -2,6 +2,7 @@
  * @typedef {Object} MyEditorsObject
  * @property {HTMLElement[]} __editors
  * @property {function(string)[]} __inputFunc
+ * @property {WeakMap<HTMLElement,Range>} __ranges
  */
 
 /** 
@@ -26,6 +27,7 @@
 const myEditorsObject = {
 	"__editors": [],
 	"__inputFunc": {},
+	"__ranges": new WeakMap(),
 	get "editors"() {
 		return this["__editors"];
 	},
@@ -62,6 +64,8 @@ const myEditorsObject = {
 			const editor = c.querySelector(".utils--my-editor--editor");
 
 			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
+			editor.addEventListener("input", async e => this["saveEditorsRange"](editor));
+			editor.addEventListener("keydown", async e => this["saveEditorsRange"](editor));
 			editor.addEventListener("keydown", async e => {
 				// エディターで使用するための特殊なキー
 				const key_object = {
@@ -101,6 +105,9 @@ const myEditorsObject = {
 		lineNumber.innerHTML = Array.from({ "length": lineNumberLength }, (_, i) => `<div class="utils--my-editor--line-number--line-number" data-mydef--my-editor--line-number="${i + 1}">${i + 1}</div>`).join("");
 		// input時に呼び出される外部から加えられた関数
 		Object.values(this["__inputFunc"]).forEach(async func => await func(editorInnerText));
+	},
+	"saveEditorsRange": function (editor) {
+		this["__ranges"].set(editor, this["getEditorRange"](editor));
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
@@ -159,10 +166,12 @@ const myEditorsObject = {
 				return range;
 		}
 
-		const range = document.createRange();
-		range.selectNodeContents(editor);
-		range.collapse(true);
-
+		let range = this["__ranges"].get(editor);
+		if (!range) {
+			range = document.createRange();
+			range.selectNodeContents(editor);
+			range.collapse(false);
+		}
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
