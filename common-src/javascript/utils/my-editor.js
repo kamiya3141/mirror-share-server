@@ -202,7 +202,7 @@ const myEditorsObject = {
 		let offset = this["__lastCaretOffsets"].get(editor);
 		if (!offset)
 			offset = 0;
-		const range = this["setCursorPosition"](editor, offset + 1);
+		const range = this["setCursorPosition"](editor, offset);
 		return range;
 	},
 	"wrapSelection": function (range, before_str = "", after_str = "") {
