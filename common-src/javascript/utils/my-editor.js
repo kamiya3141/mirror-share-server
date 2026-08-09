@@ -109,8 +109,7 @@ const myEditorsObject = {
 	},
 	"saveLastCaretOffset": function (editor) {
 		const offset = this["getCaretOffset"](editor);
-		// + 1 しないと、1文字前に挿入される
-		this["__lastCaretOffsets"].set(editor, offset + 1);
+		this["__lastCaretOffsets"].set(editor, offset);
 	},
 	set "values"(input_arr = []) {
 		this["__editors"][input_arr[0]].querySelector(".utils--my-editor--editor").innerText = input_arr[1];
