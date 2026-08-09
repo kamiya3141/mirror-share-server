@@ -173,15 +173,36 @@ const myEditorsObject = {
 		while (node = walker.nextNode())
 			nodes.push(node);
 
-		let nodeIndex = nodes.indexOf(range.startContainer);
+		// Rangeの開始位置をTextNodeに変換
+		let nodeIndex;
+		let offset;
 
-		if (nodeIndex === -1) {
-			console.log("やばい");
-			return range;
+		if (range.startContainer.nodeType === Node.TEXT_NODE) {
+			nodeIndex = nodes.indexOf(range.startContainer);
+			offset = range.startOffset;
+		} else {
+			// Elementの場合
+			const target = range.startContainer.childNodes[range.startOffset];
+
+			if (target) {
+				nodeIndex = nodes.indexOf(target);
+
+				// TextNodeではなくElementだった場合、その中の最初のTextNodeを探す
+				if (nodeIndex === -1) {
+					nodeIndex = nodes.findIndex(c => target.contains(c));
+				}
+
+				offset = 0;
+			} else {
+				nodeIndex = nodes.length - 1;
+				offset = nodes[nodeIndex]?.nodeValue.length ?? 0;
+			}
 		}
 
-		let offset = range.startOffset + n;
-		console.log(offset);
+		if (nodeIndex === -1 || nodeIndex === undefined)
+			return range;
+
+		offset += n;
 
 		// 前方向
 		while (offset > nodes[nodeIndex].nodeValue.length) {
