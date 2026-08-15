@@ -21,10 +21,6 @@ const origin_device = {
 
 var device = {};
 
-setOriginDeviceValueForDevice();
-if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
-	setDeviceDataForLocalStorage(true);
-
 function resetDeviceInformationData(allowDisplayWarningMessage = true) {
 	if (allowDisplayWarningMessage)
 		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
@@ -86,6 +82,7 @@ function reloadDeviceInformation(add_msg = "") {
 	setTheme(add_msg.length == 0 ? "reloadD" : add_msg);
 }
 
+
 // localStorage
 
 function setDeviceDataForLocalStorage(set_data_flag = false) {
@@ -101,6 +98,11 @@ function syncDeviceDataForLocalStorage() {
 	Object.assign(device, getDeviceDataForLocalStorage());
 	device["DEBUGMODE"] = origin_device["DEBUGMODE"];
 }
+
+
+setOriginDeviceValueForDevice();
+if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
+	setDeviceDataForLocalStorage(true);
 
 // windowイベント設定
 // tamura-first-load.js のresize-eventの実行をキャンセル
