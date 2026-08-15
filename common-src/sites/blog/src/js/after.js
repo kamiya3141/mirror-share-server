@@ -3,7 +3,7 @@ window.addEventListener("load", async () => {
 		await loadAllArticles();
 });
 async function loadAllArticles() {
-	const PMD = await import(`./index-module.js`);
+	const PMD = await import(`./markdown.js`);
 	const all_decoded_json_data = await PMD.getAllArticleData();
 	await appear_allArticlesDisplay(true, all_decoded_json_data);
 }

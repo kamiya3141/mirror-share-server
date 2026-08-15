@@ -2,7 +2,7 @@ import * as MED from "https://js.tshuto.com/utils/my-editor.js";
 
 document.querySelector("#main-section").innerHTML = "";
 
-const PMD = await import(`./index-module.js`);
+const PMD = await import(`./markdown.js`);
 
 const has_edit_flag = hasFlag(page_flag[0]);
 const has_new_flag = hasFlag(page_flag[1]);

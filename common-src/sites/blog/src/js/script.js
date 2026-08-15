@@ -1,5 +1,5 @@
 async function mainFunc() {
-	const PMD = await import(`./index-module.js`);
+	const PMD = await import(`./markdown.js`);
 	const result = await PMD.parseMD();
 
 	let mdContentsBoxElement = document.querySelector("div#root .main-contentsbox");
