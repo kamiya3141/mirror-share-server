@@ -62,7 +62,7 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 		]);
 
 		if (!this_is_only_css) {
-			const add_arr_js = this_is_full_version ? ["device-info.js", "setup.js", "utils.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
+			const add_arr_js = this_is_full_version ? ["utils-render.js", "utils.js", "device-info.js", "setup.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
 			adds_body([
 				["script", "common-src/javascript/function/math.js"],
 				["script", "common-src/javascript/function/other.js"],
