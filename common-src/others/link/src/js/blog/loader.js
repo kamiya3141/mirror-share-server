@@ -46,8 +46,6 @@ let setScriptObjectKey = "main";
 const id_flag = "id";
 const page_flag = ["edit", "new", "embed"];
 
-const hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);
-const getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
 
 page_flag.forEach(c => setScriptObjectKey = (hasFlag(c) ? c : setScriptObjectKey));
 

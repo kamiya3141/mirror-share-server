@@ -177,6 +177,9 @@ var setThemeArgsHistoryObject = {
 	}
 };
 
+var hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);
+var getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
+
 function dec2bin(ipt, len = 4, with_0b = false) {
 	return (with_0b ? "0b" : "") + String(String(ipt.toString(2)).padStart(len, "0"));
 }
