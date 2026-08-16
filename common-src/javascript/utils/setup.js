@@ -61,7 +61,7 @@ async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 			if (!__tf)
 				return;
 			syncDeviceDataForLocalStorage();
-			document.dispatchEvent(new CustomEvent("setting-display-reload"));
+			// document.dispatchEvent(new CustomEvent("setting-display-reload"));
 		}
 	};
 
