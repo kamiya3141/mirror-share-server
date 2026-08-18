@@ -232,7 +232,7 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		}
 		$result_url = API_URL[VIEW_STRING] . '?' . http_build_query($add_param);
 	}
-	if (!$view_site && !$created_html && substr($result_url, 0) != '/') {
+	if (!$view_site && !$created_html && substr($result_url, 0, 1) != '/') {
 		unset($_GET["target"]);
 		unset($_GET["od"]);
 		$result_url .= (str_contains($result_url, "?") ? "&" : "?") . http_build_query(array_merge($_GET, $_POST));
