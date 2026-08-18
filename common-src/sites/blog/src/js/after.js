@@ -7,7 +7,7 @@ const edit_flag = "edit";
 const new_flag = "new";
 
 window.addEventListener("load", async () => {
-	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
+	if (hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
 	else
 		window[winMyHrefHostname]["loaded-array"][afterjs_idx - 1] = 1;

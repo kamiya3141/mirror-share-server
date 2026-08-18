@@ -18,7 +18,6 @@ if (has_edit_flag) {
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
-		correct &= !hasFlag("create-cache");
 		if (correct)
 			await appear_allArticlesDisplay(true, decoded_json_data);
 	}
