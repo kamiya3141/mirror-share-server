@@ -3,3 +3,4 @@ php/
 .hide/motion/index.html
 node_modules
 common-src/others/link/src/png/jkg/
+!common-src/sites/blog/src/php/
