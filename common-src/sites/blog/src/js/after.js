@@ -2,6 +2,8 @@ window[winMyHrefHostname] = {};
 window[winMyHrefHostname]["loaded-array"] = [];
 const afterjs_idx = window[winMyHrefHostname]["loaded-array"].push(0);
 
+const id_flag = "id";
+
 window.addEventListener("load", async () => {
 	if (hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();

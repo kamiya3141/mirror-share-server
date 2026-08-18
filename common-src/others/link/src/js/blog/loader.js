@@ -43,7 +43,6 @@ const allScriptSettingObjectArrayObject = {
 };
 
 let setScriptObjectKey = "main";
-const id_flag = "id";
 const page_flag = ["edit", "new", "embed"];
 
 
