@@ -47,7 +47,7 @@ var winMyHrefPTCHNPathname = `${winMyHrefPTCHostname}${winMyHrefPathname}`;
 var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
 const this_file_url = new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))));
-const this_is_svg_file = this_file_url.searchParams.has("svg") || false;
+const this_is_svg_file = this_file_url.searchParams.has("svg") || this_file_url.searchParams.has("none") || false;
 const this_is_full_version = this_file_url.searchParams.has("full") || false;
 const this_is_only_css = this_file_url.searchParams.has("css") || false;
 
