@@ -13,11 +13,13 @@ if (has_edit_flag) {
 	if (has_id_flag) {
 		const decoded_json_data = await PMD.getArticleData();
 		correct &= decoded_json_data != null;
+		correct &= !hasFlag("create-cache");
 		if (correct)
 			await appear_editArticleDisplay(true, decoded_json_data, PMD, MED);
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
+		correct &= !hasFlag("create-cache");
 		if (correct)
 			await appear_allArticlesDisplay(true, decoded_json_data);
 	}
