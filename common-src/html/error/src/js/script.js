@@ -21,7 +21,7 @@ const currentUrlParams = new URL(window.location.toString()).searchParams;
 
 			let ew_elem = document.getElementById("error-word-element");
 			if (ew_elem)
-				ew_elem.innerHTML = ew_elem.replace(getStringWithReplaceSplitWord(wd), val);
+				ew_elem.innerHTML = ew_elem.replace(getStringWithReplaceSplitWord(wd), String(val).replaceAll("\n", "<br>"));
 		}
 	}
 ].forEach(err_key => {
