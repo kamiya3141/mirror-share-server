@@ -5,7 +5,7 @@ const afterjs_idx = window[winMyHrefHostname]["loaded-array"].push(0);
 const id_flag = "id";
 
 window.addEventListener("load", async () => {
-	if (hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
+	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
 	else
 		window[winMyHrefHostname]["loaded-array"][afterjs_idx - 1] = 1;
