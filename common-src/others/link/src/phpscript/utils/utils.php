@@ -28,7 +28,8 @@ define('API_URL', [
 	LINK_STRING => url_join(getMyHostName('api'), 'php/api-link.php'),
 	'error' => url_join(getMyHostName('api'), 'php/api-error.php'),
 	'md' => url_join(getMyHostName('api'), 'php/api-markdown.php'),
-	'motion' => url_join(getMyHostName('api'), 'php/api-motion.php')
+	'motion' => url_join(getMyHostName('api'), 'php/api-motion.php'),
+	'browser-view' => url_join(getMyHostName('api'), '/express/browser-view/cache/blog')
 ]);
 
 $mimeMap = [
