@@ -54,6 +54,6 @@ let resultScriptSettingObjectArray = allScriptSettingObjectArrayObject[setScript
 // ↓ カンマ演算子使ってるよ、読みづらいね(笑)
 resultScriptSettingObjectArray.map(scriptSettingObject => (scriptSettingObject["defer"] = "", scriptSettingObject["src"] = `./${scriptSettingObject["src"]}`, scriptSettingObject)).forEach(scriptSettingObject => {
 	const scriptElement = document.createElement("script");
-	Object.entries(scriptSettingObject).forEach(([attributeName, attributeValue]) => scriptElement.setAttribute(attributeName, attributeValue));
+	Object.entries(scriptSettingObject).reverse().forEach(([attributeName, attributeValue]) => scriptElement.setAttribute(attributeName, attributeValue));
 	document.body.appendChild(scriptElement);
 });
