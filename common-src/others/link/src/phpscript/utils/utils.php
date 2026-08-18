@@ -187,7 +187,7 @@ function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '')
 		header('Content-Length: ' . strlen($_cts));
 }
 
-function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): void
+function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_html = false, string $set_ext_without_dot = '', bool $mode_return = false): string
 {
 	global $mimeMap;
 
@@ -246,8 +246,11 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		exit;
 	}
 
+	if ($mode_return == true)
+		return $contents;
 	setHeaders($contents, $mime);
 	echo $contents;
+	return "";
 }
 
 function exist($_arg): bool
