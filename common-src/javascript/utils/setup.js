@@ -74,6 +74,7 @@ function convertTemplateElement(elem = document) {
 	[...elem.querySelectorAll(".import-template-append")].forEach(c => {
 		const temp_id_data = c.getAttribute("template-id-data");
 		const temp_id_args = c.getAttribute("template-id-args").split(" ").map(arg => convertEnvVars(arg));
+		c.innerHTML = "";
 		if (Object.hasOwn(template_data_function_map, temp_id_data))
 			c.appendChild(template_data_function_map[temp_id_data](...temp_id_args));
 		else if (document.querySelector(`#${temp_id_data}`) != null)
