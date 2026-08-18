@@ -7,7 +7,7 @@ const allScriptSettingObjectArrayObject = {
 		},
 		{
 			"src": "src/js/script.js",
-			"type": ""
+			"type": "text/javascript"
 		}
 	],
 	"edit": [
