@@ -1,3 +1,5 @@
+const my_idx = window[winMyHrefHostname]["loaded-array"].push(0);
+
 async function mainFunc() {
 	const PMD = await import(`./markdown.js`);
 	const result = await PMD.parseMD();
@@ -7,8 +9,7 @@ async function mainFunc() {
 
 	PMD.afterFunction();
 
-	setTheme();
-
+	window[winMyHrefHostname]["loaded-array"][my_idx - 1] = 1;
 }
 
 window.addEventListener("load", mainFunc);
