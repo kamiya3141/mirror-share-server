@@ -4,8 +4,8 @@ document.querySelector("#main-section").innerHTML = "";
 
 const PMD = await import(`./markdown.js`);
 
-const has_edit_flag = hasFlag(page_flag[0]);
-const has_new_flag = hasFlag(page_flag[1]);
+const has_edit_flag = hasFlag(edit_flag);
+const has_new_flag = hasFlag(new_flag);
 const has_id_flag = hasFlag(id_flag);
 
 if (has_edit_flag) {
@@ -19,6 +19,7 @@ if (has_edit_flag) {
 	} else {
 		const decoded_json_data = await PMD.getAllArticleData();
 		correct &= decoded_json_data != null;
+		correct &= !hasFlag("create-cache");
 		if (correct)
 			await appear_allArticlesDisplay(true, decoded_json_data);
 	}

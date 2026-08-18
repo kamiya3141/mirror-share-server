@@ -71,7 +71,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 		const _dt = await _res.json();
 		if (_dt["success"] && (button_type == "created" || button_type == "updated")) {
 			const next_url = new URL(`${winMyHrefPTCHostname}`);
-			next_url.searchParams.set(page_flag[0], "");
+			next_url.searchParams.set(edit_flag, "");
 			next_url.searchParams.set(id_flag, (has_id_flag ? data["slug"] : _dt["slug"]));
 			window.location.href = next_url;
 		} else

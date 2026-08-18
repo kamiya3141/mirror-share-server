@@ -3,6 +3,8 @@ window[winMyHrefHostname]["loaded-array"] = [];
 const afterjs_idx = window[winMyHrefHostname]["loaded-array"].push(0);
 
 const id_flag = "id";
+const edit_flag = "edit";
+const new_flag = "new";
 
 window.addEventListener("load", async () => {
 	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
