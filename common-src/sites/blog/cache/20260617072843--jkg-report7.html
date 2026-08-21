@@ -1,0 +1,874 @@
+<!DOCTYPE html><html lang="ja" data-theme="system" data-my-device-type="desktop" style="--myStylingWidth: 1280px; --myStylingHeight: 720px; --myStylingRealWidth: 1280px; --myStylingRealHeight: 720px; --myStylingFontSize: 12px; --myStylingFontFamily: 'Note Sans JP'; --myStylingUserPreferColor: #00ff00; --myStylingTabSize: 4;"><head>
+	<meta charset="utf-8">
+	<title>情報機器概論 report7 | ブログ - TSHUTO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="このサイトはTSHUTO.COMのブログサイトです">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="https://css.tshuto.com/awesome-font.css">
+	<link rel="stylesheet" href="https://css.tshuto.com/base.css">
+	<link rel="stylesheet" href="https://css.tshuto.com/utils/utils.css">
+	<link rel="stylesheet" href="./src/css/style.css">
+	<link rel="stylesheet" href="./src/css/markdown.css">
+	<link rel="stylesheet" href="./src/css/all-articles-display.css">
+	<link rel="stylesheet" href="./src/css/create-new-article-setting.css">
+	<link rel="stylesheet" href="./src/css/edit-article-display.css">
+
+	<!--
+	<script defer src="https://share.tshuto.com/All.js"></script>
+	-->
+<link rel="icon" href="https://kamiya3141.github.io/mirror-share-server/favicon.ico" type="image/x-icon"></head>
+
+<body>
+	<template id="toggle-switch-template">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</template>
+	<template id="display-template">
+		<div class="display-item-box">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div class="corner" id="corner-00"></div>
+						<div class="item" id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">
+						<div id="text-box"></div>
+					</div>
+					<div class="corner-box right-corner control-box">
+						<div class="item deco-text" id="control-box">
+							<div>✕</div>
+						</div>
+						<div class="corner" id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents"></div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div class="corner" id="corner-01"></div>
+						<div class="item"></div>
+					</div>
+					<div class="text-box footer-text">
+						<div id="text-box"></div>
+					</div>
+					<div class="corner-box right-corner">
+						<div class="item"></div>
+						<div class="corner" id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</template>
+	<!--
+
+	以下特殊用途のtemplate
+
+	-->
+	<template id="display-setting-template">
+		<div id="display-setting-main-contents-setting">
+			<div class="tab-bar">
+				<div class="tab-bar--contents--box">
+					<div class="tab-bar--contents" id="tb--appearance">
+						<div class="tab-bar--contents--item text-overflow-element" title="表示設定">表示設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--specific">
+						<div class="tab-bar--contents--item text-overflow-element" title="詳細設定">詳細設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--user-data">
+						<div class="tab-bar--contents--item text-overflow-element" title="ユーザデータの設定">ユーザデータの設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--reset--setting-data">
+						<div class="tab-bar--contents--item text-overflow-element" title="設定の初期化">設定の初期化</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-contents-box">
+				<div class="tab-contents-box--item" id="tc--appearance">
+					<div class="item-all-box">
+						<div class="item-summary">テーマの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--theme-setting" class="allow-expand" data-mydef--set-by-script="false"></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">デバイスモードの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--device-mode-setting" class="allow-expand" data-mydef--set-by-script="false"></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">好みの色の設定</div>
+						<div class="item-box">
+							<div class="item">
+								<input type="color" id="setting-display--appearance--input-color--prefer-color" class="allow-expand">
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">フォントの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--font-setting" class="allow-expand" data-mydef--set-by-script="false"></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定されたテーマの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定されたデバイスモードの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-device"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">画面サイズによってデバイスモードの最適化を自動で実行</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--changing--device-mode--for--display-size"></div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">デバイスモードの最適化</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:reloadDeviceInformation('setting-display--exec-button-0')">実行</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--specific">
+					<div class="item-all-box">
+						<div class="item-summary">設定画面の既定値</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--specific--input-select--setting-display-init-item" class="allow-expand" data-mydef--set-by-script="false"></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定画面をリロード後に開くことを許可</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--opening--setting-display--after--reload"></div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--user-data">
+					<div class="item-all-box">
+						<div class="item-summary">ローカルストレージに設定を保存する</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="save--user-data--localstorage"></div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--reset--setting-data">
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータの初期化</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:resetDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータを削除</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:removeDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="display-alert-template">
+		<div id="display-alert-main-contents-alert">
+			<div class="alert--main-contents-box">
+				<div class="main-contents--top">
+					<h1 id="alert--message"></h1>
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="OK" id="alert--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="display-confirm-template">
+		<div id="display-confirm-main-contents-confirm">
+			<div class="confirm--main-contents-box">
+				<div class="main-contents--top">
+					<h1 id="confirm--message"></h1>
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="CANCEL" id="confirm--cancel-button">
+						<input type="button" value="OK" id="confirm--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="display-data-template">
+		<div id="display-data-main-contents-data">
+			<div class="data--main-contents-box">
+				<div class="main-contents--top">
+					<h3 id="data--message"></h3>
+				</div>
+				<div class="main-contents--middle">
+					<input type="text" place-holder=", でデータを区切る" id="data--text-input">
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="CANCEL" id="data--cancel-button">
+						<input type="button" value="OK" id="data--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<section id="data-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false" tabindex="0">
+		<div id="data-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="データ入力 %_ID:display-data-template input-data true">
+		<div class="display-item-box" data-mydef--display-template--allow-exist-closed-button="true">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div class="corner" id="corner-00"></div>
+						<div class="item" id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">データ入力</div>
+					<div class="corner-box right-corner control-box">
+						<div class="item deco-text" id="control-box">
+							<div>✕</div>
+						</div>
+						<div class="corner" id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents">
+		<div id="display-data-main-contents-data">
+			<div class="data--main-contents-box">
+				<div class="main-contents--top">
+					<h3 id="data--message"></h3>
+				</div>
+				<div class="main-contents--middle">
+					<input type="text" place-holder=", でデータを区切る" id="data--text-input">
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="CANCEL" id="data--cancel-button">
+						<input type="button" value="OK" id="data--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div class="corner" id="corner-01"></div>
+						<div class="item"></div>
+					</div>
+					<div class="text-box footer-text">input-data</div>
+					<div class="corner-box right-corner">
+						<div class="item"></div>
+						<div class="corner" id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</section>
+	<section id="setting-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false" tabindex="0">
+		<div id="setting-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings true">
+		<div class="display-item-box" data-mydef--display-template--allow-exist-closed-button="true">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div class="corner" id="corner-00"></div>
+						<div class="item" id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">設定</div>
+					<div class="corner-box right-corner control-box">
+						<div class="item deco-text" id="control-box">
+							<div>✕</div>
+						</div>
+						<div class="corner" id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents">
+		<div id="display-setting-main-contents-setting">
+			<div class="tab-bar">
+				<div class="tab-bar--contents--box">
+					<div class="tab-bar--contents" id="tb--appearance">
+						<div class="tab-bar--contents--item text-overflow-element" title="表示設定">表示設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--specific">
+						<div class="tab-bar--contents--item text-overflow-element" title="詳細設定">詳細設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--user-data">
+						<div class="tab-bar--contents--item text-overflow-element" title="ユーザデータの設定">ユーザデータの設定</div>
+					</div>
+					<div class="tab-bar--contents" id="tb--reset--setting-data">
+						<div class="tab-bar--contents--item text-overflow-element" title="設定の初期化">設定の初期化</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-contents-box">
+				<div class="tab-contents-box--item" id="tc--appearance">
+					<div class="item-all-box">
+						<div class="item-summary">テーマの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--theme-setting" class="allow-expand" data-mydef--set-by-script="false" disabled=""><option value="system">システム</option><option value="light">ライト</option><option value="dark">ダーク</option></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">デバイスモードの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--device-mode-setting" class="allow-expand" data-mydef--set-by-script="false" disabled=""><option value="device">デバイス</option><option value="desktop">デスクトップ</option><option value="mobile">モバイル</option></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">好みの色の設定</div>
+						<div class="item-box">
+							<div class="item">
+								<input type="color" id="setting-display--appearance--input-color--prefer-color" class="allow-expand">
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">フォントの設定</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--appearance--input-select--font-setting" class="allow-expand" data-mydef--set-by-script="false"><option value="note-sans-jp">デフォルト</option><option value="explex">Explex</option><option value="zxproto">0XProto</option><option value="firacode">Fira Code</option><option value="hack-r">HackGen-Regular</option><option value="onryou">怨霊</option></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定されたテーマの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定されたデバイスモードの強制</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-device">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">画面サイズによってデバイスモードの最適化を自動で実行</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--changing--device-mode--for--display-size">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">デバイスモードの最適化</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:reloadDeviceInformation('setting-display--exec-button-0')">実行</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--specific">
+					<div class="item-all-box">
+						<div class="item-summary">設定画面の既定値</div>
+						<div class="item-box">
+							<div class="item">
+								<select id="setting-display--specific--input-select--setting-display-init-item" class="allow-expand" data-mydef--set-by-script="false"><option value="0">表示設定</option><option value="1">詳細設定</option><option value="2">ユーザデータの設定</option><option value="3">設定の初期化</option></select>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">設定画面をリロード後に開くことを許可</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--opening--setting-display--after--reload">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--user-data">
+					<div class="item-all-box">
+						<div class="item-summary">ローカルストレージに設定を保存する</div>
+						<div class="item-box">
+							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="save--user-data--localstorage">
+		<label class="toggle_button">
+			<input class="toggle_input" type="checkbox">
+			<span class="toggle_label"></span>
+		</label>
+	</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-contents-box--item" id="tc--reset--setting-data">
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータの初期化</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:resetDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+					<div class="item-all-box">
+						<div class="item-summary">ユーザデータを削除</div>
+						<div class="item-box">
+							<div class="item">
+								<button class="allow-expand" onclick="javascript:removeDeviceInformationData()">実行</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div class="corner" id="corner-01"></div>
+						<div class="item"></div>
+					</div>
+					<div class="text-box footer-text">settings</div>
+					<div class="corner-box right-corner">
+						<div class="item"></div>
+						<div class="corner" id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</section>
+	<section id="alert-display-section" class="display-section background-blur important-section-2" data-display-open="false" data-mydef--set-by-script="false" tabindex="0">
+		<div id="alert-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="警告 %_ID:display-alert-template alert false">
+		<div class="display-item-box" data-mydef--display-template--allow-exist-closed-button="false">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div class="corner" id="corner-00"></div>
+						<div class="item" id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">警告</div>
+					<div class="corner-box right-corner control-box">
+						<div class="item deco-text" id="control-box">
+							<div>✕</div>
+						</div>
+						<div class="corner" id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents">
+		<div id="display-alert-main-contents-alert">
+			<div class="alert--main-contents-box">
+				<div class="main-contents--top">
+					<h1 id="alert--message"></h1>
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="OK" id="alert--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div class="corner" id="corner-01"></div>
+						<div class="item"></div>
+					</div>
+					<div class="text-box footer-text">alert</div>
+					<div class="corner-box right-corner">
+						<div class="item"></div>
+						<div class="corner" id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</section>
+	<section id="confirm-display-section" class="display-section background-blur important-section-2" data-display-open="false" data-mydef--set-by-script="false" tabindex="0">
+		<div id="confirm-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="確認 %_ID:display-confirm-template confirm false">
+		<div class="display-item-box" data-mydef--display-template--allow-exist-closed-button="false">
+			<header class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner icon-box">
+						<div class="corner" id="corner-00"></div>
+						<div class="item" id="icon-box">
+							<iframe></iframe>
+						</div>
+					</div>
+					<div class="text-box header-text">確認</div>
+					<div class="corner-box right-corner control-box">
+						<div class="item deco-text" id="control-box">
+							<div>✕</div>
+						</div>
+						<div class="corner" id="corner-10"></div>
+					</div>
+				</div>
+			</header>
+			<div class="contents main-contents">
+		<div id="display-confirm-main-contents-confirm">
+			<div class="confirm--main-contents-box">
+				<div class="main-contents--top">
+					<h1 id="confirm--message"></h1>
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="CANCEL" id="confirm--cancel-button">
+						<input type="button" value="OK" id="confirm--ok-button">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<footer class="contents sub-contents">
+				<div class="item-box">
+					<div class="corner-box left-corner">
+						<div class="corner" id="corner-01"></div>
+						<div class="item"></div>
+					</div>
+					<div class="text-box footer-text">confirm</div>
+					<div class="corner-box right-corner">
+						<div class="item"></div>
+						<div class="corner" id="corner-11"></div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	</section>
+	
+<script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/math.js"></script><script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/other.js"></script>
+	<!--
+	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
+	-->
+	<span id="console-ok"></span>
+	<script defer="" src="https://jst.tshuto.com/tamura-first-load.js?none"></script>
+	<template id="all-articles-display-template">
+		<div id="all-articles-main-contents">
+			<div class="type-search--input--box">
+				<input type="search" placeholder="検索ワードを入力" id="main--input--type-search">
+			</div>
+			<div class="article-contents--box">
+
+			</div>
+		</div>
+	</template>
+	<template id="create-new-article-setting-display-template">
+		<div id="create-new-article-main-contents">
+			<form id="create-new-article--form">
+				<div class="setting-info--box">
+					<div class="input--box">
+						<input type="text" placeholder="タイトル" name="title" required="" pattern=".+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required="" pattern="[A-Za-z0-9\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="カテゴリ" name="category" required="" pattern="[A-Z\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required="" pattern="^\s*[^\[\]\{\}\\,']+\s*(,\s*[^\[\]\{\}\\,']+\s*)*$">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="見出し" name="excerpt" required="" pattern=".+">
+					</div>
+				</div>
+				<div class="submit-button--box" data-mydef--create-new-article--submit-button-box--has-id="false" data-mydef--create-new-article--submit-button-box--article-type="article" data-mydef--create-new-article--submit-button-box--article-status="draft">
+					<div class="input--box input-submit--box--has-id--true input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="削除" name="parts--deleted">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-deleted">
+						<input type="submit" value="下書き" name="parts--draft">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published">
+						<input type="submit" value="非公開" name="parts--privated">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="公開" name="parts--published">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="更新" name="parts--updated">
+					</div>
+					<div class="input--box input-submit--box--has-id--false">
+						<input type="submit" value="作成" name="parts--created">
+					</div>
+				</div>
+			</form>
+		</div>
+	</template>
+	<template id="edit-article-display-template">
+		<div id="edit-article-main-contents">
+			<div class="control--box">
+				<div class="extra-space"></div>
+				<div class="button-div--box">
+					<div class="button-div">
+						<input type="button" value="バックアップ保存" id="edit-article-display--input--button--backup">
+					</div>
+					<div class="button-div">
+						<input type="button" value="下書き保存" id="edit-article-display--input--button--draft">
+					</div>
+					<div class="button-div">
+						<input type="button" value="投稿/上書き保存" id="edit-article-display--input--button--save">
+					</div>
+				</div>
+			</div>
+			<div class="editor-result--box">
+				<div class="textarea--box">
+					<div id="editor--my-editor" data-mydef--my-editor--parent-element="inherit"></div>
+					<textarea id="editor--textarea"></textarea>
+				</div>
+				<div class="result-display--box">
+					<div class="result-display--root">
+						<div class="main-contentsbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<header id="root-header">
+		<section id="header-section">
+			<div id="header-div-root-desktop" class="desktop-element">
+				<nav id="header-items-box" class="root-nav">
+					<div id="items-box-left-box">
+						<a href="https://tshuto.com">
+						</a>
+					</div>
+					<div id="items-box-center-box">
+						<nav class="main-nav">
+							<div class="main-nav-box">
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--home">
+										<div class="item-box_icon-summary">Home</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--articles">
+										<div class="item-box_icon-summary">Article</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--about">
+										<div class="item-box_icon-summary">About</div>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+					<div id="items-box-right-box">
+						<nav class="main-nav">
+							<div class="main-nav-box">
+								<div class="item-box setting-general-box deco-text">
+									<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/desktop/icon-setting.svg"></iframe>
+									<div class="open-setting-display-button-element"></div>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</nav>
+			</div>
+			<div id="header-div-root-mobile" class="mobile-element">
+				<nav id="header-items-box" class="root-nav">
+					<!-- === idの命名規則が不安定・危険、作りが粗雑 === -->
+					<div id="items-box-left-box">
+						<nav class="main-nav">
+							<div class="main-nav-box">
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--home">
+										<div class="item-box_icon-box">
+											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-home.svg"></iframe>
+										</div>
+										<div class="item-box_icon-summary">Home</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--articles">
+										<div class="item-box_icon-box">
+											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-article.svg"></iframe>
+										</div>
+										<div class="item-box_icon-summary">Article</div>
+									</a>
+								</div>
+								<div class="item-box deco-text">
+									<a href="./?id=20260401230000--about">
+										<div class="item-box_icon-box">
+											<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-about.svg"></iframe>
+										</div>
+										<div class="item-box_icon-summary">About</div>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+					<div id="items-box-right-box">
+						<nav class="main-nav">
+							<div class="main-nav-box">
+								<div class="item-box deco-text">
+									<iframe class="icon-box_icon-img" src="https://svg.tshuto.com/blog/mobile/icon-menu.svg"></iframe>
+									<div class="open-setting-display-button-element"></div>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</nav>
+			</div>
+		</section>
+	</header>
+	<section id="edit-article-display-section" class="display-section background-blur important-section-0" data-display-open="false" data-mydef--set-by-script="false">
+		<div id="edit-article-display-div-main" class="display-section--div-main import-template-append" template-id-data="edit-article-display-template" template-id-args="">
+		<div id="edit-article-main-contents">
+			<div class="control--box">
+				<div class="extra-space"></div>
+				<div class="button-div--box">
+					<div class="button-div">
+						<input type="button" value="バックアップ保存" id="edit-article-display--input--button--backup">
+					</div>
+					<div class="button-div">
+						<input type="button" value="下書き保存" id="edit-article-display--input--button--draft">
+					</div>
+					<div class="button-div">
+						<input type="button" value="投稿/上書き保存" id="edit-article-display--input--button--save">
+					</div>
+				</div>
+			</div>
+			<div class="editor-result--box">
+				<div class="textarea--box">
+					<div id="editor--my-editor" data-mydef--my-editor--parent-element="inherit"></div>
+					<textarea id="editor--textarea"></textarea>
+				</div>
+				<div class="result-display--box">
+					<div class="result-display--root">
+						<div class="main-contentsbox"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<div id="root">
+		<main id="root-main">
+			<section id="main-section">
+				<div id="main-contentsbox-root">
+					<div class="main-contentsbox"><pre><div data-mydef--article-tag="title">情報機器概論 report7</div><div class="hn-div"><h1>未来大のお気に入りの場所 ３選!!</h1></div><br><div class="note-class note-warn"><span class="note-mark-span fa fa-fw fa-exclamation-circle"></span><br>本記事は2025年度の情報機器概論 report7の内容を再編集したものです<br><details><br><div class="byref-div">以下にリンクを貼ります</div><br><div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="https://staff.fun.ac.jp/~s-takagi/iis2025/b1025149_report07/index.html" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">https://staff.fun.ac.jp/~s-takagi/iis2025/b1025149_report07/index.html</div><div class="embed-iframe-inner-title-hostname">staff.fun.ac.jp</div></div><div class="embed-iframe-inner-embed-iframe-root"></div></a></div><br></details><br></div><br><div class="hn-div"><h2>・① 364教室</h2></div><br><div class="utils--popover--elements--popover--root"><button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-238794072590"><img src="https://link.tshuto.com/src/png/jkg/img0.png" title="364教室の画像" alt="https://link.tshuto.com/src/png/jkg/img0.png"></button><div id="utils--popover--elements--popover-238794072590" class="utils--popover--elements--popover-class" popover="auto"><div class="utils--popover--elements--popover--close-button-box"><button popovertarget="utils--popover--elements--popover-238794072590">CLOSE</button></div><div class="utils--popover--elements--popover--main-contents-box"><img src="https://link.tshuto.com/src/png/jkg/img0.png" title="364教室の画像" alt="https://link.tshuto.com/src/png/jkg/img0.png"></div></div></div><br>ここはディスプレイとキーボード、マウスが置いてあって<br>生協推奨機であれば、HDMIケーブルをパソコンの差込口に挿せばすぐに<br>ディスプレイが使えるよ！！<br>最近私は入口に一番近い席3つを占領して、<br>HDMI, Mini-DisplayPort, USB-Type-Aを繋げて<br><br>ディスプレイ3台 + ノートPCの画面 + spacedeskで繋げた"amazon fire HD 10"<br><br>の合計5つの画面で作業しているよ!!（写真）<br><br><div class="easy-text-deco text-line-through">先輩から変な目で見られたよ!!</div><br><br><div class="hn-div"><h2>・② 工房</h2></div><br><div class="utils--popover--elements--popover--root"><button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-811006091705"><img src="https://link.tshuto.com/src/png/jkg/img1.png" title="レーザーカッター講習修了証の画像" alt="https://link.tshuto.com/src/png/jkg/img1.png"></button><div id="utils--popover--elements--popover-811006091705" class="utils--popover--elements--popover-class" popover="auto"><div class="utils--popover--elements--popover--close-button-box"><button popovertarget="utils--popover--elements--popover-811006091705">CLOSE</button></div><div class="utils--popover--elements--popover--main-contents-box"><img src="https://link.tshuto.com/src/png/jkg/img1.png" title="レーザーカッター講習修了証の画像" alt="https://link.tshuto.com/src/png/jkg/img1.png"></div></div></div><br>この部屋は「工房」と呼ばれている部屋だよ。<br>正直あんまり詳しくないよ!!<br>3Dプリンターや、レーザーカッターがあるよ<br>レーザーカッター講習を受けると修了証が発行されるよ。（写真2参照）<br>最近は工房の職員さんに会うことが利用する目的の半分を占めているよ。<br>工房の職員さんは気さくで、話しやすい人だよ。<br><br><a href="https://jstst.tshuto.com/" title="MyEditor － テストページ">MyEditor － テストページ</a><br></pre></div>
+				</div>
+			</section>
+			<section id="all-articles-display-section" class="display-section" data-display-open="false" data-mydef--set-by-script="false">
+				<div id="all-articles-display-div-main" class="display-section--div-main import-template-append" template-id-data="all-articles-display-template" template-id-args="">
+		<div id="all-articles-main-contents">
+			<div class="type-search--input--box">
+				<input type="search" placeholder="検索ワードを入力" id="main--input--type-search">
+			</div>
+			<div class="article-contents--box">
+
+			</div>
+		</div>
+	</div>
+			</section>
+			<section id="create-new-article-setting-display-section" class="display-section" data-display-open="false" data-mydef--set-by-script="false">
+				<div id="create-new-article-setting-display-div-main" class="display-section--div-main import-template-append" template-id-data="create-new-article-setting-display-template" template-id-args="">
+		<div id="create-new-article-main-contents">
+			<form id="create-new-article--form">
+				<div class="setting-info--box">
+					<div class="input--box">
+						<input type="text" placeholder="タイトル" name="title" required="" pattern=".+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="slug（更新・変更不可）" name="slug" required="" pattern="[A-Za-z0-9\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="カテゴリ" name="category" required="" pattern="[A-Z\-]+">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="タグ(,で区切る)" name="tags" required="" pattern="^\s*[^\[\]\{\}\\,']+\s*(,\s*[^\[\]\{\}\\,']+\s*)*$">
+					</div>
+					<div class="input--box">
+						<input type="text" placeholder="見出し" name="excerpt" required="" pattern=".+">
+					</div>
+				</div>
+				<div class="submit-button--box" data-mydef--create-new-article--submit-button-box--has-id="false" data-mydef--create-new-article--submit-button-box--article-type="article" data-mydef--create-new-article--submit-button-box--article-status="draft">
+					<div class="input--box input-submit--box--has-id--true input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="削除" name="parts--deleted">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-deleted">
+						<input type="submit" value="下書き" name="parts--draft">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published">
+						<input type="submit" value="非公開" name="parts--privated">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="公開" name="parts--published">
+					</div>
+					<div class="input--box input-submit--box--has-id--true input-submit--box--type-article input-submit--box--status-published input-submit--box--status-privated input-submit--box--status-draft">
+						<input type="submit" value="更新" name="parts--updated">
+					</div>
+					<div class="input--box input-submit--box--has-id--false">
+						<input type="submit" value="作成" name="parts--created">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+			</section>
+		</main>
+		<footer id="root-footer">
+			<section id="footer-section">
+				<br>
+				<div>当サイトは一切のJSフレームワークを使用していません</div>
+			</section>
+		</footer>
+	</div>
+	
+	<script defer="" src="https://js.tshuto.com/utils/utils.js"></script>
+	<script defer="" src="https://js.tshuto.com/utils/setup.js"></script>
+	<script defer="" src="https://js.tshuto.com/utils/device-info.js"></script>
+	<script defer="" src="https://js.tshuto.com/utils/utils-after.js"></script>
+	
+	<script defer="" src="./src/js/after.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;6435735a7c444540acbe680c9e69f1a1&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
+
+
+<script defer="" type="text/javascript" src="./src/js/display-all-articles.js"></script><script defer="" type="text/javascript" src="./src/js/script.js"></script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"6435735a7c444540acbe680c9e69f1a1","r":1}' crossorigin="anonymous"></script>
+</body></html>

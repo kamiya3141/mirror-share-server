@@ -11,3 +11,4 @@
 ||content-loader.com^
 ||onelink.me^
 ||zucks.net^
+||amidstdeploy.com^
