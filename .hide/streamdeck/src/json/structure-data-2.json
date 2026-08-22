@@ -114,8 +114,29 @@
 									]
 								},
 								{
-									"name": "void",
-									"data": null
+									"name": "dir--ssh-dh3",
+									"data": [
+										{
+											"name": "ssh-dh3dmc0",
+											"data": null
+										},
+										{
+											"name": "ssh-dh3dmc1",
+											"data": null
+										},
+										{
+											"name": "dh3dvp",
+											"data": null
+										},
+										{
+											"name": "void",
+											"data": null
+										},
+										{
+											"name": "void",
+											"data": null
+										}
+									]
 								},
 								{
 									"name": "dir--ssh-dh4",

@@ -126,6 +126,13 @@
 			"force-appear-title": null,
 			"data": null
 		},
+		"dir--ssh-dh3": {
+			"data-type": "%word.directory",
+			"icon": "%word.url0;dir0.png",
+			"title": "Host-3",
+			"force-appear-title": null,
+			"data": null
+		},
 		"dir--ssh-dh4": {
 			"data-type": "%word.directory",
 			"icon": "%word.url0;dir0.png",
@@ -610,6 +617,81 @@
 						[],
 						[
 							"ssh dh2dnc"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh3dmc0": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh3dmc0",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh3dmc0"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh3dmc1": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh3dmc1",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh3dmc1"
+						]
+					]
+				]
+			}
+		},
+		"ssh-dh3dvp": {
+			"data-type": "%word.button",
+			"icon": "%word.url0;CmdPrt.png",
+			"title": "dh3dvp",
+			"force-appear-title": null,
+			"data": {
+				"cmd-type": [
+					"f"
+				],
+				"cmd": [
+					[
+						"OpenCommandPrompt",
+						"AddEnter"
+					]
+				],
+				"args": [
+					[
+						[],
+						[
+							"ssh dh3dvp"
 						]
 					]
 				]
