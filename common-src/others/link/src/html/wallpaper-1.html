@@ -62,7 +62,7 @@
 		const schp = new URL(window.location.href).searchParams;
 		const wssPassKey = schp.has("pass-key") ? schp.get("pass-key") : "none";
 
-		if (wssPassKey == "none") {
+		if (!schp.has("pass-key")) {
 			let _url = new URL(window.location.href);
 			_url.searchParams.set("pass-key", wssPassKey);
 			window.location.href = _url;
