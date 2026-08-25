@@ -134,8 +134,8 @@
 		wss.addEventListener("message", e => {
 			const jsonData = JSON.parse(e.data);
 			if (jsonData["type"] == "client" && jsonData["pass-key"] == wssPassKey) {
-				mouse.x = Number(jsonData["data"]["x"]) / 100 * width;
-				mouse.y = Number(jsonData["data"]["y"]) / 100 * height;
+				mouse.x = Number(jsonData["data"]["x"]) / 100 * window.screen.width;
+				mouse.y = Number(jsonData["data"]["y"]) / 100 * window.screen.height;
 			}
 		});
 		/*
