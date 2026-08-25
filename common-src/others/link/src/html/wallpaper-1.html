@@ -58,7 +58,7 @@
 		window.addEventListener("resize", resize);
 		resize();
 
-		let wss = new WebSocket("wss://ws-wp.tshuto.com");
+		let wss = new WebSocket("wss://ws.tshuto.com");
 		const schp = new URL(window.location.href).searchParams;
 		const wssPassKey = schp.has("pass-key") ? schp.get("pass-key") : "none";
 
@@ -132,10 +132,16 @@
 		let lastMouseY = mouse.y;
 
 		wss.addEventListener("message", e => {
-			const jsonData = JSON.parse(e.data);
-			if (jsonData["type"] == "client" && jsonData["pass-key"] == wssPassKey) {
-				mouse.x = Number(jsonData["data"]["x"]) / 100 * window.screen.width;
-				mouse.y = Number(jsonData["data"]["y"]) / 100 * window.screen.height;
+			if (e.data == "pong")
+				setTimeout(() => {
+					wss.send("ping");
+				}, Math.floor(2 * Math.random() * 1000));
+			else {
+				const jsonData = JSON.parse(e.data);
+				if (jsonData["type"] == "wp-client" && jsonData["pass-key"] == wssPassKey) {
+					mouse.x = Number(jsonData["data"]["x"]) / 100 * window.screen.width;
+					mouse.y = Number(jsonData["data"]["y"]) / 100 * window.screen.height;
+				}
 			}
 		});
 		/*
