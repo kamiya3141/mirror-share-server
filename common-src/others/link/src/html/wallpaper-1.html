@@ -138,7 +138,7 @@
 				}, Math.floor(2 * Math.random() * 1000));
 			else {
 				const jsonData = JSON.parse(e.data);
-				if (jsonData["type"] == "wp-client" && jsonData["pass-key"] == wssPassKey) {
+				if (jsonData["type"] == "client-wp" && jsonData["pass-key"] == wssPassKey) {
 					mouse.x = Number(jsonData["data"]["x"]) / 100 * window.screen.width;
 					mouse.y = Number(jsonData["data"]["y"]) / 100 * window.screen.height;
 				}
