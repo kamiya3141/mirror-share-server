@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>2D Circle Physics</title>
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #111;
+		}
+
+		canvas {
+			display: block;
+			width: 100vw;
+			height: 100vh;
+		}
+	</style>
+</head>
+
+<body>
+
+	<canvas id="canvas"></canvas>
+
+	<script>
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+
+		let width;
+		let height;
+
+		function resize() {
+			const dpr = window.devicePixelRatio || 1;
+
+			width = window.innerWidth;
+			height = window.innerHeight;
+
+			canvas.width = width * dpr;
+			canvas.height = height * dpr;
+
+			canvas.style.width = width + "px";
+			canvas.style.height = height + "px";
+
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		}
+
+		window.addEventListener("resize", resize);
+		resize();
+
+		// ================================
+		// 設定
+		// ================================
+
+		const circleCount = 80;
+		const circleRadius = 30;
+		const circleMass = circleRadius * 2;
+		const radius = 30;
+
+		const gravity = 0;
+
+		const restitution = 0.35;
+
+		const friction = 2;
+
+		const mouseRadius = circleRadius / 2;
+
+
+		// ================================
+		// 円
+		// ================================
+
+		const circles = [];
+
+		function random(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		for (let i = 0; i < circleCount; i++) {
+
+			circles.push({
+				x: random(circleRadius, width - circleRadius),
+				y: random(circleRadius, height - circleRadius),
+
+				vx: 0,
+				vy: 0,
+
+				radius: circleRadius,
+
+				mass: circleMass
+			});
+		}
+
+
+		// ================================
+		// マウス
+		// ================================
+
+		const mouse = {
+			x: width / 2,
+			y: height / 2,
+
+			vx: 0,
+			vy: 0,
+
+			radius: mouseRadius,
+
+			mass: 100000
+		};
+
+		let lastMouseX = mouse.x;
+		let lastMouseY = mouse.y;
+
+		window.addEventListener("mousemove", e => {
+			mouse.x = e.clientX;
+			mouse.y = e.clientY;
+		});
+		
+
+
+		// ================================
+		// 円同士の衝突
+		// ================================
+
+		function resolveCollision(a, b) {
+
+			const dx = b.x - a.x;
+			const dy = b.y - a.y;
+
+			const distance = Math.sqrt(dx * dx + dy * dy);
+
+			const minDistance = a.radius + b.radius;
+
+			if (distance >= minDistance) {
+				return;
+			}
+
+			// 完全に重なっている場合の対策
+			if (distance === 0) {
+				return;
+			}
+
+			const nx = dx / distance;
+			const ny = dy / distance;
+
+			// めり込み量
+			const penetration = minDistance - distance;
+
+			// 質量による押し出し
+			const totalMass = a.mass + b.mass;
+
+			const aMove = penetration * (b.mass / totalMass);
+			const bMove = penetration * (a.mass / totalMass);
+
+			a.x -= nx * aMove;
+			a.y -= ny * aMove;
+
+			b.x += nx * bMove;
+			b.y += ny * bMove;
+
+
+			// 相対速度
+			const relativeVelocityX = b.vx - a.vx;
+			const relativeVelocityY = b.vy - a.vy;
+
+			// 法線方向の速度
+			const velocityAlongNormal =
+				relativeVelocityX * nx +
+				relativeVelocityY * ny;
+
+			// すでに離れている場合
+			if (velocityAlongNormal > 0) {
+				return;
+			}
+
+			// 反発インパルス
+			const impulse =
+				-(1 + restitution) *
+				velocityAlongNormal /
+				(1 / a.mass + 1 / b.mass);
+
+			const impulseX = impulse * nx;
+			const impulseY = impulse * ny;
+
+			a.vx -= impulseX / a.mass;
+			a.vy -= impulseY / a.mass;
+
+			b.vx += impulseX / b.mass;
+			b.vy += impulseY / b.mass;
+
+
+			// 摩擦
+			const tx = -ny;
+			const ty = nx;
+
+			const tangentVelocity =
+				relativeVelocityX * tx +
+				relativeVelocityY * ty;
+
+			const frictionImpulse =
+				-tangentVelocity /
+				(1 / a.mass + 1 / b.mass);
+
+			const fx =
+				frictionImpulse *
+				friction *
+				tx;
+
+			const fy =
+				frictionImpulse *
+				friction *
+				ty;
+
+			a.vx -= fx / a.mass;
+			a.vy -= fy / a.mass;
+
+			b.vx += fx / b.mass;
+			b.vy += fy / b.mass;
+		}
+
+
+		// ================================
+		// 壁との衝突
+		// ================================
+
+		function resolveWallCollision(c) {
+
+			if (c.x - c.radius < 0) {
+
+				c.x = c.radius;
+
+				if (c.vx < 0) {
+					c.vx *= -restitution;
+				}
+			}
+
+			if (c.x + c.radius > width) {
+
+				c.x = width - c.radius;
+
+				if (c.vx > 0) {
+					c.vx *= -restitution;
+				}
+			}
+
+			if (c.y - c.radius < 0) {
+
+				c.y = c.radius;
+
+				if (c.vy < 0) {
+					c.vy *= -restitution;
+				}
+			}
+
+			if (c.y + c.radius > height) {
+
+				c.y = height - c.radius;
+
+				if (c.vy > 0) {
+					c.vy *= -restitution;
+				}
+			}
+		}
+
+
+		// ================================
+		// マウスとの衝突
+		// ================================
+
+		function resolveMouseCollision(c) {
+
+			const dx = c.x - mouse.x;
+			const dy = c.y - mouse.y;
+
+			const distance = Math.sqrt(dx * dx + dy * dy);
+
+			const minDistance = c.radius + mouse.radius;
+
+			if (distance >= minDistance) {
+				return;
+			}
+
+			let nx;
+			let ny;
+
+			if (distance === 0) {
+
+				nx = 1;
+				ny = 0;
+
+			} else {
+
+				nx = dx / distance;
+				ny = dy / distance;
+			}
+
+			const penetration = minDistance - distance;
+
+			// マウスの質量を非常に大きくして
+			// 「マウスは動かず、円だけが押される」
+			// 状態にする
+			c.x += nx * penetration;
+			c.y += ny * penetration;
+
+
+			// マウスの速度を取得
+			const relativeVx = c.vx - mouse.vx;
+			const relativeVy = c.vy - mouse.vy;
+
+			const velocityAlongNormal =
+				relativeVx * nx +
+				relativeVy * ny;
+
+			// 円がマウスから離れているなら何もしない
+			if (velocityAlongNormal > 0) {
+				return;
+			}
+
+			// 反発
+			const impulse =
+				-(1 + restitution) *
+				velocityAlongNormal;
+
+			c.vx += impulse * nx;
+			c.vy += impulse * ny;
+		}
+
+
+		// ================================
+		// 更新
+		// ================================
+
+		function update(dt) {
+
+			// マウス速度
+			mouse.vx =
+				(mouse.x - lastMouseX) / dt;
+
+			mouse.vy =
+				(mouse.y - lastMouseY) / dt;
+
+			lastMouseX = mouse.x;
+			lastMouseY = mouse.y;
+
+
+			// ----------------------------
+			// 円を動かす
+			// ----------------------------
+
+			for (const c of circles) {
+
+				// 重力
+				c.vy += gravity * dt;
+
+				// 速度から位置を更新
+				c.x += c.vx * dt;
+				c.y += c.vy * dt;
+
+				// 空気抵抗
+				c.vx *= 0.999;
+				c.vy *= 0.999;
+
+				// 壁
+				resolveWallCollision(c);
+			}
+
+
+			// ----------------------------
+			// 円同士の衝突
+			// ----------------------------
+
+			for (let i = 0; i < circles.length; i++) {
+
+				for (let j = i + 1; j < circles.length; j++) {
+
+					resolveCollision(
+						circles[i],
+						circles[j]
+					);
+				}
+			}
+
+
+			// ----------------------------
+			// マウスとの衝突
+			// ----------------------------
+
+			for (const c of circles) {
+				resolveMouseCollision(c);
+			}
+		}
+
+
+		// ================================
+		// 描画
+		// ================================
+
+		function draw() {
+
+			ctx.clearRect(0, 0, width, height);
+
+
+			// 背景
+			ctx.fillStyle = "#111";
+			ctx.fillRect(0, 0, width, height);
+
+
+			// ----------------------------
+			// 円
+			// ----------------------------
+
+			for (const c of circles) {
+
+				ctx.beginPath();
+
+				ctx.arc(
+					c.x,
+					c.y,
+					c.radius,
+					0,
+					Math.PI * 2
+				);
+
+				ctx.fillStyle = "#4dabf7";
+				ctx.fill();
+
+				ctx.strokeStyle = "#74c0fc";
+				ctx.stroke();
+			}
+
+
+			// ----------------------------
+			// マウス円
+			// ----------------------------
+
+			ctx.beginPath();
+
+			ctx.arc(
+				mouse.x,
+				mouse.y,
+				mouse.radius,
+				0,
+				Math.PI * 2
+			);
+
+			//ctx.fillStyle = "rgba(255,255,255,0.08)";
+			//ctx.fill();
+
+			//ctx.strokeStyle = "rgba(255,255,255,0.4)";
+			//ctx.stroke();
+		}
+
+
+		// ================================
+		// メインループ
+		// ================================
+
+		let previousTime = performance.now();
+
+		function loop(time) {
+
+			let dt = (time - previousTime) / 1000;
+
+			previousTime = time;
+
+			// タブ切り替えなどでdtが巨大になるのを防ぐ
+			dt = Math.min(dt, 0.033);
+
+			update(dt);
+
+			draw();
+
+			requestAnimationFrame(loop);
+		}
+
+		requestAnimationFrame(loop);
+
+	</script>
+
+</body>
+
+</html>
