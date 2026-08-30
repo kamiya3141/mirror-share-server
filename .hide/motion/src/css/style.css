@@ -141,20 +141,19 @@ html {
 
 							&[data-mydef--sub-title-status="normal"] {
 								background-color: var(--lightgreen10);
+
 								&::after {
 									content: "OK";
 									width: var(--c1);
 									height: var(--c1);
-									font-size: 1.5rem;
-									position: relative;
-									left: 50%;
-									top: -12.5%;
-									transform: translate(-50%. -50%);
+									text-align: center;
+									color: var(--myTextColor-inv);
 								}
 							}
 
 							&[data-mydef--sub-title-status="alert"] {
 								background-color: lightcoral;
+
 								&::after {
 									content: "Error";
 									width: var(--c1);

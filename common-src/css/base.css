@@ -517,6 +517,34 @@
 	/*initial-value: #303030;*/
 }
 
+@property --myMainBackgroundColor-inv {
+	syntax: "<color>";
+	inherits: true;
+	/*initial-value: #f6f6f6;*/
+	initial-value: #242424;
+}
+
+@property --myTextColor-inv {
+	syntax: "<color>";
+	inherits: true;
+	/*initial-value: #131313;*/
+	initial-value: #ececec;
+}
+
+@property --myElementBackgroundColor-inv {
+	syntax: "<color>";
+	inherits: true;
+	/*initial-value: #e7e7e7;*/
+	initial-value: #181818;
+}
+
+@property --myElementBackgroundColor2-inv {
+	syntax: "<color>";
+	inherits: true;
+	/*initial-value: #ffffff;*/
+	initial-value: #303030;
+}
+
 @property --myElementBoxShadow {
 	syntax: "*";
 	inherits: true;
@@ -809,6 +837,10 @@
 	--myTextColor: light-dark(#131313, #ececec);
 	--myElementBackgroundColor: light-dark(#e7e7e7, #181818);
 	--myElementBackgroundColor2: light-dark(#ffffff, #303030);
+	--myMainBackgroundColor-inv: light-dark(#242424, #f6f6f6);
+	--myTextColor-inv: light-dark(#ececec, #131313);
+	--myElementBackgroundColor-inv: light-dark(#181818, #e7e7e7);
+	--myElementBackgroundColor2-inv: light-dark(#303030, #ffffff);
 	--myElementBoxShadow: 0px 0px 8px gray;
 	--myStylingUserPreferColor: lightblue;
 	--myStylingTabSize: 4;
