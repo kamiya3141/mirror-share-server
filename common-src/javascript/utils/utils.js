@@ -245,6 +245,10 @@ function imageViewerElement(...img_elm_strs) {
 	return root_div;
 }
 
+function imageViewerElementString(...img_elm_strs) {
+	return imageViewerElement(...img_elm_strs).outerHTML.replaceAll("\n", "").replaceAll("\t", "");
+}
+
 function createScrollButtonDivElement(dir = "", btn_txt = "", id = "") {
 	const div = createDivElement(`utils--imgvwr--element--button-box utils--imgvwr--element--${dir}-box`);
 	div.innerHTML = `<button>${btn_txt}</button>`;

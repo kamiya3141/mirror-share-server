@@ -36,7 +36,7 @@
 @media (min-aspect-ratio: 1/1) {
 	:root {
 		--myLocalDefine--section-box--display: grid;
-		--myLocalDefine--motion-contents-all-box--width: auto;
+		--myLocalDefine--motion-contents-all-box--width: var(--c1);
 		--myLocalDefine--motion-contents-all-box--height: var(--c1);
 		--myLocalDefine--main-title--font-size: calc(var(--p1) * 3);
 	}
