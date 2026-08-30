@@ -23,10 +23,10 @@ const streamServerInfoArray = [
 	};
 	streamServerInfoArray.forEach(m => {
 		// 個別にランダムなidをセットするから、別々でcreateMotionContentsSectionをする
-		input_strings_array["desktop"].push(createMotionContentsSection(m.url, m.title, m.element));
-		input_strings_array["mobile"] += createMotionContentsSection(m.url, m.title, m.element);
+		input_strings_array["desktop"].push(createMotionContentsSection(m.url, m.title, m.element, "height"));
+		input_strings_array["mobile"] += createMotionContentsSection(m.url, m.title, m.element, "width");
 	});
-	document.getElementById("section-box-desktop").innerHTML += imageViewerElementString(input_strings_array["desktop"]);
+	document.getElementById("section-box-desktop").innerHTML += imageViewerElementString(...input_strings_array["desktop"]);
 	document.getElementById("section-box-mobile").innerHTML += input_strings_array["mobile"];
 })();
 
@@ -37,13 +37,13 @@ function createMotionURL(word = "") {
 	return createTshutoURL(`motion-${word}`);
 }
 
-function createMotionContentsSection(url = "", title = "", element = "") {
+function createMotionContentsSection(url = "", title = "", element = "", dir = "width") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
 	// const _res = await window.fetch(url);
 	// const _status = _res.ok ? "normal" : "alert";
 	const _status = "normal";
-	const mainContents = element == "img" ? createPopoverElementsStr(`<img class="motion-contents" src="${url}">`) : `<iframe class="motion-contents" href="${url}"></iframe>`;
+	const mainContents = element == "img" ? createPopoverElementsStr(`<img class="motion-contents" src="${url}">`, "", dir) : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let result = !(title.replace(regexp, "").length > 0);
 
 	if (!result)

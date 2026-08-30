@@ -198,10 +198,12 @@ function createRDM() {
 	return Math.floor(Math.random() * (10 ** 12));
 }
 
-function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0) {
+function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width") {
 	const rdm = createRDM();
+	el_str1 = !el_str1 ? el_str0 : el_str1;
+	dir = dir == "width" ? dir : "height";
 	return `
-		<div class="utils--popover--elements--popover--root">
+		<div class="utils--popover--elements--popover--root" data-mydef--utils--popover--elements--popover--root--img-dir="${dir}">
 			<button class="utils--popover--elements--popover--show-button" popovertarget="utils--popover--elements--popover-${rdm}">
 				${el_str0}
 			</button>

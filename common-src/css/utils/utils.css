@@ -234,15 +234,21 @@ html {
 
 	.utils--popover--elements--popover--root {
 		width: var(--c-mn-h);
+		height: var(--c1);
+
+		&[data-mydef--utils--popover--elements--popover--root--img-dir="width"] button.utils--popover--elements--popover--show-button > * {
+			width: var(--c1);
+		}
+
+		&[data-mydef--utils--popover--elements--popover--root--img-dir="height"] button.utils--popover--elements--popover--show-button > * {
+			height: var(--c1);
+		}
 
 		& button.utils--popover--elements--popover--show-button {
 			width: var(--c1);
+			height: var(--c1);
 			border: none;
 			background-color: var(--clear);
-
-			& > * {
-				width: var(--c1);
-			}
 
 			& + .utils--popover--elements--popover-class {
 				border: none;
@@ -312,6 +318,7 @@ html {
 
 	& .utils--imgvwr--element--root {
 		width: var(--c1);
+		height: var(--c1);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -320,10 +327,12 @@ html {
 
 		& > .utils--imgvwr--element--main-contents-box {
 			width: var(--c1);
+			height: var(--c1);
 
 			& > .utils--imgvwr--element--left-box,
 			& > .utils--imgvwr--element--right-box {
 				width: var(--c-hd-h);
+				height: var(--c1);
 
 				& > * {
 					width: var(--c1);
@@ -334,10 +343,12 @@ html {
 
 			& > .utils--imgvwr--element--main-contents {
 				width: var(--c-mn-h);
+				height: var(--c1);
 
 				& > .utils--imgvwr--element--img-box {
 					justify-content: start;
 					width: var(--c1);
+					height: var(--c1);
 					overflow: auto hidden;
 					scroll-snap-type: x mandatory;
 					scrollbar-width: none;
@@ -347,6 +358,7 @@ html {
 						scroll-snap-align: center;
 						scroll-behavior: smooth;
 						width: var(--c1);
+						height: var(--c1);
 						object-fit: contain;
 					}
 				}
