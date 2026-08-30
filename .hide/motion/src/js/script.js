@@ -5,6 +5,11 @@ const streamServerInfoArray = [
 		"element": "img"
 	},
 	{
+		"title": "debian13-note-1",
+		"url": createMotionURL("dn1"),
+		"element": "img"
+	},
+	{
 		"title": "debian13-note-2",
 		"url": createMotionURL("dn2"),
 		"element": "img"
