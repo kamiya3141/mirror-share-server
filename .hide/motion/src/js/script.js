@@ -24,7 +24,7 @@ const streamServerInfoArray = [
 	streamServerInfoArray.forEach(m => {
 		// 個別にランダムなidをセットするから、別々でcreateMotionContentsSectionをする
 		input_strings_array["desktop"].push(createMotionContentsSection(m.url, m.title, m.element, "height"));
-		input_strings_array["mobile"] += createMotionContentsSection(m.url, m.title, m.element, "width");
+		input_strings_array["mobile"] += createMotionContentsSection(m.url, m.title, m.element);
 	});
 	document.getElementById("section-box-desktop").innerHTML += imageViewerElementString(...input_strings_array["desktop"]);
 	document.getElementById("section-box-mobile").innerHTML += input_strings_array["mobile"];
