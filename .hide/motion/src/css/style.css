@@ -5,19 +5,19 @@
 }
 
 @property --myLocalDefine--motion-contents-all-box--width {
-	syntax: "<length>";
+	syntax: "*";
 	inherits: true;
-	initial-value: auto;
+	initial-value: 100%;
 }
 
 @property --myLocalDefine--motion-contents-all-box--height {
-	syntax: "<length>";
+	syntax: "*";
 	inherits: true;
-	initial-value: auto;
+	initial-value: 100%;
 }
 
 @property --myLocalDefine--main-title--font-size {
-	syntax: "<length>";
+	syntax: "*";
 	inherits: true;
 	initial-value: 1rem;
 }
@@ -74,20 +74,20 @@ html {
 				& + #setting-button {
 					text-align: center;
 					width: var(--c1);
-					height: calc(var(--c-hd-h) * 2);
+					height: calc(var(--c-hd-h) * 1);
 					font-size: 3rem;
 				}
 
 				display: var(--myLocalDefine--section-box--display);
 				width: var(--c1);
-				height: var(--c-mn-h);
+				height: calc(var(--c-hd-h) * 9);
 				overflow-y: auto;
 				grid-template-columns: repeat(2, 1fr);
 				justify-content: start;
 
 				& > .motion-contents-all-box {
 					width: var(--myLocalDefine--motion-contents-all-box--width);
-					height: var(--myLocalDefine--motion-contents-all-box--height);
+					min-height: var(--myLocalDefine--motion-contents-all-box--height);
 					grid-template-rows: var(--c-mn-h) auto;
 					justify-content: center;
 
@@ -96,9 +96,9 @@ html {
 						height: var(--c-mn-h);
 						display: flex;
 
-						& > .motion-contents {
-							flex: 1;
-							display: block;
+						& .motion-contents {
+							object-fit: contain;
+							display: inline-block;
 						}
 					}
 
@@ -107,7 +107,7 @@ html {
 						height: calc(var(--c-hd-h) * 2);
 						display: grid;
 						grid-template-columns: 1fr;
-						grid-template-rows: 4fr 1fr;
+						grid-template-rows: 4fr 0fr;
 						justify-content: center;
 
 						& > * {
@@ -158,7 +158,8 @@ html {
 									content: "Error";
 									width: var(--c1);
 									height: var(--c1);
-									font-size: 1.5rem;
+									text-align: center;
+									color: var(--myTextColor-inv);
 								}
 							}
 						}

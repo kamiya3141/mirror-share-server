@@ -48,7 +48,7 @@ async function createMotionContentsSection(url = "", title = "", element = "") {
 						<div id="main-title">${title}</div>
 					</div>
 				</div>
-				<div id="${title}" class="sub-title" data-mydef--sub-title-status="${_status}"></div>
+				<!-- <div id="${title}" class="sub-title" data-mydef--sub-title-status="${_status}"></div> -->
 			</div>
 		</section>`;
 		document.getElementById("section-box").innerHTML += output_string;
