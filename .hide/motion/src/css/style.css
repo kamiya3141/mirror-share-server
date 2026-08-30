@@ -40,6 +40,10 @@
 		--myLocalDefine--motion-contents-all-box--height: var(--c1);
 		--myLocalDefine--main-title--font-size: calc(var(--p1) * 3);
 	}
+
+	.motion-contents-all-box {
+		height: var(--myLocalDefine--motion-contents-all-box--height);
+	}
 }
 
 /* 縦長 */
@@ -49,6 +53,10 @@
 		--myLocalDefine--motion-contents-all-box--width: var(--c1);
 		--myLocalDefine--motion-contents-all-box--height: var(--w);
 		--myLocalDefine--main-title--font-size: calc(var(--p1) * 6);
+	}
+
+	.motion-contents-all-box {
+		min-height: var(--myLocalDefine--motion-contents-all-box--height);
 	}
 }
 
@@ -87,7 +95,6 @@ html {
 
 				& > .motion-contents-all-box {
 					width: var(--myLocalDefine--motion-contents-all-box--width);
-					min-height: var(--myLocalDefine--motion-contents-all-box--height);
 					grid-template-rows: var(--c-mn-h) auto;
 					justify-content: center;
 
