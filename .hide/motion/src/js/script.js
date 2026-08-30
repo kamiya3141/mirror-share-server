@@ -13,25 +13,21 @@ const streamServerInfoArray = [
 		"title": "debian13-note-2",
 		"url": createMotionURL("dn2"),
 		"element": "img"
-	},
-	{
-		"title": "debian13-note-2",
-		"url": createMotionURL("dn2"),
-		"element": "img"
-	},
-	{
-		"title": "debian13-note-2",
-		"url": createMotionURL("dn2"),
-		"element": "img"
 	}
 ];
 
 (() => {
-	let input_strings_array = [];
-	streamServerInfoArray.forEach(async m => {
-		input_strings_array.push(await createMotionContentsSection(m.url, m.title, m.element));
+	let input_strings_array = {
+		"desktop": [],
+		"mobile": ""
+	};
+	streamServerInfoArray.forEach(m => {
+		// 個別にランダムなidをセットするから、別々でcreateMotionContentsSectionをする
+		input_strings_array["desktop"].push(createMotionContentsSection(m.url, m.title, m.element));
+		input_strings_array["mobile"] += createMotionContentsSection(m.url, m.title, m.element);
 	});
-	document.getElementById("section-box").innerHTML += imageViewerElementString(input_strings_array);
+	document.getElementById("section-box-desktop").innerHTML += imageViewerElementString(input_strings_array["desktop"]);
+	document.getElementById("section-box-mobile").innerHTML += input_strings_array["mobile"];
 })();
 
 function createTshutoURL(_str = "", add_path = "") {
@@ -41,7 +37,7 @@ function createMotionURL(word = "") {
 	return createTshutoURL(`motion-${word}`);
 }
 
-async function createMotionContentsSection(url = "", title = "", element = "") {
+function createMotionContentsSection(url = "", title = "", element = "") {
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
 	// const _res = await window.fetch(url);
