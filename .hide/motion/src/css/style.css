@@ -44,6 +44,14 @@
 	.motion-contents-all-box {
 		height: var(--myLocalDefine--motion-contents-all-box--height);
 	}
+
+	#section-box-desktop {
+		display: flex;
+	}
+
+	#section-box-mobile {
+		display: none !important;
+	}
 }
 
 /* 縦長 */
@@ -58,30 +66,17 @@
 	.motion-contents-all-box {
 		min-height: var(--myLocalDefine--motion-contents-all-box--height);
 	}
+
+	#section-box-desktop {
+		display: none;
+	}
+
+	#section-box-mobile {
+		display: var(--myLocalDefine--section-box--display);
+	}
 }
 
 html {
-	&[data-my-device-type="desktop"] {
-		& #section-box-desktop {
-			display: flex;
-		}
-
-		& #section-box-mobile {
-			display: none !important;
-		}
-	}
-
-	&[data-my-device-type="mobile"] {
-		& #section-box-desktop {
-			display: none;
-		}
-
-		& #section-box-mobile {
-			display: var(--myLocalDefine--section-box--display);
-		}
-
-	}
-
 	& > body {
 		display: flex;
 		flex-direction: column;
