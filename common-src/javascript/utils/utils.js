@@ -200,6 +200,7 @@ function createRDM() {
 
 function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width") {
 	const rdm = createRDM();
+	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this)">`);
 	el_str1 = !el_str1 ? el_str0 : el_str1;
 	dir = dir == "width" ? dir : "height";
 	return `
@@ -275,6 +276,12 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 		inline: "start",
 		block: "nearest",
 	});
+}
+
+function imgError(img) {
+	if (img.dataset.fallback == "true") return;
+	img.dataset.fallback = "true";
+	img.src = "https://file-nextcloud.tshuto.com/image/icon-png/gisei.png";
 }
 
 function createDivElement(class_name = "", id = "") {

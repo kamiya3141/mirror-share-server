@@ -236,15 +236,6 @@ function loadedFunc() {
 	// すべて読みこんだ後に、deviceの値を設定画面に反映していく処理
 	if (getDeviceInformation("save--user-data--localstorage"))
 		reloadDisplaySettingValues();
-
-	// 画像の読み込みに失敗したら代替画像を表示
-	document.querySelectorAll("img").forEach(img => {
-		img.addEventListener("error", () => {
-			if (img.dataset.fallback == "true") return;
-			img.dataset.fallback = "true";
-			img.src = "https://file-nextcloud.tshuto.com/image/icon-png/gisei.png";
-		});
-	});
 }
 
 window.addEventListener("load", () => loadedFunc());
