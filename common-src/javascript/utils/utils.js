@@ -281,7 +281,7 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 function imgError(img) {
 	if (img.dataset.fallback == "true") return;
 	img.dataset.fallback = "true";
-	img.src = "https://file-nextcloud.tshuto.com/image/icon-png/gisei.png";
+	img.src = "https://file-nextcloud.tshuto.com/image/svg/motion-error/1.svg";
 }
 
 function createDivElement(class_name = "", id = "") {
