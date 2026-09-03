@@ -2,7 +2,7 @@ let displayElementQueryArray = [];
 
 function loadedFunc() {
 
-	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
 		const device_setting_id = c.getAttribute("template-id-args");
 		c.querySelector(".toggle_input").addEventListener("change", async e => {
 			if (!get_SetByScript(e.target)) {
@@ -262,7 +262,7 @@ function reloadDisplaySettingValues() {
 		[...document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents")][Number(getDeviceInformation("setting-display-init-item-index"))].click();
 	}
 
-	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");
 		const data = getDeviceInformation(_arg);
 		if (data != null)
