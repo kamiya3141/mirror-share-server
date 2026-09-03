@@ -167,7 +167,10 @@ function reloadSiteSettingValues() {
 	const md_design = document.getElementById("setting-site-display--appearance--input-select--design-setting");
 	if (!md_design.disabled)
 		md_design.value = getSiteSettingInformation("site-setting--markdown-design");
-	siteSettingColorsArray.forEach(id => document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`));
+	siteSettingColorsArray.forEach(id => {
+		const col = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
+		document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = String(col)[0] == "#" ? col : rgbToHex(col);
+	});
 
 	document.querySelector("#setting-site-display--specific--input-select--setting-site-display-init-item").value = String(getSiteSettingInformation("setting-site-display-init-item-index"));
 }
