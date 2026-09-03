@@ -32,6 +32,9 @@
 }
 
 html {
+	color: var(--myStylingLocalMarkdownTextColor);
+	background-color: var(--myStylingLocalMarkdownMainBackgroundColor);
+
 	&[data-my-device-type="desktop"] > body > div#root {
 		left: calc(var(--w) - var(--w) / 2);
 		width: var(--w);

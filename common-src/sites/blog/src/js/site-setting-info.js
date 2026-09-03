@@ -32,7 +32,7 @@ function editSiteSettingInformation(_key = "", _value = null) {
 		site_setting[_key] = _value;
 	else
 		console.error(`function error: "editSiteSettingInformation"\n\tマップ変数:site_settingに${_key}というキーはありません\n${Object.entries(site_setting).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-	setSiteSettingDataForLocalStorage(_key == "save--setting-site--localstorage" ? true : getSiteSettingInformation("save--setting-site--localstorage"));
+	setSiteSettingDataForLocalStorage(_key == "save--setting-site-data--localstorage" ? true : getSiteSettingInformation("save--setting-site-data--localstorage"));
 }
 
 function reloadSiteSettingInformation(add_msg = "") {
