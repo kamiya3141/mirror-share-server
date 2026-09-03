@@ -109,19 +109,19 @@ document.body.insertAdjacentHTML("afterbegin", `
 					<div class="item-all-box">
 						<div class="item-summary">設定されたテーマの強制</div>
 						<div class="item-box">
-							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-theme"></div>
+							<div class="item import-template-append" template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting" template-id-args="force-theme"></div>
 						</div>
 					</div>
 					<div class="item-all-box">
 						<div class="item-summary">設定されたデバイスモードの強制</div>
 						<div class="item-box">
-							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="force-device"></div>
+							<div class="item import-template-append" template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting" template-id-args="force-device"></div>
 						</div>
 					</div>
 					<div class="item-all-box">
 						<div class="item-summary">画面サイズによってデバイスモードの最適化を自動で実行</div>
 						<div class="item-box">
-							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--changing--device-mode--for--display-size"></div>
+							<div class="item import-template-append" template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting" template-id-args="allow--changing--device-mode--for--display-size"></div>
 						</div>
 					</div>
 					<div class="item-all-box">
@@ -145,7 +145,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 					<div class="item-all-box">
 						<div class="item-summary">設定画面をリロード後に開くことを許可</div>
 						<div class="item-box">
-							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="allow--opening--setting-display--after--reload"></div>
+							<div class="item import-template-append" template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting" template-id-args="allow--opening--setting-display--after--reload"></div>
 						</div>
 					</div>
 				</div>
@@ -153,7 +153,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 					<div class="item-all-box">
 						<div class="item-summary">ローカルストレージに設定を保存する</div>
 						<div class="item-box">
-							<div class="item import-template-append" template-id-data="toggle-switch-template" template-id-args="save--user-data--localstorage"></div>
+							<div class="item import-template-append" template-id-data="toggle-switch-template" data-mydef--import-template-type="utils-setting" template-id-args="save--user-data--localstorage"></div>
 						</div>
 					</div>
 				</div>
