@@ -1,6 +1,8 @@
 html {
 	&[data-my-device-type="desktop"] {
-		& #display-setting-main-contents-setting {
+
+		& #display-setting-main-contents-setting,
+		& .display-inner-contents {
 			flex-direction: row;
 
 			& > * {
@@ -76,7 +78,9 @@ html {
 	}
 
 	&[data-my-device-type="mobile"] {
-		& #display-setting-main-contents-setting {
+
+		& #display-setting-main-contents-setting,
+		& .display-inner-contents {
 			flex-direction: column;
 
 			& > * {
@@ -131,7 +135,8 @@ html {
 	}
 }
 
-#display-setting-main-contents-setting {
+#display-setting-main-contents-setting,
+& .display-inner-contents {
 	width: var(--c1);
 	height: var(--c1);
 	display: flex;

@@ -161,11 +161,12 @@ html {
 								flex: 1;
 								align-items: center;
 
-								& > .main-nav > .main-nav-box > .setting-general-box {
+								& > .main-nav > .main-nav-box > * {
 									width: var(--c1);
 									height: var(--c1);
 
-									& > iframe {
+									& > iframe,
+									* {
 										width: 75%;
 										height: 75%;
 									}

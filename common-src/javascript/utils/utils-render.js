@@ -55,7 +55,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 
 	-->
 	<template id="display-setting-template">
-		<div id="display-setting-main-contents-setting">
+		<div class="display-inner-contents" id="display-setting-main-contents-setting">
 			<div class="tab-bar">
 				<div class="tab-bar--contents--box">
 					<div class="tab-bar--contents" id="tb--appearance">

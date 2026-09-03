@@ -15,6 +15,16 @@ async function loadAllArticles() {
 
 function setupSiteSettingDisplay() {
 
+	const __elem = document.querySelector("#setting-site-display-section");
+	__elem.tabIndex = 0;
+	[".open-setting-site-display-button-element", "#setting-site-display-div-main #control-box"].forEach(c1 => {
+		[...document.querySelectorAll(c1)].forEach(c2 => {
+			c.addEventListener("click", e => {
+				switchingOpenDisplay(__elem);
+			});
+		});
+	});
+
 	Object.entries({
 		"site-setting--disallow-override-colors": async __tf => {
 			window.alert(__tf);
