@@ -57,6 +57,7 @@ function setupSiteSettingDisplay() {
 	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
 	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
+			e.target.tabIndex = 0;
 			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
 				if (c1.split("--")[1] == c2.split("--")[1]) {
 					setting_elem.querySelector(c1).setAttribute("data-mydef--selected", "true");
@@ -99,6 +100,32 @@ function setupSiteSettingDisplay() {
 				}
 			},
 			"init-disabled": true
+		},
+		{
+			"select-id": "setting-site-display--specific--input-select--setting-display-init-item",
+			"select-option-data-array": [
+				{
+					"text": "表示設定",
+					"value": "0"
+				},
+				{
+					"text": "詳細設定",
+					"value": "1"
+				},
+				{
+					"text": "ユーザデータの設定",
+					"value": "2"
+				},
+				{
+					"text": "設定の初期化",
+					"value": "3"
+				}
+			],
+			"select-change-event-function": val => {
+				editSiteSettingInformation("setting-site-display-init-item-index", Number(val));
+			},
+			"init-disabled": false,
+			"reload-cancel": true
 		}
 	].forEach(c1 => {
 		c1["select-option-data-array"].forEach(c2 => {
