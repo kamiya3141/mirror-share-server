@@ -12,3 +12,5 @@
 ||onelink.me^
 ||zucks.net^
 ||amidstdeploy.com^
+||popin.cc^
+||googleadservices.com^
