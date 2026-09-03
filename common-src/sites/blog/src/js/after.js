@@ -72,7 +72,8 @@ function setupSiteSettingDisplay() {
 
 	// 色設定
 	siteSettingColorsArray.forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
-		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`, e.target.value);
+		console.log(setting_elem.querySelector(`#${id}`).value);
+		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`, setting_elem.querySelector(`#${id}`).value);
 		reloadSiteSettingValues();
 		reloadSiteSettingInformation();
 	}));
@@ -166,7 +167,7 @@ function reloadSiteSettingValues() {
 	const md_design = document.getElementById("setting-site-display--appearance--input-select--design-setting");
 	if (!md_design.disabled)
 		md_design.value = getSiteSettingInformation("site-setting--markdown-design");
-	siteSettingColorsArray.forEach(id => document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`));
+	siteSettingColorsArray.forEach(id => document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = rgbToHex(getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`)));
 
 	document.querySelector("#setting-site-display--specific--input-select--setting-site-display-init-item").value = String(getSiteSettingInformation("setting-site-display-init-item-index"));
 }
