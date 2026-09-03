@@ -60,9 +60,6 @@ function loadedFunc() {
 		}
 	];
 
-	const setting_elem = document.getElementById("display-setting-main-contents-setting");
-	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
-
 	displayElementQueryArray.forEach(obj => {
 		const switched_elem = document.querySelector(obj["switched-element"]);
 		switched_elem.tabIndex = 0;
@@ -110,6 +107,8 @@ function loadedFunc() {
 		}
 	});
 
+	const setting_elem = document.getElementById("display-setting-main-contents-setting");
+	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
 
 	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {

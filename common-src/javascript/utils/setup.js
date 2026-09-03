@@ -2,37 +2,35 @@ function toggleSwitchCancelFunction(elem, tf = null) {
 	edit_SetByScript(elem, true);
 	elem.checked = Boolean(tf == null ? !elem.checked : tf);
 }
-
-async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
-	const funcObj = {
-		"force-theme": async __tf => {
-			const ___el = document.getElementById("setting-display--appearance--input-select--theme-setting");
-			___el.disabled = !__tf;
-			___el.value = getDeviceInformation("theme-type");
-		},
-		"force-device": async __tf => {
-			const ___el = document.getElementById("setting-display--appearance--input-select--device-mode-setting");
-			___el.disabled = !__tf;
-			___el.value = getDeviceInformation("device-type");
-		},
-		"allow--changing--device-mode--for--display-size": async __tf => {
-			if (!__tf) {
-				const res = await myConfirmMessage("OFFにすると\n表示が崩れる場合がございます。\nよろしいですか？");
-				if (!res) {
-					editDeviceInformation(key, !res);
-					toggleSwitchCancelFunction(elem);
-				}
+const toggleSwitchChangeEventAddFunctionFuncObj = {
+	"force-theme": async __tf => {
+		const ___el = document.getElementById("setting-display--appearance--input-select--theme-setting");
+		___el.disabled = !__tf;
+		___el.value = getDeviceInformation("theme-type");
+	},
+	"force-device": async __tf => {
+		const ___el = document.getElementById("setting-display--appearance--input-select--device-mode-setting");
+		___el.disabled = !__tf;
+		___el.value = getDeviceInformation("device-type");
+	},
+	"allow--changing--device-mode--for--display-size": async (__tf, elem) => {
+		if (!__tf) {
+			const res = await myConfirmMessage("OFFにすると\n表示が崩れる場合がございます。\nよろしいですか？");
+			if (!res) {
+				editDeviceInformation(key, !res);
+				toggleSwitchCancelFunction(elem);
 			}
-		},
-		"save--user-data--localstorage": async __tf => {
-			if (!__tf)
-				return;
-			syncDeviceDataForLocalStorage();
 		}
-	};
-
-	if (Object.hasOwn(funcObj, key))
-		await funcObj[key](tf);
+	},
+	"save--user-data--localstorage": async __tf => {
+		if (!__tf)
+			return;
+		syncDeviceDataForLocalStorage();
+	}
+};
+async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
+	if (Object.hasOwn(toggleSwitchChangeEventAddFunctionFuncObj, key))
+		await toggleSwitchChangeEventAddFunctionFuncObj[key](tf, elem);
 
 }
 

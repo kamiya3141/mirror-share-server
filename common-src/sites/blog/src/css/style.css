@@ -1,3 +1,27 @@
+@property --myStylingLocalMarkdownMainBackgroundColor {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: var(--myMainBackgroundColor);
+}
+
+@property --myStylingLocalMarkdownTextColor {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: var(--myTextColor);
+}
+
+@property --myStylingLocalMarkdownElementBackgroundColor {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: var(--myElementBackgroundColor);
+}
+
+@property --myStylingLocalMarkdownElementBackgroundColor2 {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: var(--myElementBackgroundColor2);
+}
+
 :root {
 	--debug-bgc1: aqua;
 	--debug-bgc2: red;
@@ -39,7 +63,7 @@ html {
 			left: 0px;
 			top: 0px;
 			position: fixed;
-			background-color: var(--myElementBackgroundColor);
+			background-color: var(--myStylingLocalMarkdownElementBackgroundColor);
 			flex-direction: row;
 			z-index: 990;
 
@@ -118,7 +142,7 @@ html {
 											text-decoration: none;
 
 											& > .item-box_icon-summary {
-												color: var(--myTextColor);
+												color: var(--myStylingLocalMarkdownTextColor);
 												width: var(--c1);
 												height: var(--c1);
 												font-size: calc(var(--p2) * 2);
@@ -200,7 +224,7 @@ html {
 											flex-direction: column;
 
 											& > * {
-												color: var(--myTextColor);
+												color: var(--myStylingLocalMarkdownTextColor);
 												width: var(--c1);
 												height: auto;
 											}
@@ -242,7 +266,7 @@ html {
 			& > main {
 				display: block;
 				width: var(--c1);
-				background-color: var(--myElementBackgroundColor2);
+				background-color: var(--myStylingLocalMarkdownElementBackgroundColor2);
 
 				&#root-main > section#main-section {
 					width: var(--c1);
@@ -265,13 +289,13 @@ html {
 				align-items: center;
 				width: var(--c1);
 				height: var(--c-ft-h);
-				background-color: var(--myMainBackgroundColor);
+				background-color: var(--myStylingLocalMarkdownMainBackgroundColor);
 				text-align: center;
 
 				section#footer-section {
 					width: var(--c1);
 					height: var(--w);
-					border-top: calc(var(--p1) / 4) var(--myTextColor) solid;
+					border-top: calc(var(--p1) / 4) var(--myStylingLocalMarkdownTextColor) solid;
 					position: relative;
 				}
 			}
