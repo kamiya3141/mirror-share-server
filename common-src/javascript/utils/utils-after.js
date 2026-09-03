@@ -259,8 +259,8 @@ function reloadDisplaySettingValues() {
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 		editDeviceInformation("setting-display-open", false);
 		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
-		[...document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents")][Number(getDeviceInformation("setting-display-init-item-index"))].click();
 	}
+	[...document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents")][Number(getDeviceInformation("setting-display-init-item-index"))].click();
 
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");

@@ -6,6 +6,8 @@ async function mainFunc() {
 	mdContentsBoxElement.innerHTML = result;
 
 	PMD.afterFunction();
+
+	convertTemplateElement(document.getElementById("setting-site-display-section"));
 }
 
 // window.addEventListener("load", mainFunc);

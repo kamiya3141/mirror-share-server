@@ -2,8 +2,6 @@ const id_flag = "id";
 const edit_flag = "edit";
 const new_flag = "new";
 
-convertTemplateElement(document.getElementById("setting-site-display-section"));
-
 window.addEventListener("load", async () => {
 	setupSiteSettingDisplay();
 	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")

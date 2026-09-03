@@ -345,7 +345,7 @@ function createAPIURL(_str) {
 
 async function getArticleData() {
 	const targetQueryName = "slug";
-	const targetQueryData = getFlag(id_flag);
+	const targetQueryData = getFlag("id");
 	const fileURL = createAPIURL(`article-get-api-local.php`);
 	fileURL.searchParams.set(targetQueryName, targetQueryData ? targetQueryData : defaultRedirectArticleSlug);
 
