@@ -8,9 +8,9 @@
 /** 
 * @type {MyEditorsObject & {
 *   readonly editors: HTMLElement[],
-*   set editors,
+*   editors: HTMLElement,
 *	readonly values: string[],
-*	set values,
+*	values: string[],
 *	redesignLineNumber: function(): void,
 *	registSubContentsButton: function(): void,
 *	removeSubContentsButton: function(): void,
