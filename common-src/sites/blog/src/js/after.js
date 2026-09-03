@@ -26,7 +26,6 @@ function setupSiteSettingDisplay() {
 	// トグルスイッチの設定
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
 		const site_setting_id = c.getAttribute("template-id-args");
-		console.log(site_setting_id, c);
 		c.querySelector(".toggle_input").addEventListener("change", async e => {
 			if (!get_SetByScript(e.target)) {
 				const chk = e.target.checked;
