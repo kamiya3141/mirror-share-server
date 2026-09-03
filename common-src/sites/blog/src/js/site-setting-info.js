@@ -72,7 +72,7 @@ const origin_site_setting = {
 	"site-setting--disallow-override-colors": false,
 	"setting-site-display-init-item-index": 0,
 	"allow--opening--setting-site-display--after--reload": false,
-	"save--setting-site--localstorage": false,
+	"save--setting-site-data--localstorage": false,
 	"setting-site-display-open": false
 };
 
