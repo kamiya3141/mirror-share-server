@@ -28,11 +28,31 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
-	& [data-mydef--article-tag="title"] {
-		font-size: 2.5rem;
-		font-weight: 800;
-		width: var(--c1);
-		height: calc(var(--c-hd-h) * 1.75);
+	&[data-mydef--markdown-design--name="default"] {
+		& [data-mydef--article-tag="title"] {
+			font-size: 2.5rem;
+			font-weight: 800;
+			width: var(--c1);
+			height: calc(var(--c-hd-h) * 1.75);
+		}
+
+		& div.hn-div {
+			padding-bottom: calc(var(--c-hd-h) / 4);
+
+			& h1,
+			h2 {
+				border-bottom: 1px solid var(--myTextColor);
+			}
+
+			& h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				padding-top: calc(var(--c-hd-h) / 2);
+			}
+		}
 	}
 
 	& table {
@@ -161,24 +181,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	& div {
-		&.hn-div {
-			padding-bottom: calc(var(--c-hd-h) / 4);
-
-			& h1,
-			h2 {
-				border-bottom: 1px solid var(--myTextColor);
-			}
-
-			& h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				padding-top: calc(var(--c-hd-h) / 2);
-			}
-		}
-
 		&.byref-div {
 			padding-left: calc(var(--p2) * 2);
 			position: relative;
