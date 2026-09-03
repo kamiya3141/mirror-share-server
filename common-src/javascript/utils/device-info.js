@@ -1,32 +1,3 @@
-const localStorageDeviceObjectKeyName = "device-data";
-
-const origin_device = {
-	"force-theme": false,
-	"theme-type": "system",
-	"force-device": false,
-	"device-type": "device",
-	"width": 0,
-	"height": 0,
-	"realWidth": 0,
-	"realHeight": 0,
-	"prefer-color": "#00ff00",
-	"font-family": "note-sans-jp",
-	"setting-display-init-item-index": 0,
-	"allow--changing--device-mode--for--display-size": false,
-	"allow--opening--setting-display--after--reload": false,
-	"save--user-data--localstorage": false,
-	"setting-display-open": false,
-	"DEBUGMODE": true
-};
-
-var device = {};
-
-
-setOriginDeviceValueForDevice();
-if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
-	setDeviceDataForLocalStorage(true);
-
-
 function resetDeviceInformationData(allowDisplayWarningMessage = true) {
 	if (allowDisplayWarningMessage)
 		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
@@ -104,6 +75,34 @@ function syncDeviceDataForLocalStorage() {
 	Object.assign(device, getDeviceDataForLocalStorage());
 	device["DEBUGMODE"] = origin_device["DEBUGMODE"];
 }
+
+const localStorageDeviceObjectKeyName = "device-data";
+
+const origin_device = {
+	"force-theme": false,
+	"theme-type": "system",
+	"force-device": false,
+	"device-type": "device",
+	"width": 0,
+	"height": 0,
+	"realWidth": 0,
+	"realHeight": 0,
+	"prefer-color": "#00ff00",
+	"font-family": "note-sans-jp",
+	"setting-display-init-item-index": 0,
+	"allow--changing--device-mode--for--display-size": false,
+	"allow--opening--setting-display--after--reload": false,
+	"save--user-data--localstorage": false,
+	"setting-display-open": false,
+	"DEBUGMODE": true
+};
+
+var device = {};
+
+
+setOriginDeviceValueForDevice();
+if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
+	setDeviceDataForLocalStorage(true);
 
 // windowイベント設定
 // tamura-first-load.js のresize-eventの実行をキャンセル
