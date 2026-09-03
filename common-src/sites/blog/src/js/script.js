@@ -8,4 +8,7 @@ async function mainFunc() {
 	PMD.afterFunction();
 }
 
-window.addEventListener("load", mainFunc);
+// window.addEventListener("load", mainFunc);
+(async () => {
+	await mainFunc();
+})();
