@@ -84,11 +84,13 @@ function loadedFunc() {
 				el2.addEventListener("click", e => {
 					const return_data = switchingOpenDisplay(switched_elem);
 					obj["tf-func"](return_data, e.target);
+					/*
 					if (getOpenDisplayStatus(switched_elem)) {
 						if (focus_out_elem != null)
 							focus_out_elem.focus();
 						setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
 					}
+					*/
 				});
 			});
 		});
