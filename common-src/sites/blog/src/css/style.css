@@ -1,23 +1,23 @@
 @property --myStylingLocalMarkdownMainBackgroundColor {
-	syntax: "<color>";
+	syntax: "*";
 	inherits: true;
 	initial-value: var(--myMainBackgroundColor);
 }
 
 @property --myStylingLocalMarkdownTextColor {
-	syntax: "<color>";
+	syntax: "*";
 	inherits: true;
 	initial-value: var(--myTextColor);
 }
 
 @property --myStylingLocalMarkdownElementBackgroundColor {
-	syntax: "<color>";
+	syntax: "*";
 	inherits: true;
 	initial-value: var(--myElementBackgroundColor);
 }
 
 @property --myStylingLocalMarkdownElementBackgroundColor2 {
-	syntax: "<color>";
+	syntax: "*";
 	inherits: true;
 	initial-value: var(--myElementBackgroundColor2);
 }
