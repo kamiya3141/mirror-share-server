@@ -53,7 +53,7 @@ function setupSiteSettingDisplay() {
 	});
 
 	// 設定画面内の画面切り替えの設定
-	const setting_elem = document.getElementById("display-setting-site-main-contents-setting");
+	const setting_elem = document.getElementById("display-site-setting-main-contents-setting");
 	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
 	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
@@ -153,7 +153,7 @@ function reloadSiteSettingValues() {
 		editSiteSettingInformation("setting-site-display-open", false);
 		document.querySelector(".open-setting-site-display-button-element").click();
 	}
-	console.log([...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")]);
+
 	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
 
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
@@ -166,7 +166,7 @@ function reloadSiteSettingValues() {
 	const md_design = document.getElementById("setting-site-display--appearance--input-select--design-setting");
 	if (!md_design.disabled)
 		md_design.value = getSiteSettingInformation("site-setting--markdown-design");
-	siteSettingColorsArray.forEach(id => document.getElementById("display-setting-site-main-contents-setting").querySelector(`#${id}`).value = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`));
+	siteSettingColorsArray.forEach(id => document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`));
 
 	document.querySelector("#setting-site-display--specific--input-select--setting-site-display-init-item").value = String(getSiteSettingInformation("setting-site-display-init-item-index"));
 }
