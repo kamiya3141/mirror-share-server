@@ -103,7 +103,7 @@ function setupSiteSettingDisplay() {
 			"init-disabled": true
 		},
 		{
-			"select-id": "setting-site-display--specific--input-select--setting-display-init-item",
+			"select-id": "setting-site-display--specific--input-select--setting-site-display-init-item",
 			"select-option-data-array": [
 				{
 					"text": "表示設定",
