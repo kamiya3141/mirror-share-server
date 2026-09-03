@@ -13,14 +13,22 @@ async function loadAllArticles() {
 	await appear_allArticlesDisplay(true, all_decoded_json_data);
 }
 
+const siteSettingColorsArray = [
+	"setting-site-display--appearance--input-color--main-background-color",
+	"setting-site-display--appearance--input-color--main-text-color",
+	"setting-site-display--appearance--input-color--element-background-color-1",
+	"setting-site-display--appearance--input-color--element-background-color-2"
+];
+
 function setupSiteSettingDisplay() {
 
 	const __elem = document.querySelector("#setting-site-display-section");
 	__elem.tabIndex = 0;
 	[".open-setting-site-display-button-element", "#setting-site-display-div-main #control-box"].forEach(c1 => {
 		[...document.querySelectorAll(c1)].forEach(c2 => {
-			c.addEventListener("click", e => {
-				switchingOpenDisplay(__elem);
+			c2.addEventListener("click", e => {
+				const _val = switchingOpenDisplay(__elem);
+				editSiteSettingInformation("setting-site-display-open", _val);
 			});
 		});
 	});
@@ -62,12 +70,7 @@ function setupSiteSettingDisplay() {
 	});
 
 	// 色設定
-	[
-		"setting-site-display--appearance--input-color--main-background-color",
-		"setting-site-display--appearance--input-color--main-text-color",
-		"setting-site-display--appearance--input-color--element-background-color-1",
-		"setting-site-display--appearance--input-color--element-background-color-2"
-	].forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
+	siteSettingColorsArray.forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
 		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
 		reloadSiteSettingInformation();
 	}));
@@ -91,7 +94,7 @@ function setupSiteSettingDisplay() {
 			"select-change-event-function": val => {
 				editSiteSettingInformation("site-setting--markdown-design", val);
 				if (!getSiteSettingInformation("site-setting--disallow-override-colors")) {
-					// 後々実装
+					// 色を推奨値に上書きする(後々実装)
 					window.alert(val);
 				}
 			},
@@ -114,4 +117,28 @@ function setupSiteSettingDisplay() {
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
+	reloadDisplaySettingValues();
+}
+
+function reloadSiteSettingValues() {
+	if (getSiteSettingInformation("allow--opening--setting-site-display--after--reload") && getSiteSettingInformation("setting-site-display-open")) {
+		editSiteSettingInformation("setting-site-display-open", false);
+		document.querySelector(".open-setting-site-display-button-element").click();
+	}
+
+	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
+
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
+		const _arg = c.getAttribute("template-id-args");
+		const data = getSiteSettingInformation(_arg);
+		if (data != null)
+			c.querySelector(".toggle_input").checked = Boolean(data);
+	});
+
+	const md_design = document.getElementById("setting-site-display--appearance--input-select--design-setting");
+	if (!md_design.disabled)
+		md_design.value = getSiteSettingInformation("site-setting--markdown-design");
+	siteSettingColorsArray.forEach(id => document.getElementById("display-setting-site-main-contents-setting").querySelector(`#${id}`).value = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`));
+
+	document.querySelector("#setting-site-display--specific--input-select--setting-site-display-init-item").value = String(getSiteSettingInformation("setting-site-display-init-item-index"));
 }

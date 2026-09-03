@@ -161,14 +161,21 @@ html {
 								flex: 1;
 								align-items: center;
 
-								& > .main-nav > .main-nav-box > * {
-									width: var(--c1);
-									height: var(--c1);
+								& > .main-nav > .main-nav-box {
+									& > .setting-general-box {
+										width: var(--c1);
+										height: var(--c1);
 
-									& > iframe,
-									* {
-										width: 75%;
-										height: 75%;
+										& > iframe {
+											width: 75%;
+											height: 75%;
+										}
+									}
+
+									& > .general-box,
+									& > .general-box > * {
+										width: var(--c1);
+										height: var(--c1);
 									}
 								}
 							}
