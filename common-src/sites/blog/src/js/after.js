@@ -73,6 +73,7 @@ function setupSiteSettingDisplay() {
 	// 色設定
 	siteSettingColorsArray.forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
 		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
+		reloadSiteSettingValues();
 		reloadSiteSettingInformation();
 	}));
 	[
@@ -113,7 +114,7 @@ function setupSiteSettingDisplay() {
 					"value": "1"
 				},
 				{
-					"text": "ユーザデータの設定",
+					"text": "サイトの設定",
 					"value": "2"
 				},
 				{
@@ -144,7 +145,7 @@ function setupSiteSettingDisplay() {
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
-	reloadDisplaySettingValues();
+	reloadSiteSettingValues();
 }
 
 function reloadSiteSettingValues() {
@@ -152,7 +153,7 @@ function reloadSiteSettingValues() {
 		editSiteSettingInformation("setting-site-display-open", false);
 		document.querySelector(".open-setting-site-display-button-element").click();
 	}
-
+	console.log([...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")]);
 	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
 
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
