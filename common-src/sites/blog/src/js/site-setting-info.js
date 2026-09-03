@@ -44,7 +44,7 @@ function reloadSiteSettingInformation(add_msg = "") {
 		["ElementBackgroundColor", "site-setting--element-background-color-1"],
 		["ElementBackgroundColor2", "site-setting--element-background-color-2"]
 	].forEach(arr => {
-		document.documentElement.style.setProperty(`--myStylingLocalMarkdown${arr[0]}`, rgbToHex(getSiteSettingInformation(arr[1])));
+		document.documentElement.style.setProperty(`--myStylingLocalMarkdown${arr[0]}`, getSiteSettingInformation(arr[1]));
 	});
 }
 
