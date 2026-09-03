@@ -72,7 +72,6 @@ function setupSiteSettingDisplay() {
 
 	// 色設定
 	siteSettingColorsArray.forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
-		console.log(setting_elem.querySelector(`#${id}`).value);
 		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`, setting_elem.querySelector(`#${id}`).value);
 		reloadSiteSettingValues();
 		reloadSiteSettingInformation();
@@ -95,6 +94,7 @@ function setupSiteSettingDisplay() {
 				}
 			],
 			"select-change-event-function": val => {
+				document.querySelector("#root .main-contentsbox").setAttribute("data-mydef--markdown-design--name", val);
 				editSiteSettingInformation("site-setting--markdown-design", val);
 				if (!getSiteSettingInformation("site-setting--disallow-override-colors")) {
 					// 色を推奨値に上書きする(後々実装)
@@ -148,6 +148,8 @@ function setupSiteSettingDisplay() {
 	});
 	reloadSiteSettingValues();
 }
+
+document.addEventListener("setting-site-display-reload", e => reloadSiteSettingValues());
 
 function reloadSiteSettingValues() {
 	if (getSiteSettingInformation("allow--opening--setting-site-display--after--reload") && getSiteSettingInformation("setting-site-display-open")) {
