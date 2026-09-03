@@ -124,4 +124,7 @@ const template_data_function_map = {
 	}
 };
 
-convertTemplateElement(document);
+const my_src = new URL(document.currentScript.src);
+
+if (!my_src.searchParams.has("simple"))
+	convertTemplateElement(document);
