@@ -172,8 +172,7 @@ html {
 										}
 									}
 
-									& > .general-box,
-									& > .general-box > * {
+									& > .general-box {
 										width: var(--c1);
 										height: var(--c1);
 									}
