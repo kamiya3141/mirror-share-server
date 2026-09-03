@@ -60,7 +60,7 @@ function setupSiteSettingDisplay() {
 		"setting-site-display--appearance--input-color--main-text-color",
 		"setting-site-display--appearance--input-color--element-background-color-1",
 		"setting-site-display--appearance--input-color--element-background-color-2"
-	].forEach(id => setting_elem.querySelector(id).addEventListener("change", e => {
+	].forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
 		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
 		reloadSiteSettingInformation();
 	}));
