@@ -2,7 +2,10 @@ const id_flag = "id";
 const edit_flag = "edit";
 const new_flag = "new";
 
+convertTemplateElement(document.getElementById("setting-site-display-section"));
+
 window.addEventListener("load", async () => {
+	setupSiteSettingDisplay();
 	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
 });
@@ -14,8 +17,6 @@ async function loadAllArticles() {
 
 function setupSiteSettingDisplay() {
 
-	convertTemplateElement(document.getElementById("setting-site-display-section"));
-
 	Object.entries({
 		"site-setting--disallow-override-colors": async __tf => {
 			window.alert(__tf);
@@ -23,8 +24,9 @@ function setupSiteSettingDisplay() {
 	}).forEach(([k, v]) => toggleSwitchChangeEventAddFunctionFuncObj[k] = v);
 
 	// トグルスイッチの設定
-	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template" data-mydef--import-template-type="site-setting"]`)].forEach(c => {
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
 		const site_setting_id = c.getAttribute("template-id-args");
+		console.log(site_setting_id, c);
 		c.querySelector(".toggle_input").addEventListener("change", async e => {
 			if (!get_SetByScript(e.target)) {
 				const chk = e.target.checked;
