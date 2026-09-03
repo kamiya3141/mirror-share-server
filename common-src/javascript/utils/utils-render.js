@@ -1,3 +1,6 @@
+if (!Object.hasOwn(window, "utils--temp--add-str"))
+	window["utils--temp--add-str"] = "";
+
 const addElementString = window["utils--temp--add-str"] ? window["utils--temp--add-str"] : "";
 
 document.body.insertAdjacentHTML("afterbegin", `

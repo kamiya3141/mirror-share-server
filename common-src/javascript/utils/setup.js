@@ -1,36 +1,3 @@
-const template_data_function_map = {
-	"display-template": (header_title = "title", contents = "", footer_title = "", closed_button = true) => {
-		const flag = cloneTemplate("display-template");
-		flag.querySelector(".display-item-box").setAttribute("data-mydef--display-template--allow-exist-closed-button", String(closed_button));
-		flag.querySelector(".header-text").textContent = header_title;
-		flag.querySelector(".footer-text").textContent = footer_title;
-		const main_contents = flag.querySelector(".main-contents");
-		if (typeof contents == "string")
-			main_contents.innerHTML = contents;
-		else
-			main_contents.appendChild(contents);
-
-		convertTemplateElement(main_contents);
-
-		return flag;
-	},
-	"toggle-switch-template": device_setting_id => {
-		const flag = cloneTemplate("toggle-switch-template");
-		flag.querySelector(".toggle_input").addEventListener("change", async e => {
-			if (!get_SetByScript(e.target)) {
-				const chk = e.target.checked;
-				editDeviceInformation(device_setting_id, chk);
-				await toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
-				reloadDeviceInformation("toggle-switch-template");
-			}
-			edit_SetByScript(e.target, false);
-		});
-		return flag;
-	}
-};
-
-convertTemplateElement(document);
-
 function toggleSwitchCancelFunction(elem, tf = null) {
 	edit_SetByScript(elem, true);
 	elem.checked = Boolean(tf == null ? !elem.checked : tf);
@@ -134,3 +101,27 @@ function getOpenDisplayStatus(elem) {
 	const data = elem.getAttribute(attr_name);
 	return Boolean(data == "true");
 }
+
+const template_data_function_map = {
+	"display-template": (header_title = "title", contents = "", footer_title = "", closed_button = true) => {
+		const flag = cloneTemplate("display-template");
+		flag.querySelector(".display-item-box").setAttribute("data-mydef--display-template--allow-exist-closed-button", String(closed_button));
+		flag.querySelector(".header-text").textContent = header_title;
+		flag.querySelector(".footer-text").textContent = footer_title;
+		const main_contents = flag.querySelector(".main-contents");
+		if (typeof contents == "string")
+			main_contents.innerHTML = contents;
+		else
+			main_contents.appendChild(contents);
+
+		convertTemplateElement(main_contents);
+
+		return flag;
+	},
+	"toggle-switch-template": device_setting_id => {
+		const flag = cloneTemplate("toggle-switch-template");
+		return flag;
+	}
+};
+
+convertTemplateElement(document);

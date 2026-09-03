@@ -2,6 +2,19 @@ let displayElementQueryArray = [];
 
 function loadedFunc() {
 
+	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"]`)].forEach(c => {
+		const device_setting_id = c.getAttribute("template-id-args");
+		c.querySelector(".toggle_input").addEventListener("change", async e => {
+			if (!get_SetByScript(e.target)) {
+				const chk = e.target.checked;
+				editDeviceInformation(device_setting_id, chk);
+				await toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
+				reloadDeviceInformation("toggle-switch-template");
+			}
+			edit_SetByScript(e.target, false);
+		});
+	});
+
 	displayElementQueryArray = [
 		{
 			"trigger-element": [".open-setting-display-button-element", "#setting-display-div-main #control-box"],
