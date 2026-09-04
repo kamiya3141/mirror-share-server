@@ -72,7 +72,7 @@ function getMyQuery(): void
 	$other_data_query = $_GET['od'] ?? $add_filename;
 
 	if ($other_data_query === 'favicon.ico' || str_starts_with($other_data_query, 'favicon/'))
-		forwardRemoteFile(url_join(MY_BASE_DIR, $other_data_query));
+		forwardRemoteFile(url_join(MY_BASEPATH, $other_data_query));
 
 	if (empty($other_data_query))
 		$other_data_query = $add_filename;
