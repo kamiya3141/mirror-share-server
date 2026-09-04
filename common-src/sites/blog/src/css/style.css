@@ -169,9 +169,10 @@ html {
 										width: var(--c1);
 										height: var(--c1);
 
-										& > iframe {
-											width: 75%;
-											height: 75%;
+										& > .icon-box_icon-img {
+											object-fit: contain;
+											width: var(--c1);
+											height: var(--c1);
 										}
 									}
 
