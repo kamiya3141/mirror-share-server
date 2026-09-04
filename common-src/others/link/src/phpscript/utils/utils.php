@@ -41,6 +41,7 @@ $mimeMap = [
 	'png' => 'image/png',
 	'jpg' => 'image/jpeg',
 	'jpeg' => 'image/jpeg',
+	'ico' => 'image/x-icon',
 	'gif' => 'image/gif',
 	'svg' => 'image/svg+xml',
 	'html' => 'text/html',
@@ -69,6 +70,10 @@ function getMyQuery(): void
 	$add_filename = ($convert_query_exist ? '' : INDEX_HTML);
 	$target_query = $_GET['target'] ?? '';
 	$other_data_query = $_GET['od'] ?? $add_filename;
+
+	if ($other_data_query === 'favicon.ico' || str_starts_with($other_data_query, 'favicon/'))
+		forwardRemoteFile(url_join(MY_BASE_DIR, $other_data_query));
+
 	if (empty($other_data_query))
 		$other_data_query = $add_filename;
 	if (substr($other_data_query, -1) == '/')
@@ -130,7 +135,7 @@ function errorString($_str_ = '-'): string
 	]);
 }
 
-function debugString(...$args): string
+function debugString(string ...$args): string
 {
 	array_unshift($args, '~begin~' . PHP_EOL);
 	array_push($args, PHP_EOL . '~end~');
