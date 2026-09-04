@@ -56,7 +56,7 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 	if (!this_is_svg_file) {
 		const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
 		adds_head([
-			["link", "icon", "favicon.ico", "image/x-icon"],
+			["link", "icon", "favicon.ico", "image/vnd.microsoft.icon"],
 			["link", "stylesheet", "common-src/css/base.css"],
 			...add_arr_css
 		]);

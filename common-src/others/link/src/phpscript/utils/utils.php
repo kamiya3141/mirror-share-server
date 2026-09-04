@@ -41,7 +41,7 @@ $mimeMap = [
 	'png' => 'image/png',
 	'jpg' => 'image/jpeg',
 	'jpeg' => 'image/jpeg',
-	'ico' => 'image/x-icon',
+	'ico' => 'image/vnd.microsoft.icon',
 	'gif' => 'image/gif',
 	'svg' => 'image/svg+xml',
 	'html' => 'text/html',
@@ -183,7 +183,7 @@ function getLatestDir(string $baseDir): ?array
 	return exist($versionDirs) ? end($versionDirs) : null;
 }
 
-function setHeaders($_cts, $_mm = 'text/plain', $_file_path = '')
+function setHeaders(string $_cts, string $_mm = 'text/plain', string $_file_path = '')
 {
 	if (exist($_file_path))
 		header('Content-Disposition: attachment; filename="' . getFileName($_file_path) . '"');
@@ -258,17 +258,17 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 	return "";
 }
 
-function exist($_arg): bool
+function exist(mixed $_arg): bool
 {
 	return isset($_arg) && !empty($_arg);
 }
-function getFileName($_arg, $with_ext = true)
+function getFileName(string $_arg, $with_ext = true)
 {
 	$___explode_result = explode('/', $_arg);
 	$_ret = end($___explode_result);
 	return $with_ext ? $_ret : explode('.', $_ret)[0];
 }
-function getExt($_arg): string
+function getExt(string $_arg): string
 {
 	$___explode_result = explode('.', getFileName($_arg));
 	return end($___explode_result);
@@ -290,11 +290,11 @@ function get_files(string $_url): array
 {
 	return array_values(array_filter(get_contents($_url), 'is_file'));
 }
-function get_dirs($_url): array
+function get_dirs(string $_url): array
 {
 	return array_values(array_filter(get_contents($_url), 'is_dir'));
 }
-function get_contents($_url): array
+function get_contents(string $_url): array
 {
 	if (str_contains($_url, getMyHostName()))
 		$_url = str_replace(getMyHostName(), MY_BASEPATH, $_url);
