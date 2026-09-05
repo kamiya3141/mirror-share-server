@@ -234,9 +234,9 @@ var setThemeArgsHistoryObject = {
 var hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);
 var getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
 
-var fontFamilyChangedEventFunc = () => document.dispatchEvent(new CustomEvent("my-event--font-family--changed", {
+var fontFamilyChangedEventFunc = (...args) => document.dispatchEvent(new CustomEvent("my-event--font-family--changed", {
 	"detail": {
-		"data": setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)
+		"data": setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true) + (args.length > 0 ? `\n${args.join("\n")}` : "")
 	}
 }));
 
@@ -262,7 +262,7 @@ function setTheme(add_msg = "") {
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
 		["StylingFontFamily", [fontFamily, fontFamily], async el => {
 			if (setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)) {
-				fontFamilyChangedEventFunc();
+				fontFamilyChangedEventFunc(add_msg);
 				await document.fonts.load(getComputedStyle(el).font);
 				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
 				fontFamilyChangedEventFunc();
@@ -307,7 +307,7 @@ document.addEventListener("my-event--font-family--changed", e => {
 	if (e["detail"]) {
 		if (Object.hasOwn(e["detail"], "data")) {
 			if (typeof e["detail"]["data"] == "string") {
-				if (e["detail"]["data"].length > 0 && e["detail"]["data"] != "none")
+				if ((e["detail"]["data"].length >= 5 && String(e["detail"]["data"]).substring(0, 5) != "none\n") || !String(e["detail"]["data"]).includes("none\n"))
 					console.log(e["detail"]["data"]);
 			} else
 				console.error(`document::event::${e.type}\nTypeError -> typeof e["detail"]["data"] = ${typeof e["detail"]["data"]}`);
