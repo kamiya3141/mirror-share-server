@@ -199,10 +199,14 @@ function setTheme(add_msg = "") {
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
-		["StylingFontFamily", [fontFamily, fontFamily]],
+		["StylingFontFamily", [fontFamily, fontFamily], async el => await document.fonts.load(window.getComputedStyle(el).font)],
 		["StylingUserPreferColor", [preferColor, preferColor]],
 		["StylingTabSize", [tabSize, tabSize]]
-	].forEach(c => document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]));
+	].forEach(async c => {
+		document.documentElement.style.setProperty(`--my${c[0]}`, c[1][n_idx]);
+		if (c.length == 3)
+			await c[2](document.documentElement);
+	});
 
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
 	document.documentElement.setAttribute("data-my-device-type", (forceDevice && deviceType == "device") ? checkCurrentDeviceString() : deviceType);
