@@ -396,8 +396,12 @@ function loadedFunc() {
 		reloadDisplaySettingValues();
 }
 
-window.addEventListener("load", () => loadedFunc());
-document.addEventListener("setting-display-reload", () => reloadDisplaySettingValues());
+window.addEventListener("load", () => {
+	loadedFunc();
+});
+document.addEventListener("setting-display-reload", () => {
+	reloadDisplaySettingValues();
+});
 
 function reloadDisplaySettingValues() {
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {

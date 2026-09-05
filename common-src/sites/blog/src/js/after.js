@@ -1,4 +1,6 @@
-window.addEventListener("load", async e => localLoadedFunc());
+window.addEventListener("load", async () => {
+	localLoadedFunc();
+});
 
 async function localLoadedFunc() {
 	setupSiteSettingDisplay();
