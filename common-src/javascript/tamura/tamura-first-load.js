@@ -227,7 +227,7 @@ var setThemeArgsHistoryObject = {
 			else
 				this["__fontFamilyChangedFlag"] = (args.length ? args.join("\n") : "none");
 		}
-		return Boolean(this["__fontFamilyChangedFlag"].length);
+		return this["__fontFamilyChangedFlag"];
 	}
 };
 
@@ -304,17 +304,17 @@ document.addEventListener("my-event--font-family--changed", e => {
 	const _default_display_style = _display_element.getAttribute("data-mydef--font_loading_display_div_element--default-display-style");
 	const current_display_style = _display_element.style.display;
 	_display_element.style.display = (current_display_style == "none" ? _default_display_style : "none");
-	if (Object.hasOwn(e, "detail")) {
+	if (e["detail"]) {
 		if (Object.hasOwn(e["detail"], "data")) {
 			if (typeof e["detail"]["data"] == "string") {
-				if (e["detail"]["data"].length > 0)
+				if (e["detail"]["data"].length > 0 && e["detail"]["data"] != "none")
 					console.log(e["detail"]["data"]);
 			} else
 				console.error(`document::event::${e.type}\nTypeError -> typeof e["detail"]["data"] = ${typeof e["detail"]["data"]}`);
 		} else
-			console.error(`document::event::${e.type}\nUndefined -> e["detail"] don't have "data" property.`);
+			console.error(`document::event::${e.type}\nUndefined -> e["detail"] don't have "data" property.\n${e["detail"]}`);
 	} else
-		console.error(`document::event::${e.type}\nUndefined -> {Event} don't have "detail" property.`);
+		console.error(`document::event::${e.type}\nUndefined -> {Event} don't have "detail" property.\n${e}`);
 });
 
 const console_clear_ok = document.querySelector("span#console-ok");
