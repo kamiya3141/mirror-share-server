@@ -169,7 +169,7 @@ var setThemeArgsHistoryObject = {
 	"__fontFamily": "'Note Sans JP'",
 	"__fontFamilyAddString": ", sans-serif",
 	"__tabSize": 4,
-	"__fontFamilyChangedFlag": false,
+	"__fontFamilyChangedFlag": "",
 	get "__onlyFontFamily"() {
 		return this["fontFamily"].replace(this["__fontFamilyAddString"], "");
 	},
@@ -206,7 +206,7 @@ var setThemeArgsHistoryObject = {
 	set "fontFamily"(input) {
 		// フォントファミリが変更されたとき
 		if (this["__onlyFontFamily"] != input)
-			this["editFontFamilyChangedFlag"]();
+			this["editFontFamilyChangedFlag"](false, this["__onlyFontFamily"], input);
 		this["__fontFamily"] = `${input}${this["__fontFamilyAddString"]}`;
 	},
 	get "fontFamily"() {
@@ -220,15 +220,25 @@ var setThemeArgsHistoryObject = {
 	get "tabSize"() {
 		return this["__tabSize"];
 	},
-	"editFontFamilyChangedFlag": function (_get_flag = false) {
-		if (!_get_flag)
-			this["__fontFamilyChangedFlag"] = !this["__fontFamilyChangedFlag"];
-		return this["__fontFamilyChangedFlag"];
+	"editFontFamilyChangedFlag": function (_get_flag = false, ...args) {
+		if (!_get_flag) {
+			if (this["__fontFamilyChangedFlag"].length)
+				this["__fontFamilyChangedFlag"] = "";
+			else
+				this["__fontFamilyChangedFlag"] = (args.length ? args.join("\n") : "none");
+		}
+		return Boolean(this["__fontFamilyChangedFlag"].length);
 	}
 };
 
 var hasFlag = _flg => new URL(winMyHref).searchParams.has(_flg);
 var getFlag = _flg => new URL(winMyHref).searchParams.get(_flg);
+
+var fontFamilyChangedEventFunc = () => document.dispatchEvent(new CustomEvent("my-event--font-family--changed", {
+	"detail": {
+		"data": setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)
+	}
+}));
 
 function dec2bin(ipt, len = 4, with_0b = false) {
 	return (with_0b ? "0b" : "") + String(String(ipt.toString(2)).padStart(len, "0"));
@@ -252,10 +262,11 @@ function setTheme(add_msg = "") {
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
 		["StylingFontFamily", [fontFamily, fontFamily], async el => {
 			if (setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)) {
-				document.dispatchEvent(new CustomEvent("my-event--font-family--changed"));
+				fontFamilyChangedEventFunc();
 				await document.fonts.load(getComputedStyle(el).font);
 				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
-				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 1);
+				fontFamilyChangedEventFunc();
+				// window.setTimeout(fontFamilyChangedEventFunc, 10);
 			}
 		}],
 		["StylingUserPreferColor", [preferColor, preferColor]],
@@ -293,6 +304,17 @@ document.addEventListener("my-event--font-family--changed", e => {
 	const _default_display_style = _display_element.getAttribute("data-mydef--font_loading_display_div_element--default-display-style");
 	const current_display_style = _display_element.style.display;
 	_display_element.style.display = (current_display_style == "none" ? _default_display_style : "none");
+	if (Object.hasOwn(e, "detail")) {
+		if (Object.hasOwn(e["detail"], "data")) {
+			if (typeof e["detail"]["data"] == "string") {
+				if (e["detail"]["data"].length > 0)
+					console.log(e["detail"]["data"]);
+			} else
+				console.error(`document::event::${e.type}\nTypeError -> typeof e["detail"]["data"] = ${typeof e["detail"]["data"]}`);
+		} else
+			console.error(`document::event::${e.type}\nUndefined -> e["detail"] don't have "data" property.`);
+	} else
+		console.error(`document::event::${e.type}\nUndefined -> {Event} don't have "detail" property.`);
 });
 
 const console_clear_ok = document.querySelector("span#console-ok");
