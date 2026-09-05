@@ -43,7 +43,7 @@ function createMotionContentsSection(url = "", title = "", element = "", dir = "
 	// const _res = await window.fetch(url);
 	// const _status = _res.ok ? "normal" : "alert";
 	const _status = "normal";
-	const mainContents = element == "img" ? createPopoverElementsStr(`<img class="motion-contents" src="${url}">`, "", dir) : `<iframe class="motion-contents" href="${url}"></iframe>`;
+	const mainContents = element == "img" ? createPopoverElementsStr(`<img class="motion-contents" src="${url}">`, "", dir, "https://file-nextcloud.tshuto.com/image/svg/motion-error/1.svg") : `<iframe class="motion-contents" href="${url}"></iframe>`;
 	let result = !(title.replace(regexp, "").length > 0);
 
 	if (!result)

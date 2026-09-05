@@ -198,9 +198,9 @@ function createRDM() {
 	return Math.floor(Math.random() * (10 ** 12));
 }
 
-function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width") {
+function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width", error_img_url = null) {
 	const rdm = createRDM();
-	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this)">`);
+	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this, '${error_img_url}')">`);
 	el_str1 = !el_str1 ? el_str0 : el_str1;
 	dir = dir == "width" ? dir : "height";
 	return `
@@ -278,10 +278,10 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 	});
 }
 
-function imgError(img) {
+function imgError(img, error_img_url = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg") {
 	if (img.dataset.fallback == "true") return;
 	img.dataset.fallback = "true";
-	img.src = "https://file-nextcloud.tshuto.com/image/svg/motion-error/1.svg";
+	img.src = (error_img_url ? error_img_url : "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg");
 }
 
 function createDivElement(class_name = "", id = "") {
