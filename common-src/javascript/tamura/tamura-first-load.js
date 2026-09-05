@@ -307,7 +307,7 @@ document.addEventListener("my-event--font-family--changed", e => {
 	if (e["detail"]) {
 		if (Object.hasOwn(e["detail"], "data")) {
 			if (typeof e["detail"]["data"] == "string") {
-				if ((e["detail"]["data"].length >= 5 && String(e["detail"]["data"]).substring(0, 5) != "none\n") || !String(e["detail"]["data"]).includes("none\n"))
+				if (String(e["detail"]["data"]).substring(0, 5) != "none\n")
 					console.log(e["detail"]["data"]);
 			} else
 				console.error(`document::event::${e.type}\nTypeError -> typeof e["detail"]["data"] = ${typeof e["detail"]["data"]}`);
