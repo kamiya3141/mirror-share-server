@@ -58,23 +58,39 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 	if (!this_is_svg_file) {
 		const font_loading_display_div_element = document.createElement("div");
 		font_loading_display_div_element.id = "font_loading_display_div_element-id";
+		font_loading_display_div_element.setAttribute("data-mydef--font_loading_display_div_element--default-display-style", "flex");
 		font_loading_display_div_element.innerHTML = `
-			<style>
-				#${font_loading_display_div_element.id} {
-					background-color: rgba(128, 128, 128, 0.5);
-					text-align: center;
-					z-index: 999;
-				}
-			</style>
-			<h1>フォント読み込み中</h1>`;
+<style>
+	#${font_loading_display_div_element.id} {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		display: flex;
+		background-color: rgba(0, 0, 0, 0);
+		text-align: center;
+		z-index: 999;
+		justify-content: center;
+		align-items: center;
+
+		&::before {
+			content: "";
+			background-color: #444b;
+			backdrop-filter: blur(0.25rem);
+			width: 100%;
+			height: 100%;
+		}
+
+		& .main-title {
+			display: inline-block;
+			font-size: 5rem;
+		}
+	}
+</style>
+<h1 class="main-title">フォント<br>読み込み中</h1>`;
 		font_loading_display_div_element.style.display = "none";
-		document.addEventListener("my-event--font-family--changed", e => {
-			const current_display_style = font_loading_display_div_element.style.display;
-			font_loading_display_div_element.style.display = (current_display_style == "none" ? "block" : "none");
-		});
 		document.getElementsByTagName("body")[0].prepend(font_loading_display_div_element);
 
-		if (this_is_none_version) {
+		if (!this_is_none_version) {
 			const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
 			adds_head([
 				["link", "stylesheet", "common-src/css/base.css"],
@@ -185,10 +201,8 @@ var setThemeArgsHistoryObject = {
 	},
 	set "fontFamily"(input) {
 		// フォントファミリが変更されたとき
-		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input) {
+		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input)
 			this["editFontFamilyChangedFlag"]();
-			console.log("abc");
-		}
 		this["__fontFamily"] = `${input}${this["__fontFamilyAddString"]}`;
 	},
 	get "fontFamily"() {
@@ -237,7 +251,7 @@ function setTheme(add_msg = "") {
 				document.dispatchEvent(new CustomEvent("my-event--font-family--changed"));
 				await document.fonts.load(getComputedStyle(el).font);
 				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
-				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 1000);
+				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 60 * 1000);
 			}
 		}],
 		["StylingUserPreferColor", [preferColor, preferColor]],
@@ -269,6 +283,13 @@ window.addEventListener("load", () => {
 		setTheme();
 });
 
+
+document.addEventListener("my-event--font-family--changed", e => {
+	const _display_element = document.getElementById("font_loading_display_div_element-id");
+	const _default_display_style = _display_element.getAttribute("data-mydef--font_loading_display_div_element--default-display-style");
+	const current_display_style = _display_element.style.display;
+	_display_element.style.display = (current_display_style == "none" ? _default_display_style : "none");
+});
 
 const console_clear_ok = document.querySelector("span#console-ok");
 
