@@ -153,8 +153,8 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/!\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
-		(alt, url, ttl, rdm = Math.floor(Math.random() * (10 ** 12))) => createPopoverElementsStr(`<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`),
+		/!\[["'`]?(.*?)["'`]?\]\(["'`]?(https?:\/\/[a-zA-Z0-9 \/:%&?=.-]+)["'`]? (.*?)\)/g,
+		(alt, url, ttl) => createPopoverElementsStr(`<img src="${url}" title="${ttl ? ttl : url}" alt="${alt ? alt : url}">`),
 		[1, 2, 3]
 	],
 	[
@@ -163,7 +163,7 @@ const before_replace_str_define_array = [
 		null
 	],
 	[
-		/\[["'`]?(.*?)["'`]?\]\((https?:\/\/[a-zA-Z0-9\/:%&?=.-]+) ?["'`]?(.*?)["'`]?\)/g,
+		/\[["'`]?(.*?)["'`]?\]\(["'`]?(https?:\/\/[a-zA-Z0-9 \/:%&?=.-]+)["'`]? (.*?)\)/g,
 		(cts, url, ttl) => `<a href="${url}" title="${ttl ? ttl : url}">${cts ? cts : url}</a>`,
 		[1, 2, 3]
 	],
