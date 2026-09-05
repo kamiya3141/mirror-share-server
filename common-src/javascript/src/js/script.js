@@ -140,9 +140,14 @@ require(["vs/editor/editor.main"], () => {
 			optgroupElement.label = __FORCE_UPPER_CASE ? labelName.toUpperCase() : labelName;
 			for (let optionValue of Object.keys(cacheThemeJsonData[labelName])) {
 				if (labelName != PRIMARY_THEME_KIND_NAME) {
+					/*
 					const res2 = await fetch(`https://cdn.jsdelivr.net/npm/monaco-themes/themes/${optionValue}.json`);
 					const jsonData = await res2.json();
 					cacheThemeJsonData[labelName][optionValue]["data"] = jsonData;
+					*/
+					fetch(`https://cdn.jsdelivr.net/npm/monaco-themes/themes/${optionValue}.json`)
+						.then(res => res.json())
+						.then(dt => cacheThemeJsonData[labelName][optionValue]["data"] = dt);
 				}
 
 				const optionElement = createOptionElement(optionValue);
