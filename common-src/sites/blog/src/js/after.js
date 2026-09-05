@@ -53,12 +53,12 @@ function setupSiteSettingDisplay() {
 	});
 
 	// 設定画面内の画面切り替えの設定
-	const setting_elem = document.getElementById("display-site-setting-main-contents-setting");
-	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
-	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
+	const setting_elem = document.querySelector("#display-site-setting-main-contents-setting");
+	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", "#"));
+	setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tb--")).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
 			e.target.tabIndex = 0;
-			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
+			setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tc--")).forEach(c2 => {
 				if (c1.split("--")[1] == c2.split("--")[1]) {
 					setting_elem.querySelector(c1).setAttribute("data-mydef--selected", "true");
 					setting_elem.querySelector(c2).style.display = "flex";
@@ -156,7 +156,6 @@ function reloadSiteSettingValues() {
 		editSiteSettingInformation("setting-site-display-open", false);
 		document.querySelector(".open-setting-site-display-button-element").click();
 	}
-
 	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
 
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {

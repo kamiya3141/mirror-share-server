@@ -110,17 +110,11 @@ if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
 // windowイベント設定
 // tamura-first-load.js のresize-eventの実行をキャンセル
 WINV["resize-event-cancel"] = true;
-window.addEventListener("resize", () => {
-	reloadDeviceInformation("resize-event");
-});
+window.addEventListener("resize", e => reloadDeviceInformation(`window.event.${e.type}`));
 
-window.visualViewport.addEventListener("resize", () => {
-	reloadDeviceInformation("window.visualViewport.resize-event");
-});
+window.visualViewport.addEventListener("resize", e => reloadDeviceInformation(`window.visualViewport.event.${e.type}`));
 
-window.addEventListener("load", () => {
-	reloadDeviceInformation("load-event");
-});
+window.addEventListener("load", e => reloadDeviceInformation(`window.event.${e.type}`));
 
 // ここのdevice直接参照の部分は変更するな,DEBUGMODEの値は変えてもいい
 useOldUserAgentDataValue = device["DEBUGMODE"];

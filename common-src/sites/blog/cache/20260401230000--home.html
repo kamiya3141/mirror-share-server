@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ja" data-theme="system" data-my-device-type="desktop" style="--myStylingWidth: 1280px; --myStylingHeight: 720px; --myStylingRealWidth: 1280px; --myStylingRealHeight: 720px; --myStylingFontSize: 12px; --myStylingFontFamily: 'Note Sans JP'; --myStylingUserPreferColor: #00ff00; --myStylingTabSize: 4; --myStylingLocalMarkdownMainBackgroundColor: rgb(246, 246, 246); --myStylingLocalMarkdownTextColor: rgb(19, 19, 19); --myStylingLocalMarkdownElementBackgroundColor: rgb(231, 231, 231); --myStylingLocalMarkdownElementBackgroundColor2: rgb(255, 255, 255);"><head>
+<!DOCTYPE html><html lang="ja" data-theme="system" data-my-device-type="desktop" style="--myStylingWidth: 1280px; --myStylingHeight: 720px; --myStylingRealWidth: 1280px; --myStylingRealHeight: 720px; --myStylingFontSize: 12px; --myStylingFontFamily: 'Note Sans JP', sans-serif; --myStylingUserPreferColor: #00ff00; --myStylingTabSize: 4; --myStylingLocalMarkdownMainBackgroundColor: rgb(246, 246, 246); --myStylingLocalMarkdownTextColor: rgb(19, 19, 19); --myStylingLocalMarkdownElementBackgroundColor: rgb(231, 231, 231); --myStylingLocalMarkdownElementBackgroundColor2: rgb(255, 255, 255);"><head>
 	<meta charset="utf-8">
 	<title>ホーム | ブログ - TSHUTO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -581,7 +581,35 @@
 	</div>
 	</section>
 	
-<script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/math.js"></script><script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/other.js"></script>
+<script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/math.js"></script><script defer="" src="https://kamiya3141.github.io/mirror-share-server/common-src/javascript/function/other.js"></script><div id="font_loading_display_div_element-id" data-mydef--font_loading_display_div_element--default-display-style="flex" style="display: none;">
+<style>
+	#font_loading_display_div_element-id {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		display: flex;
+		background-color: rgba(0, 0, 0, 0);
+		text-align: center;
+		z-index: 999;
+		justify-content: center;
+		align-items: center;
+
+		&::before {
+			content: "";
+			background-color: #444b;
+			backdrop-filter: blur(0.25rem);
+			width: 100%;
+			height: 100%;
+		}
+
+		& .main-title {
+			display: inline-block;
+			font-family: 'Note Sans JP';
+			font-size: 5rem;
+		}
+	}
+</style>
+<h1 class="main-title">フォント<br>読み込み中</h1></div>
 	<!--
 	<script defer src="https://ld.tshuto.com/loading.js?2"></script>
 	-->
@@ -679,10 +707,10 @@
 					<div class="tab-bar--contents" id="tb--specific">
 						<div class="tab-bar--contents--item text-overflow-element" title="詳細設定">詳細設定</div>
 					</div>
-					<div class="tab-bar--contents" id="tb--user-data">
+					<div class="tab-bar--contents" id="tb--setting-site-data">
 						<div class="tab-bar--contents--item text-overflow-element" title="サイトの設定">サイトの設定</div>
 					</div>
-					<div class="tab-bar--contents" id="tb--reset--setting-data">
+					<div class="tab-bar--contents" id="tb--reset--setting-site-data">
 						<div class="tab-bar--contents--item text-overflow-element" title="設定の初期化">設定の初期化</div>
 					</div>
 				</div>
@@ -752,7 +780,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--user-data">
+				<div class="tab-contents-box--item" id="tc--setting-site-data">
 					<div class="item-all-box">
 						<div class="item-summary">ローカルストレージに設定を保存する</div>
 						<div class="item-box">
@@ -760,7 +788,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--reset--setting-data">
+				<div class="tab-contents-box--item" id="tc--reset--setting-site-data">
 					<div class="item-all-box">
 						<div class="item-summary">サイトの設定値の初期化</div>
 						<div class="item-box">
@@ -932,10 +960,10 @@
 					<div class="tab-bar--contents" id="tb--specific">
 						<div class="tab-bar--contents--item text-overflow-element" title="詳細設定">詳細設定</div>
 					</div>
-					<div class="tab-bar--contents" id="tb--user-data">
+					<div class="tab-bar--contents" id="tb--setting-site-data">
 						<div class="tab-bar--contents--item text-overflow-element" title="サイトの設定">サイトの設定</div>
 					</div>
-					<div class="tab-bar--contents" id="tb--reset--setting-data">
+					<div class="tab-bar--contents" id="tb--reset--setting-site-data">
 						<div class="tab-bar--contents--item text-overflow-element" title="設定の初期化">設定の初期化</div>
 					</div>
 				</div>
@@ -1015,7 +1043,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--user-data">
+				<div class="tab-contents-box--item" id="tc--setting-site-data">
 					<div class="item-all-box">
 						<div class="item-summary">ローカルストレージに設定を保存する</div>
 						<div class="item-box">
@@ -1028,7 +1056,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-contents-box--item" id="tc--reset--setting-data">
+				<div class="tab-contents-box--item" id="tc--reset--setting-site-data">
 					<div class="item-all-box">
 						<div class="item-summary">サイトの設定値の初期化</div>
 						<div class="item-box">

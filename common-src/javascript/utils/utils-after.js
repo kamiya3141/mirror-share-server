@@ -108,11 +108,11 @@ function loadedFunc() {
 	});
 
 	const setting_elem = document.getElementById("display-setting-main-contents-setting");
-	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", ""));
+	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", "#"));
 
-	setting_display_main_contents_tab_bar_item_array.map(c => `#tb--${c}`).forEach(c1 => {
+	setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tb--")).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
-			setting_display_main_contents_tab_bar_item_array.map(c => `#tc--${c}`).forEach(c2 => {
+			setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tc--")).forEach(c2 => {
 				if (c1.split("--")[1] == c2.split("--")[1]) {
 					setting_elem.querySelector(c1).setAttribute("data-mydef--selected", "true");
 					setting_elem.querySelector(c2).style.display = "flex";
