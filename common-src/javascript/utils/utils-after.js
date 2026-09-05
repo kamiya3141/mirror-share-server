@@ -45,7 +45,7 @@ function loadedFunc() {
 			}
 		},
 		{
-			"trigger-element": ["#data-display-div-main #data--ok-button", "#data-display-div-main #data--cancel-button"],
+			"trigger-element": ["#data-display-div-main #data--ok-button", "#data-display-div-main #data--cancel-button", "#data-display-div-main #control-box"],
 			"focus-out-element": "",
 			"switched-element": "#data-display-section",
 			"tf-func": (__tf, __elem) => {
@@ -396,12 +396,8 @@ function loadedFunc() {
 		reloadDisplaySettingValues();
 }
 
-window.addEventListener("load", () => {
-	loadedFunc();
-});
-document.addEventListener("setting-display-reload", () => {
-	reloadDisplaySettingValues();
-});
+window.addEventListener("load", loadedFunc);
+document.addEventListener("setting-display-reload", reloadDisplaySettingValues);
 
 function reloadDisplaySettingValues() {
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
