@@ -101,8 +101,10 @@ async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
 		};
 		if (Object.keys(key_object).some(c => c == e.key))
 			e.preventDefault();
-		else
+		else {
+			await convertMD(txtara_elem, _pmd, parent_elem);
 			return;
+		}
 		const start = txtara_elem.selectionStart;
 		const end = txtara_elem.selectionEnd;
 		const value = txtara_elem.value;
@@ -111,6 +113,7 @@ async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
 		// 単一行なら普通にtab挿入
 		if (!selected.includes("\n")) {
 			txtara_elem.setRangeText(key_object[e.key], start, end, "end");
+			await convertMD(txtara_elem, _pmd, parent_elem);
 			return;
 		}
 
