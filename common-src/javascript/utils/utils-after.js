@@ -175,25 +175,169 @@ function loadedFunc() {
 					"value": "note-sans-jp"
 				},
 				{
+					"text": "0xProto",
+					"value": "zxproto"
+				},
+				{
+					"text": "0xProto-Regular",
+					"value": "zxproto-r"
+				},
+				{
+					"text": "0xProto-Bold",
+					"value": "zxproto-b"
+				},
+				{
+					"text": "0xProto-Italic",
+					"value": "zxproto-i"
+				},
+				{
 					"text": "Explex",
 					"value": "explex"
 				},
 				{
-					"text": "0XProto",
-					"value": "zxproto"
+					"text": "Explex-Regular",
+					"value": "explex-r"
+				},
+				{
+					"text": "Explex-Italic",
+					"value": "explex-i"
+				},
+				{
+					"text": "Explex-Bold",
+					"value": "explex-b"
+				},
+				{
+					"text": "Explex-BoldItalic",
+					"value": "explex-bi"
+				},
+				{
+					"text": "Explex35",
+					"value": "explex35"
+				},
+				{
+					"text": "Explex35-Regular",
+					"value": "explex35-r"
+				},
+				{
+					"text": "Explex35-Italic",
+					"value": "explex35-i"
+				},
+				{
+					"text": "Explex35-Bold",
+					"value": "explex35-b"
+				},
+				{
+					"text": "Explex35-BoldItalic",
+					"value": "explex35-bi"
+				},
+				{
+					"text": "ExplexConsole",
+					"value": "explexc"
+				},
+				{
+					"text": "ExplexConsole-Regular",
+					"value": "explexc-r"
+				},
+				{
+					"text": "ExplexConsole-Italic",
+					"value": "explexc-i"
+				},
+				{
+					"text": "ExplexConsole-Bold",
+					"value": "explexc-b"
+				},
+				{
+					"text": "ExplexConsole-BoldItalic",
+					"value": "explexc-bi"
+				},
+				{
+					"text": "Explex35Console",
+					"value": "explex35c"
+				},
+				{
+					"text": "Explex35Console-Regular",
+					"value": "explex35c-r"
+				},
+				{
+					"text": "Explex35Console-Italic",
+					"value": "explex35c-i"
+				},
+				{
+					"text": "Explex35Console-Bold",
+					"value": "explex35c-b"
+				},
+				{
+					"text": "Explex35Console-BoldItalic",
+					"value": "explex35c-bi"
+				},
+				{
+					"text": "karakaze-Regular",
+					"value": "karakaze-r"
+				},
+				{
+					"text": "riipop-Regular",
+					"value": "riipop-r"
+				},
+				{
+					"text": "Soei-HG",
+					"value": "soei-hg"
+				},
+				{
+					"text": "Soei-HGS",
+					"value": "soei-hgs"
+				},
+				{
+					"text": "Soei-HGP",
+					"value": "soei-hgp"
 				},
 				{
 					"text": "Fira Code",
 					"value": "firacode"
 				},
 				{
+					"text": "Fira Code VF",
+					"value": "firacode-vf"
+				},
+				{
+					"text": "Onryou",
+					"value": "onryou"
+				},
+				{
 					"text": "HackGen-Regular",
 					"value": "hack-r"
 				},
 				{
-					"text": "怨霊",
-					"value": "onryou"
+					"text": "HackGen-Bold",
+					"value": "hack-b"
 				},
+				{
+					"text": "HackGen35-Regular",
+					"value": "hack35-r"
+				},
+				{
+					"text": "HackGen35-Bold",
+					"value": "hack35-b"
+				},
+				{
+					"text": "HackGenConsole-Regular",
+					"value": "hackc-r"
+				},
+				{
+					"text": "HackGenConsole-Bold",
+					"value": "hackc-b"
+				},
+				{
+					"text": "HackGen35Console-Regular",
+					"value": "hack35c-r"
+				},
+				{
+					"text": "HackGen35Console-Bold",
+					"value": "hack35c-b"
+				},
+				{
+					"text": "Sotoportego",
+					"value": "sotoportego"
+				}
 			],
 			"select-change-event-function": val => {
 				editDeviceInformation("font-family", val);
