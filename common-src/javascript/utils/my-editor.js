@@ -59,12 +59,13 @@ const myEditorsObject = {
 		my_editor_style_link.setAttribute("rel", "stylesheet");
 		my_editor_style_link.setAttribute("href", `${CREATE_MY_DOMAIN_URL("css")}/utils/my-editor.css`);
 		document.head.insertAdjacentElement("afterend", my_editor_style_link);
-		this["__editors"].forEach(c => {
-			const lineNumber = c.querySelector(".utils--my-editor--line-number");
-			const editor = c.querySelector(".utils--my-editor--editor");
+		this["__editors"].forEach(__ed => {
+			const lineNumber = __ed.querySelector(".utils--my-editor--line-number");
+			const editor = __ed.querySelector(".utils--my-editor--editor");
 
-			editor.addEventListener("input", async e => this["redesignLineNumber"](c));
-			editor.addEventListener("click", async e => this["redesignLineNumber"](c));
+			editor.addEventListener("input", async e => this["redesignLineNumber"](__ed));
+			editor.addEventListener("click", async e => this["redesignLineNumber"](__ed));
+			editor.addEventListener("keyup", async e => this["redesignLineNumber"](__ed));
 
 			editor.addEventListener("input", async e => this["saveEditorsRange"](editor));
 			editor.addEventListener("click", async e => this["saveEditorsRange"](editor));
@@ -78,12 +79,12 @@ const myEditorsObject = {
 						"func": (e, key = "", str = "") => {
 							const range = this["getEditorRange"](e.target);
 							if (e.shiftKey) {
-								let input_str = range.toString().split("\n").map(c => c.replace(/^\t|^ {1,4}/, "")).join("\n");
+								let input_str = range.toString().split("\n").map(s => s.replace(/^\t|^ {1,4}/, "")).join("\n");
 								if (range.collapsed)
 									input_str = this["getCurrentLineString"](e.target);
 								this["replaceRange"](range, input_str, !range.collapsed);
 							} else {
-								let input_str = range.toString().split("\n").map(c => str + c).join("\n");
+								let input_str = range.toString().split("\n").map(s => str + s).join("\n");
 								if (range.collapsed)
 									input_str = str;
 								this["replaceRange"](range, input_str, !range.collapsed);
@@ -91,11 +92,13 @@ const myEditorsObject = {
 						}
 					}
 				};
-				Object.keys(key_object).forEach(c => {
-					if (c != e.key)
+				Object.keys(key_object).forEach(k => {
+					if (k != e.key)
 						return;
 					e.preventDefault();
-					key_object[c]["func"](e, c, key_object[c]["str"]);
+					key_object[k]["func"](e, k, key_object[k]["str"]);
+					this["saveEditorsRange"](editor);
+					this["redesignLineNumber"](__ed);
 				});
 			});
 		});

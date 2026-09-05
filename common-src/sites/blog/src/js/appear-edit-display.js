@@ -132,7 +132,7 @@ async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
 		txtara_elem.selectionEnd = end + lines.length;
 
 		await convertMD(txtara_elem, _pmd, parent_elem);
-
+		return;
 	});
 	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
 	await convertMD(txtara_elem, _pmd, parent_elem);
