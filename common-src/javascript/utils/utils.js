@@ -200,7 +200,8 @@ function createRDM() {
 
 function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width", error_img_url = null) {
 	const rdm = createRDM();
-	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this, '${error_img_url}')">`);
+	error_img_url = (error_img_url ? `, '${error_img_url}'` : "");
+	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this${error_img_url})">`);
 	el_str1 = !el_str1 ? el_str0 : el_str1;
 	dir = dir == "width" ? dir : "height";
 	return `
