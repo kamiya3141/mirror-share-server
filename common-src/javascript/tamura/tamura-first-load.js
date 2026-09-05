@@ -82,6 +82,7 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 
 		& .main-title {
 			display: inline-block;
+			font-family: 'Note Sans JP';
 			font-size: 5rem;
 		}
 	}
@@ -166,9 +167,12 @@ var setThemeArgsHistoryObject = {
 	"__deviceType": checkCurrentDeviceString(),
 	"__preferColor": "#00ff00",
 	"__fontFamily": "'Note Sans JP'",
-	"__fontFamilyAddString": "",	//", sans-serif",
+	"__fontFamilyAddString": ", sans-serif",
 	"__tabSize": 4,
 	"__fontFamilyChangedFlag": false,
+	get "__onlyFontFamily"() {
+		return this["fontFamily"].replace(this["__fontFamilyAddString"], "");
+	},
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
@@ -201,7 +205,7 @@ var setThemeArgsHistoryObject = {
 	},
 	set "fontFamily"(input) {
 		// フォントファミリが変更されたとき
-		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input)
+		if (this["__onlyFontFamily"] != input)
 			this["editFontFamilyChangedFlag"]();
 		this["__fontFamily"] = `${input}${this["__fontFamilyAddString"]}`;
 	},
@@ -251,7 +255,7 @@ function setTheme(add_msg = "") {
 				document.dispatchEvent(new CustomEvent("my-event--font-family--changed"));
 				await document.fonts.load(getComputedStyle(el).font);
 				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
-				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 60 * 1000);
+				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 1);
 			}
 		}],
 		["StylingUserPreferColor", [preferColor, preferColor]],
