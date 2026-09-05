@@ -148,6 +148,7 @@ function setupSiteSettingDisplay() {
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
+	reloadSiteSettingValues();
 }
 
 document.addEventListener("setting-site-display-reload", e => reloadSiteSettingValues());
