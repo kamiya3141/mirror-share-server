@@ -2,11 +2,13 @@ const id_flag = "id";
 const edit_flag = "edit";
 const new_flag = "new";
 
-window.addEventListener("load", async () => {
+window.addEventListener("load", async e => localLoadedFunc());
+
+async function localLoadedFunc() {
 	setupSiteSettingDisplay();
 	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
-});
+}
 async function loadAllArticles() {
 	const PMD = await import(`./markdown.js`);
 	const all_decoded_json_data = await PMD.getAllArticleData();
@@ -146,7 +148,6 @@ function setupSiteSettingDisplay() {
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
-	reloadSiteSettingValues();
 }
 
 document.addEventListener("setting-site-display-reload", e => reloadSiteSettingValues());
