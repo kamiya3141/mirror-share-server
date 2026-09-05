@@ -47,26 +47,48 @@ var winMyHrefPTCHNPathname = `${winMyHrefPTCHostname}${winMyHrefPathname}`;
 var winMySrcFileBasePath = WINV["mySourceFileBasePath"];
 
 const this_file_url = new URL(String((document.currentScript.getAttribute("src") ? document.currentScript.getAttribute("src") : document.currentScript.getAttribute("href"))));
-const this_is_svg_file = this_file_url.searchParams.has("svg") || this_file_url.searchParams.has("none") || false;
+const this_is_none_version = this_file_url.searchParams.has("none");
+const this_is_svg_file = this_file_url.searchParams.has("svg") || false;
 const this_is_full_version = this_file_url.searchParams.has("full") || false;
 const this_is_only_css = this_file_url.searchParams.has("css") || false;
 
 
+
 (() => {
 	if (!this_is_svg_file) {
-		const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
-		adds_head([
-			["link", "stylesheet", "common-src/css/base.css"],
-			...add_arr_css
-		]);
+		const font_loading_display_div_element = document.createElement("div");
+		font_loading_display_div_element.id = "font_loading_display_div_element-id";
+		font_loading_display_div_element.innerHTML = `
+			<style>
+				#${font_loading_display_div_element.id} {
+					background-color: rgba(128, 128, 128, 0.5);
+					text-align: center;
+					z-index: 999;
+				}
+			</style>
+			<h1>フォント読み込み中</h1>`;
+		font_loading_display_div_element.style.display = "none";
+		document.addEventListener("my-event--font-family--changed", e => {
+			const current_display_style = font_loading_display_div_element.style.display;
+			font_loading_display_div_element.style.display = (current_display_style == "none" ? "block" : "none");
+		});
+		document.getElementsByTagName("body")[0].prepend(font_loading_display_div_element);
 
-		if (!this_is_only_css) {
-			const add_arr_js = this_is_full_version ? ["utils-render.js", "utils.js", "device-info.js", "setup.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
-			adds_body([
-				["script", "common-src/javascript/function/math.js"],
-				["script", "common-src/javascript/function/other.js"],
-				...add_arr_js
+		if (this_is_none_version) {
+			const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
+			adds_head([
+				["link", "stylesheet", "common-src/css/base.css"],
+				...add_arr_css
 			]);
+
+			if (!this_is_only_css) {
+				const add_arr_js = this_is_full_version ? ["utils-render.js", "utils.js", "device-info.js", "setup.js", "utils-after.js"].map(c => ["script", `common-src/javascript/utils/${c}`]) : [];
+				adds_body([
+					["script", "common-src/javascript/function/math.js"],
+					["script", "common-src/javascript/function/other.js"],
+					...add_arr_js
+				]);
+			}
 		}
 	}
 
@@ -163,8 +185,10 @@ var setThemeArgsHistoryObject = {
 	},
 	set "fontFamily"(input) {
 		// フォントファミリが変更されたとき
-		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input)
+		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input) {
 			this["editFontFamilyChangedFlag"]();
+			console.log("abc");
+		}
 		this["__fontFamily"] = `${input}${this["__fontFamilyAddString"]}`;
 	},
 	get "fontFamily"() {
@@ -210,8 +234,10 @@ function setTheme(add_msg = "") {
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
 		["StylingFontFamily", [fontFamily, fontFamily], async el => {
 			if (setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)) {
+				document.dispatchEvent(new CustomEvent("my-event--font-family--changed"));
 				await document.fonts.load(getComputedStyle(el).font);
 				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
+				window.setTimeout(() => document.dispatchEvent(new CustomEvent("my-event--font-family--changed")), 1000);
 			}
 		}],
 		["StylingUserPreferColor", [preferColor, preferColor]],
