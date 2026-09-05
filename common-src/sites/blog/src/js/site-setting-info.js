@@ -86,3 +86,7 @@ if (localStorage.getItem(localStorageSiteSettingObjectKeyName) == null)
 
 // "init" は消すな
 reloadSiteSettingInformation("init");
+
+const id_flag = "id";
+const edit_flag = "edit";
+const new_flag = "new";

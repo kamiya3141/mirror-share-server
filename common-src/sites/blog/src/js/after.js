@@ -1,7 +1,3 @@
-const id_flag = "id";
-const edit_flag = "edit";
-const new_flag = "new";
-
 window.addEventListener("load", async e => localLoadedFunc());
 
 async function localLoadedFunc() {
