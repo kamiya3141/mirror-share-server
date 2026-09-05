@@ -130,6 +130,7 @@ var setThemeArgsHistoryObject = {
 	"__fontFamily": "'Note Sans JP'",
 	"__fontFamilyAddString": "",	//", sans-serif",
 	"__tabSize": 4,
+	"__fontFamilyChangedFlag": false,
 	set "forceTheme"(input) {
 		this["__forceTheme"] = Boolean(input);
 	},
@@ -161,6 +162,9 @@ var setThemeArgsHistoryObject = {
 		return this["__preferColor"];
 	},
 	set "fontFamily"(input) {
+		// フォントファミリが変更されたとき
+		if (this["__fontFamily"].replace(this["__fontFamilyAddString"], "") != input)
+			this["editFontFamilyChangedFlag"]();
 		this["__fontFamily"] = `${input}${this["__fontFamilyAddString"]}`;
 	},
 	get "fontFamily"() {
@@ -173,6 +177,11 @@ var setThemeArgsHistoryObject = {
 	},
 	get "tabSize"() {
 		return this["__tabSize"];
+	},
+	"editFontFamilyChangedFlag": function (_get_flag = false) {
+		if (!_get_flag)
+			this["__fontFamilyChangedFlag"] = !this["__fontFamilyChangedFlag"];
+		return this["__fontFamilyChangedFlag"];
 	}
 };
 
@@ -199,7 +208,12 @@ function setTheme(add_msg = "") {
 		["StylingRealWidth", [ipt_w[r_idx], ipt_w[r_idx]].map(c => `${c}px`)],
 		["StylingRealHeight", [ipt_h[r_idx], ipt_h[r_idx]].map(c => `${c}px`)],
 		["StylingFontSize", [`${(ipt_w[0] + ipt_h[0]) * 6 / 1000}px`, `1vmax`]],	//	clamp(8px, 24px)
-		["StylingFontFamily", [fontFamily, fontFamily], async el => await document.fonts.load(window.getComputedStyle(el).font)],
+		["StylingFontFamily", [fontFamily, fontFamily], async el => {
+			if (setThemeArgsHistoryObject["editFontFamilyChangedFlag"](true)) {
+				await document.fonts.load(getComputedStyle(el).font);
+				setThemeArgsHistoryObject["editFontFamilyChangedFlag"]();
+			}
+		}],
 		["StylingUserPreferColor", [preferColor, preferColor]],
 		["StylingTabSize", [tabSize, tabSize]]
 	].forEach(async c => {

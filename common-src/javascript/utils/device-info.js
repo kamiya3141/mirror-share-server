@@ -51,11 +51,14 @@ function reloadDeviceInformation(add_msg = "") {
 
 
 	setThemeArgsHistoryObject["forceDevice"] = getDeviceInformation("force-device");
+
 	// edit の方に書くかは今後次第
 	const _tf = Boolean(document.documentElement.getAttribute("data-my-device-type") == "mobile" ? (getDeviceInformation("realWidth") < getDeviceInformation("realHeight")) : (getDeviceInformation("width") < getDeviceInformation("height")));
 	setThemeArgsHistoryObject["deviceType"] = getDeviceInformation("force-device") ? getDeviceInformation("device-type") : (getDeviceInformation("allow--changing--device-mode--for--display-size") ? checkCurrentDeviceString(_tf) : checkCurrentDeviceString());
 	setThemeArgsHistoryObject["preferColor"] = getDeviceInformation("prefer-color");
-	setThemeArgsHistoryObject["fontFamily"] = getComputedStyle(document.documentElement).getPropertyValue(`--${getDeviceInformation("font-family")}`);
+
+	setThemeArgsHistoryObject["fontFamily"] = getCSSLengthValue(`--${getDeviceInformation("font-family")}`);
+
 	setTheme(add_msg.length == 0 ? "reloadD" : add_msg);
 }
 
