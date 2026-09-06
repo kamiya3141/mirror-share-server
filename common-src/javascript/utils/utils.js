@@ -279,10 +279,12 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 	});
 }
 
-function imgError(img, error_img_url = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg") {
+function imgError(img, error_img_url = null) {
 	if (img.dataset.fallback == "true") return;
 	img.dataset.fallback = "true";
-	img.src = (error_img_url ? error_img_url : "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg");
+	let error_src = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
+	// error_src = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
+	img.src = (error_img_url ? error_img_url : error_src);
 }
 
 function createDivElement(class_name = "", id = "") {
