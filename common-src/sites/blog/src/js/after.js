@@ -203,6 +203,6 @@ function rebuildMD() {
 		});
 		const _dt = await _res.json();
 		if (_dt["success"])
-			await myAlertMessage("更新しました。");
+			myAlertMessage("更新しました。");
 	})();
 }
