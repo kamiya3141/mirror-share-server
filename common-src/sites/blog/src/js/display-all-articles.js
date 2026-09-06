@@ -22,10 +22,9 @@ function createArticleCard(article_data_object) {
 
 
 	// info-item-box
-	const card_info_item_box_div_rdm = createRDM();
 	const card_info_item_box_div_element = document.createElement("div");
 	card_info_item_box_div_element.classList.add("article-card--info-item-box");
-	card_info_item_box_div_element.id = `article-card--info-item-box-${card_info_item_box_div_rdm}`;
+	card_info_item_box_div_element.id = `article-card--info-item-box-${createRDM()}`;
 	card_info_item_box_div_element.setAttribute("popover", "auto");
 	// info-item
 	[["id", "インデックス"], ["title", "タイトル"], ["slug", "ID"], ["file_name", "ファイル名"], ["category", "カテゴリ"], ["tags", "タグ"], ["excerpt", "見出し"], ["created_at", "作成日"], ["updated_at", "最終更新日"]].forEach(c => {

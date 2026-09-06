@@ -1,5 +1,7 @@
 var attrName_SetByScript = "data-mydef--set-by-script";
 
+var utilsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_0123456789";
+
 const utilsSleep = ms => new Promise(rslv => setTimeout(rslv, ms));
 
 const MyAlertMessageInfoObject = {
@@ -194,8 +196,18 @@ function rgbToHex(rgb) {
 	return hex;
 }
 
-function createRDM() {
-	return Math.floor(Math.random() * (10 ** 12));
+function createRDM(version = 0, length = 64) {
+	return [createRDMv0, createRDMv1][version](length);
+}
+function createRDMv0(length) {
+	let result_str = [...Array(length)].map(c => utilsChars[Math.floor(Math.random() * chars.length)]).join("");
+	return result_str;
+}
+function createRDMv1(length) {
+	const array = new Uint32Array(length);
+	window.crypto.getRandomValues(array);
+	let result_str = Array.from(array, v => utilsChars[v % utilsChars.length]).join("");;
+	return result_str;
 }
 
 function createPopoverElementsStr(el_str0 = "", el_str1 = el_str0, dir = "width", error_img_url = null) {
@@ -262,7 +274,8 @@ function createScrollButtonDivElement(dir = "", btn_txt = "", id = "") {
 }
 
 function imgVwrButtonBoxOnClick(elem, dir, id) {
-	const root = elem.parentElement;
+	const root = document.getElementById(id);
+	//const root = elem.parentElement;
 	const img_box = root.querySelector(".utils--imgvwr--element--img-box");
 	if (!img_box)
 		return console.error("img_boxが存在しません");
@@ -279,7 +292,7 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 	});
 }
 
-function imgError(img, error_img_url = null) {
+function imgError(img, error_img_url = "") {
 	if (img.dataset.fallback == "true") return;
 	img.dataset.fallback = "true";
 
