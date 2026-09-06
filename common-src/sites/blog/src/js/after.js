@@ -135,8 +135,8 @@ function setupSiteSettingDisplay() {
 			"reload-cancel": true
 		}
 	].forEach(c1 => {
+		document.getElementById(c1["select-id"]).innerHTML = "";
 		c1["select-option-data-array"].forEach(c2 => {
-			document.getElementById(c1["select-id"]).innerHTML = "";
 			let opt = document.createElement("option");
 			Object.assign(opt, c2);
 			document.getElementById(c1["select-id"]).appendChild(opt);
