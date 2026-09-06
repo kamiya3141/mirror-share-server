@@ -2,22 +2,18 @@ const joinBaseHostname = pathname => (pathname = String(pathname), `${winMyHrefP
 const allScriptSettingObjectArrayObject = {
 	"main": [
 		{
-			"src": "src/js/display-all-articles.js",
-			"type": "text/javascript"
+			"src": "src/js/display-all-articles.js"
 		},
 		{
-			"src": "src/js/script.js",
-			"type": "text/javascript"
+			"src": "src/js/script.js"
 		}
 	],
 	"edit": [
 		{
-			"src": "src/js/display-all-articles.js",
-			"type": "text/javascript"
+			"src": "src/js/display-all-articles.js"
 		},
 		{
-			"src": "src/js/appear-edit-display.js",
-			"type": "text/javascript"
+			"src": "src/js/appear-edit-display.js"
 		},
 		{
 			"src": "src/js/control-sub-page.js",
@@ -26,8 +22,7 @@ const allScriptSettingObjectArrayObject = {
 	],
 	"new": [
 		{
-			"src": "src/js/create-new-md-page.js",
-			"type": "text/javascript"
+			"src": "src/js/create-new-md-page.js"
 		},
 		{
 			"src": "src/js/control-sub-page.js",
@@ -36,8 +31,7 @@ const allScriptSettingObjectArrayObject = {
 	],
 	"embed": [
 		{
-			"src": "src/js/embed.js",
-			"type": "text/javascript"
+			"src": "src/js/embed.js"
 		}
 	]
 };
