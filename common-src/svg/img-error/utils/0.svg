@@ -1,0 +1,9 @@
+<svg id="parent-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" style="background-color: rgba(0, 0, 0, 1);">
+	<style>
+		.text-class {
+			fill: white;
+			font-size: 500%;
+		}
+	</style>
+	<text class="text-class" x="50%" y="50%" text-anchor="middle" lengthAdjust="spacing">画像を表示できません。</text>
+</svg>
