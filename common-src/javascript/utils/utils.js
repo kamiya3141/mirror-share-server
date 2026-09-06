@@ -282,8 +282,10 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 function imgError(img, error_img_url = null) {
 	if (img.dataset.fallback == "true") return;
 	img.dataset.fallback = "true";
-	let error_src = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
-	// error_src = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
+
+	let error_src = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
+	error_src = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
+
 	img.src = (error_img_url ? error_img_url : error_src);
 }
 
