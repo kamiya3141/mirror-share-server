@@ -200,7 +200,7 @@ function createRDM(version = 0, length = 64) {
 	return [createRDMv0, createRDMv1][version](length);
 }
 function createRDMv0(length) {
-	let result_str = [...Array(length)].map(c => utilsChars[Math.floor(Math.random() * chars.length)]).join("");
+	let result_str = [...Array(length)].map(c => utilsChars[Math.floor(Math.random() * utilsChars.length)]).join("");
 	return result_str;
 }
 function createRDMv1(length) {
