@@ -138,6 +138,7 @@ function setupSiteSettingDisplay() {
 		c1["select-option-data-array"].forEach(c2 => {
 			let opt = document.createElement("option");
 			Object.assign(opt, c2);
+			document.getElementById(c1["select-id"]).innerHTML = "";
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
