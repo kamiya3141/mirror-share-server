@@ -232,12 +232,13 @@ function createHnWithDivElement(cts, n) {
 	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none") {
-	const copied_btn_onclick_str = `javascript:(el => {
+	const copied_btn_onclick_str = `javascript:(async el => {
 		try {
 			const org_el = el;
+			console.log(org_el, getParentElement(org_el, 6));
 			const rootElement = getParentElement(org_el, 6);
 			const codeText = rootElement.querySelector('code').innerText;
-			(async () => await navigator.clipboard.writeText(codeText));
+			await navigator.clipboard.writeText(codeText);
 			const copied_flag_element = getParentElement(org_el, 4).querySelector('.code-copied-flag');
 			copied_flag_element.classList.remove('display-none');
 			window.setTimeout(() => copied_flag_element.classList.add('display-none'), 1000);
