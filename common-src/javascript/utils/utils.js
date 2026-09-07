@@ -329,3 +329,40 @@ function mergeObject(target, source, opts) {
 	}
 	return result;
 }
+// chatgpt
+function getElementQuery(element) {
+	const path = [];
+
+	while (element && element.nodeType === Node.ELEMENT_NODE) {
+		let selector = element.tagName.toLowerCase();
+
+		if (element.id) {
+			selector += `#${CSS.escape(element.id)}`;
+			path.unshift(selector);
+			break;
+		}
+
+		if (element.classList.length) {
+			selector += [...element.classList]
+				.map(c => `.${CSS.escape(c)}`)
+				.join("");
+		}
+
+		const parent = element.parentElement;
+
+		if (parent) {
+			const siblings = [...parent.children]
+				.filter(c => c.matches(selector));
+
+			if (siblings.length > 1) {
+				const index = siblings.indexOf(element) + 1;
+				selector += `:nth-of-type(${index})`;
+			}
+		}
+
+		path.unshift(selector);
+		element = parent;
+	}
+
+	return path.join(" > ");
+}

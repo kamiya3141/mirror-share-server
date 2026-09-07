@@ -174,6 +174,10 @@ const before_replace_str_define_array = [
 	]
 ];
 
+function fixOneLineString(_str = "") {
+	return _str.replaceAll("\n", "").replaceAll("\t", "");
+}
+
 function convertULOL(input_str = "") {
 	const simple_reg = /^(?<!\/)( *)[*+-] +(.+)$/gm;
 	const number_reg = /^(?<!\/)( *)\d\. +(.+)$/gm;
@@ -226,15 +230,47 @@ function createHnWithDivElement(cts, n) {
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 	let result_str = "";
-	const line_multi_str = `<div class="code-frame ${cls}"><div class="code-option-root"><div class="file-info-box"><div class="file-name-box" code-frame-filename="${nm}"></div></div><div class="code-option-box"><div class="code-copied-flag-root"><div class="code-copied-flag display-none">Copied!!</div></div><div class="code-copy-button-root"><div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}"><button class="copy-code-button-element"><span class="fa fa-fw fa-clipboard"></span></button></div></div></div></div><pre><code>${cts}</code><pre></div>`;
-	const line_solo_str = `<div class="code-frame ${cls}" code-frame-filename="${nm}"><div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}"><button class="copy-code-button-element"><span class="fa fa-fw fa-clipboard"></span></button></div><pre><code>${cts}</code><pre></div>`;
+	const line_multi_str = `
+	<div class="code-frame ${cls}">
+		<div class="code-option-root">
+			<div class="file-info-box">
+				<div class="file-name-box" code-frame-filename="${nm}"></div>
+			</div>
+			<div class="code-option-box">
+				<div class="code-copied-flag-root">
+					<div class="code-copied-flag display-none">Copied!!</div>
+				</div>
+				<div class="code-copy-button-root">
+					<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">
+						<button class="copy-code-button-element">
+							<span class="fa fa-fw fa-clipboard"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<pre><code>${cts}</code><pre>
+	</div>`;
+	const line_solo_str = `
+	<div class="code-frame ${cls}" code-frame-filename="${nm}">
+		<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">
+			<button class="copy-code-button-element">
+				<span class="fa fa-fw fa-clipboard"></span>
+			</button>
+		</div>
+		<pre><code>${cts}</code><pre>
+	</div>`;
 
 	result_str = String(cls).includes("line-multi") ? line_multi_str : line_solo_str;
 
-	return result_str;
+	return fixOneLineString(result_str);
 }
 function createNoteInnerHTMLString(cls_nt_tp = "info", cts) {
-	return `<div class="note-class note-${cls_nt_tp}"><span class="note-mark-span fa fa-fw fa-${["check", "exclamation", "times"].at(["info", "warn", "alert"].indexOf(cls_nt_tp))}-circle"></span>${cts}</div>`;
+	return fixOneLineString(`
+			<div class="note-class note-${cls_nt_tp}">
+				<span class="note-mark-span fa fa-fw fa-${["check", "exclamation", "times"].at(["info", "warn", "alert"].indexOf(cls_nt_tp))}-circle"></span>
+				${cts}
+			</div>`);
 }
 
 function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
@@ -281,7 +317,16 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 				let chv = result_array[j];
 				const url = new URL(chv[1]);
 
-				const replaced_str = `<div class="code-frame embed-iframe-root code-iframe-common-styles"><a href="${url.toString()}" target="_blank"><div class="embed-iframe-inner-title-root"><div class="embed-iframe-inner-title-box">${url.toString()}</div><div class="embed-iframe-inner-title-hostname">${url.hostname}</div></div><div class="embed-iframe-inner-embed-iframe-root">${new RegExp("^(?:.*\.github\.io)$").test(url.hostname) ? `<iframe src="${url.toString()}"></iframe>` : ""}</div></a></div>`;
+				const replaced_str = fixOneLineString(`
+				<div class="code-frame embed-iframe-root code-iframe-common-styles">
+					<a href="${url.toString()}" target="_blank">
+						<div class="embed-iframe-inner-title-root">
+							<div class="embed-iframe-inner-title-box">${url.toString()}</div>
+							<div class="embed-iframe-inner-title-hostname">${url.hostname}</div>
+						</div>
+						<div class="embed-iframe-inner-embed-iframe-root">${new RegExp("^(?:.*\.github\.io)$").test(url.hostname) ? `<iframe src="${url.toString()}"></iframe>` : ""}</div>
+					</a>
+				</div>`);
 
 				splited_result_str_arr[i] = splited_result_str_arr[i].replace(chv[1], replaced_str);
 			}
@@ -289,9 +334,6 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 	}
 
 	result_str = splited_result_str_arr.join("<br>");
-
-	//const result_elm = createElementFromHTML(result_str);
-	//result_str = result_elm;
 	result_str = `<pre><div data-mydef--article-tag="title">${MARKDOWN_ARTICLE_TITLE}</div>${result_str}</pre>`;
 	return result_str;
 }
@@ -311,8 +353,8 @@ async function parseMarkDown2HTMLContextVersion2(decoded_json_data = {}) {
 
 
 function afterWorker() {
-	[...document.querySelectorAll("button.copy-code-button-element")].forEach(c => c.addEventListener("click", e => {
-		copyCodeDataForClipBoard(e);
+	[...document.querySelectorAll(".copy-code-button-element")].forEach(c => c.addEventListener("click", async e => {
+		await copyCodeDataForClipBoard(e);
 	}));
 }
 
@@ -323,6 +365,7 @@ async function copyCodeDataForClipBoard(e) {
 		await navigator.clipboard.writeText(codeText);
 	} catch (error) {
 		console.log(error);
+		myAlertMessage("クリップボードへの書き込みに\n失敗しました。");
 	}
 }
 
@@ -374,14 +417,39 @@ async function getAllArticleData() {
 
 }
 
-async function parseMarkdown(use_version_1 = true) {
+async function parseMarkdown(use_version_1 = true, input_article_data = null) {
 	let result_md_str = "<h1>404 Error ...</h1>";
-	const decoded_json_data = await getArticleData();
+	const decoded_json_data = (input_article_data ? input_article_data : await getArticleData());
 
 	if (decoded_json_data != null && decoded_json_data["type"] == "article" && decoded_json_data["status"] == "published")
 		result_md_str = await (use_version_1 ? parseMarkDown2HTMLContextVersion1 : parseMarkDown2HTMLContextVersion2)(decoded_json_data);
-
+	else
+		myAlertMessage("入力されたjsonデータか、\n取得した記事データが\n不正です。");
 	return result_md_str;
 }
 
-export { parseMarkdown as parseMD, afterWorker as afterFunction, parseMarkDown2HTMLContextVersion1 as parseMD2HTMLv1, parseMarkDown2HTMLContextVersion2 as parseMD2HTMLv2, getAllArticleData, getArticleData, createAPIURL };
+async function buildMD(_root_query = "div#root .main-contentsbox", use_version_1 = true, input_article_data = null) {
+	const result = await parseMarkdown(use_version_1, input_article_data);
+
+	document.querySelector(_root_query).innerHTML = result;
+
+	afterWorker();
+}
+
+async function updateCacheMD() {
+	const decoded_json_data = await getArticleData();
+
+	const _res = await fetch(createAPIURL("article-set-api-local.php"), {
+		"method": "POST",
+		"body": JSON.stringify({
+			"data-type": "php-input",
+			"data": decoded_json_data
+		})
+	});
+
+	const _dt = await _res.json();
+
+	return Boolean(_dt["success"]);
+}
+
+export { parseMarkdown as parseMD, afterWorker as afterFunction, parseMarkDown2HTMLContextVersion1 as parseMD2HTMLv1, parseMarkDown2HTMLContextVersion2 as parseMD2HTMLv2, getAllArticleData, getArticleData, createAPIURL, buildMD, updateCacheMD };

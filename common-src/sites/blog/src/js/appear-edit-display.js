@@ -80,71 +80,9 @@ function settingButtons(_pmd) {
 	});
 }
 
-async function convertMD(_el, _pmd, p_e) {
-	_el.style.height = "auto";
-	_el.style.height = `${_el.scrollHeight}px`;
-	await convertMarkdown2Html(_el.value, _pmd, p_e);
-}
-
-async function inputTextConvertMD(input_text = "", _pmd, parent_elem) {
-	convertMarkdown2Html(input_text, _pmd, parent_elem);
-}
-
-async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
-	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
-	const parent_elem = document.querySelector("#edit-article-main-contents");
-	const txtara_elem = parent_elem.querySelector("#editor--textarea");
-	txtara_elem.addEventListener("input", async e => await convertMD(txtara_elem, _pmd, parent_elem));
-	txtara_elem.addEventListener("keydown", async e => {
-		const key_object = {
-			"Tab": "\t"
-		};
-		if (Object.keys(key_object).some(c => c == e.key))
-			e.preventDefault();
-		else {
-			await convertMD(txtara_elem, _pmd, parent_elem);
-			return;
-		}
-		const start = txtara_elem.selectionStart;
-		const end = txtara_elem.selectionEnd;
-		const value = txtara_elem.value;
-		const selected = value.slice(start, end);
-
-		// 単一行なら普通にtab挿入
-		if (!selected.includes("\n")) {
-			txtara_elem.setRangeText(key_object[e.key], start, end, "end");
-			await convertMD(txtara_elem, _pmd, parent_elem);
-			return;
-		}
-
-		// 選択開始行の先頭
-		const lineStart = value.lastIndexOf("\n", start - 1) + 1;
-		// 行単位取得
-		const lines = value.slice(lineStart, end).split("\n");
-
-		// 各行にtab追加
-		const indented = lines.map(v => key_object[e.key] + v).join("\n");
-
-		txtara_elem.setRangeText(indented, lineStart, end, "select");
-
-		// 選択範囲補正
-		txtara_elem.selectionStart = start + key_object[e.key].length;
-		txtara_elem.selectionEnd = end + lines.length;
-
-		await convertMD(txtara_elem, _pmd, parent_elem);
-		return;
-	});
-	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
-	await convertMD(txtara_elem, _pmd, parent_elem);
-
-	if (editArticleDisplay_copiedJsonData["type"] == "backup")
-		txtara_elem.readOnly = true;
-}
-
 async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
-	const parent_elem = document.querySelector("#edit-article-main-contents");
-	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await inputTextConvertMD(txt, _pmd, parent_elem));
+	_med.myEditorsObject["registInputFunc"]("pmd-editor-func", async txt => await convertMarkdown2Html(txt, _pmd));
 	await _med.settingMyEditor();
 	_med.myEditorsObject["values"] = [0, editArticleDisplay_copiedJsonData["content"]];
 	const registerButtonsInfo = [
@@ -225,7 +163,13 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 				key: "a-link",
 				appearance_text: `<div>https...</div>`,
 				func: async function () {
-					let res = await myDataMessage("リンク,表示テキスト,代替文字列");
+					const _ref_arr = [""];
+					let _select_str = (() => {
+						const _select_el = document.createElement("select");
+
+						return;
+					})();
+					let res = await myDataMessage(["リンク,表示テキスト,代替文字列", _select_str].join("<br>"));
 					if (typeof res != "object")
 						return {
 							text: "失敗♡",
@@ -273,9 +217,67 @@ async function settingMyEditor(decoded_json_data = {}, _pmd, _med) {
 	];
 	registerButtonsInfo.forEach((c, i) => c.forEach(obj => _med.myEditorsObject["registSubContentsButton"](i, ...Object.values(obj))));
 }
-async function convertMarkdown2Html(_txt, _pmd, _pr_el) {
+async function convertMarkdown2Html(_txt, _pmd) {
 	editArticleDisplay_copiedJsonData["content"] = _txt;
-	const _result = await _pmd.parseMD2HTMLv1(editArticleDisplay_copiedJsonData);
-	_pr_el.querySelector(".main-contentsbox").innerHTML = _result;
-	_pmd.afterFunction();
+	await _pmd.buildMD("#edit-article-main-contents .main-contentsbox", true, editArticleDisplay_copiedJsonData);
 }
+
+
+/*
+async function convertMDForTextAria(_el, _pmd) {
+	_el.style.height = "auto";
+	_el.style.height = `${_el.scrollHeight}px`;
+	await convertMarkdown2Html(_el.value, _pmd);
+}
+
+async function settingTextarea(decoded_json_data = {}, _pmd, _med) {
+	editArticleDisplay_copiedJsonData = JSON.parse(JSON.stringify(decoded_json_data));
+	const parent_elem = document.querySelector("#edit-article-main-contents");
+	const txtara_elem = parent_elem.querySelector("#editor--textarea");
+	txtara_elem.addEventListener("input", async e => await convertMDForTextAria(txtara_elem, _pmd));
+	txtara_elem.addEventListener("keydown", async e => {
+		const key_object = {
+			"Tab": "\t"
+		};
+		if (Object.keys(key_object).some(c => c == e.key))
+			e.preventDefault();
+		else {
+			await convertMDForTextAria(txtara_elem, _pmd);
+			return;
+		}
+		const start = txtara_elem.selectionStart;
+		const end = txtara_elem.selectionEnd;
+		const value = txtara_elem.value;
+		const selected = value.slice(start, end);
+
+		// 単一行なら普通にtab挿入
+		if (!selected.includes("\n")) {
+			txtara_elem.setRangeText(key_object[e.key], start, end, "end");
+			await convertMDForTextAria(txtara_elem, _pmd);
+			return;
+		}
+
+		// 選択開始行の先頭
+		const lineStart = value.lastIndexOf("\n", start - 1) + 1;
+		// 行単位取得
+		const lines = value.slice(lineStart, end).split("\n");
+
+		// 各行にtab追加
+		const indented = lines.map(v => key_object[e.key] + v).join("\n");
+
+		txtara_elem.setRangeText(indented, lineStart, end, "select");
+
+		// 選択範囲補正
+		txtara_elem.selectionStart = start + key_object[e.key].length;
+		txtara_elem.selectionEnd = end + lines.length;
+
+		await convertMDForTextAria(txtara_elem, _pmd);
+		return;
+	});
+	txtara_elem.value = editArticleDisplay_copiedJsonData["content"];
+	await convertMDForTextAria(txtara_elem, _pmd);
+
+	if (editArticleDisplay_copiedJsonData["type"] == "backup")
+		txtara_elem.readOnly = true;
+}
+*/

@@ -185,24 +185,9 @@ function reloadSiteSettingValues() {
 function rebuildMD() {
 	(async () => {
 		const _pmd = await import(`./markdown.js`);
-		const result = await _pmd.parseMD();
-
-		let mdContentsBoxElement = document.querySelector("div#root .main-contentsbox");
-		mdContentsBoxElement.innerHTML = result;
-
-		_pmd.afterFunction();
-
-		const decoded_json_data = await _pmd.getArticleData();
-
-		const _res = await fetch(_pmd.createAPIURL("article-set-api-local.php"), {
-			"method": "POST",
-			"body": JSON.stringify({
-				"data-type": "php-input",
-				"data": decoded_json_data
-			})
-		});
-		const _dt = await _res.json();
-		if (_dt["success"])
+		await _pmd.buildMD();
+		const _res = await _pmd.updateCacheMD();
+		if (_res)
 			myAlertMessage("更新しました。");
 	})();
 }
