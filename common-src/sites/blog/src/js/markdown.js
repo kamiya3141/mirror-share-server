@@ -235,7 +235,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 	const copied_btn_onclick_str = `javascript:(async el => {
 		try {
 			const org_el = el;
-			const rootElement = getParentElement(org_el, 4);
+			const rootElement = getParentElement(org_el, 5);
 			const codeText = rootElement.querySelector('code').innerText;
 			await navigator.clipboard.writeText(codeText);
 			const copied_flag_element = rootElement.querySelector('.code-copied-flag');
@@ -243,7 +243,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 			window.setTimeout(() => copied_flag_element.classList.add('display-none'), 1000);
 		} catch (error) {
 			console.log(error);
-			myAlertMessage('クリップボードへの書き込みに\\n失敗しました。');
+			myAlertMessage('クリップボードへの<br>書き込みに<br>失敗しました。');
 		}
 	})(this)`;
 	let result_str = "";
