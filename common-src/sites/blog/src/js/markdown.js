@@ -242,7 +242,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 			</div>
 			<div class="code-option-box">
 				<div class="code-copied-flag-root">
-					<div class="code-copied-flag display-none">Copied!!</div>
+					<div class="code-copied-flag display-none">Copied!</div>
 				</div>
 				<div class="code-copy-button-root">
 					<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">

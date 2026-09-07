@@ -325,15 +325,17 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 						}
 
 						& > .code-copied-flag-root {
-							flex: 1;
+							flex: 8.5;
 
 							& > .code-copied-flag {
 								display: inline;
+								font-size: 0.75rem;
+								font-weight: bold;
 							}
 						}
 
 						& > .code-copy-button-root {
-							flex: 1;
+							flex: 1.5;
 
 							& > div.code-copy-button {
 								display: var(--copy-button-display);
@@ -355,6 +357,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 								& button {
 									border: none;
+									text-align: start;
 								}
 
 								&:hover {
