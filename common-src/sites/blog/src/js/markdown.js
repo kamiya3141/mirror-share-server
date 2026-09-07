@@ -232,6 +232,20 @@ function createHnWithDivElement(cts, n) {
 	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none") {
+	const copied_btn_onclick_str = `javascript:(el => {
+		try {
+			const org_el = el;
+			const rootElement = getParentElement(org_el, 6);
+			const codeText = rootElement.querySelector('code').innerText;
+			(async () => await navigator.clipboard.writeText(codeText));
+			const copied_flag_element = getParentElement(org_el, 4).querySelector('.code-copied-flag');
+			copied_flag_element.classList.remove('display-none');
+			window.setTimeout(() => copied_flag_element.classList.add('display-none'), 1000);
+		} catch (error) {
+			console.log(error);
+			myAlertMessage('クリップボードへの書き込みに\\n失敗しました。');
+		}
+	})(this)`;
 	let result_str = "";
 
 	const line_multi_str = `
@@ -245,7 +259,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 					<div class="code-copied-flag display-none">Copied!</div>
 				</div>
 				<div class="code-copy-button-root">
-					<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">
+					<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}" onclick="${copied_btn_onclick_str}">
 						<button class="copy-code-button-element">
 							<span class="fa fa-fw fa-clipboard"></span>
 						</button>
@@ -258,7 +272,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 
 	const line_solo_str = `
 	<div class="code-frame ${cls}" code-frame-filename="${nm}">
-		<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">
+		<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}" onclick="${copied_btn_onclick_str}">
 			<button class="copy-code-button-element">
 				<span class="fa fa-fw fa-clipboard"></span>
 			</button>
@@ -358,9 +372,11 @@ async function parseMarkDown2HTMLContextVersion2(decoded_json_data = {}) {
 
 
 function afterWorker() {
-	[...document.querySelectorAll(".copy-code-button-element")].forEach(c => c.addEventListener("click", async e => {
-		await copyCodeDataForClipBoard(e);
-	}));
+	[...document.querySelectorAll(".copy-code-button-element")].forEach(c => {
+		c.addEventListener("click", async e => {
+			await copyCodeDataForClipBoard(e);
+		});
+	});
 }
 
 async function copyCodeDataForClipBoard(e) {
@@ -376,17 +392,6 @@ async function copyCodeDataForClipBoard(e) {
 		console.log(error);
 		myAlertMessage("クリップボードへの書き込みに\n失敗しました。");
 	}
-}
-
-function getParentElement(el, n = 1, getLastElement = true) {
-	let element_memory = [];
-	try {
-		for (n--; n > 0; n--)
-			el = element_memory.at(element_memory.push(el.parentElement) - 1);
-	} catch (error) {
-		console.log(element_memory, error);
-	}
-	return getLastElement ? element_memory.at(-1) : element_memory;
 }
 
 const BASE_URL = CREATE_MY_DOMAIN_URL("share") + "/common-src/sites/blog/";
@@ -442,7 +447,7 @@ async function buildMD(_root_query = "div#root .main-contentsbox", use_version_1
 
 	document.querySelector(_root_query).innerHTML = result;
 
-	afterWorker();
+	// afterWorker();
 }
 
 async function updateCacheMD() {
@@ -461,4 +466,4 @@ async function updateCacheMD() {
 	return Boolean(_dt["success"]);
 }
 
-export { parseMarkdown as parseMD, afterWorker as afterFunction, parseMarkDown2HTMLContextVersion1 as parseMD2HTMLv1, parseMarkDown2HTMLContextVersion2 as parseMD2HTMLv2, getAllArticleData, getArticleData, createAPIURL, buildMD, updateCacheMD };
+export { parseMarkdown as parseMD, parseMarkDown2HTMLContextVersion1 as parseMD2HTMLv1, parseMarkDown2HTMLContextVersion2 as parseMD2HTMLv2, getAllArticleData, getArticleData, createAPIURL, buildMD, updateCacheMD };
