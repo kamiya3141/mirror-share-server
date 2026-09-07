@@ -275,7 +275,7 @@ function createNoteInnerHTMLString(cls_nt_tp = "info", cts = "") {
 			<div class="note-class note-${cls_nt_tp}">
 				<span class="note-mark-span fa fa-fw fa-${["check", "exclamation", "times"].at(["info", "warn", "alert"].indexOf(cls_nt_tp))}-circle"></span>
 				${CTS_TMP}
-			</div>`, cts);
+			</div>`, ` ${cts.substring(1, cts.length)}`);
 }
 
 function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
