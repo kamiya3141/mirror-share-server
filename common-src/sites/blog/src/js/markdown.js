@@ -49,8 +49,8 @@ const before_replace_str_define_array = [
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
-		(nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts),
-		[2, 3]
+		(lang, nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts, lang),
+		[1, 2, 3]
 	],
 	[
 		/```([^\n]*?)\n([\s\S]*?)```/g,
@@ -231,7 +231,7 @@ function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
 	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
 }
-function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
+function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none") {
 	let result_str = "";
 
 	const line_multi_str = `
@@ -253,7 +253,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 				</div>
 			</div>
 		</div>
-		<pre><code>${CTS_TMP}</code><pre>
+		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code><pre>
 	</div>`;
 
 	const line_solo_str = `
@@ -263,7 +263,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 				<span class="fa fa-fw fa-clipboard"></span>
 			</button>
 		</div>
-		<pre><code>${CTS_TMP}</code><pre>
+		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code><pre>
 	</div>`;
 
 	result_str = String(cls).includes("line-multi") ? line_multi_str : line_solo_str;
@@ -365,11 +365,19 @@ function afterWorker() {
 
 async function copyCodeDataForClipBoard(e) {
 	try {
-		const rootElement = getParentElement(e.currentTarget, 6);
+		const rootElement = getParentElement(e.target, 6);
 		const codeText = rootElement.querySelector("code").innerText;
 		await navigator.clipboard.writeText(codeText);
-
-		// window.setTimeout(() => , 1000);
+		/**
+		 * @type {HTMLElement}
+		 */
+		const copied_flag_element = getParentElement(e.target, 3).querySelector("code-copied-flag");
+		copied_flag_element.classList.remove("display-none");
+		copied_flag_element.classList.add("display-exist");
+		window.setTimeout(() => {
+			copied_flag_element.classList.remove("display-exist");
+			copied_flag_element.classList.add("display-none");
+		}, 1000);
 	} catch (error) {
 		console.log(error);
 		myAlertMessage("クリップボードへの書き込みに\n失敗しました。");

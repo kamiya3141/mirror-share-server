@@ -175,8 +175,7 @@ require(["vs/editor/editor.main"], () => {
 
 		codeLangTitleSelectElement.addEventListener("change", async e => {
 			await saveMainScriptHitoryForRemoteFile(false);
-			codeLangTitleSelectedValue = e.currentTarget.value;
-			console.log(codeLangTitleSelectedValue);
+			codeLangTitleSelectedValue = e.target.value;
 			reloadEditorView();
 			await getMainScriptHitoryForRemoteFile();
 		});
@@ -216,7 +215,6 @@ require(["vs/editor/editor.main"], () => {
 			})
 		});
 		const s_dt = await s_res.text();
-		console.log(s_dt != "true" ? s_dt : "ok");
 		if (tf)
 			editor.setValue(cacheMainScriptHistoryData);
 	}
@@ -236,12 +234,12 @@ require(["vs/editor/editor.main"], () => {
 
 	editorThemeSetSelectElement.addEventListener("change", e => setup());
 	pageThemeSetSelectElement.addEventListener("change", e => {
-		const val = e.currentTarget.value;
+		const val = e.target.value;
 		editDeviceInformation("theme-type", val);
 		reloadDeviceInformation();
 	});
 	restrictThemeSetSelectElement.addEventListener("change", e => {
-		const val = e.currentTarget.value == "true";
+		const val = e.target.value == "true";
 		let pageThemeSelectedOptionValue = getSelectedValueInSelectElement(pageThemeSetSelectElement);
 		pageThemeSelectedOptionValue = (pageThemeSelectedOptionValue == "system" ? checkCurrentSystemThemeLight() : pageThemeSelectedOptionValue == "light");
 		const __themeDataArray = ["dark", "light"];
@@ -259,7 +257,7 @@ require(["vs/editor/editor.main"], () => {
 		setup();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		editDeviceInformation("font-family", e.currentTarget.value);
+		editDeviceInformation("font-family", e.target.value);
 		reloadDeviceInformation();
 	});
 
