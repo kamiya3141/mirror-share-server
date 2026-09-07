@@ -174,8 +174,11 @@ const before_replace_str_define_array = [
 	]
 ];
 
-function fixOneLineString(_str = "") {
-	return _str.replaceAll("\n", "").replaceAll("\t", "");
+
+const CTS_TMP = "-:-CONTENTS-:-";
+
+function fixOneLineString(_str = "", _cts = "") {
+	return _str.replaceAll("\n", "").replaceAll("\t", "").replace(CTS_TMP, _cts);
 }
 
 function convertULOL(input_str = "") {
@@ -230,6 +233,7 @@ function createHnWithDivElement(cts, n) {
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 	let result_str = "";
+
 	const line_multi_str = `
 	<div class="code-frame ${cls}">
 		<div class="code-option-root">
@@ -249,8 +253,9 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 				</div>
 			</div>
 		</div>
-		<pre><code>${cts}</code><pre>
+		<pre><code>${CTS_TMP}</code><pre>
 	</div>`;
+
 	const line_solo_str = `
 	<div class="code-frame ${cls}" code-frame-filename="${nm}">
 		<div class="code-copy-button ${btn_none ? 'display-none' : "display-exist"}">
@@ -258,19 +263,19 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false) {
 				<span class="fa fa-fw fa-clipboard"></span>
 			</button>
 		</div>
-		<pre><code>${cts}</code><pre>
+		<pre><code>${CTS_TMP}</code><pre>
 	</div>`;
 
 	result_str = String(cls).includes("line-multi") ? line_multi_str : line_solo_str;
 
-	return fixOneLineString(result_str);
+	return fixOneLineString(result_str, cts);
 }
-function createNoteInnerHTMLString(cls_nt_tp = "info", cts) {
+function createNoteInnerHTMLString(cls_nt_tp = "info", cts = "") {
 	return fixOneLineString(`
 			<div class="note-class note-${cls_nt_tp}">
 				<span class="note-mark-span fa fa-fw fa-${["check", "exclamation", "times"].at(["info", "warn", "alert"].indexOf(cls_nt_tp))}-circle"></span>
-				${cts}
-			</div>`);
+				${CTS_TMP}
+			</div>`, cts);
 }
 
 function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
