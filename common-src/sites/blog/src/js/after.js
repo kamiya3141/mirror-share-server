@@ -9,6 +9,10 @@ window.addEventListener("load", async () => {
 
 async function localLoadedFunc() {
 	setupSiteSettingDisplay();
+	(async () => {
+		const _pmd = await import(`./markdown.js`);
+		_pmd.afterFunction();
+	})();
 	if (!hasFlag("create-cache") && hasFlag(id_flag) && getFlag(id_flag).split("--").length == 2 && getFlag(id_flag).split("--")[1] == "articles")
 		await loadAllArticles();
 }
