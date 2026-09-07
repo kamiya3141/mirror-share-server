@@ -175,7 +175,8 @@ require(["vs/editor/editor.main"], () => {
 
 		codeLangTitleSelectElement.addEventListener("change", async e => {
 			await saveMainScriptHitoryForRemoteFile(false);
-			codeLangTitleSelectedValue = e.target.value;
+			codeLangTitleSelectedValue = e.currentTarget.value;
+			console.log(codeLangTitleSelectedValue);
 			reloadEditorView();
 			await getMainScriptHitoryForRemoteFile();
 		});
@@ -235,7 +236,7 @@ require(["vs/editor/editor.main"], () => {
 
 	editorThemeSetSelectElement.addEventListener("change", e => setup());
 	pageThemeSetSelectElement.addEventListener("change", e => {
-		const val = e.target.value;
+		const val = e.currentTarget.value;
 		editDeviceInformation("theme-type", val);
 		reloadDeviceInformation();
 	});
@@ -258,7 +259,7 @@ require(["vs/editor/editor.main"], () => {
 		setup();
 	});
 	pageFontSetSelectElement.addEventListener("change", e => {
-		editDeviceInformation("font-family", e.target.value);
+		editDeviceInformation("font-family", e.currentTarget.value);
 		reloadDeviceInformation();
 	});
 

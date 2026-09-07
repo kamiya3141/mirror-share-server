@@ -77,11 +77,11 @@ const myEditorsObject = {
 					"Tab": {
 						"str": "\t",
 						"func": (e, key = "", str = "") => {
-							const range = this["getEditorRange"](e.target);
+							const range = this["getEditorRange"](editor);
 							if (e.shiftKey) {
 								let input_str = range.toString().split("\n").map(s => s.replace(/^\t|^ {1,4}/, "")).join("\n");
 								if (range.collapsed)
-									input_str = this["getCurrentLineString"](e.target);
+									input_str = this["getCurrentLineString"](editor);
 								this["replaceRange"](range, input_str, !range.collapsed);
 							} else {
 								let input_str = range.toString().split("\n").map(s => str + s).join("\n");

@@ -36,7 +36,7 @@ function settingNewArticleSettingDisplay(p_e, _pmd, decoded_json_data) {
 	fm_el.addEventListener("submit", async e => {
 		e.preventDefault();
 		const button_type = String(e.submitter.name).split("--")[1];
-		const data = Object.fromEntries(new FormData(e.target).entries());
+		const data = Object.fromEntries(new FormData(fm_el).entries());
 
 		if (has_id_flag)
 			Object.entries(copiedDecodedJsonData).forEach(([k, v]) => data[k] = Object.hasOwn(data, k) ? data[k] : v);

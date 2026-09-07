@@ -5,13 +5,13 @@ function loadedFunc() {
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
 		const device_setting_id = c.getAttribute("template-id-args");
 		c.querySelector(".toggle_input").addEventListener("change", async e => {
-			if (!get_SetByScript(e.target)) {
-				const chk = e.target.checked;
+			if (!get_SetByScript(e.currentTarget)) {
+				const chk = e.currentTarget.checked;
 				editDeviceInformation(device_setting_id, chk);
-				await toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.target);
+				await toggleSwitchChangeEventAddFunction(device_setting_id, chk, e.currentTarget);
 				reloadDeviceInformation("toggle-switch-template");
 			}
-			edit_SetByScript(e.target, false);
+			edit_SetByScript(e.currentTarget, false);
 		});
 	});
 
@@ -80,7 +80,7 @@ function loadedFunc() {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
 					const return_data = switchingOpenDisplay(switched_elem);
-					obj["tf-func"](return_data, e.target);
+					obj["tf-func"](return_data, e.currentTarget);
 					/*
 					if (getOpenDisplayStatus(switched_elem)) {
 						if (focus_out_elem != null)
@@ -97,12 +97,12 @@ function loadedFunc() {
 	const userPreferColorElement = document.getElementById("setting-display--appearance--input-color--prefer-color");
 	userPreferColorElement.value = getDeviceInformation("prefer-color");
 	userPreferColorElement.addEventListener("change", e => {
-		let __includes_special_color = ["myMainBackgroundColor", "myTextColor", "myElementBackgroundColor", "myElementBackgroundColor2", "A-Element-VISITED-COLOR"].map(c => rgbToHex(getCSSLengthValue(`--${c}`))).includes(e.target.value);
+		let __includes_special_color = ["myMainBackgroundColor", "myTextColor", "myElementBackgroundColor", "myElementBackgroundColor2", "A-Element-VISITED-COLOR"].map(c => rgbToHex(getCSSLengthValue(`--${c}`))).includes(e.currentTarget.value);
 		if (__includes_special_color) {
 			myAlertMessage("指定不可能な値が選択されました。\n値を戻します。");
-			e.target.value = getDeviceInformation("prefer-color");
+			e.currentTarget.value = getDeviceInformation("prefer-color");
 		} else {
-			editDeviceInformation("prefer-color", e.target.value);
+			editDeviceInformation("prefer-color", e.currentTarget.value);
 			reloadDeviceInformation("prefer-color");
 		}
 	});
@@ -381,13 +381,13 @@ function loadedFunc() {
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
-			const data_is_true = get_SetByScript(e.target);
+			const data_is_true = get_SetByScript(e.currentTarget);
 			if (!data_is_true) {
-				c1["select-change-event-function"](e.target.value);
+				c1["select-change-event-function"](e.currentTarget.value);
 				if (!(Object.hasOwn(c1, "reload-cancel") && c1["reload-cancel"] == true))
 					reloadDeviceInformation("select-element-change-event");
 			}
-			edit_SetByScript(e.target, false);
+			edit_SetByScript(e.currentTarget, false);
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});

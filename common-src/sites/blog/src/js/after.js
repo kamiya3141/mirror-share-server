@@ -48,12 +48,12 @@ function setupSiteSettingDisplay() {
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
 		const site_setting_id = c.getAttribute("template-id-args");
 		c.querySelector(".toggle_input").addEventListener("change", async e => {
-			if (!get_SetByScript(e.target)) {
-				const chk = e.target.checked;
-				await toggleSwitchChangeEventAddFunction(site_setting_id, chk, e.target);
+			if (!get_SetByScript(e.currentTarget)) {
+				const chk = e.currentTarget.checked;
+				await toggleSwitchChangeEventAddFunction(site_setting_id, chk, e.currentTarget);
 				editSiteSettingInformation(site_setting_id, chk);
 			}
-			edit_SetByScript(e.target, false);
+			edit_SetByScript(e.currentTarget, false);
 		});
 	});
 
@@ -62,7 +62,7 @@ function setupSiteSettingDisplay() {
 	const setting_display_main_contents_tab_bar_item_array = [...setting_elem.querySelectorAll(`[id^="tb--"]`)].map(c => String(c.id).replace("tb--", "#"));
 	setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tb--")).forEach(c1 => {
 		setting_elem.querySelector(c1).addEventListener("click", e => {
-			e.target.tabIndex = 0;
+			e.currentTarget.tabIndex = 0;
 			setting_display_main_contents_tab_bar_item_array.map(c => c.replace("#", "#tc--")).forEach(c2 => {
 				if (c1.split("--")[1] == c2.split("--")[1]) {
 					setting_elem.querySelector(c1).setAttribute("data-mydef--selected", "true");
@@ -142,13 +142,13 @@ function setupSiteSettingDisplay() {
 			document.getElementById(c1["select-id"]).appendChild(opt);
 		});
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
-			const data_is_true = get_SetByScript(e.target);
+			const data_is_true = get_SetByScript(e.currentTarget);
 			if (!data_is_true) {
-				c1["select-change-event-function"](e.target.value);
+				c1["select-change-event-function"](e.currentTarget.value);
 				if (!(Object.hasOwn(c1, "reload-cancel") && c1["reload-cancel"] == true))
 					reloadSiteSettingInformation("select-element-change-event");
 			}
-			edit_SetByScript(e.target, false);
+			edit_SetByScript(e.currentTarget, false);
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});

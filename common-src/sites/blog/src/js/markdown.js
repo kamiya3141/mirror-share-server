@@ -368,6 +368,8 @@ async function copyCodeDataForClipBoard(e) {
 		const rootElement = getParentElement(e.currentTarget, 6);
 		const codeText = rootElement.querySelector("code").innerText;
 		await navigator.clipboard.writeText(codeText);
+
+		// window.setTimeout(() => , 1000);
 	} catch (error) {
 		console.log(error);
 		myAlertMessage("クリップボードへの書き込みに\n失敗しました。");
