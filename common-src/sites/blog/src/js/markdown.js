@@ -253,7 +253,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 				</div>
 			</div>
 		</div>
-		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code><pre>
+		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code></pre>
 	</div>`;
 
 	const line_solo_str = `
@@ -263,7 +263,7 @@ function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none")
 				<span class="fa fa-fw fa-clipboard"></span>
 			</button>
 		</div>
-		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code><pre>
+		<pre><code data-mydef--code-lang="${lng}">${CTS_TMP}</code></pre>
 	</div>`;
 
 	result_str = String(cls).includes("line-multi") ? line_multi_str : line_solo_str;

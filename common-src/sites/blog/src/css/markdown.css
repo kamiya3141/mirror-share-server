@@ -224,12 +224,8 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 			&.code-iframe-common-styles {
 				border-radius: var(--p1);
-				margin: calc(var(--p2) * 1.5) calc(var(--p2) * -1);
-				padding: 0 var(--p2);
-
-				& > * {
-					padding-left: var(--p2);
-				}
+				padding-left: var(--p2);
+				/*margin: calc(var(--p2) * 1.5) calc(var(--p2) * -1);*/
 			}
 
 			&.embed-iframe-root {
@@ -290,15 +286,15 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				& > div.code-option-root {
 					display: flex;
 					flex-direction: row;
-					width: var(--c1);
+					width: calc(var(--c1) * 0.975);
 					height: calc(var(--p2) * 2);
 
 					& > * {
-						flex: 1;
 						height: var(--c1);
 					}
 
 					& > .file-info-box {
+						flex: 5;
 						justify-content: flex-start;
 
 						& > .file-name-box {
@@ -317,6 +313,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 					}
 
 					& > .code-option-box {
+						flex: 1;
 						justify-content: flex-end;
 
 						& > * {
@@ -325,7 +322,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 						}
 
 						& > .code-copied-flag-root {
-							flex: 8.5;
+							flex: 7;
 
 							& > .code-copied-flag {
 								display: inline;
@@ -335,24 +332,25 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 						}
 
 						& > .code-copy-button-root {
-							flex: 1.5;
+							flex: 3;
+							justify-content: flex-start;
 
 							& > div.code-copy-button {
 								display: var(--copy-button-display);
 								position: absolute;
 								top: 0;
-								right: calc(var(--p2) * 3);
 								aspect-ratio: 1 / 1;
 								width: var(--w);
 								height: calc(var(--p2) * 2);
 								flex-direction: row;
 								justify-content: flex-end;
 								background-color: transparent;
-								opacity: 1;
+								opacity: 0.75;
 
 								& > * {
 									position: relative;
 									display: block;
+									font-size: 0.75rem;
 								}
 
 								& button {
@@ -361,7 +359,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 								}
 
 								&:hover {
-									opacity: 0.75;
+									opacity: 0.5;
 								}
 							}
 
@@ -373,6 +371,8 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 				& > pre {
 					min-width: auto;
 					min-height: auto;
+					padding: calc(var(--p2) * 0.75) 0;
+
 
 					& > code {
 						min-width: auto;
