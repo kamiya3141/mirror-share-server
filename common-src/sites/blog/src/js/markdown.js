@@ -49,7 +49,7 @@ const before_replace_str_define_array = [
 	],
 	[
 		/```([^\n]*?):([^\n]*?)\n([\s\S]*?)```/g,
-		(lang, nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts, lang),
+		(lang, nm, cts) => createCodeInnerHTMLString("line-multi code-frame-normal code-iframe-common-styles", nm ? nm : "code", cts, false, lang),
 		[1, 2, 3]
 	],
 	[
@@ -365,19 +365,13 @@ function afterWorker() {
 
 async function copyCodeDataForClipBoard(e) {
 	try {
-		const rootElement = getParentElement(e.target, 6);
+		const org_el = e.currentTarget;
+		const rootElement = getParentElement(org_el, 6);
 		const codeText = rootElement.querySelector("code").innerText;
 		await navigator.clipboard.writeText(codeText);
-		/**
-		 * @type {HTMLElement}
-		 */
-		const copied_flag_element = getParentElement(e.target, 3).querySelector("code-copied-flag");
+		const copied_flag_element = getParentElement(org_el, 4).querySelector(".code-copied-flag");
 		copied_flag_element.classList.remove("display-none");
-		copied_flag_element.classList.add("display-exist");
-		window.setTimeout(() => {
-			copied_flag_element.classList.remove("display-exist");
-			copied_flag_element.classList.add("display-none");
-		}, 1000);
+		window.setTimeout(() => copied_flag_element.classList.add("display-none"), 1000);
 	} catch (error) {
 		console.log(error);
 		myAlertMessage("クリップボードへの書き込みに\n失敗しました。");
