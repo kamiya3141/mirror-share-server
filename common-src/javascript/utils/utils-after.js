@@ -87,6 +87,7 @@ function loadedFunc() {
 		obj["trigger-element"].forEach(el => {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
+					console.log(el2.classList);
 					const return_data = switchingOpenDisplay(switched_elem);
 					obj["tf-func"](return_data, e.target);
 					/*
