@@ -18,18 +18,19 @@ function loadedFunc() {
 	displayElementQueryArray = [
 		{
 			"trigger-element": [`.open-setting-display-button-element`, "#setting-display-div-main #control-box"],
-			"focus-out-element": "", // "#setting-display-div-main>.display-item-box",
+			"focus-out-element": "",
 			"switched-element": "#setting-display-section",
 			"tf-func": (__tf, __elem) => {
 				editDeviceInformation("setting-display-open", __tf);
 			}
 		},
 		{
-			"trigger-element": [".open-setting-buttons-display-element", "#setting-buttons-display-div-main #control-box"],
-			"focus-out-element": "#setting-buttons-display-div-main>.setting-buttons--button-class",
+			"trigger-element": [".open-setting-buttons-display-element", "#setting-buttons-display-div-main #control-box", "#setting-buttons-display-div-main .setting-buttons--button-class"],
+			"focus-out-element": "",
 			"switched-element": "#setting-buttons-display-section",
 			"tf-func": (__tf, __elem) => {
-				console.log(__tf);
+				//console.log(__tf);
+				return __tf;
 			}
 		},
 		{

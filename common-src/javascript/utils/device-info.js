@@ -97,7 +97,7 @@ const origin_device = {
 	"allow--opening--setting-display--after--reload": false,
 	"save--user-data--localstorage": false,
 	"setting-display-open": false,
-	"DEBUGMODE": true
+	"DEBUGMODE": false
 };
 
 var device = {};
