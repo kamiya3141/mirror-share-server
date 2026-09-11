@@ -13,7 +13,7 @@ const toggleSwitchChangeEventAddFunctionFuncObj = {
 		___el.disabled = !__tf;
 		___el.value = getDeviceInformation("device-type");
 	},
-	"allow--changing--device-mode--for--display-size": async (__tf, elem) => {
+	"allow--changing--device-mode--for--display-size": async (__tf, elem, key) => {
 		if (!__tf) {
 			const res = await myConfirmMessage("OFFにすると\n表示が崩れる場合がございます。\nよろしいですか？");
 			if (!res) {
@@ -30,7 +30,7 @@ const toggleSwitchChangeEventAddFunctionFuncObj = {
 };
 async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {
 	if (Object.hasOwn(toggleSwitchChangeEventAddFunctionFuncObj, key))
-		await toggleSwitchChangeEventAddFunctionFuncObj[key](tf, elem);
+		await toggleSwitchChangeEventAddFunctionFuncObj[key](tf, elem, key);
 
 }
 

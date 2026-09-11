@@ -178,6 +178,21 @@ document.body.insertAdjacentHTML("afterbegin", `
 			</div>
 		</div>
 	</template>
+	<template id="display-setting-buttons-template">
+		<div id="display-setting-buttons-main-contents-setting-buttons">
+			<div class="setting-buttons--main-contents-box">
+				<div class="main-contents--top">
+					<h1 id="setting-buttons--message">選択 / Select</h1>
+				</div>
+				<div class="main-contents--bottom">
+					<div class="button-box">
+						<input type="button" value="Global" class="setting-buttons--button-class open-setting-display-button-element">
+						<input type="button" value="Site" class="setting-buttons--button-class open-setting-site-display-button-element">
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 	<template id="display-alert-template">
 		<div id="display-alert-main-contents-alert">
 			<div class="alert--main-contents-box">
@@ -225,11 +240,14 @@ document.body.insertAdjacentHTML("afterbegin", `
 			</div>
 		</div>
 	</template>
-	<section id="data-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
-		<div id="data-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="データ入力 %_ID:display-data-template input-data true"></div>
-	</section>
 	<section id="setting-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
 		<div id="setting-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="設定 %_ID:display-setting-template settings true"></div>
+	</section>
+	<section id="setting-buttons-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
+		<div id="setting-buttons-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="設定画面の選択 %_ID:display-setting-buttons-template choose-settings false"></div>
+	</section>
+	<section id="data-display-section" class="display-section background-blur important-section-1" data-display-open="false" data-mydef--set-by-script="false">
+		<div id="data-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="データ入力 %_ID:display-data-template input-data true"></div>
 	</section>
 	<section id="alert-display-section" class="display-section background-blur important-section-2" data-display-open="false" data-mydef--set-by-script="false">
 		<div id="alert-display-div-main" class="display-section--div-main import-template-append" template-id-data="display-template" template-id-args="警告 %_ID:display-alert-template alert false"></div>

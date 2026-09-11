@@ -26,10 +26,10 @@ const siteSettingColorsArray = [
 ];
 
 function setupSiteSettingDisplay() {
-
+	// サイト設定画面のclick時の処理
 	const __elem = document.querySelector("#setting-site-display-section");
 	__elem.tabIndex = 0;
-	[".open-setting-site-display-button-element", "#setting-site-display-div-main #control-box"].forEach(c1 => {
+	[`.open-setting-site-display-button-element`, "#setting-site-display-div-main #control-box"].forEach(c1 => {
 		[...document.querySelectorAll(c1)].forEach(c2 => {
 			c2.addEventListener("click", e => {
 				const _val = switchingOpenDisplay(__elem);
@@ -160,7 +160,7 @@ document.addEventListener("setting-site-display-reload", e => reloadSiteSettingV
 function reloadSiteSettingValues() {
 	if (getSiteSettingInformation("allow--opening--setting-site-display--after--reload") && getSiteSettingInformation("setting-site-display-open")) {
 		editSiteSettingInformation("setting-site-display-open", false);
-		document.querySelector(".open-setting-site-display-button-element").click();
+		document.querySelector(`.open-setting-site-display-button-element`).click();
 	}
 	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
 

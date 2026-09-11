@@ -4,6 +4,7 @@
 @import url("./display-confirm-template.css");
 @import url("./display-alert-template.css");
 @import url("./display-data-template.css");
+@import url("./display-setting-buttons-template.css");
 
 @property --myStylingLocalDisplayWidth {
 	syntax: "*";
