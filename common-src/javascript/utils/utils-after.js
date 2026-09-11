@@ -18,7 +18,7 @@ function loadedFunc() {
 	displayElementQueryArray = [
 		{
 			"trigger-element": [`.open-setting-display-button-element`, "#setting-display-div-main #control-box"],
-			"focus-out-element": "#setting-display-div-main>.display-item-box",
+			"focus-out-element": "", // "#setting-display-div-main>.display-item-box",
 			"switched-element": "#setting-display-section",
 			"tf-func": (__tf, __elem) => {
 				editDeviceInformation("setting-display-open", __tf);
@@ -87,7 +87,6 @@ function loadedFunc() {
 		obj["trigger-element"].forEach(el => {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
-					console.log(el2.classList);
 					const return_data = switchingOpenDisplay(switched_elem);
 					obj["tf-func"](return_data, e.target);
 					/*

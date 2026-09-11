@@ -28,10 +28,13 @@ html[data-my-device-type="mobile"] #display-setting-buttons-main-contents-settin
 			}
 
 			& > .button-box {
-				width: calc(var(--c1) / 2);
+				width: var(--c1);
+				align-items: center;
+				flex-direction: row;
 			}
 
 			& > * {
+				display: flex;
 				height: var(--c1);
 
 				& > input[type="button"] {

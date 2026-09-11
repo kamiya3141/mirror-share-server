@@ -28,7 +28,7 @@ html[data-my-device-type="mobile"] #display-alert-main-contents-alert input[type
 			}
 
 			& > .button-box {
-				width: calc(var(--c1) / 2);
+				width: var(--c1);
 			}
 
 			& > * {

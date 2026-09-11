@@ -81,7 +81,7 @@ const origin_site_setting = {
 var site_setting = {};
 
 setOriginSiteSettingValueForSiteSetting();
-if (localStorage.getItem(localStorageSiteSettingObjectKeyName) == null)
+if (localStorage.getItem(localStorageSiteSettingObjectKeyName) == null || (localStorage.getItem(localStorageSiteSettingObjectKeyName) && !getSiteSettingDataForLocalStorage()["save--setting-site-data--localstorage"]))
 	setSiteSettingDataForLocalStorage(true);
 
 // "init" は消すな

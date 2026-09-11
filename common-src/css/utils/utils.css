@@ -123,6 +123,10 @@ html {
 
 	& iframe {
 		border: none;
+
+		&:where(:not(.pointer-events-all)) {
+			pointer-events: none;
+		}
 	}
 
 	& button,
