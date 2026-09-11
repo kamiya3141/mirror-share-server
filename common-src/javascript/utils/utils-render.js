@@ -17,7 +17,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 					<div class="corner-box left-corner icon-box">
 						<div class="corner" id="corner-00"></div>
 						<div class="item" id="icon-box">
-							<iframe></iframe>
+							<img src="./favicon.ico">
 						</div>
 					</div>
 					<div class="text-box header-text">

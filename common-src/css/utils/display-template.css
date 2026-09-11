@@ -69,10 +69,10 @@
 					cursor: pointer;
 				}
 
-				& > #icon-box > iframe {
+				& > #icon-box > * {
 					aspect-ratio: 1/1;
-					width: calc(var(--c1) * 3 / 4);
-					height: calc(var(--c1) * 3 / 4);
+					width: calc(var(--c1) * 45 / 100);
+					height: calc(var(--c1) * 45 / 100);
 				}
 			}
 		}
