@@ -162,22 +162,27 @@ html {
 							&#items-box-right-box {
 								display: flex;
 								flex: 1;
-								align-items: center;
 
 								& > .main-nav > .main-nav-box {
+									width: var(--c1);
+									justify-content: flex-start;
+									align-items: center;
+
+									& > * {
+										width: var(--w);
+										display: block;
+									}
+
 									& > .setting-general-box {
-										width: var(--c1);
 										height: var(--c1);
 
 										& > .icon-box_icon-img {
-											object-fit: contain;
 											width: var(--c1);
 											height: var(--c1);
 										}
 									}
 
 									& > .general-box {
-										width: var(--c1);
 										height: var(--c1);
 									}
 								}
@@ -263,8 +268,8 @@ html {
 
 				& .icon-box_icon-img {
 					aspect-ratio: 1/1;
-					width: 75%;
-					height: 75%;
+					/*width: 75%;
+					height: 75%;*/
 				}
 			}
 		}
