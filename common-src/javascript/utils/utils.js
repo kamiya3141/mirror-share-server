@@ -308,22 +308,23 @@ async function utils_LoadImage(path = utilsErrorImgSrc) {
 function imgOnLoad(img) {
 	const fb_key = "data-mydef--utils--img-error--fallback";
 	const org_src_key = "data-mydef--utils--img-org-src";
-	if (img.getAttribute(fb_key) == "false" && img.getAttribute(org_src_key)) {
+	let org_src = img.getAttribute(org_src_key);
+	if (img.getAttribute(fb_key) == "false" && org_src) {
 		try {
 			(async () => {
-				const res = await fetch(org_src_key);
+				const res = await fetch(org_src);
 				if (res.status == 200) {
-					let org_src = img.getAttribute(org_src_key);
 					img.src = org_src;
 					img.setAttribute(org_src_key, "");
-				} else
-					console.log(typeof res.status, res.status);
+				}
 			})();
 		} catch (error) {
-			console.log(error);
+			return;
 		}
 	} else if (img.getAttribute(fb_key) == "true")
 		img.setAttribute(fb_key, "false");
+	if (org_src)
+		console.log(`exec onload ${org_src}`);
 }
 
 function imgOnError(img, error_img_url = "") {
