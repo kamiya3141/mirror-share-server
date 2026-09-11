@@ -323,8 +323,6 @@ function imgOnLoad(img) {
 		}
 	} else if (img.getAttribute(fb_key) == "true")
 		img.setAttribute(fb_key, "false");
-	if (org_src)
-		console.log(`exec onload ${org_src}`);
 }
 
 function imgOnError(img, error_img_url = "") {
