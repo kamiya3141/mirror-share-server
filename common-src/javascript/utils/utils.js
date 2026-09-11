@@ -1,6 +1,7 @@
 var attrName_SetByScript = "data-mydef--set-by-script";
-
 var utilsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_0123456789";
+//var utilsErrorImgSrc = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
+var utilsErrorImgSrc = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
 
 const utilsSleep = ms => new Promise(rslv => setTimeout(rslv, ms));
 
@@ -213,7 +214,7 @@ function createRDMv1(length) {
 function createPopoverElementsStr(el_str0 = "", el_str1 = "", dir = "width", error_img_url = null) {
 	const rdm = createRDM();
 	error_img_url = (error_img_url ? `, '${error_img_url}'` : "");
-	el_str0 = el_str0.replace(">", ` onerror="javascript:imgError(this${error_img_url})">`);
+	el_str0 = el_str0.replace(">", `data-mydef--utils--img-error--fallback="false" data-mydef--utils--img-org-src="" onload="javascript:imgOnLoad(this)" onerror="javascript:imgOnError(this${error_img_url})">`);
 	el_str1 = !el_str1 ? el_str0 : el_str1;
 	dir = dir == "width" ? dir : "height";
 	return `
@@ -292,14 +293,46 @@ function imgVwrButtonBoxOnClick(elem, dir, id) {
 	});
 }
 
-function imgError(img, error_img_url = "") {
-	if (img.dataset.fallback == "true") return;
-	img.dataset.fallback = "true";
+async function utils_LoadImage(path = utilsErrorImgSrc) {
+	const t_img = new Image();
+	return new Promise(
+		(resolve) => {
+			t_img.onload = () => {
+				resolve(t_img);
+			};
+			t_img.src = path;
+		}
+	);
+}
 
-	let error_src = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
-	error_src = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
+function imgOnLoad(img) {
+	const fb_key = "data-mydef--utils--img-error--fallback";
+	const org_src_key = "data-mydef--utils--img-org-src";
+	if (img.getAttribute(fb_key) == "true" && img.getAttribute(org_src_key)) {
+		try {
+			(async () => {
+				const res = await fetch(org_src_key);
+				if (res.status == 200)
+					img.src = img.getAttribute(org_src_key);
+				else
+					console.log(res.status);
+			})();
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
 
-	img.src = (error_img_url ? error_img_url : error_src);
+function imgOnError(img, error_img_url = "") {
+	const fb_key = "data-mydef--utils--img-error--fallback";
+	const org_src_key = "data-mydef--utils--img-org-src";
+	if (img.getAttribute(fb_key) == "true") return;
+	img.setAttribute(fb_key, "true");
+
+	let org_src = img.getAttribute(org_src_key);
+	if (!org_src)
+		img.setAttribute(org_src_key, img.src);
+	img.src = (error_img_url ? error_img_url : utilsErrorImgSrc);
 }
 
 function createDivElement(class_name = "", id = "") {
