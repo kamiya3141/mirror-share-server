@@ -14,9 +14,17 @@ const streamServerInfoObject = {
 		}
 	]
 };
+
 streamServerInfoObject["info-array"].forEach(m => createMotionContentsSection(m.title));
-streamServerInfoObject["info-array"].forEach(m => {
-	document.querySelector(`#button-${m.title}`).addEventListener("click", e => {
+
+function createTshutoURL(_str = "", add_path = "") {
+	return `https://${_str}.tshuto.com/${add_path}`;
+}
+
+function createMotionContentsSection(title = "") {
+	const regexp_str = "[a-zA-Z0-9_-]";
+	const regexp = new RegExp(regexp_str, "g");
+	const onclick_str = `javascript:(() => {
 		if (!streamServerInfoObject["stop-other-processing"]) {
 			streamServerInfoObject["switching--stop-other-processing"]();
 			window.alert("clicked");
@@ -28,17 +36,8 @@ streamServerInfoObject["info-array"].forEach(m => {
 			});
 		} else
 			window.alert("processing other button now...");
-	});
-});
-
-function createTshutoURL(_str = "", add_path = "") {
-	return `https://${_str}.tshuto.com/${add_path}`;
-}
-
-function createMotionContentsSection(title = "") {
-	const regexp_str = "[a-zA-Z0-9_-]";
-	const regexp = new RegExp(regexp_str, "g");
-	const mainContents = `<input type="button" class="motion-contents" id="button-${title}" value="${title}">`;
+	})()`;
+	const mainContents = `<input type="button" class="motion-contents" id="button-${title}" value="${title}" onclick="${onclick_str}">`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
 	if (!clear)
