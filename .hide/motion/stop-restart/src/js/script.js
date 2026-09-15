@@ -15,28 +15,30 @@ const streamServerInfoObject = {
 	]
 };
 
-streamServerInfoObject["info-array"].forEach(m => createMotionContentsSection(m.title));
+streamServerInfoObject["info-array"].forEach(m => createMotionContentsSection(m));
 
 function createTshutoURL(_str = "", add_path = "") {
 	return `https://${_str}.tshuto.com/${add_path}`;
 }
 
-function createMotionContentsSection(title = "") {
+function createMotionContentsSection(obj = { "title": "", "url": "" }) {
+	const title = obj["title"];
+	const url = obj["url"];
 	const regexp_str = "[a-zA-Z0-9_-]";
 	const regexp = new RegExp(regexp_str, "g");
-	const onclick_str = `javascript:(() => {
+	const onclick_str = `javascript:(async el => {
 		if (!streamServerInfoObject["stop-other-processing"]) {
 			streamServerInfoObject["switching--stop-other-processing"]();
 			window.alert("clicked");
-			const _url = new URL(m.url);
-			_url.searchParams.set("motion-order", m.title.toLowerCase());
+			const _url = new URL(${url});
+			_url.searchParams.set("motion-order", "${title}".toLowerCase());
 			window.fetch(_url).then(res => res.text()).then(dt => {
 				window.alert(dt);
 				streamServerInfoObject["switching--stop-other-processing"]();
 			});
 		} else
 			window.alert("processing other button now...");
-	})()`;
+	})(this)`;
 	const mainContents = `<input type="button" class="motion-contents" id="button-${title}" value="${title}" onclick='${onclick_str}'>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
