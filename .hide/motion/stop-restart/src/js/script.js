@@ -17,16 +17,17 @@ const streamServerInfoObject = {
 streamServerInfoObject["info-array"].forEach(m => createMotionContentsSection(m.title));
 streamServerInfoObject["info-array"].forEach(m => {
 	document.querySelector(`#button-${m.title}`).addEventListener("click", e => {
-		if (streamServerInfoObject["stop-other-processing"])
-			return;
-		streamServerInfoObject["switching--stop-other-processing"]();
-		window.alert("clicked");
-		const _url = new URL(m.url);
-		_url.searchParams.set("motion-order", m.title.toLowerCase());
-		window.fetch(_url).then(res => res.text()).then(dt => {
-			window.alert(dt);
+		if (!streamServerInfoObject["stop-other-processing"]) {
 			streamServerInfoObject["switching--stop-other-processing"]();
-		});
+			window.alert("clicked");
+			const _url = new URL(m.url);
+			_url.searchParams.set("motion-order", m.title.toLowerCase());
+			window.fetch(_url).then(res => res.text()).then(dt => {
+				window.alert(dt);
+				streamServerInfoObject["switching--stop-other-processing"]();
+			});
+		} else
+			window.alert("processing other button now...");
 	});
 });
 
