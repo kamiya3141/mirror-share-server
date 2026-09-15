@@ -123,8 +123,12 @@ function isFetchRequest(): bool
 
 function ecex(mixed ...$_args): void
 {
-	foreach ($_args as $c)
-		echo print_r($c, true) . '<br><br>';
+	if (count($_args) == 1)
+		echo $_args[0];
+	else {
+		foreach ($_args as $c)
+			echo print_r($c, true) . '<br><br>';
+	}
 	exit;
 }
 
