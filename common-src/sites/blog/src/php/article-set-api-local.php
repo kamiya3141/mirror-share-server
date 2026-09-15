@@ -107,6 +107,7 @@ if ($content !== null) {
 $file_path = url_join(__DIR__, '../../', 'cache', $slug . '.html');
 $api_url = url_join(getMyHostName('api'), '/express/browser-view/cache/blog');
 $html = forwardRemoteFile("{$api_url}?id={$slug}", false, false, "html", true);
+$html = preg_replace('/<script type="module" src="https:\/\/static.cloudflareinsights.com\/.*?".*?><\/script>/', '', $html);
 $result = file_put_contents($file_path, $html);
 if (!$result)
 	echoErrorSite(500, error_get_last()['message']);
