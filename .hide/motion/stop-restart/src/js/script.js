@@ -37,7 +37,7 @@ function createMotionContentsSection(title = "") {
 		} else
 			window.alert("processing other button now...");
 	})()`;
-	const mainContents = `<input type="button" class="motion-contents" id="button-${title}" value="${title}" onclick="${onclick_str}">`;
+	const mainContents = `<input type="button" class="motion-contents" id="button-${title}" value="${title}" onclick='${onclick_str}'>`;
 	let clear = !(title.replace(regexp, "").length > 0);
 
 	if (!clear)
