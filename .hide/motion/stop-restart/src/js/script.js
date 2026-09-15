@@ -14,9 +14,8 @@ const streamServerInfoObject = {
 		}
 	]
 };
-
+streamServerInfoObject["info-array"].forEach(m => createMotionContentsSection(m.title));
 streamServerInfoObject["info-array"].forEach(m => {
-	createMotionContentsSection(m.title);
 	document.querySelector(`#button-${m.title}`).addEventListener("click", e => {
 		if (streamServerInfoObject["stop-other-processing"])
 			return;
