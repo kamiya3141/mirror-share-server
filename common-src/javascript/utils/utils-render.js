@@ -17,7 +17,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 					<div class="corner-box left-corner icon-box">
 						<div class="corner" id="corner-00"></div>
 						<div class="item" id="icon-box">
-							<img class="display-none" src="./favicon.ico">
+							<img class="display-none" src="https://kamiya3141.github.io/mirror-share-server/favicon.ico">
 						</div>
 					</div>
 					<div class="text-box header-text">
