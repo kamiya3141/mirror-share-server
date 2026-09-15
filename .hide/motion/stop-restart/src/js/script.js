@@ -1,22 +1,32 @@
-const streamServerInfoArray = [
-	{
-		"title": "STOP",
-		"url": createTshutoURL("api", "motion")
+const streamServerInfoObject = {
+	"stop-other-processing": false,
+	"switching--stop-other-processing": function () {
+		this["stop-other-processing"] = !this["stop-other-processing"];
 	},
-	{
-		"title": "RESTART",
-		"url": createTshutoURL("api", "motion")
-	}
-];
+	"info-array": [
+		{
+			"title": "STOP",
+			"url": createTshutoURL("api", "motion")
+		},
+		{
+			"title": "RESTART",
+			"url": createTshutoURL("api", "motion")
+		}
+	]
+};
 
-streamServerInfoArray.forEach(m => createMotionContentsSection(m.title));
-streamServerInfoArray.forEach(m => {
+streamServerInfoObject["info-array"].forEach(m => {
+	createMotionContentsSection(m.title);
 	document.querySelector(`#button-${m.title}`).addEventListener("click", e => {
+		if (streamServerInfoObject["stop-other-processing"])
+			return;
+		streamServerInfoObject["switching--stop-other-processing"]();
 		window.alert("clicked");
 		const _url = new URL(m.url);
 		_url.searchParams.set("motion-order", m.title.toLowerCase());
 		window.fetch(_url).then(res => res.text()).then(dt => {
 			window.alert(dt);
+			streamServerInfoObject["switching--stop-other-processing"]();
 		});
 	});
 });

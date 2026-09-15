@@ -28,10 +28,7 @@ function loadedFunc() {
 			"trigger-element": [".open-setting-buttons-display-element", "#setting-buttons-display-div-main #control-box", "#setting-buttons-display-div-main .setting-buttons--button-class"],
 			"focus-out-element": "",
 			"switched-element": "#setting-buttons-display-section",
-			"tf-func": (__tf, __elem) => {
-				//console.log(__tf);
-				return __tf;
-			}
+			"tf-func": null
 		},
 		{
 			"trigger-element": ["#alert-display-div-main #alert--ok-button"],
@@ -89,14 +86,8 @@ function loadedFunc() {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
 					const return_data = switchingOpenDisplay(switched_elem);
-					obj["tf-func"](return_data, e.target);
-					/*
-					if (getOpenDisplayStatus(switched_elem)) {
-						if (focus_out_elem != null)
-							focus_out_elem.focus();
-						setting_elem.querySelector(`#tb--${setting_display_main_contents_tab_bar_item_array[getDeviceInformation("setting-display-init-item-index")]}`).click();
-					}
-					*/
+					if (Object.hasOwn(obj, "tf-func") && obj["tf-func"] != null)
+						obj["tf-func"](return_data, e.target);
 				});
 			});
 		});
