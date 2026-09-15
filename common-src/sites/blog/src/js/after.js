@@ -3,7 +3,7 @@ const edit_flag = "edit";
 const new_flag = "new";
 
 window.addEventListener("load", async () => {
-	localLoadedFunc();
+	await localLoadedFunc();
 });
 
 async function localLoadedFunc() {
