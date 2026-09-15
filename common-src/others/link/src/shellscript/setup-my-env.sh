@@ -27,8 +27,11 @@ sudo apt install -y locales
 sudo dpkg-reconfigure locales
 
 
-echo -e "\nexport LANG=ja_JP.UTF-8\nexport LC_ALL=ja_JP.UTF-8\n\nclear\n" >> "${bashrc_path}"
+echo -e "\nexport LANG=ja_JP.UTF-8\nexport LC_ALL=ja_JP.UTF-8" >> "${bashrc_path}"
 
+echo -e '\n\nexport PATH="$HOME/.local/bin:$PATH"' >> "${bashrc_path}"
+
+echo -e "\n\nclear\n" >> "${bashrc_path}"
 
 sudo apt install -y parted rsync curl gpg mc screen
 
