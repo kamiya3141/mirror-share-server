@@ -38,14 +38,13 @@ function editSiteSettingInformation(_key = "", _value = null) {
 function reloadSiteSettingInformation(add_msg = "") {
 	if (add_msg == "init")
 		syncSiteSettingDataForLocalStorage();
-	[
-		["MainBackgroundColor", "site-setting--main-background-color"],
-		["TextColor", "site-setting--main-text-color"],
-		["ElementBackgroundColor", "site-setting--element-background-color-1"],
-		["ElementBackgroundColor2", "site-setting--element-background-color-2"]
-	].forEach(arr => {
-		document.documentElement.style.setProperty(`--myStylingLocalMarkdown${arr[0]}`, getSiteSettingInformation(arr[1]));
-	});
+	if (!getSiteSettingInformation("site-setting--disallow-override-colors"))
+		[
+			["MainBackgroundColor", "site-setting--main-background-color"],
+			["TextColor", "site-setting--main-text-color"],
+			["ElementBackgroundColor", "site-setting--element-background-color-1"],
+			["ElementBackgroundColor2", "site-setting--element-background-color-2"]
+		].forEach(arr => document.documentElement.style.setProperty(`--myStylingLocalMarkdown${arr[0]}`, getSiteSettingInformation(arr[1])));
 }
 
 // localStorage

@@ -8,8 +8,52 @@
 	--note-alert-bgc-rvs: light-dark(#6d0303, #ffdbdb);
 }
 
-html[data-my-device-type="mobile"] div#main-contentsbox {
-	font-size: 1.75rem;
+html {
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="default"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: var(--myMainBackgroundColor);
+		--myStylingLocalMarkdownTextColor: var(--myTextColor);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myElementBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myElementBackgroundColor2);
+	}
+
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="default"][data-mydef--markdown-design--important="true"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: var(--myMainBackgroundColor) !important;
+		--myStylingLocalMarkdownTextColor: var(--myTextColor) !important;
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myElementBackgroundColor) !important;
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myElementBackgroundColor2) !important;
+	}
+
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="zenn"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35);
+		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a);
+	}
+
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="zenn"][data-mydef--markdown-design--important="true"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35) !important;
+		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff) !important;
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor) !important;
+		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a) !important;
+	}
+
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="note"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#ffffff, #202a30);
+		--myStylingLocalMarkdownTextColor: light-dark(#08131a, #ffffff);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myStylingLocalMarkdownMainBackgroundColor);
+	}
+
+	&:has(body div#root .main-contentsbox[data-mydef--markdown-design--name="note"][data-mydef--markdown-design--important="true"]) {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#ffffff, #202a30) !important;
+		--myStylingLocalMarkdownTextColor: light-dark(#08131a, #ffffff) !important;
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor) !important;
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myStylingLocalMarkdownMainBackgroundColor) !important;
+	}
+
+	&[data-my-device-type="mobile"] div#main-contentsbox {
+		font-size: 1.75rem;
+	}
 }
 
 .main-contentsbox {
@@ -29,10 +73,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	&[data-mydef--markdown-design--name="default"] {
-		--myStylingLocalMarkdownMainBackgroundColor: var(--myMainBackgroundColor);
-		--myStylingLocalMarkdownTextColor: var(--myTextColor);
-		--myStylingLocalMarkdownElementBackgroundColor: var(--myElementBackgroundColor);
-		--myStylingLocalMarkdownElementBackgroundColor2: var(--myElementBackgroundColor2);
 
 		& [data-mydef--article-tag="title"] {
 			font-size: 2.5rem;
@@ -61,10 +101,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	&[data-mydef--markdown-design--name="zenn"] {
-		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35);
-		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff);
-		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
-		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a);
 
 		& [data-mydef--article-tag="title"] {
 			font-size: 2.5rem;
@@ -93,10 +129,6 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	&[data-mydef--markdown-design--name="note"] {
-		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#ffffff, #202a30);
-		--myStylingLocalMarkdownTextColor: light-dark(#08131a, #ffffff);
-		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
-		--myStylingLocalMarkdownElementBackgroundColor2: var(--myStylingLocalMarkdownMainBackgroundColor);
 
 		& [data-mydef--article-tag="title"] {
 			font-size: 2.5rem;
