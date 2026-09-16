@@ -103,6 +103,8 @@ function setupSiteSettingDisplay() {
 				if (!getSiteSettingInformation("site-setting--disallow-override-colors")) {
 					// 色を推奨値に上書きする(後々実装)
 					window.alert(val);
+					const md_root = document.querySelector("div#root .main-contentsbox");
+					md_root.setAttribute("data-mydef--markdown-design--name", val);
 				}
 			},
 			"init-disabled": true

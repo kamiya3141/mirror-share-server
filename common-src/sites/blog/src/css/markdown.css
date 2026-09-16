@@ -29,6 +29,11 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	&[data-mydef--markdown-design--name="default"] {
+		--myStylingLocalMarkdownMainBackgroundColor: var(--myMainBackgroundColor);
+		--myStylingLocalMarkdownTextColor: var(--myTextColor);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myElementBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myElementBackgroundColor2);
+
 		& [data-mydef--article-tag="title"] {
 			font-size: 2.5rem;
 			font-weight: 800;
@@ -41,7 +46,39 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 			& h1,
 			h2 {
-				border-bottom: 1px solid var(--myTextColor);
+				border-bottom: 1px solid var(--myStylingLocalMarkdownTextColor);
+			}
+
+			& h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				padding-top: calc(var(--c-hd-h) / 2);
+			}
+		}
+	}
+
+	&[data-mydef--markdown-design--name="zenn"] {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35);
+		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a);
+
+		& [data-mydef--article-tag="title"] {
+			font-size: 2.5rem;
+			font-weight: 800;
+			width: var(--c1);
+			height: calc(var(--c-hd-h) * 1.75);
+		}
+
+		& div.hn-div {
+			padding-bottom: calc(var(--c-hd-h) / 4);
+
+			& h1,
+			h2 {
+				border-bottom: 1px solid var(--myStylingLocalMarkdownTextColor);
 			}
 
 			& h1,
@@ -56,7 +93,8 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	& table {
-		color: inherit;
+		background-color: var(--myElementBackgroundColor2);
+		color: var(--myTextColor);
 		border-collapse: collapse;
 		letter-spacing: 1px;
 		display: table;
@@ -215,7 +253,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 
 		&.text-underline {
 			text-decoration-line: underline;
-			text-decoration-color: var(--myTextColor);
+			text-decoration-color: var(--myStylingLocalMarkdownTextColor);
 			text-decoration-thickness: calc(var(--p1) / 4);
 		}
 
@@ -407,7 +445,7 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 			color: var(--myTextColor);
 
 			& > * > span.note-mark-span {
-				font-family: "FontAwesome";
+				font-family: "FontAwesome" !important;
 			}
 
 			&.note-info {

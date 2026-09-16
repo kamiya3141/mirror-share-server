@@ -446,8 +446,6 @@ async function buildMD(_root_query = "div#root .main-contentsbox", use_version_1
 	const result = await parseMarkdown(use_version_1, input_article_data);
 
 	document.querySelector(_root_query).innerHTML = result;
-
-	// afterWorker();
 }
 
 async function updateCacheMD() {
