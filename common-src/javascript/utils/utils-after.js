@@ -348,22 +348,22 @@ function loadedFunc() {
 			"select-id": "setting-display--specific--input-select--setting-display-init-item",
 			"select-option-data-array": [
 				{
-					"text": "表示設定",
+					"text": "",
 					"value": "0"
 				},
 				{
-					"text": "詳細設定",
+					"text": "",
 					"value": "1"
 				},
 				{
-					"text": "ユーザデータの設定",
+					"text": "",
 					"value": "2"
 				},
 				{
-					"text": "設定の初期化",
+					"text": "",
 					"value": "3"
 				}
-			],
+			].map(obj => obj["text"] = document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents .tab-bar--contents--item").item(Number(obj["value"])).innerHTML),
 			"select-change-event-function": val => {
 				editDeviceInformation("setting-display-init-item-index", Number(val));
 			},

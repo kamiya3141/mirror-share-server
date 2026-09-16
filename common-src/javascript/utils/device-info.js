@@ -92,7 +92,7 @@ const origin_device = {
 	"realHeight": 0,
 	"prefer-color": "#00ff00",
 	"font-family": "note-sans-jp",
-	"setting-display-init-item-index": 0,
+	"setting-display-init-item-index": "0",
 	"allow--changing--device-mode--for--display-size": false,
 	"allow--opening--setting-display--after--reload": false,
 	"save--user-data--localstorage": false,
