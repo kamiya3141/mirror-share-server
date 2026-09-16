@@ -92,6 +92,38 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 		}
 	}
 
+	&[data-mydef--markdown-design--name="note"] {
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35);
+		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff);
+		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
+		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a);
+
+		& [data-mydef--article-tag="title"] {
+			font-size: 2.5rem;
+			font-weight: 800;
+			width: var(--c1);
+			height: calc(var(--c-hd-h) * 1.75);
+		}
+
+		& div.hn-div {
+			padding-bottom: calc(var(--c-hd-h) / 4);
+
+			& h1,
+			h2 {
+				border-bottom: 1px solid var(--myStylingLocalMarkdownTextColor);
+			}
+
+			& h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				padding-top: calc(var(--c-hd-h) / 2);
+			}
+		}
+	}
+
 	& table {
 		background-color: var(--myElementBackgroundColor2);
 		color: var(--myTextColor);
