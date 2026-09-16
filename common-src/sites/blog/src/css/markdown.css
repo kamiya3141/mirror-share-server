@@ -93,10 +93,10 @@ html[data-my-device-type="mobile"] div#main-contentsbox {
 	}
 
 	&[data-mydef--markdown-design--name="note"] {
-		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#edf2f7, #081d35);
-		--myStylingLocalMarkdownTextColor: light-dark(#000000, #ecf5ff);
+		--myStylingLocalMarkdownMainBackgroundColor: light-dark(#ffffff, #202a30);
+		--myStylingLocalMarkdownTextColor: light-dark(#08131a, #ffffff);
 		--myStylingLocalMarkdownElementBackgroundColor: var(--myStylingLocalMarkdownMainBackgroundColor);
-		--myStylingLocalMarkdownElementBackgroundColor2: light-dark(#ffffff, #0d223a);
+		--myStylingLocalMarkdownElementBackgroundColor2: var(--myStylingLocalMarkdownMainBackgroundColor);
 
 		& [data-mydef--article-tag="title"] {
 			font-size: 2.5rem;

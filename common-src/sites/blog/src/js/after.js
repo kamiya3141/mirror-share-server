@@ -107,7 +107,7 @@ function setupSiteSettingDisplay() {
 					md_root.setAttribute("data-mydef--markdown-design--name", val);
 				}
 			},
-			"init-disabled": true
+			"init-disabled": false
 		},
 		{
 			"select-id": "setting-site-display--specific--input-select--setting-site-display-init-item",
