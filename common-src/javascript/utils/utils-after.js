@@ -364,7 +364,7 @@ function loadedFunc() {
 					"text": "",
 					"value": "3"
 				}
-			].map(obj => obj["text"] = document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents .tab-bar--contents--item").item(Number(obj["value"])).innerHTML),
+			].map(obj => (obj["text"] = document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents .tab-bar--contents--item").item(Number(obj["value"])).innerHTML, obj)),
 			"select-change-event-function": val => {
 				editDeviceInformation("setting-display-init-item-index", Number(val));
 			},
