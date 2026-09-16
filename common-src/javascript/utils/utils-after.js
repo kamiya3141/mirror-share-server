@@ -27,8 +27,7 @@ function loadedFunc() {
 		{
 			"trigger-element": [".open-setting-buttons-display-element", "#setting-buttons-display-div-main #control-box", "#setting-buttons-display-div-main .setting-buttons--button-class"],
 			"focus-out-element": "",
-			"switched-element": "#setting-buttons-display-section",
-			"tf-func": null
+			"switched-element": "#setting-buttons-display-section"
 		},
 		{
 			"trigger-element": ["#alert-display-div-main #alert--ok-button"],
@@ -86,7 +85,7 @@ function loadedFunc() {
 			[...document.querySelectorAll(el)].forEach(el2 => {
 				el2.addEventListener("click", e => {
 					const return_data = switchingOpenDisplay(switched_elem);
-					if (Object.hasOwn(obj, "tf-func") && obj["tf-func"] != null)
+					if (Object.hasOwn(obj, "tf-func"))
 						obj["tf-func"](return_data, e.target);
 				});
 			});

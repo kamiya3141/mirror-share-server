@@ -83,7 +83,6 @@ function setupSiteSettingDisplay() {
 	// 色設定
 	siteSettingColorsArray.forEach(id => setting_elem.querySelector(`#${id}`).addEventListener("change", e => {
 		editSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`, setting_elem.querySelector(`#${id}`).value);
-		reloadSiteSettingValues();
 		reloadSiteSettingInformation();
 	}));
 	[
