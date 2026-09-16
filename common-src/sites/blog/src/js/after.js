@@ -57,6 +57,7 @@ function setupSiteSettingDisplay() {
 	});
 	// トグルスイッチが押されたときのAddFunction設定
 	toggleSwitchChangeEventAddFunctionFuncObj["site-setting--disallow-override-colors"] = async __tf => {
+		document.querySelector("div#root .main-contentsbox").setAttribute("data-mydef--markdown-design--important", String(Boolean(__tf)));
 		if (__tf)
 			setting_elem.querySelectorAll(`[id^=setting-site-display--appearance--input-color--]`).forEach(c => c.disabled = !__tf);
 	};
