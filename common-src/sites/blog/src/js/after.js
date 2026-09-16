@@ -55,6 +55,11 @@ function setupSiteSettingDisplay() {
 			edit_SetByScript(e.target, false);
 		});
 	});
+	// トグルスイッチが押されたときのAddFunction設定
+	toggleSwitchChangeEventAddFunctionFuncObj["site-setting--disallow-override-colors"] = async __tf => {
+		if (__tf)
+			setting_elem.querySelectorAll(`[id^=setting-site-display--appearance--input-color--]`).forEach(c => c.disabled = !__tf);
+	};
 
 	// 設定画面内の画面切り替えの設定
 	const setting_elem = document.querySelector("#display-site-setting-main-contents-setting");
@@ -101,8 +106,6 @@ function setupSiteSettingDisplay() {
 				document.querySelector("#root .main-contentsbox").setAttribute("data-mydef--markdown-design--name", val);
 				editSiteSettingInformation("site-setting--markdown-design", val);
 				if (!getSiteSettingInformation("site-setting--disallow-override-colors")) {
-					// 色を推奨値に上書きする(後々実装)
-					window.alert(val);
 					const md_root = document.querySelector("div#root .main-contentsbox");
 					md_root.setAttribute("data-mydef--markdown-design--name", val);
 				}
