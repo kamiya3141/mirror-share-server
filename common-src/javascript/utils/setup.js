@@ -127,5 +127,5 @@ MyDataMessageInfoObject["__init__"]();
 
 const my_src = new URL(document.currentScript.src);
 
-if (true || !my_src.searchParams.has("simple"))
+if (!my_src.searchParams.has("simple"))
 	convertTemplateElement(document);
