@@ -57,9 +57,8 @@ function setupSiteSettingDisplay() {
 	});
 	// トグルスイッチが押されたときのAddFunction設定
 	toggleSwitchChangeEventAddFunctionFuncObj["site-setting--disallow-override-colors"] = async __tf => {
-		document.querySelector("div#root .main-contentsbox").setAttribute("data-mydef--markdown-design--important", String(Boolean(__tf)));
-		if (__tf)
-			setting_elem.querySelectorAll(`[id^=setting-site-display--appearance--input-color--]`).forEach(c => c.disabled = !__tf);
+		document.querySelector("div#root .main-contentsbox").setAttribute("data-mydef--markdown-design--important", String(!Boolean(__tf)));
+		setting_elem.querySelectorAll(`[id^=setting-site-display--appearance--input-color--]`).forEach(c => c.disabled = !__tf);
 	};
 
 	// 設定画面内の画面切り替えの設定
@@ -109,6 +108,7 @@ function setupSiteSettingDisplay() {
 					const md_root = document.querySelector("div#root .main-contentsbox");
 					md_root.setAttribute("data-mydef--markdown-design--name", val);
 				}
+				console.log(val);
 			},
 			"init-disabled": false
 		},
@@ -148,7 +148,7 @@ function setupSiteSettingDisplay() {
 		document.getElementById(c1["select-id"]).addEventListener("change", e => {
 			const data_is_true = get_SetByScript(e.target);
 			if (!data_is_true) {
-				c1["select-change-event-function"](e.target.value);
+				c1["select-change-event-function"](e.target.value, c1["select-option-data-array"]);
 				if (!(Object.hasOwn(c1, "reload-cancel") && c1["reload-cancel"] == true))
 					reloadSiteSettingInformation("select-element-change-event");
 			}
@@ -156,7 +156,8 @@ function setupSiteSettingDisplay() {
 		});
 		document.getElementById(c1["select-id"]).disabled = c1["init-disabled"];
 	});
-	reloadSiteSettingValues();
+
+	document.dispatchEvent(new CustomEvent("setting-site-display-reload"));
 }
 
 document.addEventListener("setting-site-display-reload", e => reloadSiteSettingValues());
@@ -164,20 +165,24 @@ document.addEventListener("setting-site-display-reload", e => reloadSiteSettingV
 function reloadSiteSettingValues() {
 	if (getSiteSettingInformation("allow--opening--setting-site-display--after--reload") && getSiteSettingInformation("setting-site-display-open")) {
 		editSiteSettingInformation("setting-site-display-open", false);
-		document.querySelector(`.open-setting-site-display-button-element`).click();
+		document.querySelector(`#header-div-root-desktop .open-setting-site-display-button-element`).click();
 	}
 	[...document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents")][Number(getSiteSettingInformation("setting-site-display-init-item-index"))].click();
 
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");
 		const data = getSiteSettingInformation(_arg);
-		if (data != null)
-			c.querySelector(".toggle_input").checked = Boolean(data);
+		if (data != null) {
+			c.querySelector(".toggle_input").checked = !Boolean(data);
+			c.querySelector(".toggle_input").click();
+		}
 	});
 
-	const md_design = document.getElementById("setting-site-display--appearance--input-select--design-setting");
-	if (!md_design.disabled)
-		md_design.value = getSiteSettingInformation("site-setting--markdown-design");
+	const md_design = document.querySelector("#setting-site-display--appearance--input-select--design-setting");
+	md_design.value = getSiteSettingInformation("site-setting--markdown-design");
+	md_design.dispatchEvent(new Event("change"));
+
+
 	siteSettingColorsArray.forEach(id => {
 		const col = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
 		document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = String(col)[0] == "#" ? col : rgbToHex(col);

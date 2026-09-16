@@ -418,11 +418,13 @@ function reloadDisplaySettingValues() {
 		const _sel = document.querySelector("#setting-display--appearance--input-select--theme-setting");
 		_sel.disabled = false;
 		_sel.value = getDeviceInformation("theme-type");
+		_sel.dispatchEvent(new Event("change"));
 	}
 	if (getDeviceInformation("force-device")) {
 		const _sel = document.querySelector("#setting-display--appearance--input-select--device-mode-setting");
 		_sel.disabled = false;
 		_sel.value = getDeviceInformation("device-type");
+		_sel.dispatchEvent(new Event("change"));
 	}
 	document.querySelector("#setting-display--appearance--input-select--font-setting").value = String(getDeviceInformation("font-family"));
 	document.querySelector("#setting-display--specific--input-select--setting-display-init-item").value = String(getDeviceInformation("setting-display-init-item-index"));
