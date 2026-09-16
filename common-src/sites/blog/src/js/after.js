@@ -111,22 +111,22 @@ function setupSiteSettingDisplay() {
 			"select-id": "setting-site-display--specific--input-select--setting-site-display-init-item",
 			"select-option-data-array": [
 				{
-					"text": "表示設定",
+					"text": "",
 					"value": "0"
 				},
 				{
-					"text": "詳細設定",
+					"text": "",
 					"value": "1"
 				},
 				{
-					"text": "サイトの設定",
+					"text": "",
 					"value": "2"
 				},
 				{
-					"text": "設定の初期化",
+					"text": "",
 					"value": "3"
 				}
-			],
+			].map(obj => (obj["text"] = document.querySelectorAll("#display-site-setting-main-contents-setting .tab-bar--contents .tab-bar--contents--item").item(Number(obj["value"])).innerHTML, obj)),
 			"select-change-event-function": val => {
 				editSiteSettingInformation("setting-site-display-init-item-index", Number(val));
 			},
