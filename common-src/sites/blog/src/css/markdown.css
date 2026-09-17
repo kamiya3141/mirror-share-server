@@ -327,7 +327,6 @@ html {
 			&.code-iframe-common-styles {
 				border-radius: var(--p1);
 				padding-left: var(--p2);
-				/*margin: calc(var(--p2) * 1.5) calc(var(--p2) * -1);*/
 			}
 
 			&.embed-iframe-root {
@@ -509,7 +508,7 @@ html {
 			color: var(--myTextColor);
 
 			& > * > span.note-mark-span {
-				font-family: "FontAwesome" !important;
+				font-family: var(--font-awesome) !important;
 			}
 
 			&.note-info {

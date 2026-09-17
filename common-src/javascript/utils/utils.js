@@ -1,7 +1,7 @@
 var attrName_SetByScript = "data-mydef--set-by-script";
 var utilsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ-abcdefghijklmnopqrstuvwxyz_0123456789";
-//var utilsErrorImgSrc = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
-var utilsErrorImgSrc = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
+var utilsErrorImgSrc = "https://file-nextcloud.tshuto.com/image/svg/img-error/1.svg";
+utilsErrorImgSrc = `${WINV["mySourceFileBasePathArray"][1]}/common-src/svg/img-error/utils/1.svg`;
 
 const utilsSleep = ms => new Promise(rslv => setTimeout(rslv, ms));
 

@@ -3,6 +3,7 @@
 /* --- フォント宣言 --- */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('./awesome-font.css');
 
 /*統合*/
 @font-face {
@@ -815,6 +816,8 @@
 
 	--sotoportego: 'Sotoportego';
 
+	--font-awesome: 'FontAwesome';
+
 	/* --- root設定（CSSプロパティ） --- */
 	--myStylingFontSize: calc(1vmin + 1vmax);
 	--myStylingFontFamily: var(--note-sans-jp), sans-serif;
@@ -837,7 +840,7 @@
 	--myTextColor: light-dark(#131313, #ececec);
 	--myElementBackgroundColor: light-dark(#e7e7e7, #181818);
 	--myElementBackgroundColor2: light-dark(#ffffff, #303030);
-	
+
 	--myMainBackgroundColor-inv: light-dark(#242424, #f6f6f6);
 	--myTextColor-inv: light-dark(#ececec, #131313);
 	--myElementBackgroundColor-inv: light-dark(#181818, #e7e7e7);

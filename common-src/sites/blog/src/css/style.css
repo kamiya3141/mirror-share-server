@@ -1,3 +1,8 @@
+@import url("./markdown.css");
+@import url("./edit-article-display.css");
+@import url("./create-new-article-setting.css");
+@import url("./all-articles-display.css");
+
 @property --myStylingLocalMarkdownMainBackgroundColor {
 	syntax: "<color>";
 	inherits: true;
