@@ -255,11 +255,10 @@ function forwardRemoteFile(string $_url, bool $view_site = false, bool $created_
 		exit;
 	}
 
-	if ($mode_return == true)
-		return $contents;
 	setHeaders($contents, $mime);
-	echo $contents;
-	return "";
+	if (!$mode_return)
+		echo $contents;
+	return $contents;
 }
 
 function exist(mixed $_arg): bool
