@@ -108,7 +108,6 @@ function setupSiteSettingDisplay() {
 					const md_root = document.querySelector("div#root .main-contentsbox");
 					md_root.setAttribute("data-mydef--markdown-design--name", val);
 				}
-				console.log(val);
 			},
 			"init-disabled": false
 		},
