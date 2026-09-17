@@ -60,34 +60,35 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 		font_loading_display_div_element.id = "font_loading_display_div_element-id";
 		font_loading_display_div_element.setAttribute("data-mydef--font_loading_display_div_element--default-display-style", "flex");
 		font_loading_display_div_element.innerHTML = `
-<style>
-	#${font_loading_display_div_element.id} {
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		display: flex;
-		background-color: rgba(0, 0, 0, 0);
-		text-align: center;
-		z-index: 999;
-		justify-content: center;
-		align-items: center;
+			<style>
+				#${font_loading_display_div_element.id} {
+					width: 100%;
+					height: 100%;
+					position: fixed;
+					display: flex;
+					background-color: rgba(0, 0, 0, 0);
+					text-align: center;
+					z-index: 999;
+					justify-content: center;
+					align-items: center;
 
-		&::before {
-			content: "";
-			background-color: #444b;
-			backdrop-filter: blur(0.25rem);
-			width: 100%;
-			height: 100%;
-		}
+					&::before {
+						content: "";
+						background-color: #444b;
+						backdrop-filter: blur(0.25rem);
+						width: 100%;
+						height: 100%;
+					}
 
-		& .main-title {
-			display: inline-block;
-			font-family: 'Note Sans JP';
-			font-size: 5rem;
-		}
-	}
-</style>
-<h1 class="main-title">フォント<br>読み込み中</h1>`;
+					& .main-title {
+						display: inline-block;
+						font-family: 'Note Sans JP';
+						font-size: 5rem;
+					}
+				}
+			</style>
+			<h1 class="main-title">フォント<br>読み込み中</h1>
+		`;
 		font_loading_display_div_element.style.display = "none";
 		document.getElementsByTagName("body")[0].prepend(font_loading_display_div_element);
 
@@ -112,7 +113,6 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 	function createLinkElement(arr_ch = []) {
 		let l = document.createElement(arr_ch[0]);
 		l.setAttribute("rel", arr_ch[1]);
-		// l.setAttribute("defer", "");
 		l.setAttribute("href", `${winMySrcFileBasePath}/${arr_ch[2]}`);
 		if (arr_ch[3] != null) l.setAttribute("type", arr_ch[3]);
 		return l;
