@@ -171,8 +171,10 @@ function reloadSiteSettingValues() {
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="site-setting"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");
 		const data = getSiteSettingInformation(_arg);
-		if (data != null)
-			c.querySelector(".toggle_input").checked = Boolean(data);
+		if (data != null) {
+			c.querySelector(".toggle_input").checked = !Boolean(data);
+			c.querySelector(".toggle_input").click();
+		}
 	});
 
 	const md_design = document.querySelector("#setting-site-display--appearance--input-select--design-setting");

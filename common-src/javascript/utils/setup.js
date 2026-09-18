@@ -25,7 +25,7 @@ const toggleSwitchChangeEventAddFunctionFuncObj = {
 	"save--user-data--localstorage": async __tf => {
 		if (!__tf)
 			return;
-		syncDeviceDataForLocalStorage();
+		DeviceInformation.reload();
 	}
 };
 async function toggleSwitchChangeEventAddFunction(key = "", tf = false, elem) {

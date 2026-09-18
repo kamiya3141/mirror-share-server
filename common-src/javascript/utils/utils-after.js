@@ -410,8 +410,10 @@ function reloadDisplaySettingValues() {
 	[...document.querySelectorAll(`.import-template-append[template-id-data="toggle-switch-template"][data-mydef--import-template-type="utils-setting"]`)].forEach(c => {
 		const _arg = c.getAttribute("template-id-args");
 		const data = getDeviceInformation(_arg);
-		if (data != null)
-			c.querySelector(".toggle_input").checked = Boolean(data);
+		if (data != null) {
+			c.querySelector(".toggle_input").checked = !Boolean(data);
+			c.querySelector(".toggle_input").click();
+		}
 	});
 
 	if (getDeviceInformation("force-theme")) {
