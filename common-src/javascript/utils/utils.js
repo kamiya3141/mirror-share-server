@@ -334,11 +334,47 @@ function imgOnError(img, error_img_url = "") {
 	img.src = (error_img_url ? error_img_url : utilsErrorImgSrc);
 }
 
+/**
+ * 
+ * @param {String} name 
+ * @param {Object | String} attr 
+ * @param {Array} contents 
+ * @returns {Array}
+ */
+
+function createElementStructureObject(name, attr, contents = []) {
+	return {
+		"name": name,
+		"attr": (typeof attr == "string") ? { "class": attr } : attr,
+		"contents": contents
+	};
+}
+
+function createAnyElementStructure(input_array = ["", {}, []]) {
+	let obj = createElementStructureObject(...input_array);
+	const if_arr = [Boolean(typeof obj == "object"), Boolean(Object.hasOwn(obj, "name")), Boolean(Object.hasOwn(obj, "attr")), Boolean(Object.hasOwn(obj, "contents")), Boolean(typeof obj["attr"] == "object"), Boolean(typeof obj["contents"] == "object"), Boolean(Object.hasOwn(obj["contents"], "length"))].map(_bl => !_bl);
+	if (if_arr.some(_bl => _bl)) {
+		console.error(`Error: 引数の obj が条件を満たしていません。\n${if_arr}\n${input_array}\n${obj}`);
+		return null;
+	}
+	const _el = createAnyElement(obj["name"], obj["attr"]);
+	obj["contents"].forEach(c_el_obj => _el.appendChild(createAnyElementStructure(c_el_obj)));
+	return _el;
+}
+
+function createAnyElement(element_name = "div", add_attr_obj = {}) {
+	const el = document.createElement(element_name);
+	Object.entries(add_attr_obj).forEach(([k, v]) => {
+		if (k == "innerHTML")
+			el.innerHTML = v;
+		else
+			el.setAttribute(k, v);
+	});
+	return el;
+}
+
 function createDivElement(class_name = "", id = "") {
-	const div = document.createElement("div");
-	div.id = id;
-	div.className = class_name;
-	return div;
+	return createAnyElement("div", { "class": class_name, "id": id });
 }
 
 function getParentElement(el, n = 1, getLastElement = true) {

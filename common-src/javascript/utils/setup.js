@@ -69,7 +69,7 @@ function convertEnvVars(input_var = "") {
 }
 
 function cloneTemplate(input, not_id = false) {
-	const template = (not_id ? input : document.getElementById(input));
+	const template = (not_id ? input : document.querySelector(`#${input}`));
 	const flag = template.content.cloneNode(true);
 	return flag;
 }

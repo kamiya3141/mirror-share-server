@@ -1,0 +1,9 @@
+div#root {
+	width: var(--c1);
+	height: var(--c1);
+
+	& > #main-contents {
+		width: var(--c1);
+		height: var(--c1);
+	}
+}

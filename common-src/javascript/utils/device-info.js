@@ -127,3 +127,6 @@ useOldUserAgentDataValue = device["DEBUGMODE"];
 
 // "init" は消すな
 reloadDeviceInformation("init");
+
+
+const DeviceInformation = new LocalStorageObject(localStorageDeviceObjectKeyName, origin_device, "save--user-data--localstorage");
