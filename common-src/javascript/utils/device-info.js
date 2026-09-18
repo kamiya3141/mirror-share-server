@@ -1,44 +1,169 @@
-function resetDeviceInformationData(allowDisplayWarningMessage = true) {
-	if (allowDisplayWarningMessage)
-		myAlertMessage("ユーザデータを初期化します。\nページがリロードされると元に戻るためご注意ください。");
-	setOriginDeviceValueForDevice();
-	document.dispatchEvent(new CustomEvent("setting-display-reload"));
+class LocalStorageObject extends Object {
+	#storageKey;
+	#defaultValue;
+	#saveLocalStorage;
+	#AddFunctionsArraysObject;
+
+
+	constructor (storageKey = `localstorage-data--${createRDM()}`, defaultValue = {}, saveLocalStorage_keyName = "") {
+		super();
+
+		this.#storageKey = storageKey;
+		this.#defaultValue = defaultValue;
+		this.#AddFunctionsArraysObject = {
+			"save": [],
+			"reset": [],
+			"reload": [],
+			"clear": []
+		};
+		this["saveLocalStorage_keyName"] = "";
+		this["local--save--localstorage"] = true;
+		this.setKeySaveLocalStorage(saveLocalStorage_keyName);
+
+
+		const savedValue = localStorage.getItem(storageKey);
+
+		if (savedValue === null) {
+			this.reset(false);
+			this.save(true);
+			return;
+		}
+
+		try {
+			const parsedValue = JSON.parse(savedValue);
+
+			if (
+				parsedValue === null ||
+				typeof parsedValue !== "object" ||
+				Array.isArray(parsedValue)
+			) {
+				throw new Error("保存データがObjectではありません");
+			}
+
+			Object.assign(this, parsedValue);
+		} catch (error) {
+			console.error(
+				`LocalStorageの読み込みに失敗: ${storageKey}`,
+				error
+			);
+
+			this.reset(false);
+		}
+		if (!this.get("saveLocalStorage_keyName"))
+			this.setKeySaveLocalStorage("local--save--localstorage");
+		this.save();
+	}
+
+	setKeySaveLocalStorage(key = "") {
+		if (key.length > 0 && this.exist(key))
+			this.set("saveLocalStorage_keyName", key);
+	}
+
+	exist(key) {
+		return Object.hasOwn(this, key);
+	}
+
+	get(key) {
+		if (this.exist(key))
+			return this[key];
+		else
+			console.error(`function error: "LocalStorageObject.edit"\n\tマップ変数:thisに${key}というキーはありません\n${Object.entries(this).map(([k, v]) => (k + " : " + v)).join("\n")}`);
+		return false;
+	}
+
+	set(key, value) {
+		if (this.exist(key))
+			this[key] = value;
+		else
+			console.error(`function error: "LocalStorageObject.edit"\n\tマップ変数:thisに${key}というキーはありません\n${Object.entries(this).map(([k, v]) => (k + " : " + v)).join("\n")}`);
+		this.save();
+	}
+
+	reset(allowDisplayWarningMessage = true, msg = "") {
+		if (allowDisplayWarningMessage)
+			myAlertMessage(msg);
+
+		Object.assign(this, this.#defaultValue);
+	}
+
+	save(force_save = false) {
+		this.#saveLocalStorage = this[this.get("saveLocalStorage_keyName")];
+		if (force_save || this.#saveLocalStorage)
+			localStorage.setItem(
+				this.#storageKey,
+				JSON.stringify(this)
+			);
+
+	}
+
+	reload() {
+		const savedValue = localStorage.getItem(this.#storageKey);
+
+		if (savedValue === null)
+			return false;
+
+		Object.assign(this, JSON.parse(savedValue));
+
+		return true;
+	}
+
+	clear(allowDisplayWarningMessage = true, msg = "") {
+		if (allowDisplayWarningMessage)
+			myAlertMessage(msg);
+
+		localStorage.removeItem(this.#storageKey);
+
+		for (const key of Object.keys(this))
+			delete this[key];
+	}
+
+	registerAddFunction(name = "", func) {
+		if (Object.hasOwn(this.#AddFunctionsArraysObject, name))
+			this.#AddFunctionsArraysObject[name].push(func);
+	}
+
+	execAddFunction(name = "") {
+		if (Object.hasOwn(this.#AddFunctionsArraysObject, name))
+			this.#AddFunctionsArraysObject[name].forEach(fn => fn());
+	}
 }
 
-function removeDeviceInformationData(allowDisplayWarningMessage = true) {
-	resetDeviceInformationData(false);
-	setDeviceDataForLocalStorage(true);
-	if (allowDisplayWarningMessage)
-		myAlertMessage("ユーザーデータを削除しました。");
-}
 
-function setOriginDeviceValueForDevice() {
-	Object.assign(device, origin_device);
-}
+const origin_device = {
+	"force-theme": false,
+	"theme-type": "system",
+	"force-device": false,
+	"device-type": "device",
+	"width": 0,
+	"height": 0,
+	"realWidth": 0,
+	"realHeight": 0,
+	"prefer-color": "#00ff00",
+	"font-family": "note-sans-jp",
+	"setting-display-init-item-index": "0",
+	"allow--changing--device-mode--for--display-size": false,
+	"allow--opening--setting-display--after--reload": false,
+	"save--user-data--localstorage": false,
+	"setting-display-open": false,
+	"DEBUGMODE": false
+};
+
+const DeviceInformation = new LocalStorageObject("device-data", origin_device, "save--user-data--localstorage");
+DeviceInformation.registerAddFunction("reset", () => document.dispatchEvent(new CustomEvent("setting-display-reload")));
+DeviceInformation.registerAddFunction("reload", () => DeviceInformation.set("DEBUGMODE", origin_device["DEBUGMODE"]));
 
 function getDeviceInformation(_key = "") {
-	let ret_val = null;
-
-	if (Object.hasOwn(device, _key))
-		ret_val = device[_key];
-	else
-		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません\n${Object.entries(device).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-
-	return ret_val;
+	return DeviceInformation.get(_key);
 }
 
 function editDeviceInformation(_key = "", _value = null) {
-	if (Object.hasOwn(device, _key))
-		device[_key] = _value;
-	else
-		console.error(`function error: "editDeviceInformation"\n\tマップ変数:deviceに${_key}というキーはありません\n${Object.entries(device).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-	setDeviceDataForLocalStorage(_key == "save--user-data--localstorage" ? true : getDeviceInformation("save--user-data--localstorage"));
+	DeviceInformation.set(_key, _value);
 }
 
 function reloadDeviceInformation(add_msg = "") {
 
 	if (add_msg == "init")
-		syncDeviceDataForLocalStorage();
+		DeviceInformation.reload();
 
 	editDeviceInformation("width", Number(getCSSLengthValue("--myStylingWidth")));
 	editDeviceInformation("height", Number(getCSSLengthValue("--myStylingHeight")));
@@ -63,50 +188,6 @@ function reloadDeviceInformation(add_msg = "") {
 }
 
 
-// localStorage
-
-function setDeviceDataForLocalStorage(set_data_flag = false) {
-	if (set_data_flag)
-		localStorage.setItem(localStorageDeviceObjectKeyName, JSON.stringify(device));
-}
-
-function getDeviceDataForLocalStorage() {
-	return JSON.parse(localStorage.getItem(localStorageDeviceObjectKeyName));
-}
-
-function syncDeviceDataForLocalStorage() {
-	Object.assign(device, getDeviceDataForLocalStorage());
-	device["DEBUGMODE"] = origin_device["DEBUGMODE"];
-}
-
-const localStorageDeviceObjectKeyName = "device-data";
-
-const origin_device = {
-	"force-theme": false,
-	"theme-type": "system",
-	"force-device": false,
-	"device-type": "device",
-	"width": 0,
-	"height": 0,
-	"realWidth": 0,
-	"realHeight": 0,
-	"prefer-color": "#00ff00",
-	"font-family": "note-sans-jp",
-	"setting-display-init-item-index": "0",
-	"allow--changing--device-mode--for--display-size": false,
-	"allow--opening--setting-display--after--reload": false,
-	"save--user-data--localstorage": false,
-	"setting-display-open": false,
-	"DEBUGMODE": false
-};
-
-var device = {};
-
-
-setOriginDeviceValueForDevice();
-if (localStorage.getItem(localStorageDeviceObjectKeyName) == null)
-	setDeviceDataForLocalStorage(true);
-
 // windowイベント設定
 // tamura-first-load.js のresize-eventの実行をキャンセル
 WINV["resize-event-cancel"] = true;
@@ -123,10 +204,7 @@ window.addEventListener("load", e => {
 });
 
 // ここのdevice直接参照の部分は変更するな,DEBUGMODEの値は変えてもいい
-useOldUserAgentDataValue = device["DEBUGMODE"];
+useOldUserAgentDataValue = DeviceInformation.get("DEBUGMODE");
 
 // "init" は消すな
 reloadDeviceInformation("init");
-
-
-const DeviceInformation = new LocalStorageObject(localStorageDeviceObjectKeyName, origin_device, "save--user-data--localstorage");

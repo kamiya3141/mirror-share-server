@@ -162,7 +162,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 						<div class="item-summary">ユーザデータの初期化</div>
 						<div class="item-box">
 							<div class="item">
-								<button class="allow-expand" onclick="javascript:resetDeviceInformationData()">実行</button>
+								<button class="allow-expand" onclick="javascript: DeviceInformation.reset(true, 'データを初期化します。\\nページがリロードされると元に戻るためご注意ください。');">実行</button>
 							</div>
 						</div>
 					</div>
@@ -170,7 +170,7 @@ document.body.insertAdjacentHTML("afterbegin", `
 						<div class="item-summary">ユーザデータを削除</div>
 						<div class="item-box">
 							<div class="item">
-								<button class="allow-expand" onclick="javascript:removeDeviceInformationData()">実行</button>
+								<button class="allow-expand" onclick="javascript: DeviceInformation.clear(true, 'ユーザーデータを削除しました。');">実行</button>
 							</div>
 						</div>
 					</div>
