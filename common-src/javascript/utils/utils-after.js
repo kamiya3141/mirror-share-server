@@ -403,7 +403,7 @@ document.addEventListener("setting-display-reload", reloadDisplaySettingValues);
 function reloadDisplaySettingValues() {
 	if (getDeviceInformation("allow--opening--setting-display--after--reload") && getDeviceInformation("setting-display-open")) {
 		editDeviceInformation("setting-display-open", false);
-		document.querySelector(displayElementQueryArray[0]["trigger-element"][0]).click();
+		document.querySelector(displayElementQueryArray[0]["trigger-element"][1]).click();
 	}
 	[...document.querySelectorAll("#display-setting-main-contents-setting .tab-bar--contents")][Number(getDeviceInformation("setting-display-init-item-index"))].click();
 
