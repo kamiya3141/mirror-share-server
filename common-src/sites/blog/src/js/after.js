@@ -181,7 +181,7 @@ function reloadSiteSettingValues() {
 	md_design.value = getSiteSettingInformation("site-setting--markdown-design");
 	md_design.dispatchEvent(new Event("change"));
 
-
+	// --myStylingLocalMarkdownXXX...の設定
 	siteSettingColorsArray.forEach(id => {
 		const col = getSiteSettingInformation(`site-setting--${id.split("--").at(-1)}`);
 		document.getElementById("display-site-setting-main-contents-setting").querySelector(`#${id}`).value = String(col)[0] == "#" ? col : rgbToHex(col);
@@ -190,12 +190,12 @@ function reloadSiteSettingValues() {
 	document.querySelector("#setting-site-display--specific--input-select--setting-site-display-init-item").value = String(getSiteSettingInformation("setting-site-display-init-item-index"));
 }
 
-function rebuildMD() {
-	(async () => {
-		const _pmd = await import(`./markdown.js`);
-		await _pmd.buildMD();
-		const _res = await _pmd.updateCacheMD();
-		if (_res)
-			myAlertMessage("更新しました。");
-	})();
+async function rebuildMD() {
+	const _pmd = await import(`./markdown.js`);
+	await _pmd.buildMD();
+	const _res = await _pmd.updateCacheMD();
+	if (_res)
+		myAlertMessage("更新に成功しました。");
+	else
+		myAlertMessage("更新に失敗しました。");
 }
