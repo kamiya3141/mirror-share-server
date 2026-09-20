@@ -30,6 +30,8 @@
 	--c-hd-h: calc(var(--c1) * 10 / 100);
 	--c-mn-h: calc(var(--c-hd-h) * 8);
 	--c-ft-h: calc(var(--myStylingHeight) * 20 / 100);
+	--c-hd-h2: calc(var(--c-hd-h) * 2);
+	--c-mn-h2: calc(var(--c-hd-h) * 9);
 
 	--myStylingLocalDisplayWidth: var(--c-mn-h);
 	--myStylingLocalDisplayHeight: var(--c-mn-h);

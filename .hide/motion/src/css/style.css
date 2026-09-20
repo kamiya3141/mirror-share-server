@@ -95,12 +95,12 @@ html {
 
 			& > .section-box-class {
 				width: var(--c1);
-				height: calc(var(--c-hd-h) * 9);
+				height: var(--c-mn-h2);
 
 				& + #setting-button {
 					text-align: center;
 					width: var(--c1);
-					height: calc(var(--c-hd-h) * 1);
+					height: var(--c-hd-h);
 					font-size: 3rem;
 				}
 
@@ -117,7 +117,7 @@ html {
 
 					& > .title-box {
 						width: var(--c1);
-						height: calc(var(--c-hd-h) * 2);
+						height: var(--c-hd-h2);
 						display: grid;
 						grid-template-columns: 1fr;
 						grid-template-rows: 4fr 0fr;
