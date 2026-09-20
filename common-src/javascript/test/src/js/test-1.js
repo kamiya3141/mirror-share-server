@@ -1,6 +1,6 @@
 async function test1() {
 	console.log("start-0");
-	await utilsSleep(3000);
+	await utilsSleep(1000);
 	console.log("end-0");
 }
 
@@ -17,3 +17,6 @@ class MyElement {
 }
 
 document.querySelectorAll("myelement").forEach(element => new MyElement(element));
+
+document.querySelectorAll(".test-section--class").forEach((el, i) => el.insertAdjacentHTML(["beforebegin", "afterbegin", "beforeend", "afterend"][i], createAnyElement("div", { innerHTML: `div--${i}` }).outerHTML));
+console.log(document.querySelectorAll(".test-section--class")[0].firstElementChild.innerHTML);
