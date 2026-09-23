@@ -5,7 +5,8 @@ import App from './App.jsx';
 import AppTest from './AppTest.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <AppTest />
-  </StrictMode>,
+	<StrictMode>
+		<AppTest></AppTest>
+		<App></App>
+	</StrictMode>,
 );
