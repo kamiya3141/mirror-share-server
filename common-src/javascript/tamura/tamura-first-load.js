@@ -256,6 +256,8 @@ function setTheme(add_msg = "") {
 	const r_idx = Number(!Boolean(n_idx));
 	let ipt_w = [document.documentElement.clientWidth, window.screen.width];
 	let ipt_h = [document.documentElement.clientHeight, window.screen.height];
+	ipt_w = [window.innerWidth, window.screen.width];
+	ipt_h = [window.innerHeight, window.screen.height];
 	[
 		["StylingWidth", [ipt_w[n_idx], ipt_w[n_idx]].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
@@ -282,7 +284,7 @@ function setTheme(add_msg = "") {
 	document.documentElement.setAttribute("data-theme", forceTheme ? themeType : "system");
 	document.documentElement.setAttribute("data-my-device-type", (forceDevice && deviceType == "device") ? checkCurrentDeviceString() : deviceType);
 
-	/*	if (add_msg.length > 0)
+	/*if (add_msg.length > 0)
 		console.log(add_msg, forceTheme, themeType, forceDevice, deviceType, preferColor, fontFamily, tabSize);*/
 }
 
