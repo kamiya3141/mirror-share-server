@@ -256,8 +256,10 @@ function setTheme(add_msg = "") {
 	const r_idx = Number(!Boolean(n_idx));
 	let ipt_w = [document.documentElement.clientWidth, window.screen.width];
 	let ipt_h = [document.documentElement.clientHeight, window.screen.height];
-	ipt_w = [window.innerWidth, window.screen.width];
-	ipt_h = [window.innerHeight, window.screen.height];
+	if (n_idx == 0 && checkCurrentDevicePC()) {
+		ipt_w = [window.innerWidth, window.screen.width];
+		ipt_h = [window.innerHeight, window.screen.height];
+	}
 	[
 		["StylingWidth", [ipt_w[n_idx], ipt_w[n_idx]].map(c => `${c}px`)],
 		["StylingHeight", [ipt_h[n_idx], ipt_h[n_idx]].map(c => `${c}px`)],
