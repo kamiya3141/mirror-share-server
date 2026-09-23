@@ -1,6 +1,10 @@
 function AppTest() {
 	return (
-		<h1>Hello React!</h1>
+		<div>
+			<h1>React Test</h1>
+
+			<p>Reactを勉強中</p>
+		</div>
 	);
 }
 
