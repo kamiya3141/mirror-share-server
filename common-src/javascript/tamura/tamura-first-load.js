@@ -93,9 +93,11 @@ const this_is_only_css = this_file_url.searchParams.has("css") || false;
 		document.getElementsByTagName("body")[0].prepend(font_loading_display_div_element);
 
 		if (!this_is_none_version) {
-			const add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/utils/utils.css"]] : [];
+			let add_arr_css = this_is_full_version ? [["link", "stylesheet", "common-src/css/All.css"]] : [];
+			if (!document.head.querySelector(`link[rel="icon"]`))
+				add_arr_css.push(["link", "icon", "favicon.ico"]);
 			adds_head([
-				["link", "stylesheet", "common-src/css/base.css"],
+				["link", "stylesheet", "common-src/css/All.css"],
 				...add_arr_css
 			]);
 
