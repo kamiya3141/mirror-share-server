@@ -1,9 +1,9 @@
+import DisplayHeader from "./DisplayHeader.jsx";
+
 function AppTest() {
 	return (
 		<div>
-			<h1>React Test</h1>
-
-			<p>Reactを勉強中</p>
+			<DisplayHeader title="グローバル設定" closedButton theme="dark">Contents</DisplayHeader>
 		</div>
 	);
 }
