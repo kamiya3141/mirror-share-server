@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 90" style="background-color: rgba(0, 0, 0, 0);">
+	<path d="M55 30 C55 0, 5 0, 5 30"
+		  fill="none"
+		  stroke="#ea4335"
+		  stroke-width="10" />
+	<path d="M5 30 C 5 45, 20 45, 30 45"
+		  fill="none"
+		  stroke="#fbbc05"
+		  stroke-width="10" />
+	<path d="M30 45 C 40 45, 55 45, 55 60"
+		  fill="none"
+		  stroke="#34a853"
+		  stroke-width="10" />
+	<path d="M55 60 C55 90, 5 90, 5 60"
+		  fill="none"
+		  stroke="#4285f4"
+		  stroke-width="10" />
+</svg>
