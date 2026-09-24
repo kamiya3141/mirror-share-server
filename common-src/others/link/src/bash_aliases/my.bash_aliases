@@ -10,6 +10,7 @@ alias updtexut="wget -q --no-cache -O ${HOME}/exec-update.sh https://kamiya3141.
 
 alias scx="screen -xRR"
 alias shd="sudo shutdown now"
+
 # --- function ---
 # 汎用
 function scdr() {
@@ -43,11 +44,19 @@ function sjc() {
 	sudo journalctl -xeu $@
 }
 
-function sct() {
-	sudo cat $1 | less
+function sc() {
+	sudo cat $1
 }
+function sct() {
+	sc $1 | less
+}
+
 function sls() {
 	sudo ls -lah $@
+}
+
+function ed() {
+	curl -fsS -o /dev/null "https://api.tshuto.com/express/ssh-endl?n=${1:-0}"
 }
 
 function apis() {
