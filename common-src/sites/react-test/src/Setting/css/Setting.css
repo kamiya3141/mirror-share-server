@@ -1,3 +1,9 @@
+/* 横長 */
+@media (min-aspect-ratio: 1/1) {}
+
+/* 縦長 */
+@media (max-aspect-ratio: 1/1) {}
+
 .setting-root {
 	width: 100%;
 	height: 100%;
