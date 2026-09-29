@@ -83,7 +83,7 @@ function snn() {
 	sudo nano $1
 }
 
-function cli() {
+function cui() {
 	sudo systemctl set-default multi-user.target
 }
 function gui() {
