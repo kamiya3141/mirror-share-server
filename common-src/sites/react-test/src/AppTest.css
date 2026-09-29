@@ -1,6 +1,7 @@
 .apptest-root {
 	width: 100%;
 	height: 100%;
+	overflow-y: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -8,5 +9,12 @@
 	> .apptest-button {
 		padding: 0.5rem 2.5rem;
 		font-size: 2rem;
+		margin-top: 5rem;
 	}
+}
+
+.temp-div {
+	display: block;
+	width: 100%;
+	height: 100%;
 }

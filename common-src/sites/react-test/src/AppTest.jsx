@@ -23,6 +23,8 @@ function AppTest() {
 				<DisplayMainContents>Main-Contents</DisplayMainContents>
 				<DisplayFooter>Footer-Title</DisplayFooter>
 			</Display>
+			<div class="temp-div"></div>
+			<div class="temp-div"></div>
 		</div>
 	);
 }

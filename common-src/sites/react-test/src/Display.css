@@ -28,6 +28,7 @@
 	width: 90%;
 	height: 90%;
 	display: none;
+	position: static;
 	grid-template-columns: 1fr;
 	flex-direction: column;
 
@@ -49,6 +50,7 @@
 	&:popover-open {
 		display: grid;
 		border: none;
+		position: fixed;
 	}
 
 	&::backdrop {
