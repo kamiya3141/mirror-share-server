@@ -9,7 +9,7 @@ function DisplayHeader({ children, title, closedButton }) {
 			<section class="right">
 				<div class="right--left">
 					{closedButton && (
-						<button>×</button>
+						<button>&#10005;</button>
 					)}
 				</div>
 				<div class="right--right corner"></div>

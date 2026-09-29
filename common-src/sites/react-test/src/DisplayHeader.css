@@ -18,6 +18,7 @@
 	}
 
 	> * {
+		display: flex !important;
 		width: 100%;
 
 		> .corner {
@@ -31,7 +32,7 @@
 	}
 
 	* {
-		display: flex;
+		display: inherit;
 		justify-content: inherit;
 		align-items: inherit;
 		flex-direction: inherit;
@@ -49,6 +50,11 @@
 	}
 
 	> .right {
+
+		button {
+			width: 100%;
+			font-size: 1.25rem;
+		}
 
 		> .right--right {
 			border-top-right-radius: 999rem;
