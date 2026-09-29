@@ -38,28 +38,32 @@
 	&.display--header {
 		> * > * {
 			border-top-color: var(--d-bdc);
+			/*box-shadow: var(--d-shdw-t);*/
 		}
 
 		> .left > .left--left {
 			border-left-color: var(--d-bdc);
 			border-top-left-radius: 999rem;
+			/*box-shadow: var(--d-shdw-t), var(--d-shdw-l);*/
 		}
 
 		> .right > .right--right {
 			border-right-color: var(--d-bdc);
 			border-top-right-radius: 999rem;
+			box-shadow: var(--d-shdw-r);
 		}
 	}
 
 	&.display--footer {
 		> * > * {
 			border-bottom-color: var(--d-bdc);
+			box-shadow: var(--d-shdw-b);
 		}
 
 		> .left > .left--left {
 			border-left-color: var(--d-bdc);
 			border-bottom-left-radius: 999rem;
-			box-shadow: none;
+			/*box-shadow: var(--d-shdw-b), var(--d-shdw-l);*/
 		}
 
 		> .right > .right--right {
@@ -76,6 +80,9 @@
 
 	> .right button {
 		width: 100%;
-		font-size: 1.25rem;
+		font-size: 3rem;
+		&:not(:hover) {
+			border-color: rgba(0, 0, 0, 0);
+		}
 	}
 }

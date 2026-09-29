@@ -1,27 +1,24 @@
 :root {
 	--d-bgc1: rgb(48, 48, 48);
 	--d-bgc2: #404040;
-	--d-bdc: var(--accent-bg);
+	--d-bdc: rgba(192, 132, 252, 0.15);
 	--d-bdw: 0.0125rem;
 	--d-bdw: 1px;
 	--d-bd-s: var(--d-bdw) transparent solid;
 
 	--d-bkdp-bgc: rgba(128, 128, 128, 0.5);
 
-	--d-shdw-fc: transparent;
-	--d-shdw-fc2: rgba(0, 0, 0, 0.5);
+	--d-shdw-fc: rgba(0, 0, 0, 0.5);
+	--d-shdw-w: 5px;
+	--d-shdw-rw: calc(-1 * var(--d-shdw-w));
 	--d-shdw-r:
-		var(--d-shdw-fc) 10px 0 15px -3px,
-		rgba(0, 0, 0, 0.25) 4px 0 6px -2px;
+		var(--d-shdw-fc) var(--d-shdw-w) 0px 0px;
 	--d-shdw-b:
-		var(--d-shdw-fc) 0 10px 15px -3px,
-		rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+		var(--d-shdw-fc) 0px var(--d-shdw-w) 0px;
 	--d-shdw-t:
-		var(--d-shdw-fc) 0 -10px 15px -3px,
-		rgba(0, 0, 0, 0.25) 0 -4px 6px -2px;
+		var(--d-shdw-fc) 0px var(--d-shdw-rw) 0px;
 	--d-shdw-l:
-		var(--d-shdw-fc) -10px 0 15px -3px,
-		rgba(0, 0, 0, 0.25) -4px 0 6px -2px;
+		var(--d-shdw-fc) var(--d-shdw-rw) 0px 0px;
 }
 
 .display-root {
