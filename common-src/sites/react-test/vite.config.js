@@ -10,7 +10,7 @@ export default defineConfig({
 	],
 	build: {
 		lib: {
-			entry: 'src/Display.jsx',
+			entry: 'src/Display/jsx/Display.jsx',
 			name: 'Display',
 			fileName: () => 'Display.js',
 			formats: ['es'],

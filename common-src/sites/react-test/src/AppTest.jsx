@@ -1,13 +1,13 @@
-import Display from "./Display.jsx";
-import DisplayHeader from "./DisplayHeader.jsx";
-import DisplayFooter from "./DisplayFooter.jsx";
-import DisplayMainContents from "./DisplayMainContents.jsx";
+import Display from "./Display/jsx/Display.jsx";
+import DisplayHeader from "./Display/jsx/DisplayHeader.jsx";
+import DisplayFooter from "./Display/jsx/DisplayFooter.jsx";
+import DisplayMainContents from "./Display/jsx/DisplayMainContents.jsx";
 import createRDM from "./LocalUtils.jsx";
 
 import "./AppTest.css";
-import "./Display.css";
-import "./DisplaySubContents.css";
-import "./DisplayMainContents.css";
+import "./Display/css/Display.css";
+import "./Display/css/DisplaySubContents.css";
+import "./Display/css/DisplayMainContents.css";
 
 function AppTest() {
 	const display_id = createRDM();
