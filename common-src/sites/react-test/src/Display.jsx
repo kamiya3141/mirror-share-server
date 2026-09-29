@@ -1,6 +1,8 @@
-function Display({ children }) {
+function Display({ children, onlyMainContents }) {
 	return (
-		<div class="display-root">{children}</div>
+		<button class="display-root" data-mydef--reactjs-display--only-main-contents={(onlyMainContents == "true")}>
+			{children}
+		</button>
 	);
 }
 

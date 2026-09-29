@@ -1,9 +1,29 @@
 :root {
 	--d-bdc: var(--accent-bg);
-	--d-bd-s: 0.0125rem transparent solid;
+	--d-bdw: 0.0125rem;
+	--d-bdw: 1px;
+	--d-bd-s: var(--d-bdw) transparent solid;
 }
 
-.display--root {
+.display-root {
 	width: 90%;
 	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	flex-direction: column;
+	background-color: inherit;
+	color: inherit;
+
+	&[data-mydef--reactjs-display--only-main-contents="false"] {
+		grid-template-rows: 1fr 8fr 1fr;
+	}
+
+	&[data-mydef--reactjs-display--only-main-contents="true"] {
+		grid-template-rows: 1fr;
+	}
+
+	> * {
+		width: 100%;
+		height: 100%;
+	}
 }

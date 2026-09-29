@@ -11,7 +11,7 @@ import "./DisplayMainContents.css";
 function AppTest() {
 	return (
 		<div class="apptest-root">
-			<Display>
+			<Display onlyMainContents="false">
 				<DisplayHeader closedButton>Header-Title</DisplayHeader>
 				<DisplayMainContents>Main-Contents</DisplayMainContents>
 				<DisplayFooter>Footer-Title</DisplayFooter>

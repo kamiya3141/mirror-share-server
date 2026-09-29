@@ -7,8 +7,7 @@
 	flex-direction: column;
 
 	border: var(--d-bd-s);
-	border-left: var(--d-bdc);
-	border-right: var(--d-bdc);
+	border-color: var(--d-bdc);
 
 	> main-contents--main {
 		width: 100%;
