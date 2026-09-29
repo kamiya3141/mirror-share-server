@@ -6,8 +6,11 @@
 	align-items: center;
 	flex-direction: column;
 
+	background-color: var(--d-bgc2);
+
 	border: var(--d-bd-s);
 	border-color: var(--d-bdc);
+	box-shadow: var(--d-shdw-r);
 
 	> main-contents--main {
 		width: 100%;

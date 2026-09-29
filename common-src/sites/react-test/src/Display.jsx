@@ -1,8 +1,8 @@
-function Display({ children, onlyMainContents }) {
+function Display({ children, displayID, onlyMainContents }) {
 	return (
-		<button class="display-root" data-mydef--reactjs-display--only-main-contents={(onlyMainContents == "true")}>
+		<div popover="auto" id={displayID} class="display-root" data-mydef--reactjs-display--only-main-contents={(onlyMainContents == "true")}>
 			{children}
-		</button>
+		</div>
 	);
 }
 

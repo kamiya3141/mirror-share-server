@@ -14,6 +14,7 @@
 
 		> * {
 			border: var(--d-bd-s);
+			background-color: var(--d-bgc1);
 		}
 
 		> .corner {
@@ -58,11 +59,13 @@
 		> .left > .left--left {
 			border-left-color: var(--d-bdc);
 			border-bottom-left-radius: 999rem;
+			box-shadow: none;
 		}
 
 		> .right > .right--right {
 			border-right-color: var(--d-bdc);
 			border-bottom-right-radius: 999rem;
+			box-shadow: var(--d-shdw-b), var(--d-shdw-r);
 		}
 	}
 

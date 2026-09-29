@@ -4,4 +4,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	> .apptest-button {
+		padding: 0.5rem 2.5rem;
+		font-size: 2rem;
+	}
 }

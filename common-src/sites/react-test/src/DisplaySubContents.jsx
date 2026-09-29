@@ -15,7 +15,7 @@ function DisplaySubContents({ children, type, closedButton }) {
 			<section class="right">
 				<div class="right--left">
 					{closedButton && (
-						<button>&#10005;</button>
+						<button popoverTarget={closedButton} popoverTargetAction="hide">&#10005;</button>
 					)}
 				</div>
 				<div class="right--right corner"></div>
