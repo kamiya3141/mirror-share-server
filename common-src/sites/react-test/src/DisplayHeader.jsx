@@ -1,12 +1,19 @@
-function DisplayHeader({ children, title, closedButton, theme }) {
+function DisplayHeader({ children, title, closedButton }) {
 	return (
-		<header>
-			<h1>{title}</h1>
-			<h2>{children}</h2>
-			{closedButton && (
-				<button>×</button>
-			)}
-			<p>テーマ: {theme}</p>
+		<header class="display-header">
+			<section class="left">
+				<div class="left--left corner"></div>
+				<div class="left--right">イ</div>
+			</section>
+			<section class="middle" title={title}>{children}</section>
+			<section class="right">
+				<div class="right--left">
+					{closedButton && (
+						<button>×</button>
+					)}
+				</div>
+				<div class="right--right corner"></div>
+			</section>
 		</header>
 	);
 }
