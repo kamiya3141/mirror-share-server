@@ -9,7 +9,9 @@ function DisplaySubContents({ children, type, closedButton }) {
 				<div class="left--left corner"></div>
 				<div class="left--right"></div>
 			</section>
-			<section class="middle" title={title}>{children}</section>
+			<section class="middle" title={(typeof children == "string" ? children : children.innerText)}>
+				<div class="middle--title">{children}</div>
+			</section>
 			<section class="right">
 				<div class="right--left">
 					{closedButton && (

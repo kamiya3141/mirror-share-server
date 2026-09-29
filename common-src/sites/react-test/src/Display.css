@@ -1,4 +1,9 @@
+:root {
+	--d-bdc: var(--accent-bg);
+	--d-bd-s: 0.0125rem transparent solid;
+}
+
 .display--root {
-	width: 100%;
+	width: 90%;
 	height: 100%;
 }

@@ -13,7 +13,7 @@
 		width: 100%;
 
 		> * {
-			border: 0.0125rem var(--accent) solid;
+			border: var(--d-bd-s);
 		}
 
 		> .corner {
@@ -34,25 +34,45 @@
 		height: 100%;
 	}
 
-	> .left {
-		> .left--left {
+	&.display--header {
+		> * > * {
+			border-top-color: var(--d-bdc);
+		}
+
+		> .left > .left--left {
+			border-left-color: var(--d-bdc);
 			border-top-left-radius: 999rem;
+		}
+
+		> .right > .right--right {
+			border-right-color: var(--d-bdc);
+			border-top-right-radius: 999rem;
 		}
 	}
 
-	> .middle {
+	&.display--footer {
+		> * > * {
+			border-bottom-color: var(--d-bdc);
+		}
+
+		> .left > .left--left {
+			border-left-color: var(--d-bdc);
+			border-bottom-left-radius: 999rem;
+		}
+
+		> .right > .right--right {
+			border-right-color: var(--d-bdc);
+			border-bottom-right-radius: 999rem;
+		}
+	}
+
+	> .middle > .middle--title {
 		font-size: 1.5rem;
 	}
 
-	> .right {
 
-		button {
-			width: 100%;
-			font-size: 1.25rem;
-		}
-
-		> .right--right {
-			border-top-right-radius: 999rem;
-		}
+	> .right button {
+		width: 100%;
+		font-size: 1.25rem;
 	}
 }

@@ -1,8 +1,8 @@
-import "./DisplaySubContents.jsx";
+import DisplaySubContents from "./DisplaySubContents.jsx";
 
 function DisplayHeader({ children, closedButton }) {
 	return (
-		<DisplaySubContents type="top" closedButton>Header-Title</DisplaySubContents>
+		<DisplaySubContents type="top" closedButton={closedButton}>{children}</DisplaySubContents>
 	);
 }
 
