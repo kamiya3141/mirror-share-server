@@ -3,13 +3,13 @@ import DisplayHeader from "./DisplayHeader.jsx";
 
 import "./AppTest.css";
 import "./Display.css";
-import "./DisplayHeader.css";
+import "./DisplaySubContents.css";
 
 function AppTest() {
 	return (
 		<div class="apptest-root">
 			<Display>
-				<DisplayHeader title="グローバル設定" closedButton="true">Contents</DisplayHeader>
+				<DisplayHeader closedButton>Header-Title</DisplayHeader>
 			</Display>
 		</div>
 	);
