@@ -8,16 +8,25 @@
 	align-items: center;
 	flex-direction: row;
 
-	> * {
-		width: 100%;
+	> *,
+	> * > * {
+		border: 0.125rem var(--accent-border) solid;
 
 		> * {
-			border: 0.125rem gray solid;
+			border-color: var(--accent);
 		}
+	}
+
+	> * {
+		width: 100%;
 
 		> .corner {
 			width: auto;
 			aspect-ratio: 1 / 1 !important;
+		}
+
+		> *:not(.corner) {
+			width: 100%;
 		}
 	}
 
@@ -33,10 +42,6 @@
 		> .left--left {
 			border-top-left-radius: 999rem;
 		}
-
-		> .left--right {
-			width: fit-content;
-		}
 	}
 
 	> .middle {
@@ -44,10 +49,6 @@
 	}
 
 	> .right {
-
-		> .right--left {
-			width: fit-content;
-		}
 
 		> .right--right {
 			border-top-right-radius: 999rem;
