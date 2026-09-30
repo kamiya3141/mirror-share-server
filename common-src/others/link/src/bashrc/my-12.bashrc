@@ -78,8 +78,8 @@ function set_prompt_command() {
 
 	local current_date="${PROMPT_COLOR_TIME} $(date "+%Y年%m月%d日(%a)") ${PROMPT_COLOR_RESET}"
 	local current_time="${PROMPT_COLOR_TIME} $(date "+%H:%M:%S") ${PROMPT_COLOR_RESET}"
-	local prevent_main_str=$(surround_item_char "${result_str}")
-	#local prevent_main_str="${result_str}"
+	#local prevent_main_str=$(surround_item_char "${result_str}")
+	local prevent_main_str="${result_str}"
 
 	local main_str="${PROMPT_BG_COLOR_USER}"
 	local user_str="${PROMPT_COLOR_USER} \u ${PROMPT_BG_COLOR_HOST}${PROMPT_COLOR_USER2}${PROMPT_OTHER_CHAR_MAIN}"
