@@ -1,29 +1,19 @@
-* {
-	box-sizing: border-box;
-	border: none;
-	margin: 0;
-	padding: 0;
-	outline: none;
-	line-height: 2.0;
-	text-align: center;
-}
-
-body {
-	position: absolute;
-	width: 99vw;
-	height: 99vh;
-	left: 0.5vw;
-	top: 0.5vh;
-	background-color: black;
-	color: pink;
-}
-
 select#main-sel {
+	display: block;
 	appearance: none;
 	background-color: lightgreen;
 	color: green;
-	min-width: 80%;
-	min-height: 10%;
-	font-size: 2.5em;
-	/*border-radius: 100em;*/
+	width: var(--c-mn-h);
+	height: var(--c-hd-h);
+	/*height: minmax(calc(var(--p2) * 4), var(--c-hd-h));*/
+	/*height: calc(var(--myStylingFontSize) * 5);*/
+	padding: var(--p2) 0;
+	font-size: calc(var(--c-ft-h) / 4);
+	border-radius: calc(var(--p2) * 999);
+	text-align: center;
+	text-align-last: center;
+	position: relative;
+	left: 50%;
+	top: 0%;
+	transform: translate(-50%, 0%);
 }
