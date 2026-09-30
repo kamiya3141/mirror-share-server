@@ -52,7 +52,7 @@ function setup() {
 
 function moveNonArticlePage() {
 	const new_url = new URL(window.location.toString());
-	new_url.searchParams.set(NO_ARTICLE_QUERY_NAME, "");
+	new_url.searchParams.set(NO_ARTICLE_QUERY_NAME_ARRAY[0], "");
 	if (yajuExist)
 		new_url.searchParams.set(NO_YAJU_QUERY_NAME_ARRAY[0], "");
 	window.location.href = new_url;
@@ -62,7 +62,7 @@ function moveNonYajuPage() {
 	const new_url = new URL(window.location.toString());
 	new_url.searchParams.set(NO_YAJU_QUERY_NAME_ARRAY[0], "");
 	if (notArticleFlagExist)
-		new_url.searchParams.set(NO_ARTICLE_QUERY_NAME, "");
+		new_url.searchParams.set(NO_ARTICLE_QUERY_NAME_ARRAY[0], "");
 	window.location.href = new_url;
 }
 

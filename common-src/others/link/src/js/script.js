@@ -7,7 +7,8 @@ fetch("https://link.tshuto.com/get-dirs/src/").then(res => res.json()).then(dt =
 const btn = document.getElementById("go-button");
 
 btn.addEventListener("click", () => {
-	let url = `https://link.tshuto.com/${main_sel.value}`;
-	// url += "?yj&atc";
+	let url = new URL(`https://link.tshuto.com/${main_sel.value}`);
+	// url.searchParams.set("yj", "true");
+	// url.searchParams.set("atc", "true");
 	window.location.href = url;
 });
