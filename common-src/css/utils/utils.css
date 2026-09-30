@@ -39,6 +39,24 @@
 	--mnt1: 0.25s;
 }
 
+*:where(:not(.utils--org--element--only-me, .utils--org--element, .utils--org--element *)) {
+	color: inherit;
+	background-color: inherit;
+	font-family: inherit;
+	display: inherit;
+	margin: 0px;
+	flex-direction: inherit;
+	justify-content: inherit;
+	align-items: inherit;
+	place-items: inherit;
+	position: inherit;
+	line-height: inherit;
+	border-collapse: inherit;
+	overflow: hidden hidden;
+	/*box-shadow: var(--myElementBoxShadow);*/
+	/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
+}
+
 html {
 	position: absolute;
 	left: 0;
@@ -47,24 +65,6 @@ html {
 	font-size: var(--myStylingFontSize);
 	color: var(--myTextColor);
 	background-color: var(--myMainBackgroundColor);
-
-	& *:where(:not(.utils--org--element--only-me, .utils--org--element, .utils--org--element *)) {
-		color: inherit;
-		background-color: inherit;
-		font-family: inherit;
-		display: inherit;
-		margin: 0px;
-		flex-direction: inherit;
-		justify-content: inherit;
-		align-items: inherit;
-		place-items: inherit;
-		position: inherit;
-		line-height: inherit;
-		border-collapse: inherit;
-		overflow: hidden hidden;
-		/*box-shadow: var(--myElementBoxShadow);*/
-		/*transition: background-color var(--mnt1) ease-out, color var(--mnt1) ease-in;*/
-	}
 
 	& > head,
 	& script {
