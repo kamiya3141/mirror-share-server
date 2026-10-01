@@ -72,10 +72,13 @@ class LocalStorageObject extends Object {
 	}
 
 	set(key, value) {
+		this[key] = value;
+		/*
 		if (this.exist(key))
 			this[key] = value;
 		else
 			console.error(`function error: "LocalStorageObject.edit"\n\tマップ変数:thisに${key}というキーはありません\n${Object.entries(this).map(([k, v]) => (k + " : " + v)).join("\n")}`);
+		*/
 		this.save();
 	}
 
