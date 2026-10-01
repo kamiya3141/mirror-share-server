@@ -373,6 +373,12 @@ function createAnyElement(element_name = "div", add_attr_obj = {}) {
 	return el;
 }
 
+/**
+ * 
+ * @param {String} class_name 
+ * @param {String} id 
+ * @returns {HTMLDivElement}
+ */
 function createDivElement(class_name = "", id = "") {
 	return createAnyElement("div", { "class": class_name, "id": id });
 }

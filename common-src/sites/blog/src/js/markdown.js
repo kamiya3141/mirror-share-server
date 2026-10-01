@@ -4,7 +4,6 @@ const SPL_STR_NML = "-:-";
 const SAND_SPL_STR_NML = _str_ => `${SPL_STR_NML}${_str_}${SPL_STR_NML}`;
 const SPL_STR_ENV = "-%-";
 const SAND_SPL_STR_ENV = _str_ => `${SPL_STR_ENV}${_str_}${SPL_STR_ENV}`;
-const STR_ENV_CONV_OBJ = {};
 
 const defaultRedirectArticleSlug = "20260401230000--home";
 
@@ -292,12 +291,11 @@ function createNoteInnerHTMLString(cls_nt_tp = "info", cts = "") {
 			</div>`, ` ${cts.substring(1, cts.length)}`);
 }
 
-function getCurrentURLProtocolAndHostname(my_pathname = "", with_pathname = false) {
-	with_pathname = Boolean(with_pathname);
-	my_pathname = String(my_pathname);
-	if (my_pathname[0] != "/")
-		my_pathname = "/" + my_pathname;
-	return `${winMyHrefPTCHostname}${with_pathname ? winMyHrefPathname : my_pathname}`;
+function createTableOfContents(res_cts = "<p>Example Text</p>") {
+	const _div = createDivElement();
+	_div.innerHTML = res_cts;
+	
+	return _div.innerHTML;
 }
 
 function setArticleAndHTMLTitle(_str = "No Title ...") {
@@ -353,7 +351,12 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 	}
 
 	result_str = splited_result_str_arr.join("<br>");
+	
+	//	目次追加
+	result_str = createTableOfContents(result_str);
+	//	タイトル追加
 	result_str = `<pre><div data-mydef--article-tag="title">${MARKDOWN_ARTICLE_TITLE}</div>${result_str}</pre>`;
+
 	return result_str;
 }
 
@@ -385,7 +388,7 @@ async function copyCodeDataForClipBoard(e) {
 		const rootElement = getParentElement(org_el, 6);
 		const codeText = rootElement.querySelector("code").innerText;
 		await navigator.clipboard.writeText(codeText);
-		const copied_flag_element = getParentElement(org_el, 4).querySelector(".code-copied-flag");
+		const copied_flag_element = rootElement.querySelector(".code-copied-flag");
 		copied_flag_element.classList.remove("display-none");
 		window.setTimeout(() => copied_flag_element.classList.add("display-none"), 1000);
 	} catch (error) {
