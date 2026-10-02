@@ -393,6 +393,16 @@ function getParentElement(el, n = 1, getLastElement = true) {
 	}
 	return getLastElement ? element_memory.at(-1) : element_memory;
 }
+/**
+ * 
+ * @param  {...Object} objs 
+ * @returns {Array}
+ */
+function compareObjectKeys(...objs) {
+	let res_arr = [];
+	objs.forEach(obj_a => objs.forEach(obj_b => res_arr.push(...Object.keys(obj_a).filter(k => !Object.hasOwn(obj_b, key)))));
+	return res_arr;
+}
 
 function mergeObject(target, source, opts) {
 	const isObject = obj => obj && typeof obj === 'object' && !Array.isArray(obj);

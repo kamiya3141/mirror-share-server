@@ -5,7 +5,7 @@ class LocalStorageObject extends Object {
 	#AddFunctionsArraysObject;
 
 
-	constructor (storageKey = `localstorage-data--${createRDM()}`, defaultValue = {}, saveLocalStorage_keyName = "") {
+	constructor (storageKey = `localstorage-data--${createRDM()}`, defaultValue = {}, saveLocalStorage_keyName = "local--save--localstorage") {
 		super();
 
 		this.#storageKey = storageKey;
@@ -30,14 +30,17 @@ class LocalStorageObject extends Object {
 		}
 
 		try {
-			const parsedValue = JSON.parse(savedValue);
+			let parsedValue = JSON.parse(savedValue);
 
-			if (
-				parsedValue === null ||
-				typeof parsedValue !== "object" ||
-				Array.isArray(parsedValue)
-			) {
-				throw new Error("保存データがObjectではありません");
+			if (parsedValue === null || typeof parsedValue !== "object" || Array.isArray(parsedValue)) {
+				console.error("保存データがObjectではありません", typeof parsedValue, parsedValue);
+				parsedValue = this.#defaultValue;
+			}
+
+			const result_compare_dft_pv = compareObjectKeys(this.#defaultValue, parsedValue);
+			if (result_compare_dft_pv.length) {
+				console.log(result_compare_dft_pv);
+				result_compare_dft_pv.forEach(c => parsedValue[c] = this.#defaultValue[c]);
 			}
 
 			Object.assign(this, parsedValue);
@@ -72,13 +75,10 @@ class LocalStorageObject extends Object {
 	}
 
 	set(key, value) {
-		this[key] = value;
-		/*
 		if (this.exist(key))
 			this[key] = value;
 		else
 			console.error(`function error: "LocalStorageObject.edit"\n\tマップ変数:thisに${key}というキーはありません\n${Object.entries(this).map(([k, v]) => (k + " : " + v)).join("\n")}`);
-		*/
 		this.save();
 	}
 
@@ -90,7 +90,7 @@ class LocalStorageObject extends Object {
 	}
 
 	save(force_save = false) {
-		this.#saveLocalStorage = this[this.get("saveLocalStorage_keyName")];
+		this.#saveLocalStorage = this.get(this.get("saveLocalStorage_keyName"));
 		if (force_save || this.#saveLocalStorage)
 			localStorage.setItem(
 				this.#storageKey,
