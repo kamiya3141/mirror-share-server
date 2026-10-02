@@ -1,0 +1,16 @@
+div#root {
+	display: block;
+	position: static;
+	width: var(--c1);
+	height: var(--c1);
+
+	> #main-contents {
+		width: var(--c1);
+		height: var(--c1);
+
+		> * {
+			width: var(--c1);
+			height: var(--w);
+		}
+	}
+}

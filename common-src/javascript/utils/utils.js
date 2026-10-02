@@ -194,7 +194,18 @@ function rgbToHex(rgb) {
 	return hex;
 }
 
+function rdm(n1 = 0.0, n2 = 1.0, include_n2 = false) {
+	return Math.random() * (n2 - n1 + Number(Boolean(include_n2))) + n1;
+}
+function rdmi(n1 = 0, n2 = 1, include_n2 = true) {
+	return Math.floor(rdm(n1, n2, include_n2));
+}
+
 function createRDM(version = 0, length = 64) {
+	if (version > 1)
+		version %= 2;
+	else if (version < 0)
+		version = (-version) % 2;
 	return [createRDMv0, createRDMv1][version](length);
 }
 function createRDMv0(length) {

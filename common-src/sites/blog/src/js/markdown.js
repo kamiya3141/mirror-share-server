@@ -294,8 +294,42 @@ function createNoteInnerHTMLString(cls_nt_tp = "info", cts = "") {
 function createTableOfContents(res_cts = "<p>Example Text</p>") {
 	const _div = createDivElement();
 	_div.innerHTML = res_cts;
-	
+
+	let _arr = [];
+	_div.querySelectorAll(".hn-div").forEach(el => {
+		const _res = [...el.innerHTML.matchAll(new RegExp("<h([0-9])>.*", "g"))];
+		if (_res.length)
+			_arr.push([_res[0][1], el.textContent]);
+	});
+	const _res_toc = createTOCString(_arr, "ul");
+	_div.innerHTML = `${_res_toc}<br>${res_cts}`;
+
 	return _div.innerHTML;
+}
+
+function createTOCString(_arr = [1, ""], main_name = "ul") {
+	const main_element_name = main_name != "ol" ? "ul" : "ol";
+	let m_n = 1;
+	let res_str = `<${main_element_name}>`;
+	_arr.forEach(([N, S], i, a) => {
+		S = `<li>${S}</li>`;
+		let b_S = `<${main_element_name}>`;
+		let a_S = `</${main_element_name}>`;
+		if (m_n == N) {
+			b_S = "";
+			a_S = "";
+		} else if (m_n < N) {
+			b_S = b_S.repeat(N - m_n);
+			a_S = "";
+		} else if (m_n > N) {
+			b_S = a_S.repeat(m_n - N);
+			a_S = "";
+		}
+		m_n = N;
+		res_str += b_S + S + a_S;
+	});
+	res_str += `</${main_element_name}>`;
+	return res_str;
 }
 
 function setArticleAndHTMLTitle(_str = "No Title ...") {
@@ -351,7 +385,7 @@ async function parseMarkDown2HTMLContextVersion1(decoded_json_data = {}) {
 	}
 
 	result_str = splited_result_str_arr.join("<br>");
-	
+
 	//	目次追加
 	result_str = createTableOfContents(result_str);
 	//	タイトル追加
