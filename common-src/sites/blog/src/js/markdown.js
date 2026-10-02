@@ -306,7 +306,7 @@ function createTableOfContents(res_cts = "<p>Example Text</p>") {
 		<br><br>
 		<div class="md--toc--root">
 			<div class="md--toc--title-box">
-				<h2 class="md--toc--title">目次</h2>
+				<h2 class="md--toc--title">目次（Auto Create）</h2>
 			</div>
 			<div class="md--toc--body-box">
 				${_res_toc}
