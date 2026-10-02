@@ -173,9 +173,8 @@ const before_replace_str_define_array = [
 	]
 ];
 
-
+// 意味のある改行を残すための処置用
 const CTS_TMP = "-:-CONTENTS-:-";
-
 function fixOneLineString(_str = "", _cts = "") {
 	return _str.replaceAll("\n", "").replaceAll("\t", "").replace(CTS_TMP, _cts);
 }
@@ -228,7 +227,7 @@ function convertByRefString(_str) {
 }
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
-	return `<div class="hn-div"><h${n}>${cts}</h${n}></div>`;
+	return `<div class="hn-div" id="--md-h-link--${cts}--${createRDM()}"><h${n}>${cts}</h${n}></div>`;
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none") {
 	const copied_btn_onclick_str = `javascript:(async el => {
@@ -299,20 +298,33 @@ function createTableOfContents(res_cts = "<p>Example Text</p>") {
 	_div.querySelectorAll(".hn-div").forEach(el => {
 		const _res = [...el.innerHTML.matchAll(new RegExp("<h([0-9])>.*", "g"))];
 		if (_res.length)
-			_arr.push([_res[0][1], el.textContent]);
+			_arr.push([_res[0][1], el.textContent, el.id]);
 	});
 	const _res_toc = createTOCString(_arr, "ul");
-	_div.innerHTML = `${_res_toc}<br>${res_cts}`;
 
-	return _div.innerHTML;
+	let result_str = fixOneLineString(`
+		<br><br>
+		<div class="md--toc--root">
+			<div class="md--toc--title-box">
+				<h2 class="md--toc--title">目次</h2>
+			</div>
+			<div class="md--toc--body-box">
+				${_res_toc}
+			</div>
+		</div>
+		<br>
+		${res_cts}
+	`);
+
+	return result_str;
 }
 
-function createTOCString(_arr = [1, ""], main_name = "ul") {
+function createTOCString(_arr = [[1, "", ""]], main_name = "ul") {
 	const main_element_name = main_name != "ol" ? "ul" : "ol";
 	let m_n = 1;
 	let res_str = `<${main_element_name}>`;
-	_arr.forEach(([N, S], i, a) => {
-		S = `<li>${S}</li>`;
+	_arr.forEach(([N, S, ID]) => {
+		S = `<li><a href="./#${ID}">${S}</a></li>`;
 		let b_S = `<${main_element_name}>`;
 		let a_S = `</${main_element_name}>`;
 		if (m_n == N) {

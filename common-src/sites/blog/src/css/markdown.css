@@ -283,6 +283,35 @@ html {
 	}
 
 	& div {
+		&.md--toc--root {
+			display: block;
+			width: var(--c1);
+			height: var(--c1);
+
+			& > .md--toc--title-box {
+				width: var(--c1);
+				height: var(--c-hd-h);
+			}
+
+			& > .md--toc--body-box {
+				width: var(--c4);
+				height: calc(var(--c1) * 95 / 100);
+				display: inline-block;
+				position: relative;
+				top: calc(var(--c-hd-h) / 2);
+				border: var(--myStylingLocalMarkdownTextColor) 0.0125rem solid;
+
+				& * {
+					display: block;
+					position: static;
+				}
+
+				& li {
+					display: list-item;
+				}
+			}
+		}
+
 		&.byref-div {
 			padding-left: calc(var(--p2) * 2);
 			position: relative;
@@ -293,7 +322,7 @@ html {
 				left: 0;
 				top: 0;
 				width: calc(var(--p1) * 3 / 4);
-				height: 100%;
+				height: var(--c1);
 				background-color: var(--myStylingUserPreferColor);
 			}
 		}
@@ -332,7 +361,7 @@ html {
 			&.embed-iframe-root {
 				display: flex;
 				flex-direction: row;
-				left: calc(50% - var(--c-mn-h) / 2);
+				left: calc(var(--w) - var(--c-mn-h) / 2);
 				width: var(--c-mn-h);
 				height: calc(var(--c-ft-h) * 8 / 10);
 				box-shadow: var(--myElementBoxShadow);
