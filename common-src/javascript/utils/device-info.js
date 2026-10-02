@@ -38,10 +38,8 @@ class LocalStorageObject extends Object {
 			}
 
 			const result_compare_dft_pv = compareObjectKeys(this.#defaultValue, parsedValue);
-			if (result_compare_dft_pv.length) {
-				console.log(result_compare_dft_pv);
+			if (result_compare_dft_pv.length)
 				result_compare_dft_pv.forEach(c => parsedValue[c] = this.#defaultValue[c]);
-			}
 
 			Object.assign(this, parsedValue);
 		} catch (error) {
