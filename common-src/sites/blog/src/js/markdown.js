@@ -227,7 +227,7 @@ function convertByRefString(_str) {
 }
 function createHnWithDivElement(cts, n) {
 	n = (Number(n) == NaN ? 1 : n);
-	return `<div class="hn-div" id="--md-h-link--${cts}--${createRDM()}"><h${n}>${cts}</h${n}></div>`;
+	return `<div class="hn-div" id="--md-h-link--${window.encodeURIComponent(cts)}--${createRDM()}"><h${n}>${cts}</h${n}></div>`;
 }
 function createCodeInnerHTMLString(cls, nm, cts, btn_none = false, lng = "none") {
 	const copied_btn_onclick_str = `javascript:(async el => {
@@ -324,7 +324,7 @@ function createTOCString(_arr = [[1, "", ""]], main_name = "ul") {
 	let m_n = 1;
 	let res_str = `<${main_element_name}>`;
 	_arr.forEach(([N, S, ID]) => {
-		S = `<li><a href="./#${ID}">${S}</a></li>`;
+		S = `<li><a href="#${ID}">${S}</a></li>`;
 		let b_S = `<${main_element_name}>`;
 		let a_S = `</${main_element_name}>`;
 		if (m_n == N) {

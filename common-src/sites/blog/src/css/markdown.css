@@ -300,6 +300,7 @@ html {
 				position: relative;
 				top: calc(var(--c-hd-h) / 2);
 				border: var(--myStylingLocalMarkdownTextColor) 0.0125rem solid;
+				padding: calc(var(--c-hd-h) / 4) 0;
 
 				& * {
 					display: block;
@@ -308,6 +309,16 @@ html {
 
 				& li {
 					display: list-item;
+					line-height: 1.75;
+
+					& a {
+						text-decoration: none;
+						display: inline;
+
+						&::hover {
+							opacity: 0.5;
+						}
+					}
 				}
 			}
 		}
