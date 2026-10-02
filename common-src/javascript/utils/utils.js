@@ -400,7 +400,8 @@ function getParentElement(el, n = 1, getLastElement = true) {
  */
 function compareObjectKeys(...objs) {
 	let res_arr = [];
-	objs.forEach(obj_a => objs.forEach(obj_b => res_arr.push(...Object.keys(obj_a).filter(k => !Object.hasOwn(obj_b, key)))));
+	console.log(objs);
+	objs.forEach(obj_a => objs.forEach(obj_b => res_arr.push(...Object.keys(obj_a).filter(k => !Object.hasOwn(obj_b, k)))));
 	return res_arr;
 }
 
