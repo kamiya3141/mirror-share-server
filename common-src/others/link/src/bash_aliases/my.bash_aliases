@@ -179,10 +179,23 @@ function gitc() {
 	clear
 }
 
-# alias
-# 個人 (wgmbrのため)
-alias updtba="sudo touch ~/.bash_aliases && sudo chmod 755 ${HOME}/.bash_aliases && sudo chown ${USER}:${USER} ${HOME}/.bash_aliases && wget --no-cache -qO - https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases && rba && wgmbr && rbr"
 
+# 個人 (wgmbrのため)
+
+function updtba() {
+	sudo touch ~/.bash_aliases
+	sudo chmod 755 ${HOME}/.bash_aliases
+	sudo chown ${USER}:${USER} ${HOME}/.bash_aliases
+	wget --no-cache -qO - https://kamiya3141.github.io/mirror-share-server/common-src/others/link/src/bash_aliases/my.bash_aliases > ${HOME}/.bash_aliases
+	rba
+	wgmbr
+
+	local _exut=${1:-none}
+	if [ "${_exut}" != "none" ]; then
+		updtexut
+	fi
+	rbr
+}
 
 
 create_exist_updt_utl_file
