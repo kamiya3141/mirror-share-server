@@ -194,6 +194,7 @@ function updtba() {
 	if [ "${_exut}" != "none" ]; then
 		updtexut
 	fi
+
 	rbr
 }
 
