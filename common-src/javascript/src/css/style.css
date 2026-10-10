@@ -132,18 +132,20 @@ body {
 						& > .root-body {
 							min-height: var(--c-mn-h);
 							flex: 8;
-							display: block;
+							overflow-y: auto;
 
-							& > #console-result.body-children {
-								display: inline-block;
-								overflow-y: auto;
+							&#console-result-body {
+								display: block;
 							}
 
-							/* これはセッティング項目のためのスタイル(わかりづれぇな) */
 							& > * {
 								padding-top: var(--p1);
 								padding-bottom: var(--p1);
 								min-height: var(--c1);
+
+								&.body-children#console-result {
+									display: inline-block;
+								}
 
 								& > .body-children-group-title {
 									flex: 2;
