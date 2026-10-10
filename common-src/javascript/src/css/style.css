@@ -133,15 +133,13 @@ body {
 							min-height: var(--c-mn-h);
 							flex: 8;
 							overflow-y: auto;
-
-							&#console-result-body {
-								display: block;
-							}
+							display: block;
 
 							& > * {
 								padding-top: var(--p1);
 								padding-bottom: var(--p1);
 								min-height: var(--c1);
+								display: flex;
 
 								&.body-children#console-result {
 									display: inline-block;
@@ -154,7 +152,7 @@ body {
 									& > * {
 										display: inline !important;
 										font-size: calc(var(--p2) * 0.9);
-										text-decoration: underline;
+										/*text-decoration: underline;*/
 									}
 								}
 
@@ -169,7 +167,7 @@ body {
 										min-height: var(--c1);
 
 										& > * {
-											width: var(--c2);
+											max-width: var(--c2);
 											padding: var(--p1);
 											font-size: 0.75rem;
 										}
