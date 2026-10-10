@@ -75,7 +75,13 @@ const mytext = "aaabbbcccdddeee";
 const start_pos = 6;
 let result = mytext.slice(0, start_pos) + "|" + mytext.slice(start_pos);
 console.log(result);
-console.clear();
+
+let name_abc = undefined;
+let id = "abc-id";
+
+name_abc = name_abc || id;
+
+console.log(name_abc);
 
 /*
 
