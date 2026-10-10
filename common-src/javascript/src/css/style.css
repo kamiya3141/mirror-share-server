@@ -1,12 +1,3 @@
-.my-element {
-	color: inherit;
-	background-color: inherit;
-	overflow: hidden;
-	font-size: var(--myStylingFontSize);
-	font-family: inherit;
-	display: inherit;
-}
-
 iframe.zero-size {
 	outline: none;
 	border: none;
