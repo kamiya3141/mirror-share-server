@@ -83,6 +83,10 @@ name_abc = name_abc || id;
 
 console.log(name_abc);
 
+console.log("abc");
+
+console.clear();
+
 /*
 
 function appaerNumberToBinary(num, log_bit_len = 16) {
