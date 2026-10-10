@@ -83,7 +83,12 @@ name_abc = name_abc || id;
 
 console.log(name_abc);
 
-console.log("abc");
+const MIN = 20, MAX = 50, CALC = n => (22 * (n ** 2));
+const arr = new Array(MAX - MIN + 1).fill(0).map((_, i) => i + MIN).map(v => `N = ${v}の場合: ${CALC(v)}円`).join("\n");
+
+const res = arr;
+
+console.log(res);
 
 console.clear();
 

@@ -121,7 +121,7 @@ body {
 							background-color: var(--myElementBackgroundColor2);
 						}
 
-						& > *.root-title {
+						& > .root-title {
 							flex: 2;
 							height: calc(var(--c-hd-h) * 2);
 							font-size: var(--myStylingFontSize);
@@ -129,33 +129,39 @@ body {
 							border-bottom: var(--myTextColor) calc(var(--p1) * 0.25) solid;
 						}
 
-						& > *.root-body {
+						& > .root-body {
 							min-height: var(--c-mn-h);
 							flex: 8;
-							overflow-y: auto;
+							display: block;
 
+							& > #console-result.body-children {
+								display: inline-block;
+								overflow-y: auto;
+							}
+
+							/* これはセッティング項目のためのスタイル(わかりづれぇな) */
 							& > * {
 								padding-top: var(--p1);
 								padding-bottom: var(--p1);
 								min-height: var(--c1);
 
-								& > *.body-children-group-title {
+								& > .body-children-group-title {
 									flex: 2;
 									height: var(--c1);
 
 									& > * {
 										display: inline !important;
 										font-size: calc(var(--p2) * 0.9);
-										/*text-decoration: underline;*/
+										text-decoration: underline;
 									}
 								}
 
-								& > *.body-children-group-body {
+								& > .body-children-group-body {
 									flex: 8;
 									height: var(--c1);
 									flex-direction: row;
 
-									& > *.body-children {
+									& > .body-children {
 										flex: 1;
 										flex-direction: column;
 										min-height: var(--c1);
