@@ -17,7 +17,7 @@ function wgnc() {
 	if [ "$remote_filename" == "null" -o "$local_filename" == "null" ]; then
 		return 1
 	fi
-	sudo wget --no-cache -qO - "https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/${remote_filename}" > ${local_filename}
+	sudo wget --no-cache -q "https://raw.githubusercontent.com/kamiya3141/mirror-share-server/refs/heads/main/common-src/others/link/src/${remote_filename}" -O ${local_filename}
 	return 0
 }
 function mkdirp755() {
@@ -28,7 +28,7 @@ mkdirp755 "${mcsrv_path}"
 sudo chown ${USER}:${USER} "${mcsrv_path}"
 cd "${mcsrv_path}"
 
-sudo wget --no-cache -qO - "${mcsrv_zip_url}" > "${mcsrv_zip_fn}"
+sudo wget --no-cache -q "${mcsrv_zip_url}" -O "${mcsrv_zip_fn}"
 sudo unzip "${mcsrv_zip_fn}"
 sudo rm "${mcsrv_zip_fn}"
 
@@ -46,7 +46,7 @@ Type=simple
 User=tamura
 Group=tamura
 WorkingDirectory=$mcsrv_path
-ExecStart=$mcsrv_path/bedrock_server"
+ExecStart=$mcsrv_path/bedrock_server
 Restart=always
 RestartSec=10
 LimitNOFILE=100000
@@ -57,7 +57,7 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable "${mcsrv_svc}"
-sudo systemctl start "${mcsrv_svc}"
+# sudo systemctl start "${mcsrv_svc}"
 
 wgnc "bash_aliases/mc-srv-be.bash_aliases" "${my_1_bash_aliases_path}"
 
