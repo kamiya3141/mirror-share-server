@@ -53,6 +53,21 @@ function deepCopy(obj) {
 	return copy;
 }
 
+function deepOutputStrObj(obj = {}, i = 0, key_name = null) {
+	const nbsp = ("&nbsp;").repeat(1);
+	if (obj === null || typeof obj !== "object") {
+		return `${(nbsp).repeat(i)}${typeof obj} | ${key_name ? `${key_name}: ` : ""}${obj}\n`;
+	}
+	if (obj instanceof HTMLElement)
+		return `${(nbsp).repeat(i)}HTMLElement | ${key_name ? `${key_name}: ` : ""}${obj.innerText}\n`;
+	let res_str = "";
+	for (const key in obj) {
+		if (obj.hasOwnProperty(key))
+			res_str += deepOutputStrObj(obj[key], ++i, key);
+	}
+	return res_str;
+}
+
 const obj1 = {
 	"a": "a1",
 	"b": "b1",
@@ -86,9 +101,54 @@ console.log(name_abc);
 const MIN = 20, MAX = 50, CALC = n => (22 * (n ** 2));
 const arr = new Array(MAX - MIN + 1).fill(0).map((_, i) => i + MIN).map(v => `N = ${v}の場合: ${CALC(v)}円`).join("\n");
 
-const res = arr;
+let res = arr;
+// console.log(res);
 
-console.log(res);
+const DEFAULT_DB = {
+	version: 1,
+	revision: 0,
+	tags: {
+		topAdminTag: "country_admin",
+		blockedAccountTag: "BAN_Player"
+	},
+	limit: {
+		commandArgs: {
+			stringLength: 32
+		},
+		region: {
+			amount: 3,
+			aria: {
+				chunk: 16,
+				test: () => 11,
+				min: function () {
+					return this.chunk * 5;
+				},
+				max: function () {
+					return this.chunk * 5 * 5;
+				}
+			}
+		}
+	},
+	border: {
+		particleBase: "minecraft",
+		particle: "endrod",
+		particleHeight: 5,
+		radius: 2,
+		interval: 5
+	},
+	countries: {},
+	customCommandData: {}
+};
+
+
+const KH_KEY = "kh:test-db";
+localStorage.setItem(KH_KEY, JSON.stringify(DEFAULT_DB));
+const DB_OBJ = JSON.parse(localStorage.getItem(KH_KEY));
+const DB_ABC = JSON.parse(localStorage.getItem("abcabc"))
+
+const res_str = deepOutputStrObj(DB_OBJ);
+const res_str2 = deepOutputStrObj(DB_ABC);
+console.log("", res_str, res_str2);
 
 console.clear();
 
