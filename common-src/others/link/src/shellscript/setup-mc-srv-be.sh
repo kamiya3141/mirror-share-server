@@ -28,7 +28,7 @@ mkdirp755 "${mcsrv_path}"
 sudo chown ${USER}:${USER} "${mcsrv_path}"
 cd "${mcsrv_path}"
 
-wgnc "${mcsrv_zip_url}" 
+sudo wget --no-cache -qO - "${mcsrv_zip_url}" > "${mcsrv_zip_fn}"
 sudo unzip "${mcsrv_zip_fn}"
 sudo rm "${mcsrv_zip_fn}"
 
