@@ -68,6 +68,6 @@ sudo apt update -y
 sudo apt install -y rclone
 sudo rclone config
 
-(sudo crontab -l 2>/dev/null; echo "${crontab_str}") | sudo crontab -
+(sudo echo "${crontab_str}") | sudo crontab -
 
 echo -e "\nfinish!!\n"
