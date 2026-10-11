@@ -1,5 +1,5 @@
 alias rmba=". ~/my-*.bash_aliases && clear"
-alias emba="sudo nano ~/my-1.bash_aliases && rmba"
+alias emba1="sudo nano ~/my-1.bash_aliases && rmba"
 
 function update-be() {
         local url1="${1:-null}"
