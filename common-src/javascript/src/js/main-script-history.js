@@ -140,15 +140,17 @@ const DEFAULT_DB = {
 	customCommandData: {}
 };
 
+const BASE_REGION_FIELD = 16 * 4;
+let res0 = new Array(5).fill(0).map((_, i) => (i + 1) * BASE_REGION_FIELD).map((v, i, arr) => ({
+	"min": 16,
+	"max": v
+}));
 
-const KH_KEY = "kh:test-db";
-localStorage.setItem(KH_KEY, JSON.stringify(DEFAULT_DB));
-const DB_OBJ = JSON.parse(localStorage.getItem(KH_KEY));
-const DB_ABC = JSON.parse(localStorage.getItem("abcabc"))
+res0.forEach((obj, i) => obj["min"] = i ? res0[i - 1]["max"] + 1 : obj["min"]);
 
-const res_str = deepOutputStrObj(DB_OBJ);
-const res_str2 = deepOutputStrObj(DB_ABC);
-console.log("", res_str, res_str2);
+const str1 = deepOutputStrObj(res0);
+
+console.log(str1);
 
 console.clear();
 
