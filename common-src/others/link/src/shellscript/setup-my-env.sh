@@ -17,7 +17,20 @@ wget --no-cache -qO - https://raw.githubusercontent.com/kamiya3141/mirror-share-
 if [ -f "${bashrc_path}" ]; then
 	bashrc_contents=$(cat "${bashrc_path}")
 	if [[ "${bashrc_contents}" != *"my.bashrc"* ]]; then
-		echo -e "\nif [ -f ~/my.bashrc ]; then\n\t. ~/my.bashrc\nfi\nif [ -f ~/my-*.bash_aliases ]; then\n\t. ~/my-*.bash_aliases\nfi\n\nexport TERM=xterm-256color" >> "${bashrc_path}"
+		cat <<'EOF' >> "$bashrc_path"
+
+if [ -f ~/my.bashrc ]; then
+	. ~/my.bashrc
+fi
+
+for file in ~/my-*.bash_aliases; do
+	if [ -f "$file" ]; then
+		. "$file"
+	fi
+done
+
+export TERM=xterm-256color
+EOF
 	fi
 fi
 
