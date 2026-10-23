@@ -1,0 +1,10 @@
+{
+  "description": "Official portal for a Minecraft Bedrock multiplayer server offering nation-building, territory protection, and economic system guides for new and existing players.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
