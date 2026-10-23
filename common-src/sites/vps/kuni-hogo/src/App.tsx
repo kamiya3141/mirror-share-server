@@ -114,9 +114,9 @@ const guideItems = [
 ];
 
 const faqItems = [
-	["サーバーへの参加方法は？", `対応バージョン、サーバーアドレス、ポート番号を含む接続情報は${LINE_OC_STR}にて説明します。`],
+	["機種がSwitch1/2, PS4/5の場合のサーバーへの参加方法は？", `Switch1/2, PS4/5における接続方法は${LINE_OC_STR}にて説明します。`],
 	["国保護システムはどのように利用する？", `操作説明は${LINE_OC_STR}に参加後説明します。ここではコマンドや操作方法を掲載していません。`],
-	["保護領域では何が保護される？", "爆発・炎上、ダメージなどに関する保護処理があります。（落下ダメージは対象外）対象のエンティティ、領域、イベント、設定などにより動作が異なる可能性があります。"],
+	["保護領域では何が保護される？", "爆発・炎上ダメージ（落下ダメージは対象外）に関する保護処理があります。（※各国、各領地のPvP設定に依存します。）対象のエンティティ、領域、イベント、設定などにより動作が異なる可能性があります。"],
 	["経済システムはどのように利用する？", `詳細は${LINE_OC_STR}にて順次掲載します。`],
 	["サーバールールはどこで確認できる？", `${LINE_OC_STR}にて確認できます。`],
 ];
@@ -181,7 +181,7 @@ function Header() {
 					参加方法
 					<Icon name="arrow" size={17} />
 				</a>
-				<a className="button button-lightgreen header-cta" href={LINE_OC_LINK}>
+				<a className="button button-outline header-cta" href={LINE_OC_LINK}>
 					LINEオプチャに参加
 					<Icon name="LINE" size={24} />
 				</a>
@@ -201,7 +201,7 @@ function Header() {
 					<a className="button button-gold" href="#join" onClick={() => setOpen(false)}>
 						参加方法を見る
 					</a>
-					<a className="button button-lightgreen" href={LINE_OC_LINK} onClick={() => setOpen(false)}>
+					<a className="button button-outline" href={LINE_OC_LINK} onClick={() => setOpen(false)}>
 						LINEオプチャに参加
 						<Icon name="LINE" size={24} />
 					</a>{" "}
@@ -230,12 +230,6 @@ function Hero() {
 					土地を守り、経済を動かし、仲間と国家を発展させる
 					<br className="desktop-only" /> ここから、自分たちだけの国造りが始まる
 				</p>
-				<br />
-				<a className="button button-lightgreen" href={LINE_OC_LINK}>
-					LINEオプチャに参加
-					<Icon name="LINE" size={24} />
-				</a>
-				<br />
 				<div className="hero-actions">
 					<a className="button button-gold" href="#about">
 						サーバーについて
@@ -243,6 +237,10 @@ function Hero() {
 					</a>
 					<a className="button button-outline" href="#join">
 						参加方法を見る
+					</a>
+					<a className="button button-outline" href={LINE_OC_LINK}>
+						LINEオプチャに参加
+						<Icon name="LINE" size={24} />
 					</a>
 				</div>
 				<div className="hero-features">

@@ -11,7 +11,7 @@
 	--color-gold: #c7a86a;
 	--color-sage: #718a78;
 
-	--color-lightgreen: lightgreen;
+	--color-lightgreen: rgb(119, 191, 119);
 }
 
 @layer base {
