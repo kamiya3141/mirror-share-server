@@ -168,15 +168,17 @@ function addf() {
 function gitc() {
 	local commit_str=${1:-"edit some files"}
 	local dir_path=${2:-.}
-	git add $dir_path && git commit -m "$commit_str" && git push
-	clear
+	git add $dir_path
+	git commit -m "$commit_str"
+	git push
+	# clear
 	if [ -f ~/public_html/php/root.php ]; then
 		server_label=$(awk "NR==1" "/home/${USER}/.update-utils")
 		bkp_php_path="/home/${USER}/bkp-root-${server_label}.php"
 		cp ~/public_html/php/root.php "${bkp_php_path}"
 		scp "${bkp_php_path}" dh0:~/
 	fi
-	clear
+	# clear
 }
 
 
