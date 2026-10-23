@@ -11,7 +11,7 @@
 	--color-gold: #c7a86a;
 	--color-sage: #718a78;
 
-	--color-lightgreen: #06c755;
+	--color-lightgreen: green;
 }
 
 @layer base {
@@ -1394,7 +1394,7 @@ a.mydef--dash--my-a {
 
 	.hero {
 		padding-top: 118px;
-		background-image: linear-gradient(90deg, rgba(11, 16, 24, .95), rgba(11, 16, 24, .62)), linear-gradient(0deg, var(--color-ink), transparent 45%), url('https://images.unsplash.com/photo-1664845496476-630a0eea9d86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=900');
+		background-image: linear-gradient(90deg, rgba(11, 16, 24, .95), rgba(11, 16, 24, .62)), linear-gradient(0deg, var(--color-ink), transparent 45%), url('/img/background/jpg/main.jpg');
 	}
 
 	.hero h1 {
