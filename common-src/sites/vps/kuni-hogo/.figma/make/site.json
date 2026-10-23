@@ -1,10 +1,15 @@
 {
-  "description": "Official portal for a Minecraft Bedrock multiplayer server offering nation-building, territory protection, and economic system guides for new and existing players.",
-  "robots": {
-    "index": false
-  },
-  "accessibility": {
-    "addBypassLinks": false,
-    "ignoreReducedMotion": false
-  }
+	"title": "国造りサーバ ── ダッシュのマイクラ鯖",
+	"description": "Official portal for a Minecraft Bedrock multiplayer server offering nation-building, territory protection, and economic system guides for new and existing players.",
+	"language": "ja",
+	"robots": {
+		"index": false
+	},
+	"icons": {
+		"icon": "/favicon.svg"
+	},
+	"accessibility": {
+		"addBypassLinks": false,
+		"ignoreReducedMotion": false
+	}
 }
