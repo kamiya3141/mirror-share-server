@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { places, routes, type Place } from "./data";
+import { server_info, places, routes, type Place } from "./data";
 
 const nav = [
 	["ホーム", "home"],
@@ -101,6 +101,9 @@ export default function App() {
 							<a className="primary" href="#map">
 								ワールドを探索する <b>→</b>
 							</a>
+							<a className="primary" onClick={() => setModal(server_info)}>
+								サーバー情報を見る <b>→</b>
+							</a>
 							<a href="#places">建築物を見る</a>
 						</div>
 					</div>
@@ -153,7 +156,7 @@ export default function App() {
 								{places
 									.filter((p) => p.region === region)
 									.map((p, i) => (
-										<button aria-label={p.name} className={`marker ${selected.id === p.id ? "selected" : ""}`} key={p.id} style={{ left: `${p.mapPosition?.x}%`, top: `${p.mapPosition?.y}%` }} onClick={() => setSelected(p)}>
+										<button aria-label={p.name} className={`marker ${selected.id === p.id ? "selected" : ""}`} key={p.id} style={{ top: `${p.mapPosition?.x}%`, left: `${p.mapPosition?.z}%` }} onClick={() => setSelected(p)}>
 											<i>{i + 1}</i>
 											<span>{p.name}</span>
 										</button>
@@ -176,7 +179,11 @@ export default function App() {
 									</div>
 									<div>
 										<dt>座標</dt>
-										<dd>情報準備中</dd>
+										<dd>
+											{Object.entries(selected.mapPosition)
+												.map((kv) => kv.join(": "))
+												.join(", y: ?, ")}
+										</dd>
 									</div>
 								</dl>
 								<a href="#places">図鑑で詳細を見る →</a>
@@ -303,10 +310,10 @@ export default function App() {
 						<SectionTitle no="05" eyebrow="WORLD GALLERY">
 							スクリーンショット集
 						</SectionTitle>
-						<p className="gallery-note">現在は画像差し替え用の領域です。実際のワールドスクリーンショットを追加すると、大きく閲覧できます。</p>
+						<p className="gallery-note">実際のワールドスクリーンショットを追加すると、大きく閲覧できます。</p>
 						<div className="gallery-grid">
 							{places.slice(0, 7).map((p, i) => (
-								<button className={i === 0 || i === 5 ? "wide" : ""} key={p.id} onClick={() => setModal(p)}>
+								<button className={(i === 0 || i === 5) && false ? "wide" : ""} key={p.id} onClick={() => setModal(p)}>
 									<Placeholder name={p.name} src={p.src} />
 								</button>
 							))}
@@ -351,19 +358,23 @@ export default function App() {
 							×
 						</button>
 						<Placeholder name={modal.name} tall src={modal.src} />
-						<small>
-							{modal.category} — {modal.region}
-						</small>
+						<small>{modal.category === "server-information" ? "" : `${modal.category} — ${modal.region}`}</small>
 						<h2>{modal.name}</h2>
 						<p>{modal.description}</p>
 						<dl>
 							<div>
-								<dt>関連施設</dt>
-								<dd>{modal.relatedPlaces.map((id) => places.find((p) => p.id === id)?.name).join(" / ") || "情報準備中"}</dd>
+								<dt>{modal.category === "server-information" ? "サーバURL" : "関連施設"}</dt>
+								<dd>{modal.category === "server-information" ? modal.relatedPlaces[0] : modal.relatedPlaces.map((id) => places.find((p) => p.id === id)?.name).join(" / ") || "情報準備中"}</dd>
 							</div>
 							<div>
-								<dt>座標</dt>
-								<dd>情報準備中</dd>
+								<dt>{modal.category === "server-information" ? "ポート番号" : "座標"}</dt>
+								<dd>
+									{modal.category === "server-information"
+										? modal.relatedPlaces[1]
+										: Object.entries(modal.mapPosition)
+												.map((kv) => kv.join(": "))
+												.join(", y: ?, ")}
+								</dd>
 							</div>
 						</dl>
 					</div>

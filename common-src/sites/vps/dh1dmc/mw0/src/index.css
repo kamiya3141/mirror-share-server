@@ -13,42 +13,42 @@
 }
 
 * {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 html {
-	scroll-behavior: smooth
+	scroll-behavior: smooth;
 }
 
 body {
 	margin: 0;
 	background: var(--deep);
 	color: var(--ink);
-	font-family: "Noto Sans JP", sans-serif
+	font-family: "Noto Sans JP", sans-serif;
 }
 
 button,
 input,
 select {
-	font: inherit
+	font: inherit;
 }
 
 a {
 	color: inherit;
-	text-decoration: none
+	text-decoration: none;
 }
 
 button {
-	color: inherit
+	color: inherit;
 }
 
 .app {
-	overflow: hidden
+	overflow: hidden;
 }
 
 .wrap {
 	width: min(1180px, calc(100% - 48px));
-	margin: auto
+	margin: auto;
 }
 
 .kicker,
@@ -57,7 +57,7 @@ button {
 	color: var(--gold);
 	font-size: 11px;
 	letter-spacing: .22em;
-	font-weight: 700
+	font-weight: 700;
 }
 
 header {
@@ -70,7 +70,7 @@ header {
 	align-items: center;
 	padding: 0 4vw;
 	background: linear-gradient(#071111e8, transparent);
-	border-bottom: 1px solid #ffffff12
+	border-bottom: 1px solid #ffffff12;
 }
 
 .brand {
@@ -78,7 +78,7 @@ header {
 	align-items: center;
 	gap: 12px;
 	font: 600 13px/1.1 "Noto Serif JP";
-	letter-spacing: .08em
+	letter-spacing: .08em;
 }
 
 .brand small {
@@ -104,12 +104,12 @@ header {
 header nav {
 	margin-left: auto;
 	display: flex;
-	gap: 28px
+	gap: 28px;
 }
 
 header nav a {
 	font-size: 12px;
-	color: #c7cdc3
+	color: #c7cdc3;
 }
 
 header nav a:hover {
@@ -119,7 +119,7 @@ header nav a:hover {
 .menu {
 	display: none;
 	background: none;
-	border: 0
+	border: 0;
 }
 
 .hero {
@@ -150,41 +150,42 @@ header nav a:hover {
 .hero h1 {
 	font: 600 clamp(42px, 6.2vw, 88px)/1.18 "Noto Serif JP";
 	letter-spacing: .02em;
-	margin: 24px 0
+	margin: 24px 0;
 }
 
 .hero h1 em {
 	color: var(--paper);
-	font-style: normal
+	font-style: normal;
 }
 
 .hero-copy > p:not(.kicker) {
 	color: #adb6ac;
-	line-height: 2
+	line-height: 2;
 }
 
 .actions {
 	display: flex;
 	align-items: center;
 	gap: 26px;
-	margin-top: 42px
+	margin-top: 42px;
 }
 
 .actions a {
 	font-size: 13px;
 	border-bottom: 1px solid var(--line);
-	padding: 14px 4px
+	padding: 14px 4px;
 }
 
 .actions .primary {
 	background: var(--paper);
 	color: #10201c;
 	border: 0;
-	padding: 16px 22px
+	padding: 16px 22px;
+	cursor: pointer;
 }
 
 .actions b {
-	margin-left: 25px
+	margin-left: 25px;
 }
 
 .hero-photo {
@@ -193,12 +194,12 @@ header nav a:hover {
 	top: 18%;
 	width: 42%;
 	height: 64%;
-	opacity: .58
+	opacity: .58;
 }
 
 .hero-photo .placeholder {
 	height: 100%;
-	border-color: #b89a5a55
+	border-color: #b89a5a55;
 }
 
 .compass {
@@ -208,11 +209,11 @@ header nav a:hover {
 	color: var(--gold);
 	text-align: center;
 	font: 10px serif;
-	letter-spacing: .3em
+	letter-spacing: .3em;
 }
 
 .compass span {
-	font-size: 28px
+	font-size: 28px;
 }
 
 .scroll {
@@ -221,12 +222,12 @@ header nav a:hover {
 	left: 7vw;
 	color: var(--muted);
 	font-size: 9px;
-	letter-spacing: .25em
+	letter-spacing: .25em;
 }
 
 .scroll span {
 	color: var(--gold);
-	margin-left: 10px
+	margin-left: 10px;
 }
 
 .placeholder {
@@ -240,7 +241,7 @@ header nav a:hover {
 	border: 1px solid var(--line);
 	background: repeating-linear-gradient(135deg, #182723, #182723 2px, #15221f 2px, #15221f 12px);
 	color: var(--muted);
-	position: relative
+	position: relative;
 }
 
 .placeholder:before,
@@ -250,21 +251,21 @@ header nav a:hover {
 	width: 22px;
 	height: 22px;
 	border-color: var(--gold);
-	opacity: .5
+	opacity: .5;
 }
 
 .placeholder:before {
 	left: 12px;
 	top: 12px;
 	border-left: 1px solid;
-	border-top: 1px solid
+	border-top: 1px solid;
 }
 
 .placeholder:after {
 	right: 12px;
 	bottom: 12px;
 	border-right: 1px solid;
-	border-bottom: 1px solid
+	border-bottom: 1px solid;
 }
 
 .placeholder span {
@@ -275,16 +276,16 @@ header nav a:hover {
 
 .placeholder strong {
 	font: 500 18px "Noto Serif JP";
-	color: #c7cec3
+	color: #c7cec3;
 }
 
 .placeholder small {
-	font-size: 10px
+	font-size: 10px;
 }
 
 .placeholder.tall {
 	height: 100%;
-	min-height: 380px
+	min-height: 380px;
 }
 
 .intro {
@@ -292,12 +293,12 @@ header nav a:hover {
 	grid-template-columns: 1.3fr 1fr .5fr;
 	gap: 70px;
 	align-items: end;
-	padding: 120px 0
+	padding: 120px 0;
 }
 
 .intro h2 {
 	font: 600 34px/1.55 "Noto Serif JP";
-	margin: 15px 0
+	margin: 15px 0;
 }
 
 .intro > p {
@@ -311,7 +312,7 @@ header nav a:hover {
 	padding-left: 25px;
 	display: flex;
 	align-items: center;
-	gap: 14px
+	gap: 14px;
 }
 
 .fact b {
@@ -321,37 +322,37 @@ header nav a:hover {
 
 .fact span {
 	font-size: 10px;
-	letter-spacing: .15em
+	letter-spacing: .15em;
 }
 
 .fact small {
 	color: var(--muted);
-	letter-spacing: 0
+	letter-spacing: 0;
 }
 
 .map-section,
 .catalog,
 .gallery {
 	background: var(--forest);
-	padding: 110px 0
+	padding: 110px 0;
 }
 
 .section-title {
 	display: flex;
 	gap: 22px;
 	align-items: center;
-	margin-bottom: 45px
+	margin-bottom: 45px;
 }
 
 .section-title > span {
 	font: 500 48px serif;
 	color: var(--gold);
-	opacity: .55
+	opacity: .55;
 }
 
 .section-title h2 {
 	font: 600 32px "Noto Serif JP";
-	margin: 4px 0
+	margin: 4px 0;
 }
 
 .map-note,
@@ -360,35 +361,35 @@ header nav a:hover {
 	color: var(--muted);
 	border-left: 2px solid var(--gold);
 	padding-left: 15px;
-	margin: -20px 0 30px
+	margin: -20px 0 30px;
 }
 
 .region-tabs {
 	display: flex;
-	gap: 1px
+	gap: 1px;
 }
 
 .region-tabs button {
 	border: 0;
 	background: #0b1614;
 	padding: 15px 24px;
-	font-size: 12px
+	font-size: 12px;
 }
 
 .region-tabs button.active {
 	background: var(--paper);
-	color: #10201c
+	color: #10201c;
 }
 
 .region-tabs small {
 	margin-left: 10px;
-	opacity: .6
+	opacity: .6;
 }
 
 .map-layout {
 	display: grid;
 	grid-template-columns: 2fr .8fr;
-	min-height: 550px
+	min-height: 550px;
 }
 
 .map-canvas {
@@ -411,7 +412,7 @@ header nav a:hover {
 	bottom: 4%;
 	font: 600 32px serif;
 	color: #ffffff0d;
-	letter-spacing: .1em
+	letter-spacing: .1em;
 }
 
 .marker {
@@ -420,7 +421,7 @@ header nav a:hover {
 	border: 0;
 	cursor: pointer;
 	transform: translate(-50%, -50%);
-	z-index: 2
+	z-index: 2;
 }
 
 .marker i {
@@ -447,13 +448,13 @@ header nav a:hover {
 	white-space: nowrap;
 	font-size: 10px;
 	background: #101b18cc;
-	padding: 3px 7px
+	padding: 3px 7px;
 }
 
 .marker.selected i {
 	background: var(--paper);
 	color: var(--deep);
-	box-shadow: 0 0 0 6px #d8c9a722
+	box-shadow: 0 0 0 6px #d8c9a722;
 }
 
 .sea {
@@ -466,14 +467,14 @@ header nav a:hover {
 	background: #0d252b99;
 	color: #86a2a3;
 	font-size: 10px;
-	letter-spacing: .2em
+	letter-spacing: .2em;
 }
 
 .map-detail {
 	background: #0c1715;
 	border: 1px solid var(--line);
 	padding: 45px 34px;
-	position: relative
+	position: relative;
 }
 
 .map-detail .index {
@@ -481,23 +482,23 @@ header nav a:hover {
 	right: 25px;
 	top: 25px;
 	font: 52px serif;
-	color: #ffffff0a
+	color: #ffffff0a;
 }
 
 .map-detail h3 {
 	font: 600 26px/1.5 "Noto Serif JP";
-	margin: 35px 0 18px
+	margin: 35px 0 18px;
 }
 
 .map-detail p {
 	color: var(--muted);
 	font-size: 12px;
-	line-height: 2
+	line-height: 2;
 }
 
 .map-detail dl,
 .modal dl {
-	margin: 30px 0
+	margin: 30px 0;
 }
 
 .map-detail dl div,
@@ -506,7 +507,7 @@ header nav a:hover {
 	justify-content: space-between;
 	padding: 12px 0;
 	border-top: 1px solid var(--line);
-	font-size: 11px
+	font-size: 11px;
 }
 
 .map-detail dt {
@@ -523,7 +524,7 @@ header nav a:hover {
 	gap: 25px;
 	padding: 20px;
 	border: 1px solid var(--line);
-	font-size: 10px
+	font-size: 10px;
 }
 
 .legend b {
@@ -536,12 +537,12 @@ header nav a:hover {
 	height: 7px;
 	border: 1px solid var(--gold);
 	transform: rotate(45deg);
-	margin-right: 8px
+	margin-right: 8px;
 }
 
 .routes,
 .history {
-	padding: 120px 0
+	padding: 120px 0;
 }
 
 .route-list article {
@@ -550,13 +551,13 @@ header nav a:hover {
 	gap: 28px;
 	align-items: center;
 	border-top: 1px solid var(--line);
-	padding: 26px 0
+	padding: 26px 0;
 }
 
 .route-no {
 	font-size: 8px;
 	color: var(--muted);
-	letter-spacing: .15em
+	letter-spacing: .15em;
 }
 
 .route-no b {
@@ -565,7 +566,7 @@ header nav a:hover {
 }
 
 .route-image .placeholder {
-	min-height: 125px
+	min-height: 125px;
 }
 
 .route-copy small,
@@ -573,14 +574,14 @@ header nav a:hover {
 .modal > small {
 	color: var(--gold);
 	font-size: 9px;
-	letter-spacing: .12em
+	letter-spacing: .12em;
 }
 
 .route-copy h3,
 .card h3,
 .record h3 {
 	font: 600 22px "Noto Serif JP";
-	margin: 10px 0
+	margin: 10px 0;
 }
 
 .route-copy p,
@@ -588,12 +589,12 @@ header nav a:hover {
 .record p {
 	font-size: 12px;
 	color: var(--muted);
-	line-height: 1.9
+	line-height: 1.9;
 }
 
 .arrow {
 	color: var(--gold);
-	font-size: 24px
+	font-size: 24px;
 }
 
 .filters {
@@ -601,14 +602,14 @@ header nav a:hover {
 	gap: 16px;
 	background: #0b1513;
 	border: 1px solid var(--line);
-	padding: 20px
+	padding: 20px;
 }
 
 .filters label {
 	font-size: 9px;
 	color: var(--muted);
 	letter-spacing: .12em;
-	flex: 1
+	flex: 1;
 }
 
 .filters input,
@@ -621,7 +622,7 @@ header nav a:hover {
 	border: 0;
 	border-bottom: 1px solid #53605a;
 	padding: 8px 2px;
-	outline: none
+	outline: none;
 }
 
 .filters option {
@@ -631,29 +632,29 @@ header nav a:hover {
 .result {
 	font-size: 10px;
 	color: var(--muted);
-	text-align: right
+	text-align: right;
 }
 
 .cards {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 16px
+	gap: 16px;
 }
 
 .card {
 	background: #0d1816;
 	border: 1px solid var(--line);
 	cursor: pointer;
-	transition: .2s
+	transition: .2s;
 }
 
 .card:hover {
 	transform: translateY(-3px);
-	border-color: #b89a5a77
+	border-color: #b89a5a77;
 }
 
 .card > div:last-child {
-	padding: 22px
+	padding: 22px;
 }
 
 .card button {
@@ -661,21 +662,21 @@ header nav a:hover {
 	background: none;
 	color: var(--gold);
 	padding: 0;
-	font-size: 10px
+	font-size: 10px;
 }
 
 .card .placeholder {
-	min-height: 180px
+	min-height: 180px;
 }
 
 .history-grid {
 	display: grid;
 	grid-template-columns: 1.3fr 1fr;
-	min-height: 540px
+	min-height: 540px;
 }
 
 .history-lead {
-	position: relative
+	position: relative;
 }
 
 .history-lead > span {
@@ -685,36 +686,36 @@ header nav a:hover {
 	background: var(--paper);
 	color: var(--deep);
 	font-size: 10px;
-	padding: 8px 12px
+	padding: 8px 12px;
 }
 
 .record {
 	background: var(--panel);
-	padding: 55px
+	padding: 55px;
 }
 
 .record small {
 	color: var(--gold);
 	font-size: 9px;
-	letter-spacing: .16em
+	letter-spacing: .16em;
 }
 
 .record h3 {
 	font-size: 28px;
-	line-height: 1.6
+	line-height: 1.6;
 }
 
 .record hr {
 	border: 0;
 	border-top: 1px solid var(--line);
-	margin: 30px 0
+	margin: 30px 0;
 }
 
 .record ul {
 	padding-left: 18px;
 	color: var(--muted);
 	font-size: 12px;
-	line-height: 2
+	line-height: 2;
 }
 
 .mysteries {
@@ -726,7 +727,7 @@ header nav a:hover {
 .mysteries > div {
 	padding: 24px;
 	border-right: 1px solid var(--line);
-	min-height: 150px
+	min-height: 150px;
 }
 
 .mysteries span {
@@ -736,7 +737,7 @@ header nav a:hover {
 
 .mysteries h3 {
 	font: 500 15px/1.6 "Noto Serif JP";
-	margin: 20px 0
+	margin: 20px 0;
 }
 
 .mysteries small {
@@ -747,35 +748,35 @@ header nav a:hover {
 .gallery-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 10px
+	gap: 10px;
 }
 
 .gallery-grid button {
 	padding: 0;
 	border: 0;
 	background: none;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .gallery-grid .wide {
-	grid-column: span 2
+	grid-column: span 2;
 }
 
 .gallery-grid .placeholder {
-	height: 250px
+	height: 250px;
 }
 
 footer {
 	background: #050c0b;
 	border-top: 1px solid var(--line);
-	padding: 55px 0
+	padding: 55px 0;
 }
 
 footer .wrap {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1.3fr .8fr;
 	align-items: center;
-	gap: 30px
+	gap: 30px;
 }
 
 footer p {
@@ -786,7 +787,7 @@ footer p {
 footer nav {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 12px 20px
+	gap: 12px 20px;
 }
 
 footer nav a {
@@ -799,7 +800,7 @@ footer nav a {
 	align-items: center;
 	gap: 10px;
 	font-size: 8px;
-	letter-spacing: .12em
+	letter-spacing: .12em;
 }
 
 .status i {
@@ -820,7 +821,7 @@ footer nav a {
 	background: #020706dd;
 	display: grid;
 	place-items: center;
-	padding: 24px
+	padding: 24px;
 }
 
 .modal {
@@ -830,7 +831,7 @@ footer nav a {
 	background: var(--panel);
 	border: 1px solid var(--gold);
 	padding: 30px;
-	position: relative
+	position: relative;
 }
 
 .modal .close {
@@ -843,22 +844,22 @@ footer nav a {
 	border: 1px solid var(--line);
 	background: #071111;
 	color: var(--paper);
-	font-size: 22px
+	font-size: 22px;
 }
 
 .modal .placeholder {
-	margin-bottom: 25px
+	margin-bottom: 25px;
 }
 
 .modal h2 {
 	font: 600 30px "Noto Serif JP";
-	margin: 10px 0
+	margin: 10px 0;
 }
 
 .modal > p {
 	color: var(--muted);
 	line-height: 1.9;
-	font-size: 13px
+	font-size: 13px;
 }
 
 @media(max-width:800px) {
@@ -869,7 +870,7 @@ footer nav a {
 	header {
 		height: 66px;
 		padding: 0 18px;
-		background: #071111ef
+		background: #071111ef;
 	}
 
 	.menu {
@@ -879,13 +880,13 @@ footer nav a {
 		height: 40px;
 		flex-direction: column;
 		justify-content: center;
-		gap: 7px
+		gap: 7px;
 	}
 
 	.menu i {
 		height: 1px;
 		background: var(--paper);
-		width: 24px
+		width: 24px;
 	}
 
 	header nav {
@@ -896,27 +897,27 @@ footer nav a {
 		right: 0;
 		background: #0b1614;
 		padding: 25px;
-		flex-direction: column
+		flex-direction: column;
 	}
 
 	header nav.open {
-		display: flex
+		display: flex;
 	}
 
 	.hero {
 		height: auto;
 		min-height: 760px;
 		padding: 120px 24px 60px;
-		align-items: flex-start
+		align-items: flex-start;
 	}
 
 	.hero-copy {
 		width: 100%;
-		z-index: 3
+		z-index: 3;
 	}
 
 	.hero h1 {
-		font-size: 44px
+		font-size: 44px;
 	}
 
 	.hero-photo {
@@ -924,31 +925,31 @@ footer nav a {
 		left: 15px;
 		width: auto;
 		top: 350px;
-		height: 350px
+		height: 350px;
 	}
 
 	.actions {
 		margin-top: 30px;
 		gap: 15px;
-		flex-wrap: wrap
+		flex-wrap: wrap;
 	}
 
 	.scroll {
-		display: none
+		display: none;
 	}
 
 	.intro {
 		grid-template-columns: 1fr;
 		gap: 25px;
-		padding: 80px 0
+		padding: 80px 0;
 	}
 
 	.intro h2 {
-		font-size: 27px
+		font-size: 27px;
 	}
 
 	.fact {
-		width: max-content
+		width: max-content;
 	}
 
 	.map-section,
@@ -956,139 +957,139 @@ footer nav a {
 	.gallery,
 	.routes,
 	.history {
-		padding: 80px 0
+		padding: 80px 0;
 	}
 
 	.section-title {
-		margin-bottom: 35px
+		margin-bottom: 35px;
 	}
 
 	.section-title > span {
-		font-size: 36px
+		font-size: 36px;
 	}
 
 	.section-title h2 {
-		font-size: 27px
+		font-size: 27px;
 	}
 
 	.map-layout {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.map-canvas {
-		min-height: 480px
+		min-height: 480px;
 	}
 
 	.map-detail {
-		padding: 30px 24px
+		padding: 30px 24px;
 	}
 
 	.marker span {
 		max-width: 95px;
-		white-space: normal
+		white-space: normal;
 	}
 
 	.legend {
-		flex-wrap: wrap
+		flex-wrap: wrap;
 	}
 
 	.route-list article {
-		grid-template-columns: 50px 1fr 25px
+		grid-template-columns: 50px 1fr 25px;
 	}
 
 	.route-image {
-		display: none
+		display: none;
 	}
 
 	.cards {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.filters {
-		flex-direction: column
+		flex-direction: column;
 	}
 
 	.history-grid {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.record {
-		padding: 35px 25px
+		padding: 35px 25px;
 	}
 
 	.mysteries {
-		grid-template-columns: 1fr 1fr
+		grid-template-columns: 1fr 1fr;
 	}
 
 	.mysteries > div {
-		min-height: 130px
+		min-height: 130px;
 	}
 
 	.gallery-grid {
-		grid-template-columns: 1fr 1fr
+		grid-template-columns: 1fr 1fr;
 	}
 
 	.gallery-grid .placeholder {
 		height: 180px;
-		min-height: 0
+		min-height: 0;
 	}
 
 	footer .wrap {
-		grid-template-columns: 1fr 1fr
+		grid-template-columns: 1fr 1fr;
 	}
 
 	footer nav {
-		display: none
+		display: none;
 	}
 
 	.modal {
-		padding: 18px
+		padding: 18px;
 	}
 
 	.modal .close {
 		right: 25px;
-		top: 25px
+		top: 25px;
 	}
 }
 
 @media(max-width:480px) {
 	.hero h1 {
-		font-size: 36px
+		font-size: 36px;
 	}
 
 	.hero-photo {
-		top: 380px
+		top: 380px;
 	}
 
 	.region-tabs button {
-		padding: 13px
+		padding: 13px;
 	}
 
 	.region-tabs small {
-		display: none
+		display: none;
 	}
 
 	.map-canvas {
-		min-height: 430px
+		min-height: 430px;
 	}
 
 	.mysteries {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.gallery-grid {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.gallery-grid .wide {
-		grid-column: auto
+		grid-column: auto;
 	}
 
 	footer .wrap {
-		grid-template-columns: 1fr
+		grid-template-columns: 1fr;
 	}
 
 	.route-copy p {
-		display: none
+		display: none;
 	}
 }

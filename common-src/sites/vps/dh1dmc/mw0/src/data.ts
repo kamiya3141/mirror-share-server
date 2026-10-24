@@ -2,11 +2,22 @@ export type Place = {
 	id: string;
 	name: string;
 	category: string;
-	region: "地域A" | "地域B";
+	region: "地域A" | "地域B" | "";
 	description: string;
 	relatedPlaces: string[];
-	mapPosition?: { x: number; y: number; };
+	mapPosition: { x: number; z: number; };
 	src: string;
+};
+
+export const server_info: Place = {
+	id: "server-information",
+	name: "サーバー情報",
+	category: "server-information",
+	region: "",
+	description: "",
+	relatedPlaces: ["vps.tshuto.com", "10000"],
+	mapPosition: { x: 0, z: 0 },
+	src: "/img/background/jpeg/main.jpeg"
 };
 
 export const places: Place[] = [
@@ -20,7 +31,7 @@ export const places: Place[] = [
 			"village",
 			"farm"
 		],
-		mapPosition: { x: 28, y: 40 },
+		mapPosition: { x: 28, z: 40 },
 		src: "/img/background/jpeg/init-world-spawn.jpeg"
 	},
 	{
@@ -34,7 +45,7 @@ export const places: Place[] = [
 			"farm",
 			"ranch"
 		],
-		mapPosition: { x: 41, y: 27 },
+		mapPosition: { x: 41, z: 27 },
 		src: "/img/background/jpeg/four-villages.jpeg"
 	},
 	{
@@ -46,7 +57,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"village"
 		],
-		mapPosition: { x: 16, y: 25 },
+		mapPosition: { x: 16, z: 25 },
 		src: "/img/background/jpeg/skull-house.jpeg"
 	},
 	{
@@ -59,7 +70,7 @@ export const places: Place[] = [
 			"village",
 			"ranch"
 		],
-		mapPosition: { x: 46, y: 46 },
+		mapPosition: { x: 46, z: 46 },
 		src: "/img/background/jpeg/vegetable-garden.jpeg"
 	},
 	{
@@ -71,7 +82,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"farm"
 		],
-		mapPosition: { x: 35, y: 57 },
+		mapPosition: { x: 35, z: 57 },
 		src: "/img/background/jpeg/ranch-hut.jpeg"
 	},
 	{
@@ -83,7 +94,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"village"
 		],
-		mapPosition: { x: 55, y: 34 },
+		mapPosition: { x: 55, z: 34 },
 		src: "/img/background/jpeg/potion-crafter.jpeg"
 	},
 	{
@@ -95,7 +106,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"creeper-trap"
 		],
-		mapPosition: { x: 63, y: 18 },
+		mapPosition: { x: 63, z: 18 },
 		src: "/img/background/jpeg/monster-trap.jpeg"
 	},
 	{
@@ -107,7 +118,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"sky-trap"
 		],
-		mapPosition: { x: 73, y: 29 },
+		mapPosition: { x: 73, z: 29 },
 		src: "/img/background/jpeg/creeper-trap.jpeg"
 	},
 	{
@@ -120,7 +131,7 @@ export const places: Place[] = [
 			"villa",
 			"dock"
 		],
-		mapPosition: { x: 25, y: 76 },
+		mapPosition: { x: 25, z: 76 },
 		src: "/img/background/jpeg/stone-wall.jpeg"
 	},
 	{
@@ -133,7 +144,7 @@ export const places: Place[] = [
 			"wall",
 			"dock"
 		],
-		mapPosition: { x: 34, y: 75 },
+		mapPosition: { x: 34, z: 75 },
 		src: "/img/background/jpeg/past-house.jpeg"
 	},
 	{
@@ -146,7 +157,7 @@ export const places: Place[] = [
 			"wall",
 			"villa"
 		],
-		mapPosition: { x: 42, y: 87 },
+		mapPosition: { x: 42, z: 87 },
 		src: "/img/background/jpeg/dock.jpeg"
 	},
 	{
@@ -159,7 +170,7 @@ export const places: Place[] = [
 			"bridge",
 			"ruins"
 		],
-		mapPosition: { x: 65, y: 60 },
+		mapPosition: { x: 65, z: 60 },
 		src: "/img/background/jpeg/ancient-city.jpeg"
 	},
 	{
@@ -172,7 +183,7 @@ export const places: Place[] = [
 			"ancient-city",
 			"ruins"
 		],
-		mapPosition: { x: 76, y: 70 },
+		mapPosition: { x: 76, z: 70 },
 		src: "/img/background/jpeg/bridge.jpeg"
 	},
 	{
@@ -184,7 +195,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"bridge"
 		],
-		mapPosition: { x: 89, y: 63 },
+		mapPosition: { x: 89, z: 63 },
 		src: "/img/background/jpeg/unknown-ruins.jpeg"
 	},
 	{
@@ -196,7 +207,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"capital"
 		],
-		mapPosition: { x: 36, y: 53 },
+		mapPosition: { x: 36, z: 53 },
 		src: "/img/background/jpeg/current-house.jpeg"
 	},
 	{
@@ -208,7 +219,7 @@ export const places: Place[] = [
 		relatedPlaces: [
 			"spruce-house"
 		],
-		mapPosition: { x: 70, y: 42 },
+		mapPosition: { x: 70, z: 42 },
 		src: "/img/background/jpeg/royal-capital.jpeg"
 	}
 ];
