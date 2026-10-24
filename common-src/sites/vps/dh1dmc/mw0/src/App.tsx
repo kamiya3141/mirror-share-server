@@ -105,7 +105,7 @@ export default function App() {
 						</div>
 					</div>
 					<div className="hero-photo">
-						<Placeholder name="ワールド全景 / ヒーロー画像" tall src="/img/background/" />
+						<Placeholder name="ワールド全景 / ヒーロー画像" tall src="/img/background/jpeg/main.jpeg" />
 					</div>
 					<div className="scroll">
 						SCROLL TO EXPLORE <span>↓</span>

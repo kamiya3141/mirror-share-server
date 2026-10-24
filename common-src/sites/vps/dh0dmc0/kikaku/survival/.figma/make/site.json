@@ -1,0 +1,15 @@
+{
+	"title": "サバゲー 企画サーバー ダッシュのマイクラ鯖",
+	"description": "Minecraft Bedrockサバゲーワールドの公式ポータル。プレイヤーがフィールド、武器、ルール、参加方法、ゲーム内メディアを確認できます。",
+	"language": "ja",
+	"robots": {
+		"index": false
+	},
+	"icons": {
+		"icon": "/img/favicon/svg/main.svg"
+	},
+	"accessibility": {
+		"addBypassLinks": false,
+		"ignoreReducedMotion": false
+	}
+}
