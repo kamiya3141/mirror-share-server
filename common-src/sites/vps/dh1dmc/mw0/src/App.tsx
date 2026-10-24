@@ -210,7 +210,7 @@ export default function App() {
 									<b>{r.no}</b>
 								</div>
 								<div className="route-image">
-									<Placeholder name={r.name} />
+									<Placeholder name={r.name} src={r.src} />
 								</div>
 								<div className="route-copy">
 									<small>{r.stops}</small>
@@ -246,7 +246,7 @@ export default function App() {
 						<div className="cards">
 							{filtered.map((p) => (
 								<article className="card" key={p.id} onClick={() => setModal(p)} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setModal(p)}>
-									<Placeholder name={p.name} />
+									<Placeholder name={p.name} src={p.src} />
 									<div>
 										<small>
 											{p.category} — {p.region}
@@ -267,7 +267,7 @@ export default function App() {
 					</SectionTitle>
 					<div className="history-grid">
 						<div className="history-lead">
-							<Placeholder name="復元済みの古代都市" tall />
+							<Placeholder name="復元済みの古代都市" tall src="/img/background/jpeg/ancient-city.jpeg" />
 							<span>記録 001</span>
 						</div>
 						<div className="record">
@@ -307,7 +307,7 @@ export default function App() {
 						<div className="gallery-grid">
 							{places.slice(0, 7).map((p, i) => (
 								<button className={i === 0 || i === 5 ? "wide" : ""} key={p.id} onClick={() => setModal(p)}>
-									<Placeholder name={p.name} />
+									<Placeholder name={p.name} src={p.src} />
 								</button>
 							))}
 						</div>
@@ -350,7 +350,7 @@ export default function App() {
 						<button className="close" onClick={() => setModal(null)} aria-label="閉じる">
 							×
 						</button>
-						<Placeholder name={modal.name} tall />
+						<Placeholder name={modal.name} tall src={modal.src} />
 						<small>
 							{modal.category} — {modal.region}
 						</small>
