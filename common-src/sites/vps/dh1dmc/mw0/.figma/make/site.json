@@ -1,0 +1,15 @@
+{
+	"title": "メインサーバー ダッシュのマイクラ鯖",
+	"description": "Minecraft Bedrockのサバイバルワールドを巡る公式ガイド。地図や探索ルート、施設図鑑、ギャラリーで見どころを探せます。",
+	"language": "ja",
+	"robots": {
+		"index": false
+	},
+	"icons": {
+		"icon": "/img/favicon/svg/main.svg"
+	},
+	"accessibility": {
+		"addBypassLinks": false,
+		"ignoreReducedMotion": false
+	}
+}
