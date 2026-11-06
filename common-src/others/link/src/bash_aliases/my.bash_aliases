@@ -76,6 +76,12 @@ function aprm() {
 	fi
 }
 
+function chch() {
+	local dir_path="${1:-./}"
+	sudo chown ${USER}:${USER} -R "${dir_path}"
+	sudo chmod 777 -R "${dir_path}"
+}
+
 function nn() {
 	nano $1
 }
